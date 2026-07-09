@@ -286,14 +286,14 @@ nav.scrolled{
 .cl-stage.locked .cl-state{color:var(--sage)}
 .cl-stage.locked .cl-state .led{background:var(--sage); box-shadow:0 0 12px rgba(55,179,105,.6)}
 .cl-actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
-#tbar{transition:transform .55s cubic-bezier(.34,1.56,.64,1); transform-origin:418px 215px}
+#tbar{transition:transform .55s cubic-bezier(.34,1.56,.64,1); transform-box:fill-box; transform-origin:center}
 .locked #tbar{transform:rotate(90deg)}
-#clickring{opacity:0; transform-origin:418px 215px}
+#clickring{opacity:0; transform-box:fill-box; transform-origin:center}
 .locked #clickring{animation:ring .7s ease-out}
 @keyframes ring{0%{opacity:.9; transform:scale(.4)}100%{opacity:0; transform:scale(1.5)}}
 #earring-group{transition:transform .3s}
 .tugging #earring-group{animation:tug .5s cubic-bezier(.36,.07,.19,.97)}
-@keyframes tug{0%,100%{transform:translateX(0)}20%{transform:translateX(26px)}40%{transform:translateX(8px)}60%{transform:translateX(18px)}80%{transform:translateX(3px)}}
+@keyframes tug{0%,100%{transform:translateX(0)}20%{transform:translateX(-24px)}40%{transform:translateX(-7px)}60%{transform:translateX(-16px)}80%{transform:translateX(-3px)}}
 .cl-caption{font-family:var(--serif); font-size:22px; min-height:30px; font-style:italic; opacity:0; transition:opacity .4s}
 .cl-caption.show{opacity:1}
 .cl-steps{display:flex; flex-direction:column; margin-top:34px; border-top:1px solid rgba(34,34,34,.14)}
@@ -611,9 +611,22 @@ footer ul a:hover{color:var(--coral)}
     </div>
     <div class="cl-stage reveal d1" id="clStage">
       <div class="cl-state"><span class="led"></span><span id="clStateLabel">Offen</span></div>
-      <svg viewBox="0 0 480 340" role="img" aria-label="Interaktive Animation des Click-Lock Verschlusses">
-        <!-- Komplettes Ohr im Profil, Läppchen auf Stift-Höhe -->
-        <path id="earShape" d="M310 40
+      <svg viewBox="120 -14 480 340" role="img" aria-label="Interaktive Animation des Click-Lock Verschlusses">
+        <defs>
+          <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F8ECDE"/><stop offset="1" stop-color="#EFD9BF"/>
+          </linearGradient>
+          <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EDF0F4"/><stop offset=".5" stop-color="#C6CBD4"/><stop offset="1" stop-color="#A8AFBA"/>
+          </linearGradient>
+          <radialGradient id="gold" cx=".35" cy=".3" r=".95">
+            <stop offset="0" stop-color="#F1E0C2"/><stop offset=".55" stop-color="#D9C1A0"/><stop offset="1" stop-color="#BB9A6C"/>
+          </radialGradient>
+        </defs>
+        <!-- Bodenschatten -->
+        <ellipse cx="366" cy="298" rx="100" ry="13" fill="rgba(34,34,34,.07)"/>
+        <!-- Ohr im Profil -->
+        <path d="M310 40
           C 335 8, 390 6, 415 38
           C 438 66, 442 120, 428 160
           C 420 184, 405 202, 392 216
@@ -622,28 +635,25 @@ footer ul a:hover{color:var(--coral)}
           C 299 222, 306 210, 318 205
           C 308 196, 300 184, 298 168
           C 296 150, 300 130, 306 116
-          C 300 96, 302 64, 310 40 Z" fill="#F3E3D3" stroke="#E4CBB4" stroke-width="3" stroke-linejoin="round"/>
+          C 300 96, 302 64, 310 40 Z" fill="url(#skin)" stroke="#E2C6AA" stroke-width="3" stroke-linejoin="round"/>
         <!-- Helix-Falte innen -->
-        <path d="M322 48 C 344 26 382 26 400 50 C 418 74 420 118 408 152 C 400 174 388 190 378 202" fill="none" stroke="#E4CBB4" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M322 48 C 344 26 382 26 400 50 C 418 74 420 118 408 152 C 400 174 388 190 378 202" fill="none" stroke="#E0C2A2" stroke-width="2.5" stroke-linecap="round"/>
         <!-- Tragus -->
-        <path d="M306 160 C 318 162 324 174 318 186" fill="none" stroke="#E4CBB4" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M306 160 C 318 162 324 174 318 186" fill="none" stroke="#E0C2A2" stroke-width="2.5" stroke-linecap="round"/>
         <!-- Concha -->
         <path d="M330 120 C 348 122 358 140 352 158" fill="none" stroke="#E9D5C0" stroke-width="2" stroke-linecap="round"/>
-        <text x="228" y="50" font-family="Inter, sans-serif" font-size="11" letter-spacing="2" fill="#BFA88F">OHR</text>
         <!-- Stichkanal durchs Läppchen -->
-        <rect x="302" y="205" width="86" height="20" rx="10" fill="#E8D3BE"/>
+        <rect x="302" y="205" width="86" height="20" rx="10" fill="#E0C09B" opacity=".65"/>
         <g id="earring-group">
-          <rect x="120" y="209" width="298" height="12" rx="6" fill="#C9CDD4"/>
-          <rect x="120" y="209" width="298" height="5" rx="2.5" fill="#E8EBEF"/>
-          <circle cx="108" cy="215" r="34" fill="#D9C1A0"/>
-          <circle cx="108" cy="215" r="34" fill="none" stroke="#C4A87F" stroke-width="2"/>
-          <circle cx="98" cy="205" r="9" fill="#FAF7F2" opacity=".8"/>
+          <rect x="272" y="209" width="146" height="12" rx="6" fill="url(#steel)"/>
+          <circle cx="262" cy="215" r="30" fill="url(#gold)" stroke="#BE9E70" stroke-width="1.5"/>
+          <circle cx="252" cy="205" r="8" fill="#FBF6EC" opacity=".9"/>
+          <circle cx="270" cy="226" r="3.5" fill="#FBF6EC" opacity=".45"/>
           <g id="tbar">
-            <rect x="393" y="208" width="50" height="14" rx="7" fill="#AEB4BE"/>
-            <rect x="393" y="208" width="50" height="6" rx="3" fill="#DDE1E7"/>
+            <rect x="393" y="208" width="50" height="14" rx="7" fill="url(#steel)" stroke="#99A0AC" stroke-width="1"/>
           </g>
         </g>
-        <circle id="clickring" cx="418" cy="215" r="52" fill="none" stroke="#37B369" stroke-width="5"/>
+        <circle id="clickring" cx="418" cy="215" r="50" fill="none" stroke="#37B369" stroke-width="5"/>
       </svg>
       <p class="cl-caption" id="clCaption">&nbsp;</p>
       <div class="cl-actions">
