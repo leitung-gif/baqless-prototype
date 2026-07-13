@@ -174,7 +174,7 @@ nav.scrolled{
   display:flex; flex-direction:column; justify-content:center; gap:26px;
   padding:130px var(--pad) 90px; position:relative; z-index:3; pointer-events:none;
 }
-.hero-copy a, .hero-copy .hero-badge{pointer-events:auto}
+.hero-copy a{pointer-events:auto}
 .hero h1{font-size:clamp(54px,7.4vw,110px); letter-spacing:-.01em; color:#fff}
 .hero h1 .line:nth-child(2) span{font-style:italic}
 .hero h1 .line{display:block; overflow:hidden}
@@ -183,15 +183,6 @@ nav.scrolled{
 @keyframes rise{to{transform:translateY(0)}}
 .hero-sub{max-width:44ch; font-size:17px; color:rgba(250,247,242,.75); opacity:0; animation:fade .8s .45s forwards}
 .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation:fade .8s .6s forwards}
-.hero-badge{
-  display:inline-flex; align-items:stretch; width:fit-content;
-  border:1px solid rgba(250,247,242,.22); border-radius:999px; overflow:hidden;
-  font-size:10.5px; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
-  opacity:0; animation:fade .8s .25s forwards;
-}
-.hb-left{display:inline-flex; align-items:center; gap:7px; background:var(--coral); color:#fff; padding:8px 14px 8px 12px}
-.hb-left svg{flex:none}
-.hb-right{display:inline-flex; align-items:center; color:var(--gold); padding:8px 16px; font-variant-numeric:tabular-nums}
 @keyframes fade{to{opacity:1}}
 .hero-visual{position:relative; z-index:2; padding:120px var(--pad) 80px 0; pointer-events:none}
 .hero-arch{
@@ -300,6 +291,7 @@ nav.scrolled{
 @keyframes tug{0%,100%{transform:translateX(0)}20%{transform:translateX(-24px)}40%{transform:translateX(-7px)}60%{transform:translateX(-16px)}80%{transform:translateX(-3px)}}
 .cl-caption{font-family:var(--serif); font-size:22px; min-height:30px; font-style:italic; opacity:0; transition:opacity .4s}
 .cl-caption.show{opacity:1}
+.cl-patent{font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#a39d94; font-variant-numeric:tabular-nums}
 .cl-steps{display:flex; flex-direction:column; margin-top:34px; border-top:1px solid rgba(34,34,34,.14)}
 .cl-step{
   display:grid; grid-template-columns:64px 1fr; gap:18px; align-items:baseline;
@@ -523,7 +515,7 @@ footer ul a:hover{color:var(--coral)}
   html{scroll-behavior:auto}
   .reveal{opacity:1; transform:none}
   .hero h1 .line span{transform:none}
-  .hero-sub,.hero-ctas,.hero-badge,.hero-arch,.hero-ring{opacity:1; transform:none}
+  .hero-sub,.hero-ctas,.hero-arch,.hero-ring{opacity:1; transform:none}
 }
 </style>
 
@@ -559,13 +551,6 @@ footer ul a:hover{color:var(--coral)}
 <header class="hero" id="top">
   <canvas id="bubbles" aria-hidden="true"></canvas>
   <div class="hero-copy">
-    <span class="hero-badge">
-      <span class="hb-left">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l7 4v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg>
-        Patentiert
-      </span>
-      <span class="hb-right">Nr. 6636942 · CH/JP</span>
-    </span>
     <h1>
       <span class="line"><span>Ein Klick.</span></span>
       <span class="line"><span>Kein Zurück.</span></span>
@@ -670,6 +655,7 @@ footer ul a:hover{color:var(--coral)}
         <button class="btn btn-coral" id="lockBtn">Klick.</button>
         <button class="btn btn-ghost" id="tugBtn" disabled style="opacity:.4">Zieh dran</button>
       </div>
+      <p class="cl-patent">Patent Nr. 6636942 · CH/JP</p>
     </div>
   </div>
 </section>
