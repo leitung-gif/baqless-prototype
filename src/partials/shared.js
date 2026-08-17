@@ -87,6 +87,7 @@ function renderCart(){
   const fill = document.getElementById('shipFill'), txt = document.getElementById('shipText');
   if (fill && txt){
     fill.style.width = Math.min(sub / FREE_SHIP * 100, 100) + '%';
+    fill.classList.toggle('done', sub >= FREE_SHIP);
     if (!cart.length){ txt.innerHTML = `Gratisversand ab <b>CHF ${FREE_SHIP}</b>`; txt.classList.remove('done'); }
     else if (sub >= FREE_SHIP){ txt.textContent = '✓ Gratisversand gesichert.'; txt.classList.add('done'); }
     else { txt.innerHTML = `Noch <b>CHF ${FREE_SHIP - sub}</b> bis zum Gratisversand`; txt.classList.remove('done'); }

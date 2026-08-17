@@ -107,6 +107,14 @@ async function run() {
     const s = f.contentWindow.getComputedStyle(d.querySelector('#plpGrid .card .card-img'));
     return s.backgroundImage === 'none' && s.backgroundColor === 'rgb(255, 255, 255)';
   })());
+  log('CI: Bestseller-Tag mit Navy-Schrift', (() => {
+    const t = d.querySelector('#plpGrid .tag.tag-sage');
+    return !!t && f.contentWindow.getComputedStyle(t).color === 'rgb(11, 29, 63)';
+  })());
+  log('CI: Limitiert-Tag auf Lavender Deep', (() => {
+    const t = d.querySelector('#plpGrid .tag.tag-lav');
+    return !!t && f.contentWindow.getComputedStyle(t).backgroundColor === 'rgb(99, 85, 196)';
+  })());
   click(d, '.fpill[data-c="Honesty"]'); await sleep(200);
   log('PLP-Filter Honesty → 6', d.querySelectorAll('#plpGrid .card').length === 6);
   log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes('6'));
@@ -175,6 +183,21 @@ async function run() {
     .every(pg => !!d.querySelector(`footer a[href^="${pg}.html"]`)));
   log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
   log('Home: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
+  log('Home: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
+  log('CI: Eyebrow in Coral Deep #C93B27', (() => {
+    const c = f.contentWindow.getComputedStyle(d.querySelector('.eyebrow')).color;
+    return c === 'rgb(201, 59, 39)';
+  })(), f.contentWindow.getComputedStyle(d.querySelector('.eyebrow')).color);
+  log('CI: Sticker mit Navy-Schrift statt Weiss', (() => {
+    const st = d.querySelector('.sticker.coral');
+    return !!st && f.contentWindow.getComputedStyle(st).color === 'rgb(11, 29, 63)';
+  })());
+  log('CI: Tastaturfokus definiert', [...d.querySelectorAll('style')].some(s => s.textContent.includes(':focus-visible')));
+  log('CI: Inter 600 verfügbar', d.fonts.check('600 11px Inter'));
+  log('CI: Versandbalken einfarbig', (() => {
+    const fillEl = d.getElementById('shipFill');
+    return !!fillEl && f.contentWindow.getComputedStyle(fillEl).backgroundImage === 'none';
+  })());
   log('Home: Favicon + Meta-Description', !!d.querySelector('link[rel="icon"]') && !!d.querySelector('meta[name="description"]'));
   log('Footer: Newsletter-Band', !!d.querySelector('footer [data-nlform]'));
   log('Footer: Social + Mail', d.querySelectorAll('.foot-social a').length === 3 && !!d.querySelector('.foot-mail'));
@@ -235,6 +258,7 @@ async function run() {
   d = f.contentDocument;
   log('FAQ lädt mit 9 Fragen', d.querySelectorAll('.legal h2').length === 9);
   log('FAQ: Grössen-Anker', !!d.getElementById('groessen'));
+  log('FAQ: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
 
   // ===== Story-Subpage =====
   f.src = '/story.html';
