@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Impressum der Baqless AG.">
+<meta name="description" content="Neu bei Baqless: die neuesten Ohrringe mit Click-Lock, dazu limitierte Paare aus Japan. Entwickelt in der Schweiz, von Hand gefertigt.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
-<title>Baqless · Impressum</title>
+<title>Baqless · Neuheiten</title>
 <style>
 
 @font-face {
@@ -871,34 +871,17 @@ footer ul a:hover{color:var(--coral)}
   </div>
 </div>
 
-<main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Impressum</span></div>
-  <h1>Impressum.</h1>
-  <p class="lead">Wer hinter Baqless steht.</p>
+<header class="plp-hero">
+  <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
+  <div class="blob" style="width:260px;height:260px;background:var(--sage);bottom:-100px;left:-60px"></div>
+  <div class="blob" style="width:120px;height:120px;background:var(--lavender);top:40px;left:34%"></div>
+  <h1>Frisch eingeklickt. <em>Neuheiten.</em></h1>
+  <p>Die neuesten Paare zuerst, limitierte Stücke aus Japan gleich dahinter. Alles mit Click-Lock, alles für jeden Tag.</p>
+</header>
 
-  <h2>Betreiberin</h2>
-  <p>Baqless AG<br>
-  <span class="ph">[Strasse Nr.]</span><br>
-  <span class="ph">[PLZ Ort]</span>, Schweiz</p>
-
-  <h2>Kontakt</h2>
-  <p>E-Mail: <a href="mailto:hello@baqless.com">hello@baqless.com</a><br>
-  Kontaktformular: <a href="kontakt.html">baqless.com/kontakt</a></p>
-
-  <h2>Handelsregister</h2>
-  <p>Eingetragen im Handelsregister des Kantons <span class="ph">[Kanton]</span><br>
-  UID: <span class="ph">[CHE-XXX.XXX.XXX]</span></p>
-
-  <h2>Vertretungsberechtigt</h2>
-  <p><span class="ph">[Name, Funktion]</span></p>
-
-  <h2>Haftungshinweis</h2>
-  <p>Wir prüfen die Inhalte dieser Website sorgfältig. Für Inhalte externer Links übernehmen wir keine Verantwortung. Für verlinkte Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
-
-  <h2>Konzept &amp; Umsetzung</h2>
-  <p>Lorien Group, Aarau</p>
-
-  <p class="legal-note">Entwurf für den Prototyp. Die markierten Angaben ergänzt Baqless vor dem Livegang.</p>
+<main class="plp-wrap">
+  <div class="plp-count" id="plpCount"></div>
+  <div class="plp-grid" id="plpGrid"></div>
 </main>
 
 <footer id="footer">
@@ -1501,6 +1484,41 @@ document.querySelectorAll('[data-nlform]').forEach(form => form.addEventListener
   e.target.reset();
 }));
 
+
+// ---------- Neuheiten: Neu zuerst, dann Limitiert, dann alle ----------
+const grid = document.getElementById('plpGrid');
+const rank = p => p.tag === 'Neu' ? 0 : p.tag === 'Limitiert' ? 1 : 2;
+const list = [...PRODUCTS].sort((a, b) => rank(a) - rank(b));
+
+function cardHtml(p, i){
+  return `
+  <article class="card" data-id="${p.id}" style="animation-delay:${Math.min(i * 55, 440)}ms">
+    <div class="card-img" data-flip>
+      ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
+      <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+      <img class="detail" src="${p.detail}" alt="" loading="lazy">
+    </div>
+    <div class="card-meta">
+      <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+      <span class="price">CHF ${p.price}</span>
+    </div>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+  </article>`;
+}
+
+grid.innerHTML = list.map(cardHtml).join('');
+const nNeu = list.filter(p => p.tag === 'Neu').length;
+document.getElementById('plpCount').textContent =
+  `${nNeu} neue Paare · ${list.length} insgesamt · alle mit Click-Lock`;
+
+grid.addEventListener('click', e => {
+  if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
+  const box = e.target.closest('[data-flip]');
+  if (!box) return;
+  if (matchMedia('(hover: none)').matches) { box.classList.toggle('flip'); }
+  else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
+});
+track('view_item_list', { item_list_name: 'Neuheiten' });
 </script>
 </body>
 </html>

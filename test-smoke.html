@@ -37,15 +37,17 @@ async function run() {
   click(d, '#mainAdd'); await sleep(250);
   log('Cart: 2 Stück', d.getElementById('cartCount')?.textContent === '2');
   log('Toast «Sitzt.»', d.getElementById('toast')?.textContent.includes('Sitzt.'));
+  log('Tracking: add_to_cart im dataLayer', Array.isArray(w.dataLayer) && w.dataLayer.some(x => x.event === 'add_to_cart'));
+  log('Tracking: view_item im dataLayer', w.dataLayer.some(x => x.event === 'view_item'));
   click(d, '#cartBtn'); await sleep(250);
   log('Drawer öffnet', d.getElementById('drawer')?.classList.contains('open') === true);
   log('Drawer-Total CHF 138', d.getElementById('drawerTotal')?.textContent.includes('138'));
   log('Gratisversand erreicht', d.getElementById('shipText')?.textContent.includes('gesichert'));
   click(d, '[data-qminus="polarisyg"]'); await sleep(200);
   log('Stepper minus → CHF 69', d.getElementById('drawerTotal')?.textContent.includes('69'));
-  log('Gratisversand-Restbetrag', d.getElementById('shipText')?.textContent.includes('51'));
+  log('Gratisversand-Restbetrag', d.getElementById('shipText')?.textContent.includes('30'));
   const fillW = parseFloat(d.getElementById('shipFill')?.style.width);
-  log('Fortschrittsbalken ~57%', fillW > 50 && fillW < 65, fillW + '%');
+  log('Fortschrittsbalken ~70%', fillW > 64 && fillW < 76, fillW + '%');
   click(d, '[data-remove="polarisyg"]'); await sleep(200);
   log('Entfernen leert Warenkorb', d.getElementById('cartCount')?.textContent === '0');
   click(d, '#drawerClose'); await sleep(150);
@@ -100,22 +102,39 @@ async function run() {
   f.src = '/kollektion.html';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('PLP: 8 Karten', d.querySelectorAll('#plpGrid .card').length === 8);
+  log('PLP: 16 Karten', d.querySelectorAll('#plpGrid .card').length === 16);
+  log('Karten: Front cream, nicht farbig', (() => {
+    const s = f.contentWindow.getComputedStyle(d.querySelector('#plpGrid .card .card-img'));
+    return s.backgroundImage === 'none' && s.backgroundColor === 'rgb(255, 255, 255)';
+  })());
   click(d, '.fpill[data-c="Honesty"]'); await sleep(200);
-  log('PLP-Filter Honesty → 5', d.querySelectorAll('#plpGrid .card').length === 5);
-  log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes('5'));
+  log('PLP-Filter Honesty → 6', d.querySelectorAll('#plpGrid .card').length === 6);
+  log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes('6'));
   log('PLP-URL-Param', f.contentWindow.location.search.includes('c=Honesty'));
   const sort = d.getElementById('plpSort');
   sort.value = 'asc'; sort.dispatchEvent(new f.contentWindow.Event('change')); await sleep(200);
   log('PLP-Sortierung Preis ↑', d.querySelector('#plpGrid .card .price')?.textContent.includes('49'));
   click(d, '.fpill[data-c="alle"]'); await sleep(150);
-  log('PLP zurück auf Alle', d.querySelectorAll('#plpGrid .card').length === 8);
+  log('PLP zurück auf Alle', d.querySelectorAll('#plpGrid .card').length === 16);
+  click(d, '.fpill[data-c="WA"]'); await sleep(200);
+  log('PLP-Filter WA → 3', d.querySelectorAll('#plpGrid .card').length === 3);
+  click(d, '.fpill[data-c="alle"]'); await sleep(150);
 
   // ===== PLP mit Param laden =====
   f.src = '/kollektion.html?c=Amity';
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
-  log('PLP ?c=Amity → 2 Karten', d.querySelectorAll('#plpGrid .card').length === 2);
+  log('PLP ?c=Amity → 4 Karten', d.querySelectorAll('#plpGrid .card').length === 4);
+
+  // ===== Neuheiten-Subpage =====
+  f.src = '/neuheiten.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Neuheiten: 16 Karten', d.querySelectorAll('#plpGrid .card').length === 16);
+  log('Neuheiten: Neu zuerst', d.querySelector('#plpGrid .card .tag')?.textContent === 'Neu');
+  log('Neuheiten: Zähler-Text', d.getElementById('plpCount')?.textContent.includes('4 neue Paare'));
+  log('Neuheiten: view_item_list-Tracking', f.contentWindow.dataLayer
+    .some(x => x.event === 'view_item_list' && x.item_list_name === 'Neuheiten'));
 
   // ===== Homepage =====
   f.src = '/index.html';
@@ -124,6 +143,8 @@ async function run() {
   log('Home: Rail 8 Karten', d.querySelectorAll('#rail .card').length === 8);
   log('Home: Karten-Link', d.querySelector('#rail .card-link')?.getAttribute('href')?.startsWith('produkt.html?p='));
   log('Home: Nav → PLP', d.querySelector('nav a[href="kollektion.html"]') !== null);
+  log('Home: Nav → Neuheiten', d.querySelector('nav a[href="neuheiten.html"]') !== null);
+  log('Home: Rail-CTA → Neuheiten', d.querySelector('.products a.btn[href="neuheiten.html"]') !== null);
   log('Home: Suche vorhanden', !!d.getElementById('searchOverlay'));
   log('Home: Cart persistiert', d.getElementById('cartCount')?.textContent === '2');
   log('Home: Newsletter-Form', !!d.getElementById('nlForm'));
@@ -134,10 +155,14 @@ async function run() {
   log('Home: Hero-Video läuft an', !!hv && hv.currentTime > 0, 'ct=' + (hv ? hv.currentTime.toFixed(2) : 'n/a'));
   log('Home: Film-Sektion 2 Loops + Bild', d.querySelectorAll('.film-card video').length === 2
     && !!d.querySelector('a.film-card.still img'));
-  log('Home: Film direkt unter Hero', (() => {
+  log('Home: Funnel-Reihenfolge Produkte → Stimmen → Film', (() => {
     const secs = [...d.querySelectorAll('header.hero, section')].map(x => x.id || x.className.split(' ')[0]);
-    return secs.indexOf('film') >= 0 && secs.indexOf('film') < secs.indexOf('clicklock');
+    const i = n => secs.indexOf(n);
+    return i('produkte') > 0 && i('produkte') < i('reviews') && i('reviews') < i('film') && i('film') < i('clicklock');
   })());
+  log('Home: 6 Review-Karten', d.querySelectorAll('#reviews .rev-card').length === 6);
+  log('Home: Reviews mit Sternen + Produktlink', d.querySelectorAll('#reviews .rev-stars').length === 6
+    && !!d.querySelector('#reviews a[href^="produkt.html?p="]'));
   log('Home: Footer verlinkt Rechtsseiten', ['kontakt','impressum','agb','datenschutz','widerruf','faq']
     .every(pg => !!d.querySelector(`footer a[href^="${pg}.html"]`)));
   log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
@@ -156,9 +181,9 @@ async function run() {
     const hrefs = [...d.querySelectorAll('.col-card')].map(a => a.getAttribute('href'));
     return hrefs.length === 3 && ['Honesty','Amity','Embrace'].every(c => hrefs.includes('kollektion.html?c=' + c));
   })());
-  log('Home: Kachel-Zähler korrekt', d.querySelector('[data-colcount="Honesty"]')?.textContent === '5 Paare'
-    && d.querySelector('[data-colcount="Amity"]')?.textContent === '2 Paare'
-    && d.querySelector('[data-colcount="Embrace"]')?.textContent === '1 Paar');
+  log('Home: Kachel-Zähler korrekt', d.querySelector('[data-colcount="Honesty"]')?.textContent === '6 Paare'
+    && d.querySelector('[data-colcount="Amity"]')?.textContent === '4 Paare'
+    && d.querySelector('[data-colcount="Embrace"]')?.textContent === '3 Paare');
   log('Home: Nav entschlackt', (() => {
     const t = [...d.querySelectorAll('.nav-links a')].map(a => a.textContent.trim());
     return t.length === 3 && !t.includes('Film') && !t.includes('WA') && !t.includes('Click-Lock');

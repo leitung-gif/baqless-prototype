@@ -28,6 +28,7 @@
     <button class="fpill" data-c="Honesty">Honesty</button>
     <button class="fpill" data-c="Amity">Amity</button>
     <button class="fpill" data-c="Embrace">Embrace</button>
+    <button class="fpill" data-c="WA">WA</button>
     <select id="plpSort" aria-label="Sortieren">
       <option value="std">Empfohlen</option>
       <option value="asc">Preis aufsteigend</option>
@@ -98,6 +99,7 @@ grid.addEventListener('click', e => {
   else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
 });
 renderPlp();
+track('view_item_list', { item_list_name: 'Kollektionen' });
 </script>
 </body>
 </html>

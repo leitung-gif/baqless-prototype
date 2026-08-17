@@ -16,9 +16,10 @@
 
 <div class="dotnav" id="dotnav" aria-label="Sektionen">
   <a href="#top" data-sec="top"><span>Start</span></a>
-  <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
+  <a href="#produkte" data-sec="produkte"><span>Shop</span></a>
+  <a href="#reviews" data-sec="reviews"><span>Stimmen</span></a>
   <a href="#film" data-sec="film"><span>Film</span></a>
-  <a href="#produkte" data-sec="produkte"><span>Neuheiten</span></a>
+  <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
   <a href="#kollektionen" data-sec="kollektionen"><span>Kollektionen</span></a>
   <a href="#wa" data-sec="wa"><span>WA</span></a>
   <a href="#story" data-sec="story"><span>Story</span></a>
@@ -63,6 +64,33 @@
     <span>Kein Rückteil</span><span>Wasserfest</span><span>Edelstahl 316L</span><span>Chirurgischer Edelstahl</span><span>Entwickelt in der Schweiz</span><span>Handgefertigt</span>
   </div>
 </div>
+
+<!-- ================= PRODUKTE ================= -->
+<section class="section products dotted" id="produkte">
+  <div class="blob" style="width:380px;height:380px;background:var(--sage-tint);top:-100px;left:-120px"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Bestseller</span>
+      <h2>Finde deins.</h2>
+      <p>Jedes Paar mit Click&#8209;Lock. Jedes Paar von Hand gefertigt.</p>
+      <span class="sticker coral">Rückteile gibt's keine.</span>
+    </div>
+    <div class="reveal d1"><div class="rail" id="rail"></div></div>
+    <div class="reveal d2" style="margin-top:26px"><a class="btn btn-ghost" href="neuheiten.html">Alle Neuheiten ansehen</a></div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stimmen</span>
+      <h2>Getragen und geliebt.</h2>
+      <p>Aus dem Alltag, nicht aus dem Studio.</p>
+    </div>
+    <div class="rev-grid reveal d1" id="revGrid"></div>
+  </div>
+</section>
 
 <!-- ================= FILM ================= -->
 <section class="section film" id="film">
@@ -165,20 +193,6 @@
       </div>
       <p class="cl-origin">Entwickelt in der Schweiz, von Hand gefertigt</p>
     </div>
-  </div>
-</section>
-
-<!-- ================= PRODUKTE ================= -->
-<section class="section products dotted" id="produkte">
-  <div class="blob" style="width:380px;height:380px;background:var(--sage-tint);top:-100px;left:-120px"></div>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Neuheiten &amp; Bestseller</span>
-      <h2>Finde deins.</h2>
-      <p>Jedes Paar mit Click&#8209;Lock. Jedes Paar von Hand gefertigt.</p>
-      <span class="sticker coral">Rückteile gibt's keine.</span>
-    </div>
-    <div class="reveal d1"><div class="rail" id="rail"></div></div>
   </div>
 </section>
 
@@ -380,7 +394,7 @@ initBubbles(); drawBubbles();
 
 // ---------- Produkte ----------
 const rail = document.getElementById('rail');
-rail.innerHTML = PRODUCTS.map(p => `
+rail.innerHTML = PRODUCTS.slice(0, 8).map(p => `
   <article class="card" data-id="${p.id}">
     <div class="card-img" data-flip>
       ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
@@ -449,6 +463,18 @@ filmCards.forEach(card => {
   vio.observe(card);
 });
 
+// ---------- Reviews aus den Daten ----------
+const REVIEWS = {{REVIEWS_JSON}};
+const prodById = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+document.getElementById('revGrid').innerHTML = REVIEWS.map(r => {
+  const p = prodById[r.produkt];
+  return `<figure class="rev-card">
+    <span class="rev-stars" aria-label="${r.sterne} von 5 Sternen">${'★'.repeat(r.sterne)}${'☆'.repeat(5 - r.sterne)}</span>
+    <blockquote class="rev-text">«${r.text}»</blockquote>
+    <figcaption class="rev-meta"><b>${r.name}, ${r.alter}</b> · ${r.ort}<br>trägt <a href="produkt.html?p=${p.id}">${p.name} ${p.variant}</a></figcaption>
+  </figure>`;
+}).join('');
+
 // ---------- Kollektions-Kacheln: Stückzahlen live aus den Produktdaten ----------
 document.querySelectorAll('[data-colcount]').forEach(el => {
   const n = PRODUCTS.filter(p => p.collection === el.dataset.colcount).length;
@@ -456,8 +482,8 @@ document.querySelectorAll('[data-colcount]').forEach(el => {
 });
 
 // ---------- Marquee ----------
-const track = document.getElementById('marqueeTrack');
-track.innerHTML += track.innerHTML;
+const mqTrack = document.getElementById('marqueeTrack');
+mqTrack.innerHTML += mqTrack.innerHTML;
 
 // ---------- Newsletter ----------
 

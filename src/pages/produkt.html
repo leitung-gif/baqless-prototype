@@ -134,6 +134,7 @@ const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
 const param = new URLSearchParams(location.search).get('p');
 const P = byId[param] || byId['polarisyg'] || PRODUCTS[0];
 document.title = `Baqless · ${P.name} ${P.variant}`;
+track('view_item', { currency: 'CHF', value: P.price, items: [{ item_id: P.sku, item_name: `${P.name} ${P.variant}`, price: P.price }] });
 
 // Breadcrumbs
 document.getElementById('crumbs').innerHTML =
@@ -197,7 +198,7 @@ document.getElementById('buy').innerHTML = `
   <ul class="usps">
     <li>Wasserfest. Duschen, Sport, Meer.</li>
     <li>Chirurgischer Edelstahl 316L</li>
-    <li>Gratisversand ab CHF 120</li>
+    <li>Gratisversand ab CHF 99</li>
     <li>Versand aus der Schweiz und Japan</li>
   </ul>
   <div class="acc" id="acc">
@@ -210,7 +211,7 @@ document.getElementById('buy').innerHTML = `
     <div class="acc-item"><button>Pflege<span class="plus">+</span></button>
       <div class="acc-body"><p>${P.care}</p></div></div>
     <div class="acc-item"><button>Versand &amp; Retouren<span class="plus">+</span></button>
-      <div class="acc-body"><p>Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 120. 30 Tage Rückgaberecht: ungetragen, Originalverpackung genügt.</p></div></div>
+      <div class="acc-body"><p>Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 99. 30 Tage Rückgaberecht: ungetragen, Originalverpackung genügt.</p></div></div>
   </div>`;
 
 // Akkordeon
@@ -281,7 +282,7 @@ ld.textContent = JSON.stringify({
   name: `${P.name} ${P.variant}`, sku: P.sku, brand: {'@type': 'Brand', name: 'Baqless'},
   description: P.desc, category: `Ohrringe > ${P.collection}`,
   offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: 'https://schema.org/InStock',
-    shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 120, currency: 'CHF'}}}
+    shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 99, currency: 'CHF'}}}
 });
 document.head.appendChild(ld);
 const ldBc = document.createElement('script');

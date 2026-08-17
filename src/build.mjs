@@ -41,6 +41,7 @@ const footer = partial('footer.html');
 const drawer = partial('drawer.html');
 const sharedJs = partial('shared.js');
 const productsJson = readFileSync(join(root, 'data', 'products.json'), 'utf8');
+const reviewsJson = readFileSync(join(root, 'data', 'reviews.json'), 'utf8');
 
 // --- Seiten bauen ---
 for (const page of readdirSync(join(root, 'pages'))) {
@@ -52,7 +53,8 @@ for (const page of readdirSync(join(root, 'pages'))) {
     .replace('{{FOOTER}}', footer)
     .replace('{{DRAWER}}', drawer)
     .replace('{{SHARED_JS}}', sharedJs)
-    .replace('{{PRODUCTS_JSON}}', productsJson);
+    .replace('{{PRODUCTS_JSON}}', productsJson)
+    .replace('{{REVIEWS_JSON}}', reviewsJson);
   // Fonts in die eingesetzte CSS
   html = html.replace('/*{{FONTS}}*/', fontCss);
   // Bild-/Video-Tokens

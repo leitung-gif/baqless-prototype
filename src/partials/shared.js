@@ -1,5 +1,14 @@
 const PRODUCTS = {{PRODUCTS_JSON}};
 
+// ---------- Tracking-Blaupause ----------
+// Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
+// Im Shopify-Build laufen sie 1:1 ueber Customer Events bzw. die GA4-/Meta-Integrationen
+// (add_to_cart -> AddToCart usw.). Im Prototyp landen sie in window.dataLayer (Konsole).
+window.dataLayer = window.dataLayer || [];
+function track(event, params){
+  window.dataLayer.push(Object.assign({ event }, params || {}));
+}
+
 // ---------- Mini Pop-Sound (WebAudio, nur nach User-Geste) ----------
 let audioCtx;
 function pop(freq = 600){
@@ -42,7 +51,7 @@ function pop(freq = 600){
 })();
 
 // ---------- Warenkorb (v3: Persistenz, Stepper, Gratisversand) ----------
-const FREE_SHIP = 120;
+const FREE_SHIP = 99;
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]'); } catch(e) {}
 const cartCount = document.getElementById('cartCount');
@@ -99,6 +108,8 @@ function addToCart(id, qty){
   const line = cart.find(x => x.id === p.id);
   line ? line.qty += qty : cart.push({id:p.id, name:p.name, variant:p.variant, price:p.price, thumb:p.thumb, qty});
   renderCart(); pop(720);
+  track('add_to_cart', { currency: 'CHF', value: p.price * qty,
+    items: [{ item_id: p.sku, item_name: `${p.name} ${p.variant}`, price: p.price, quantity: qty }] });
   cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
   toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${p.variant} ist im Warenkorb.</span>`);
 }
@@ -110,17 +121,24 @@ document.addEventListener('click', e => {
   const minus = e.target.closest('[data-qminus]');
   if (minus){ const l = cart.find(x => x.id === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
   const rem = e.target.closest('[data-remove]');
-  if (rem){ cart = cart.filter(x => x.id !== rem.dataset.remove); renderCart(); return; }
+  if (rem){ const l = cart.find(x => x.id === rem.dataset.remove);
+    if (l) track('remove_from_cart', { currency: 'CHF', value: l.price * l.qty, items: [{ item_id: l.id, quantity: l.qty }] });
+    cart = cart.filter(x => x.id !== rem.dataset.remove); renderCart(); return; }
 });
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
 }
-document.getElementById('cartBtn').addEventListener('click', () => openDrawer(true));
+document.getElementById('cartBtn').addEventListener('click', () => {
+  openDrawer(true);
+  track('view_cart', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
+});
 document.getElementById('drawerClose').addEventListener('click', () => openDrawer(false));
 overlay.addEventListener('click', () => openDrawer(false));
-document.getElementById('checkoutBtn').addEventListener('click', () =>
-  toast(`<span class="tick">✓</span><span><b>Fast geschafft.</b> Der Checkout folgt mit dem Livegang.</span>`));
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  track('begin_checkout', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
+  toast(`<span class="tick">✓</span><span><b>Fast geschafft.</b> Der Checkout folgt mit dem Livegang.</span>`);
+});
 
 // ---------- Burger / Mobilmenü ----------
 const mnav = document.getElementById('mnav');
@@ -235,6 +253,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape') openDrawer(false); })
 // ---------- Newsletter (alle Formulare mit data-nlform) ----------
 document.querySelectorAll('[data-nlform]').forEach(form => form.addEventListener('submit', e => {
   e.preventDefault();
+  track('generate_lead', { method: 'newsletter' });
   toast(`<span class="tick">\u2713</span><span><b>Angemeldet.</b> Neue Drops landen zuerst bei dir.</span>`);
   e.target.reset();
 }));
