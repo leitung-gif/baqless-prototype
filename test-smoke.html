@@ -328,7 +328,8 @@ async function run() {
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
   log('Journal: lädt', d.querySelector('.plp-hero h1')?.textContent.includes('nicht mehr abnehmen'));
-  log('Journal: acht Befunde als Raster', d.querySelectorAll('.bgrid .bcell').length === 8);
+  log('Journal: sieben Befunde als Raster', d.querySelectorAll('.bgrid .bcell').length === 7);
+  log('Journal: kein Kinder-Argument', !/kinder|baby|kleinkind/i.test(d.body.innerText));
   log('Journal: sechs Porträts mit Quelle', d.querySelectorAll('.jgrid .jcard').length === 6
     && d.querySelectorAll('.jcard .jsrc').length === 6);
   log('Journal: Wortlaut-Zitat nur bei Wako', (d.body.innerText.match(/«/g) || []).length === 1);
