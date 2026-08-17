@@ -76,7 +76,15 @@ function renderPlp(){
   if (fSort === 'asc') list.sort((a,b) => a.price - b.price);
   if (fSort === 'desc') list.sort((a,b) => b.price - a.price);
   if (fSort === 'neu') list.sort((a,b) => (b.tag === 'Neu') - (a.tag === 'Neu'));
-  grid.innerHTML = list.map(cardHtml).join('');
+  const karten = list.map(cardHtml);
+  // Editorial-Kachel bricht die Monotonie des Rasters nach der zweiten Reihe
+  if (karten.length > 8) karten.splice(8, 0, `
+    <div class="ed-break">
+      <span class="kicker">Manufaktur</span>
+      <p>Jedes Paar wird einzeln gefasst, poliert und geprüft.</p>
+      <a href="story.html">Die Story ansehen</a>
+    </div>`);
+  grid.innerHTML = karten.join('');
   document.getElementById('plpCount').textContent =
     `${list.length} ${list.length === 1 ? 'Paar' : 'Paare'}${fCol !== 'alle' ? ' · ' + fCol + ' Kollektion' : ''} · alle mit Click-Lock`;
   const url = new URL(location);

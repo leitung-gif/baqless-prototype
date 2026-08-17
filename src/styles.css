@@ -70,7 +70,7 @@ nav.scrolled{
 @media(max-width:920px){.burger{display:block}}
 .mnav{
   position:fixed; inset:0; z-index:220; background:var(--navy); color:var(--ground);
-  transform:translateX(102%); transition:transform .5s cubic-bezier(.22,1,.36,1);
+  transform:translateX(102%); transition:transform .24s cubic-bezier(.22,1,.36,1);
   display:flex; flex-direction:column; padding:22px 28px 34px; overflow:auto; overscroll-behavior:contain;
 }
 .mnav.open{transform:none}
@@ -80,8 +80,8 @@ nav.scrolled{
 .mnav-links{position:relative}
 .mnav-links a{
   display:block; font-family:var(--serif); font-weight:300; font-size:clamp(36px,9vw,46px);
-  line-height:1.28; color:#fff; opacity:0; transform:translateY(18px);
-  transition:opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
+  line-height:1.28; color:#fff; opacity:0; transform:translateY(12px);
+  transition:opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1);
 }
 .mnav.open .mnav-links a{opacity:1; transform:none}
 .mnav.open .mnav-links a:nth-child(1){transition-delay:.08s}
@@ -133,7 +133,7 @@ nav.scrolled{
   display:inline-flex; align-items:center; gap:10px;
   font-family:var(--sans); font-size:14px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
   padding:16px 32px; border-radius:4px; border:1px solid transparent; cursor:pointer;
-  transition:transform .25s, box-shadow .25s, background .25s, color .25s, border-color .25s;
+  transition:transform .12s, box-shadow .12s, background .12s, color .12s, border-color .12s;
 }
 .btn:active{transform:scale(.97)}
 .btn-coral{background:var(--coral); color:var(--navy)}
@@ -214,7 +214,7 @@ nav.scrolled{
 @keyframes scrollX{to{transform:translateX(-50%)}}
 
 /* ---------- Reveal ---------- */
-.reveal{opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.19,1,.22,1), transform .8s cubic-bezier(.19,1,.22,1)}
+.reveal{opacity:0; transform:translateY(12px); transition:opacity .4s cubic-bezier(.19,1,.22,1), transform .4s cubic-bezier(.19,1,.22,1)}
 .reveal.in{opacity:1; transform:none}
 .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
 
@@ -343,19 +343,19 @@ nav.scrolled{
   background:var(--paper); transition:transform .35s, box-shadow .35s, background .45s;
 }
 .card-img .thumb{mix-blend-mode:multiply}
-.card:nth-child(4n+1) .card-img:hover, .card:nth-child(4n+1) .card-img.flip{background:linear-gradient(150deg,#FFE3DC,#FFCDC0)}
-.card:nth-child(4n+2) .card-img:hover, .card:nth-child(4n+2) .card-img.flip{background:linear-gradient(150deg,#DDF0E5,#C4E6D2)}
-.card:nth-child(4n+3) .card-img:hover, .card:nth-child(4n+3) .card-img.flip{background:linear-gradient(150deg,#E7E1F8,#D5CAF2)}
-.card:nth-child(4n+4) .card-img:hover, .card:nth-child(4n+4) .card-img.flip{background:linear-gradient(150deg,#F5E9D4,#EDDCBB)}
-.card:nth-child(4n+1) .card-img{box-shadow:10px 10px 0 var(--coral-tint)}
-.card:nth-child(4n+2) .card-img{box-shadow:10px 10px 0 var(--sage-tint)}
-.card:nth-child(4n+3) .card-img{box-shadow:10px 10px 0 var(--lav-tint)}
-.card:nth-child(4n+4) .card-img{box-shadow:10px 10px 0 #F0E4D3}
+.card:nth-of-type(4n+1) .card-img:hover, .card:nth-of-type(4n+1) .card-img.flip{background:linear-gradient(150deg,#FFE3DC,#FFCDC0)}
+.card:nth-of-type(4n+2) .card-img:hover, .card:nth-of-type(4n+2) .card-img.flip{background:linear-gradient(150deg,#DDF0E5,#C4E6D2)}
+.card:nth-of-type(4n+3) .card-img:hover, .card:nth-of-type(4n+3) .card-img.flip{background:linear-gradient(150deg,#E7E1F8,#D5CAF2)}
+.card:nth-of-type(4n+4) .card-img:hover, .card:nth-of-type(4n+4) .card-img.flip{background:linear-gradient(150deg,#F5E9D4,#EDDCBB)}
+.card:nth-of-type(4n+1) .card-img{box-shadow:10px 10px 0 var(--coral-tint)}
+.card:nth-of-type(4n+2) .card-img{box-shadow:10px 10px 0 var(--sage-tint)}
+.card:nth-of-type(4n+3) .card-img{box-shadow:10px 10px 0 var(--lav-tint)}
+.card:nth-of-type(4n+4) .card-img{box-shadow:10px 10px 0 #F0E4D3}
 .card-img:hover{transform:translate(-3px,-3px)}
-.card:nth-child(4n+1) .card-img:hover{box-shadow:14px 14px 0 var(--coral)}
-.card:nth-child(4n+2) .card-img:hover{box-shadow:14px 14px 0 var(--sage)}
-.card:nth-child(4n+3) .card-img:hover{box-shadow:14px 14px 0 var(--lavender)}
-.card:nth-child(4n+4) .card-img:hover{box-shadow:14px 14px 0 var(--gold)}
+.card:nth-of-type(4n+1) .card-img:hover{box-shadow:14px 14px 0 var(--coral)}
+.card:nth-of-type(4n+2) .card-img:hover{box-shadow:14px 14px 0 var(--sage)}
+.card:nth-of-type(4n+3) .card-img:hover{box-shadow:14px 14px 0 var(--lavender)}
+.card:nth-of-type(4n+4) .card-img:hover{box-shadow:14px 14px 0 var(--gold)}
 .card-img img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .5s ease}
 .card-img img.detail{opacity:0; top:12px; left:12px; right:12px; bottom:12px; width:auto; height:auto; border-radius:6px}
 .card-img:hover img.detail, .card-img.flip img.detail{opacity:1}
@@ -377,6 +377,28 @@ nav.scrolled{
   transition:color .25s, border-color .25s;
 }
 .add-btn:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
+.add-btn.added{color:#27804C; border-color:#27804C}
+
+/* ---------- Editorial-Kachel im Raster (Gold auf Navy) ---------- */
+.ed-break{
+  grid-column:span 2; background:var(--navy); border-radius:8px; overflow:hidden; position:relative;
+  padding:clamp(26px,3.4vw,40px); display:flex; flex-direction:column; justify-content:center; gap:14px;
+}
+.ed-break::after{
+  content:''; position:absolute; width:180px; height:180px; border-radius:50%;
+  border:1px solid rgba(217,193,160,.28); right:-60px; bottom:-70px;
+}
+.ed-break .kicker{
+  font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold); opacity:.85;
+}
+.ed-break p{font-family:var(--serif); font-weight:300; font-size:clamp(23px,2.3vw,31px); line-height:1.18; color:var(--gold)}
+.ed-break a{
+  align-self:flex-start; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold); border-bottom:1px solid rgba(217,193,160,.45); padding-bottom:3px; transition:border-color .12s;
+}
+.ed-break a:hover{border-color:var(--gold)}
+@media(max-width:460px){.ed-break{grid-column:span 1}}
 
 /* ---------- Collections (lavender tint) ---------- */
 .collections{background:var(--lav-tint)}
@@ -557,7 +579,7 @@ footer ul a:hover{color:var(--coral)}
 #drawer{
   position:fixed; top:0; right:0; bottom:0; width:min(400px,92vw); z-index:300;
   background:var(--ground); box-shadow:-20px 0 60px rgba(0,0,0,.18);
-  transform:translateX(105%); transition:transform .45s cubic-bezier(.19,1,.22,1);
+  transform:translateX(105%); transition:transform .24s cubic-bezier(.19,1,.22,1);
   display:flex; flex-direction:column;
 }
 #drawer.open{transform:none}

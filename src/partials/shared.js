@@ -116,7 +116,18 @@ function addToCart(id, qty){
 }
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
-  if (add){ addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1)); return; }
+  if (add){
+    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1));
+    // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
+    if (!add.dataset.busy){
+      const zurueck = add.textContent;
+      add.dataset.busy = '1';
+      add.textContent = '\u2713 Im Warenkorb';
+      add.classList.add('added');
+      setTimeout(() => { add.textContent = zurueck; add.classList.remove('added'); delete add.dataset.busy; }, 1600);
+    }
+    return;
+  }
   const plus = e.target.closest('[data-qplus]');
   if (plus){ const l = cart.find(x => x.id === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
   const minus = e.target.closest('[data-qminus]');
