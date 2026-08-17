@@ -61,6 +61,41 @@
 .pay-row .pp{border:1px solid #e3ddd2; border-radius:6px; padding:4px 10px; font-size:10.5px;
   letter-spacing:.05em; font-weight:500; color:#8a8578; background:#fff}
 .trust-row{font-size:12px; color:var(--ink-soft); margin-top:10px; letter-spacing:.02em}
+
+/* Paar oder Einzelohr: im echten japanischen Shop Standard, hier als Variantenachse */
+.halb{display:flex; gap:0; border:1.5px solid var(--warmgrey); border-radius:4px; overflow:hidden; margin:18px 0 4px}
+.halb button{
+  flex:1; background:none; border:none; cursor:pointer; font:inherit; font-size:13px; font-weight:600;
+  letter-spacing:.04em; color:var(--ink-soft); padding:11px 10px; display:flex; flex-direction:column; gap:2px;
+  transition:background .12s, color .12s;
+}
+.halb button + button{border-left:1.5px solid var(--warmgrey)}
+.halb button span{font-size:12px; font-weight:400; letter-spacing:0}
+.halb button.active{background:var(--navy); color:#fff}
+.halb-note{font-size:12.5px; color:var(--ink-soft); margin-top:2px}
+
+/* Verschluss-Erklaermodul: erklaert die Mechanik, die auf keiner echten Produktseite steht */
+.mech{margin:22px 0 4px; padding:18px 20px; background:var(--paper); border:1px solid #efe8dc; border-radius:8px}
+.mech h3{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); margin-bottom:14px}
+.mech-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.mech-step{display:flex; flex-direction:column; gap:8px}
+.mech-step svg{display:block; width:100%; max-width:120px; height:auto}
+.mech-step b{font-family:var(--sans); font-size:13px; font-weight:600; color:var(--charcoal)}
+.mech-step span{font-size:13px; line-height:1.45; color:#5c564e}
+.mech-note{margin-top:14px; font-size:13px; color:#5c564e}
+.mech-note a{color:var(--coral-deep); font-weight:600}
+@media(max-width:560px){.mech-steps{grid-template-columns:1fr; gap:16px}}
+
+/* Spec-Tabelle: die echten Shops liefern Masse auf 0.01mm, aber nie den Verschluss */
+table.spec{width:100%; border-collapse:collapse; margin:2px 0 14px; font-size:14px}
+table.spec th, table.spec td{text-align:left; padding:8px 0; border-bottom:1px solid #efe8dc; vertical-align:top}
+table.spec th{font-weight:500; color:var(--ink-soft); width:42%; font-size:13px}
+table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
+
+/* Groessenvergleich in Millimetern statt Raterei */
+.sizeviz{margin:4px 0 12px}
+.sizeviz svg{max-width:100%; height:auto}
+.sizeviz figcaption{font-size:12.5px; color:var(--ink-soft); margin-top:8px}
 .acc{margin-top:30px; border-top:1px solid #e8e2d8}
 .acc-item{border-bottom:1px solid #e8e2d8}
 .acc-item button{width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px;
@@ -182,19 +217,59 @@ document.getElementById('buy').innerHTML = `
     ${siblings.map(s => `<a href="produkt.html?p=${s.id}" class="${s.id === P.id ? 'active' : ''}">
       <span class="dot" style="background:${pillDots[s.variant] || 'var(--warmgrey)'}"></span>${s.variant}</a>`).join('')}
   </div>` : ''}
+  ${P.halb ? `
+  <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="Paar oder Einzelohr">
+    <button type="button" class="active" data-einzelset="0">Paar<span>CHF ${P.price}</span></button>
+    <button type="button" data-einzelset="1">Einzelohr<span>CHF ${P.preisHalb}</span></button>
+  </div>
+  <div class="halb-note">Einzeln fürs zweite Loch oder zum Kombinieren mit einem anderen Paar.</div>` : ''}
   <div class="buy-ctas">
     <div class="qty-inline" aria-label="Menge">
       <button id="qtyMinus" aria-label="Menge verringern">−</button>
       <span class="qv" id="qtyVal">1</span>
       <button id="qtyPlus" aria-label="Menge erhöhen">+</button>
     </div>
-    <button class="btn btn-coral" data-add="${P.id}" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>
+    ${P.lager === 'ausverkauft'
+      ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">Benachrichtige mich</button>`
+      : `<button class="btn btn-coral" data-add="${P.id}" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>`}
     <button class="btn btn-ghost" id="saveBtn">Merken</button>
   </div>
   <div class="pay-row" aria-label="Zahlarten und Sicherheit">
     <span class="pp">TWINT</span><span class="pp">VISA</span><span class="pp">Mastercard</span><span class="pp">Apple Pay</span><span class="pp">Google Pay</span>
   </div>
   <div class="trust-row">Entwickelt in der Schweiz, von Hand gefertigt · Edelstahl 316L · 30 Tage Rückgabe</div>
+  <div class="mech">
+    <h3>So hält er ohne Rückteil</h3>
+    <div class="mech-steps">
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="29" y="5" width="6" height="30" rx="3" fill="#FF7A6A"/>
+        </svg>
+        <b>Einstecken</b>
+        <span>Der T-förmige Stift steht längs und gleitet wie ein normaler Stecker durchs Ohrloch.</span>
+      </div>
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="30" y="7" width="4" height="26" rx="2" fill="#EFE4DA"/>
+          <path d="M32 3.5A16.5 16.5 0 0 1 48.5 20" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="m43.5 15 5.5 5.5-6 4.5" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <b>Vierteldrehung</b>
+        <span>Eine kleine Drehung am Ohrring, mit einer Hand, ohne Spiegel.</span>
+      </div>
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="15" y="17" width="34" height="6" rx="3" fill="#37B369"/>
+        </svg>
+        <b>Sitzt</b>
+        <span>Der Anker steht jetzt quer hinter dem Ohrläppchen. Er kann nicht mehr zurück.</span>
+      </div>
+    </div>
+    <div class="mech-note">Die Klemmkraft justierst du selbst, indem du das gedrehte Stiftteil verschiebst. <a href="index.html#clicklock">Mechanik ausprobieren</a></div>
+  </div>
   <ul class="usps">
     <li>Wasserfest. Duschen, Sport, Meer.</li>
     <li>Chirurgischer Edelstahl 316L</li>
@@ -204,8 +279,18 @@ document.getElementById('buy').innerHTML = `
   <div class="acc" id="acc">
     <div class="acc-item open"><button>Beschreibung<span class="plus">+</span></button>
       <div class="acc-body"><p>${P.desc}</p></div></div>
-    <div class="acc-item"><button>Material &amp; Verarbeitung<span class="plus">+</span></button>
-      <div class="acc-body"><p>${P.materials} Swiss Design, Thai Craftsmanship. Jedes Paar geht durch echte Hände.</p></div></div>
+    <div class="acc-item"><button>Material &amp; Masse<span class="plus">+</span></button>
+      <div class="acc-body">
+        <table class="spec">
+          <tr><th>Material</th><td>${P.materials}</td></tr>
+          <tr><th>Stift</th><td>Chirurgischer Edelstahl 316L</td></tr>
+          <tr><th>Masse</th><td>${P.masse || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
+          <tr><th>Gewicht</th><td>${P.gewicht || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
+          <tr><th>Herkunft</th><td>Entwickelt in der Schweiz, von Hand gefertigt</td></tr>
+        </table>
+      </div></div>
+    <div class="acc-item"><button>Grösse &amp; Passform<span class="plus">+</span></button>
+      <div class="acc-body" id="accSize"></div></div>
     <div class="acc-item"><button>Click-Lock &amp; Handhabung<span class="plus">+</span></button>
       <div class="acc-body"><ol><li>Einstecken. Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</li><li>Vierteldrehung am Ohrring.</li><li>Klick. Der T-Anker rastet quer ein. Sitzt, bis du ihn selbst löst.</li></ol><p>Schliesst mit einer Hand. Ohne Spiegel, ohne Fummeln hinterm Ohr.</p></div></div>
     <div class="acc-item"><button>Pflege<span class="plus">+</span></button>
@@ -213,6 +298,58 @@ document.getElementById('buy').innerHTML = `
     <div class="acc-item"><button>Versand &amp; Retouren<span class="plus">+</span></button>
       <div class="acc-body"><p>Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 99. 30 Tage Rückgaberecht: ungetragen, Originalverpackung genügt.</p></div></div>
   </div>`;
+
+// Paar oder Einzelohr umschalten (in Shopify: Variantenwechsel)
+const halbToggle = document.getElementById('halbToggle');
+if (halbToggle){
+  halbToggle.addEventListener('click', e => {
+    const b = e.target.closest('[data-einzelset]');
+    if (!b) return;
+    const einzel = b.dataset.einzelset === '1';
+    halbToggle.dataset.einzel = einzel ? '1' : '0';
+    [...halbToggle.children].forEach(x => x.classList.toggle('active', x === b));
+    const preis = einzel ? P.preisHalb : P.price;
+    document.querySelector('.price-big').textContent = 'CHF ' + preis;
+    const add = document.getElementById('mainAdd');
+    if (add && add.dataset.add) add.textContent = 'In den Warenkorb · CHF ' + preis;
+    document.querySelector('.variant-line').textContent =
+      `${P.variant}${einzel ? ' · Einzelohr' : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
+  });
+}
+
+// Groessenvergleich: echte Masse gegen einen Millimeter-Massstab, statt Raterei am Foto
+(function sizeViz(){
+  const box = document.getElementById('accSize');
+  if (!box) return;
+  const zahlen = (P.masse || '').match(/[\d.]+/g);
+  const hinweis = `<p>Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Miss im Zweifel die Dicke deines Ohrläppchens und <a href="kontakt.html">frag uns kurz</a>, wir sagen dir ehrlich, ob es passt.</p>`;
+  if (!zahlen || zahlen.length < 2){
+    box.innerHTML = `<p><span class="ph">[Grössengrafik folgt, sobald die Masse dieses Modells vorliegen.]</span></p>` + hinweis;
+    return;
+  }
+  const b = parseFloat(zahlen[0]), h = parseFloat(zahlen[1]);
+  const mm = 7, skala = 20, padL = 8, padT = 10;
+  const ticks = Array.from({length: skala + 1}, (_, i) => {
+    const x = padL + i * mm;
+    const lang = i % 5 === 0;
+    return `<line x1="${x}" y1="${padT + 78}" x2="${x}" y2="${padT + (lang ? 66 : 72)}" stroke="#BFB8B0" stroke-width="1"/>` +
+      (lang ? `<text x="${x}" y="${padT + 60}" font-family="Inter, sans-serif" font-size="9" fill="#6b655c" text-anchor="middle">${i}</text>` : '');
+  }).join('');
+  box.innerHTML = `
+    <figure class="sizeviz">
+      <svg viewBox="0 0 ${padL * 2 + skala * mm} ${padT + 92}" role="img"
+           aria-label="${P.name} ${P.variant} ist ${b} auf ${h} Millimeter gross, gezeigt an einem Millimeter-Massstab">
+        <rect x="${padL}" y="${padT}" width="${b * mm}" height="${h * mm}" rx="${Math.min(b, h) * mm * .28}"
+              fill="#FFE3DE" stroke="#C93B27" stroke-width="1.4"/>
+        <text x="${padL + b * mm + 10}" y="${padT + 14}" font-family="Inter, sans-serif" font-size="11" fill="#4a453e">${b} × ${h} mm</text>
+        <text x="${padL + b * mm + 10}" y="${padT + 30}" font-family="Inter, sans-serif" font-size="11" fill="#6b655c">Originalgrösse im Massstab</text>
+        <line x1="${padL}" y1="${padT + 78}" x2="${padL + skala * mm}" y2="${padT + 78}" stroke="#BFB8B0" stroke-width="1.2"/>
+        ${ticks}
+        <text x="${padL + skala * mm}" y="${padT + 92}" font-family="Inter, sans-serif" font-size="9" fill="#6b655c" text-anchor="end">Millimeter</text>
+      </svg>
+      <figcaption>${P.name} ${P.variant} in Originalgrösse. Auf dem Bildschirm je nach Gerät leicht abweichend.</figcaption>
+    </figure>` + hinweis;
+})();
 
 // Akkordeon
 document.querySelectorAll('.acc-item').forEach(item => {

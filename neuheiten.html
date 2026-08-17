@@ -446,6 +446,14 @@ nav.scrolled{
 .add-btn:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
 .add-btn.added{color:#27804C; border-color:#27804C}
 
+/* ---------- Ausverkauft ---------- */
+.card.soldout .card-img img{opacity:.45; filter:saturate(.35)}
+.out-flag{
+  position:absolute; left:0; right:0; bottom:0; z-index:3; text-align:center;
+  background:rgba(11,29,63,.9); color:var(--ground);
+  font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; padding:7px 4px;
+}
+
 /* ---------- Editorial-Kachel im Raster (Gold auf Navy) ---------- */
 .ed-break{
   grid-column:span 2; background:var(--navy); border-radius:8px; overflow:hidden; position:relative;
@@ -603,7 +611,12 @@ footer ul a:hover{color:var(--coral)}
 .rev-card{background:var(--ground); border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:13px;
   border:1px solid #efe8dc; transition:transform .35s, box-shadow .35s}
 .rev-card:hover{transform:translateY(-3px); box-shadow:0 18px 40px -20px rgba(11,29,63,.25)}
-.rev-stars{color:var(--coral-deep); letter-spacing:4px; font-size:15px}
+.rev-mark{font-family:var(--serif); font-size:44px; line-height:.6; color:var(--coral-tint)}
+.rev-kind{font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--coral-deep)}
+.rev-role{font-size:13px; line-height:1.5; color:var(--ink-soft)}
+.rev-src{font-size:11.5px; color:var(--ink-soft)}
+.rev-note{margin-top:26px; font-size:13px; color:var(--ink-soft); max-width:70ch}
+.rev-note a{color:var(--coral-deep); font-weight:600}
 .rev-text{font-family:var(--serif); font-style:italic; font-weight:400; font-size:19.5px; line-height:1.5; color:var(--charcoal)}
 .rev-meta{font-size:12.5px; color:var(--ink-soft); margin-top:auto; line-height:1.6}
 .rev-meta b{color:var(--charcoal); font-weight:500}
@@ -886,6 +899,7 @@ footer ul a:hover{color:var(--coral)}
     <a href="neuheiten.html">Neuheiten<em>.</em></a>
     <a href="kollektion.html">Kollektionen<em>.</em></a>
     <a href="story.html">Story<em>.</em></a>
+    <a href="journal.html">Journal<em>.</em></a>
     <a href="faq.html">Gut zu wissen<em>.</em></a>
     <a href="kontakt.html">Kontakt<em>.</em></a>
   </div>
@@ -944,6 +958,7 @@ footer ul a:hover{color:var(--coral)}
       <a class="foot-mail" href="mailto:hello@baqless.com">hello@baqless.com</a>
     </div>
     <div><h4>Shop</h4><ul><li><a href="neuheiten.html">Neuheiten</a></li><li><a href="kollektion.html">Kollektionen</a></li><li><a href="index.html#wa">WA Serie</a></li></ul></div>
+    <div><h4>Entdecken</h4><ul><li><a href="journal.html">Journal</a></li><li><a href="story.html">Story</a></li><li><a href="index.html#clicklock">Click-Lock</a></li></ul></div>
     <div><h4>Support</h4><ul><li><a href="kontakt.html">Kontakt</a></li><li><a href="widerruf.html">Versand &amp; Retouren</a></li><li><a href="faq.html#groessen">Grössenguide</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div><h4>Rechtliches</h4><ul><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="widerruf.html#widerruf">Widerruf</a></li><li><a href="impressum.html">Impressum</a></li></ul></div>
   </div>
@@ -1008,7 +1023,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Eine klare Linie, gebürstetes Gold, null Ablenkung. Slice ist das Statement für alle, die Minimalismus nicht mit Langeweile verwechseln.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "minelta",
@@ -1024,7 +1044,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Weiche Rundungen, warmes Gold. Minelta liegt so leicht am Ohr, dass du sie vergisst. Bis dich jemand darauf anspricht.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.40 × 3.40 × 1.20 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "leafsea",
@@ -1040,7 +1065,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Ein Blatt, gefangen zwischen Meerblau und Licht. Leaf Sea bringt Farbe ans Ohr, ohne laut zu werden.",
     "materials": "Chirurgischer Edelstahl 316L, Emaille-Einlage. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 32,
+    "lager": "auf_lager"
   },
   {
     "id": "leafblack",
@@ -1056,7 +1086,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Dasselbe Blatt, andere Haltung: tiefes Schwarz, matte Eleganz. Leaf Black trägt sich vom Meeting bis Mitternacht.",
     "materials": "Chirurgischer Edelstahl 316L, schwarze PVD-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 32,
+    "lager": "auf_lager"
   },
   {
     "id": "dew",
@@ -1072,7 +1107,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Wie ein Tautropfen: klein, hell, präzise. Dew ist der Einstieg in Baqless. Und oft der Anfang einer Sammlung.",
     "materials": "Chirurgischer Edelstahl 316L, weisse Emaille. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.68 × 8.72 × 2.34 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 29,
+    "lager": "auf_lager"
   },
   {
     "id": "polarisyg",
@@ -1088,7 +1128,12 @@ const PRODUCTS = [
     "collection": "Amity",
     "desc": "Unser Nordstern und meistverkauftes Paar: ein Stern mit funkelndem Stein, der jedes Outfit einen Tick heller macht.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung, Zirkonia-Stein. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 41,
+    "lager": "auf_lager"
   },
   {
     "id": "polarissv",
@@ -1104,7 +1149,12 @@ const PRODUCTS = [
     "collection": "Amity",
     "desc": "Polaris in kühlem Silber: derselbe Stern, etwas leiser, genauso präzise. Für alle, die Understatement funkeln lassen.",
     "materials": "Chirurgischer Edelstahl 316L, Zirkonia-Stein. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "sageneon",
@@ -1120,7 +1170,12 @@ const PRODUCTS = [
     "collection": "Embrace",
     "desc": "Limitierte Serie: Neon-Pink auf skulpturaler Form. Embrace Sage ist für Tage, an denen du gesehen werden willst.",
     "materials": "Chirurgischer Edelstahl 316L, Neon-Emaille. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "12 × 13 mm Aussendurchmesser",
+    "gewicht": "0.7 g pro Ohr",
+    "halb": true,
+    "preisHalb": 38,
+    "lager": "auf_lager"
   },
   {
     "id": "lunapearl",
@@ -1136,7 +1191,12 @@ const PRODUCTS = [
     "collection": "Amity",
     "desc": "Eine Perle, die mitmacht statt nur mitkommt. Luna bleibt dran, vom Morgenkaffee bis zur letzten Bahn.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Süsswasserperle.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 44,
+    "lager": "auf_lager"
   },
   {
     "id": "friendship",
@@ -1152,7 +1212,12 @@ const PRODUCTS = [
     "collection": "Amity",
     "desc": "Zwei Paare, eine Freundschaft. Eines für dich, eines zum Verschenken. Beide mit Click-Lock.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 47,
+    "lager": "auf_lager"
   },
   {
     "id": "bandgold",
@@ -1168,7 +1233,12 @@ const PRODUCTS = [
     "collection": "Embrace",
     "desc": "Ein schmaler Reif, der sich ums Ohr legt wie ein Versprechen. Schliesst mit einem Klick, bleibt den ganzen Tag.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 41,
+    "lager": "auf_lager"
   },
   {
     "id": "zirkonia",
@@ -1184,7 +1254,12 @@ const PRODUCTS = [
     "collection": "Embrace",
     "desc": "Funkelt wie es soll und hält wie es muss. Zirkonia ist der Auftritt für Tage, die mehr verdienen.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Zirkonia-Steine.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 42,
+    "lager": "auf_lager"
   },
   {
     "id": "blackhoop",
@@ -1200,7 +1275,12 @@ const PRODUCTS = [
     "collection": "Honesty",
     "desc": "Mattes Schwarz, klare Kante. Der Hoop für alle, die leise auffallen.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Schwarze PVD-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 37,
+    "lager": "ausverkauft"
   },
   {
     "id": "wasumiiri",
@@ -1216,7 +1296,12 @@ const PRODUCTS = [
     "collection": "WA",
     "desc": "Traditionelles Sumiiri-Muster, in Gold gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.93 × 13.90 × 3.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 53,
+    "lager": "auf_lager"
   },
   {
     "id": "wahamon",
@@ -1232,7 +1317,12 @@ const PRODUCTS = [
     "collection": "WA",
     "desc": "Hamon, die Klingenlinie japanischer Schwerter, als Ohrring. Nummeriert, limitiert, nie wieder aufgelegt.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "4.32 × 15.36 × 3.69 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 53,
+    "lager": "auf_lager"
   },
   {
     "id": "wakumo",
@@ -1248,9 +1338,15 @@ const PRODUCTS = [
     "collection": "WA",
     "desc": "Kumo heisst Wolke. Das dritte und letzte Muster der aktuellen WA-Auflage.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 56,
+    "lager": "auf_lager"
   }
-];
+]
+;
 
 // ---------- Tracking-Blaupause ----------
 // Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
@@ -1317,18 +1413,18 @@ function renderCart(){
     body.innerHTML = `<div class="drawer-empty"><em>Noch nichts drin.</em>Finde deins.</div>`;
   } else {
     body.innerHTML = cart.map(item => `
-      <div class="drawer-item" data-line="${item.id}">
+      <div class="drawer-item" data-line="${item.key || item.id}">
         <img src="${item.thumb}" alt="">
         <div>
           <h4>${item.name}</h4><span>${item.variant}</span>
           <div class="qty-ctrl">
-            <button data-qminus="${item.id}" aria-label="Menge verringern">−</button>
+            <button data-qminus="${item.key || item.id}" aria-label="Menge verringern">−</button>
             <span class="qv">${item.qty}</span>
-            <button data-qplus="${item.id}" aria-label="Menge erhöhen">+</button>
+            <button data-qplus="${item.key || item.id}" aria-label="Menge erhöhen">+</button>
           </div>
         </div>
         <span class="price">${fmtCHF(item.price * item.qty)}</span>
-        <button class="line-remove" data-remove="${item.id}" aria-label="Entfernen">×</button>
+        <button class="line-remove" data-remove="${item.key || item.id}" aria-label="Entfernen">×</button>
       </div>`).join('');
   }
   const sub = cart.reduce((s,i) => s + i.price*i.qty, 0);
@@ -1355,21 +1451,32 @@ function toast(html){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
 }
-function addToCart(id, qty){
+function addToCart(id, qty, einzelohr){
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
-  const line = cart.find(x => x.id === p.id);
-  line ? line.qty += qty : cart.push({id:p.id, name:p.name, variant:p.variant, price:p.price, thumb:p.thumb, qty});
+  if (p.lager === 'ausverkauft'){
+    toast(`<span class="tick">i</span><span><b>Gerade aus.</b> Lass dich benachrichtigen, sobald ${p.name} zurück ist.</span>`);
+    return;
+  }
+  // Paar oder Einzelohr sind in Shopify zwei Varianten desselben Produkts.
+  // Der Einzelpreis folgt dem Verhaeltnis, das der japanische Shop fuehrt.
+  const einzel = !!einzelohr && p.halb;
+  const key = einzel ? p.id + '|einzel' : p.id;
+  const preis = einzel ? p.preisHalb : p.price;
+  const bez = einzel ? p.variant + ' · Einzelohr' : p.variant;
+  const line = cart.find(x => (x.key || x.id) === key);
+  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, thumb:p.thumb, qty});
   renderCart(); pop(720);
-  track('add_to_cart', { currency: 'CHF', value: p.price * qty,
-    items: [{ item_id: p.sku, item_name: `${p.name} ${p.variant}`, price: p.price, quantity: qty }] });
+  track('add_to_cart', { currency: 'CHF', value: preis * qty,
+    items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
   cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
-  toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${p.variant} ist im Warenkorb.</span>`);
+  toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${bez} ist im Warenkorb.</span>`);
 }
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
   if (add){
-    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1));
+    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1),
+      add.dataset.einzel === '1' || document.getElementById('halbToggle')?.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
     if (!add.dataset.busy){
       const zurueck = add.textContent;
@@ -1381,14 +1488,46 @@ document.addEventListener('click', e => {
     return;
   }
   const plus = e.target.closest('[data-qplus]');
-  if (plus){ const l = cart.find(x => x.id === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
+  if (plus){ const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
   const minus = e.target.closest('[data-qminus]');
-  if (minus){ const l = cart.find(x => x.id === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
+  if (minus){ const l = cart.find(x => (x.key || x.id) === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
   const rem = e.target.closest('[data-remove]');
-  if (rem){ const l = cart.find(x => x.id === rem.dataset.remove);
+  if (rem){ const l = cart.find(x => (x.key || x.id) === rem.dataset.remove);
     if (l) track('remove_from_cart', { currency: 'CHF', value: l.price * l.qty, items: [{ item_id: l.id, quantity: l.qty }] });
-    cart = cart.filter(x => x.id !== rem.dataset.remove); renderCart(); return; }
+    cart = cart.filter(x => (x.key || x.id) !== rem.dataset.remove); renderCart(); return; }
 });
+// ---------- Ausverkauft-Zustand auf allen Karten, egal wann sie gerendert werden ----------
+// Im echten Shop enden ausverkaufte Artikel als Sackgasse. Hier kriegen sie einen
+// klaren Zustand plus Benachrichtigung. In Shopify liefert das der Variantenbestand.
+function markSoldOut(){
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const p = PRODUCTS.find(x => x.id === card.dataset.id);
+    if (!p || p.lager !== 'ausverkauft' || card.classList.contains('soldout')) return;
+    card.classList.add('soldout');
+    const box = card.querySelector('.card-img');
+    if (box && !box.querySelector('.out-flag')){
+      const flag = document.createElement('span');
+      flag.className = 'out-flag';
+      flag.textContent = 'Ausverkauft';
+      box.appendChild(flag);
+    }
+    const btn = card.querySelector('[data-add]');
+    if (btn){ btn.textContent = 'Benachrichtigen'; btn.dataset.notify = p.id; btn.removeAttribute('data-add'); }
+  });
+}
+let soRaf;
+new MutationObserver(() => { cancelAnimationFrame(soRaf); soRaf = requestAnimationFrame(markSoldOut); })
+  .observe(document.body, { childList: true, subtree: true });
+markSoldOut();
+
+document.addEventListener('click', e => {
+  const n = e.target.closest('[data-notify]');
+  if (!n) return;
+  const p = PRODUCTS.find(x => x.id === n.dataset.notify);
+  track('generate_lead', { method: 'back_in_stock', item_id: p ? p.sku : n.dataset.notify });
+  toast(`<span class="tick">✓</span><span><b>Notiert.</b> Wir melden uns, sobald ${p ? p.name : 'das Paar'} zurück ist.</span>`);
+});
+
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);

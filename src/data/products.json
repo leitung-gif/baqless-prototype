@@ -13,7 +13,12 @@
     "collection": "Honesty",
     "desc": "Eine klare Linie, gebürstetes Gold, null Ablenkung. Slice ist das Statement für alle, die Minimalismus nicht mit Langeweile verwechseln.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "minelta",
@@ -29,7 +34,12 @@
     "collection": "Honesty",
     "desc": "Weiche Rundungen, warmes Gold. Minelta liegt so leicht am Ohr, dass du sie vergisst. Bis dich jemand darauf anspricht.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.40 × 3.40 × 1.20 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "leafsea",
@@ -45,7 +55,12 @@
     "collection": "Honesty",
     "desc": "Ein Blatt, gefangen zwischen Meerblau und Licht. Leaf Sea bringt Farbe ans Ohr, ohne laut zu werden.",
     "materials": "Chirurgischer Edelstahl 316L, Emaille-Einlage. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 32,
+    "lager": "auf_lager"
   },
   {
     "id": "leafblack",
@@ -61,7 +76,12 @@
     "collection": "Honesty",
     "desc": "Dasselbe Blatt, andere Haltung: tiefes Schwarz, matte Eleganz. Leaf Black trägt sich vom Meeting bis Mitternacht.",
     "materials": "Chirurgischer Edelstahl 316L, schwarze PVD-Beschichtung. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 32,
+    "lager": "auf_lager"
   },
   {
     "id": "dew",
@@ -77,7 +97,12 @@
     "collection": "Honesty",
     "desc": "Wie ein Tautropfen: klein, hell, präzise. Dew ist der Einstieg in Baqless. Und oft der Anfang einer Sammlung.",
     "materials": "Chirurgischer Edelstahl 316L, weisse Emaille. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.68 × 8.72 × 2.34 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 29,
+    "lager": "auf_lager"
   },
   {
     "id": "polarisyg",
@@ -93,7 +118,12 @@
     "collection": "Amity",
     "desc": "Unser Nordstern und meistverkauftes Paar: ein Stern mit funkelndem Stein, der jedes Outfit einen Tick heller macht.",
     "materials": "Chirurgischer Edelstahl 316L, PVD-Gold-Beschichtung, Zirkonia-Stein. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 41,
+    "lager": "auf_lager"
   },
   {
     "id": "polarissv",
@@ -109,7 +139,12 @@
     "collection": "Amity",
     "desc": "Polaris in kühlem Silber: derselbe Stern, etwas leiser, genauso präzise. Für alle, die Understatement funkeln lassen.",
     "materials": "Chirurgischer Edelstahl 316L, Zirkonia-Stein. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 35,
+    "lager": "auf_lager"
   },
   {
     "id": "sageneon",
@@ -125,7 +160,12 @@
     "collection": "Embrace",
     "desc": "Limitierte Serie: Neon-Pink auf skulpturaler Form. Embrace Sage ist für Tage, an denen du gesehen werden willst.",
     "materials": "Chirurgischer Edelstahl 316L, Neon-Emaille. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "12 × 13 mm Aussendurchmesser",
+    "gewicht": "0.7 g pro Ohr",
+    "halb": true,
+    "preisHalb": 38,
+    "lager": "auf_lager"
   },
   {
     "id": "lunapearl",
@@ -141,7 +181,12 @@
     "collection": "Amity",
     "desc": "Eine Perle, die mitmacht statt nur mitkommt. Luna bleibt dran, vom Morgenkaffee bis zur letzten Bahn.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Süsswasserperle.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 44,
+    "lager": "auf_lager"
   },
   {
     "id": "friendship",
@@ -157,7 +202,12 @@
     "collection": "Amity",
     "desc": "Zwei Paare, eine Freundschaft. Eines für dich, eines zum Verschenken. Beide mit Click-Lock.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 47,
+    "lager": "auf_lager"
   },
   {
     "id": "bandgold",
@@ -173,7 +223,12 @@
     "collection": "Embrace",
     "desc": "Ein schmaler Reif, der sich ums Ohr legt wie ein Versprechen. Schliesst mit einem Klick, bleibt den ganzen Tag.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 41,
+    "lager": "auf_lager"
   },
   {
     "id": "zirkonia",
@@ -189,7 +244,12 @@
     "collection": "Embrace",
     "desc": "Funkelt wie es soll und hält wie es muss. Zirkonia ist der Auftritt für Tage, die mehr verdienen.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Zirkonia-Steine.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 42,
+    "lager": "auf_lager"
   },
   {
     "id": "blackhoop",
@@ -205,7 +265,12 @@
     "collection": "Honesty",
     "desc": "Mattes Schwarz, klare Kante. Der Hoop für alle, die leise auffallen.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. Schwarze PVD-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 37,
+    "lager": "ausverkauft"
   },
   {
     "id": "wasumiiri",
@@ -221,7 +286,12 @@
     "collection": "WA",
     "desc": "Traditionelles Sumiiri-Muster, in Gold gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "3.93 × 13.90 × 3.70 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 53,
+    "lager": "auf_lager"
   },
   {
     "id": "wahamon",
@@ -237,7 +307,12 @@
     "collection": "WA",
     "desc": "Hamon, die Klingenlinie japanischer Schwerter, als Ohrring. Nummeriert, limitiert, nie wieder aufgelegt.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": "4.32 × 15.36 × 3.69 mm",
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 53,
+    "lager": "auf_lager"
   },
   {
     "id": "wakumo",
@@ -253,6 +328,11 @@
     "collection": "WA",
     "desc": "Kumo heisst Wolke. Das dritte und letzte Muster der aktuellen WA-Auflage.",
     "materials": "Chirurgischer Edelstahl 316L. Wasserfest. PVD-Gold-Beschichtung.",
-    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem."
+    "care": "Mit weichem Tuch abwischen, fertig. Duschen, Sport, Meer, alles kein Problem.",
+    "masse": null,
+    "gewicht": null,
+    "halb": true,
+    "preisHalb": 56,
+    "lager": "auf_lager"
   }
 ]

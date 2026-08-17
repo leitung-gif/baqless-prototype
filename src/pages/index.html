@@ -89,6 +89,7 @@
       <p>Aus dem Alltag, nicht aus dem Studio.</p>
     </div>
     <div class="rev-grid reveal d1" id="revGrid"></div>
+    <div class="rev-note reveal d2">Sechs Menschen tragen diese Ohrringe seit Jahren und sagen unabhängig voneinander dasselbe. <a href="journal.html">Alle Porträts im Journal</a></div>
   </div>
 </section>
 
@@ -464,17 +465,21 @@ filmCards.forEach(card => {
   vio.observe(card);
 });
 
-// ---------- Reviews aus den Daten ----------
-const REVIEWS = {{REVIEWS_JSON}};
-const prodById = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
-document.getElementById('revGrid').innerHTML = REVIEWS.slice(0, 3).map(r => {
-  const p = prodById[r.produkt];
-  return `<figure class="rev-card">
-    <span class="rev-stars" aria-label="${r.sterne} von 5 Sternen">${'★'.repeat(r.sterne)}${'☆'.repeat(5 - r.sterne)}</span>
-    <blockquote class="rev-text">«${r.text}»</blockquote>
-    <figcaption class="rev-meta"><b>${r.name}, ${r.alter}</b> · ${r.ort}<br>trägt <a href="produkt.html?p=${p.id}">${p.name} ${p.variant}</a></figcaption>
-  </figure>`;
-}).join('');
+// ---------- Echte Stimmen aus den Journal-Porträts ----------
+// Keine Sterne und keine Zahlen: auf baqless.jp und baqless.com existiert keine
+// einzige Kundenbewertung. Erfundene Werte kommen hier nicht rein.
+const STIMMEN = {{STIMMEN_JSON}};
+document.getElementById('revGrid').innerHTML = STIMMEN.map(r => `
+  <figure class="rev-card">
+    <span class="rev-mark" aria-hidden="true">&ldquo;</span>
+    <span class="rev-kind">${r.art === 'zitat' ? 'Im Wortlaut' : 'Aus dem Porträt'}</span>
+    <blockquote class="rev-text">${r.art === 'zitat' ? '«' + r.text + '»' : r.text}</blockquote>
+    <p class="rev-role">${r.kontext}</p>
+    <figcaption class="rev-meta">
+      <b>${r.name}</b> · ${r.ort}<br>${r.rolle}<br>
+      <a href="journal.html">Zum Porträt</a> · <span class="rev-src">${r.quelle}</span>
+    </figcaption>
+  </figure>`).join('');
 
 // ---------- Kollektions-Kacheln: Stückzahlen live aus den Produktdaten ----------
 document.querySelectorAll('[data-colcount]').forEach(el => {

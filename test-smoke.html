@@ -31,6 +31,34 @@ async function run() {
   acc2?.querySelector('button')?.click(); await sleep(150);
   log('Akkordeon öffnet', acc2?.classList.contains('open') === true);
 
+  // ===== Verschluss-Erklärmodul (die Lücke beider echten Shops) =====
+  log('PDP: Verschluss-Modul mit 3 Schritten', d.querySelectorAll('.mech .mech-step').length === 3
+    && d.querySelector('.mech h3')?.textContent.includes('ohne Rückteil'));
+  log('PDP: Spec-Tabelle mit echten Massen', (() => {
+    const t = d.querySelector('table.spec')?.textContent || '';
+    return t.includes('5.84 × 5.84 × 1.77 mm') && t.includes('316L') && t.includes('Herkunft');
+  })());
+  log('PDP: Grössengrafik in Originalgrösse', !!d.querySelector('#accSize .sizeviz svg')
+    && d.querySelector('#accSize svg')?.getAttribute('aria-label')?.includes('Millimeter'));
+  log('PDP: Passform-Warnung vor dem Kauf', d.querySelector('#accSize')?.textContent.includes('dicken Ohrläppchen'));
+
+  // ===== Paar oder Einzelohr =====
+  log('PDP: Einzelohr-Umschalter da', !!d.getElementById('halbToggle')
+    && d.querySelectorAll('#halbToggle button').length === 2);
+  log('PDP: Einzelpreis bei 59 Prozent', d.querySelector('#halbToggle button:last-child span')?.textContent === 'CHF 41');
+  click(d, '#halbToggle button[data-einzelset="1"]'); await sleep(120);
+  log('PDP: Umschalten ändert Preis und SKU', d.querySelector('.price-big')?.textContent === 'CHF 41'
+    && d.querySelector('.variant-line')?.textContent.includes('-H'));
+  click(d, '#mainAdd'); await sleep(200);
+  log('PDP: Einzelohr als eigene Warenkorbzeile', (() => {
+    const line = d.querySelector('[data-line="polarisyg|einzel"]');
+    return !!line && line.textContent.includes('Einzelohr') && line.textContent.includes('41');
+  })());
+  click(d, '[data-remove="polarisyg|einzel"]'); await sleep(150);
+  click(d, '#halbToggle button[data-einzelset="0"]'); await sleep(120);
+  log('PDP: zurück auf Paar', d.querySelector('.price-big')?.textContent === 'CHF 69'
+    && d.getElementById('cartCount')?.textContent === '0');
+
   // ===== V3: Menge + Cart v2 =====
   click(d, '#qtyPlus'); await sleep(80);
   log('Mengen-Stepper auf 2', d.getElementById('qtyVal')?.textContent === '2');
@@ -134,6 +162,23 @@ async function run() {
   d = f.contentDocument;
   log('PLP ?c=Amity → 4 Karten', d.querySelectorAll('#plpGrid .card').length === 4);
 
+  // ===== Ausverkauft-Zustand =====
+  f.src = '/kollektion.html';
+  await loadOnce(); await sleep(600);
+  d = f.contentDocument;
+  log('PLP: ausverkaufte Karte markiert', (() => {
+    const c = d.querySelector('.card[data-id="blackhoop"]');
+    return !!c && c.classList.contains('soldout') && !!c.querySelector('.out-flag');
+  })());
+  log('PLP: ausverkauft bietet Benachrichtigung statt Warenkorb', (() => {
+    const c = d.querySelector('.card[data-id="blackhoop"]');
+    const b = c?.querySelector('[data-notify]');
+    return !!b && !c.querySelector('[data-add]') && b.textContent === 'Benachrichtigen';
+  })());
+  d.querySelector('.card[data-id="blackhoop"] [data-notify]')?.click(); await sleep(200);
+  log('PLP: Benachrichtigung bestätigt und getrackt', d.getElementById('toast')?.textContent.includes('Notiert')
+    && f.contentWindow.dataLayer.some(x => x.event === 'generate_lead'));
+
   // ===== Neuheiten-Subpage =====
   f.src = '/neuheiten.html';
   await loadOnce(); await sleep(500);
@@ -169,9 +214,12 @@ async function run() {
     return i('produkte') > 0 && i('produkte') < i('reviews') && i('reviews') < i('kollektionen')
       && i('kollektionen') < i('clicklock') && i('clicklock') < i('film');
   })());
-  log('Home: Reviews in einer Reihe (3 Karten)', d.querySelectorAll('#reviews .rev-card').length === 3);
-  log('Home: Reviews mit Sternen + Produktlink', d.querySelectorAll('#reviews .rev-stars').length === 3
-    && !!d.querySelector('#reviews a[href^="produkt.html?p="]'));
+  log('Home: Stimmen in einer Reihe (3 Karten)', d.querySelectorAll('#reviews .rev-card').length === 3);
+  log('Home: Stimmen mit Rolle, Quelle und Journal-Link', d.querySelectorAll('#reviews .rev-src').length === 3
+    && !!d.querySelector('#reviews a[href="journal.html"]')
+    && d.querySelector('#reviews').textContent.includes('Taeko Wako'));
+  log('Home: keine erfundenen Sterne mehr', d.querySelectorAll('#reviews .rev-stars').length === 0
+    && !d.querySelector('#reviews').textContent.includes('★'));
   log('Home: keine Versandstandorte-Statistik', !d.body.innerText.includes('Versandstandorte'));
   log('Home: Story-CTA → Subpage', !!d.querySelector('.story a.btn[href="story.html"]'));
   log('Home: Nav → Story-Subpage', !!d.querySelector('nav a[href="story.html"]'));
@@ -256,8 +304,11 @@ async function run() {
   f.src = '/faq.html';
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
-  log('FAQ lädt mit 9 Fragen', d.querySelectorAll('.legal h2').length === 9);
-  log('FAQ: Grössen-Anker', !!d.getElementById('groessen'));
+  log('FAQ auf Guide-Niveau (18 Fragen)', d.querySelectorAll('.legal h2').length === 18,
+    d.querySelectorAll('.legal h2').length + ' Fragen');
+  log('FAQ: Grössen- und Passform-Anker', !!d.getElementById('groessen') && !!d.getElementById('passform'));
+  log('FAQ: neue Guide-Themen drin', ['Garantie','Geschenkverpackung','ausverkauft','Klemmkraft','einzelnen Ohrring']
+    .every(t => d.body.innerText.includes(t)));
   log('FAQ: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
 
   // ===== Story-Subpage =====
@@ -271,6 +322,22 @@ async function run() {
   log('Story: CTA zu Kollektionen', !!d.querySelector('.story-cta a[href="kollektion.html"]'));
   log('Story: keine Gedankenstriche', !d.body.innerText.includes('—'));
   log('Story: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
+
+  // ===== Journal-Subpage =====
+  f.src = '/journal.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Journal: lädt', d.querySelector('.plp-hero h1')?.textContent.includes('nicht mehr abnehmen'));
+  log('Journal: acht Befunde als Raster', d.querySelectorAll('.bgrid .bcell').length === 8);
+  log('Journal: sechs Porträts mit Quelle', d.querySelectorAll('.jgrid .jcard').length === 6
+    && d.querySelectorAll('.jcard .jsrc').length === 6);
+  log('Journal: Wortlaut-Zitat nur bei Wako', (d.body.innerText.match(/«/g) || []).length === 1);
+  log('Journal: Herkunft der Texte offengelegt', d.body.innerText.includes('Übersetzung ins Deutsche')
+    && d.body.innerText.includes('Freigabe der Personen'));
+  log('Journal: Japan-Beweise als Japan gekennzeichnet', d.body.innerText.includes('fanden in Japan statt')
+    && d.body.innerText.includes('nicht als hiesige Referenzen'));
+  log('Journal: keine Gedankenstriche', !d.body.innerText.includes('—'));
+  log('Journal: keine Patent- und Allergie-Zusagen', !/patent|hypoallergen/i.test(d.body.innerText));
 
   // ===== Mobile (375px iframe) =====
   const m = document.createElement('iframe');
@@ -289,7 +356,7 @@ async function run() {
   })(), 'burgerRight=' + Math.round(burger.getBoundingClientRect().right));
   burger.click(); await sleep(300);
   log('Mobil: Menü öffnet', md.getElementById('mnav').classList.contains('open'));
-  log('Mobil: Menü-Links komplett', md.querySelectorAll('#mnav .mnav-links a').length === 5
+  log('Mobil: Menü-Links komplett', md.querySelectorAll('#mnav .mnav-links a').length === 6
     && md.querySelectorAll('#mnav .mnav-sub a').length === 4);
   md.getElementById('mnavClose').click(); await sleep(300);
   log('Mobil: Menü schliesst', !md.getElementById('mnav').classList.contains('open'));

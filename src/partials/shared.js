@@ -65,18 +65,18 @@ function renderCart(){
     body.innerHTML = `<div class="drawer-empty"><em>Noch nichts drin.</em>Finde deins.</div>`;
   } else {
     body.innerHTML = cart.map(item => `
-      <div class="drawer-item" data-line="${item.id}">
+      <div class="drawer-item" data-line="${item.key || item.id}">
         <img src="${item.thumb}" alt="">
         <div>
           <h4>${item.name}</h4><span>${item.variant}</span>
           <div class="qty-ctrl">
-            <button data-qminus="${item.id}" aria-label="Menge verringern">−</button>
+            <button data-qminus="${item.key || item.id}" aria-label="Menge verringern">−</button>
             <span class="qv">${item.qty}</span>
-            <button data-qplus="${item.id}" aria-label="Menge erhöhen">+</button>
+            <button data-qplus="${item.key || item.id}" aria-label="Menge erhöhen">+</button>
           </div>
         </div>
         <span class="price">${fmtCHF(item.price * item.qty)}</span>
-        <button class="line-remove" data-remove="${item.id}" aria-label="Entfernen">×</button>
+        <button class="line-remove" data-remove="${item.key || item.id}" aria-label="Entfernen">×</button>
       </div>`).join('');
   }
   const sub = cart.reduce((s,i) => s + i.price*i.qty, 0);
@@ -103,21 +103,32 @@ function toast(html){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
 }
-function addToCart(id, qty){
+function addToCart(id, qty, einzelohr){
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
-  const line = cart.find(x => x.id === p.id);
-  line ? line.qty += qty : cart.push({id:p.id, name:p.name, variant:p.variant, price:p.price, thumb:p.thumb, qty});
+  if (p.lager === 'ausverkauft'){
+    toast(`<span class="tick">i</span><span><b>Gerade aus.</b> Lass dich benachrichtigen, sobald ${p.name} zurück ist.</span>`);
+    return;
+  }
+  // Paar oder Einzelohr sind in Shopify zwei Varianten desselben Produkts.
+  // Der Einzelpreis folgt dem Verhaeltnis, das der japanische Shop fuehrt.
+  const einzel = !!einzelohr && p.halb;
+  const key = einzel ? p.id + '|einzel' : p.id;
+  const preis = einzel ? p.preisHalb : p.price;
+  const bez = einzel ? p.variant + ' · Einzelohr' : p.variant;
+  const line = cart.find(x => (x.key || x.id) === key);
+  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, thumb:p.thumb, qty});
   renderCart(); pop(720);
-  track('add_to_cart', { currency: 'CHF', value: p.price * qty,
-    items: [{ item_id: p.sku, item_name: `${p.name} ${p.variant}`, price: p.price, quantity: qty }] });
+  track('add_to_cart', { currency: 'CHF', value: preis * qty,
+    items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
   cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
-  toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${p.variant} ist im Warenkorb.</span>`);
+  toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${bez} ist im Warenkorb.</span>`);
 }
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
   if (add){
-    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1));
+    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1),
+      add.dataset.einzel === '1' || document.getElementById('halbToggle')?.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
     if (!add.dataset.busy){
       const zurueck = add.textContent;
@@ -129,14 +140,46 @@ document.addEventListener('click', e => {
     return;
   }
   const plus = e.target.closest('[data-qplus]');
-  if (plus){ const l = cart.find(x => x.id === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
+  if (plus){ const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
   const minus = e.target.closest('[data-qminus]');
-  if (minus){ const l = cart.find(x => x.id === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
+  if (minus){ const l = cart.find(x => (x.key || x.id) === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
   const rem = e.target.closest('[data-remove]');
-  if (rem){ const l = cart.find(x => x.id === rem.dataset.remove);
+  if (rem){ const l = cart.find(x => (x.key || x.id) === rem.dataset.remove);
     if (l) track('remove_from_cart', { currency: 'CHF', value: l.price * l.qty, items: [{ item_id: l.id, quantity: l.qty }] });
-    cart = cart.filter(x => x.id !== rem.dataset.remove); renderCart(); return; }
+    cart = cart.filter(x => (x.key || x.id) !== rem.dataset.remove); renderCart(); return; }
 });
+// ---------- Ausverkauft-Zustand auf allen Karten, egal wann sie gerendert werden ----------
+// Im echten Shop enden ausverkaufte Artikel als Sackgasse. Hier kriegen sie einen
+// klaren Zustand plus Benachrichtigung. In Shopify liefert das der Variantenbestand.
+function markSoldOut(){
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const p = PRODUCTS.find(x => x.id === card.dataset.id);
+    if (!p || p.lager !== 'ausverkauft' || card.classList.contains('soldout')) return;
+    card.classList.add('soldout');
+    const box = card.querySelector('.card-img');
+    if (box && !box.querySelector('.out-flag')){
+      const flag = document.createElement('span');
+      flag.className = 'out-flag';
+      flag.textContent = 'Ausverkauft';
+      box.appendChild(flag);
+    }
+    const btn = card.querySelector('[data-add]');
+    if (btn){ btn.textContent = 'Benachrichtigen'; btn.dataset.notify = p.id; btn.removeAttribute('data-add'); }
+  });
+}
+let soRaf;
+new MutationObserver(() => { cancelAnimationFrame(soRaf); soRaf = requestAnimationFrame(markSoldOut); })
+  .observe(document.body, { childList: true, subtree: true });
+markSoldOut();
+
+document.addEventListener('click', e => {
+  const n = e.target.closest('[data-notify]');
+  if (!n) return;
+  const p = PRODUCTS.find(x => x.id === n.dataset.notify);
+  track('generate_lead', { method: 'back_in_stock', item_id: p ? p.sku : n.dataset.notify });
+  toast(`<span class="tick">✓</span><span><b>Notiert.</b> Wir melden uns, sobald ${p ? p.name : 'das Paar'} zurück ist.</span>`);
+});
+
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
