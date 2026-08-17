@@ -148,6 +148,12 @@ document.addEventListener('click', e => {
     if (l) track('remove_from_cart', { currency: 'CHF', value: l.price * l.qty, items: [{ item_id: l.id, quantity: l.qty }] });
     cart = cart.filter(x => (x.key || x.id) !== rem.dataset.remove); renderCart(); return; }
 });
+// ---------- Kollektions-Menue im Kopf: Stueckzahlen aus den Produktdaten ----------
+document.querySelectorAll('[data-navcount]').forEach(el => {
+  const n = PRODUCTS.filter(p => p.collection === el.dataset.navcount).length;
+  el.textContent = n + (n === 1 ? ' Paar' : ' Paare');
+});
+
 // ---------- Ausverkauft-Zustand auf allen Karten, egal wann sie gerendert werden ----------
 // Im echten Shop enden ausverkaufte Artikel als Sackgasse. Hier kriegen sie einen
 // klaren Zustand plus Benachrichtigung. In Shopify liefert das der Variantenbestand.
@@ -191,9 +197,22 @@ document.getElementById('cartBtn').addEventListener('click', () => {
 document.getElementById('drawerClose').addEventListener('click', () => openDrawer(false));
 overlay.addEventListener('click', () => openDrawer(false));
 document.getElementById('checkoutBtn').addEventListener('click', () => {
-  track('begin_checkout', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
-  toast(`<span class="tick">✓</span><span><b>Fast geschafft.</b> Der Checkout folgt mit dem Livegang.</span>`);
+  if (!cart.length){
+    toast(`<span class="tick">i</span><span><b>Noch leer.</b> Leg zuerst ein Paar in den Warenkorb.</span>`);
+    return;
+  }
+  location.href = 'kasse.html';
 });
+
+// ---------- Merken: bleibt erhalten, statt nur kurz aufzublinken ----------
+let merkliste = [];
+try { merkliste = JSON.parse(localStorage.getItem('baqless_merk') || '[]'); } catch(e) {}
+function merkeUm(id){
+  const drin = merkliste.includes(id);
+  merkliste = drin ? merkliste.filter(x => x !== id) : merkliste.concat(id);
+  try { localStorage.setItem('baqless_merk', JSON.stringify(merkliste)); } catch(e) {}
+  return !drin;
+}
 
 // ---------- Burger / Mobilmenü ----------
 const mnav = document.getElementById('mnav');

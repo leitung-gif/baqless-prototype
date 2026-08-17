@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Die Allgemeinen Geschäftsbedingungen der Baqless AG.">
+<meta name="description" content="Kasse bei Baqless. Versand aus der Schweiz und Japan, Zoll inklusive, 30 Tage Rückgaberecht.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
-<title>Baqless · AGB</title>
+<title>Baqless · Kasse</title>
 <style>
 
 @font-face {
@@ -854,6 +854,59 @@ footer ul a:hover{color:var(--coral)}
 .add-btn{padding:12px 0}
 .col-label .arrow{width:44px; height:44px}
 
+
+.ko-wrap{max-width:1180px; margin:0 auto; padding:clamp(112px,12vw,150px) var(--pad) clamp(60px,7vw,96px)}
+.ko-wrap h1{font-size:clamp(32px,4.2vw,50px); margin-bottom:6px}
+.ko-steps{display:flex; gap:10px; flex-wrap:wrap; font-size:12px; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-soft); margin:16px 0 30px}
+.ko-steps b{color:var(--coral-deep); font-weight:600}
+.ko-grid{display:grid; grid-template-columns:minmax(0,7fr) minmax(0,4fr); gap:clamp(28px,4vw,56px); align-items:start}
+@media(max-width:880px){.ko-grid{grid-template-columns:1fr}}
+
+.ko-note{border:1px dashed rgba(125,111,214,.55); background:rgba(125,111,214,.05); border-radius:8px;
+  padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5c564e; margin-bottom:28px}
+
+fieldset{border:none; border-top:1px solid rgba(11,29,63,.12); padding:26px 0 6px}
+fieldset:first-of-type{border-top:none; padding-top:0}
+legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:16px}
+.frow{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.frow.one{grid-template-columns:1fr}
+.frow.plz{grid-template-columns:130px 1fr}
+@media(max-width:560px){.frow, .frow.plz{grid-template-columns:1fr}}
+.field{display:flex; flex-direction:column; gap:6px; margin-bottom:14px}
+.field label{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft)}
+.field input, .field select{
+  border:1.5px solid #e3dccf; border-radius:4px; padding:12px 13px; font:inherit; font-size:15px;
+  background:var(--paper); color:var(--charcoal); transition:border-color .12s;
+}
+.field input:focus, .field select:focus{border-color:var(--navy)}
+.field input[aria-invalid="true"]{border-color:var(--coral-deep)}
+.field .err{font-size:12.5px; color:var(--coral-deep); display:none}
+.field input[aria-invalid="true"] ~ .err{display:block}
+
+.opt{display:flex; gap:14px; align-items:flex-start; border:1.5px solid #e3dccf; border-radius:4px;
+  padding:14px 16px; cursor:pointer; margin-bottom:10px; transition:border-color .12s, background .12s}
+.opt:hover{border-color:var(--warmgrey)}
+.opt input{margin-top:3px; accent-color:#0B1D3F}
+.opt.sel{border-color:var(--navy); background:rgba(11,29,63,.03)}
+.opt b{display:block; font-family:var(--sans); font-size:15px; font-weight:600}
+.opt span{font-size:13.5px; color:var(--ink-soft); line-height:1.5}
+.opt .pr{margin-left:auto; font-size:15px; font-weight:500; white-space:nowrap; font-variant-numeric:tabular-nums}
+
+.ko-sum{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:24px; position:sticky; top:96px}
+.ko-sum h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:16px}
+.ko-line{display:grid; grid-template-columns:52px 1fr auto; gap:12px; align-items:center; padding:9px 0; font-size:14px}
+.ko-line .pic{background:#fff; border-radius:4px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden}
+.ko-line .pic img{width:80%; mix-blend-mode:multiply}
+.ko-line .nm{line-height:1.35}
+.ko-line .nm span{display:block; font-size:12.5px; color:var(--ink-soft)}
+.ko-line .pr{font-variant-numeric:tabular-nums; white-space:nowrap}
+.ko-sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:8px 0; color:#4a453e; font-variant-numeric:tabular-nums}
+.ko-sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:15px; font-size:20px; font-weight:500; color:var(--charcoal)}
+.ko-sum .sep{border-top:1px solid rgba(11,29,63,.1); margin:12px 0 4px}
+.ko-submit{width:100%; justify-content:center; margin-top:22px}
+.ko-back{display:block; text-align:center; margin-top:26px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.ko-back:hover{color:var(--coral-deep)}
 </style>
 </head>
 <body class="page-light">
@@ -938,39 +991,114 @@ footer ul a:hover{color:var(--coral)}
   </div>
 </div>
 
-<main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>AGB</span></div>
-  <h1>AGB.</h1>
-  <p class="lead">Kurz, fair und ohne Kleingedrucktes im Kleingedruckten. Das gilt, wenn du bei uns bestellst.</p>
+<main class="ko-wrap">
+  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><a href="warenkorb.html">Warenkorb</a><span class="sep">/</span><span>Kasse</span></div>
+  <h1>Kasse.</h1>
+  <div class="ko-steps"><span>Warenkorb</span><span>→</span><b>Adresse und Zahlung</b><span>→</span><span>Bestätigung</span></div>
 
-  <h2>1. Geltungsbereich</h2>
-  <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Bestellungen über baqless.com bei der Baqless AG, <span class="ph">[PLZ Ort]</span>, Schweiz.</p>
+  <div class="ko-note">
+    <b>Prototyp.</b> Diese Kasse zeigt den kompletten Ablauf, verarbeitet aber keine Zahlung und sendet nichts an einen Server. Alles bleibt in deinem Browser. Im Livegang übernimmt das der Shopify-Checkout mit TWINT, Karte und den übrigen Zahlarten.
+  </div>
 
-  <h2>2. Angebot und Vertragsabschluss</h2>
-  <p>Die Darstellung der Produkte im Shop ist ein unverbindliches Angebot. Mit deiner Bestellung gibst du ein verbindliches Kaufangebot ab. Der Vertrag kommt zustande, sobald wir deine Bestellung per E-Mail bestätigen.</p>
+  <div class="ko-grid">
+    <form id="koForm" novalidate>
+      <fieldset>
+        <legend>Kontakt</legend>
+        <div class="field">
+          <label for="fMail">E-Mail für die Bestellbestätigung</label>
+          <input type="email" id="fMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
+          <span class="err">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+        </div>
+      </fieldset>
 
-  <h2>3. Preise</h2>
-  <p>Alle Preise sind in Schweizer Franken (CHF) angegeben und verstehen sich inklusive der gesetzlichen Mehrwertsteuer. Versandkosten werden im Bestellprozess separat ausgewiesen. Ab CHF 99 Bestellwert liefern wir versandkostenfrei.</p>
+      <fieldset>
+        <legend>Lieferadresse</legend>
+        <div class="frow">
+          <div class="field">
+            <label for="fVor">Vorname</label>
+            <input type="text" id="fVor" name="vorname" autocomplete="given-name" required>
+            <span class="err">Bitte ausfüllen.</span>
+          </div>
+          <div class="field">
+            <label for="fNach">Nachname</label>
+            <input type="text" id="fNach" name="nachname" autocomplete="family-name" required>
+            <span class="err">Bitte ausfüllen.</span>
+          </div>
+        </div>
+        <div class="frow one">
+          <div class="field">
+            <label for="fStr">Strasse und Nummer</label>
+            <input type="text" id="fStr" name="strasse" autocomplete="street-address" required>
+            <span class="err">Bitte ausfüllen.</span>
+          </div>
+        </div>
+        <div class="frow plz">
+          <div class="field">
+            <label for="fPlz">PLZ</label>
+            <input type="text" id="fPlz" name="plz" autocomplete="postal-code" inputmode="numeric" required>
+            <span class="err">Bitte ausfüllen.</span>
+          </div>
+          <div class="field">
+            <label for="fOrt">Ort</label>
+            <input type="text" id="fOrt" name="ort" autocomplete="address-level2" required>
+            <span class="err">Bitte ausfüllen.</span>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="fLand">Land</label>
+            <select id="fLand" name="land" autocomplete="country-name">
+              <option>Schweiz</option><option>Deutschland</option><option>Österreich</option>
+              <option>Liechtenstein</option><option>Frankreich</option><option>Italien</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fTel">Telefon (optional)</label>
+            <input type="tel" id="fTel" name="telefon" autocomplete="tel">
+          </div>
+        </div>
+      </fieldset>
 
-  <h2>4. Zahlung</h2>
-  <p>Du kannst mit TWINT, Visa, Mastercard, Apple Pay und Google Pay bezahlen. Die Belastung erfolgt bei Abschluss der Bestellung.</p>
+      <fieldset>
+        <legend>Versandart</legend>
+        <label class="opt sel" data-opt="versand">
+          <input type="radio" name="versand" value="standard" data-preis="0" checked>
+          <span><b>Standard</b><span>2 bis 4 Werktage, Zoll inklusive</span></span>
+          <span class="pr" id="prStandard">Gratis</span>
+        </label>
+        <label class="opt" data-opt="versand">
+          <input type="radio" name="versand" value="express" data-preis="14">
+          <span><b>Express</b><span>1 bis 2 Werktage, Zoll inklusive</span></span>
+          <span class="pr">CHF 14</span>
+        </label>
+      </fieldset>
 
-  <h2>5. Lieferung</h2>
-  <p>Wir versenden aus der Schweiz und aus Japan. Die voraussichtliche Lieferzeit siehst du beim Produkt und im Checkout. Angaben zu Zoll und Einfuhr bei internationalen Lieferungen findest du unter <a href="widerruf.html">Versand &amp; Retouren</a>.</p>
+      <fieldset>
+        <legend>Zahlung</legend>
+        <label class="opt sel" data-opt="zahlung">
+          <input type="radio" name="zahlung" value="TWINT" checked>
+          <span><b>TWINT</b><span>Du bestätigst die Zahlung in deiner TWINT-App.</span></span>
+        </label>
+        <label class="opt" data-opt="zahlung">
+          <input type="radio" name="zahlung" value="Kreditkarte">
+          <span><b>Kreditkarte</b><span>Visa, Mastercard und American Express.</span></span>
+        </label>
+        <label class="opt" data-opt="zahlung">
+          <input type="radio" name="zahlung" value="PayPal">
+          <span><b>PayPal</b><span>Weiterleitung zu PayPal.</span></span>
+        </label>
+        <label class="opt" data-opt="zahlung">
+          <input type="radio" name="zahlung" value="Apple Pay">
+          <span><b>Apple Pay oder Google Pay</b><span>Zahlung über dein Gerät.</span></span>
+        </label>
+        <p style="font-size:13px; color:var(--ink-soft); margin-top:6px">Die Zahlungsdaten werden im Livegang direkt vom Zahlungsanbieter erfasst, nie von uns.</p>
+      </fieldset>
 
-  <h2>6. Rückgabe</h2>
-  <p>Du hast 30 Tage Zeit, ungetragene Ohrringe in der Originalverpackung zurückzugeben. Details und Ablauf stehen unter <a href="widerruf.html">Widerruf &amp; Retouren</a>.</p>
+      <a class="ko-back" href="warenkorb.html">Zurück zum Warenkorb</a>
+    </form>
 
-  <h2>7. Garantie</h2>
-  <p>Es gilt die gesetzliche Gewährleistung. Bei einem Mangel melde dich unter <a href="kontakt.html">Kontakt</a>. Wir finden eine Lösung.</p>
-
-  <h2>8. Haftung</h2>
-  <p>Wir haften nach den gesetzlichen Bestimmungen. Soweit gesetzlich zulässig, ist die Haftung für leichte Fahrlässigkeit ausgeschlossen.</p>
-
-  <h2>9. Anwendbares Recht und Gerichtsstand</h2>
-  <p>Es gilt Schweizer Recht. Gerichtsstand ist der Sitz der Baqless AG. Zwingende gesetzliche Gerichtsstände bleiben vorbehalten.</p>
-
-  <p class="legal-note">Entwurf für den Prototyp. Die finale Fassung liefert Baqless vor dem Livegang.</p>
+    <aside class="ko-sum" id="koSum"></aside>
+  </div>
 </main>
 
 <footer id="footer">
@@ -1730,6 +1858,111 @@ document.querySelectorAll('[data-nlform]').forEach(form => form.addEventListener
   e.target.reset();
 }));
 
+
+// ---------- Kasse ----------
+const koSum = document.getElementById('koForm') ? document.getElementById('koSum') : null;
+const form = document.getElementById('koForm');
+
+function versandPreis(){
+  const gewaehlt = form.querySelector('input[name="versand"]:checked');
+  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  if (gewaehlt.value === 'express') return 14;
+  return sub >= FREE_SHIP ? 0 : 7;
+}
+
+function renderSum(){
+  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const vs = versandPreis();
+  document.getElementById('prStandard').textContent = sub >= FREE_SHIP ? 'Gratis' : 'CHF 7';
+  koSum.innerHTML = `
+    <h2>Deine Bestellung</h2>
+    ${cart.map(i => `
+      <div class="ko-line">
+        <span class="pic"><img src="${i.thumb}" alt=""></span>
+        <span class="nm">${i.name}<span>${i.variant} · ${i.qty} Stück</span></span>
+        <span class="pr">CHF ${i.price * i.qty}</span>
+      </div>`).join('')}
+    <div class="sep"></div>
+    <div class="row"><span>Zwischensumme</span><span>CHF ${sub}</span></div>
+    <div class="row"><span>Versand</span><span>${vs === 0 ? 'Gratis' : 'CHF ' + vs}</span></div>
+    <div class="row total"><span>Total</span><span>CHF ${sub + vs}</span></div>
+    <button class="btn btn-coral ko-submit" type="submit" form="koForm">Kaufen · CHF ${sub + vs}</button>`;
+}
+
+if (!cart.length){
+  location.replace('warenkorb.html');
+} else {
+  renderSum();
+  track('begin_checkout', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
+
+  // Auswahlfelder optisch und fachlich führen
+  document.querySelectorAll('.opt input').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const gruppe = inp.closest('.opt').dataset.opt;
+      document.querySelectorAll(`.opt[data-opt="${gruppe}"]`).forEach(o =>
+        o.classList.toggle('sel', o.contains(document.querySelector(`input[name="${inp.name}"]:checked`))));
+      if (gruppe === 'versand'){
+        renderSum();
+        track('add_shipping_info', { currency: 'CHF', shipping_tier: inp.value });
+      } else {
+        track('add_payment_info', { currency: 'CHF', payment_type: inp.value });
+      }
+    });
+  });
+
+  // Fehler beim Tippen wieder aufheben
+  form.addEventListener('input', e => {
+    if (e.target.matches('input')) e.target.removeAttribute('aria-invalid');
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const pflicht = [...form.querySelectorAll('input[required]')];
+    let ersterFehler = null;
+    pflicht.forEach(inp => {
+      const leer = !inp.value.trim();
+      const mailFalsch = inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inp.value.trim());
+      if (leer || mailFalsch){
+        inp.setAttribute('aria-invalid', 'true');
+        if (!ersterFehler) ersterFehler = inp;
+      } else {
+        inp.removeAttribute('aria-invalid');
+      }
+    });
+    if (ersterFehler){
+      ersterFehler.focus();
+      ersterFehler.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      toast(`<span class="tick">i</span><span><b>Fast.</b> Ein paar Felder fehlen noch.</span>`);
+      return;
+    }
+
+    const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const vs = versandPreis();
+    const nr = 'BQ-' + String(Math.abs(Date.now() % 900000) + 100000);
+    const bestellung = {
+      nr,
+      datum: new Date().toISOString(),
+      mail: form.fMail.value.trim(),
+      name: form.fVor.value.trim() + ' ' + form.fNach.value.trim(),
+      adresse: form.fStr.value.trim() + ', ' + form.fPlz.value.trim() + ' ' + form.fOrt.value.trim(),
+      land: form.fLand.value,
+      versandart: form.querySelector('input[name="versand"]:checked').value === 'express' ? 'Express' : 'Standard',
+      zahlung: form.querySelector('input[name="zahlung"]:checked').value,
+      artikel: cart.map(i => ({ name: i.name, variant: i.variant, qty: i.qty, price: i.price })),
+      zwischensumme: sub, versand: vs, total: sub + vs
+    };
+    try { localStorage.setItem('baqless_bestellung', JSON.stringify(bestellung)); } catch(err) {}
+
+    track('purchase', {
+      transaction_id: nr, currency: 'CHF', value: sub + vs, shipping: vs,
+      items: cart.map(i => ({ item_id: i.id, item_name: `${i.name} ${i.variant}`, price: i.price, quantity: i.qty }))
+    });
+
+    cart.length = 0;
+    saveCart();
+    location.href = 'bestellung.html';
+  });
+}
 </script>
 </body>
 </html>

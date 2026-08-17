@@ -63,6 +63,19 @@ nav.scrolled{
 .nav-links a{position:relative; padding:4px 0}
 .nav-links a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--coral); transition:width .3s}
 .nav-links a:hover::after{width:100%}
+.nav-drop{position:relative}
+.nav-drop > a::after{display:none}
+.nav-panel{
+  position:absolute; left:50%; top:calc(100% + 14px); transform:translateX(-50%) translateY(-6px);
+  min-width:230px; background:var(--paper); color:var(--charcoal); border-radius:8px; padding:10px;
+  box-shadow:0 26px 60px -24px rgba(11,29,63,.42); opacity:0; visibility:hidden; transition:opacity .12s, transform .12s;
+}
+.nav-drop:hover .nav-panel, .nav-drop:focus-within .nav-panel{opacity:1; visibility:visible; transform:translateX(-50%) translateY(0)}
+.nav-panel a{display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding:9px 12px; border-radius:4px; font-size:14px}
+.nav-panel a:hover{background:rgba(11,29,63,.06)}
+.nav-panel a b{font-weight:500}
+.nav-panel a span{font-size:12px; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.nav-panel .np-all{margin-top:4px; border-top:1px solid rgba(11,29,63,.1); color:var(--coral-deep); font-weight:600; font-size:13px}
 @media(max-width:920px){.nav-links{display:none}}
 
 /* ---------- Burger + Mobilmenü ---------- */
@@ -378,6 +391,9 @@ nav.scrolled{
 }
 .add-btn:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
 .add-btn.added{color:#27804C; border-color:#27804C}
+.drawer-cart-link{display:block; text-align:center; margin-top:12px; font-size:13.5px; color:var(--ink-soft);
+  text-decoration:underline; text-underline-offset:3px}
+.drawer-cart-link:hover{color:var(--coral-deep)}
 
 /* ---------- Ausverkauft ---------- */
 .card.soldout .card-img img{opacity:.45; filter:saturate(.35)}
@@ -512,8 +528,9 @@ footer{background:var(--navy); color:rgba(250,247,242,.78); padding:0 var(--pad)
 .foot-nl p{font-size:14px; color:rgba(250,247,242,.62); margin-top:4px}
 .foot-nl .nl-form{justify-content:flex-start; flex:1; min-width:min(380px,100%); max-width:460px}
 .foot-nl .nl-form input{background:var(--navy-2); border-color:rgba(250,247,242,.2); color:#fff}
-.foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; max-width:1280px; margin:0 auto 46px; padding-top:46px; position:relative}
-@media(max-width:920px){.foot-grid{grid-template-columns:1fr 1fr; gap:30px}.foot-brand{grid-column:1/-1}}
+.foot-grid{display:grid; grid-template-columns:1.7fr repeat(4, minmax(0,1fr)); gap:40px 32px; max-width:1280px; margin:0 auto 46px; padding-top:46px; position:relative}
+@media(max-width:1080px){.foot-grid{grid-template-columns:repeat(4, minmax(0,1fr))}.foot-brand{grid-column:1/-1}}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr; gap:30px}}
 footer .wordmark{color:#fff; margin-bottom:16px; display:inline-block}
 .foot-claim{font-family:var(--serif); font-style:italic; font-weight:300; font-size:21px; line-height:1.5;
   color:rgba(250,247,242,.88); max-width:24ch; margin-bottom:22px}

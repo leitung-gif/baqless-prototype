@@ -358,8 +358,16 @@ document.querySelectorAll('.acc-item').forEach(item => {
   item.querySelector('button').addEventListener('click', () => { item.classList.toggle('open'); sync(); });
   sync();
 });
-document.getElementById('saveBtn').addEventListener('click', () =>
-  toast(`<span class="tick">✓</span><span><b>Gemerkt.</b> ${P.name} ${P.variant} wartet auf dich.</span>`));
+const saveBtn = document.getElementById('saveBtn');
+const syncMerk = () => { saveBtn.textContent = merkliste.includes(P.id) ? 'Gemerkt' : 'Merken'; };
+syncMerk();
+saveBtn.addEventListener('click', () => {
+  const neu = merkeUm(P.id);
+  syncMerk();
+  toast(neu
+    ? `<span class="tick">✓</span><span><b>Gemerkt.</b> ${P.name} ${P.variant} wartet auf dich.</span>`
+    : `<span class="tick">i</span><span><b>Entfernt.</b> ${P.name} ${P.variant} ist nicht mehr gemerkt.</span>`);
+});
 
 // Cross-Sell: andere Produkte (max 4, andere Gruppe zuerst)
 const others = PRODUCTS.filter(x => x.group !== P.group).slice(0, 4);

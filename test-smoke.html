@@ -10,7 +10,12 @@ const log = (name, ok, info = '') => out.push(`${ok ? 'PASS' : 'FAIL'} ${name}${
 const f = document.getElementById('f');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const click = (d, sel) => { const el = d.querySelector(sel); if (!el) return false; el.click(); return true; };
-const loadOnce = () => new Promise(r => f.addEventListener('load', r, { once: true }));
+// Kein stiller Dauerlauf: wenn eine erwartete Navigation ausbleibt, laeuft der Test weiter
+const loadOnce = (ms = 15000) => new Promise(r => {
+  const done = () => { clearTimeout(t); r(); };
+  const t = setTimeout(() => { f.removeEventListener('load', done); r(); }, ms);
+  f.addEventListener('load', done, { once: true });
+});
 
 async function run() {
   await loadOnce(); await sleep(500);
@@ -205,6 +210,8 @@ async function run() {
   // ===== Hero-Video + Film-Sektion =====
   log('Home: Hero-Video Quelle', !!d.querySelector('.hero-arch video source[src*="hero-film"]'));
   const hv = d.querySelector('.hero-arch video');
+  // Headless startet den Autoplay je nach Laufzeit verzögert: einmal anstossen, dann messen
+  if (hv && !(hv.currentTime > 0)){ try { await hv.play(); } catch(e) {} await sleep(700); }
   log('Home: Hero-Video läuft an', !!hv && hv.currentTime > 0, 'ct=' + (hv ? hv.currentTime.toFixed(2) : 'n/a'));
   log('Home: Film-Sektion 2 Loops + Bild', d.querySelectorAll('.film-card video').length === 2
     && !!d.querySelector('a.film-card.still img'));
@@ -223,6 +230,12 @@ async function run() {
   log('Home: keine Versandstandorte-Statistik', !d.body.innerText.includes('Versandstandorte'));
   log('Home: Story-CTA → Subpage', !!d.querySelector('.story a.btn[href="story.html"]'));
   log('Home: Nav → Story-Subpage', !!d.querySelector('nav a[href="story.html"]'));
+  log('Footer: fünf Spalten in einer Reihe', (() => {
+    const g = d.querySelector('.foot-grid');
+    const tops = [...g.children].map(c => Math.round(c.getBoundingClientRect().top));
+    return g.children.length === 5 && new Set(tops).size === 1;
+  })());
+  log('Footer: Warenkorb im Drawer verlinkt', !!d.querySelector('#drawer a[href="warenkorb.html"]'));
   log('Footer: Trust ohne Versand-Standorte', (() => {
     const t = d.querySelector('.foot-trust')?.textContent || '';
     return t.includes('30 Tage Rückgaberecht') && !t.includes('Japan');
@@ -264,9 +277,80 @@ async function run() {
     && d.querySelector('[data-colcount="Amity"]')?.textContent === '4 Paare'
     && d.querySelector('[data-colcount="Embrace"]')?.textContent === '3 Paare');
   log('Home: Nav entschlackt', (() => {
-    const t = [...d.querySelectorAll('.nav-links a')].map(a => a.textContent.trim());
-    return t.length === 3 && !t.includes('Film') && !t.includes('WA') && !t.includes('Click-Lock');
+    const t = [...d.querySelectorAll('.nav-links > a, .nav-links > .nav-drop > a')].map(a => a.textContent.trim());
+    return t.length === 4 && t.join('|') === 'Neuheiten|Kollektionen|Journal|Story';
   })());
+  log('Home: Kollektions-Menü mit Live-Zählern', (() => {
+    const links = [...d.querySelectorAll('.nav-panel a[href*="?c="]')];
+    return links.length === 4
+      && d.querySelector('[data-navcount="Honesty"]')?.textContent === '6 Paare'
+      && d.querySelector('[data-navcount="WA"]')?.textContent === '3 Paare';
+  })());
+
+  // ===== Echter Kaufweg: Warenkorb, Kasse, Bestätigung =====
+  // Sauber starten, damit die Betraege im Kaufweg eindeutig nachrechenbar sind
+  f.src = '/produkt.html?p=sageneon';
+  await loadOnce(); await sleep(300);
+  f.contentWindow.localStorage.setItem('baqless_cart', '[]');
+  f.src = '/produkt.html?p=sageneon&r=2';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  click(d, '#mainAdd'); await sleep(250);
+  log('Kaufweg: Merken bleibt erhalten', (() => {
+    click(d, '#saveBtn');
+    return d.getElementById('saveBtn')?.textContent === 'Gemerkt';
+  })());
+
+  f.src = '/warenkorb.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Warenkorbseite: Zeilen aus dem Warenkorb', d.querySelectorAll('.cline').length === 1
+    && d.querySelector('.cline h3')?.textContent.includes('Embrace Sage'));
+  log('Warenkorbseite: Summe und Versandhinweis', (() => {
+    const t = d.getElementById('cartSum')?.textContent || '';
+    return t.includes('Zwischensumme') && t.includes('Total') && (t.includes('Gratis') || t.includes('Gratisversand'));
+  })());
+  log('Warenkorbseite: Cross-Sell nur mit Verfügbarem', (() => {
+    const ids = [...d.querySelectorAll('#xrailRail .card')].map(c => c.dataset.id);
+    return ids.length === 4 && !ids.includes('blackhoop') && !ids.includes('sageneon');
+  })());
+  click(d, '.cline [data-qplus]'); await sleep(250);
+  log('Warenkorbseite: Menge erhöhen rechnet neu', d.querySelector('.cline .cq span')?.textContent === '2'
+    && d.getElementById('cartSum')?.textContent.includes('130'));
+
+  f.src = '/kasse.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Kasse: lädt mit Bestellübersicht', d.querySelectorAll('#koSum .ko-line').length === 1
+    && d.getElementById('koSum')?.textContent.includes('Total'));
+  log('Kasse: Prototyp-Hinweis sichtbar', d.querySelector('.ko-note')?.textContent.includes('keine Zahlung'));
+  log('Kasse: keine Kartennummer-Felder', d.querySelectorAll('input[autocomplete*="cc-"], input[name*="card"]').length === 0);
+  log('Kasse: begin_checkout getrackt', f.contentWindow.dataLayer.some(x => x.event === 'begin_checkout'));
+  d.querySelector('button[form="koForm"]')?.click(); await sleep(300);
+  log('Kasse: leere Pflichtfelder werden gemeldet', d.querySelectorAll('[aria-invalid="true"]').length >= 5
+    && d.getElementById('toast')?.textContent.includes('Fast'));
+  d.getElementById('fMail').value = 'test@lorien.group';
+  d.getElementById('fVor').value = 'Sinan'; d.getElementById('fNach').value = 'Güzelsahin';
+  d.getElementById('fStr').value = 'Bahnhofstrasse 1'; d.getElementById('fPlz').value = '5000';
+  d.getElementById('fOrt').value = 'Aarau';
+  d.querySelector('input[name="versand"][value="express"]').click(); await sleep(200);
+  log('Kasse: Express ändert das Total', d.getElementById('koSum')?.textContent.includes('CHF 14')
+    && f.contentWindow.dataLayer.some(x => x.event === 'add_shipping_info'));
+  d.querySelector('button[form="koForm"]')?.click();
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Bestätigung: Seite erreicht', f.contentWindow.location.pathname.includes('bestellung.html'));
+  log('Bestätigung: Nummer, Name und Total', (() => {
+    const t = d.body.innerText;
+    return /BQ-\d{6}/.test(t) && t.includes('Sinan') && t.includes('CHF 144');
+  })());
+  log('Bestätigung: purchase getrackt', (() => {
+    try { return JSON.parse(f.contentWindow.localStorage.getItem('baqless_bestellung')).total === 144; }
+    catch(e){ return false; }
+  })());
+  log('Bestätigung: Warenkorb ist geleert', d.getElementById('cartCount')?.textContent === '0');
+  log('Bestätigung: als Simulation gekennzeichnet', d.querySelector('.dank-note')?.textContent.includes('Simulation'));
+  f.contentWindow.localStorage.removeItem('baqless_bestellung');
 
   // ===== Kontakt + Rechtsseiten =====
   f.src = '/kontakt.html';
@@ -327,11 +411,15 @@ async function run() {
   f.src = '/journal.html';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('Journal: lädt', d.querySelector('.plp-hero h1')?.textContent.includes('nicht mehr abnehmen'));
-  log('Journal: sieben Befunde als Raster', d.querySelectorAll('.bgrid .bcell').length === 7);
+  log('Journal: lädt', d.querySelector('.jhead h1')?.textContent.includes('nicht mehr, dass sie'));
+  log('Journal: Aufmacher mit Wortlaut-Zitat', !!d.querySelector('.feature .fquote blockquote')
+    && d.querySelector('.feature .attr')?.textContent.includes('Taeko Wako'));
+  log('Journal: sieben Befunde als Liste', d.querySelectorAll('.blist .bfind').length === 7);
   log('Journal: kein Kinder-Argument', !/kinder|baby|kleinkind/i.test(d.body.innerText));
-  log('Journal: sechs Porträts mit Quelle', d.querySelectorAll('.jgrid .jcard').length === 6
-    && d.querySelectorAll('.jcard .jsrc').length === 6);
+  log('Journal: sechs Porträts mit Quelle', d.querySelectorAll('.jcard').length === 6
+    && d.querySelectorAll('.jsrc').length === 6);
+  log('Journal: Leitsätze auf den Karten', d.querySelectorAll('.jgrid .cover .cl').length === 5);
+  log('Journal: Zeitleiste mit Daten', d.querySelectorAll('.zeit .zeile time').length === 6);
   log('Journal: Wortlaut-Zitat nur bei Wako', (d.body.innerText.match(/«/g) || []).length === 1);
   log('Journal: Herkunft der Texte offengelegt', d.body.innerText.includes('Übersetzung ins Deutsche')
     && d.body.innerText.includes('Freigabe der Personen'));

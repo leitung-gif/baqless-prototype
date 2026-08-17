@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dein Warenkorb bei Baqless. Gratisversand ab CHF 99, 30 Tage Rückgaberecht.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Warenkorb</title>
+<style>
+{{CSS}}
+
+.shop-wrap{max-width:1180px; margin:0 auto; padding:clamp(112px,12vw,150px) var(--pad) clamp(60px,7vw,96px)}
+.shop-wrap h1{font-size:clamp(34px,4.6vw,56px); margin-bottom:6px}
+.shop-lead{font-size:15px; color:var(--ink-soft); margin-bottom:34px}
+.cart-grid{display:grid; grid-template-columns:minmax(0,7fr) minmax(0,4fr); gap:clamp(28px,4vw,56px); align-items:start}
+@media(max-width:880px){.cart-grid{grid-template-columns:1fr}}
+
+.cline{display:grid; grid-template-columns:104px 1fr auto; gap:20px; padding:22px 0; border-top:1px solid rgba(11,29,63,.12); align-items:start}
+.cline:last-of-type{border-bottom:1px solid rgba(11,29,63,.12)}
+.cline .pic{background:var(--paper); border-radius:8px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden}
+.cline .pic img{width:82%; height:auto; mix-blend-mode:multiply}
+.cline h3{font-family:var(--serif); font-weight:400; font-size:22px; line-height:1.15}
+.cline h3 a:hover{color:var(--coral-deep)}
+.cline .vr{font-size:13px; color:var(--ink-soft); margin-top:3px}
+.cline .unit{font-size:13px; color:var(--ink-soft); margin-top:8px; font-variant-numeric:tabular-nums}
+.cline .right{text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:12px}
+.cline .lp{font-size:17px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap}
+.cline .drop{background:none; border:none; cursor:pointer; font:inherit; font-size:12.5px; color:var(--ink-soft); padding:2px 0; text-decoration:underline; text-underline-offset:3px}
+.cline .drop:hover{color:var(--coral-deep)}
+.cq{display:flex; align-items:center; border:1.5px solid var(--warmgrey); border-radius:4px; overflow:hidden; width:fit-content; margin-top:12px}
+.cq button{width:38px; height:40px; border:none; background:none; font-size:17px; cursor:pointer; color:var(--charcoal)}
+.cq button:hover{color:var(--coral-deep)}
+.cq span{min-width:36px; text-align:center; font-size:14px; font-variant-numeric:tabular-nums}
+
+.sum{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:26px; position:sticky; top:96px}
+.sum h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:18px}
+.sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:9px 0; color:#4a453e; font-variant-numeric:tabular-nums}
+.sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:16px; font-size:20px; font-weight:500; color:var(--charcoal)}
+.sum .row .mut{color:var(--ink-soft); font-size:13.5px}
+.sum .btn{width:100%; justify-content:center; margin-top:20px}
+.sum .weiter{display:block; text-align:center; margin-top:14px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.sum .weiter:hover{color:var(--coral-deep)}
+.sum .trust{margin-top:20px; padding-top:18px; border-top:1px solid rgba(11,29,63,.1); display:flex; flex-direction:column; gap:9px; font-size:13px; color:#5c564e}
+.sum .trust span{display:flex; gap:9px; align-items:flex-start}
+.sum .trust svg{flex:0 0 auto; margin-top:2px; color:var(--sage)}
+
+.leer{padding:60px 0 30px; max-width:46ch}
+.leer h2{font-family:var(--serif); font-weight:300; font-size:32px; margin-bottom:10px}
+.leer p{font-size:16px; color:#5c564e; margin-bottom:24px}
+
+.xrail{margin-top:clamp(56px,7vw,90px)}
+.xrail h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3vw,36px); margin-bottom:22px}
+.xrail .rail{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px}
+@media(max-width:880px){.xrail .rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body class="page-light">
+
+{{HEADER}}
+
+<main class="shop-wrap">
+  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Warenkorb</span></div>
+  <h1>Dein Warenkorb.</h1>
+  <p class="shop-lead" id="cartLead"></p>
+
+  <div class="cart-grid" id="cartGrid">
+    <div>
+      <div id="cartLines"></div>
+      <a class="sum weiter" href="kollektion.html" style="display:inline-block; margin-top:22px">Weiter shoppen</a>
+    </div>
+    <aside class="sum" id="cartSum"></aside>
+  </div>
+
+  <section class="xrail" id="xrail" hidden>
+    <h2>Passt dazu.</h2>
+    <div class="rail" id="xrailRail"></div>
+  </section>
+</main>
+
+{{FOOTER}}
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+
+// ---------- Warenkorbseite: dieselbe Datenquelle wie der Drawer ----------
+const linesBox = document.getElementById('cartLines');
+const sumBox = document.getElementById('cartSum');
+const leadEl = document.getElementById('cartLead');
+const gridEl = document.getElementById('cartGrid');
+const prodById = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+
+function renderSeite(){
+  const stueck = cart.reduce((s, i) => s + i.qty, 0);
+  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+  if (!cart.length){
+    gridEl.hidden = true;
+    leadEl.textContent = '';
+    if (!document.getElementById('leerBox')){
+      const box = document.createElement('div');
+      box.className = 'leer'; box.id = 'leerBox';
+      box.innerHTML = `<h2>Noch nichts drin.</h2>
+        <p>Kein Rückteil, kein Fummeln, kein Verlieren. Finde das Paar, das du nicht mehr abnimmst.</p>
+        <a class="btn btn-coral" href="kollektion.html">Alle Paare ansehen</a>`;
+      gridEl.parentNode.insertBefore(box, gridEl);
+    }
+    document.getElementById('xrail').hidden = true;
+    return;
+  }
+  document.getElementById('leerBox')?.remove();
+  gridEl.hidden = false;
+  leadEl.textContent = `${stueck} ${stueck === 1 ? 'Artikel' : 'Artikel'} · alle mit Click-Lock`;
+
+  linesBox.innerHTML = cart.map(i => {
+    const key = i.key || i.id;
+    return `
+    <div class="cline" data-cline="${key}">
+      <a class="pic" href="produkt.html?p=${i.id}"><img src="${i.thumb}" alt="${i.name} ${i.variant}"></a>
+      <div>
+        <h3><a href="produkt.html?p=${i.id}">${i.name}</a></h3>
+        <div class="vr">${i.variant} · Click-Lock</div>
+        <div class="unit">CHF ${i.price} pro Stück</div>
+        <div class="cq">
+          <button data-qminus="${key}" aria-label="Menge verringern">−</button>
+          <span>${i.qty}</span>
+          <button data-qplus="${key}" aria-label="Menge erhöhen">+</button>
+        </div>
+      </div>
+      <div class="right">
+        <span class="lp">CHF ${i.price * i.qty}</span>
+        <button class="drop" data-remove="${key}">Entfernen</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const versand = sub >= FREE_SHIP ? 0 : 7;
+  sumBox.innerHTML = `
+    <h2>Zusammenfassung</h2>
+    <div class="row"><span>Zwischensumme</span><span>CHF ${sub}</span></div>
+    <div class="row"><span>Versand${versand === 0 ? '' : ' <span class="mut">(Standard)</span>'}</span><span>${versand === 0 ? 'Gratis' : 'CHF ' + versand}</span></div>
+    ${versand > 0 ? `<div class="row"><span class="mut">Noch CHF ${FREE_SHIP - sub} bis zum Gratisversand</span><span></span></div>` : ''}
+    <div class="row total"><span>Total</span><span>CHF ${sub + versand}</span></div>
+    <a class="btn btn-coral" href="kasse.html" id="toKasse">Zur Kasse</a>
+    <a class="weiter" href="kollektion.html">Weiter shoppen</a>
+    <div class="trust">
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>30 Tage Rückgaberecht, ungetragen</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Zoll ist im Versand enthalten, keine Nachzahlung an der Tür</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Entwickelt in der Schweiz, von Hand gefertigt</span>
+    </div>`;
+
+  // Passt dazu: was noch nicht im Warenkorb liegt
+  const drin = new Set(cart.map(i => i.id));
+  const rest = PRODUCTS.filter(p => !drin.has(p.id) && p.lager !== 'ausverkauft').slice(0, 4);
+  const xr = document.getElementById('xrail');
+  xr.hidden = rest.length === 0;
+  document.getElementById('xrailRail').innerHTML = rest.map(p => `
+    <article class="card" data-id="${p.id}">
+      <div class="card-img" data-flip>
+        ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
+        <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+        <img class="detail" src="${p.detail}" alt="" loading="lazy">
+      </div>
+      <div class="card-meta">
+        <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+        <span class="price">CHF ${p.price}</span>
+      </div>
+      <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    </article>`).join('');
+}
+
+// Der geteilte Warenkorb rendert den Drawer; die Seite hängt sich dran
+const drawerRender = renderCart;
+renderCart = function(){ drawerRender(); renderSeite(); };
+renderSeite();
+track('view_cart', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
+</script>
+</body>
+</html>

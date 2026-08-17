@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bestellbestätigung von Baqless.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Bestellung</title>
+<style>
+{{CSS}}
+
+.dank{max-width:860px; margin:0 auto; padding:clamp(120px,13vw,170px) var(--pad) clamp(60px,7vw,96px)}
+.dank .ring{width:64px; height:64px; border-radius:50%; border:2px solid var(--sage);
+  display:flex; align-items:center; justify-content:center; color:var(--sage); margin-bottom:24px}
+.dank h1{font-size:clamp(34px,4.6vw,56px); margin-bottom:12px}
+.dank .lead{font-size:17px; line-height:1.68; color:#5c564e; max-width:52ch}
+.dank .nr{margin-top:26px; display:inline-flex; align-items:baseline; gap:12px; background:var(--paper);
+  border:1px solid #efe8dc; border-radius:8px; padding:14px 20px}
+.dank .nr span{font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+.dank .nr b{font-family:var(--sans); font-size:19px; font-weight:600; font-variant-numeric:tabular-nums}
+
+.bsec{margin-top:clamp(40px,5vw,60px)}
+.bsec h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:16px}
+.bline{display:grid; grid-template-columns:1fr auto; gap:16px; padding:11px 0; border-top:1px solid rgba(11,29,63,.1); font-size:15px}
+.bline span.q{color:var(--ink-soft); font-size:13.5px; display:block}
+.bline .pr{font-variant-numeric:tabular-nums; white-space:nowrap}
+.bline.total{border-top:1.5px solid rgba(11,29,63,.2); margin-top:6px; padding-top:15px; font-size:19px; font-weight:500}
+.bgrid2{display:grid; grid-template-columns:1fr 1fr; gap:26px}
+@media(max-width:640px){.bgrid2{grid-template-columns:1fr}}
+.bbox{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:20px 22px; font-size:15px; line-height:1.65; color:#4a453e}
+.bbox b{display:block; font-family:var(--sans); font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px}
+
+.schritte{margin-top:clamp(40px,5vw,60px)}
+.schritt{display:grid; grid-template-columns:auto 1fr; gap:16px; padding:16px 0; border-top:1px solid rgba(11,29,63,.1)}
+.schritt i{font-family:var(--serif); font-style:normal; font-size:26px; line-height:1; color:var(--coral-tint)}
+.schritt b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; margin-bottom:3px}
+.schritt span{font-size:14.5px; line-height:1.6; color:#5c564e}
+
+.dank-note{margin-top:34px; border:1px dashed rgba(125,111,214,.55); background:rgba(125,111,214,.05);
+  border-radius:8px; padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5c564e}
+.dank-cta{margin-top:34px; display:flex; gap:12px; flex-wrap:wrap}
+</style>
+</head>
+<body class="page-light">
+
+{{HEADER}}
+
+<main class="dank" id="dank"></main>
+
+{{FOOTER}}
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+
+// ---------- Bestellbestätigung ----------
+let best = null;
+try { best = JSON.parse(localStorage.getItem('baqless_bestellung') || 'null'); } catch(e) {}
+const box = document.getElementById('dank');
+
+if (!best){
+  box.innerHTML = `
+    <h1>Hier ist gerade nichts.</h1>
+    <p class="lead">Wir finden keine Bestellung in diesem Browser. Vielleicht hast du die Seite direkt aufgerufen.</p>
+    <div class="dank-cta"><a class="btn btn-coral" href="kollektion.html">Zu den Kollektionen</a></div>`;
+} else {
+  const d = new Date(best.datum);
+  const datum = d.toLocaleDateString('de-CH', { day: '2-digit', month: 'long', year: 'numeric' });
+  box.innerHTML = `
+    <div class="ring" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1>Sitzt. Danke, ${best.name.split(' ')[0]}.</h1>
+    <p class="lead">Deine Bestellung ist eingegangen. Die Bestätigung schicken wir an ${best.mail}, die Versandmeldung mit Sendungsnummer folgt, sobald dein Paket unterwegs ist.</p>
+    <div class="nr"><span>Bestellnummer</span><b>${best.nr}</b></div>
+
+    <section class="bsec">
+      <h2>Bestellt am ${datum}</h2>
+      ${best.artikel.map(a => `
+        <div class="bline">
+          <div>${a.name}<span class="q">${a.variant} · ${a.qty} Stück</span></div>
+          <div class="pr">CHF ${a.price * a.qty}</div>
+        </div>`).join('')}
+      <div class="bline"><div>Versand (${best.versandart})</div><div class="pr">${best.versand === 0 ? 'Gratis' : 'CHF ' + best.versand}</div></div>
+      <div class="bline total"><div>Total</div><div class="pr">CHF ${best.total}</div></div>
+    </section>
+
+    <section class="bsec">
+      <h2>Lieferung und Zahlung</h2>
+      <div class="bgrid2">
+        <div class="bbox"><b>Lieferadresse</b>${best.name}<br>${best.adresse}<br>${best.land}</div>
+        <div class="bbox"><b>Zahlung</b>${best.zahlung}<br><span style="color:var(--ink-soft); font-size:13.5px">Im Prototyp wurde nichts belastet.</span></div>
+      </div>
+    </section>
+
+    <section class="bsec schritte">
+      <h2>Wie es weitergeht</h2>
+      <div class="schritt"><i>01</i><div><b>Bestätigung per Mail</b><span>Kommt sofort, mit dieser Bestellnummer.</span></div></div>
+      <div class="schritt"><i>02</i><div><b>Wir prüfen den Bestand und packen</b><span>Von Hand, mit der Baqless Verpackung. Du bekommst eine zweite Mail, sobald die Bestellung angenommen ist.</span></div></div>
+      <div class="schritt"><i>03</i><div><b>Versandmeldung mit Sendungsnummer</b><span>${best.versandart === 'Express' ? '1 bis 2 Werktage' : '2 bis 4 Werktage'} bis zu dir. Der Zoll ist im Versand enthalten, an der Tür kommt nichts dazu.</span></div></div>
+      <div class="schritt"><i>04</i><div><b>Einstecken, drehen, klick</b><span>Passt etwas nicht, hast du 30 Tage Zeit. Ungetragen und in der Originalverpackung.</span></div></div>
+    </section>
+
+    <div class="dank-note"><b>Prototyp.</b> Diese Bestellung ist eine Simulation. Es wurde keine Zahlung ausgelöst, keine Mail versendet und nichts an einen Server übermittelt. Die Daten liegen nur in deinem Browser.</div>
+
+    <div class="dank-cta">
+      <a class="btn btn-coral" href="kollektion.html">Weiter shoppen</a>
+      <a class="btn btn-ghost" href="journal.html">Ins Journal</a>
+    </div>`;
+}
+</script>
+</body>
+</html>
