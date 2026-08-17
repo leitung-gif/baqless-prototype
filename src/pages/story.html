@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Die Baqless Story: acht Jahre Entwicklung für einen Ohrring, der ohne Rückteil hält. Entwickelt in der Schweiz, von Hand gefertigt.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Story</title>
+<style>
+{{CSS}}
+
+/* ---------- Story-Editorial (nur diese Seite) ---------- */
+.story-ed{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,90px); align-items:center;
+  max-width:1180px; margin:0 auto; padding:clamp(46px,6vw,84px) var(--pad); position:relative}
+.story-ed .num{font-family:var(--serif); font-size:clamp(58px,7vw,96px); line-height:1; color:var(--coral-tint);
+  display:block; margin-bottom:6px}
+.story-ed h2{font-size:clamp(30px,3.6vw,44px); margin:10px 0 16px}
+.story-ed p{color:#5c564e; max-width:46ch}
+.story-ed p + p{margin-top:14px}
+.story-ed .btn{margin-top:24px}
+.sed-img{position:relative}
+.sed-img img{width:100%; height:auto; border-radius:18px; box-shadow:0 24px 60px -30px rgba(11,29,63,.35)}
+.sed-img.arch img{border-radius:190px 190px 18px 18px}
+.sed-img .dot{position:absolute; border-radius:50%; z-index:-1}
+@media(max-width:860px){
+  .story-ed{grid-template-columns:1fr; gap:26px}
+  .story-ed.flip .sed-img{order:-1}
+}
+.story-wide{max-width:1180px; margin:0 auto; padding:clamp(10px,2vw,26px) var(--pad) clamp(46px,6vw,84px)}
+.story-wide img{width:100%; height:auto; border-radius:18px; box-shadow:0 24px 60px -30px rgba(11,29,63,.35)}
+.story-wide figcaption{margin-top:12px; font-size:12.5px; letter-spacing:.05em; color:#9a938a}
+.story-stats{background:var(--navy); color:var(--ground); padding:clamp(56px,7vw,90px) var(--pad); position:relative; overflow:hidden}
+.story-stats .stats{max-width:1180px; margin:0 auto; display:flex; gap:clamp(40px,8vw,120px); justify-content:center}
+.story-stats .stat b{color:var(--gold)}
+.story-stats .stat span{color:rgba(250,247,242,.62)}
+.story-cta{text-align:center; padding:clamp(70px,9vw,120px) var(--pad)}
+.story-cta h2{font-size:clamp(32px,4.4vw,54px); margin:12px 0 26px}
+.story-cta .btn + .btn{margin-left:12px}
+@media(max-width:560px){.story-cta .btn{display:flex; justify-content:center; margin:0 0 12px}.story-cta .btn + .btn{margin-left:0}}
+</style>
+</head>
+<body class="page-light hero-dark">
+
+{{HEADER}}
+
+<header class="plp-hero">
+  <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
+  <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
+  <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
+  <h1>Acht Jahre für <em>einen Klick.</em></h1>
+  <p>Die Geschichte eines Ohrrings, der ohne Rückteil hält. Entwickelt in der Schweiz, von Hand gefertigt.</p>
+</header>
+
+<main>
+  <section class="story-ed reveal">
+    <div>
+      <span class="num">01</span>
+      <span class="eyebrow">Die Idee</span>
+      <h2>Warum überhaupt ein Rückteil?</h2>
+      <p>Am Anfang stand ein Ärgernis, das du kennst: Das Rückteil drückt beim Telefonieren, zwickt in der Nacht und ist irgendwann einfach weg. Meist genau dann, wenn der Ohrring am liebsten getragen wird.</p>
+      <p>Die Frage dahinter war einfach. Warum braucht ein Ohrring ein Gegenstück, das nur stört? Die Antwort brauchte etwas länger.</p>
+    </div>
+    <div class="sed-img">
+      <span class="dot" style="width:120px;height:120px;background:var(--coral-tint);top:-30px;right:-26px"></span>
+      <img src="{{story_sketch}}" alt="Entwurfsskizzen des Click-Lock Verschlusses auf Papier" loading="lazy">
+    </div>
+  </section>
+
+  <section class="story-ed flip reveal">
+    <div class="sed-img arch">
+      <span class="dot" style="width:150px;height:150px;background:var(--lav-tint);bottom:-34px;left:-30px"></span>
+      <img src="{{story_polish}}" alt="Feinschliff eines Baqless Ohrrings von Hand" loading="lazy">
+    </div>
+    <div>
+      <span class="num">02</span>
+      <span class="eyebrow">Die Entwicklung</span>
+      <h2>Zeichnen, feilen, verwerfen.</h2>
+      <p>Acht Jahre lang wurde skizziert, gebaut und wieder verworfen. Prototyp um Prototyp, bis der Verschluss sass: ein T&#8209;Anker, der sich mit einer Vierteldrehung quer stellt und hält.</p>
+      <p>Einstecken, drehen, klick. Beim Sport, unter der Dusche, im Meer. Ohne dass du je wieder an ein Rückteil denkst.</p>
+      <a class="btn btn-ghost" href="index.html#clicklock">So funktioniert der Click&#8209;Lock</a>
+    </div>
+  </section>
+
+  <figure class="story-wide reveal">
+    <img src="{{story_atelier}}" alt="Die Manufaktur: Werkbänke am Fenster, Fertigung von Hand" loading="lazy">
+    <figcaption>Die Manufaktur: kleine Werkbänke, grosse Fenster, keine Fliessbänder.</figcaption>
+  </figure>
+
+  <section class="story-ed reveal">
+    <div>
+      <span class="num">03</span>
+      <span class="eyebrow">Die Manufaktur</span>
+      <h2>Durch echte Hände.</h2>
+      <p>Entworfen wird in der Schweiz. Gefertigt wird von Hand, in einer kleinen Manufaktur in Thailand: Jedes Paar wird einzeln gefasst, poliert und geprüft, bevor es zu dir reist.</p>
+      <p>Chirurgischer Edelstahl 316L, wasserfest und gemacht für jeden Tag. Weniger Teile, mehr Freiheit.</p>
+    </div>
+    <div class="sed-img">
+      <span class="dot" style="width:130px;height:130px;background:var(--sage-tint);top:-28px;left:-28px"></span>
+      <img src="{{story_hands}}" alt="Handfertigung eines Baqless Ohrrings in der Manufaktur" loading="lazy">
+    </div>
+  </section>
+
+  <section class="story-stats">
+    <div class="bg-bubble" style="width:300px;height:300px;background:var(--coral);top:-100px;right:8%"></div>
+    <div class="bg-bubble" style="width:160px;height:160px;border:2px solid var(--gold);bottom:-40px;left:6%"></div>
+    <div class="stats">
+      <div class="stat"><b data-count="8">0</b><span>Jahre Entwicklung</span></div>
+      <div class="stat"><b data-count="1">0</b><span>Klick</span></div>
+      <div class="stat"><b data-count="0">0</b><span>Rückteile</span></div>
+    </div>
+  </section>
+
+  <section class="story-cta">
+    <span class="eyebrow">Und jetzt du</span>
+    <h2>Der Rest ist deine Story.</h2>
+    <a class="btn btn-coral" href="kollektion.html">Finde deins</a>
+    <a class="btn btn-ghost" href="neuheiten.html">Neuheiten ansehen</a>
+  </section>
+</main>
+
+{{FOOTER}}
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+
+// ---------- Zähler animieren (wie Home) ----------
+const statEls = document.querySelectorAll('.stat b');
+if ('IntersectionObserver' in window && statEls.length){
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, ziel = +el.dataset.count;
+    const t0 = performance.now(), dur = 1200;
+    const tick = t => {
+      const k = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(ziel * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    io.unobserve(el);
+  }), { threshold: .6 });
+  statEls.forEach(el => io.observe(el));
+}
+
+// ---------- Reveal (wie Home) ----------
+const revIo = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); revIo.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => revIo.observe(el));
+</script>
+</body>
+</html>

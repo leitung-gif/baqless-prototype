@@ -155,14 +155,22 @@ async function run() {
   log('Home: Hero-Video läuft an', !!hv && hv.currentTime > 0, 'ct=' + (hv ? hv.currentTime.toFixed(2) : 'n/a'));
   log('Home: Film-Sektion 2 Loops + Bild', d.querySelectorAll('.film-card video').length === 2
     && !!d.querySelector('a.film-card.still img'));
-  log('Home: Funnel-Reihenfolge Produkte → Stimmen → Film', (() => {
+  log('Home: Funnel-Reihenfolge Produkte → Stimmen → Welten → Click-Lock → Film', (() => {
     const secs = [...d.querySelectorAll('header.hero, section')].map(x => x.id || x.className.split(' ')[0]);
     const i = n => secs.indexOf(n);
-    return i('produkte') > 0 && i('produkte') < i('reviews') && i('reviews') < i('film') && i('film') < i('clicklock');
+    return i('produkte') > 0 && i('produkte') < i('reviews') && i('reviews') < i('kollektionen')
+      && i('kollektionen') < i('clicklock') && i('clicklock') < i('film');
   })());
-  log('Home: 6 Review-Karten', d.querySelectorAll('#reviews .rev-card').length === 6);
-  log('Home: Reviews mit Sternen + Produktlink', d.querySelectorAll('#reviews .rev-stars').length === 6
+  log('Home: Reviews in einer Reihe (3 Karten)', d.querySelectorAll('#reviews .rev-card').length === 3);
+  log('Home: Reviews mit Sternen + Produktlink', d.querySelectorAll('#reviews .rev-stars').length === 3
     && !!d.querySelector('#reviews a[href^="produkt.html?p="]'));
+  log('Home: keine Versandstandorte-Statistik', !d.body.innerText.includes('Versandstandorte'));
+  log('Home: Story-CTA → Subpage', !!d.querySelector('.story a.btn[href="story.html"]'));
+  log('Home: Nav → Story-Subpage', !!d.querySelector('nav a[href="story.html"]'));
+  log('Footer: Trust ohne Versand-Standorte', (() => {
+    const t = d.querySelector('.foot-trust')?.textContent || '';
+    return t.includes('30 Tage Rückgaberecht') && !t.includes('Japan');
+  })());
   log('Home: Footer verlinkt Rechtsseiten', ['kontakt','impressum','agb','datenschutz','widerruf','faq']
     .every(pg => !!d.querySelector(`footer a[href^="${pg}.html"]`)));
   log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
@@ -227,6 +235,18 @@ async function run() {
   d = f.contentDocument;
   log('FAQ lädt mit 9 Fragen', d.querySelectorAll('.legal h2').length === 9);
   log('FAQ: Grössen-Anker', !!d.getElementById('groessen'));
+
+  // ===== Story-Subpage =====
+  f.src = '/story.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Story: lädt', d.querySelector('.plp-hero h1')?.textContent.includes('Acht Jahre'));
+  log('Story: 3 Kapitel + Bilder', d.querySelectorAll('.story-ed').length === 3
+    && d.querySelectorAll('.story-ed img, .story-wide img').length === 4);
+  log('Story: Stats-Band', d.querySelectorAll('.story-stats .stat').length === 3);
+  log('Story: CTA zu Kollektionen', !!d.querySelector('.story-cta a[href="kollektion.html"]'));
+  log('Story: keine Gedankenstriche', !d.body.innerText.includes('—'));
+  log('Story: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
 
   // ===== Mobile (375px iframe) =====
   const m = document.createElement('iframe');

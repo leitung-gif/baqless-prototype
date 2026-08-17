@@ -34,6 +34,7 @@ h1,h2,h3{font-family:var(--serif); font-weight:300; line-height:1.05; text-wrap:
 /* ---------- Helle Unterseiten ---------- */
 body.page-light{background:var(--ground)}
 body.page-light nav{color:var(--charcoal)}
+body.page-light.hero-dark nav:not(.scrolled){color:var(--ground)}
 .crumbs{font-size:12.5px; letter-spacing:.05em; color:#9a938a; margin-bottom:26px}
 .crumbs a{color:inherit} .crumbs a:hover{color:var(--coral)}
 .crumbs .sep{margin:0 8px; color:var(--warmgrey)}
@@ -696,7 +697,7 @@ footer ul a:hover{color:var(--coral)}
 .plp-hero{position:relative; background:var(--navy); color:#fff; padding:150px var(--pad) 60px; overflow:hidden}
 .plp-hero h1{font-family:var(--serif); font-weight:300; font-size:clamp(38px,5.5vw,64px); line-height:1.04}
 .plp-hero h1 em{font-style:italic; color:var(--coral)}
-.plp-hero p{margin-top:12px; font-size:15px; color:rgba(250,247,242,.65); max-width:52ch}
+.plp-hero p{margin-top:12px; font-size:15px; color:rgba(250,247,242,.82); max-width:52ch}
 .plp-wrap{max-width:1180px; margin:0 auto; padding:34px var(--pad) 90px; position:relative; overflow:hidden}
 .plp-tools{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px}
 .fpill{border:1.5px solid var(--warmgrey); background:none; border-radius:99px; font:inherit; font-size:13.5px;

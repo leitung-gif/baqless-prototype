@@ -99,6 +99,7 @@ h1,h2,h3{font-family:var(--serif); font-weight:300; line-height:1.05; text-wrap:
 /* ---------- Helle Unterseiten ---------- */
 body.page-light{background:var(--ground)}
 body.page-light nav{color:var(--charcoal)}
+body.page-light.hero-dark nav:not(.scrolled){color:var(--ground)}
 .crumbs{font-size:12.5px; letter-spacing:.05em; color:#9a938a; margin-bottom:26px}
 .crumbs a{color:inherit} .crumbs a:hover{color:var(--coral)}
 .crumbs .sep{margin:0 8px; color:var(--warmgrey)}
@@ -761,7 +762,7 @@ footer ul a:hover{color:var(--coral)}
 .plp-hero{position:relative; background:var(--navy); color:#fff; padding:150px var(--pad) 60px; overflow:hidden}
 .plp-hero h1{font-family:var(--serif); font-weight:300; font-size:clamp(38px,5.5vw,64px); line-height:1.04}
 .plp-hero h1 em{font-style:italic; color:var(--coral)}
-.plp-hero p{margin-top:12px; font-size:15px; color:rgba(250,247,242,.65); max-width:52ch}
+.plp-hero p{margin-top:12px; font-size:15px; color:rgba(250,247,242,.82); max-width:52ch}
 .plp-wrap{max-width:1180px; margin:0 auto; padding:34px var(--pad) 90px; position:relative; overflow:hidden}
 .plp-tools{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px}
 .fpill{border:1.5px solid var(--warmgrey); background:none; border-radius:99px; font:inherit; font-size:13.5px;
@@ -884,7 +885,7 @@ footer ul a:hover{color:var(--coral)}
   <div class="nav-links">
     <a href="neuheiten.html">Neuheiten</a>
     <a href="kollektion.html">Kollektionen</a>
-    <a href="index.html#story">Story</a>
+    <a href="story.html">Story</a>
   </div>
   <div class="nav-right">
     <button class="nav-icon-btn" id="searchBtn" aria-label="Suche">
@@ -936,7 +937,7 @@ footer ul a:hover{color:var(--coral)}
   <div class="mnav-links">
     <a href="neuheiten.html">Neuheiten<em>.</em></a>
     <a href="kollektion.html">Kollektionen<em>.</em></a>
-    <a href="index.html#story">Story<em>.</em></a>
+    <a href="story.html">Story<em>.</em></a>
     <a href="faq.html">Gut zu wissen<em>.</em></a>
     <a href="kontakt.html">Kontakt<em>.</em></a>
   </div>
@@ -1019,7 +1020,7 @@ footer ul a:hover{color:var(--coral)}
   </div>
   <div class="foot-market">
     <div class="foot-trust">
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8.5 12 3 3 8.5v8L12 22l9-5.5v-8Z"/><path d="M3 8.5 12 14l9-5.5M12 14v8"/></svg>Versand aus der Schweiz und Japan</span>
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.5 15a9 9 0 1 0 2.1-9.6L3 8"/><path d="M3 3v5h5"/></svg>30 Tage Rückgaberecht</span>
       <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2.5 0-4.5-1.1-4.5-2.7C7.5 3.9 8.6 3 10 3c1.8 0 2 2.5 2 5Zm0 0c2.5 0 4.5-1.1 4.5-2.7C16.5 3.9 15.4 3 14 3c-1.8 0-2 2.5-2 5Z"/></svg>Gratisversand ab CHF 99</span>
     </div>
     <div class="pay-pills" aria-label="Zahlarten">

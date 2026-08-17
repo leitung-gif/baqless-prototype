@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Ohrringe mit Click-Lock Verschluss. Einstecken, drehen, klick. Entwickelt in der Schweiz, von Hand gefertigt. Versand aus der Schweiz und Japan.">
+<meta name="description" content="Ohrringe ohne Rückteil: einstecken, drehen, klick. Wasserfest und gemacht für jeden Tag. Entwickelt in der Schweiz, von Hand gefertigt.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
 <title>Baqless · Ein Klick. Kein Zurück.</title>
 <style>
@@ -18,9 +18,9 @@
   <a href="#top" data-sec="top"><span>Start</span></a>
   <a href="#produkte" data-sec="produkte"><span>Shop</span></a>
   <a href="#reviews" data-sec="reviews"><span>Stimmen</span></a>
-  <a href="#film" data-sec="film"><span>Film</span></a>
-  <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
   <a href="#kollektionen" data-sec="kollektionen"><span>Kollektionen</span></a>
+  <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
+  <a href="#film" data-sec="film"><span>Film</span></a>
   <a href="#wa" data-sec="wa"><span>WA</span></a>
   <a href="#story" data-sec="story"><span>Story</span></a>
 </div>
@@ -33,7 +33,7 @@
       <span class="line"><span>Ein Klick.</span></span>
       <span class="line"><span>Kein Zurück.</span></span>
     </h1>
-    <p class="hero-sub">Ohrringe ohne Rückteil. Der Click&#8209;Lock hält. Beim Duschen, beim Sport, im Meer. Entwickelt in der Schweiz, von Hand gefertigt.</p>
+    <p class="hero-sub">Einstecken, drehen, klick. Deine Ohrringe bleiben dran: beim Sport, unter der Dusche, im Meer. Kein Rückteil, das drückt oder verloren geht. Entwickelt in der Schweiz, von Hand gefertigt.</p>
     <div class="hero-ctas">
       <a class="btn btn-coral" href="#produkte">Finde deins</a>
       <a class="btn btn-light" href="#clicklock">So funktioniert's</a>
@@ -92,33 +92,30 @@
   </div>
 </section>
 
-<!-- ================= FILM ================= -->
-<section class="section film" id="film">
+<!-- ================= KOLLEKTIONEN ================= -->
+<section class="section collections" id="kollektionen">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Baqless in Bewegung</span>
-      <h2>Sieh dir den Halt an.</h2>
-      <p>Zwei Loops, ein Verschluss. Klick auf ein Video zum Pausieren. Der Click&#8209;Lock pausiert nie.</p>
+      <span class="eyebrow">Kollektionen</span>
+      <h2>Drei Welten. Ein Klick.</h2>
+      <p>Jede Kollektion hat ihren eigenen Charakter. Der Halt ist immer derselbe.</p>
     </div>
-    <div class="film-grid reveal d1">
-      <a class="film-card portrait still" href="kollektion.html">
-        <img src="{{hero}}" alt="Model trägt Baqless Ohrringe">
-        <span class="film-label">Getragen · Amity Polaris</span>
+    <div class="col-grid reveal d1">
+      <a class="col-card col-big" href="kollektion.html?c=Honesty" style="--t1:#FFE9E4; --t2:#FFCDC0">
+        <img class="pack" src="{{p_slice}}" alt="Honesty Kollektion" loading="lazy">
+        <img class="worn" src="{{d_slice}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Honesty</h3><span class="col-count" data-colcount="Honesty"></span></div><span class="arrow">→</span></div>
       </a>
-      <div class="film-side">
-        <div class="film-card" data-film>
-          <video muted loop playsinline preload="auto" poster="{{life1}}"><source src="{{v_hero}}" type="video/mp4"></video>
-          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
-          <span class="film-label"><i></i>Loop · Getragen</span>
-          <div class="film-progress"></div>
-        </div>
-        <div class="film-card" data-film>
-          <video muted loop playsinline preload="auto" poster="{{d_polaris_yg}}"><source src="{{v_macro}}" type="video/mp4"></video>
-          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
-          <span class="film-label"><i></i>Loop · Amity Polaris</span>
-          <div class="film-progress"></div>
-        </div>
-      </div>
+      <a class="col-card" href="kollektion.html?c=Amity" style="--t1:#ECE8FA; --t2:#DCD3F4">
+        <img class="pack" src="{{p_polaris_yg}}" alt="Amity Kollektion" loading="lazy">
+        <img class="worn" src="{{d_polaris_yg}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Amity</h3><span class="col-count" data-colcount="Amity"></span></div><span class="arrow">→</span></div>
+      </a>
+      <a class="col-card" href="kollektion.html?c=Embrace" style="--t1:#E4F4EA; --t2:#CBE9D8">
+        <img class="pack" src="{{p_sageneon}}" alt="Embrace Kollektion" loading="lazy">
+        <img class="worn" src="{{d_sageneon}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Embrace</h3><span class="col-count" data-colcount="Embrace"></span></div><span class="arrow">→</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -196,30 +193,33 @@
   </div>
 </section>
 
-<!-- ================= KOLLEKTIONEN ================= -->
-<section class="section collections" id="kollektionen">
+<!-- ================= FILM ================= -->
+<section class="section film" id="film">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Kollektionen</span>
-      <h2>Drei Welten. Ein Klick.</h2>
-      <p>Jede Kollektion hat ihren eigenen Charakter. Der Halt ist immer derselbe.</p>
+      <span class="eyebrow">Baqless in Bewegung</span>
+      <h2>Sieh dir den Halt an.</h2>
+      <p>Zwei Loops, ein Verschluss. Klick auf ein Video zum Pausieren. Der Click&#8209;Lock pausiert nie.</p>
     </div>
-    <div class="col-grid reveal d1">
-      <a class="col-card col-big" href="kollektion.html?c=Honesty" style="--t1:#FFE9E4; --t2:#FFCDC0">
-        <img class="pack" src="{{p_slice}}" alt="Honesty Kollektion" loading="lazy">
-        <img class="worn" src="{{d_slice}}" alt="" loading="lazy" aria-hidden="true">
-        <div class="col-label"><div><h3>Honesty</h3><span class="col-count" data-colcount="Honesty"></span></div><span class="arrow">→</span></div>
+    <div class="film-grid reveal d1">
+      <a class="film-card portrait still" href="kollektion.html">
+        <img src="{{hero}}" alt="Model trägt Baqless Ohrringe">
+        <span class="film-label">Getragen · Amity Polaris</span>
       </a>
-      <a class="col-card" href="kollektion.html?c=Amity" style="--t1:#ECE8FA; --t2:#DCD3F4">
-        <img class="pack" src="{{p_polaris_yg}}" alt="Amity Kollektion" loading="lazy">
-        <img class="worn" src="{{d_polaris_yg}}" alt="" loading="lazy" aria-hidden="true">
-        <div class="col-label"><div><h3>Amity</h3><span class="col-count" data-colcount="Amity"></span></div><span class="arrow">→</span></div>
-      </a>
-      <a class="col-card" href="kollektion.html?c=Embrace" style="--t1:#E4F4EA; --t2:#CBE9D8">
-        <img class="pack" src="{{p_sageneon}}" alt="Embrace Kollektion" loading="lazy">
-        <img class="worn" src="{{d_sageneon}}" alt="" loading="lazy" aria-hidden="true">
-        <div class="col-label"><div><h3>Embrace</h3><span class="col-count" data-colcount="Embrace"></span></div><span class="arrow">→</span></div>
-      </a>
+      <div class="film-side">
+        <div class="film-card" data-film>
+          <video muted loop playsinline preload="auto" poster="{{life1}}"><source src="{{v_hero}}" type="video/mp4"></video>
+          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>Loop · Getragen</span>
+          <div class="film-progress"></div>
+        </div>
+        <div class="film-card" data-film>
+          <video muted loop playsinline preload="auto" poster="{{d_polaris_yg}}"><source src="{{v_macro}}" type="video/mp4"></video>
+          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>Loop · Amity Polaris</span>
+          <div class="film-progress"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -254,9 +254,10 @@
       <p>Entwickelt in der Schweiz, von Hand gefertigt in Thailand. Weniger Teile, mehr Freiheit.</p>
       <div class="stats">
         <div class="stat"><b data-count="8">0</b><span>Jahre Entwicklung</span></div>
-        <div class="stat"><b data-count="2">0</b><span>Versandstandorte</span></div>
+        <div class="stat"><b data-count="1">0</b><span>Klick</span></div>
         <div class="stat"><b data-count="0">0</b><span>Rückteile</span></div>
       </div>
+      <a class="btn btn-ghost" style="margin-top:26px" href="story.html">Die ganze Story</a>
     </div>
     <div class="collage reveal d1">
       <img class="tall" src="{{life1}}" alt="Baqless am Ohr getragen" loading="lazy">
@@ -466,7 +467,7 @@ filmCards.forEach(card => {
 // ---------- Reviews aus den Daten ----------
 const REVIEWS = {{REVIEWS_JSON}};
 const prodById = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
-document.getElementById('revGrid').innerHTML = REVIEWS.map(r => {
+document.getElementById('revGrid').innerHTML = REVIEWS.slice(0, 3).map(r => {
   const p = prodById[r.produkt];
   return `<figure class="rev-card">
     <span class="rev-stars" aria-label="${r.sterne} von 5 Sternen">${'★'.repeat(r.sterne)}${'☆'.repeat(5 - r.sterne)}</span>
