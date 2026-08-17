@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ohrringe mit Click-Lock Verschluss. Einstecken, drehen, klick. Entwickelt in der Schweiz, von Hand gefertigt. Versand aus der Schweiz und Japan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Ein Klick. Kein Zurück.</title>
+<style>
+{{CSS}}
+</style>
+</head>
+<body>
+
+{{HEADER}}
+
+<div class="dotnav" id="dotnav" aria-label="Sektionen">
+  <a href="#top" data-sec="top"><span>Start</span></a>
+  <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
+  <a href="#film" data-sec="film"><span>Film</span></a>
+  <a href="#produkte" data-sec="produkte"><span>Neuheiten</span></a>
+  <a href="#kollektionen" data-sec="kollektionen"><span>Kollektionen</span></a>
+  <a href="#wa" data-sec="wa"><span>WA</span></a>
+  <a href="#story" data-sec="story"><span>Story</span></a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <canvas id="bubbles" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <h1>
+      <span class="line"><span>Ein Klick.</span></span>
+      <span class="line"><span>Kein Zurück.</span></span>
+    </h1>
+    <p class="hero-sub">Ohrringe ohne Rückteil. Der Click&#8209;Lock hält. Beim Duschen, beim Sport, im Meer. Entwickelt in der Schweiz, von Hand gefertigt.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-coral" href="#produkte">Finde deins</a>
+      <a class="btn btn-light" href="#clicklock">So funktioniert's</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-arch"><video muted loop playsinline autoplay preload="auto" poster="{{hero}}" aria-label="Baqless in Bewegung: Sport mit Baqless Ohrringen"><source src="hero-film.mp4" type="video/mp4"></video></div>
+  </div>
+  <div class="spin-badge" aria-hidden="true">
+    <svg viewBox="0 0 128 128">
+      <defs><path id="circ" d="M64,64 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+      <circle cx="64" cy="64" r="63" fill="#FF7A6A"/>
+      <circle cx="64" cy="64" r="46" fill="none" stroke="rgba(11,29,63,.25)" stroke-width="1"/>
+      <text font-family="Inter, sans-serif" font-size="11.5" font-weight="500" letter-spacing="2.5" fill="#0B1D3F">
+        <textPath href="#circ">EIN KLICK · KEIN ZURÜCK · BAQLESS · </textPath>
+      </text>
+      <circle cx="64" cy="64" r="7" fill="#0B1D3F"/>
+    </svg>
+  </div>
+  <div class="hero-ring" aria-hidden="true"></div>
+  <div class="scroll-hint">Scroll</div>
+  
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Kein Rückteil</span><span>Wasserfest</span><span>Edelstahl 316L</span><span>Chirurgischer Edelstahl</span><span>Entwickelt in der Schweiz</span><span>Handgefertigt</span>
+  </div>
+</div>
+
+<!-- ================= FILM ================= -->
+<section class="section film" id="film">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Baqless in Bewegung</span>
+      <h2>Sieh dir den Halt an.</h2>
+      <p>Zwei Loops, ein Verschluss. Klick auf ein Video zum Pausieren. Der Click&#8209;Lock pausiert nie.</p>
+    </div>
+    <div class="film-grid reveal d1">
+      <a class="film-card portrait still" href="kollektion.html">
+        <img src="{{hero}}" alt="Model trägt Baqless Ohrringe">
+        <span class="film-label">Getragen · Amity Polaris</span>
+      </a>
+      <div class="film-side">
+        <div class="film-card" data-film>
+          <video muted loop playsinline preload="auto" poster="{{life1}}"><source src="{{v_hero}}" type="video/mp4"></video>
+          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>Loop · Getragen</span>
+          <div class="film-progress"></div>
+        </div>
+        <div class="film-card" data-film>
+          <video muted loop playsinline preload="auto" poster="{{d_polaris_yg}}"><source src="{{v_macro}}" type="video/mp4"></video>
+          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>Loop · Amity Polaris</span>
+          <div class="film-progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLICK-LOCK ================= -->
+<section class="section clicklock dotted" id="clicklock">
+  <div class="blob" style="width:420px;height:420px;background:var(--coral-tint);top:-120px;right:-100px"></div>
+  <div class="blob" style="width:360px;height:360px;background:var(--sage-tint);bottom:-140px;left:-80px"></div>
+  <div class="wrap cl-grid">
+    <div class="reveal">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Der Click-Lock</span>
+        <h2>Ein Verschluss,<br>der bleibt.</h2>
+        <p>Kein Rückteil. Kein Suchen. Kein Verlieren. Der T&#8209;Anker gleitet durchs Ohr, dreht sich, klickt und legt sich quer. Acht Jahre Präzisionsarbeit, ein Handgriff.</p>
+      </div>
+      <div class="cl-steps">
+        <div class="cl-step" id="step1"><b>01</b><div><h3>Einstecken</h3><p>Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</p></div></div>
+        <div class="cl-step" id="step2"><b>02</b><div><h3>Drehen</h3><p>Eine Vierteldrehung am Ohrring. Mehr braucht es nicht.</p></div></div>
+        <div class="cl-step" id="step3"><b>03</b><div><h3>Klick</h3><p>Der T&#8209;Anker rastet quer ein. Sitzt. Vergiss Rückteile.</p></div></div>
+      </div>
+    </div>
+    <div class="cl-stage reveal d1" id="clStage">
+      <div class="cl-state"><span class="led"></span><span id="clStateLabel">Offen</span></div>
+      <svg viewBox="120 -14 480 340" role="img" aria-label="Interaktive Animation des Click-Lock Verschlusses">
+        <defs>
+          <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F8ECDE"/><stop offset="1" stop-color="#EFD9BF"/>
+          </linearGradient>
+          <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EDF0F4"/><stop offset=".5" stop-color="#C6CBD4"/><stop offset="1" stop-color="#A8AFBA"/>
+          </linearGradient>
+          <radialGradient id="gold" cx=".35" cy=".3" r=".95">
+            <stop offset="0" stop-color="#F1E0C2"/><stop offset=".55" stop-color="#D9C1A0"/><stop offset="1" stop-color="#BB9A6C"/>
+          </radialGradient>
+        </defs>
+        <!-- Bodenschatten -->
+        <ellipse cx="366" cy="298" rx="100" ry="13" fill="rgba(34,34,34,.07)"/>
+        <!-- Ohr im Profil -->
+        <path d="M310 40
+          C 335 8, 390 6, 415 38
+          C 438 66, 442 120, 428 160
+          C 420 184, 405 202, 392 216
+          C 396 238, 380 258, 356 264
+          C 330 270, 306 258, 302 236
+          C 299 222, 306 210, 318 205
+          C 308 196, 300 184, 298 168
+          C 296 150, 300 130, 306 116
+          C 300 96, 302 64, 310 40 Z" fill="url(#skin)" stroke="#E2C6AA" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Helix-Falte innen -->
+        <path d="M322 48 C 344 26 382 26 400 50 C 418 74 420 118 408 152 C 400 174 388 190 378 202" fill="none" stroke="#E0C2A2" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Tragus -->
+        <path d="M306 160 C 318 162 324 174 318 186" fill="none" stroke="#E0C2A2" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Concha -->
+        <path d="M330 120 C 348 122 358 140 352 158" fill="none" stroke="#E9D5C0" stroke-width="2" stroke-linecap="round"/>
+        <!-- Stichkanal durchs Läppchen -->
+        <rect x="302" y="205" width="86" height="20" rx="10" fill="#E0C09B" opacity=".65"/>
+        <g id="earring-group">
+          <rect x="272" y="209" width="146" height="12" rx="6" fill="url(#steel)"/>
+          <circle cx="262" cy="215" r="30" fill="url(#gold)" stroke="#BE9E70" stroke-width="1.5"/>
+          <circle cx="252" cy="205" r="8" fill="#FBF6EC" opacity=".9"/>
+          <circle cx="270" cy="226" r="3.5" fill="#FBF6EC" opacity=".45"/>
+          <g id="tbar">
+            <rect x="393" y="208" width="50" height="14" rx="7" fill="url(#steel)" stroke="#99A0AC" stroke-width="1"/>
+          </g>
+        </g>
+        <circle id="clickring" cx="418" cy="215" r="50" fill="none" stroke="#37B369" stroke-width="5"/>
+      </svg>
+      <p class="cl-caption" id="clCaption">&nbsp;</p>
+      <div class="cl-actions">
+        <button class="btn btn-coral" id="lockBtn">Klick.</button>
+        <button class="btn btn-ghost" id="tugBtn" disabled style="opacity:.4">Zieh dran</button>
+      </div>
+      <p class="cl-origin">Entwickelt in der Schweiz, von Hand gefertigt</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUKTE ================= -->
+<section class="section products dotted" id="produkte">
+  <div class="blob" style="width:380px;height:380px;background:var(--sage-tint);top:-100px;left:-120px"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Neuheiten &amp; Bestseller</span>
+      <h2>Finde deins.</h2>
+      <p>Jedes Paar mit Click&#8209;Lock. Jedes Paar von Hand gefertigt.</p>
+      <span class="sticker coral">Rückteile gibt's keine.</span>
+    </div>
+    <div class="reveal d1"><div class="rail" id="rail"></div></div>
+  </div>
+</section>
+
+<!-- ================= KOLLEKTIONEN ================= -->
+<section class="section collections" id="kollektionen">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kollektionen</span>
+      <h2>Drei Welten. Ein Klick.</h2>
+      <p>Jede Kollektion hat ihren eigenen Charakter. Der Halt ist immer derselbe.</p>
+    </div>
+    <div class="col-grid reveal d1">
+      <a class="col-card col-big" href="kollektion.html?c=Honesty" style="--t1:#FFE9E4; --t2:#FFCDC0">
+        <img class="pack" src="{{p_slice}}" alt="Honesty Kollektion" loading="lazy">
+        <img class="worn" src="{{d_slice}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Honesty</h3><span class="col-count" data-colcount="Honesty"></span></div><span class="arrow">→</span></div>
+      </a>
+      <a class="col-card" href="kollektion.html?c=Amity" style="--t1:#ECE8FA; --t2:#DCD3F4">
+        <img class="pack" src="{{p_polaris_yg}}" alt="Amity Kollektion" loading="lazy">
+        <img class="worn" src="{{d_polaris_yg}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Amity</h3><span class="col-count" data-colcount="Amity"></span></div><span class="arrow">→</span></div>
+      </a>
+      <a class="col-card" href="kollektion.html?c=Embrace" style="--t1:#E4F4EA; --t2:#CBE9D8">
+        <img class="pack" src="{{p_sageneon}}" alt="Embrace Kollektion" loading="lazy">
+        <img class="worn" src="{{d_sageneon}}" alt="" loading="lazy" aria-hidden="true">
+        <div class="col-label"><div><h3>Embrace</h3><span class="col-count" data-colcount="Embrace"></span></div><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WA ================= -->
+<section class="section wa" id="wa">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">WA · Limitierte Serie</span>
+      <div class="wa-line"></div>
+      <h2>Japan, in Gold gefasst.</h2>
+      <p>Traditionelle japanische Muster, gefertigt für die WA&#8209;Serie. Jede Auflage ist nummeriert. Nachproduziert wird nicht.</p>
+    </div>
+    <div class="wa-grid reveal d1">
+      <figure class="wa-card" onclick="location.href='kollektion.html'" style="cursor:pointer"><img src="{{wa_sumiiri}}" alt="SUMIIRI II Ohrringe" loading="lazy"><figcaption>SUMIIRI II <span class="price">CHF 89</span></figcaption></figure>
+      <figure class="wa-card" onclick="location.href='kollektion.html'" style="cursor:pointer"><img src="{{wa_hamon}}" alt="HAMON II Ohrringe" loading="lazy"><figcaption>HAMON II <span class="price">CHF 89</span></figcaption></figure>
+      <figure class="wa-card" onclick="location.href='kollektion.html'" style="cursor:pointer"><img src="{{wa_kumo}}" alt="KUMO III Ohrringe" loading="lazy"><figcaption>KUMO III <span class="price">CHF 95</span></figcaption></figure>
+    </div>
+    <div class="reveal d2"><a class="btn btn-gold" href="kollektion.html">Zur WA Kollektion</a></div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="section story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <div class="sec-head" style="margin-bottom:22px">
+        <span class="eyebrow">Die Story</span>
+        <h2>Acht Jahre für einen Klick.</h2>
+      </div>
+      <p>Eine Idee aus dem Schmuckdesign, umgesetzt mit der Präzision einer Schweizer Uhrenmanufaktur: ein Ohrring, der ohne Rückteil hält.</p>
+      <p>Entwickelt in der Schweiz, von Hand gefertigt in Thailand. Weniger Teile, mehr Freiheit.</p>
+      <div class="stats">
+        <div class="stat"><b data-count="8">0</b><span>Jahre Entwicklung</span></div>
+        <div class="stat"><b data-count="2">0</b><span>Versandstandorte</span></div>
+        <div class="stat"><b data-count="0">0</b><span>Rückteile</span></div>
+      </div>
+    </div>
+    <div class="collage reveal d1">
+      <img class="tall" src="{{life1}}" alt="Baqless am Ohr getragen" loading="lazy">
+      <img class="sq" src="{{life2}}" alt="Baqless Detailaufnahme" loading="lazy">
+      <img class="sq" src="{{life3}}" alt="Baqless Lifestyle" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section class="section benefits">
+  <div class="wrap ben-grid">
+    <div class="ben reveal">
+      <div class="ico ico-coral"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3.5 4.4 6 7.6 6 10.6a6 6 0 0 1-12 0C6 10.6 8.5 7.4 12 3Z"/></svg></div>
+      <h3>Wasserfest</h3>
+      <p>Duschen, Sport, Meer. Du musst sie nie mehr abnehmen.</p>
+    </div>
+    <div class="ben reveal d1">
+      <div class="ico ico-sage"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 4v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Für empfindliche Ohren</h3>
+      <p>Chirurgischer Edelstahl 316L. Gemacht für jeden Tag.</p>
+    </div>
+    <div class="ben reveal d2">
+      <div class="ico ico-lav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c4-1 5-3 5-6l7-7 3 3-7 7c-3 0-5 1-6 5l-2-2Z"/><path d="M14 5l2-2 3 3-2 2"/></svg></div>
+      <h3>Handgefertigt</h3>
+      <p>Swiss Design, Thai Craftsmanship. Jedes Paar geht durch echte Hände.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="section newsletter dotted">
+  <div class="blob" style="width:340px;height:340px;background:var(--coral-tint);top:-80px;left:-120px"></div>
+  <div class="blob" style="width:300px;height:300px;background:var(--lav-tint);bottom:-100px;right:-80px"></div>
+  <div class="wrap reveal">
+    <span class="eyebrow">Newsletter</span>
+    <h2>Bleib dran.</h2>
+    <p>Neue Drops zuerst. Höchstens zwei Mails im Monat.</p>
+    <form class="nl-form" id="nlForm" data-nlform>
+      <input type="email" placeholder="deine@mail.ch" required aria-label="E-Mail-Adresse">
+      <button class="btn btn-coral" type="submit">Anmelden</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+{{FOOTER}}
+
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+// ---------- Bubble Canvas (Hero) ----------
+const canvas = document.getElementById('bubbles');
+const ctx = canvas.getContext('2d');
+const COLORS = ['#FF7A6A','#37B369','#7D6FD6','#D9C1A0'];
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let bubbles = [], mouse = {x:-999, y:-999};
+
+function sizeCanvas(){
+  const r = canvas.parentElement.getBoundingClientRect();
+  canvas.width = r.width * devicePixelRatio;
+  canvas.height = r.height * devicePixelRatio;
+  canvas.style.width = r.width + 'px';
+  canvas.style.height = r.height + 'px';
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+}
+function spawnBubble(yBottom){
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  const r = 8 + Math.random() * 34;
+  return {
+    x: Math.random() * w,
+    y: yBottom ? h + r + Math.random() * 80 : Math.random() * h,
+    r, color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    vy: .25 + Math.random() * .55, vx: (Math.random() - .5) * .2,
+    wob: Math.random() * Math.PI * 2, alpha: .5 + Math.random() * .4,
+    popping: 0,
+  };
+}
+function initBubbles(){
+  sizeCanvas();
+  bubbles = Array.from({length: Math.min(11, Math.floor(canvas.clientWidth / 120))}, () => spawnBubble(false));
+}
+function drawBubbles(){
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  ctx.clearRect(0, 0, w, h);
+  for (const b of bubbles){
+    if (b.popping > 0){
+      b.popping += .12;
+      ctx.globalAlpha = Math.max(0, 1 - b.popping) * .9;
+      ctx.strokeStyle = b.color; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(b.x, b.y, b.r * (1 + b.popping * 1.4), 0, Math.PI * 2); ctx.stroke();
+      if (b.popping >= 1) Object.assign(b, spawnBubble(true));
+      continue;
+    }
+    b.wob += .015;
+    b.x += b.vx + Math.sin(b.wob) * .3;
+    b.y -= b.vy;
+    // Maus-Abstossung
+    const dx = b.x - mouse.x, dy = b.y - mouse.y, d = Math.hypot(dx, dy);
+    if (d < 110 && d > 0){ b.x += (dx / d) * 1.8; b.y += (dy / d) * 1.8; }
+    if (b.y < -b.r - 20) Object.assign(b, spawnBubble(true));
+    if (b.x < -b.r) b.x = w + b.r; if (b.x > w + b.r) b.x = -b.r;
+    ctx.globalAlpha = b.alpha * .5;
+    ctx.fillStyle = b.color;
+    ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = b.alpha;
+    ctx.strokeStyle = b.color; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ctx.stroke();
+    ctx.globalAlpha = b.alpha * .8;
+    ctx.fillStyle = '#FAF7F2';
+    ctx.beginPath(); ctx.arc(b.x - b.r * .3, b.y - b.r * .35, b.r * .16, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  if (!reduceMotion) requestAnimationFrame(drawBubbles);
+}
+canvas.addEventListener('pointermove', e => {
+  const r = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+});
+canvas.addEventListener('pointerleave', () => { mouse.x = -999; mouse.y = -999; });
+canvas.addEventListener('pointerdown', e => {
+  const r = canvas.getBoundingClientRect();
+  const x = e.clientX - r.left, y = e.clientY - r.top;
+  for (const b of bubbles){
+    if (b.popping === 0 && Math.hypot(b.x - x, b.y - y) < b.r + 12){
+      b.popping = .01; pop(420 + Math.random() * 300);
+      if (navigator.vibrate) navigator.vibrate(8);
+      break;
+    }
+  }
+});
+addEventListener('resize', initBubbles);
+initBubbles(); drawBubbles();
+
+// ---------- Produkte ----------
+const rail = document.getElementById('rail');
+rail.innerHTML = PRODUCTS.map(p => `
+  <article class="card" data-id="${p.id}">
+    <div class="card-img" data-flip>
+      ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
+      <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+      <img class="detail" src="${p.detail}" alt="" loading="lazy">
+    </div>
+    <div class="card-meta">
+      <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+      <span class="price">CHF ${p.price}</span>
+    </div>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+  </article>`).join('');
+rail.addEventListener('click', e => {
+  const box = e.target.closest('[data-flip]');
+  if (!box) return;
+  if (matchMedia('(hover: none)').matches) { box.classList.toggle('flip'); }
+  else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
+});
+
+// ---------- Click-Lock Demo ----------
+const stage = document.getElementById('clStage');
+const lockBtn = document.getElementById('lockBtn');
+const tugBtn = document.getElementById('tugBtn');
+const caption = document.getElementById('clCaption');
+const stateLabel = document.getElementById('clStateLabel');
+let locked = false;
+lockBtn.addEventListener('click', () => {
+  locked = !locked;
+  stage.classList.toggle('locked', locked);
+  stateLabel.textContent = locked ? 'Gesichert' : 'Offen';
+  lockBtn.textContent = locked ? 'Öffnen' : 'Klick.';
+  tugBtn.disabled = !locked;
+  tugBtn.style.opacity = locked ? 1 : .4;
+  caption.textContent = locked ? 'Sitzt. Vergiss Rückteile.' : 'Eine Vierteldrehung. Probier’s.';
+  caption.classList.add('show');
+  [1,2,3].forEach(i => document.getElementById('step'+i).classList.toggle('active', locked));
+  if (locked){ pop(880); if (navigator.vibrate) navigator.vibrate(12); }
+});
+tugBtn.addEventListener('click', () => {
+  if (!locked) return;
+  stage.classList.remove('tugging'); void stage.offsetWidth; stage.classList.add('tugging');
+  caption.textContent = 'Bleibt.';
+});
+
+// ---------- Film: Autoplay im Viewport, Klick = Pause ----------
+const filmCards = document.querySelectorAll('[data-film]');
+const vio = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    const card = en.target, v = card.querySelector('video');
+    if (en.isIntersecting && !card.dataset.userPaused){ v.play().catch(()=>{}); }
+    else v.pause();
+  });
+}, {threshold:.35});
+filmCards.forEach(card => {
+  const v = card.querySelector('video');
+  const bar = card.querySelector('.film-progress');
+  v.addEventListener('play', () => card.classList.add('playing'));
+  v.addEventListener('pause', () => card.classList.remove('playing'));
+  v.addEventListener('timeupdate', () => {
+    if (v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%';
+  });
+  card.addEventListener('click', () => {
+    if (v.paused){ delete card.dataset.userPaused; v.play().catch(()=>{}); }
+    else { card.dataset.userPaused = '1'; v.pause(); }
+  });
+  vio.observe(card);
+});
+
+// ---------- Kollektions-Kacheln: Stückzahlen live aus den Produktdaten ----------
+document.querySelectorAll('[data-colcount]').forEach(el => {
+  const n = PRODUCTS.filter(p => p.collection === el.dataset.colcount).length;
+  el.textContent = n + (n === 1 ? ' Paar' : ' Paare');
+});
+
+// ---------- Marquee ----------
+const track = document.getElementById('marqueeTrack');
+track.innerHTML += track.innerHTML;
+
+// ---------- Newsletter ----------
+
+</script>
+</body>
+</html>

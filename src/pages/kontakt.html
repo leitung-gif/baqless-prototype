@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Frage zu Baqless? Schreib uns, wir antworten innert 24 Stunden.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Kontakt</title>
+<style>
+{{CSS}}
+</style>
+</head>
+<body class="page-light">
+
+{{HEADER}}
+
+<main class="legal">
+  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Kontakt</span></div>
+  <h1>Sag Hallo.</h1>
+  <p class="lead">Frage zum Click-Lock, zu deiner Bestellung oder zu einem Paar, das du im Auge hast? Schreib uns. Wir antworten schnell und ohne Textbausteine.</p>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-card">
+        <h3>E-Mail</h3>
+        <p><a href="mailto:hello@baqless.com">hello@baqless.com</a><br>Antwort innert 24 Stunden, Montag bis Freitag.</p>
+      </div>
+      <div class="contact-card">
+        <h3>Bestellungen</h3>
+        <p>Versand aus der Schweiz und Japan. Alles zu Lieferung und Rückgabe findest du unter <a href="widerruf.html">Versand &amp; Retouren</a>.</p>
+      </div>
+      <div class="contact-card">
+        <h3>Click-Lock Hilfe</h3>
+        <p>Einstecken, drehen, klick. Die Anleitung mit Demo findest du <a href="index.html#clicklock">hier</a>. Klappt es nicht, schreib uns. Wir lassen dich nicht hängen.</p>
+      </div>
+    </div>
+    <form class="cform" id="contactForm">
+      <label for="cfName">Name</label>
+      <input id="cfName" name="name" type="text" autocomplete="name" required>
+      <label for="cfMail">E-Mail</label>
+      <input id="cfMail" name="email" type="email" autocomplete="email" required>
+      <label for="cfMsg">Nachricht</label>
+      <textarea id="cfMsg" name="message" rows="7" required></textarea>
+      <button class="btn btn-coral" type="submit">Abschicken</button>
+    </form>
+  </div>
+</main>
+
+{{FOOTER}}
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  toast(`<span class="tick">✓</span><span><b>Danke.</b> Wir melden uns innert 24 Stunden.</span>`);
+  e.target.reset();
+});
+</script>
+</body>
+</html>

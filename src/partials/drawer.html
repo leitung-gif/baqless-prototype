@@ -1,0 +1,30 @@
+<div id="toast" role="status"></div>
+<div id="overlay"></div>
+<aside id="drawer" aria-label="Warenkorb">
+  <div class="drawer-head">
+    <h3>Warenkorb</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Schliessen">×</button>
+  </div>
+  <div class="ship-progress" id="shipProgress">
+    <div class="ship-progress-text" id="shipText"></div>
+    <div class="ship-progress-track"><div class="ship-progress-fill" id="shipFill"></div></div>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Zwischensumme</span><span id="drawerTotal">CHF 0</span></div>
+    <button class="btn btn-navy" id="checkoutBtn" style="width:100%; justify-content:center">Zur Kasse</button>
+  </div>
+</aside>
+
+<!-- Such-Overlay -->
+<div id="searchOverlay" role="dialog" aria-label="Suche">
+  <div class="so-inner">
+    <div class="so-bar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      <input id="soInput" type="text" placeholder="Suche nach Ohrringen, Kollektionen …" autocomplete="off">
+      <button class="so-close" id="soClose" aria-label="Schliessen">×</button>
+    </div>
+    <div class="so-hint" id="soHint">Beliebt: <button data-q="Polaris">Polaris</button><button data-q="Gold">Gold</button><button data-q="Honesty">Honesty</button><button data-q="Limitiert">Limitiert</button></div>
+    <div class="so-results" id="soResults"></div>
+  </div>
+</div>

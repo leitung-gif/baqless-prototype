@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Baqless Smoke-Test</title></head>
+<body>
+<pre id="out">RUNNING</pre>
+<iframe id="f" src="/produkt.html?p=polarisyg" style="width:1280px;height:900px"></iframe>
+<script>
+const out = [];
+const log = (name, ok, info = '') => out.push(`${ok ? 'PASS' : 'FAIL'} ${name}${info ? ' — ' + info : ''}`);
+const f = document.getElementById('f');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const click = (d, sel) => { const el = d.querySelector(sel); if (!el) return false; el.click(); return true; };
+const loadOnce = () => new Promise(r => f.addEventListener('load', r, { once: true }));
+
+async function run() {
+  await loadOnce(); await sleep(500);
+  let d = f.contentDocument, w = f.contentWindow;
+  w.localStorage.clear();
+
+  // ===== PDP-Basis =====
+  log('PDP Buybox H1', d.querySelector('.buy h1')?.textContent.trim() === 'Amity Polaris');
+  log('PDP Preis', d.querySelector('.price-big')?.textContent.includes('69'));
+  log('PDP SKU-Zeile', d.querySelector('.variant-line')?.textContent.includes('BQ-AMI-POL-G'));
+  const thumbs = d.querySelectorAll('.gal-thumbs button');
+  log('Galerie 2 Ansichten', thumbs.length === 2);
+  const len1 = d.querySelector('.gal-main img')?.src.length;
+  thumbs[1]?.click(); await sleep(120);
+  const len2 = d.querySelector('.gal-main img')?.src.length;
+  log('Galerie-Umschaltung', !!len1 && !!len2 && len1 !== len2 && thumbs[1].classList.contains('active'));
+  const acc2 = d.querySelectorAll('.acc-item')[1];
+  acc2?.querySelector('button')?.click(); await sleep(150);
+  log('Akkordeon öffnet', acc2?.classList.contains('open') === true);
+
+  // ===== V3: Menge + Cart v2 =====
+  click(d, '#qtyPlus'); await sleep(80);
+  log('Mengen-Stepper auf 2', d.getElementById('qtyVal')?.textContent === '2');
+  click(d, '#mainAdd'); await sleep(250);
+  log('Cart: 2 Stück', d.getElementById('cartCount')?.textContent === '2');
+  log('Toast «Sitzt.»', d.getElementById('toast')?.textContent.includes('Sitzt.'));
+  click(d, '#cartBtn'); await sleep(250);
+  log('Drawer öffnet', d.getElementById('drawer')?.classList.contains('open') === true);
+  log('Drawer-Total CHF 138', d.getElementById('drawerTotal')?.textContent.includes('138'));
+  log('Gratisversand erreicht', d.getElementById('shipText')?.textContent.includes('gesichert'));
+  click(d, '[data-qminus="polarisyg"]'); await sleep(200);
+  log('Stepper minus → CHF 69', d.getElementById('drawerTotal')?.textContent.includes('69'));
+  log('Gratisversand-Restbetrag', d.getElementById('shipText')?.textContent.includes('51'));
+  const fillW = parseFloat(d.getElementById('shipFill')?.style.width);
+  log('Fortschrittsbalken ~57%', fillW > 50 && fillW < 65, fillW + '%');
+  click(d, '[data-remove="polarisyg"]'); await sleep(200);
+  log('Entfernen leert Warenkorb', d.getElementById('cartCount')?.textContent === '0');
+  click(d, '#drawerClose'); await sleep(150);
+
+  // ===== V3: Persistenz =====
+  click(d, '#mainAdd'); await sleep(200);
+  f.src = '/produkt.html?p=polarisyg&r=1';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument; w = f.contentWindow;
+  log('Cart überlebt Reload', d.getElementById('cartCount')?.textContent === '2');
+
+  // ===== V3: Suche =====
+  click(d, '#searchBtn'); await sleep(200);
+  log('Such-Overlay öffnet', d.getElementById('searchOverlay')?.classList.contains('open') === true);
+  const inp = d.getElementById('soInput');
+  inp.value = 'polaris'; inp.dispatchEvent(new w.Event('input')); await sleep(150);
+  log('Suche «polaris» → 2 Treffer', d.querySelectorAll('.so-item').length === 2);
+  inp.value = 'xyz123'; inp.dispatchEvent(new w.Event('input')); await sleep(150);
+  log('Suche leerer Zustand', !!d.querySelector('.so-empty'));
+  log('Such-Treffer-Link', (d.querySelectorAll('.so-item').length === 0));
+  click(d, '#soClose'); await sleep(120);
+  log('Such-Overlay schliesst', d.getElementById('searchOverlay')?.classList.contains('open') === false);
+
+  // ===== V3: JSON-LD + Sticky-Bar =====
+  const lds = [...d.querySelectorAll('script[type="application/ld+json"]')];
+  log('JSON-LD Product', lds.some(x => x.textContent.includes('"@type":"Product"')));
+  log('JSON-LD Breadcrumbs', lds.some(x => x.textContent.includes('BreadcrumbList')));
+  log('Sticky-Bar befüllt', d.getElementById('stickybar')?.querySelector('[data-add]') !== null);
+
+  // ===== Sprach-/Markt-Dropdowns =====
+  click(d, '#langBtn'); await sleep(120);
+  click(d, '#langDd .v2-menu button[data-lang="EN"]'); await sleep(120);
+  log('Sprachlabel EN', d.getElementById('langLabel')?.textContent === 'EN');
+  click(d, '#marketBtn'); await sleep(120);
+  click(d, '#marketDd .v2-menu button[data-market="DE · EUR"]'); await sleep(120);
+  log('Marktlabel DE·EUR', d.getElementById('marketLabel')?.textContent.includes('DE'));
+
+  // ===== Cross-Sell + Variante =====
+  log('Cross-Sell 4 Karten', d.querySelectorAll('#xsellRail .card').length === 4);
+  const silber = [...d.querySelectorAll('.pills a')].find(a => a.textContent.includes('Silber'));
+  silber?.click(); await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('Varianten-Wechsel: Silber CHF 59', d.querySelector('.price-big')?.textContent.includes('59')
+    && d.querySelector('.variant-line')?.textContent.includes('Silber'));
+
+  // ===== V3: Zuletzt angesehen (nach 2. Produkt) =====
+  log('Seen-Rail erscheint', !!d.querySelector('#seenRail .card'));
+  log('Seen-Rail zeigt Vorgänger', d.querySelector('#seenRail .card')?.dataset.id === 'polarisyg');
+  log('PDP-Crumb → PLP', d.querySelector('.crumbs a[href*="kollektion.html"]') !== null);
+
+  // ===== V3: PLP =====
+  f.src = '/kollektion.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('PLP: 8 Karten', d.querySelectorAll('#plpGrid .card').length === 8);
+  click(d, '.fpill[data-c="Honesty"]'); await sleep(200);
+  log('PLP-Filter Honesty → 5', d.querySelectorAll('#plpGrid .card').length === 5);
+  log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes('5'));
+  log('PLP-URL-Param', f.contentWindow.location.search.includes('c=Honesty'));
+  const sort = d.getElementById('plpSort');
+  sort.value = 'asc'; sort.dispatchEvent(new f.contentWindow.Event('change')); await sleep(200);
+  log('PLP-Sortierung Preis ↑', d.querySelector('#plpGrid .card .price')?.textContent.includes('49'));
+  click(d, '.fpill[data-c="alle"]'); await sleep(150);
+  log('PLP zurück auf Alle', d.querySelectorAll('#plpGrid .card').length === 8);
+
+  // ===== PLP mit Param laden =====
+  f.src = '/kollektion.html?c=Amity';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('PLP ?c=Amity → 2 Karten', d.querySelectorAll('#plpGrid .card').length === 2);
+
+  // ===== Homepage =====
+  f.src = '/index.html';
+  await loadOnce(); await sleep(700);
+  d = f.contentDocument;
+  log('Home: Rail 8 Karten', d.querySelectorAll('#rail .card').length === 8);
+  log('Home: Karten-Link', d.querySelector('#rail .card-link')?.getAttribute('href')?.startsWith('produkt.html?p='));
+  log('Home: Nav → PLP', d.querySelector('nav a[href="kollektion.html"]') !== null);
+  log('Home: Suche vorhanden', !!d.getElementById('searchOverlay'));
+  log('Home: Cart persistiert', d.getElementById('cartCount')?.textContent === '2');
+  log('Home: Newsletter-Form', !!d.getElementById('nlForm'));
+
+  // ===== Hero-Video + Film-Sektion =====
+  log('Home: Hero-Video Quelle', !!d.querySelector('.hero-arch video source[src*="hero-film"]'));
+  const hv = d.querySelector('.hero-arch video');
+  log('Home: Hero-Video läuft an', !!hv && hv.currentTime > 0, 'ct=' + (hv ? hv.currentTime.toFixed(2) : 'n/a'));
+  log('Home: Film-Sektion 2 Loops + Bild', d.querySelectorAll('.film-card video').length === 2
+    && !!d.querySelector('a.film-card.still img'));
+  log('Home: Film direkt unter Hero', (() => {
+    const secs = [...d.querySelectorAll('header.hero, section')].map(x => x.id || x.className.split(' ')[0]);
+    return secs.indexOf('film') >= 0 && secs.indexOf('film') < secs.indexOf('clicklock');
+  })());
+  log('Home: Footer verlinkt Rechtsseiten', ['kontakt','impressum','agb','datenschutz','widerruf','faq']
+    .every(pg => !!d.querySelector(`footer a[href^="${pg}.html"]`)));
+  log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
+  log('Home: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
+  log('Home: Favicon + Meta-Description', !!d.querySelector('link[rel="icon"]') && !!d.querySelector('meta[name="description"]'));
+  log('Footer: Newsletter-Band', !!d.querySelector('footer [data-nlform]'));
+  log('Footer: Social + Mail', d.querySelectorAll('.foot-social a').length === 3 && !!d.querySelector('.foot-mail'));
+  log('Footer: sauberer Abbinder', (() => {
+    const t = d.querySelector('.foot-note')?.textContent || '';
+    return t.includes('Baqless AG') && !t.includes('Prototyp') && !t.includes('Lorien');
+  })());
+  log('Checkout ohne Demo-Wording', d.getElementById('checkoutBtn')?.textContent.trim() === 'Zur Kasse');
+  log('Home: keine toten Links', d.querySelectorAll('a[href="#"], a:not([href])').length === 0);
+  log('Home: Kollektions-Kacheln verlinkt', [...d.querySelectorAll('.col-card')].every(a => a.getAttribute('href')));
+  log('Home: Kacheln = echte Kategorien', (() => {
+    const hrefs = [...d.querySelectorAll('.col-card')].map(a => a.getAttribute('href'));
+    return hrefs.length === 3 && ['Honesty','Amity','Embrace'].every(c => hrefs.includes('kollektion.html?c=' + c));
+  })());
+  log('Home: Kachel-Zähler korrekt', d.querySelector('[data-colcount="Honesty"]')?.textContent === '5 Paare'
+    && d.querySelector('[data-colcount="Amity"]')?.textContent === '2 Paare'
+    && d.querySelector('[data-colcount="Embrace"]')?.textContent === '1 Paar');
+  log('Home: Nav entschlackt', (() => {
+    const t = [...d.querySelectorAll('.nav-links a')].map(a => a.textContent.trim());
+    return t.length === 3 && !t.includes('Film') && !t.includes('WA') && !t.includes('Click-Lock');
+  })());
+
+  // ===== Kontakt + Rechtsseiten =====
+  f.src = '/kontakt.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('Kontakt: Titel', d.querySelector('.legal h1')?.textContent.includes('Hallo'));
+  log('Kontakt: Nav lesbar auf hellem Grund', (() => {
+    const c = f.contentWindow.getComputedStyle(d.getElementById('nav')).color;
+    return c === 'rgb(34, 34, 34)';
+  })());
+  d.getElementById('cfName').value = 'Test'; d.getElementById('cfMail').value = 't@t.ch'; d.getElementById('cfMsg').value = 'Hoi';
+  d.querySelector('.cform .btn').click(); await sleep(250);
+  log('Kontakt: Formular-Toast', d.getElementById('toast')?.textContent.includes('Danke'));
+
+  f.src = '/impressum.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('Impressum lädt', d.querySelector('.legal h1')?.textContent.includes('Impressum'));
+
+  f.src = '/agb.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('AGB lädt mit 9 Abschnitten', d.querySelectorAll('.legal h2').length === 9);
+
+  f.src = '/widerruf.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('Retouren: 30 Tage', d.body.innerText.includes('30 Tage'));
+
+  f.src = '/datenschutz.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('Datenschutz lädt', d.querySelector('.legal h1')?.textContent.includes('Datenschutz'));
+
+  f.src = '/faq.html';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('FAQ lädt mit 9 Fragen', d.querySelectorAll('.legal h2').length === 9);
+  log('FAQ: Grössen-Anker', !!d.getElementById('groessen'));
+
+  // ===== Mobile (375px iframe) =====
+  const m = document.createElement('iframe');
+  m.style.cssText = 'width:375px;height:740px;border:0';
+  document.body.appendChild(m);
+  await new Promise(r => { m.addEventListener('load', r, { once: true }); m.src = '/index.html'; });
+  await sleep(900);
+  const md = m.contentDocument, mw = m.contentWindow;
+  log('Mobil: kein horizontaler Overflow', md.documentElement.scrollWidth <= 376,
+    'scrollWidth=' + md.documentElement.scrollWidth);
+  const burger = md.getElementById('burgerBtn');
+  log('Mobil: Burger sichtbar', !!burger && mw.getComputedStyle(burger).display !== 'none');
+  log('Mobil: Nav-Icons im Viewport', (() => {
+    const r = burger.getBoundingClientRect(), c = md.getElementById('cartBtn').getBoundingClientRect();
+    return r.right <= 376 && r.width > 0 && c.right <= 376 && c.width > 0;
+  })(), 'burgerRight=' + Math.round(burger.getBoundingClientRect().right));
+  burger.click(); await sleep(300);
+  log('Mobil: Menü öffnet', md.getElementById('mnav').classList.contains('open'));
+  log('Mobil: Menü-Links komplett', md.querySelectorAll('#mnav .mnav-links a').length === 5
+    && md.querySelectorAll('#mnav .mnav-sub a').length === 4);
+  md.getElementById('mnavClose').click(); await sleep(300);
+  log('Mobil: Menü schliesst', !md.getElementById('mnav').classList.contains('open'));
+  const sBtn = md.getElementById('searchBtn');
+  log('Mobil: Suche erreichbar', !!sBtn && mw.getComputedStyle(sBtn).display !== 'none');
+  m.remove();
+
+  document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
+}
+run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });
+</script>
+</body>
+</html>

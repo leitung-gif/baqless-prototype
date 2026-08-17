@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Alle Baqless Kollektionen: Honesty, Amity und Embrace. Jedes Paar mit Click-Lock, wasserfest und gemacht für jeden Tag.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<title>Baqless · Kollektionen</title>
+<style>
+{{CSS}}
+</style>
+</head>
+<body class="page-light">
+
+{{HEADER}}
+
+<header class="plp-hero">
+  <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
+  <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
+  <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
+  <h1>Alle Kollektionen. <em>Null Rückteile.</em></h1>
+  <p>Jedes Paar mit Click-Lock. Wasserfest, verträglich für empfindliche Ohren, gebaut für jeden Tag. Finde deins.</p>
+</header>
+
+<main class="plp-wrap">
+  <div class="plp-tools" id="plpTools">
+    <button class="fpill active" data-c="alle">Alle</button>
+    <button class="fpill" data-c="Honesty">Honesty</button>
+    <button class="fpill" data-c="Amity">Amity</button>
+    <button class="fpill" data-c="Embrace">Embrace</button>
+    <select id="plpSort" aria-label="Sortieren">
+      <option value="std">Empfohlen</option>
+      <option value="asc">Preis aufsteigend</option>
+      <option value="desc">Preis absteigend</option>
+      <option value="neu">Neuheiten zuerst</option>
+    </select>
+  </div>
+  <div class="plp-count" id="plpCount"></div>
+  <div class="plp-grid" id="plpGrid"></div>
+</main>
+
+{{FOOTER}}
+{{DRAWER}}
+
+<script>
+{{SHARED_JS}}
+
+// ---------- PLP ----------
+let fCol = new URLSearchParams(location.search).get('c') || 'alle';
+let fSort = 'std';
+const grid = document.getElementById('plpGrid');
+const pills = [...document.querySelectorAll('.fpill')];
+const validCols = pills.map(b => b.dataset.c);
+if (!validCols.includes(fCol)) fCol = 'alle';
+pills.forEach(b => b.classList.toggle('active', b.dataset.c === fCol));
+
+function cardHtml(p, i){
+  return `
+  <article class="card" data-id="${p.id}" style="animation-delay:${Math.min(i * 55, 440)}ms">
+    <div class="card-img" data-flip>
+      ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
+      <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+      <img class="detail" src="${p.detail}" alt="" loading="lazy">
+    </div>
+    <div class="card-meta">
+      <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+      <span class="price">CHF ${p.price}</span>
+    </div>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+  </article>`;
+}
+
+function renderPlp(){
+  let list = fCol === 'alle' ? [...PRODUCTS] : PRODUCTS.filter(p => p.collection === fCol);
+  if (fSort === 'asc') list.sort((a,b) => a.price - b.price);
+  if (fSort === 'desc') list.sort((a,b) => b.price - a.price);
+  if (fSort === 'neu') list.sort((a,b) => (b.tag === 'Neu') - (a.tag === 'Neu'));
+  grid.innerHTML = list.map(cardHtml).join('');
+  document.getElementById('plpCount').textContent =
+    `${list.length} ${list.length === 1 ? 'Paar' : 'Paare'}${fCol !== 'alle' ? ' · ' + fCol + ' Kollektion' : ''} · alle mit Click-Lock`;
+  const url = new URL(location);
+  fCol === 'alle' ? url.searchParams.delete('c') : url.searchParams.set('c', fCol);
+  history.replaceState(null, '', url);
+}
+document.getElementById('plpTools').addEventListener('click', e => {
+  const b = e.target.closest('.fpill');
+  if (!b) return;
+  fCol = b.dataset.c;
+  pills.forEach(x => x.classList.toggle('active', x === b));
+  renderPlp();
+});
+document.getElementById('plpSort').addEventListener('change', e => { fSort = e.target.value; renderPlp(); });
+grid.addEventListener('click', e => {
+  if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
+  const box = e.target.closest('[data-flip]');
+  if (!box) return;
+  if (matchMedia('(hover: none)').matches) { box.classList.toggle('flip'); }
+  else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
+});
+renderPlp();
+</script>
+</body>
+</html>
