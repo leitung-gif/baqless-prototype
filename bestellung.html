@@ -1020,7 +1020,7 @@ footer ul a:hover{color:var(--coral)}
   </div>
 </div>
 
-<main class="dank" id="dank"></main>
+<main id="inhalt" class="dank"></main>
 
 <footer id="footer">
   <div class="foot-bubble" style="width:300px;height:300px;border:2px solid var(--coral);top:-90px;right:5%"></div>
@@ -1617,7 +1617,7 @@ if (best && best.datum && (Date.now() - new Date(best.datum).getTime()) > 864000
   try { localStorage.removeItem('baqless_bestellung'); } catch(e) {}
   best = null;
 }
-const box = document.getElementById('dank');
+const box = document.getElementById('inhalt');
 
 if (!best){
   box.innerHTML = `

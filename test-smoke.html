@@ -661,6 +661,25 @@ async function run() {
   log('Mobil: Suche erreichbar', !!sBtn && mw.getComputedStyle(sBtn).display !== 'none');
   m.remove();
 
+  // ===== Gerüst jeder einzelnen Seite =====
+  // Die Sprungmarke im Kopf zeigt auf #inhalt. Fehlt das Ziel, springt sie ins Leere,
+  // und genau das war auf 14 von 15 Seiten der Fall, ohne dass es je auffiel.
+  const ALLE = ['index.html', 'neuheiten.html', 'kollektion.html', 'produkt.html?p=polarisyg',
+    'warenkorb.html', 'kasse.html', 'bestellung.html', 'journal.html', 'story.html',
+    'faq.html', 'kontakt.html', 'agb.html', 'datenschutz.html', 'widerruf.html', 'impressum.html'];
+  const ohneZiel = [], ohneMain = [], ohneTitel = [];
+  for (const seite of ALLE) {
+    f.src = '/' + seite; await loadOnce(); await sleep(250);
+    const dd = f.contentDocument;
+    const ziel = dd.querySelector('.skip-link')?.getAttribute('href')?.slice(1);
+    if (!ziel || !dd.getElementById(ziel)) ohneZiel.push(seite);
+    if (!dd.querySelector('main')) ohneMain.push(seite);
+    if (!dd.title || !dd.title.includes('Baqless')) ohneTitel.push(seite);
+  }
+  log('Jede Seite: Sprungmarke hat ein Ziel', ohneZiel.length === 0, ohneZiel.join(', '));
+  log('Jede Seite: hat einen Hauptbereich', ohneMain.length === 0, ohneMain.join(', '));
+  log('Jede Seite: trägt einen Titel mit Markennamen', ohneTitel.length === 0, ohneTitel.join(', '));
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });

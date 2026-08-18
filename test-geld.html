@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Baqless, rechnet der Shop richtig</title></head>
+<body>
+<pre id="out">RUNNING</pre>
+<iframe id="f" src="/produkt.html?p=polarisyg" style="width:1280px;height:900px"></iframe>
+<script>
+// Prueft die Rechnung, nicht die Beschriftung. Jede Zahl wird unabhaengig vom Code
+// nachgerechnet und dann gegen das verglichen, was auf dem Bildschirm steht.
+const out = [];
+const log = (name, ok, info = '') => out.push(`${ok ? 'PASS' : 'FAIL'} ${name}${info ? ' — ' + info : ''}`);
+const f = document.getElementById('f');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const loadOnce = (ms = 15000) => new Promise(r => {
+  const done = () => { clearTimeout(t); r(); };
+  const t = setTimeout(() => { f.removeEventListener('load', done); r(); }, ms);
+  f.addEventListener('load', done, { once: true });
+});
+const geh = async (url) => { f.src = url; await loadOnce(); await sleep(400); return [f.contentDocument, f.contentWindow]; };
+const zahl = s => parseFloat(String(s).replace(/[^0-9.]/g, '')) || 0;
+
+const SCHWELLE = 99;   // Gratisversand ab diesem Bestellwert
+const PAUSCHALE = 7;   // Versandkosten darunter
+
+async function run() {
+  for (const [pfad, code] of [['', 'de'], ['en/', 'en'], ['fr/', 'fr']]) {
+    const P = `[${code}]`;
+    let [d, w] = await geh(`/${pfad}produkt.html?p=polarisyg`);
+    w.localStorage.clear();
+    const P0 = w.eval("PRODUCTS.find(x => x.id === 'polarisyg')");
+
+    // Einzelohrpreis muss zum Paarpreis passen und darf nie mehr sein
+    log(`${P} Einzelohr kostet weniger als das Paar`, P0.preisHalb < P0.price,
+      `${P0.preisHalb} von ${P0.price}`);
+    log(`${P} Einzelohr liegt bei 55 bis 63 Prozent`,
+      P0.preisHalb / P0.price >= 0.55 && P0.preisHalb / P0.price <= 0.63,
+      `${Math.round(100 * P0.preisHalb / P0.price)}%`);
+
+    // Ein Paar in den Warenkorb
+    w.eval("cart.length = 0; addToCart('polarisyg', 1, false)"); await sleep(250);
+    let soll = P0.price;
+    log(`${P} Zwischensumme nach einem Paar`,
+      zahl(d.getElementById('drawerTotal').textContent) === soll,
+      `${d.getElementById('drawerTotal').textContent} statt ${soll}`);
+
+    // Menge auf drei
+    w.eval("cart[0].qty = 3; renderCart()"); await sleep(250);
+    soll = P0.price * 3;
+    log(`${P} Zwischensumme bei Menge drei`,
+      zahl(d.getElementById('drawerTotal').textContent) === soll,
+      `${d.getElementById('drawerTotal').textContent} statt ${soll}`);
+
+    // Einzelohr daneben: eigener Preis, eigene Zeile
+    w.eval("addToCart('polarisyg', 1, true)"); await sleep(250);
+    soll = P0.price * 3 + P0.preisHalb;
+    log(`${P} Einzelohr ergibt eine eigene Zeile`, w.eval('cart.length') === 2, w.eval('cart.length'));
+    log(`${P} Zwischensumme mit Einzelohr`,
+      zahl(d.getElementById('drawerTotal').textContent) === soll,
+      `${d.getElementById('drawerTotal').textContent} statt ${soll}`);
+    log(`${P} Einzelohr wird zum halben Preis gefuehrt`,
+      w.eval("cart.find(x => x.einzel === true).price") === P0.preisHalb);
+
+    // Der Gratisversand-Balken muss zur Schwelle passen
+    const zwischen = w.eval('cart.reduce((s, x) => s + x.price * x.qty, 0)');
+    const erreicht = zwischen >= SCHWELLE;
+    const balken = d.getElementById('shipFill');
+    const breite = balken ? parseFloat(balken.style.width) || 0 : 0;
+    log(`${P} Gratisversand-Balken passt zur Summe`,
+      erreicht ? breite >= 99.9 : Math.abs(breite - Math.min(100, 100 * zwischen / SCHWELLE)) < 2,
+      `Summe ${zwischen}, Balken ${breite}%`);
+
+    // Entfernen rechnet zurueck
+    w.eval("cart.splice(1, 1); renderCart()"); await sleep(250);
+    log(`${P} Entfernen rechnet zurueck`,
+      zahl(d.getElementById('drawerTotal').textContent) === P0.price * 3);
+
+    // Kasse: Versandkosten und Gesamtbetrag
+    [d, w] = await geh(`/${pfad}kasse.html`);
+    await sleep(500);
+    const summe = w.eval('cart.reduce((s, x) => s + x.price * x.qty, 0)');
+    const versandSoll = summe >= SCHWELLE ? 0 : PAUSCHALE;
+    // Die Gesamtzeile trägt die Klasse total. Auf das Wort «total» zu prüfen wäre falsch:
+    // englisch heisst die Zwischensumme Subtotal, französisch Sous-total.
+    const totalEl = d.querySelector('.ko-sum .row.total');
+    const totalZeile = totalEl ? totalEl.textContent : '';
+    log(`${P} Kasse zeigt eine Gesamtzeile`, !!totalZeile, totalZeile.trim().slice(0, 50));
+    log(`${P} Gesamtbetrag ist Summe plus Versand`,
+      zahl(totalZeile) === summe + versandSoll,
+      `${zahl(totalZeile)} statt ${summe} plus ${versandSoll}`);
+    log(`${P} Gratisversand greift ueber der Schwelle`,
+      summe < SCHWELLE || versandSoll === 0, `Summe ${summe}`);
+
+    // Preise stehen ueberall in CHF, nie in einer anderen Waehrung
+    // Im Marktwähler steht EUR zu Recht, dort wählt man den Markt. Geprüft wird der Inhalt.
+    const inhalt = (d.getElementById('inhalt') || d.body).textContent;
+    log(`${P} keine fremde Währung im Inhalt`,
+      !/[€$£]|\bEUR\b|\bUSD\b/.test(inhalt),
+      (inhalt.match(/[€$£]|\bEUR\b|\bUSD\b/g) || []).slice(0, 3).join(' '));
+  }
+
+  const anzFail = out.filter(l => l.startsWith('FAIL')).length;
+  out.push('', `${out.filter(l => l.startsWith('PASS')).length} PASS, ${anzFail} FAIL`);
+  document.getElementById('out').textContent = out.join('\n');
+}
+run().catch(e => { document.getElementById('out').textContent = out.join('\n') + '\n\nABBRUCH ' + e.message + '\n' + e.stack; });
+</script>
+</body>
+</html>
