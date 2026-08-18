@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Versand, Rückgabe und Widerruf bei Baqless. 30 Tage Zeit.">
+<meta name="description" content="Baqless Ohrringe aus Sterling Silber 925 mit Click-Lock Verschluss. Wasserfest, 30 Tage Rückgabe.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Versand &amp; Retouren</title>
+<title>Baqless · Produkt</title>
 <style>
 
 @font-face {
@@ -895,6 +895,132 @@ footer ul a:hover{color:var(--coral)}
 .add-btn{padding:12px 0}
 .col-label .arrow{width:44px; height:44px}
 
+
+/* ===== PDP ===== */
+.pdp{padding:118px var(--pad) 40px; max-width:1180px; margin:0 auto}
+.pdp-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start}
+@media(max-width:920px){.pdp-grid{grid-template-columns:1fr; gap:30px}
+  /* Grid-Elemente duerfen nicht breiter werden als ihre Spalte */
+  .pdp-grid > *{min-width:0}}
+
+.gal{position:sticky; top:96px}
+@media(max-width:920px){.gal{position:static}}
+.gal-main{position:relative; border-radius:26px; overflow:hidden; background:#fff; isolation:isolate;
+  box-shadow:12px 12px 0 var(--coral-tint); aspect-ratio:1/1}
+.gal-main img{width:100%; height:100%; object-fit:cover; display:block; transition:opacity .35s}
+/* Kein Blend-Modus auf dem Packshot: er faerbte das Metall in die Kollektionsfarbe */
+.gal-main.packshot img{mix-blend-mode:normal}
+.gal-main::after{content:''; position:absolute; width:46%; height:46%; border:2.5px solid rgba(255,255,255,.55);
+  border-radius:50%; right:-12%; bottom:-12%; pointer-events:none}
+.gal-wrap{position:relative}
+.gal-wrap::before{content:''; position:absolute; width:120px; height:120px; border-radius:50%;
+  background:var(--lav-tint); top:-34px; left:-40px; z-index:-1}
+.gal-main .tag{position:absolute; top:16px; left:16px; z-index:2}
+.gal-thumbs{display:flex; gap:12px; margin-top:16px}
+.gal-thumbs button{width:76px; height:76px; border-radius:16px; overflow:hidden; border:2px solid transparent;
+  padding:0; cursor:pointer; background:#fff; transition:border-color .25s, transform .25s}
+.gal-thumbs button img{width:100%; height:100%; object-fit:cover; display:block}
+.gal-thumbs button.active{border-color:var(--coral)}
+.gal-thumbs button:hover{transform:translateY(-2px)}
+
+.buy .eyebrow{margin-bottom:10px}
+.buy h1{font-family:var(--serif); font-weight:300; font-size:clamp(34px,4.6vw,52px); line-height:1.05; color:var(--charcoal)}
+.buy .variant-line{font-size:14.5px; color:var(--ink-soft); margin-top:6px}
+.buy .price-row{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin:22px 0 4px}
+.buy .price-big{font-family:var(--serif); font-size:42px; color:var(--charcoal); position:relative; display:inline-block; z-index:0; white-space:nowrap; flex:none}
+.buy .price-big::after{content:''; position:absolute; left:0; bottom:4px; width:100%; height:10px;
+  background:var(--coral-tint); z-index:-1; border-radius:3px}
+.buy .price-note{font-size:12.5px; color:var(--ink-soft)}
+.pills{display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 6px}
+.pills a{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:99px;
+  border:1.5px solid var(--warmgrey); font-size:13.5px; font-weight:500; color:var(--charcoal);
+  transition:border-color .25s, background .25s}
+.pills a.active{border-color:var(--coral); background:var(--coral-tint)}
+.pills a:hover{border-color:var(--coral)}
+.pills .dot{width:9px; height:9px; border-radius:50%}
+.buy-ctas{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:26px 0 8px}
+.buy-ctas .btn{justify-content:center; font-size:15px; padding:16px 20px; letter-spacing:.04em}
+#mainAdd{flex:2 1 240px}
+#saveBtn{flex:1 0 100%}
+@media(max-width:520px){.buy-ctas{flex-direction:column}}
+.usps{list-style:none; padding:18px 0 0; margin:14px 0 0; border-top:1px dashed var(--warmgrey);
+  display:grid; grid-template-columns:1fr 1fr; gap:10px 22px}
+.usps li{font-size:15px; color:#5c564e; display:flex; gap:9px; align-items:flex-start; line-height:1.5}
+.usps li::before{content:'✓'; color:var(--sage); font-weight:700}
+@media(max-width:520px){.usps{grid-template-columns:1fr}}
+
+.pay-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
+.pay-row .pp{border:1px solid #e3ddd2; border-radius:6px; padding:4px 10px; font-size:11px;
+  letter-spacing:.05em; font-weight:500; color:var(--ink-soft); background:#fff}
+.trust-row{font-size:12px; color:var(--ink-soft); margin-top:10px; letter-spacing:.02em}
+
+/* Paar oder Einzelohr: im echten japanischen Shop Standard, hier als Variantenachse */
+.halb{display:flex; gap:0; border:1.5px solid var(--warmgrey); border-radius:4px; overflow:hidden; margin:18px 0 4px}
+.halb button{
+  flex:1; background:none; border:none; cursor:pointer; font:inherit; font-size:13px; font-weight:600;
+  letter-spacing:.04em; color:var(--ink-soft); padding:11px 10px; display:flex; flex-direction:column; gap:2px;
+  transition:background .12s, color .12s;
+}
+.halb button + button{border-left:1.5px solid var(--warmgrey)}
+.halb button span{font-size:12px; font-weight:400; letter-spacing:0}
+.halb button.active{background:var(--navy); color:#fff}
+.halb-note{font-size:12.5px; color:var(--ink-soft); margin-top:2px}
+
+/* Verschluss-Erklaermodul: erklaert die Mechanik, die auf keiner echten Produktseite steht */
+.mech{margin:22px 0 4px; padding:18px 20px; background:var(--paper); border:1px solid #efe8dc; border-radius:8px}
+.mech h3{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); margin-bottom:14px}
+.mech-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.mech-step{display:flex; flex-direction:column; gap:8px}
+.mech-step svg{display:block; width:100%; max-width:120px; height:auto}
+.mech-step b{font-family:var(--sans); font-size:13px; font-weight:600; color:var(--charcoal)}
+.mech-step span{font-size:13px; line-height:1.45; color:#5c564e}
+.mech-note{margin-top:14px; font-size:13px; color:#5c564e}
+.mech-note a{color:var(--coral-deep); font-weight:600}
+@media(max-width:560px){.mech-steps{grid-template-columns:1fr; gap:16px}}
+
+/* Spec-Tabelle: die echten Shops liefern Masse auf 0.01mm, aber nie den Verschluss */
+table.spec{width:100%; border-collapse:collapse; margin:2px 0 14px; font-size:14px}
+table.spec th, table.spec td{text-align:left; padding:8px 0; border-bottom:1px solid #efe8dc; vertical-align:top}
+table.spec th{font-weight:500; color:var(--ink-soft); width:42%; font-size:13px}
+table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
+
+.notify-form{margin-top:14px; display:flex; flex-direction:column; gap:7px}
+.notify-form[hidden]{display:none}
+.notify-form label{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft)}
+.notify-row{display:flex; flex-wrap:wrap; gap:8px}
+.notify-row .btn{flex:1 1 auto; justify-content:center}
+.notify-row input{flex:1; min-width:0; border:1.5px solid #e3dccf; border-radius:4px; padding:11px 12px; font:inherit; font-size:15px; background:#fff}
+.notify-row input:focus{border-color:var(--navy)}
+.notify-note{font-size:12.5px; color:var(--ink-soft)}
+
+/* Groessenvergleich in Millimetern statt Raterei */
+.sizeviz{margin:4px 0 12px}
+.sizeviz svg{max-width:100%; height:auto}
+.sizeviz figcaption{font-size:12.5px; color:var(--ink-soft); margin-top:8px}
+.acc{margin-top:30px; border-top:1px solid #e8e2d8}
+.acc-item{border-bottom:1px solid #e8e2d8}
+.acc-item button{width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  background:none; border:none; cursor:pointer; font:inherit; text-align:left;
+  padding:17px 2px; font-size:14.5px; font-weight:500; color:var(--charcoal)}
+.acc-item button .plus{font-size:20px; color:var(--coral-deep); transition:transform .3s; line-height:1}
+.acc-item.open button .plus{transform:rotate(45deg)}
+.acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease}
+.acc-body p{font-size:15px; line-height:1.7; color:#5c564e; padding:0 2px 18px}
+.acc-body ol{padding:0 2px 18px 20px; font-size:15px; line-height:1.85; color:#5c564e}
+
+.cl-band{background:var(--navy); color:#fff; margin-top:70px}
+.cl-band .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:34px; padding:56px var(--pad)}
+@media(max-width:820px){.cl-band .wrap{grid-template-columns:1fr; gap:22px; padding:40px var(--pad)}}
+.cl-band b{display:block; font-family:var(--serif); font-size:30px; color:var(--coral); margin-bottom:6px}
+.cl-band h3{font-size:15px; margin-bottom:4px}
+.cl-band p{font-size:15px; color:rgba(250,247,242,.78); line-height:1.6}
+.cl-band .clb-head{grid-column:1/-1; display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap}
+.cl-band .clb-head h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,40px)}
+.cl-band .clb-head a{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--coral); font-weight:500}
+
+.xsell{padding:70px var(--pad) 90px; max-width:1180px; margin:0 auto; position:relative; overflow:hidden}
+.xsell > *{position:relative; z-index:2}
+.xsell h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,40px); color:var(--charcoal); margin-bottom:26px}
 </style>
 </head>
 <body class="page-light">
@@ -983,41 +1109,37 @@ footer ul a:hover{color:var(--coral)}
   </div>
 </div>
 
-<main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Versand &amp; Retouren</span></div>
-  <h1>Versand &amp; Retouren.</h1>
-  <p class="lead">30 Tage Zeit, klare Wege. So einfach wie der Klick.</p>
-
-  <h2>Versand</h2>
-  <p>Wir versenden aus der Schweiz und aus Japan, je nachdem, wo du bestellst:</p>
-  <ul>
-    <li>Schweiz, Deutschland, Österreich, Frankreich, Italien und Liechtenstein: Versand aus der Schweiz.</li>
-    <li>Übrige Länder: Versand aus Japan.</li>
-  </ul>
-  <p>Ab CHF 99 Bestellwert ist der Versand gratis. Versandkosten und Lieferzeiten für dein Land siehst du im Checkout. <span class="ph">[Konkrete Tarife und Laufzeiten werden vor dem Livegang ergänzt.]</span></p>
-
-  <h2>Zoll bei internationalen Lieferungen</h2>
-  <p>Die Einfuhrabgaben sind in der Versandgebühr enthalten. An der Tür kommt nichts dazu, und du bekommst keine Nachforderung vom Zoll. <span class="ph">[Für welche Länder das gilt, wird vor dem Livegang festgelegt.]</span></p>
-
-  <h2>Rückgabe</h2>
-  <p>Du hast 30 Tage ab Erhalt, um deine Bestellung zurückzugeben. Aus Hygienegründen gilt: ungetragen und in der Originalverpackung. So gehst du vor:</p>
-  <ol>
-    <li>Schreib uns kurz über das <a href="kontakt.html">Kontaktformular</a> oder an <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</li>
-    <li>Du bekommst von uns die Rücksendeadresse und ein Retourenlabel.</li>
-    <li>Sobald das Paket bei uns ist, erstatten wir dir den Kaufpreis auf dein ursprüngliches Zahlungsmittel. In der Regel innert 5 Arbeitstagen.</li>
-  </ol>
-
-  <h2>Umtausch</h2>
-  <p>Du willst eine andere Variante oder Farbe? Gib das bei deiner Rückmeldung einfach an. Wir reservieren dir das neue Paar, sobald deine Retoure unterwegs ist.</p>
-
-  <h2 id="widerruf">Widerruf vor dem Versand</h2>
-  <p>Du hast es dir anders überlegt, bevor dein Paket unterwegs ist? Schreib uns. Wir stornieren die Bestellung und erstatten dir den vollen Betrag sofort.</p>
-
-  <h2>Etwas stimmt nicht?</h2>
-  <p>Kaputt angekommen oder falsch geliefert? Das geht auf uns. Melde dich, wir schicken sofort Ersatz und kümmern uns um den Rest.</p>
-
-  <p class="legal-note">Entwurf für den Prototyp. Finale Konditionen, Tarife und Laufzeiten liefert Baqless vor dem Livegang.</p>
+<main class="pdp">
+  <div class="crumbs" role="navigation" aria-label="Breadcrumb" id="crumbs"></div>
+  <div class="pdp-grid">
+    <div class="gal">
+      <div class="gal-wrap">
+      <div class="gal-main" id="galMain"></div>
+      </div>
+      <div class="gal-thumbs" id="galThumbs"></div>
+    </div>
+    <div class="buy" id="buy"></div>
+  </div>
 </main>
+
+<section class="cl-band">
+  <div class="wrap">
+    <div class="clb-head">
+      <h2>Click-Lock. <em style="font-style:italic; color:var(--coral)">Ein Klick. Kein Zurück.</em></h2>
+      <a href="index.html#clicklock">Zur Demo →</a>
+    </div>
+    <div><b>01</b><h3>Einstecken</h3><p>Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</p></div>
+    <div><b>02</b><h3>Drehen</h3><p>Eine Vierteldrehung am Ohrring. Mehr braucht es nicht.</p></div>
+    <div><b>03</b><h3>Klick</h3><p>Der T-Anker rastet quer ein. Sitzt. Vergiss Rückteile.</p></div>
+  </div>
+</section>
+
+<section class="xsell">
+  <h2>Passt dazu.</h2>
+  <div class="rail" id="xsellRail"></div>
+</section>
+
+<div class="stickybar" id="stickybar"></div>
 
 <footer id="footer">
   <div class="foot-bubble" style="width:300px;height:300px;border:2px solid var(--coral);top:-90px;right:5%"></div>
@@ -1111,7 +1233,7 @@ const PRODUCTS = [{"id":"slice","group":"honesty-slice","name":"Honesty Slice","
 // Das Woerterbuch kommt aus src/i18n/<sprache>.json und wird beim Bau eingesetzt.
 // txt() heisst nicht t(), weil t innerhalb einiger Funktionen schon eine lokale
 // Variable ist und dort das Woerterbuch verdecken wuerde.
-const I18N = {"lang":"de","locale":"de-CH","basis":"","sprachen":[{"code":"de","name":"Deutsch","ordner":""},{"code":"en","name":"English","ordner":"en"},{"code":"fr","name":"Français","ordner":"fr"}],"t":{"einheit.pro_ohr":"pro Ohr","einheit.pro_paar":"pro Paar","stueck.ohr.eins":"{n} Ohr","stueck.ohr.viele":"{n} Ohren","stueck.paar.eins":"{n} Paar","stueck.paar.viele":"{n} Paare","variante.einzelohr":"Einzelohr"}};
+const I18N = {"lang":"en","locale":"en","basis":"../","sprachen":[{"code":"de","name":"Deutsch","ordner":""},{"code":"en","name":"English","ordner":"en"},{"code":"fr","name":"Français","ordner":"fr"}],"t":{}};
 function txt(schluessel, werte){
   let s = I18N.t[schluessel];
   if (s === undefined){ console.warn('i18n fehlt:', schluessel); return '[[' + schluessel + ']]'; }
@@ -1588,6 +1710,393 @@ document.querySelectorAll('[data-nlform]').forEach(form => form.addEventListener
   e.target.reset();
 }));
 
+
+// ---------- PDP ----------
+const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const param = new URLSearchParams(location.search).get('p');
+const P = byId[param] || (param ? null : PRODUCTS[0]);
+if (!P){
+  document.querySelector('.pdp').innerHTML = `
+    <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Nicht gefunden</span></div>
+    <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);margin:14px 0 12px">Dieses Paar gibt es nicht.</h1>
+    <p style="font-size:17px;line-height:1.65;color:#5c564e;max-width:48ch">Der Link führt zu einem Produkt, das wir nicht kennen. Vielleicht wurde es umbenannt oder ist aus dem Sortiment.</p>
+    <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-coral" href="kollektion.html">Alle Paare ansehen</a>
+      <a class="btn btn-ghost" href="index.html">Zur Startseite</a>
+    </div>`;
+  document.title = 'Baqless · Nicht gefunden';
+  document.getElementById('stickybar')?.remove();
+  throw new Error('Produkt nicht gefunden');
+}
+document.title = `Baqless · ${P.name} ${P.variant}`;
+track('view_item', { currency: 'CHF', value: P.price, items: [{ item_id: P.sku, item_name: `${P.name} ${P.variant}`, price: P.price }] });
+
+// Breadcrumbs
+document.getElementById('crumbs').innerHTML =
+  `<a href="index.html">Startseite</a><span class="sep">/</span>` +
+  `<a href="kollektion.html?c=${P.collection}">${P.collection}</a><span class="sep">/</span>` +
+  `<span>${P.name} ${P.variant}</span>`;
+
+// Galerie
+const galMain = document.getElementById('galMain');
+const galThumbs = document.getElementById('galThumbs');
+const views = [
+  {src: P.thumb, label: 'Produktansicht'},
+  {src: P.detail, label: 'Getragen'},
+];
+const COLLECTION_BG = {
+  Honesty: 'linear-gradient(150deg,#FFDFD6,#FFC0AF)',
+  Amity: 'linear-gradient(150deg,#E4DCF7,#CBBCEE)',
+  Embrace: 'linear-gradient(150deg,#D8EFE1,#B7E2C9)',
+};
+function setView(i){
+  galMain.innerHTML = (P.tag ? `<span class="tag ${P.tagCls}">${P.tag}</span>` : '') +
+    `<img src="${views[i].src}" alt="${P.name} ${P.variant}, ${views[i].label}">`;
+  galMain.classList.toggle('packshot', i === 0);
+  galMain.style.background = i === 0 ? (COLLECTION_BG[P.collection] || '#fff') : '#fff';
+  [...galThumbs.children].forEach((b, k) => b.classList.toggle('active', k === i));
+}
+galThumbs.innerHTML = views.map((v, i) =>
+  `<button aria-label="${v.label}"><img src="${v.src}" alt=""></button>`).join('');
+[...galThumbs.children].forEach((b, i) => b.addEventListener('click', () => setView(i)));
+setView(0);
+
+// Buybox
+const siblings = PRODUCTS.filter(x => x.group === P.group);
+const pillDots = {Gold:'#D9B14C', Silber:'#C9CDD4', Sea:'#4C8FD9', Black:'#222', White:'#F1EEE8', 'Neon Pink':'#FF3F8E'};
+document.getElementById('buy').innerHTML = `
+  <span class="eyebrow">${P.collection} Kollektion</span>
+  <h1>${P.name}</h1>
+  <div class="variant-line">${P.variant} · Click-Lock · ${P.sku}</div>
+  ${P.lager === 'ausverkauft' ? `<div class="ausverkauft-hinweis">
+    <b>Zurzeit ausverkauft.</b> Wir fertigen von Hand, darum dauert es manchmal.
+    <form id="notifyForm" class="notify-form" hidden>
+      <label for="notifyMail">Deine E-Mail, dann melden wir uns</label>
+      <div class="notify-row">
+        <input type="email" id="notifyMail" placeholder="deine@mail.ch" required>
+        <button class="btn btn-navy" type="submit">Eintragen</button>
+      </div>
+      <span class="notify-note">Nur für diese eine Meldung, kein Newsletter.</span>
+    </form>
+  </div>` : ''}
+  <div class="price-row">
+    <span class="price-big">CHF ${P.price}</span>
+    <span class="price-note">inkl. Click-Lock. Rückteile gibt's keine.</span>
+  </div>
+  ${siblings.length > 1 ? `
+  <div class="pills" aria-label="Variante wählen">
+    ${siblings.map(s => `<a href="produkt.html?p=${s.id}" class="${s.id === P.id ? 'active' : ''}">
+      <span class="dot" style="background:${pillDots[s.variant] || 'var(--warmgrey)'}"></span>${s.variant}</a>`).join('')}
+  </div>` : ''}
+  ${P.halb ? `
+  <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="Paar oder Einzelohr">
+    <button type="button" class="active" data-einzelset="0" aria-pressed="true">Paar<span>CHF ${P.price}</span></button>
+    <button type="button" data-einzelset="1" aria-pressed="false">Einzelohr<span>CHF ${P.preisHalb}</span></button>
+  </div>
+  <div class="halb-note">Einzeln fürs zweite Loch oder zum Kombinieren mit einem anderen Paar.</div>` : ''}
+  <div class="buy-ctas">
+    <div class="qty-inline" aria-label="Menge">
+      <button id="qtyMinus" aria-label="Menge verringern">−</button>
+      <span class="qv" id="qtyVal">1</span>
+      <button id="qtyPlus" aria-label="Menge erhöhen">+</button>
+    </div>
+    ${P.lager === 'ausverkauft'
+      ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">Benachrichtige mich</button>`
+      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>`}
+    <button class="btn btn-ghost" id="saveBtn">Merken</button>
+  </div>
+  <div class="pay-row" aria-label="Zahlarten und Sicherheit">
+    <span class="pp">TWINT</span><span class="pp">VISA</span><span class="pp">Mastercard</span><span class="pp">Amex</span><span class="pp">PayPal</span><span class="pp">Apple Pay</span><span class="pp">Google Pay</span>
+  </div>
+  <div class="trust-row">Entwickelt in der Schweiz, von Hand gefertigt · Sterling Silber 925 · 30 Tage Rückgabe</div>
+  <div class="mech">
+    <h3>So hält er ohne Rückteil</h3>
+    <div class="mech-steps">
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="29" y="5" width="6" height="30" rx="3" fill="#FF7A6A"/>
+        </svg>
+        <b>Einstecken</b>
+        <span>Der T-förmige Stift steht längs und gleitet wie ein normaler Stecker durchs Ohrloch.</span>
+      </div>
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="30" y="7" width="4" height="26" rx="2" fill="#EFE4DA"/>
+          <path d="M32 3.5A16.5 16.5 0 0 1 48.5 20" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="m43.5 15 5.5 5.5-6 4.5" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <b>Vierteldrehung</b>
+        <span>Eine kleine Drehung am Ohrring, mit einer Hand, ohne Spiegel.</span>
+      </div>
+      <div class="mech-step">
+        <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
+          <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <rect x="15" y="17" width="34" height="6" rx="3" fill="#37B369"/>
+        </svg>
+        <b>Sitzt</b>
+        <span>Der Anker steht jetzt quer hinter dem Ohrläppchen. Er kann nicht mehr zurück.</span>
+      </div>
+    </div>
+    <div class="mech-note">Die Klemmkraft justierst du selbst, indem du das gedrehte Stiftteil verschiebst. <a href="index.html#clicklock">Mechanik ausprobieren</a></div>
+  </div>
+  <ul class="usps">
+    <li>Wasserfest. Duschen, Sport, Meer.</li>
+    <li>Sterling Silber 925</li>
+    <li>Gratisversand ab CHF 99, sonst CHF 7</li>
+    <li>Lieferung in 2 bis 4 Werktagen</li>
+  </ul>
+  <div class="acc" id="acc">
+    <div class="acc-item open"><button>Beschreibung<span class="plus">+</span></button>
+      <div class="acc-body"><p>${P.desc}</p></div></div>
+    <div class="acc-item"><button>Material &amp; Masse<span class="plus">+</span></button>
+      <div class="acc-body">
+        <table class="spec">
+          <tr><th>Material</th><td>${P.materials}</td></tr>
+          <tr><th>Stift</th><td>Chirurgischer Edelstahl, der einzige Teil aus Stahl</td></tr>
+          <tr><th>Masse</th><td>${P.masse || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
+          <tr><th>Gewicht</th><td>${P.gewicht || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
+          <tr><th>Herkunft</th><td>Entwickelt in der Schweiz, von Hand gefertigt</td></tr>
+        </table>
+      </div></div>
+    <div class="acc-item"><button>Grösse &amp; Passform<span class="plus">+</span></button>
+      <div class="acc-body" id="accSize"></div></div>
+    <div class="acc-item"><button>Click-Lock &amp; Handhabung<span class="plus">+</span></button>
+      <div class="acc-body"><ol><li>Einstecken. Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</li><li>Vierteldrehung am Ohrring.</li><li>Klick. Der T-Anker rastet quer ein. Sitzt, bis du ihn selbst löst.</li></ol><p>Schliesst mit einer Hand. Ohne Spiegel, ohne Fummeln hinterm Ohr.</p></div></div>
+    <div class="acc-item"><button>Pflege<span class="plus">+</span></button>
+      <div class="acc-body"><p>${P.care}</p></div></div>
+    <div class="acc-item"><button>Versand &amp; Retouren<span class="plus">+</span></button>
+      <div class="acc-body"><p>Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 99. 30 Tage Rückgaberecht: ungetragen, Originalverpackung genügt.</p></div></div>
+  </div>`;
+
+// Paar oder Einzelohr umschalten (in Shopify: Variantenwechsel)
+const halbToggle = document.getElementById('halbToggle');
+if (halbToggle){
+  // Die Variante gehoert in die Adresse, sonst laesst sich ein Einzelohr nicht teilen
+  const setzeUrl = einzel => {
+    const u = new URL(location);
+    einzel ? u.searchParams.set('v', 'einzel') : u.searchParams.delete('v');
+    history.replaceState(null, '', u);
+  };
+  halbToggle.addEventListener('click', e => {
+    const b = e.target.closest('[data-einzelset]');
+    if (!b) return;
+    const einzel = b.dataset.einzelset === '1';
+    halbToggle.dataset.einzel = einzel ? '1' : '0';
+    [...halbToggle.children].forEach(x => {
+      x.classList.toggle('active', x === b);
+      x.setAttribute('aria-pressed', x === b);
+    });
+    const preis = einzel ? P.preisHalb : P.price;
+    document.querySelector('.price-big').textContent = 'CHF ' + preis;
+    const add = document.getElementById('mainAdd');
+    if (add && add.dataset.add){
+      add.dataset.einzel = einzel ? '1' : '0';
+      add.textContent = 'In den Warenkorb · CHF ' + preis;
+    }
+    // Die mobile Kaufleiste ist derselbe Kauf, also muss sie dasselbe zeigen und tun
+    const sbAdd = document.querySelector('#stickybar [data-add]');
+    const sbPreis = document.querySelector('#stickybar .sb-meta span');
+    if (sbAdd) sbAdd.dataset.einzel = einzel ? '1' : '0';
+    if (sbPreis) sbPreis.textContent = 'CHF ' + preis;
+    document.querySelector('.variant-line').textContent =
+      `${P.variant}${einzel ? ' · Einzelohr' : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
+    setzeUrl(einzel);
+  });
+}
+
+// Beim Laden die Variante aus der Adresse uebernehmen
+if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
+  document.querySelector('#halbToggle button[data-einzelset="1"]')?.click();
+}
+
+// Groessenvergleich: echte Masse gegen einen Millimeter-Massstab, statt Raterei am Foto
+(function sizeViz(){
+  const box = document.getElementById('accSize');
+  if (!box) return;
+  const m = P.masseMm;
+  const hinweis = `<p>Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Miss im Zweifel die Dicke deines Ohrläppchens und <a href="kontakt.html">frag uns kurz</a>, wir sagen dir ehrlich, ob es passt.</p>`;
+  if (!m){
+    box.innerHTML = `<p><span class="ph">[Grössengrafik folgt, sobald die Masse dieses Modells vorliegen.]</span></p>` + hinweis;
+    return;
+  }
+  const b = m.b, h = m.h;
+  // Eine Einheit im viewBox ist genau ein Millimeter, und die Breite wird in
+  // Millimetern gesetzt. Damit zeichnet der Browser massstabsgetreu, statt dass
+  // wir Pixel je Millimeter raten. Bildschirme weichen davon leicht ab, das steht
+  // in der Bildunterschrift, deshalb behaupten wir keine Originalgrösse.
+  const skala = Math.max(20, Math.ceil(Math.max(b, h) + 3));
+  const padL = 2, padT = 3, achse = padT + Math.max(h, 10) + 5;
+  const hoehe = achse + 6;
+  const ticks = Array.from({length: skala + 1}, (_, i) => {
+    const lang = i % 5 === 0;
+    const x = padL + i;
+    return `<line x1="${x}" y1="${achse}" x2="${x}" y2="${achse - (lang ? 2.4 : 1.2)}" stroke="#BFB8B0" stroke-width=".25"/>` +
+      (lang ? `<text x="${x}" y="${achse + 4}" font-size="2.6" fill="#6b655c" text-anchor="middle">${i}</text>` : '');
+  }).join('');
+  box.innerHTML = `
+    <figure class="sizeviz">
+      <svg width="${padL * 2 + skala}mm" viewBox="0 0 ${padL * 2 + skala} ${hoehe}" role="img"
+           aria-label="${P.name} ${P.variant} misst ${b} auf ${h} Millimeter, gezeigt an einem Millimeter-Massstab">
+        <rect x="${padL}" y="${padT}" width="${b}" height="${h}" rx="${Math.min(b, h) * .28}"
+              fill="#FFE3DE" stroke="#C93B27" stroke-width=".3"/>
+        <text x="${padL + b + 3}" y="${padT + 3}" font-size="3" fill="#4a453e">${b} × ${h} mm</text>
+        <line x1="${padL}" y1="${achse}" x2="${padL + skala}" y2="${achse}" stroke="#BFB8B0" stroke-width=".3"/>
+        ${ticks}
+        <text x="${padL + skala}" y="${achse - 3.4}" font-size="2.6" fill="#6b655c" text-anchor="end">Millimeter</text>
+      </svg>
+      <figcaption>${P.name} ${P.variant} massstabsgetreu neben einem Millimeter-Massstab. Je nach Bildschirm weicht die Darstellung etwas ab, die Zahlen sind die verbindliche Angabe.</figcaption>
+    </figure>` + hinweis;
+})();
+
+// Akkordeon
+document.querySelectorAll('.acc-item').forEach(item => {
+  const body = item.querySelector('.acc-body');
+  const sync = () => { body.style.maxHeight = item.classList.contains('open') ? body.scrollHeight + 'px' : '0'; };
+  const knopf = item.querySelector('button');
+  knopf.setAttribute('aria-expanded', item.classList.contains('open'));
+  knopf.addEventListener('click', () => {
+    item.classList.toggle('open');
+    knopf.setAttribute('aria-expanded', item.classList.contains('open'));
+    sync();
+  });
+  sync();
+});
+const saveBtn = document.getElementById('saveBtn');
+const syncMerk = () => { saveBtn.textContent = merkliste.includes(P.id) ? 'Gemerkt' : 'Merken'; };
+syncMerk();
+saveBtn.addEventListener('click', () => {
+  const neu = merkeUm(P.id);
+  syncMerk();
+  toast(neu
+    ? `<span class="tick">✓</span><span><b>Gemerkt.</b> ${P.name} ${P.variant} wartet auf dich.</span>`
+    : `<span class="tick">i</span><span><b>Entfernt.</b> ${P.name} ${P.variant} ist nicht mehr gemerkt.</span>`);
+});
+
+// Cross-Sell: andere Produkte (max 4, andere Gruppe zuerst)
+const others = PRODUCTS.filter(x => x.group !== P.group).slice(0, 4);
+document.getElementById('xsellRail').innerHTML = others.map(p => `
+  <article class="card" data-id="${p.id}">
+    <div class="card-img" data-flip>
+      ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
+      <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+      <img class="detail" src="${p.detail}" alt="" loading="lazy">
+    </div>
+    <div class="card-meta">
+      <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+      <span class="price">CHF ${p.price}</span>
+    </div>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+  </article>`).join('');
+document.getElementById('xsellRail').addEventListener('click', e => {
+  if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
+  const a = e.target.closest('article');
+  if (a) location.href = 'produkt.html?p=' + a.dataset.id;
+});
+
+// ---------- V3: Menge ----------
+const qtyVal = document.getElementById('qtyVal');
+document.getElementById('qtyPlus').addEventListener('click', () => qtyVal.textContent = Math.min(+qtyVal.textContent + 1, 9));
+document.getElementById('qtyMinus').addEventListener('click', () => qtyVal.textContent = Math.max(+qtyVal.textContent - 1, 1));
+
+// ---------- V3: Bild-Zoom ----------
+galMain.addEventListener('click', e => {
+  const img = galMain.querySelector('img');
+  if (!img) return;
+  const r = galMain.getBoundingClientRect();
+  img.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`;
+  galMain.classList.toggle('zoom');
+});
+
+// Benachrichtigung: ohne Adresse kein Versprechen
+const notifyForm = document.getElementById('notifyForm');
+if (notifyForm){
+  notifyForm.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const mail = document.getElementById('notifyMail');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())){
+      mail.setAttribute('aria-invalid', 'true');
+      mail.focus();
+      return;
+    }
+    track('generate_lead', { method: 'back_in_stock', item_id: P.sku });
+    notifyForm.innerHTML = `<span class="notify-note"><b>Eingetragen.</b> Wir schreiben dir an ${mail.value.trim()}, sobald ${P.name} zurück ist. <span class="ph">[Im Prototyp wird nichts versendet.]</span></span>`;
+  });
+}
+
+// ---------- V3: Sticky-Kaufleiste (mobil) ----------
+const sb = document.getElementById('stickybar');
+sb.innerHTML = `
+  <img src="${P.thumb}" alt="">
+  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? 'Ausverkauft' : 'CHF ' + P.price}</span></div>
+  ${P.lager === 'ausverkauft'
+    ? `<button class="btn btn-navy" data-notify="${P.id}">Benachrichtigen</button>`
+    : `<button class="btn btn-coral" data-add="${P.id}" data-einzel="0">In den Warenkorb</button>`}`;
+const ctasEl = document.querySelector('.buy-ctas');
+function updateSticky(){
+  const show = ctasEl.getBoundingClientRect().bottom < 0;
+  sb.classList.toggle('show', show);
+  document.body.style.paddingBottom = show ? 'calc(70px + env(safe-area-inset-bottom))' : '';
+}
+addEventListener('scroll', updateSticky, {passive:true});
+updateSticky();
+
+// ---------- V3: Strukturierte Daten (SEO/GEO-Blaupause) ----------
+const ld = document.createElement('script');
+ld.type = 'application/ld+json';
+ld.textContent = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'Product',
+  name: `${P.name} ${P.variant}`, sku: P.sku, brand: {'@type': 'Brand', name: 'Baqless'},
+  description: P.desc, category: `Ohrringe > ${P.collection}`,
+  offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: P.lager === 'ausverkauft' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+    shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 99, currency: 'CHF'}}}
+});
+document.head.appendChild(ld);
+const ldBc = document.createElement('script');
+ldBc.type = 'application/ld+json';
+ldBc.textContent = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    {'@type': 'ListItem', position: 1, name: 'Startseite', item: 'index.html'},
+    {'@type': 'ListItem', position: 2, name: P.collection, item: `kollektion.html?c=${P.collection}`},
+    {'@type': 'ListItem', position: 3, name: `${P.name} ${P.variant}`}
+  ]
+});
+document.head.appendChild(ldBc);
+
+// ---------- V3: Zuletzt angesehen ----------
+let seen = [];
+try { seen = JSON.parse(localStorage.getItem('baqless_seen') || '[]'); } catch(e) {}
+const seenPrev = seen.filter(id => id !== P.id && byId[id]);
+seen = [P.id, ...seenPrev].slice(0, 6);
+try { localStorage.setItem('baqless_seen', JSON.stringify(seen)); } catch(e) {}
+if (seenPrev.length){
+  const sec = document.createElement('section');
+  sec.className = 'seen';
+  sec.innerHTML = `<h2>Zuletzt angesehen.</h2><div class="rail" id="seenRail"></div>`;
+  document.querySelector('.xsell').after(sec);
+  document.getElementById('seenRail').innerHTML = seenPrev.slice(0, 4).map(id => {
+    const p = byId[id];
+    return `
+    <article class="card" data-id="${p.id}">
+      <div class="card-img" data-flip>
+        <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
+        <img class="detail" src="${p.detail}" alt="" loading="lazy">
+      </div>
+      <div class="card-meta">
+        <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
+        <span class="price">CHF ${p.price}</span>
+      </div>
+      <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    </article>`;
+  }).join('');
+  document.getElementById('seenRail').addEventListener('click', e => {
+    if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
+    const a = e.target.closest('article');
+    if (a) location.href = 'produkt.html?p=' + a.dataset.id;
+  });
+}
 </script>
 </body>
 </html>

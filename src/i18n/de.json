@@ -1,0 +1,9 @@
+{
+  "einheit.pro_ohr": "pro Ohr",
+  "einheit.pro_paar": "pro Paar",
+  "stueck.ohr.eins": "{n} Ohr",
+  "stueck.ohr.viele": "{n} Ohren",
+  "stueck.paar.eins": "{n} Paar",
+  "stueck.paar.viele": "{n} Paare",
+  "variante.einzelohr": "Einzelohr"
+}

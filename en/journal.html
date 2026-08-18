@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Versand, Rückgabe und Widerruf bei Baqless. 30 Tage Zeit.">
+<meta name="description" content="Das Baqless Journal: sechs Menschen, die ihre Ohrringe nicht mehr abnehmen. Aus Sport, Musik, Handel und Handwerk.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Versand &amp; Retouren</title>
+<title>Baqless · Journal</title>
 <style>
 
 @font-face {
@@ -895,6 +895,95 @@ footer ul a:hover{color:var(--coral)}
 .add-btn{padding:12px 0}
 .col-label .arrow{width:44px; height:44px}
 
+
+/* ============ Journal ============ */
+
+/* Kopf: ruhiges Magazin statt lautem Hero */
+.jhead{padding:clamp(118px,13vw,178px) var(--pad) clamp(40px,5vw,62px); position:relative; overflow:hidden}
+.jhead .in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
+.jhead .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--coral-deep)}
+.jhead h1{font-size:clamp(40px,7vw,88px); line-height:.99; margin:16px 0 0; max-width:16ch}
+.jhead h1 em{font-style:italic; color:var(--coral-deep)}
+.jhead .lead{margin-top:24px; max-width:56ch; font-size:17.5px; line-height:1.68; color:#5c564e}
+.jhead .meta{margin-top:30px; padding-top:14px; border-top:1px solid rgba(11,29,63,.14);
+  display:flex; flex-wrap:wrap; gap:8px 26px; font-size:12px; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-soft)}
+.jhead .ring{position:absolute; right:-90px; top:60px; width:340px; height:340px; border-radius:50%;
+  border:1px solid rgba(255,122,106,.4); pointer-events:none}
+@media(max-width:700px){.jhead .ring{width:210px; height:210px; right:-80px; top:96px}}
+
+/* Aufmacher */
+.feature{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(56px,7vw,90px);
+  display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(26px,4vw,60px); align-items:start}
+.fquote{background:var(--coral-tint); border-radius:8px; padding:clamp(28px,3.4vw,44px); position:relative; overflow:hidden}
+.fquote::after{content:''; position:absolute; width:230px; height:230px; border-radius:50%;
+  border:1px solid rgba(201,59,39,.18); right:-96px; bottom:-116px}
+.fquote .mark{font-family:var(--serif); font-size:76px; line-height:.5; color:rgba(201,59,39,.3); display:block; height:34px}
+.fquote blockquote{font-family:var(--serif); font-style:italic; font-weight:300;
+  font-size:clamp(26px,2.9vw,38px); line-height:1.24; color:var(--navy); position:relative}
+.fquote .attr{margin-top:22px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral-deep); position:relative}
+.fbody .jtag{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+.fbody h2{font-size:clamp(29px,3.5vw,43px); margin:10px 0 8px}
+.fbody .role{font-size:14px; line-height:1.6; color:var(--ink-soft); max-width:52ch}
+.fbody p:not(.role):not(.jsrc){margin-top:16px; font-size:16.5px; line-height:1.68; color:#4a453e; max-width:56ch}
+@media(max-width:860px){.feature{grid-template-columns:1fr}}
+
+/* Befunde */
+.befunde{background:var(--navy); color:var(--ground); padding:clamp(58px,7.5vw,100px) var(--pad); position:relative; overflow:hidden}
+.befunde-in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
+.befunde .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+.befunde h2{font-size:clamp(28px,3.7vw,46px); color:var(--ground); margin:12px 0 10px; max-width:20ch}
+.befunde .sub{font-size:15.5px; line-height:1.65; color:rgba(250,247,242,.7); max-width:62ch}
+.blist{margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(30px,5vw,80px)}
+.bfind{display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:baseline;
+  padding:21px 0; border-top:1px solid rgba(217,193,160,.22)}
+.bfind .n{font-family:var(--serif); font-weight:300; font-size:38px; line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; white-space:nowrap}
+.bfind .n i{font-family:var(--sans); font-style:normal; font-size:12.5px; color:rgba(217,193,160,.55)}
+.bfind h3{font-family:var(--sans); font-size:16px; font-weight:600; color:#fff; line-height:1.35; margin-bottom:5px}
+.bfind p{font-size:14px; line-height:1.55; color:rgba(250,247,242,.62)}
+@media(max-width:800px){.blist{grid-template-columns:1fr}}
+
+/* Weitere Porträts */
+.jsec{max-width:1180px; margin:0 auto; padding:clamp(56px,7vw,92px) var(--pad) clamp(18px,3vw,32px)}
+.jsec .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--coral-deep)}
+.jsec h2{font-size:clamp(27px,3.3vw,41px); margin:12px 0 0}
+.jgrid{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(46px,6vw,80px);
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(22px,2.6vw,34px)}
+.jgrid .jcard{display:flex; flex-direction:column}
+.jcard .cover{border-radius:8px; padding:26px 24px 28px; min-height:184px;
+  display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden}
+.jcard .cover::after{content:''; position:absolute; width:150px; height:150px; border-radius:50%;
+  border:1px solid rgba(11,29,63,.14); right:-58px; top:-64px}
+.jcard .cover .cl{font-family:var(--serif); font-weight:300; font-size:23.5px; line-height:1.22; color:var(--navy); position:relative}
+.jgrid .jcard:nth-child(4n+1) .cover{background:var(--sage-tint)}
+.jgrid .jcard:nth-child(4n+2) .cover{background:var(--lav-tint)}
+.jgrid .jcard:nth-child(4n+3) .cover{background:#F3E7D6}
+.jgrid .jcard:nth-child(4n+4) .cover{background:var(--coral-tint)}
+.jcard .jtag{margin-top:18px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+.jcard h3{font-family:var(--serif); font-weight:400; font-size:25px; line-height:1.12; margin:7px 0 6px}
+.jcard .role{font-size:13.5px; line-height:1.55; color:var(--ink-soft)}
+.jcard p:not(.role):not(.jsrc){margin-top:13px; font-size:15px; line-height:1.62; color:#5c564e}
+.jsrc{margin-top:auto; padding-top:14px; font-size:12px; color:var(--ink-soft)}
+.jgrid .jsrc{margin-top:16px; padding-top:12px; border-top:1px solid rgba(11,29,63,.1)}
+@media(max-width:900px){.jgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.jgrid{grid-template-columns:1fr}}
+
+/* Zeitleiste */
+.zeit{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(50px,6vw,84px)}
+.zeit .intro{font-size:16px; line-height:1.68; color:#5c564e; max-width:60ch; margin:14px 0 26px}
+.zeile{display:grid; grid-template-columns:130px 1fr; gap:clamp(16px,3vw,40px); padding:20px 0; border-top:1px solid rgba(11,29,63,.12)}
+.zeile time{font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--coral-deep); font-variant-numeric:tabular-nums; padding-top:3px}
+.zeile b{display:block; font-family:var(--sans); font-size:16px; font-weight:600; margin-bottom:5px}
+.zeile span{font-size:15px; line-height:1.6; color:#5c564e}
+@media(max-width:600px){.zeile{grid-template-columns:1fr; gap:6px}}
+
+.hinweis{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(60px,7vw,96px)}
+.hinweis div{border:1px dashed rgba(125,111,214,.55); border-radius:8px; padding:20px 22px;
+  font-size:13.5px; line-height:1.65; color:#5c564e; background:rgba(125,111,214,.05); max-width:78ch}
+.jcta{text-align:center; padding:clamp(64px,8vw,112px) var(--pad); background:var(--paper)}
+.jcta h2{font-family:var(--serif); font-weight:300; font-size:clamp(30px,4.2vw,52px); margin:12px 0 28px}
+.jcta .btn + .btn{margin-left:12px}
+@media(max-width:560px){.jcta .btn{display:flex; justify-content:center; margin:0 0 12px}.jcta .btn + .btn{margin-left:0}}
 </style>
 </head>
 <body class="page-light">
@@ -983,40 +1072,130 @@ footer ul a:hover{color:var(--coral)}
   </div>
 </div>
 
-<main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Versand &amp; Retouren</span></div>
-  <h1>Versand &amp; Retouren.</h1>
-  <p class="lead">30 Tage Zeit, klare Wege. So einfach wie der Klick.</p>
+<header class="jhead">
+  <div class="ring" aria-hidden="true"></div>
+  <div class="in">
+    <span class="kick">Journal</span>
+    <h1>Sechs Frauen, die sie <em>nicht mehr abnehmen.</em></h1>
+    <p class="lead">Wir haben nicht nach Bewertungen gesucht, sondern nach Menschen, die diese Ohrringe seit Jahren tragen. Herausgekommen ist etwas Besseres als Sterne: sechs Personen, die unabhängig voneinander dasselbe erzählen.</p>
+    <div class="meta"><span>Sechs Porträts</span><span>2022 bis 2025</span><span>Sport, Musik, Handel, Handwerk</span></div>
+  </div>
+</header>
 
-  <h2>Versand</h2>
-  <p>Wir versenden aus der Schweiz und aus Japan, je nachdem, wo du bestellst:</p>
-  <ul>
-    <li>Schweiz, Deutschland, Österreich, Frankreich, Italien und Liechtenstein: Versand aus der Schweiz.</li>
-    <li>Übrige Länder: Versand aus Japan.</li>
-  </ul>
-  <p>Ab CHF 99 Bestellwert ist der Versand gratis. Versandkosten und Lieferzeiten für dein Land siehst du im Checkout. <span class="ph">[Konkrete Tarife und Laufzeiten werden vor dem Livegang ergänzt.]</span></p>
+<main>
+  <article class="feature jcard" id="wako">
+    <div class="fquote">
+      <span class="mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>«365 Tage im Jahr unverzichtbar in meinem Leben.»</blockquote>
+      <div class="attr">Taeko Wako, Beams</div>
+    </div>
+    <div class="fbody">
+      <span class="jtag">Aufmacher · Handel · 2024</span>
+      <h2>Die Frau, die Schmuck beruflich beurteilt.</h2>
+      <p class="role">Verkaufsprofi und Style Consultant bei Beams in Shonan. Eröffnungsteam von fünf Filialen, danach Einkäuferin. Läuferin und neu auch Trailrunnerin.</p>
+      <p>Sie ist die Einzige der sechs, die Schmuck von Berufs wegen bewertet, und sie hat Baqless in ihre eigene Kuratierung aufgenommen. Getragen wird rund um die Uhr, auch beim Duschen und Schlafen.</p>
+      <p>Klassische Stecker gingen ihr verloren oder blieben im Winter am Schal hängen. Genau deshalb hat sie der Verzicht auf das Rückteil überzeugt. Zwischen Job und Alltag fällt der Aufwand für Schmuck damit komplett weg, und als Modehändlerin will sie auch beim Sport gepflegt aussehen.</p>
+      <p class="jsrc">Quelle: Baqless Journal Japan, Porträt vom 9. Juli 2024</p>
+    </div>
+  </article>
 
-  <h2>Zoll bei internationalen Lieferungen</h2>
-  <p>Die Einfuhrabgaben sind in der Versandgebühr enthalten. An der Tür kommt nichts dazu, und du bekommst keine Nachforderung vom Zoll. <span class="ph">[Für welche Länder das gilt, wird vor dem Livegang festgelegt.]</span></p>
+  <section class="befunde">
+    <div class="bg-bubble" style="width:320px;height:320px;background:var(--coral);top:-130px;right:5%"></div>
+    <div class="bg-bubble" style="width:160px;height:160px;border:2px solid var(--gold);bottom:-56px;left:7%"></div>
+    <div class="befunde-in">
+      <span class="kick">Sechs Befunde</span>
+      <h2>Was sie unabhängig voneinander sagen.</h2>
+      <p class="sub">Keine Umfrage und keine Kampagne: sechs Porträts, entstanden zwischen 2022 und 2025, unabhängig voneinander geführt. Die Zahl nennt, wie viele der sechs den Punkt von sich aus ansprechen.</p>
+      <div class="blist">
+        <div class="bfind"><span class="n">4<i>/6</i></span><div><h3>Man vergisst, dass man sie trägt</h3><p>Eine Teemeisterin merkt es erst im Spiegel, nach dem Anlegen des Kimonos.</p></div></div>
+        <div class="bfind"><span class="n">4<i>/6</i></span><div><h3>Kein Verschluss heisst kein Verlust</h3><p>Kein Nachfassen mehr, ob noch beide dran sind. Nichts, was am Schal hängen bleibt.</p></div></div>
+        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>Durchgehend anbehalten</h3><p>Beim Duschen, beim Schlafen, in der Badewanne.</p></div></div>
+        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>Hält unter Extrembedingungen</h3><p>Ein 100-Meilen-Rennen. Trailrunning. Camping.</p></div></div>
+        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>Passt zu allem</h3><p>Weder gross noch klein, darum morgens ohne Zögern greifbar.</p></div></div>
+        <div class="bfind"><span class="n">1<i>/6</i></span><div><h3>Robust im Dauerbetrieb</h3><p>Auch die Creolen verbiegen sich nicht.</p></div></div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Rückgabe</h2>
-  <p>Du hast 30 Tage ab Erhalt, um deine Bestellung zurückzugeben. Aus Hygienegründen gilt: ungetragen und in der Originalverpackung. So gehst du vor:</p>
-  <ol>
-    <li>Schreib uns kurz über das <a href="kontakt.html">Kontaktformular</a> oder an <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</li>
-    <li>Du bekommst von uns die Rücksendeadresse und ein Retourenlabel.</li>
-    <li>Sobald das Paket bei uns ist, erstatten wir dir den Kaufpreis auf dein ursprüngliches Zahlungsmittel. In der Regel innert 5 Arbeitstagen.</li>
-  </ol>
+  <div class="jsec">
+    <span class="kick">Die Porträts</span>
+    <h2>Fünf weitere Leben, derselbe Verschluss.</h2>
+  </div>
+  <div class="jgrid">
+    <article class="jcard" id="nakajima">
+      <div class="cover"><span class="cl">Sie trug sie durch ein 100&#8209;Meilen&#8209;Rennen und vergass sie unterwegs.</span></div>
+      <span class="jtag">Sport · 2024</span>
+      <h3>Yuri Nakajima</h3>
+      <p class="role">Ultramarathon-Läuferin aus Tsukuba. 300 bis 450 Kilometer im Monat, vier absolvierte 100-Meilen-Rennen. Hat ihren Beruf selbst erfunden und benannt.</p>
+      <p>An der Verpflegungsstelle kann sie sich bedenkenlos hinlegen. Bei normalen Steckern fasste sie ständig nach, ob noch beide dran sind. Ihr Urteil zur Haltbarkeit fällt nüchtern aus: auffallend robust, selbst die Creolen verbiegen sich nicht.</p>
+      <p class="jsrc">Baqless Journal Japan, 8. März 2024</p>
+    </article>
 
-  <h2>Umtausch</h2>
-  <p>Du willst eine andere Variante oder Farbe? Gib das bei deiner Rückmeldung einfach an. Wir reservieren dir das neue Paar, sobald deine Retoure unterwegs ist.</p>
+    <article class="jcard" id="halim">
+      <div class="cover"><span class="cl">Sie nimmt sie gar nicht mehr ab, bis in die Badewanne.</span></div>
+      <span class="jtag">Musik · 2025</span>
+      <h3>Lisa Halim</h3>
+      <p class="role">Singer-Songwriterin mit Major-Debut 2007, Surferin.</p>
+      <p>Kleine, schlichte Formen trägt sie am liebsten, das Funkeln des Zirkonia mag sie trotzdem. Ihr Punkt fürs Styling: Wenn nichts nach Plan läuft, ändern Haare richten, Lippenstift und Ohrringe anlegen die Stimmung komplett.</p>
+      <p class="jsrc">Baqless Journal Japan, 7. Januar 2025</p>
+    </article>
 
-  <h2 id="widerruf">Widerruf vor dem Versand</h2>
-  <p>Du hast es dir anders überlegt, bevor dein Paket unterwegs ist? Schreib uns. Wir stornieren die Bestellung und erstatten dir den vollen Betrag sofort.</p>
+    <article class="jcard" id="sena">
+      <div class="cover"><span class="cl">Ein halbes Jahr um die Welt, mit drei T&#8209;Shirts im Gepäck.</span></div>
+      <span class="jtag">Aufklärung · 2023</span>
+      <h3>Sena</h3>
+      <p class="role">Model und Künstlerin, mit 18 an Typ-1-Diabetes erkrankt. Weltreise mit laufender Insulintherapie, Kilimandscharo, zwei Marathons.</p>
+      <p>Auf der Reise trug sie durchgehend Creolen, so selbstverständlich, dass sie das Tragen vergass. Als Backpackerin mit Therapiematerial im Gepäck bleibt kaum Platz für Kleidung. Genau darum zählt, was sich über Make-up und Schmuck an Selbstbild aufbauen lässt.</p>
+      <p class="jsrc">Baqless Journal Japan, 27. April 2023</p>
+    </article>
 
-  <h2>Etwas stimmt nicht?</h2>
-  <p>Kaputt angekommen oder falsch geliefert? Das geht auf uns. Melde dich, wir schicken sofort Ersatz und kümmern uns um den Rest.</p>
+    <article class="jcard" id="igawa">
+      <div class="cover"><span class="cl">Dieselbe Logik wie ihre eigene Marke: eine Schwachstelle abdecken.</span></div>
+      <span class="jtag">Unternehmen · 2022</span>
+      <h3>Sayaka Igawa</h3>
+      <p class="role">Brand Director der Swimwear-Marke Nala, gegründet 2021. Hat ihre Fabriken ohne Branchenkontakte per Suchmaschine gefunden und kalt angeschrieben.</p>
+      <p>Im Alltag muss man oft unvermittelt losrennen, und dann fehlt plötzlich ein Verschluss. Schwere, voluminöse Ohrringe sind darum unmöglich. Was sie überzeugt, ist dieselbe Haltung, die sie ihrer eigenen Marke gibt: morgens ohne Zögern greifen können, nicht nach Anlass abwägen müssen.</p>
+      <p class="jsrc">Baqless Journal Japan, 3. Dezember 2022</p>
+    </article>
 
-  <p class="legal-note">Entwurf für den Prototyp. Finale Konditionen, Tarife und Laufzeiten liefert Baqless vor dem Livegang.</p>
+    <article class="jcard" id="kobori">
+      <div class="cover"><span class="cl">Im Teeraum trägt sie keinen Schmuck. Genau darum interessiert sie diese Bauweise.</span></div>
+      <span class="jtag">Handwerk · 2023</span>
+      <h3>Sosho Kobori</h3>
+      <p class="role">Teeweg-Meisterin der Enshu-Schule, zweite Tochter des 13. Grossmeisters. Vorher Lacrosse-Nationalspielerin an einer Weltmeisterschaft.</p>
+      <p>Beim Zubereiten des Tees trägt sie grundsätzlich nichts, weil ein herabfallender Ohrring die Schale beschädigen könnte. Sonst merkt sie oft erst im Spiegel, dass sie welche anhat. Einen Ohrring, der nicht herausfallen kann, hält sie im Teeraum überhaupt erst für denkbar.</p>
+      <p class="jsrc">Baqless Journal Japan, 30. November 2023</p>
+    </article>
+  </div>
+
+  <div class="jsec" style="padding-bottom:6px">
+    <span class="kick">Wo Baqless steht</span>
+    <h2>Dort, wo Menschen sich bewegen.</h2>
+  </div>
+  <div class="zeit">
+    <p class="intro">Die Marke stellt sich nicht in Vitrinen, sondern an Strände, in Laufevents und in Sportgeschäfte. Alle folgenden Stationen fanden in Japan statt.</p>
+    <div class="zeile"><time>Sept. 2025</time><div><b>Pop-up bei Spick and Span, Yurakucho</b><span>Zwei Wochen im Damenmode-Handel, vom 11. bis 24. September.</span></div></div>
+    <div class="zeile"><time>Sept. 2025</time><div><b>Billabong Tahara Pro</b><span>Booth am Surf-Contest, 16. bis 21. September, mit über 25’000 Besuchern und über 200 Surfern.</span></div></div>
+    <div class="zeile"><time>Juli 2026</time><div><b>HULLE Aeon Mall Hiroshima Fuchu</b><span>Zweiter Shop-in-Shop beim Activewear-Händler, eröffnet am 24. Juli.</span></div></div>
+    <div class="zeile"><time>Laufend</time><div><b>HULLE Aeon Mall Fukuoka</b><span>Der erste Shop-in-Shop, rund 150 Artikel vor Ort, mit Spiegel-Displays zum Anprobieren.</span></div></div>
+    <div class="zeile"><time>Laufend</time><div><b>Tsujido Surf Fest</b><span>Im zweiten Jahr am Strand. Von dort stammt die einzige spontane Kundenstimme des ganzen Bestands: dass er beim Surfen nicht rausfalle, freue sie richtig.</span></div></div>
+    <div class="zeile"><time>Kooperation</time><div><b>Pilgrim Surf und Supply</b><span>Eine Initialen-Serie, die es bewusst nur einzeln gibt, damit sich zwei verschiedene Buchstaben kombinieren lassen.</span></div></div>
+  </div>
+
+  <div class="hinweis">
+    <div>
+      <b>Zur Herkunft dieser Texte.</b> Die Porträts erschienen im japanischen Baqless-Journal (Text Soichi Toyama, Fotografie Akane Watanabe). Zusammenfassung und Übersetzung ins Deutsche: Lorien Group. Wörtlich zitiert ist einzig die hervorgehobene Zeile von Taeko Wako, alles andere ist zusammengefasst. Vor dem Livegang holen wir die Freigabe der Personen für die deutsche Fassung ein und ergänzen die Porträtfotos. Drei weitere Porträts liegen vor und sind noch nicht übersetzt.
+      <br><br>
+      <b>Für den Auftritt in der Schweiz.</b> Die Stationen oben gelten für Japan. Wir führen sie mit Quelle und Ortsangabe, nicht als hiesige Referenzen. Sobald es Standorte und Events in der Schweiz gibt, treten sie an diese Stelle.
+    </div>
+  </div>
+
+  <section class="jcta">
+    <span class="eyebrow">Selber ausprobieren</span>
+    <h2>Einstecken, drehen, klick.</h2>
+    <a class="btn btn-coral" href="kollektion.html">Finde deins</a>
+    <a class="btn btn-ghost" href="story.html">Die Story dahinter</a>
+  </section>
 </main>
 
 <footer id="footer">
@@ -1111,7 +1290,7 @@ const PRODUCTS = [{"id":"slice","group":"honesty-slice","name":"Honesty Slice","
 // Das Woerterbuch kommt aus src/i18n/<sprache>.json und wird beim Bau eingesetzt.
 // txt() heisst nicht t(), weil t innerhalb einiger Funktionen schon eine lokale
 // Variable ist und dort das Woerterbuch verdecken wuerde.
-const I18N = {"lang":"de","locale":"de-CH","basis":"","sprachen":[{"code":"de","name":"Deutsch","ordner":""},{"code":"en","name":"English","ordner":"en"},{"code":"fr","name":"Français","ordner":"fr"}],"t":{"einheit.pro_ohr":"pro Ohr","einheit.pro_paar":"pro Paar","stueck.ohr.eins":"{n} Ohr","stueck.ohr.viele":"{n} Ohren","stueck.paar.eins":"{n} Paar","stueck.paar.viele":"{n} Paare","variante.einzelohr":"Einzelohr"}};
+const I18N = {"lang":"en","locale":"en","basis":"../","sprachen":[{"code":"de","name":"Deutsch","ordner":""},{"code":"en","name":"English","ordner":"en"},{"code":"fr","name":"Français","ordner":"fr"}],"t":{}};
 function txt(schluessel, werte){
   let s = I18N.t[schluessel];
   if (s === undefined){ console.warn('i18n fehlt:', schluessel); return '[[' + schluessel + ']]'; }

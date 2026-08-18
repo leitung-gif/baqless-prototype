@@ -1,15 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/index.html</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/neuheiten.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/kollektion.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/produkt.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/journal.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/story.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/faq.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/kontakt.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/widerruf.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/agb.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/datenschutz.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://leitung-gif.github.io/baqless-prototype/impressum.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://baqless.com/agb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/agb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/bestellung.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/bestellung.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/datenschutz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/datenschutz.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/faq.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/impressum.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/index.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/journal.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/journal.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/kasse.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kasse.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/kollektion.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kollektion.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/kontakt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kontakt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/neuheiten.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/neuheiten.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/produkt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/produkt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/story.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/story.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/story.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/story.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/warenkorb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/warenkorb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/widerruf.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/widerruf.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/agb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/agb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/bestellung.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/bestellung.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/datenschutz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/datenschutz.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/faq.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/impressum.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/index.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/journal.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/journal.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/kasse.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kasse.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/kollektion.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kollektion.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/kontakt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kontakt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/neuheiten.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/neuheiten.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/produkt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/produkt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/story.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/story.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/story.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/story.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/warenkorb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/warenkorb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/en/widerruf.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/widerruf.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/agb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/agb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/agb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/bestellung.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/bestellung.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/bestellung.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/datenschutz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/datenschutz.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/faq.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/impressum.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/index.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/journal.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/journal.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/kasse.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kasse.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kasse.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/kollektion.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kollektion.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kollektion.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/kontakt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/kontakt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/neuheiten.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/neuheiten.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/neuheiten.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/produkt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/produkt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/produkt.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/story.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/story.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/story.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/story.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/warenkorb.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/warenkorb.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/warenkorb.html"/>
+  </url>
+  <url>
+    <loc>https://baqless.com/fr/widerruf.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://baqless.com/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baqless.com/en/widerruf.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://baqless.com/fr/widerruf.html"/>
+  </url>
 </urlset>

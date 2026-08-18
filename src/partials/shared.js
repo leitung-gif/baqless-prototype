@@ -1,5 +1,31 @@
 const PRODUCTS = {{PRODUCTS_JSON}};
 
+// ---------- Sprache ----------
+// Das Woerterbuch kommt aus src/i18n/<sprache>.json und wird beim Bau eingesetzt.
+// txt() heisst nicht t(), weil t innerhalb einiger Funktionen schon eine lokale
+// Variable ist und dort das Woerterbuch verdecken wuerde.
+const I18N = {{I18N_JSON}};
+function txt(schluessel, werte){
+  let s = I18N.t[schluessel];
+  if (s === undefined){ console.warn('i18n fehlt:', schluessel); return '[[' + schluessel + ']]'; }
+  if (werte) for (const k in werte) s = s.split('{' + k + '}').join(werte[k]);
+  return s;
+}
+// Ein oder mehr: nimmt <schluessel>.eins oder <schluessel>.viele und setzt {n} ein
+function txtN(schluessel, n){ return txt(schluessel + (n === 1 ? '.eins' : '.viele'), { n }); }
+
+// Die Fassung liegt im Pfad, genau wie bei Shopify: / fuer Deutsch, /en/ und /fr/ daneben.
+// Der Wechsel behaelt Seite, Abfrage und Sprungmarke, damit niemand auf der Startseite landet.
+function sprachUrl(code){
+  const ziel = I18N.sprachen.find(x => x.code === code);
+  if (!ziel) return location.href;
+  const teile = location.pathname.split('/');
+  const datei = teile.pop() || 'index.html';
+  if (I18N.sprachen.some(x => x.ordner && x.ordner === teile[teile.length - 1])) teile.pop();
+  return teile.join('/') + '/' + (ziel.ordner ? ziel.ordner + '/' : '') + datei
+    + location.search + location.hash;
+}
+
 // ---------- Tracking-Blaupause ----------
 // Die Ereignisse tragen die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...),
 // damit die Namensgebung spaeter uebereinstimmt. ACHTUNG fuer den Shopify-Build: eine
@@ -60,6 +86,9 @@ try {
   // Ein beschaedigter Wert darf nicht die ganze Seite mitreissen: Form pruefen, nicht nur parsen
   if (!Array.isArray(cart)) cart = [];
   cart = cart.filter(x => x && typeof x === 'object' && x.id && typeof x.price === 'number' && x.qty > 0);
+  // Warenkoerbe aus der einsprachigen Fassung trugen den Zustand nur im deutschen Text
+  cart.forEach(x => { if (x.einzel === undefined)
+    x.einzel = String(x.key || '').endsWith('|einzel') || /Einzelohr/.test(x.variant || ''); });
 } catch(e) { cart = []; }
 const cartCount = document.getElementById('cartCount');
 const drawer = document.getElementById('drawer');
@@ -70,10 +99,11 @@ const overlay = document.getElementById('overlay');
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
 // Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
-// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen
-const einheitVon = item => (item.variant || '').includes('Einzelohr') ? 'pro Ohr' : 'pro Paar';
-const stueckVon = (item, n) => (item.variant || '').includes('Einzelohr')
-  ? `${n} ${n === 1 ? 'Ohr' : 'Ohren'}` : `${n} ${n === 1 ? 'Paar' : 'Paare'}`;
+// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen.
+// Der Zustand haengt am Wahrheitswert der Zeile, nie am Variantentext: der ist uebersetzt.
+const istEinzel = item => item.einzel === true || String(item.key || '').endsWith('|einzel');
+const einheitVon = item => txt(istEinzel(item) ? 'einheit.pro_ohr' : 'einheit.pro_paar');
+const stueckVon = (item, n) => txtN(istEinzel(item) ? 'stueck.ohr' : 'stueck.paar', n);
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -131,9 +161,9 @@ function addToCart(id, qty, einzelohr){
   const einzel = !!einzelohr && p.halb;
   const key = einzel ? p.id + '|einzel' : p.id;
   const preis = einzel ? p.preisHalb : p.price;
-  const bez = einzel ? p.variant + ' · Einzelohr' : p.variant;
+  const bez = einzel ? p.variant + ' \u00b7 ' + txt('variante.einzelohr') : p.variant;
   const line = cart.find(x => (x.key || x.id) === key);
-  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty});
+  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty, einzel});
   renderCart(); pop(720);
   track('add_to_cart', { currency: 'CHF', value: preis * qty,
     items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
@@ -379,10 +409,20 @@ function setupDd(ddId, btnId, onPick) {
   }));
 }
 document.addEventListener('click', () => document.querySelectorAll('.v2-dd.open').forEach(o => o.classList.remove('open')));
+// Aktuelle Fassung im Menue markieren, der Kopf ist fuer alle Sprachen dieselbe Datei
+(function markiereSprache(){
+  const oben = I18N.lang.toUpperCase();
+  const label = document.getElementById('langLabel');
+  if (label) label.textContent = oben;
+  document.querySelectorAll('#langDd .v2-menu button').forEach(b => {
+    b.classList.toggle('active', (b.dataset.lang || '').toUpperCase() === oben);
+  });
+})();
 setupDd('langDd', 'langBtn', b => {
-  const l = b.dataset.lang;
-  document.getElementById('langLabel').textContent = l;
-  if (l !== 'DE') toast(`<span class="tick">✓</span><span><b>${l === 'EN' ? 'English' : 'Français'}</b> folgt bald. Wir arbeiten dran.</span>`);
+  const code = (b.dataset.lang || '').toLowerCase();
+  if (!code || code === I18N.lang) return;
+  try { localStorage.setItem('baqless_lang', code); } catch(e) {}
+  location.href = sprachUrl(code);
 });
 setupDd('marketDd', 'marketBtn', b => {
   document.getElementById('marketLabel').textContent = b.dataset.market;
