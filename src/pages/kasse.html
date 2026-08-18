@@ -59,6 +59,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 .ko-sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:15px; font-size:20px; font-weight:500; color:var(--charcoal)}
 .ko-sum .sep{border-top:1px solid rgba(11,29,63,.1); margin:12px 0 4px}
 .ko-submit{width:100%; justify-content:center; margin-top:22px}
+.ko-recht{margin-top:22px; font-size:13px; line-height:1.6; color:var(--ink-soft)}
+.ko-recht a{color:var(--coral-deep); font-weight:600}
 .ko-back{display:block; text-align:center; margin-top:26px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
 .ko-back:hover{color:var(--coral-deep)}
 </style>
@@ -170,6 +172,7 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <p style="font-size:13px; color:var(--ink-soft); margin-top:6px">Die Zahlungsdaten werden im Livegang direkt vom Zahlungsanbieter erfasst, nie von uns.</p>
       </fieldset>
 
+      <p class="ko-recht">Alle Preise in Schweizer Franken inklusive Mehrwertsteuer. Mit dem Kauf bestätigst du unsere <a href="agb.html">AGB</a> und die <a href="datenschutz.html">Datenschutzerklärung</a>. Dein <a href="widerruf.html#widerruf">Widerrufsrecht</a> bleibt davon unberührt.</p>
       <a class="ko-back" href="warenkorb.html">Zurück zum Warenkorb</a>
     </form>
 
@@ -216,6 +219,14 @@ function renderSum(){
 if (!cart.length){
   location.replace('warenkorb.html');
 } else {
+  // Der Drawer kann den Warenkorb auch hier aendern. Die Zusammenfassung haengt
+  // sich deshalb an denselben Render-Aufruf, statt einmalig zu rechnen.
+  const drawerRender = renderCart;
+  renderCart = function(){
+    drawerRender();
+    if (!cart.length){ location.replace('warenkorb.html'); return; }
+    renderSum();
+  };
   renderSum();
   track('begin_checkout', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
 
@@ -239,8 +250,10 @@ if (!cart.length){
     if (e.target.matches('input')) e.target.removeAttribute('aria-invalid');
   });
 
+  let laeuft = false;
   form.addEventListener('submit', e => {
     e.preventDefault();
+    if (laeuft) return;
     const pflicht = [...form.querySelectorAll('input[required]')];
     let ersterFehler = null;
     pflicht.forEach(inp => {
@@ -282,6 +295,8 @@ if (!cart.length){
       items: cart.map(i => ({ item_id: i.id, item_name: `${i.name} ${i.variant}`, price: i.price, quantity: i.qty }))
     });
 
+    laeuft = true;
+    document.querySelector('button[form="koForm"]').disabled = true;
     cart.length = 0;
     saveCart();
     location.href = 'bestellung.html';

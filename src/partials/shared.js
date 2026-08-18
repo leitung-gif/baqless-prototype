@@ -57,7 +57,12 @@ try { cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]'); } catch(e
 const cartCount = document.getElementById('cartCount');
 const drawer = document.getElementById('drawer');
 const overlay = document.getElementById('overlay');
-const fmtCHF = n => 'CHF ' + n;
+// Schweizer Zahlenformat mit Hochkomma als Tausendertrennung
+// Schweizer Tausendertrennung mit typografischem Apostroph. Die Locale liefert je
+// nach Browser ein gerades Apostroph oder ein schmales Leerzeichen, darum vereinheitlichen.
+const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
+// Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
+const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -66,7 +71,7 @@ function renderCart(){
   } else {
     body.innerHTML = cart.map(item => `
       <div class="drawer-item" data-line="${item.key || item.id}">
-        <img src="${item.thumb}" alt="">
+        <img src="${bildVon(item)}" alt="">
         <div>
           <h4>${item.name}</h4><span>${item.variant}</span>
           <div class="qty-ctrl">
@@ -117,7 +122,7 @@ function addToCart(id, qty, einzelohr){
   const preis = einzel ? p.preisHalb : p.price;
   const bez = einzel ? p.variant + ' · Einzelohr' : p.variant;
   const line = cart.find(x => (x.key || x.id) === key);
-  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, thumb:p.thumb, qty});
+  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty});
   renderCart(); pop(720);
   track('add_to_cart', { currency: 'CHF', value: preis * qty,
     items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
@@ -127,8 +132,11 @@ function addToCart(id, qty, einzelohr){
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
   if (add){
-    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1),
-      add.dataset.einzel === '1' || document.getElementById('halbToggle')?.dataset.einzel === '1');
+    // Die Variante haengt am Knopf selbst. Nie an einem Seitenzustand, sonst
+    // erben fremde Karten (Cross-Sell, zuletzt angesehen) den Einzelohr-Preis.
+    addToCart(add.dataset.add, +(add.dataset.qty || (add.dataset.usesQty === '1'
+      ? document.getElementById('qtyVal')?.textContent : null) || 1),
+      add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
     if (!add.dataset.busy){
       const zurueck = add.textContent;
@@ -140,7 +148,20 @@ document.addEventListener('click', e => {
     return;
   }
   const plus = e.target.closest('[data-qplus]');
-  if (plus){ const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
+  if (plus){
+    const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus);
+    const pr = l && PRODUCTS.find(x => x.id === l.id);
+    if (l && pr && pr.lager === 'ausverkauft'){
+      toast(`<span class="tick">i</span><span><b>Gerade aus.</b> ${pr.name} ist nicht mehr verfügbar.</span>`);
+      return;
+    }
+    if (l && l.qty >= 9){
+      toast(`<span class="tick">i</span><span><b>Neun sind das Maximum.</b> Brauchst du mehr, <a href="kontakt.html">schreib uns</a>.</span>`);
+      return;
+    }
+    if (l){ l.qty++; renderCart(); }
+    return;
+  }
   const minus = e.target.closest('[data-qminus]');
   if (minus){ const l = cart.find(x => (x.key || x.id) === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
   const rem = e.target.closest('[data-remove]');

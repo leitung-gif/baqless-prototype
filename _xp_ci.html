@@ -1,0 +1,220 @@
+<!doctype html><meta charset="utf-8">
+<body style="margin:0"><pre id="out">start</pre>
+<div id="host"></div>
+<script>
+window.onerror=function(m,src,l,c){document.getElementById("out").textContent="ONERROR: "+m+" @"+l+":"+c;};
+const out = document.getElementById('out'), log = [];
+const chr10 = String.fromCharCode(10);
+const w = ms => new Promise(r=>setTimeout(r,ms));
+const SEEDCART = JSON.stringify([{id:'polarisyg',key:'polarisyg',name:'Polaris',variant:'Gold',price:69,qty:2,thumb:'img/p_polaris_g.jpg',sku:'BQ-POL-G'}]);
+function load(url){
+  return new Promise(res=>{
+    const f = document.createElement('iframe');
+    f.style.cssText='width:1440px;height:1100px;border:0';
+    f.src = url; f.onload = ()=>res(f);
+    const h=document.getElementById('host'); h.innerHTML=''; h.appendChild(f);
+  });
+}
+function toRGB(c){
+  const m = c.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/);
+  if(!m) return null;
+  return [ +m[1], +m[2], +m[3], m[4]===undefined?1:+m[4] ];
+}
+function lum(rgb){
+  const f = v => { v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); };
+  return 0.2126*f(rgb[0]) + 0.7152*f(rgb[1]) + 0.0722*f(rgb[2]);
+}
+function cr(a,b){ const l1=lum(a), l2=lum(b); const hi=Math.max(l1,l2), lo=Math.min(l1,l2); return (hi+0.05)/(lo+0.05); }
+// echten Hintergrund suchen: nach oben laufen bis nicht-transparent
+function bgOf(d, el){
+  let n = el;
+  while(n && n.nodeType===1){
+    const bg = toRGB(d.defaultView.getComputedStyle(n).backgroundColor);
+    if(bg && bg[3] > 0.95) return bg;
+    n = n.parentElement;
+  }
+  return [255,255,255,1];
+}
+function comp(fg, bg){ // alpha-Komposition
+  if(fg[3] >= 0.999) return fg.slice(0,3);
+  const a = fg[3];
+  return [0,1,2].map(i => Math.round(fg[i]*a + bg[i]*(1-a)));
+}
+function hex(c){ return '#'+c.slice(0,3).map(v=>Math.round(v).toString(16).padStart(2,'0')).join('').toUpperCase(); }
+function report(d, sel, note){
+  const els = d.querySelectorAll(sel);
+  if(!els.length) return sel+' -> FEHLT';
+  const e = els[0];
+  const cs = d.defaultView.getComputedStyle(e);
+  const fg = toRGB(cs.color), bg = bgOf(d, e);
+  const eff = comp(fg, bg);
+  const r = e.getBoundingClientRect();
+  return sel+' (n='+els.length+') color='+hex(eff)+' auf '+hex(bg)+' cr='+cr(eff,bg).toFixed(2)
+    +' size='+cs.fontSize+' weight='+cs.fontWeight+' radius='+cs.borderRadius
+    +' box='+r.width.toFixed(0)+'x'+r.height.toFixed(0)+(note?' | '+note:'');
+}
+function svgStroke(d, sel){
+  const e = d.querySelector(sel);
+  if(!e) return sel+' -> FEHLT';
+  const cs = d.defaultView.getComputedStyle(e);
+  const st = toRGB(cs.stroke) || toRGB(cs.color);
+  const bg = bgOf(d, e);
+  return sel+' stroke/color='+hex(st)+' auf '+hex(bg)+' cr='+cr(st.slice(0,3),bg).toFixed(2);
+}
+// alle echten Fliesstext-Elemente < 15px finden
+function kleinText(d){
+  const res = [];
+  d.querySelectorAll('*').forEach(e=>{
+    if(e.children.length) return;
+    const t = (e.textContent||'').trim();
+    if(t.length < 45) return;
+    if(t === t.toUpperCase()) return;
+    const cs = d.defaultView.getComputedStyle(e);
+    if(cs.display==='none' || cs.visibility==='hidden') return;
+    const fs = parseFloat(cs.fontSize);
+    if(fs >= 15) return;
+    if(cs.textTransform === 'uppercase') return;
+    res.push(fs+'px w'+cs.fontWeight+' ['+e.className+'/'+e.tagName+'] '+t.length+'z: '+t.slice(0,50));
+  });
+  return res;
+}
+const step=async(name,fn)=>{ try{ await fn(); }catch(e){ log.push("!! FEHLER in "+name+": "+e.message+" @ "+(e.stack||"").split(String.fromCharCode(10))[1]); } out.textContent=log.join(String.fromCharCode(10)); };
+(async ()=>{
+  try{
+  try{ localStorage.setItem('baqless_cart', SEEDCART); localStorage.setItem('baqless_order', JSON.stringify({nr:'BQ-2026-0001',mail:'a@b.ch',items:[{name:'Polaris',variant:'Gold',qty:1,price:69}],total:69})); }catch(e){}
+  let f, d;
+
+  // ---- PRODUKT polarisyg ----
+  f = await load('produkt.html?p=polarisyg'); await w(1200); d = f.contentDocument;
+  log.push('=== produkt.html?p=polarisyg ===');
+  log.push(' '+report(d, '.buy-ctas'));
+  log.push(' '+report(d, '#mainAdd', 'text="'+d.getElementById('mainAdd').textContent+'"'));
+  log.push(' '+report(d, '#saveBtn'));
+  log.push(' '+report(d, '.qty-inline'));
+  log.push(' qty-inline button: '+(()=>{const b=d.querySelector('.qty-inline button');const r=b.getBoundingClientRect();return r.width.toFixed(0)+'x'+r.height.toFixed(0);})());
+  // Zeilenzahl im mainAdd messen
+  {
+    const b = d.getElementById('mainAdd'), cs = d.defaultView.getComputedStyle(b);
+    const inner = b.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 2;
+    const rng = d.createRange(); rng.selectNodeContents(b);
+    log.push(' mainAdd innerHoehe='+inner.toFixed(1)+' clientRects='+rng.getClientRects().length+' lineHeight='+cs.lineHeight+' fontSize='+cs.fontSize+' scrollW='+b.scrollWidth+' clientW='+b.clientWidth);
+  }
+  log.push(' '+report(d, '.usps li'));
+  log.push(' usps::before color: '+(()=>{const e=d.querySelector('.usps li');const cs=d.defaultView.getComputedStyle(e,'::before');const fg=toRGB(cs.color);const bg=bgOf(d,e);return hex(fg)+' auf '+hex(bg)+' cr='+cr(fg.slice(0,3),bg).toFixed(2)+' size='+cs.fontSize;})());
+  log.push(' '+report(d, '.variant-line'));
+  log.push(' '+report(d, '.pay-row .pp'));
+  log.push(' '+report(d, '.trust-row'));
+  log.push(' '+report(d, '.mech-step span'));
+  log.push(' '+report(d, '.halb-note'));
+  // SVG-Groessengrafik Schriftgroessen
+  {
+    const ts = [...d.querySelectorAll('.sizeviz svg text')];
+    const sizes = {};
+    ts.forEach(t=>{ const fs=d.defaultView.getComputedStyle(t).fontSize; sizes[fs]=(sizes[fs]||0)+1; });
+    log.push(' sizeviz text-Knoten: '+ts.length+' Groessen: '+JSON.stringify(sizes)+' Inhalte: '+ts.map(t=>t.textContent).join('|'));
+    // alle <10px im ganzen Dokument
+    const unter10 = [...d.querySelectorAll('*')].filter(e=>{
+      if(e.children.length) return false;
+      const t=(e.textContent||'').trim(); if(!t) return false;
+      return parseFloat(d.defaultView.getComputedStyle(e).fontSize) < 10;
+    }).map(e=>e.tagName+'.'+(e.getAttribute('class')||'')+'='+e.textContent.trim().slice(0,20));
+    log.push(' <10px im Dokument: '+unter10.length+' -> '+unter10.slice(0,12).join(' | '));
+  }
+  log.push(' KLEINTEXT produkt:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- PRODUKT blackhoop (ausverkauft) ----
+  f = await load('produkt.html?p=blackhoop'); await w(1200); d = f.contentDocument;
+  log.push('=== produkt.html?p=blackhoop (ausverkauft) ===');
+  log.push(' mainAdd: "'+d.getElementById('mainAdd').textContent+'" class='+d.getElementById('mainAdd').className);
+  log.push(' galMain Tag-Elemente: '+[...d.querySelectorAll('#galMain .tag')].map(e=>e.textContent).join('|')||'(keine)');
+  log.push(' buy enthaelt "usverkauft": '+/usverkauft/i.test(d.getElementById('buy').textContent));
+  log.push(' halbToggle da: '+!!d.getElementById('halbToggle')+' disabled? '+[...d.querySelectorAll('.halb button')].map(b=>b.disabled).join(','));
+  log.push(' qty-inline buttons disabled? '+[...d.querySelectorAll('.qty-inline button')].map(b=>b.disabled).join(','));
+  log.push(' price-big: '+(d.querySelector('.price-big')||{textContent:'-'}).textContent);
+  log.push(' stickybar HTML: '+d.getElementById('stickybar').innerHTML.replace(/\s+/g,' ').slice(0,320));
+  log.push(' galMain packshot-Klasse: '+d.getElementById('galMain').className+' bg='+d.defaultView.getComputedStyle(d.getElementById('galMain')).background.slice(0,90));
+  log.push(' galMain img blend: '+d.defaultView.getComputedStyle(d.querySelector('#galMain img')).mixBlendMode);
+
+  // ---- WARENKORB ----
+  f = await load('warenkorb.html'); await w(1200); d = f.contentDocument;
+  log.push('=== warenkorb.html ===');
+  {
+    const links = [...d.querySelectorAll('a[href="kollektion.html"]')].filter(a=>/Weiter shoppen/.test(a.textContent));
+    log.push(' "Weiter shoppen"-Links: '+links.length);
+    links.forEach((a,i)=>{
+      const cs=d.defaultView.getComputedStyle(a), r=a.getBoundingClientRect();
+      log.push('  ['+i+'] class="'+a.className+'" box='+r.width.toFixed(0)+'x'+r.height.toFixed(0)+' @x='+r.x.toFixed(0)+',y='+r.y.toFixed(0)
+        +' bg='+cs.backgroundColor+' border='+cs.borderTopWidth+' '+cs.borderTopColor+' radius='+cs.borderRadius+' pad='+cs.padding+' pos='+cs.position+' fontSize='+cs.fontSize+' display='+cs.display);
+    });
+  }
+  log.push(' '+svgStroke(d, '.sum .trust svg'));
+  log.push(' '+report(d, '.cq'));
+  log.push(' cq button: '+(()=>{const b=d.querySelector('.cq button');const r=b.getBoundingClientRect();return r.width.toFixed(0)+'x'+r.height.toFixed(0)+' radius='+d.defaultView.getComputedStyle(b).borderRadius;})());
+  log.push(' KLEINTEXT warenkorb:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- BESTELLUNG ----
+  f = await load('bestellung.html'); await w(1200); d = f.contentDocument;
+  log.push('=== bestellung.html ===');
+  log.push(' '+report(d, '.dank .ring'));
+  log.push(' ring borderColor: '+(()=>{const e=d.querySelector('.dank .ring');if(!e)return 'FEHLT';const cs=d.defaultView.getComputedStyle(e);const bc=toRGB(cs.borderTopColor);const bg=bgOf(d,e);return hex(bc)+' auf '+hex(bg)+' cr='+cr(bc.slice(0,3),bg).toFixed(2);})());
+  log.push(' '+svgStroke(d, '.dank .ring svg'));
+  log.push(' '+report(d, '.schritt i'));
+  {
+    const zs=[...d.querySelectorAll('.schritt i')];
+    log.push(' schritt i Anzahl='+zs.length+' Inhalte='+zs.map(z=>z.textContent).join(',')+' boxen='+zs.map(z=>{const r=z.getBoundingClientRect();return r.width.toFixed(0)+'x'+r.height.toFixed(0)}).join(' '));
+  }
+  log.push(' KLEINTEXT bestellung:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- STORY ----
+  f = await load('story.html'); await w(1200); d = f.contentDocument;
+  log.push('=== story.html ===');
+  log.push(' '+report(d, '.story-ed .num'));
+  {
+    const ns=[...d.querySelectorAll('.story-ed .num')];
+    log.push(' num Anzahl='+ns.length+' Inhalte='+ns.map(n=>n.textContent.trim()).join(','));
+  }
+  log.push(' KLEINTEXT story:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- INDEX ----
+  f = await load('index.html'); await w(1500); d = f.contentDocument;
+  log.push('=== index.html ===');
+  log.push(' '+report(d, '.collections .eyebrow'));
+  log.push(' '+report(d, '.stat span'));
+  log.push(' '+report(d, '.rev-role'));
+  log.push(' '+report(d, '.rev-note'));
+  log.push(' '+report(d, '.card-img .thumb', 'blend='+d.defaultView.getComputedStyle(d.querySelector('.card-img .thumb')).mixBlendMode+' cardbg='+d.defaultView.getComputedStyle(d.querySelector('.card-img')).backgroundColor));
+  log.push(' KLEINTEXT index:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- JOURNAL ----
+  f = await load('journal.html'); await w(1200); d = f.contentDocument;
+  log.push('=== journal.html ===');
+  log.push(' '+report(d, '.bfind .n i'));
+  log.push(' '+report(d, '.fquote .attr'));
+  log.push(' '+report(d, '.fbody .role'));
+  log.push(' '+report(d, '.hinweis div'));
+  log.push(' KLEINTEXT journal:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- KASSE ----
+  f = await load('kasse.html'); await w(1200); d = f.contentDocument;
+  log.push('=== kasse.html ===');
+  log.push(' '+report(d, '.ko-note'));
+  log.push(' KLEINTEXT kasse:'); kleinText(d).forEach(x=>log.push('   '+x));
+
+  // ---- DRAWER shipText ----
+  f = await load('index.html'); await w(1200); d = f.contentDocument;
+  log.push('=== drawer (index) ===');
+  {
+    const st = d.getElementById('shipText');
+    if(st){ st.classList.add('done');
+      const cs=d.defaultView.getComputedStyle(st); const fg=toRGB(cs.color); const bg=bgOf(d,st);
+      log.push(' #shipText.done color='+hex(fg)+' auf '+hex(bg)+' cr='+cr(fg.slice(0,3),bg).toFixed(2)+' size='+cs.fontSize);
+    } else log.push(' #shipText FEHLT');
+    const qc = d.querySelector('.qty-ctrl button');
+    log.push(' .qty-ctrl button: '+(qc? (()=>{const r=qc.getBoundingClientRect();return r.width.toFixed(0)+'x'+r.height.toFixed(0)+' radius='+d.defaultView.getComputedStyle(qc).borderRadius})() : 'FEHLT (leerer Warenkorb)'));
+  }
+
+  }catch(e){ log.push("!! ABBRUCH: "+e.message+" || "+(e.stack||"").split(chr10).slice(0,4).join(" // ")); }
+  out.textContent = log.join(chr10);
+})();
+</script>
+</body>

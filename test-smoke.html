@@ -59,10 +59,62 @@ async function run() {
     const line = d.querySelector('[data-line="polarisyg|einzel"]');
     return !!line && line.textContent.includes('Einzelohr') && line.textContent.includes('41');
   })());
-  click(d, '[data-remove="polarisyg|einzel"]'); await sleep(150);
-  click(d, '#halbToggle button[data-einzelset="0"]'); await sleep(120);
+  log('PDP: Einzelohr färbt NICHT auf fremde Karten ab', (() => {
+    // Umschalter steht auf Einzelohr. Eine Cross-Sell-Karte muss trotzdem den vollen Preis nehmen.
+    const karte = d.querySelector('#xsellRail .card[data-id]');
+    const id = karte?.dataset.id;
+    karte?.querySelector('[data-add]')?.click();
+    // PRODUCTS und cart sind const bzw. let, stehen also nicht auf window: über eval lesen
+    const preis = f.contentWindow.eval(`(PRODUCTS.find(x => x.id === '${id}') || {}).price`);
+    const zeile = f.contentWindow.eval(`JSON.stringify(cart.find(x => x.id === '${id}') || null)`);
+    const z = JSON.parse(zeile || 'null');
+    return !!preis && !!z && z.price === preis && !(z.key || '').includes('einzel');
+  })());
+  log('PDP: Sticky-Leiste folgt dem Umschalter', (() => {
+    const sb = d.querySelector('#stickybar [data-add]');
+    return sb?.dataset.einzel === '1'
+      && d.querySelector('#stickybar .sb-meta span')?.textContent === 'CHF 41';
+  })());
+  log('PDP: Grössengrafik in echten Millimetern', (() => {
+    const svg = d.querySelector('#accSize svg');
+    return svg?.getAttribute('width')?.endsWith('mm')
+      && !d.querySelector('#accSize').textContent.includes('Originalgrösse');
+  })());
+  f.contentWindow.localStorage.setItem('baqless_cart', '[]');
+  f.src = '/produkt.html?p=polarisyg&r=3';
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
   log('PDP: zurück auf Paar', d.querySelector('.price-big')?.textContent === 'CHF 69'
     && d.getElementById('cartCount')?.textContent === '0');
+  log('Warenkorb speichert keine Bilddaten', (() => {
+    click(d, '#mainAdd');
+    const roh = f.contentWindow.localStorage.getItem('baqless_cart') || '';
+    return !roh.includes('data:image') && roh.length < 400;
+  })(), (f.contentWindow.localStorage.getItem('baqless_cart') || '').length + ' Zeichen');
+  log('Schweizer Zahlenformat', f.contentWindow.eval('fmtCHF(2755)') === 'CHF 2’755',
+    f.contentWindow.eval('fmtCHF(2755)'));
+  click(d, '[data-remove="polarisyg"]'); await sleep(150);
+
+  // ===== Ausverkauft auf der Produktseite =====
+  f.src = '/produkt.html?p=blackhoop';
+  await loadOnce(); await sleep(450);
+  d = f.contentDocument;
+  log('PDP ausverkauft: Hinweis steht in der Buybox', !!d.querySelector('.ausverkauft-hinweis')
+    && d.querySelector('.ausverkauft-hinweis').textContent.includes('ausverkauft'));
+  log('PDP ausverkauft: kein Kaufknopf, weder oben noch in der Leiste', (() => {
+    return !d.querySelector('.buy-ctas [data-add]') && !d.querySelector('#stickybar [data-add]')
+      && !!d.querySelector('#stickybar [data-notify]');
+  })());
+  log('PDP ausverkauft: strukturierte Daten sagen OutOfStock', (() => {
+    const lds = [...d.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(' ');
+    return lds.includes('OutOfStock') && !lds.includes('InStock');
+  })());
+
+  // Zurueck auf ein lieferbares Produkt, sonst laufen die folgenden Warenkorb-Tests ins Leere
+  f.src = '/produkt.html?p=polarisyg&r=4';
+  await loadOnce(); await sleep(450);
+  d = f.contentDocument; w = f.contentWindow;
+  w.localStorage.clear();
 
   // ===== V3: Menge + Cart v2 =====
   click(d, '#qtyPlus'); await sleep(80);
@@ -230,6 +282,17 @@ async function run() {
   log('Home: keine Versandstandorte-Statistik', !d.body.innerText.includes('Versandstandorte'));
   log('Home: Story-CTA → Subpage', !!d.querySelector('.story a.btn[href="story.html"]'));
   log('Home: Nav → Story-Subpage', !!d.querySelector('nav a[href="story.html"]'));
+  log('Zugang: geschlossene Overlays sind nicht tabbar', (() => {
+    const w2 = f.contentWindow;
+    return w2.getComputedStyle(d.getElementById('drawer')).visibility === 'hidden'
+      && w2.getComputedStyle(d.getElementById('mnav')).visibility === 'hidden';
+  })());
+  log('Zugang: Fokusrahmen hell auf dunklem Grund', (() => {
+    const w2 = f.contentWindow;
+    const hero = w2.getComputedStyle(d.querySelector('header.hero')).getPropertyValue('--focus-ring').trim();
+    const wurzel = w2.getComputedStyle(d.documentElement).getPropertyValue('--focus-ring').trim();
+    return hero.toUpperCase() === '#FAF7F2' && wurzel.toUpperCase() === '#0B1D3F';
+  })());
   log('Footer: fünf Spalten in einer Reihe', (() => {
     const g = d.querySelector('.foot-grid');
     const tops = [...g.children].map(c => Math.round(c.getBoundingClientRect().top));
@@ -326,6 +389,19 @@ async function run() {
   log('Kasse: Prototyp-Hinweis sichtbar', d.querySelector('.ko-note')?.textContent.includes('keine Zahlung'));
   log('Kasse: keine Kartennummer-Felder', d.querySelectorAll('input[autocomplete*="cc-"], input[name*="card"]').length === 0);
   log('Kasse: begin_checkout getrackt', f.contentWindow.dataLayer.some(x => x.event === 'begin_checkout'));
+  log('Kasse: Rechtshinweis vor dem Kauf', (() => {
+    const t = d.querySelector('.ko-recht')?.textContent || '';
+    return t.includes('Mehrwertsteuer') && !!d.querySelector('.ko-recht a[href="agb.html"]')
+      && !!d.querySelector('.ko-recht a[href*="widerruf"]');
+  })());
+  log('Kasse: rechnet nach, wenn der Warenkorb sich ändert', (() => {
+    const vorher = d.getElementById('koSum').textContent;
+    f.contentWindow.addToCart('minelta', 1);
+    const nachher = d.getElementById('koSum').textContent;
+    const ok = vorher !== nachher && nachher.includes('Honesty Minelta');
+    f.contentWindow.eval("cart = cart.filter(x => x.id !== 'minelta'); renderCart();");
+    return ok;
+  })());
   d.querySelector('button[form="koForm"]')?.click(); await sleep(300);
   log('Kasse: leere Pflichtfelder werden gemeldet', d.querySelectorAll('[aria-invalid="true"]').length >= 5
     && d.getElementById('toast')?.textContent.includes('Fast'));
@@ -379,6 +455,8 @@ async function run() {
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
   log('Retouren: 30 Tage', d.body.innerText.includes('30 Tage'));
+  log('Retouren: Zoll-Aussage deckt sich mit dem Kaufweg', d.body.innerText.includes('in der Versandgebühr enthalten')
+    && !d.body.innerText.includes('können je nach Land Einfuhrabgaben anfallen'));
 
   f.src = '/datenschutz.html';
   await loadOnce(); await sleep(400);
@@ -414,7 +492,8 @@ async function run() {
   log('Journal: lädt', d.querySelector('.jhead h1')?.textContent.includes('nicht mehr, dass sie'));
   log('Journal: Aufmacher mit Wortlaut-Zitat', !!d.querySelector('.feature .fquote blockquote')
     && d.querySelector('.feature .attr')?.textContent.includes('Taeko Wako'));
-  log('Journal: sieben Befunde als Liste', d.querySelectorAll('.blist .bfind').length === 7);
+  log('Journal: sechs Befunde als Liste', d.querySelectorAll('.blist .bfind').length === 6);
+  log('Journal: keine Verträglichkeits-Aussage', !/allergie|verträglich|hypoallergen/i.test(d.body.innerText));
   log('Journal: kein Kinder-Argument', !/kinder|baby|kleinkind/i.test(d.body.innerText));
   log('Journal: sechs Porträts mit Quelle', d.querySelectorAll('.jcard').length === 6
     && d.querySelectorAll('.jsrc').length === 6);

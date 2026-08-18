@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><title>probe</title>
+<style>html,body{margin:0}#f{width:1440px;height:2400px;border:0}</style>
+<pre id="out">start</pre>
+<iframe id="f" src="about:blank"></iframe>
+<script>
+const PAGES = (new URLSearchParams(location.search)).get('p') || 'index.html';
+const SEL = (new URLSearchParams(location.search)).get('s') || '';
+const out = document.getElementById('out');
+const f = document.getElementById('f');
+function go(){
+  f.src = PAGES;
+  f.onload = () => setTimeout(()=>{
+    try{
+      const d = f.contentDocument, w = f.contentWindow;
+      let lines = ['URL '+PAGES, 'innerWidth '+w.innerWidth+' docEl.clientWidth '+d.documentElement.clientWidth];
+      const sels = SEL.split('|').filter(Boolean);
+      for(const s of sels){
+        const els = d.querySelectorAll(s);
+        if(!els.length){ lines.push(s+' :: NOT FOUND'); continue; }
+        let n=0;
+        for(const e of els){
+          if(n++>=4) break;
+          const r = e.getBoundingClientRect();
+          const cs = w.getComputedStyle(e);
+          const padL = parseFloat(cs.paddingLeft), padR=parseFloat(cs.paddingRight);
+          lines.push(s+' #'+n+' box.x='+r.x.toFixed(1)+' w='+r.width.toFixed(1)+' h='+r.height.toFixed(1)
+            +' contentX='+(r.x+padL).toFixed(1)+' contentW='+(r.width-padL-padR).toFixed(1)
+            +' | color='+cs.color+' bg='+cs.backgroundColor+' fs='+cs.fontSize+' fw='+cs.fontWeight
+            +' radius='+cs.borderRadius+' pos='+cs.position+' pad='+cs.padding+' border='+cs.borderTopWidth+' '+cs.borderTopColor
+            +' | txt="'+(e.textContent||'').trim().slice(0,60).replace(/\s+/g,' ')+'"');
+        }
+      }
+      out.textContent = lines.join('\n');
+    }catch(err){ out.textContent = 'ERR '+err; }
+  }, 1200);
+}
+go();
+</script>

@@ -208,6 +208,9 @@ document.getElementById('buy').innerHTML = `
   <span class="eyebrow">${P.collection} Kollektion</span>
   <h1>${P.name}</h1>
   <div class="variant-line">${P.variant} · Click-Lock · ${P.sku}</div>
+  ${P.lager === 'ausverkauft' ? `<div class="ausverkauft-hinweis">
+    <b>Zurzeit ausverkauft.</b> Wir fertigen von Hand, darum dauert es manchmal. Trag dich ein, wir melden uns, sobald dieses Paar zurück ist.
+  </div>` : ''}
   <div class="price-row">
     <span class="price-big">CHF ${P.price}</span>
     <span class="price-note">inkl. Click-Lock. Rückteile gibt's keine.</span>
@@ -231,7 +234,7 @@ document.getElementById('buy').innerHTML = `
     </div>
     ${P.lager === 'ausverkauft'
       ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">Benachrichtige mich</button>`
-      : `<button class="btn btn-coral" data-add="${P.id}" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>`}
+      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>`}
     <button class="btn btn-ghost" id="saveBtn">Merken</button>
   </div>
   <div class="pay-row" aria-label="Zahlarten und Sicherheit">
@@ -311,7 +314,15 @@ if (halbToggle){
     const preis = einzel ? P.preisHalb : P.price;
     document.querySelector('.price-big').textContent = 'CHF ' + preis;
     const add = document.getElementById('mainAdd');
-    if (add && add.dataset.add) add.textContent = 'In den Warenkorb · CHF ' + preis;
+    if (add && add.dataset.add){
+      add.dataset.einzel = einzel ? '1' : '0';
+      add.textContent = 'In den Warenkorb · CHF ' + preis;
+    }
+    // Die mobile Kaufleiste ist derselbe Kauf, also muss sie dasselbe zeigen und tun
+    const sbAdd = document.querySelector('#stickybar [data-add]');
+    const sbPreis = document.querySelector('#stickybar .sb-meta span');
+    if (sbAdd) sbAdd.dataset.einzel = einzel ? '1' : '0';
+    if (sbPreis) sbPreis.textContent = 'CHF ' + preis;
     document.querySelector('.variant-line').textContent =
       `${P.variant}${einzel ? ' · Einzelohr' : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
   });
@@ -328,26 +339,31 @@ if (halbToggle){
     return;
   }
   const b = parseFloat(zahlen[0]), h = parseFloat(zahlen[1]);
-  const mm = 7, skala = 20, padL = 8, padT = 10;
+  // Eine Einheit im viewBox ist genau ein Millimeter, und die Breite wird in
+  // Millimetern gesetzt. Damit zeichnet der Browser massstabsgetreu, statt dass
+  // wir Pixel je Millimeter raten. Bildschirme weichen davon leicht ab, das steht
+  // in der Bildunterschrift, deshalb behaupten wir keine Originalgrösse.
+  const skala = Math.max(20, Math.ceil(Math.max(b, h) + 3));
+  const padL = 2, padT = 3, achse = padT + Math.max(h, 10) + 5;
+  const hoehe = achse + 6;
   const ticks = Array.from({length: skala + 1}, (_, i) => {
-    const x = padL + i * mm;
     const lang = i % 5 === 0;
-    return `<line x1="${x}" y1="${padT + 78}" x2="${x}" y2="${padT + (lang ? 66 : 72)}" stroke="#BFB8B0" stroke-width="1"/>` +
-      (lang ? `<text x="${x}" y="${padT + 60}" font-family="Inter, sans-serif" font-size="9" fill="#6b655c" text-anchor="middle">${i}</text>` : '');
+    const x = padL + i;
+    return `<line x1="${x}" y1="${achse}" x2="${x}" y2="${achse - (lang ? 2.4 : 1.2)}" stroke="#BFB8B0" stroke-width=".25"/>` +
+      (lang ? `<text x="${x}" y="${achse + 4}" font-size="2.6" fill="#6b655c" text-anchor="middle">${i}</text>` : '');
   }).join('');
   box.innerHTML = `
     <figure class="sizeviz">
-      <svg viewBox="0 0 ${padL * 2 + skala * mm} ${padT + 92}" role="img"
-           aria-label="${P.name} ${P.variant} ist ${b} auf ${h} Millimeter gross, gezeigt an einem Millimeter-Massstab">
-        <rect x="${padL}" y="${padT}" width="${b * mm}" height="${h * mm}" rx="${Math.min(b, h) * mm * .28}"
-              fill="#FFE3DE" stroke="#C93B27" stroke-width="1.4"/>
-        <text x="${padL + b * mm + 10}" y="${padT + 14}" font-family="Inter, sans-serif" font-size="11" fill="#4a453e">${b} × ${h} mm</text>
-        <text x="${padL + b * mm + 10}" y="${padT + 30}" font-family="Inter, sans-serif" font-size="11" fill="#6b655c">Originalgrösse im Massstab</text>
-        <line x1="${padL}" y1="${padT + 78}" x2="${padL + skala * mm}" y2="${padT + 78}" stroke="#BFB8B0" stroke-width="1.2"/>
+      <svg width="${padL * 2 + skala}mm" viewBox="0 0 ${padL * 2 + skala} ${hoehe}" role="img"
+           aria-label="${P.name} ${P.variant} misst ${b} auf ${h} Millimeter, gezeigt an einem Millimeter-Massstab">
+        <rect x="${padL}" y="${padT}" width="${b}" height="${h}" rx="${Math.min(b, h) * .28}"
+              fill="#FFE3DE" stroke="#C93B27" stroke-width=".3"/>
+        <text x="${padL + b + 3}" y="${padT + 3}" font-size="3" fill="#4a453e">${b} × ${h} mm</text>
+        <line x1="${padL}" y1="${achse}" x2="${padL + skala}" y2="${achse}" stroke="#BFB8B0" stroke-width=".3"/>
         ${ticks}
-        <text x="${padL + skala * mm}" y="${padT + 92}" font-family="Inter, sans-serif" font-size="9" fill="#6b655c" text-anchor="end">Millimeter</text>
+        <text x="${padL + skala}" y="${achse - 3.4}" font-size="2.6" fill="#6b655c" text-anchor="end">Millimeter</text>
       </svg>
-      <figcaption>${P.name} ${P.variant} in Originalgrösse. Auf dem Bildschirm je nach Gerät leicht abweichend.</figcaption>
+      <figcaption>${P.name} ${P.variant} massstabsgetreu neben einem Millimeter-Massstab. Je nach Bildschirm weicht die Darstellung etwas ab, die Zahlen sind die verbindliche Angabe.</figcaption>
     </figure>` + hinweis;
 })();
 
@@ -408,8 +424,10 @@ galMain.addEventListener('click', e => {
 const sb = document.getElementById('stickybar');
 sb.innerHTML = `
   <img src="${P.thumb}" alt="">
-  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>CHF ${P.price}</span></div>
-  <button class="btn btn-coral" data-add="${P.id}">In den Warenkorb</button>`;
+  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? 'Ausverkauft' : 'CHF ' + P.price}</span></div>
+  ${P.lager === 'ausverkauft'
+    ? `<button class="btn btn-navy" data-notify="${P.id}">Benachrichtigen</button>`
+    : `<button class="btn btn-coral" data-add="${P.id}" data-einzel="0">In den Warenkorb</button>`}`;
 const ctasEl = document.querySelector('.buy-ctas');
 function updateSticky(){
   const show = ctasEl.getBoundingClientRect().bottom < 0;
@@ -426,7 +444,7 @@ ld.textContent = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Product',
   name: `${P.name} ${P.variant}`, sku: P.sku, brand: {'@type': 'Brand', name: 'Baqless'},
   description: P.desc, category: `Ohrringe > ${P.collection}`,
-  offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: 'https://schema.org/InStock',
+  offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: P.lager === 'ausverkauft' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
     shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 99, currency: 'CHF'}}}
 });
 document.head.appendChild(ld);

@@ -1,0 +1,49 @@
+<!doctype html><meta charset="utf-8">
+<body style="margin:0"><pre id="out">start</pre>
+<div id="host"></div>
+<script>
+const out = document.getElementById('out'), log = [];
+const w = ms => new Promise(r=>setTimeout(r,ms));
+const SEEDCART = JSON.stringify([{id:'polarisyg',key:'polarisyg',name:'Polaris',variant:'Gold',price:69,qty:2,thumb:'img/p_polaris_g.jpg'}]);
+function load(url){
+  return new Promise(res=>{
+    const f = document.createElement('iframe');
+    f.style.cssText='width:1440px;height:1000px;border:0';
+    f.src = url;
+    f.onload = ()=>res(f);
+    document.getElementById('host').innerHTML='';
+    document.getElementById('host').appendChild(f);
+  });
+}
+function m(d, sel){
+  const e = d.querySelector(sel);
+  if(!e) return sel+' : FEHLT';
+  const r = e.getBoundingClientRect();
+  const cs = d.defaultView.getComputedStyle(e);
+  const cx = r.x + parseFloat(cs.paddingLeft) + parseFloat(cs.borderLeftWidth);
+  const cw = r.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - parseFloat(cs.borderLeftWidth) - parseFloat(cs.borderRightWidth);
+  return sel+' : boxX='+r.x.toFixed(1)+' boxW='+r.width.toFixed(1)+' contentX='+cx.toFixed(1)+' contentW='+cw.toFixed(1)+' maxW='+cs.maxWidth+' padL='+cs.paddingLeft;
+}
+(async ()=>{
+  try{ localStorage.setItem('baqless_cart', SEEDCART); }catch(e){}
+  const jobs = [
+    ['index.html', ['.wrap','.section .wrap','footer .foot-grid','footer .foot-note','.collections .eyebrow']],
+    ['neuheiten.html', ['.plp-hero h1','.plp-hero p','.plp-wrap','.plp-grid','.seen','footer .foot-grid']],
+    ['produkt.html?p=polarisyg', ['.pdp','.pdp-grid','.cl-band .wrap','.xsell','footer .foot-grid']],
+    ['journal.html', ['.jhead .in','.jhead h1','.jgrid','.jsec','.zeit','.hinweis','footer .foot-grid']],
+    ['story.html', ['.plp-hero h1','.story-ed','.story-wide','footer .foot-grid']],
+    ['warenkorb.html', ['.shop-wrap','.cart-grid','h1','footer .foot-grid']],
+    ['kasse.html', ['.ko-wrap','h1','footer .foot-grid']],
+    ['kollektion.html', ['.plp-hero h1','.plp-wrap','footer .foot-grid']],
+  ];
+  for (const [url, sels] of jobs){
+    const f = await load(url);
+    await w(900);
+    const d = f.contentDocument;
+    log.push('=== '+url+' (innerWidth='+f.contentWindow.innerWidth+', pad='+d.defaultView.getComputedStyle(d.documentElement).getPropertyValue('--pad')+') ===');
+    for (const s of sels) log.push('  '+m(d, s));
+  }
+  out.textContent = log.join('\n');
+})();
+</script>
+</body>

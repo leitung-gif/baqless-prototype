@@ -89,7 +89,10 @@ body{
 }
 img,video{max-width:100%; display:block}
 a{color:inherit; text-decoration:none}
-:focus-visible{outline:2px solid var(--navy); outline-offset:2px}
+:root{--focus-ring:#0B1D3F}
+:focus-visible{outline:2px solid var(--focus-ring); outline-offset:2px}
+/* Auf dunklem Grund braucht der Fokus die helle Fassung, sonst sieht man ihn nicht */
+.hero, footer, .mnav, .wa, .cl-band, .plp-hero, .jhead, .befunde, .story-stats, .col-card{--focus-ring:#FAF7F2}
 h1,h2,h3{font-family:var(--serif); font-weight:300; line-height:1.05; text-wrap:balance}
 .eyebrow{
   font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em;
@@ -150,10 +153,11 @@ nav.scrolled{
 @media(max-width:920px){.burger{display:block}}
 .mnav{
   position:fixed; inset:0; z-index:220; background:var(--navy); color:var(--ground);
-  transform:translateX(102%); transition:transform .24s cubic-bezier(.22,1,.36,1);
+  transform:translateX(102%); visibility:hidden;
+  transition:transform .24s cubic-bezier(.22,1,.36,1), visibility 0s .24s;
   display:flex; flex-direction:column; padding:22px 28px 34px; overflow:auto; overscroll-behavior:contain;
 }
-.mnav.open{transform:none}
+.mnav.open{transform:none; visibility:visible; transition:transform .24s cubic-bezier(.22,1,.36,1), visibility 0s}
 .mnav-bubble{position:absolute; border-radius:50%; opacity:.16; pointer-events:none}
 .mnav-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; position:relative}
 .mnav-close{background:none; border:none; cursor:pointer; color:var(--ground); padding:8px}
@@ -458,6 +462,11 @@ nav.scrolled{
 }
 .add-btn:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
 .add-btn.added{color:#27804C; border-color:#27804C}
+.ausverkauft-hinweis{
+  margin:16px 0 2px; padding:14px 16px; border-radius:4px; border:1px solid rgba(11,29,63,.16);
+  background:rgba(11,29,63,.04); font-size:14.5px; line-height:1.55; color:#4a453e;
+}
+.ausverkauft-hinweis b{font-weight:600; color:var(--charcoal)}
 .drawer-cart-link{display:block; text-align:center; margin-top:12px; font-size:13.5px; color:var(--ink-soft);
   text-decoration:underline; text-underline-offset:3px}
 .drawer-cart-link:hover{color:var(--coral-deep)}
@@ -649,7 +658,7 @@ footer ul a:hover{color:var(--coral)}
 .legal ul, .legal ol{padding-left:20px; margin:8px 0}
 .legal a{color:var(--coral-deep); font-weight:500}
 .legal-note{margin-top:48px; padding:15px 19px; background:var(--coral-tint); border-radius:12px; font-size:13px; color:var(--charcoal); line-height:1.6}
-.legal .ph{background:var(--lav-tint); border-radius:4px; padding:1px 6px; font-size:13px; white-space:nowrap}
+.legal .ph{background:var(--lav-tint); border-radius:4px; padding:1px 6px; font-size:13px}
 .contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:34px; margin-top:8px; align-items:start}
 @media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
 .contact-card{background:#fff; border:1px solid #eee5d8; border-radius:16px; padding:24px; margin-bottom:18px}
@@ -676,10 +685,11 @@ footer ul a:hover{color:var(--coral)}
 #drawer{
   position:fixed; top:0; right:0; bottom:0; width:min(400px,92vw); z-index:300;
   background:var(--ground); box-shadow:-20px 0 60px rgba(0,0,0,.18);
-  transform:translateX(105%); transition:transform .24s cubic-bezier(.19,1,.22,1);
+  transform:translateX(105%); visibility:hidden;
+  transition:transform .24s cubic-bezier(.19,1,.22,1), visibility 0s .24s;
   display:flex; flex-direction:column;
 }
-#drawer.open{transform:none}
+#drawer.open{transform:none; visibility:visible; transition:transform .24s cubic-bezier(.19,1,.22,1), visibility 0s}
 .drawer-head{display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--softgray)}
 .drawer-head h3{font-size:26px}
 .drawer-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--charcoal);line-height:1;padding:4px 8px}
@@ -1450,7 +1460,12 @@ try { cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]'); } catch(e
 const cartCount = document.getElementById('cartCount');
 const drawer = document.getElementById('drawer');
 const overlay = document.getElementById('overlay');
-const fmtCHF = n => 'CHF ' + n;
+// Schweizer Zahlenformat mit Hochkomma als Tausendertrennung
+// Schweizer Tausendertrennung mit typografischem Apostroph. Die Locale liefert je
+// nach Browser ein gerades Apostroph oder ein schmales Leerzeichen, darum vereinheitlichen.
+const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
+// Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
+const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -1459,7 +1474,7 @@ function renderCart(){
   } else {
     body.innerHTML = cart.map(item => `
       <div class="drawer-item" data-line="${item.key || item.id}">
-        <img src="${item.thumb}" alt="">
+        <img src="${bildVon(item)}" alt="">
         <div>
           <h4>${item.name}</h4><span>${item.variant}</span>
           <div class="qty-ctrl">
@@ -1510,7 +1525,7 @@ function addToCart(id, qty, einzelohr){
   const preis = einzel ? p.preisHalb : p.price;
   const bez = einzel ? p.variant + ' · Einzelohr' : p.variant;
   const line = cart.find(x => (x.key || x.id) === key);
-  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, thumb:p.thumb, qty});
+  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty});
   renderCart(); pop(720);
   track('add_to_cart', { currency: 'CHF', value: preis * qty,
     items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
@@ -1520,8 +1535,11 @@ function addToCart(id, qty, einzelohr){
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
   if (add){
-    addToCart(add.dataset.add, +(add.dataset.qty || document.getElementById('qtyVal')?.textContent || 1),
-      add.dataset.einzel === '1' || document.getElementById('halbToggle')?.dataset.einzel === '1');
+    // Die Variante haengt am Knopf selbst. Nie an einem Seitenzustand, sonst
+    // erben fremde Karten (Cross-Sell, zuletzt angesehen) den Einzelohr-Preis.
+    addToCart(add.dataset.add, +(add.dataset.qty || (add.dataset.usesQty === '1'
+      ? document.getElementById('qtyVal')?.textContent : null) || 1),
+      add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
     if (!add.dataset.busy){
       const zurueck = add.textContent;
@@ -1533,7 +1551,20 @@ document.addEventListener('click', e => {
     return;
   }
   const plus = e.target.closest('[data-qplus]');
-  if (plus){ const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus); if (l){ l.qty++; renderCart(); } return; }
+  if (plus){
+    const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus);
+    const pr = l && PRODUCTS.find(x => x.id === l.id);
+    if (l && pr && pr.lager === 'ausverkauft'){
+      toast(`<span class="tick">i</span><span><b>Gerade aus.</b> ${pr.name} ist nicht mehr verfügbar.</span>`);
+      return;
+    }
+    if (l && l.qty >= 9){
+      toast(`<span class="tick">i</span><span><b>Neun sind das Maximum.</b> Brauchst du mehr, <a href="kontakt.html">schreib uns</a>.</span>`);
+      return;
+    }
+    if (l){ l.qty++; renderCart(); }
+    return;
+  }
   const minus = e.target.closest('[data-qminus]');
   if (minus){ const l = cart.find(x => (x.key || x.id) === minus.dataset.qminus); if (l){ l.qty--; if (l.qty < 1) cart = cart.filter(x => x !== l); renderCart(); } return; }
   const rem = e.target.closest('[data-remove]');

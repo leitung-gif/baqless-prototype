@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><title>shot</title>
+<style>html,body{margin:0}#f{width:1440px;height:1400px;border:0}</style>
+<iframe id="f"></iframe>
+<script>
+const q=new URLSearchParams(location.search);
+try{ localStorage.setItem('baqless_cart', JSON.stringify([
+  {id:'polarisyg', key:'polarisyg', name:'Amity Polaris Gold', variant:'Gold · Paar', price:69, qty:1},
+  {id:'polarisyg', key:'polarisyg|einzel', name:'Amity Polaris Gold', variant:'Gold · Einzelohr', price:41, qty:2}
+])); }catch(e){}
+document.getElementById('f').src=q.get('p')||'index.html';
+</script>
