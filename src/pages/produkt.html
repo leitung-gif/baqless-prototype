@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Baqless Ohrringe mit Click-Lock Verschluss. Wasserfest, Edelstahl 316L, 30 Tage Rückgabe.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%230B1D3F%27/><circle cx=%2743%27 cy=%2742%27 r=%279%27 fill=%27%23FF7A6A%27/></svg>">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Baqless · Produkt</title>
 <style>
 {{CSS}}
@@ -19,7 +22,8 @@
 .gal-main{position:relative; border-radius:26px; overflow:hidden; background:#fff; isolation:isolate;
   box-shadow:12px 12px 0 var(--coral-tint); aspect-ratio:1/1}
 .gal-main img{width:100%; height:100%; object-fit:cover; display:block; transition:opacity .35s}
-.gal-main.packshot img{mix-blend-mode:multiply}
+/* Kein Blend-Modus auf dem Packshot: er faerbte das Metall in die Kollektionsfarbe */
+.gal-main.packshot img{mix-blend-mode:normal}
 .gal-main::after{content:''; position:absolute; width:46%; height:46%; border:2.5px solid rgba(255,255,255,.55);
   border-radius:50%; right:-12%; bottom:-12%; pointer-events:none}
 .gal-wrap{position:relative}
@@ -48,8 +52,10 @@
 .pills a.active{border-color:var(--coral); background:var(--coral-tint)}
 .pills a:hover{border-color:var(--coral)}
 .pills .dot{width:9px; height:9px; border-radius:50%}
-.buy-ctas{display:flex; gap:12px; margin:26px 0 8px}
-.buy-ctas .btn{flex:1; justify-content:center; font-size:15px; padding:16px 20px}
+.buy-ctas{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:26px 0 8px}
+.buy-ctas .btn{justify-content:center; font-size:15px; padding:16px 20px; letter-spacing:.04em}
+#mainAdd{flex:2 1 240px}
+#saveBtn{flex:1 0 100%}
 @media(max-width:520px){.buy-ctas{flex-direction:column}}
 .usps{list-style:none; padding:18px 0 0; margin:14px 0 0; border-top:1px dashed var(--warmgrey);
   display:grid; grid-template-columns:1fr 1fr; gap:10px 22px}

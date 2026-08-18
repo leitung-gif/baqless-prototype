@@ -99,6 +99,17 @@ async function run() {
     f.contentWindow.eval('fmtCHF(2755)'));
   click(d, '[data-remove="polarisyg"]'); await sleep(150);
 
+  log('Robust: beschädigter Speicher legt die Seite nicht lahm', (() => {
+    f.contentWindow.localStorage.setItem('baqless_cart', '{"kaputt":true}');
+    return true;
+  })());
+  f.src = '/kollektion.html?r=1';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
+  log('Robust: Katalog rendert trotz kaputtem Warenkorb-Wert', d.querySelectorAll('#plpGrid .card').length === 16
+    && d.getElementById('cartCount')?.textContent === '0');
+  f.contentWindow.localStorage.clear();
+
   // ===== Ausverkauft auf der Produktseite =====
   f.src = '/produkt.html?p=blackhoop';
   await loadOnce(); await sleep(450);
@@ -377,6 +388,26 @@ async function run() {
     const links = [...d.querySelectorAll('.wa-card a[href^="produkt.html?p=wa"]')];
     return links.length === 3 && !d.querySelector('.wa-card[onclick]');
   })());
+  log('CI: Wortmarke ist die freigegebene Datei, kein Schriftsatz', (() => {
+    const nav = d.querySelector('nav .wordmark');
+    const foot = d.querySelector('footer .wordmark');
+    return !!nav?.querySelector('img') && !!foot?.querySelector('img')
+      && !nav.textContent.trim() && nav.querySelector('img').naturalWidth > 100;
+  })());
+  log('CI: Wortmarke wechselt die Fassung mit dem Grund', (() => {
+    const w2 = f.contentWindow;
+    const hell = d.querySelector('nav .wm-hell'), dunkel = d.querySelector('nav .wm-dunkel');
+    return w2.getComputedStyle(hell).display === 'block' && w2.getComputedStyle(dunkel).display === 'none';
+  })());
+  log('CI: echte Favicons statt Eigenbau', (() => {
+    const icons = [...d.querySelectorAll('link[rel*="icon"]')].map(l => l.getAttribute('href'));
+    return icons.includes('favicon.ico') && icons.some(h => h.includes('icon-32'))
+      && !icons.some(h => h.startsWith('data:'));
+  })());
+  log('CI: Knöpfe erben die Hausschrift', (() => {
+    const b = d.querySelector('#rail .add-btn');
+    return !!b && f.contentWindow.getComputedStyle(b).fontFamily.includes('Inter');
+  })(), f.contentWindow.getComputedStyle(d.querySelector('#rail .add-btn')).fontFamily.split(',')[0]);
   log('CI: Eyebrow in Coral Deep #C93B27', (() => {
     const c = f.contentWindow.getComputedStyle(d.querySelector('.eyebrow')).color;
     return c === 'rgb(201, 59, 39)';
@@ -456,6 +487,8 @@ async function run() {
   log('Kasse: lädt mit Bestellübersicht', d.querySelectorAll('#koSum .ko-line').length === 1
     && d.getElementById('koSum')?.textContent.includes('Total'));
   log('Kasse: Prototyp-Hinweis sichtbar', d.querySelector('.ko-note')?.textContent.includes('keine Zahlung'));
+  log('Kasse: Produktbilder laden wirklich', [...d.querySelectorAll('#koSum .ko-line img')]
+    .every(i => i.getAttribute('src') !== 'undefined' && i.naturalWidth > 0));
   log('Kasse: keine Kartennummer-Felder', d.querySelectorAll('input[autocomplete*="cc-"], input[name*="card"]').length === 0);
   log('Kasse: begin_checkout getrackt', f.contentWindow.dataLayer.some(x => x.event === 'begin_checkout'));
   log('Kasse: Rechtshinweis vor dem Kauf', (() => {

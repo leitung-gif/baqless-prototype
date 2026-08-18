@@ -55,7 +55,12 @@ function pop(freq = 600){
 // ---------- Warenkorb (v3: Persistenz, Stepper, Gratisversand) ----------
 const FREE_SHIP = 99;
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]'); } catch(e) {}
+try {
+  cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]');
+  // Ein beschaedigter Wert darf nicht die ganze Seite mitreissen: Form pruefen, nicht nur parsen
+  if (!Array.isArray(cart)) cart = [];
+  cart = cart.filter(x => x && typeof x === 'object' && x.id && typeof x.price === 'number' && x.qty > 0);
+} catch(e) { cart = []; }
 const cartCount = document.getElementById('cartCount');
 const drawer = document.getElementById('drawer');
 const overlay = document.getElementById('overlay');
@@ -284,7 +289,11 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 
 // ---------- Merken: bleibt erhalten, statt nur kurz aufzublinken ----------
 let merkliste = [];
-try { merkliste = JSON.parse(localStorage.getItem('baqless_merk') || '[]'); } catch(e) {}
+try {
+  merkliste = JSON.parse(localStorage.getItem('baqless_merk') || '[]');
+  if (!Array.isArray(merkliste)) merkliste = [];
+  merkliste = merkliste.filter(x => typeof x === 'string');
+} catch(e) { merkliste = []; }
 function merkeUm(id){
   const drin = merkliste.includes(id);
   merkliste = drin ? merkliste.filter(x => x !== id) : merkliste.concat(id);

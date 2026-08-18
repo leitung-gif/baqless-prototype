@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /bestellung.html
+Disallow: /kasse.html
+Disallow: /test-smoke.html
+
+Sitemap: https://leitung-gif.github.io/baqless-prototype/sitemap.xml
