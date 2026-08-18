@@ -1,0 +1,6 @@
+
+# Probe- und Hilfsdateien der Audit-Agenten
+_*.html
+_*.sh
+_probe/
+src/*_pass.py
