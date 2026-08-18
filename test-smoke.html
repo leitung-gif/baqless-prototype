@@ -43,7 +43,7 @@ async function run() {
     && d.querySelector('.mech h3')?.textContent.includes('ohne Rückteil'));
   log('PDP: Spec-Tabelle mit echten Massen', (() => {
     const t = d.querySelector('table.spec')?.textContent || '';
-    return t.includes('5.84 × 5.84 × 1.77 mm') && t.includes('316L') && t.includes('Herkunft');
+    return t.includes('5.84 × 5.84 × 1.77 mm') && t.includes('Sterling Silber 925') && t.includes('Herkunft');
   })());
   log('PDP: Grössengrafik in Originalgrösse', !!d.querySelector('#accSize .sizeviz svg')
     && d.querySelector('#accSize svg')?.getAttribute('aria-label')?.includes('Millimeter'));
@@ -377,6 +377,11 @@ async function run() {
   log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
   log('Home: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
   log('Home: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
+  log('Material: Silberschmuck als Botschaft, Stahl nur beim Stift', (() => {
+    const t = d.body.innerText;
+    return t.includes('Sterling Silber 925') && !/316L/.test(t)
+      && !/aus chirurgischem Edelstahl gefertigt/i.test(t);
+  })());
   log('Home: keine erfundenen Verkaufszahlen', !/meistverkauft|bestseller/i.test(d.body.innerText));
   log('Home: Kollektionszahl stimmt mit dem Katalog', (() => {
     const t = d.body.innerText;
