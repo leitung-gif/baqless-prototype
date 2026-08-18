@@ -85,7 +85,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 button,input,select,textarea{font-family:inherit}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; scroll-padding-top:92px}
 body{
   background:var(--ground); color:var(--charcoal);
   font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.65;
@@ -173,13 +173,15 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 @media(max-width:920px){.nav-links{display:none}}
 
 /* ---------- Burger + Mobilmenü ---------- */
-.burger{display:none; background:none; border:none; cursor:pointer; padding:6px; color:inherit}
-@media(max-width:920px){.burger{display:block}}
+.burger{display:none; align-items:center; justify-content:center; min-height:44px; min-width:44px;
+  background:none; border:none; cursor:pointer; padding:6px; color:inherit}
+@media(max-width:920px){.burger{display:inline-flex}}
 .mnav{
   position:fixed; inset:0; z-index:220; background:var(--navy); color:var(--ground);
   transform:translateX(102%); visibility:hidden;
   transition:transform .24s cubic-bezier(.22,1,.36,1), visibility 0s .24s;
-  display:flex; flex-direction:column; padding:22px 28px 34px; overflow:auto; overscroll-behavior:contain;
+  display:flex; flex-direction:column; padding:22px 28px 34px;
+  overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain;
 }
 .mnav.open{transform:none; visibility:visible; transition:transform .24s cubic-bezier(.22,1,.36,1), visibility 0s}
 .mnav-bubble{position:absolute; border-radius:50%; opacity:.16; pointer-events:none}
@@ -204,7 +206,8 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   display:grid; grid-template-columns:1fr 1fr; gap:12px 20px; position:relative;
 }
 .mnav-sub a{font-size:13.5px; color:rgba(250,247,242,.66); padding:4px 0}
-.cart-btn{position:relative; background:none; border:none; cursor:pointer; padding:6px; color:inherit}
+.cart-btn{position:relative; display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; min-width:44px; background:none; border:none; cursor:pointer; padding:6px; color:inherit}
 .cart-btn svg{display:block}
 .cart-count{color-scheme:light;
   position:absolute; top:-2px; right:-4px; min-width:17px; height:17px; border-radius:9px;
@@ -384,7 +387,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 @keyframes tug{0%,100%{transform:translateX(0)}20%{transform:translateX(-24px)}40%{transform:translateX(-7px)}60%{transform:translateX(-16px)}80%{transform:translateX(-3px)}}
 .cl-caption{font-family:var(--serif); font-size:22px; min-height:30px; font-style:italic; opacity:0; transition:opacity .4s}
 .cl-caption.show{opacity:1}
-.cl-origin{font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.cl-origin{font-size:12px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); font-variant-numeric:tabular-nums}
 .cl-steps{display:flex; flex-direction:column; margin-top:34px; border-top:1px solid rgba(34,34,34,.14)}
 .cl-step{
   display:grid; grid-template-columns:64px 1fr; gap:18px; align-items:baseline;
@@ -491,7 +494,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   background:rgba(11,29,63,.04); font-size:14.5px; line-height:1.55; color:#4a453e;
 }
 .ausverkauft-hinweis b{font-weight:600; color:var(--charcoal)}
-.drawer-cart-link{display:block; text-align:center; margin-top:12px; font-size:13.5px; color:var(--ink-soft);
+.drawer-cart-link{display:block; text-align:center; margin-top:12px; padding:12px 0; font-size:13.5px; color:var(--ink-soft);
   text-decoration:underline; text-underline-offset:3px}
 .drawer-cart-link:hover{color:var(--coral-deep)}
 
@@ -643,7 +646,8 @@ footer .wordmark{color:#fff; margin-bottom:16px; display:inline-block}
 .foot-mail:hover{color:var(--coral)}
 footer h4{font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:rgba(250,247,242,.5); margin-bottom:14px}
 footer ul{list-style:none; display:flex; flex-direction:column; gap:2px; font-size:14px; font-weight:300}
-footer ul a{display:inline-block; padding:5px 0; transition:color .25s}
+footer ul a{padding:11px 0;
+  display:inline-block; padding:5px 0; transition:color .25s}
 footer ul a:hover{color:var(--coral)}
 .foot-note{
   max-width:1280px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(250,247,242,.14);
@@ -741,7 +745,8 @@ footer ul a:hover{color:var(--coral)}
 
 /* ===== V2: Shop-Header (Sprache/Land/Suche) ===== */
 .nav-right{display:flex; align-items:center; gap:6px}
-.nav-icon-btn{display:flex; align-items:center; gap:6px; background:none; border:none; cursor:pointer;
+.nav-icon-btn{display:flex; align-items:center; justify-content:center; gap:6px; min-height:44px; min-width:44px;
+  background:none; border:none; cursor:pointer;
   color:inherit; padding:8px 9px; border-radius:99px; font:inherit; font-size:13px; font-weight:500;
   transition:background .25s}
 .nav-icon-btn:hover{background:rgba(127,127,127,.14)}
@@ -794,7 +799,7 @@ footer ul a:hover{color:var(--coral)}
 /* ===== V3: Drawer-Stepper ===== */
 .drawer-item{position:relative}
 .qty-ctrl{display:flex; align-items:center; gap:2px; margin-top:6px}
-.qty-ctrl button{width:24px; height:24px; border-radius:7px; border:1px solid #e3ddd2; background:#fff;
+.qty-ctrl button{width:44px; height:44px; border-radius:10px; border:1px solid #e3ddd2; background:#fff;
   cursor:pointer; font-size:14px; line-height:1; color:var(--charcoal); transition:border-color .2s}
 .qty-ctrl button:hover{border-color:var(--coral)}
 .qty-ctrl .qv{min-width:26px; text-align:center; font-size:13px; font-weight:500}
@@ -885,7 +890,7 @@ footer ul a:hover{color:var(--coral)}
 /* ---------- Touch-Targets ---------- */
 .cart-btn{padding:10px}
 .drawer-close{padding:10px 14px}
-.qty-ctrl button{width:32px; height:32px}
+.qty-ctrl button{width:44px; height:44px}
 .line-remove{padding:10px}
 .add-btn{padding:12px 0}
 .col-label .arrow{width:44px; height:44px}
@@ -2022,6 +2027,13 @@ function syncMerkZaehler(){
 // Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
 // und kehrt beim Schliessen an die ausloesende Stelle zurueck.
 const fokusFalle = new Map();
+// Zaehler statt Schalter: das Schliessen eines Overlays darf nicht entsperren,
+// solange ein anderes noch offen ist.
+let offeneOverlays = 0;
+function scrollSperre(an){
+  offeneOverlays = Math.max(0, offeneOverlays + (an ? 1 : -1));
+  document.body.style.overflow = offeneOverlays > 0 ? 'hidden' : '';
+}
 function fokusFuehren(el, open, ersterKandidat){
   if (!el) return;
   if (open){
@@ -2053,6 +2065,7 @@ function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
   drawer.toggleAttribute('inert', !open);
+  scrollSperre(open);
   document.getElementById('cartBtn')?.setAttribute('aria-expanded', open);
   fokusFuehren(drawer, open, document.getElementById('drawerClose'));
 }
@@ -2094,8 +2107,8 @@ if (mnav && burgerBtn){
   const setMnav = open => {
     mnav.classList.toggle('open', open);
     burgerBtn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
     mnav.toggleAttribute('inert', !open);
+    scrollSperre(open);
     fokusFuehren(mnav, open, document.getElementById('mnavClose'));
   };
   addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('open')) setMnav(false); });
@@ -2170,6 +2183,7 @@ const soResults = document.getElementById('soResults');
 function openSearch(open){
   so.classList.toggle('open', open);
   so.toggleAttribute('inert', !open);
+  scrollSperre(open);
   so.setAttribute('aria-modal', open ? 'true' : 'false');
   document.getElementById('searchBtn')?.setAttribute('aria-expanded', open);
   if (open){ soInput.value = ''; soSearch(''); }
@@ -2316,8 +2330,12 @@ rail.innerHTML = PRODUCTS.slice(0, 8).map(p => `
 rail.addEventListener('click', e => {
   const box = e.target.closest('[data-flip]');
   if (!box) return;
-  if (matchMedia('(hover: none)').matches) { box.classList.toggle('flip'); }
-  else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
+  const a = box.closest('article');
+  if (matchMedia('(hover: none)').matches){
+    // Erster Tipp dreht zum Getragen-Foto, der zweite fuehrt zur Produktseite
+    if (box.classList.contains('flip') && a) location.href = 'produkt.html?p=' + a.dataset.id;
+    else box.classList.toggle('flip');
+  } else if (a) location.href = 'produkt.html?p=' + a.dataset.id;
 });
 
 // ---------- Click-Lock Demo ----------

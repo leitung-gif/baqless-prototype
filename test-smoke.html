@@ -621,6 +621,20 @@ async function run() {
   const md = m.contentDocument, mw = m.contentWindow;
   log('Mobil: kein horizontaler Overflow', md.documentElement.scrollWidth <= 376,
     'scrollWidth=' + md.documentElement.scrollWidth);
+  log('Mobil: Touch-Ziele im Kopf mindestens 44px', (() => {
+    const masse = ['#burgerBtn', '#cartBtn', '#searchBtn'].map(sel => {
+      const r = md.querySelector(sel)?.getBoundingClientRect();
+      return r ? Math.min(r.width, r.height) : 0;
+    });
+    return masse.every(m2 => m2 >= 44);
+  })(), [...['#burgerBtn','#cartBtn','#searchBtn']].map(sel => {
+    const r = md.querySelector(sel)?.getBoundingClientRect();
+    return sel + ':' + (r ? Math.round(Math.min(r.width, r.height)) : '?');
+  }).join(' '));
+  log('Mobil: Sprungmarken bleiben unter der Kopfzeile sichtbar',
+    mw.getComputedStyle(md.documentElement).scrollPaddingTop === '92px');
+  log('Mobil: Menü lässt sich nicht seitwärts schieben',
+    mw.getComputedStyle(md.getElementById('mnav')).overflowX === 'hidden');
   const burger = md.getElementById('burgerBtn');
   log('Mobil: Burger sichtbar', !!burger && mw.getComputedStyle(burger).display !== 'none');
   log('Mobil: Nav-Icons im Viewport', (() => {

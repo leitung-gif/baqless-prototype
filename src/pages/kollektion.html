@@ -106,8 +106,12 @@ grid.addEventListener('click', e => {
   if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
   const box = e.target.closest('[data-flip]');
   if (!box) return;
-  if (matchMedia('(hover: none)').matches) { box.classList.toggle('flip'); }
-  else { const a = box.closest('article'); if (a) location.href = 'produkt.html?p=' + a.dataset.id; }
+  const a = box.closest('article');
+  if (matchMedia('(hover: none)').matches){
+    // Erster Tipp dreht zum Getragen-Foto, der zweite fuehrt zur Produktseite
+    if (box.classList.contains('flip') && a) location.href = 'produkt.html?p=' + a.dataset.id;
+    else box.classList.toggle('flip');
+  } else if (a) location.href = 'produkt.html?p=' + a.dataset.id;
 });
 renderPlp();
 track('view_item_list', { item_list_name: 'Kollektionen' });

@@ -15,7 +15,9 @@
 /* ===== PDP ===== */
 .pdp{padding:118px var(--pad) 40px; max-width:1180px; margin:0 auto}
 .pdp-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start}
-@media(max-width:920px){.pdp-grid{grid-template-columns:1fr; gap:30px}}
+@media(max-width:920px){.pdp-grid{grid-template-columns:1fr; gap:30px}
+  /* Grid-Elemente duerfen nicht breiter werden als ihre Spalte */
+  .pdp-grid > *{min-width:0}}
 
 .gal{position:sticky; top:96px}
 @media(max-width:920px){.gal{position:static}}
@@ -99,8 +101,10 @@ table.spec th{font-weight:500; color:var(--ink-soft); width:42%; font-size:13px}
 table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 
 .notify-form{margin-top:14px; display:flex; flex-direction:column; gap:7px}
+.notify-form[hidden]{display:none}
 .notify-form label{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft)}
-.notify-row{display:flex; gap:8px}
+.notify-row{display:flex; flex-wrap:wrap; gap:8px}
+.notify-row .btn{flex:1 1 auto; justify-content:center}
 .notify-row input{flex:1; min-width:0; border:1.5px solid #e3dccf; border-radius:4px; padding:11px 12px; font:inherit; font-size:15px; background:#fff}
 .notify-row input:focus{border-color:var(--navy)}
 .notify-note{font-size:12.5px; color:var(--ink-soft)}

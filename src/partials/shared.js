@@ -239,6 +239,13 @@ function syncMerkZaehler(){
 // Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
 // und kehrt beim Schliessen an die ausloesende Stelle zurueck.
 const fokusFalle = new Map();
+// Zaehler statt Schalter: das Schliessen eines Overlays darf nicht entsperren,
+// solange ein anderes noch offen ist.
+let offeneOverlays = 0;
+function scrollSperre(an){
+  offeneOverlays = Math.max(0, offeneOverlays + (an ? 1 : -1));
+  document.body.style.overflow = offeneOverlays > 0 ? 'hidden' : '';
+}
 function fokusFuehren(el, open, ersterKandidat){
   if (!el) return;
   if (open){
@@ -270,6 +277,7 @@ function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
   drawer.toggleAttribute('inert', !open);
+  scrollSperre(open);
   document.getElementById('cartBtn')?.setAttribute('aria-expanded', open);
   fokusFuehren(drawer, open, document.getElementById('drawerClose'));
 }
@@ -311,8 +319,8 @@ if (mnav && burgerBtn){
   const setMnav = open => {
     mnav.classList.toggle('open', open);
     burgerBtn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
     mnav.toggleAttribute('inert', !open);
+    scrollSperre(open);
     fokusFuehren(mnav, open, document.getElementById('mnavClose'));
   };
   addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('open')) setMnav(false); });
@@ -387,6 +395,7 @@ const soResults = document.getElementById('soResults');
 function openSearch(open){
   so.classList.toggle('open', open);
   so.toggleAttribute('inert', !open);
+  scrollSperre(open);
   so.setAttribute('aria-modal', open ? 'true' : 'false');
   document.getElementById('searchBtn')?.setAttribute('aria-expanded', open);
   if (open){ soInput.value = ''; soSearch(''); }
