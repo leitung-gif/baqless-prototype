@@ -305,11 +305,17 @@ async function run() {
   log('Zugang: Escape schliesst und gibt den Fokus zurück', !d.getElementById('drawer').classList.contains('open')
     && d.activeElement === d.getElementById('cartBtn'));
   log('Zugang: Suchfeld hat eine Beschriftung', !!d.querySelector('label[for="soInput"]'));
-  await sleep(400); // die Sichtbarkeit schaltet erst nach der Schliessanimation um
   log('Zugang: geschlossene Overlays sind nicht tabbar', (() => {
-    const w2 = f.contentWindow;
-    return w2.getComputedStyle(d.getElementById('drawer')).visibility === 'hidden'
-      && w2.getComputedStyle(d.getElementById('mnav')).visibility === 'hidden';
+    // inert statt Sichtbarkeit pruefen: haengt an keiner Animation und ist damit eindeutig
+    return d.getElementById('drawer').hasAttribute('inert')
+      && d.getElementById('mnav').hasAttribute('inert')
+      && d.getElementById('searchOverlay').hasAttribute('inert');
+  })());
+  log('Zugang: offener Warenkorb ist wieder bedienbar', (() => {
+    d.getElementById('cartBtn').click();
+    const offen = !d.getElementById('drawer').hasAttribute('inert');
+    d.getElementById('drawerClose').click();
+    return offen && d.getElementById('drawer').hasAttribute('inert');
   })());
   log('Zugang: Fokusrahmen hell auf dunklem Grund', (() => {
     const w2 = f.contentWindow;

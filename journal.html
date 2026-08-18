@@ -1843,6 +1843,7 @@ addEventListener('keydown', e => {
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
+  drawer.toggleAttribute('inert', !open);
   document.getElementById('cartBtn')?.setAttribute('aria-expanded', open);
   fokusFuehren(drawer, open, document.getElementById('drawerClose'));
 }
@@ -1878,6 +1879,7 @@ if (mnav && burgerBtn){
     mnav.classList.toggle('open', open);
     burgerBtn.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    mnav.toggleAttribute('inert', !open);
     fokusFuehren(mnav, open, document.getElementById('mnavClose'));
   };
   addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('open')) setMnav(false); });
@@ -1951,8 +1953,15 @@ const soInput = document.getElementById('soInput');
 const soResults = document.getElementById('soResults');
 function openSearch(open){
   so.classList.toggle('open', open);
-  if (open){ soInput.value = ''; soSearch(''); setTimeout(() => soInput.focus(), 60); }
+  so.toggleAttribute('inert', !open);
+  so.setAttribute('aria-modal', open ? 'true' : 'false');
+  document.getElementById('searchBtn')?.setAttribute('aria-expanded', open);
+  if (open){ soInput.value = ''; soSearch(''); }
+  fokusFuehren(so, open, soInput);
 }
+// Geschlossene Overlays sind von Anfang an aus der Tabreihenfolge genommen.
+// inert haengt nicht an einer Animation und ist damit verlaesslicher als Sichtbarkeit allein.
+[drawer, document.getElementById('mnav'), so].forEach(el => el && el.setAttribute('inert', ''));
 function soSearch(q){
   q = q.trim().toLowerCase();
   const hits = !q ? PRODUCTS : PRODUCTS.filter(p =>
