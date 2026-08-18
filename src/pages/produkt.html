@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Baqless Ohrringe aus Sterling Silber 925 mit Click-Lock Verschluss. Wasserfest, 30 Tage Rückgabe.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Produkt</title>
+<meta name="description" content="{{t:seite.produkt.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.produkt.titel}}</title>
 <style>
 {{CSS}}
 
@@ -144,7 +146,7 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 {{HEADER}}
 
 <main class="pdp">
-  <div class="crumbs" role="navigation" aria-label="Breadcrumb" id="crumbs"></div>
+  <div class="crumbs" role="navigation" aria-label="{{t:pdp.krume.aria}}" id="crumbs"></div>
   <div class="pdp-grid">
     <div class="gal">
       <div class="gal-wrap">
@@ -159,17 +161,17 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 <section class="cl-band">
   <div class="wrap">
     <div class="clb-head">
-      <h2>Click-Lock. <em style="font-style:italic; color:var(--coral)">Ein Klick. Kein Zurück.</em></h2>
-      <a href="index.html#clicklock">Zur Demo →</a>
+      <h2>Click-Lock. <em style="font-style:italic; color:var(--coral)">{{t:pdp.band.titel_kursiv}}</em></h2>
+      <a href="index.html#clicklock">{{t:pdp.band.link}}</a>
     </div>
-    <div><b>01</b><h3>Einstecken</h3><p>Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</p></div>
-    <div><b>02</b><h3>Drehen</h3><p>Eine Vierteldrehung am Ohrring. Mehr braucht es nicht.</p></div>
-    <div><b>03</b><h3>Klick</h3><p>Der T-Anker rastet quer ein. Sitzt. Vergiss Rückteile.</p></div>
+    <div><b>01</b><h3>{{t:pdp.band.schritt1.titel}}</h3><p>{{t:pdp.band.schritt1.text}}</p></div>
+    <div><b>02</b><h3>{{t:pdp.band.schritt2.titel}}</h3><p>{{t:pdp.band.schritt2.text}}</p></div>
+    <div><b>03</b><h3>{{t:pdp.band.schritt3.titel}}</h3><p>{{t:pdp.band.schritt3.text}}</p></div>
   </div>
 </section>
 
 <section class="xsell">
-  <h2>Passt dazu.</h2>
+  <h2>{{t:pdp.xsell.titel}}</h2>
   <div class="rail" id="xsellRail"></div>
 </section>
 
@@ -187,14 +189,14 @@ const param = new URLSearchParams(location.search).get('p');
 const P = byId[param] || (param ? null : PRODUCTS[0]);
 if (!P){
   document.querySelector('.pdp').innerHTML = `
-    <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Nicht gefunden</span></div>
-    <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);margin:14px 0 12px">Dieses Paar gibt es nicht.</h1>
-    <p style="font-size:17px;line-height:1.65;color:#5c564e;max-width:48ch">Der Link führt zu einem Produkt, das wir nicht kennen. Vielleicht wurde es umbenannt oder ist aus dem Sortiment.</p>
+    <div class="crumbs"><a href="index.html">${txt('pdp.krume.start')}</a><span class="sep">/</span><span>${txt('pdp.fehler.krume')}</span></div>
+    <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);margin:14px 0 12px">${txt('pdp.fehler.titel')}</h1>
+    <p style="font-size:17px;line-height:1.65;color:#5c564e;max-width:48ch">${txt('pdp.fehler.text')}</p>
     <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-coral" href="kollektion.html">Alle Paare ansehen</a>
-      <a class="btn btn-ghost" href="index.html">Zur Startseite</a>
+      <a class="btn btn-coral" href="kollektion.html">${txt('pdp.fehler.knopf_kollektion')}</a>
+      <a class="btn btn-ghost" href="index.html">${txt('pdp.fehler.knopf_start')}</a>
     </div>`;
-  document.title = 'Baqless · Nicht gefunden';
+  document.title = 'Baqless · ' + txt('pdp.fehler.krume');
   document.getElementById('stickybar')?.remove();
   throw new Error('Produkt nicht gefunden');
 }
@@ -203,7 +205,7 @@ track('view_item', { currency: 'CHF', value: P.price, items: [{ item_id: P.sku, 
 
 // Breadcrumbs
 document.getElementById('crumbs').innerHTML =
-  `<a href="index.html">Startseite</a><span class="sep">/</span>` +
+  `<a href="index.html">${txt('pdp.krume.start')}</a><span class="sep">/</span>` +
   `<a href="kollektion.html?c=${P.collection}">${P.collection}</a><span class="sep">/</span>` +
   `<span>${P.name} ${P.variant}</span>`;
 
@@ -211,8 +213,8 @@ document.getElementById('crumbs').innerHTML =
 const galMain = document.getElementById('galMain');
 const galThumbs = document.getElementById('galThumbs');
 const views = [
-  {src: P.thumb, label: 'Produktansicht'},
-  {src: P.detail, label: 'Getragen'},
+  {src: P.thumb, label: txt('pdp.galerie.ansicht_produkt')},
+  {src: P.detail, label: txt('pdp.galerie.ansicht_getragen')},
 ];
 const COLLECTION_BG = {
   Honesty: 'linear-gradient(150deg,#FFDFD6,#FFC0AF)',
@@ -235,60 +237,60 @@ setView(0);
 const siblings = PRODUCTS.filter(x => x.group === P.group);
 const pillDots = {Gold:'#D9B14C', Silber:'#C9CDD4', Sea:'#4C8FD9', Black:'#222', White:'#F1EEE8', 'Neon Pink':'#FF3F8E'};
 document.getElementById('buy').innerHTML = `
-  <span class="eyebrow">${P.collection} Kollektion</span>
+  <span class="eyebrow">${txt('pdp.buy.kollektion', {kollektion: P.collection})}</span>
   <h1>${P.name}</h1>
   <div class="variant-line">${P.variant} · Click-Lock · ${P.sku}</div>
   ${P.lager === 'ausverkauft' ? `<div class="ausverkauft-hinweis">
-    <b>Zurzeit ausverkauft.</b> Wir fertigen von Hand, darum dauert es manchmal.
+    ${txt('pdp.ausverkauft.hinweis')}
     <form id="notifyForm" class="notify-form" hidden>
-      <label for="notifyMail">Deine E-Mail, dann melden wir uns</label>
+      <label for="notifyMail">${txt('pdp.ausverkauft.mail_label')}</label>
       <div class="notify-row">
         <input type="email" id="notifyMail" placeholder="deine@mail.ch" required>
-        <button class="btn btn-navy" type="submit">Eintragen</button>
+        <button class="btn btn-navy" type="submit">${txt('pdp.ausverkauft.knopf_eintragen')}</button>
       </div>
-      <span class="notify-note">Nur für diese eine Meldung, kein Newsletter.</span>
+      <span class="notify-note">${txt('pdp.ausverkauft.hinweis_newsletter')}</span>
     </form>
   </div>` : ''}
   <div class="price-row">
     <span class="price-big">CHF ${P.price}</span>
-    <span class="price-note">inkl. Click-Lock. Rückteile gibt's keine.</span>
+    <span class="price-note">${txt('pdp.buy.preis_hinweis')}</span>
   </div>
   ${siblings.length > 1 ? `
-  <div class="pills" aria-label="Variante wählen">
+  <div class="pills" aria-label="${txt('pdp.buy.varianten_aria')}">
     ${siblings.map(s => `<a href="produkt.html?p=${s.id}" class="${s.id === P.id ? 'active' : ''}">
       <span class="dot" style="background:${pillDots[s.variant] || 'var(--warmgrey)'}"></span>${s.variant}</a>`).join('')}
   </div>` : ''}
   ${P.halb ? `
-  <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="Paar oder Einzelohr">
-    <button type="button" class="active" data-einzelset="0" aria-pressed="true">Paar<span>CHF ${P.price}</span></button>
-    <button type="button" data-einzelset="1" aria-pressed="false">Einzelohr<span>CHF ${P.preisHalb}</span></button>
+  <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="${txt('pdp.halb.aria')}">
+    <button type="button" class="active" data-einzelset="0" aria-pressed="true">${txt('pdp.halb.paar')}<span>CHF ${P.price}</span></button>
+    <button type="button" data-einzelset="1" aria-pressed="false">${txt('variante.einzelohr')}<span>CHF ${P.preisHalb}</span></button>
   </div>
-  <div class="halb-note">Einzeln fürs zweite Loch oder zum Kombinieren mit einem anderen Paar.</div>` : ''}
+  <div class="halb-note">${txt('pdp.halb.hinweis')}</div>` : ''}
   <div class="buy-ctas">
-    <div class="qty-inline" aria-label="Menge">
-      <button id="qtyMinus" aria-label="Menge verringern">−</button>
+    <div class="qty-inline" aria-label="${txt('pdp.menge.aria')}">
+      <button id="qtyMinus" aria-label="${txt('pdp.menge.verringern')}">−</button>
       <span class="qv" id="qtyVal">1</span>
-      <button id="qtyPlus" aria-label="Menge erhöhen">+</button>
+      <button id="qtyPlus" aria-label="${txt('pdp.menge.erhoehen')}">+</button>
     </div>
     ${P.lager === 'ausverkauft'
-      ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">Benachrichtige mich</button>`
-      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">In den Warenkorb · CHF ${P.price}</button>`}
-    <button class="btn btn-ghost" id="saveBtn">Merken</button>
+      ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">${txt('pdp.buy.knopf_benachrichtigen')}</button>`
+      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">${txt('pdp.buy.knopf_kaufen', {preis: P.price})}</button>`}
+    <button class="btn btn-ghost" id="saveBtn">${txt('pdp.buy.knopf_merken')}</button>
   </div>
-  <div class="pay-row" aria-label="Zahlarten und Sicherheit">
+  <div class="pay-row" aria-label="${txt('pdp.buy.zahlarten_aria')}">
     <span class="pp">TWINT</span><span class="pp">VISA</span><span class="pp">Mastercard</span><span class="pp">Amex</span><span class="pp">PayPal</span><span class="pp">Apple Pay</span><span class="pp">Google Pay</span>
   </div>
-  <div class="trust-row">Entwickelt in der Schweiz, von Hand gefertigt · Sterling Silber 925 · 30 Tage Rückgabe</div>
+  <div class="trust-row">${txt('pdp.buy.vertrauen')}</div>
   <div class="mech">
-    <h3>So hält er ohne Rückteil</h3>
+    <h3>${txt('pdp.mech.titel')}</h3>
     <div class="mech-steps">
       <div class="mech-step">
         <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
           <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
           <rect x="29" y="5" width="6" height="30" rx="3" fill="#FF7A6A"/>
         </svg>
-        <b>Einstecken</b>
-        <span>Der T-förmige Stift steht längs und gleitet wie ein normaler Stecker durchs Ohrloch.</span>
+        <b>${txt('pdp.mech.schritt1.titel')}</b>
+        <span>${txt('pdp.mech.schritt1.text')}</span>
       </div>
       <div class="mech-step">
         <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
@@ -297,47 +299,47 @@ document.getElementById('buy').innerHTML = `
           <path d="M32 3.5A16.5 16.5 0 0 1 48.5 20" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round"/>
           <path d="m43.5 15 5.5 5.5-6 4.5" stroke="#FF7A6A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <b>Vierteldrehung</b>
-        <span>Eine kleine Drehung am Ohrring, mit einer Hand, ohne Spiegel.</span>
+        <b>${txt('pdp.mech.schritt2.titel')}</b>
+        <span>${txt('pdp.mech.schritt2.text')}</span>
       </div>
       <div class="mech-step">
         <svg viewBox="0 0 64 40" fill="none" aria-hidden="true">
           <circle cx="32" cy="20" r="13.5" stroke="#BFB8B0" stroke-width="1.2" stroke-dasharray="3 3"/>
           <rect x="15" y="17" width="34" height="6" rx="3" fill="#37B369"/>
         </svg>
-        <b>Sitzt</b>
-        <span>Der Anker steht jetzt quer hinter dem Ohrläppchen. Er kann nicht mehr zurück.</span>
+        <b>${txt('pdp.mech.schritt3.titel')}</b>
+        <span>${txt('pdp.mech.schritt3.text')}</span>
       </div>
     </div>
-    <div class="mech-note">Die Klemmkraft justierst du selbst, indem du das gedrehte Stiftteil verschiebst. <a href="index.html#clicklock">Mechanik ausprobieren</a></div>
+    <div class="mech-note">${txt('pdp.mech.hinweis')} <a href="index.html#clicklock">${txt('pdp.mech.hinweis_link')}</a></div>
   </div>
   <ul class="usps">
-    <li>Wasserfest. Duschen, Sport, Meer.</li>
-    <li>Sterling Silber 925</li>
-    <li>Gratisversand ab CHF 99, sonst CHF 7</li>
-    <li>Lieferung in 2 bis 4 Werktagen</li>
+    <li>${txt('pdp.usp.wasserfest')}</li>
+    <li>${txt('pdp.usp.material')}</li>
+    <li>${txt('pdp.usp.versand')}</li>
+    <li>${txt('pdp.usp.lieferzeit')}</li>
   </ul>
   <div class="acc" id="acc">
-    <div class="acc-item open"><button>Beschreibung<span class="plus">+</span></button>
+    <div class="acc-item open"><button>${txt('pdp.akkordeon.beschreibung')}<span class="plus">+</span></button>
       <div class="acc-body"><p>${P.desc}</p></div></div>
-    <div class="acc-item"><button>Material &amp; Masse<span class="plus">+</span></button>
+    <div class="acc-item"><button>${txt('pdp.akkordeon.material')}<span class="plus">+</span></button>
       <div class="acc-body">
         <table class="spec">
-          <tr><th>Material</th><td>${P.materials}</td></tr>
-          <tr><th>Stift</th><td>Chirurgischer Edelstahl, der einzige Teil aus Stahl</td></tr>
-          <tr><th>Masse</th><td>${P.masse || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
-          <tr><th>Gewicht</th><td>${P.gewicht || '<span class="ph">[folgt mit den Herstellerdaten]</span>'}</td></tr>
-          <tr><th>Herkunft</th><td>Entwickelt in der Schweiz, von Hand gefertigt</td></tr>
+          <tr><th>${txt('pdp.spec.material')}</th><td>${P.materials}</td></tr>
+          <tr><th>${txt('pdp.spec.stift')}</th><td>${txt('pdp.spec.stift_wert')}</td></tr>
+          <tr><th>${txt('pdp.spec.masse')}</th><td>${P.masse || `<span class="ph">${txt('pdp.spec.folgt')}</span>`}</td></tr>
+          <tr><th>${txt('pdp.spec.gewicht')}</th><td>${P.gewicht || `<span class="ph">${txt('pdp.spec.folgt')}</span>`}</td></tr>
+          <tr><th>${txt('pdp.spec.herkunft')}</th><td>${txt('pdp.spec.herkunft_wert')}</td></tr>
         </table>
       </div></div>
-    <div class="acc-item"><button>Grösse &amp; Passform<span class="plus">+</span></button>
+    <div class="acc-item"><button>${txt('pdp.akkordeon.groesse')}<span class="plus">+</span></button>
       <div class="acc-body" id="accSize"></div></div>
-    <div class="acc-item"><button>Click-Lock &amp; Handhabung<span class="plus">+</span></button>
-      <div class="acc-body"><ol><li>Einstecken. Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</li><li>Vierteldrehung am Ohrring.</li><li>Klick. Der T-Anker rastet quer ein. Sitzt, bis du ihn selbst löst.</li></ol><p>Schliesst mit einer Hand. Ohne Spiegel, ohne Fummeln hinterm Ohr.</p></div></div>
-    <div class="acc-item"><button>Pflege<span class="plus">+</span></button>
+    <div class="acc-item"><button>${txt('pdp.akkordeon.handhabung')}<span class="plus">+</span></button>
+      <div class="acc-body"><ol><li>${txt('pdp.handhabung.schritt1')}</li><li>${txt('pdp.handhabung.schritt2')}</li><li>${txt('pdp.handhabung.schritt3')}</li></ol><p>${txt('pdp.handhabung.text')}</p></div></div>
+    <div class="acc-item"><button>${txt('pdp.akkordeon.pflege')}<span class="plus">+</span></button>
       <div class="acc-body"><p>${P.care}</p></div></div>
-    <div class="acc-item"><button>Versand &amp; Retouren<span class="plus">+</span></button>
-      <div class="acc-body"><p>Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 99. 30 Tage Rückgaberecht: ungetragen, Originalverpackung genügt.</p></div></div>
+    <div class="acc-item"><button>${txt('pdp.akkordeon.versand')}<span class="plus">+</span></button>
+      <div class="acc-body"><p>${txt('pdp.versand.text')}</p></div></div>
   </div>`;
 
 // Paar oder Einzelohr umschalten (in Shopify: Variantenwechsel)
@@ -363,7 +365,7 @@ if (halbToggle){
     const add = document.getElementById('mainAdd');
     if (add && add.dataset.add){
       add.dataset.einzel = einzel ? '1' : '0';
-      add.textContent = 'In den Warenkorb · CHF ' + preis;
+      add.textContent = txt('pdp.buy.knopf_kaufen', {preis});
     }
     // Die mobile Kaufleiste ist derselbe Kauf, also muss sie dasselbe zeigen und tun
     const sbAdd = document.querySelector('#stickybar [data-add]');
@@ -371,7 +373,7 @@ if (halbToggle){
     if (sbAdd) sbAdd.dataset.einzel = einzel ? '1' : '0';
     if (sbPreis) sbPreis.textContent = 'CHF ' + preis;
     document.querySelector('.variant-line').textContent =
-      `${P.variant}${einzel ? ' · Einzelohr' : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
+      `${P.variant}${einzel ? ' · ' + txt('variante.einzelohr') : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
     setzeUrl(einzel);
   });
 }
@@ -386,9 +388,9 @@ if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
   const box = document.getElementById('accSize');
   if (!box) return;
   const m = P.masseMm;
-  const hinweis = `<p>Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Miss im Zweifel die Dicke deines Ohrläppchens und <a href="kontakt.html">frag uns kurz</a>, wir sagen dir ehrlich, ob es passt.</p>`;
+  const hinweis = `<p>${txt('pdp.passform.hinweis', {link: `<a href="kontakt.html">${txt('pdp.passform.hinweis_link')}</a>`})}</p>`;
   if (!m){
-    box.innerHTML = `<p><span class="ph">[Grössengrafik folgt, sobald die Masse dieses Modells vorliegen.]</span></p>` + hinweis;
+    box.innerHTML = `<p><span class="ph">${txt('pdp.passform.grafik_folgt')}</span></p>` + hinweis;
     return;
   }
   const b = m.b, h = m.h;
@@ -408,15 +410,15 @@ if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
   box.innerHTML = `
     <figure class="sizeviz">
       <svg width="${padL * 2 + skala}mm" viewBox="0 0 ${padL * 2 + skala} ${hoehe}" role="img"
-           aria-label="${P.name} ${P.variant} misst ${b} auf ${h} Millimeter, gezeigt an einem Millimeter-Massstab">
+           aria-label="${txt('pdp.groesse.aria', {name: `${P.name} ${P.variant}`, b, h})}">
         <rect x="${padL}" y="${padT}" width="${b}" height="${h}" rx="${Math.min(b, h) * .28}"
               fill="#FFE3DE" stroke="#C93B27" stroke-width=".3"/>
         <text x="${padL + b + 3}" y="${padT + 3}" font-size="3" fill="#4a453e">${b} × ${h} mm</text>
         <line x1="${padL}" y1="${achse}" x2="${padL + skala}" y2="${achse}" stroke="#BFB8B0" stroke-width=".3"/>
         ${ticks}
-        <text x="${padL + skala}" y="${achse - 3.4}" font-size="2.6" fill="#6b655c" text-anchor="end">Millimeter</text>
+        <text x="${padL + skala}" y="${achse - 3.4}" font-size="2.6" fill="#6b655c" text-anchor="end">${txt('pdp.groesse.achse')}</text>
       </svg>
-      <figcaption>${P.name} ${P.variant} massstabsgetreu neben einem Millimeter-Massstab. Je nach Bildschirm weicht die Darstellung etwas ab, die Zahlen sind die verbindliche Angabe.</figcaption>
+      <figcaption>${txt('pdp.groesse.bildlegende', {name: `${P.name} ${P.variant}`})}</figcaption>
     </figure>` + hinweis;
 })();
 
@@ -434,14 +436,14 @@ document.querySelectorAll('.acc-item').forEach(item => {
   sync();
 });
 const saveBtn = document.getElementById('saveBtn');
-const syncMerk = () => { saveBtn.textContent = merkliste.includes(P.id) ? 'Gemerkt' : 'Merken'; };
+const syncMerk = () => { saveBtn.textContent = merkliste.includes(P.id) ? txt('pdp.buy.knopf_gemerkt') : txt('pdp.buy.knopf_merken'); };
 syncMerk();
 saveBtn.addEventListener('click', () => {
   const neu = merkeUm(P.id);
   syncMerk();
   toast(neu
-    ? `<span class="tick">✓</span><span><b>Gemerkt.</b> ${P.name} ${P.variant} wartet auf dich.</span>`
-    : `<span class="tick">i</span><span><b>Entfernt.</b> ${P.name} ${P.variant} ist nicht mehr gemerkt.</span>`);
+    ? `<span class="tick">✓</span><span><b>${txt('pdp.merken.titel')}</b> ${txt('pdp.merken.text', {name: `${P.name} ${P.variant}`})}</span>`
+    : `<span class="tick">i</span><span><b>${txt('pdp.merken.entfernt_titel')}</b> ${txt('pdp.merken.entfernt_text', {name: `${P.name} ${P.variant}`})}</span>`);
 });
 
 // Cross-Sell: andere Produkte (max 4, andere Gruppe zuerst)
@@ -457,7 +459,7 @@ document.getElementById('xsellRail').innerHTML = others.map(p => `
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <span class="price">CHF ${p.price}</span>
     </div>
-    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('pdp.knopf.in_den_warenkorb')}</button>
   </article>`).join('');
 document.getElementById('xsellRail').addEventListener('click', e => {
   if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;
@@ -491,7 +493,7 @@ if (notifyForm){
       return;
     }
     track('generate_lead', { method: 'back_in_stock', item_id: P.sku });
-    notifyForm.innerHTML = `<span class="notify-note"><b>Eingetragen.</b> Wir schreiben dir an ${mail.value.trim()}, sobald ${P.name} zurück ist. <span class="ph">[Im Prototyp wird nichts versendet.]</span></span>`;
+    notifyForm.innerHTML = `<span class="notify-note"><b>${txt('pdp.notify.titel')}</b> ${txt('pdp.notify.text', {mail: mail.value.trim(), name: P.name})} <span class="ph">${txt('pdp.notify.prototyp')}</span></span>`;
   });
 }
 
@@ -499,10 +501,10 @@ if (notifyForm){
 const sb = document.getElementById('stickybar');
 sb.innerHTML = `
   <img src="${P.thumb}" alt="">
-  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? 'Ausverkauft' : 'CHF ' + P.price}</span></div>
+  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? txt('pdp.leiste.ausverkauft') : 'CHF ' + P.price}</span></div>
   ${P.lager === 'ausverkauft'
-    ? `<button class="btn btn-navy" data-notify="${P.id}">Benachrichtigen</button>`
-    : `<button class="btn btn-coral" data-add="${P.id}" data-einzel="0">In den Warenkorb</button>`}`;
+    ? `<button class="btn btn-navy" data-notify="${P.id}">${txt('pdp.leiste.knopf_benachrichtigen')}</button>`
+    : `<button class="btn btn-coral" data-add="${P.id}" data-einzel="0">${txt('pdp.knopf.in_den_warenkorb')}</button>`}`;
 const ctasEl = document.querySelector('.buy-ctas');
 function updateSticky(){
   const show = ctasEl.getBoundingClientRect().bottom < 0;
@@ -518,7 +520,7 @@ ld.type = 'application/ld+json';
 ld.textContent = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Product',
   name: `${P.name} ${P.variant}`, sku: P.sku, brand: {'@type': 'Brand', name: 'Baqless'},
-  description: P.desc, category: `Ohrringe > ${P.collection}`,
+  description: P.desc, category: txt('pdp.ld.kategorie', {kollektion: P.collection}),
   offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: P.lager === 'ausverkauft' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
     shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 99, currency: 'CHF'}}}
 });
@@ -528,7 +530,7 @@ ldBc.type = 'application/ld+json';
 ldBc.textContent = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
-    {'@type': 'ListItem', position: 1, name: 'Startseite', item: 'index.html'},
+    {'@type': 'ListItem', position: 1, name: txt('pdp.krume.start'), item: 'index.html'},
     {'@type': 'ListItem', position: 2, name: P.collection, item: `kollektion.html?c=${P.collection}`},
     {'@type': 'ListItem', position: 3, name: `${P.name} ${P.variant}`}
   ]
@@ -544,7 +546,7 @@ try { localStorage.setItem('baqless_seen', JSON.stringify(seen)); } catch(e) {}
 if (seenPrev.length){
   const sec = document.createElement('section');
   sec.className = 'seen';
-  sec.innerHTML = `<h2>Zuletzt angesehen.</h2><div class="rail" id="seenRail"></div>`;
+  sec.innerHTML = `<h2>${txt('pdp.gesehen.titel')}</h2><div class="rail" id="seenRail"></div>`;
   document.querySelector('.xsell').after(sec);
   document.getElementById('seenRail').innerHTML = seenPrev.slice(0, 4).map(id => {
     const p = byId[id];
@@ -558,7 +560,7 @@ if (seenPrev.length){
         <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
         <span class="price">CHF ${p.price}</span>
       </div>
-      <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+      <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('pdp.knopf.in_den_warenkorb')}</button>
     </article>`;
   }).join('');
   document.getElementById('seenRail').addEventListener('click', e => {

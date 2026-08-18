@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Frage zu Baqless? Schreib uns, wir antworten innert 24 Stunden.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Kontakt</title>
+<meta name="description" content="{{t:seite.kontakt.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.kontakt.titel}}</title>
 <style>
 {{CSS}}
 </style>
@@ -18,33 +20,33 @@
 {{HEADER}}
 
 <main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Kontakt</span></div>
-  <h1>Sag Hallo.</h1>
-  <p class="lead">Frage zum Click-Lock, zu deiner Bestellung oder zu einem Paar, das du im Auge hast? Schreib uns. Wir antworten schnell und ohne Textbausteine.</p>
+  <div class="crumbs"><a href="index.html">{{t:kontakt.brotkrume.start}}</a><span class="sep">/</span><span>{{t:kontakt.brotkrume.aktuell}}</span></div>
+  <h1>{{t:kontakt.hero.titel}}</h1>
+  <p class="lead">{{t:kontakt.hero.lead}}</p>
 
   <div class="contact-grid">
     <div>
       <div class="contact-card">
-        <h3>E-Mail</h3>
-        <p><a href="mailto:hello@baqless.com">hello@baqless.com</a><br>Antwort innert 24 Stunden, Montag bis Freitag.</p>
+        <h3>{{t:kontakt.mail.titel}}</h3>
+        <p><a href="mailto:hello@baqless.com">hello@baqless.com</a><br>{{t:kontakt.mail.antwortzeit}}</p>
       </div>
       <div class="contact-card">
-        <h3>Bestellungen</h3>
-        <p>Versand aus der Schweiz und Japan. Alles zu Lieferung und Rückgabe findest du unter <a href="widerruf.html">Versand &amp; Retouren</a>.</p>
+        <h3>{{t:kontakt.bestellungen.titel}}</h3>
+        <p>{{t:kontakt.bestellungen.text}} <a href="widerruf.html">{{t:kontakt.bestellungen.link_retouren}}</a>.</p>
       </div>
       <div class="contact-card">
-        <h3>Click-Lock Hilfe</h3>
-        <p>Einstecken, drehen, klick. Die Anleitung mit Demo findest du <a href="index.html#clicklock">hier</a>. Klappt es nicht, schreib uns. Wir lassen dich nicht hängen.</p>
+        <h3>{{t:kontakt.hilfe.titel}}</h3>
+        <p>{{t:kontakt.hilfe.text_vor}} <a href="index.html#clicklock">{{t:kontakt.hilfe.link_anleitung}}</a>. {{t:kontakt.hilfe.text_nach}}</p>
       </div>
     </div>
     <form class="cform" id="contactForm">
-      <label for="cfName">Name</label>
+      <label for="cfName">{{t:kontakt.formular.name}}</label>
       <input id="cfName" name="name" type="text" autocomplete="name" required>
-      <label for="cfMail">E-Mail</label>
+      <label for="cfMail">{{t:kontakt.formular.mail}}</label>
       <input id="cfMail" name="email" type="email" autocomplete="email" required>
-      <label for="cfMsg">Nachricht</label>
+      <label for="cfMsg">{{t:kontakt.formular.nachricht}}</label>
       <textarea id="cfMsg" name="message" rows="7" required></textarea>
-      <button class="btn btn-coral" type="submit">Abschicken</button>
+      <button class="btn btn-coral" type="submit">{{t:kontakt.formular.knopf_abschicken}}</button>
     </form>
   </div>
 </main>
@@ -57,7 +59,7 @@
 
 document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
-  toast(`<span class="tick">✓</span><span><b>Danke.</b> Wir melden uns innert 24 Stunden.</span>`);
+  toast(`<span class="tick">✓</span><span><b>${txt('kontakt.toast.titel')}</b> ${txt('kontakt.toast.text')}</span>`);
   e.target.reset();
 });
 </script>

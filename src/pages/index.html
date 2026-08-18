@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Ohrringe ohne Rückteil: einstecken, drehen, klick. Wasserfest und gemacht für jeden Tag. Entwickelt in der Schweiz, von Hand gefertigt.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Ein Klick. Kein Zurück.</title>
+<meta name="description" content="{{t:seite.index.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.index.titel}}</title>
 <style>
 {{CSS}}
 </style>
@@ -17,15 +19,15 @@
 
 {{HEADER}}
 
-<div class="dotnav" id="dotnav" aria-label="Sektionen">
-  <a href="#top" data-sec="top"><span>Start</span></a>
-  <a href="#produkte" data-sec="produkte"><span>Shop</span></a>
-  <a href="#reviews" data-sec="reviews"><span>Stimmen</span></a>
-  <a href="#kollektionen" data-sec="kollektionen"><span>Kollektionen</span></a>
+<div class="dotnav" id="dotnav" aria-label="{{t:start.punktnav.label}}">
+  <a href="#top" data-sec="top"><span>{{t:start.punktnav.start}}</span></a>
+  <a href="#produkte" data-sec="produkte"><span>{{t:start.punktnav.shop}}</span></a>
+  <a href="#reviews" data-sec="reviews"><span>{{t:start.punktnav.stimmen}}</span></a>
+  <a href="#kollektionen" data-sec="kollektionen"><span>{{t:start.punktnav.kollektionen}}</span></a>
   <a href="#clicklock" data-sec="clicklock"><span>Click-Lock</span></a>
-  <a href="#film" data-sec="film"><span>Film</span></a>
+  <a href="#film" data-sec="film"><span>{{t:start.punktnav.film}}</span></a>
   <a href="#wa" data-sec="wa"><span>WA</span></a>
-  <a href="#story" data-sec="story"><span>Story</span></a>
+  <a href="#story" data-sec="story"><span>{{t:start.punktnav.story}}</span></a>
 </div>
 
 <!-- ================= HERO ================= -->
@@ -34,17 +36,17 @@
   <canvas id="bubbles" aria-hidden="true"></canvas>
   <div class="hero-copy">
     <h1>
-      <span class="line"><span>Ein Klick.</span></span>
-      <span class="line"><span>Kein Zurück.</span></span>
+      <span class="line"><span>{{t:start.hero.zeile1}}</span></span>
+      <span class="line"><span>{{t:start.hero.zeile2}}</span></span>
     </h1>
-    <p class="hero-sub">Einstecken, drehen, klick. Deine Ohrringe bleiben dran: beim Sport, unter der Dusche, im Meer. Kein Rückteil, das drückt oder verloren geht. Entwickelt in der Schweiz, von Hand gefertigt.</p>
+    <p class="hero-sub">{{t:start.hero.text}}</p>
     <div class="hero-ctas">
-      <a class="btn btn-coral" href="#produkte">Finde deins</a>
-      <a class="btn btn-light" href="#clicklock">So funktioniert's</a>
+      <a class="btn btn-coral" href="#produkte">{{t:start.hero.knopf_produkte}}</a>
+      <a class="btn btn-light" href="#clicklock">{{t:start.hero.knopf_funktion}}</a>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-arch"><video muted loop playsinline autoplay preload="auto" poster="{{hero}}" aria-label="Baqless in Bewegung: Sport mit Baqless Ohrringen"><source src="hero-film.mp4" type="video/mp4"></video></div>
+    <div class="hero-arch"><video muted loop playsinline autoplay preload="auto" poster="{{hero}}" aria-label="{{t:start.hero.video_label}}"><source src="{{BASE}}hero-film.mp4" type="video/mp4"></video></div>
   </div>
   <div class="spin-badge" aria-hidden="true">
     <svg viewBox="0 0 128 128">
@@ -52,20 +54,20 @@
       <circle cx="64" cy="64" r="63" fill="#FF7A6A"/>
       <circle cx="64" cy="64" r="46" fill="none" stroke="rgba(11,29,63,.25)" stroke-width="1"/>
       <text font-family="Inter, sans-serif" font-size="11.5" font-weight="500" letter-spacing="2.5" fill="#0B1D3F">
-        <textPath href="#circ">EIN KLICK · KEIN ZURÜCK · BAQLESS · </textPath>
+        <textPath href="#circ">{{t:start.hero.siegel}}</textPath>
       </text>
       <circle cx="64" cy="64" r="7" fill="#0B1D3F"/>
     </svg>
   </div>
   <div class="hero-ring" aria-hidden="true"></div>
-  <div class="scroll-hint">Scroll</div>
+  <div class="scroll-hint">{{t:start.hero.scroll}}</div>
   
 </header>
 
 <!-- ================= MARQUEE ================= -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack">
-    <span>Kein Rückteil</span><span>Sterling Silber 925</span><span>Wasserfest</span><span>Silberschmuck für jeden Tag</span><span>Entwickelt in der Schweiz</span><span>Handgefertigt</span>
+    <span>{{t:start.laufband.kein_rueckteil}}</span><span>{{t:start.laufband.silber}}</span><span>{{t:start.laufband.wasserfest}}</span><span>{{t:start.laufband.alltag}}</span><span>{{t:start.laufband.schweiz}}</span><span>{{t:start.laufband.handgefertigt}}</span>
   </div>
 </div>
 
@@ -74,13 +76,13 @@
   <div class="blob" style="width:380px;height:380px;background:var(--sage-tint);top:-100px;left:-120px"></div>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Unsere Auswahl</span>
-      <h2>Finde deins.</h2>
-      <p>Jedes Paar mit Click&#8209;Lock. Jedes Paar von Hand gefertigt.</p>
-      <span class="sticker coral">Rückteile gibt's keine.</span>
+      <span class="eyebrow">{{t:start.produkte.augenbraue}}</span>
+      <h2>{{t:start.produkte.titel}}</h2>
+      <p>{{t:start.produkte.text}}</p>
+      <span class="sticker coral">{{t:start.produkte.sticker}}</span>
     </div>
     <div class="reveal d1"><div class="rail" id="rail"></div></div>
-    <div class="reveal d2" style="margin-top:26px"><a class="btn btn-ghost" href="neuheiten.html">Alle Neuheiten ansehen</a></div>
+    <div class="reveal d2" style="margin-top:26px"><a class="btn btn-ghost" href="neuheiten.html">{{t:start.produkte.knopf_neuheiten}}</a></div>
   </div>
 </section>
 
@@ -88,12 +90,12 @@
 <section class="section reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Stimmen</span>
-      <h2>Getragen und geliebt.</h2>
-      <p>Aus dem Alltag, nicht aus dem Studio.</p>
+      <span class="eyebrow">{{t:start.stimmen.augenbraue}}</span>
+      <h2>{{t:start.stimmen.titel}}</h2>
+      <p>{{t:start.stimmen.text}}</p>
     </div>
     <div class="rev-grid reveal d1" id="revGrid"></div>
-    <div class="rev-note reveal d2">Diese Stimmen stammen aus unseren Journal-Porträts. <a href="journal.html">Alle Porträts ansehen</a></div>
+    <div class="rev-note reveal d2">{{t:start.stimmen.hinweis}} <a href="journal.html">{{t:start.stimmen.hinweis_link}}</a></div>
   </div>
 </section>
 
@@ -101,23 +103,23 @@
 <section class="section collections" id="kollektionen">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Kollektionen</span>
-      <h2>Vier Welten. Ein Klick.</h2>
-      <p>Vier Kollektionen, jede mit eigenem Charakter. Der Halt ist immer derselbe.</p>
+      <span class="eyebrow">{{t:start.kollektionen.augenbraue}}</span>
+      <h2>{{t:start.kollektionen.titel}}</h2>
+      <p>{{t:start.kollektionen.text}}</p>
     </div>
     <div class="col-grid reveal d1">
       <a class="col-card col-big" href="kollektion.html?c=Honesty" style="--t1:#FFE9E4; --t2:#FFCDC0">
-        <img class="pack" src="{{p_slice}}" alt="Honesty Kollektion" loading="lazy">
+        <img class="pack" src="{{p_slice}}" alt="{{t:start.kollektionen.alt_honesty}}" loading="lazy">
         <img class="worn" src="{{d_slice}}" alt="" loading="lazy" aria-hidden="true">
         <div class="col-label"><div><h3>Honesty</h3><span class="col-count" data-colcount="Honesty"></span></div><span class="arrow">→</span></div>
       </a>
       <a class="col-card" href="kollektion.html?c=Amity" style="--t1:#ECE8FA; --t2:#DCD3F4">
-        <img class="pack" src="{{p_polaris_yg}}" alt="Amity Kollektion" loading="lazy">
+        <img class="pack" src="{{p_polaris_yg}}" alt="{{t:start.kollektionen.alt_amity}}" loading="lazy">
         <img class="worn" src="{{d_polaris_yg}}" alt="" loading="lazy" aria-hidden="true">
         <div class="col-label"><div><h3>Amity</h3><span class="col-count" data-colcount="Amity"></span></div><span class="arrow">→</span></div>
       </a>
       <a class="col-card" href="kollektion.html?c=Embrace" style="--t1:#E4F4EA; --t2:#CBE9D8">
-        <img class="pack" src="{{p_sageneon}}" alt="Embrace Kollektion" loading="lazy">
+        <img class="pack" src="{{p_sageneon}}" alt="{{t:start.kollektionen.alt_embrace}}" loading="lazy">
         <img class="worn" src="{{d_sageneon}}" alt="" loading="lazy" aria-hidden="true">
         <div class="col-label"><div><h3>Embrace</h3><span class="col-count" data-colcount="Embrace"></span></div><span class="arrow">→</span></div>
       </a>
@@ -132,19 +134,19 @@
   <div class="wrap cl-grid">
     <div class="reveal">
       <div class="sec-head" style="margin-bottom:0">
-        <span class="eyebrow">Der Click-Lock</span>
-        <h2>Ein Verschluss,<br>der bleibt.</h2>
-        <p>Kein Rückteil. Kein Suchen. Kein Verlieren. Der T&#8209;Anker gleitet durchs Ohr, dreht sich, klickt und legt sich quer. Acht Jahre Präzisionsarbeit, ein Handgriff.</p>
+        <span class="eyebrow">{{t:start.clicklock.augenbraue}}</span>
+        <h2>{{t:start.clicklock.titel}}</h2>
+        <p>{{t:start.clicklock.text}}</p>
       </div>
       <div class="cl-steps">
-        <div class="cl-step" id="step1"><b>01</b><div><h3>Einstecken</h3><p>Der Stift gleitet wie ein normaler Stecker durchs Ohrloch.</p></div></div>
-        <div class="cl-step" id="step2"><b>02</b><div><h3>Drehen</h3><p>Eine Vierteldrehung am Ohrring. Mehr braucht es nicht.</p></div></div>
-        <div class="cl-step" id="step3"><b>03</b><div><h3>Klick</h3><p>Der T&#8209;Anker rastet quer ein. Sitzt. Vergiss Rückteile.</p></div></div>
+        <div class="cl-step" id="step1"><b>01</b><div><h3>{{t:start.clicklock.schritt1_titel}}</h3><p>{{t:start.clicklock.schritt1_text}}</p></div></div>
+        <div class="cl-step" id="step2"><b>02</b><div><h3>{{t:start.clicklock.schritt2_titel}}</h3><p>{{t:start.clicklock.schritt2_text}}</p></div></div>
+        <div class="cl-step" id="step3"><b>03</b><div><h3>{{t:start.clicklock.schritt3_titel}}</h3><p>{{t:start.clicklock.schritt3_text}}</p></div></div>
       </div>
     </div>
     <div class="cl-stage reveal d1" id="clStage">
-      <div class="cl-state"><span class="led"></span><span id="clStateLabel">Offen</span></div>
-      <svg viewBox="120 -14 480 340" role="img" aria-label="Interaktive Animation des Click-Lock Verschlusses">
+      <div class="cl-state"><span class="led"></span><span id="clStateLabel">{{t:start.clicklock.zustand_offen}}</span></div>
+      <svg viewBox="120 -14 480 340" role="img" aria-label="{{t:start.clicklock.svg_label}}">
         <defs>
           <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#F8ECDE"/><stop offset="1" stop-color="#EFD9BF"/>
@@ -190,10 +192,10 @@
       </svg>
       <p class="cl-caption" id="clCaption">&nbsp;</p>
       <div class="cl-actions">
-        <button class="btn btn-coral" id="lockBtn">Klick.</button>
-        <button class="btn btn-ghost" id="tugBtn" disabled style="opacity:.4">Zieh dran</button>
+        <button class="btn btn-coral" id="lockBtn">{{t:start.clicklock.knopf_klick}}</button>
+        <button class="btn btn-ghost" id="tugBtn" disabled style="opacity:.4">{{t:start.clicklock.knopf_ziehen}}</button>
       </div>
-      <p class="cl-origin">Entwickelt in der Schweiz, von Hand gefertigt</p>
+      <p class="cl-origin">{{t:start.clicklock.herkunft}}</p>
     </div>
   </div>
 </section>
@@ -202,26 +204,26 @@
 <section class="section film" id="film">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Baqless in Bewegung</span>
-      <h2>Sieh dir den Halt an.</h2>
-      <p>Zwei Loops, ein Verschluss. Klick auf ein Video zum Pausieren. Der Click&#8209;Lock pausiert nie.</p>
+      <span class="eyebrow">{{t:start.film.augenbraue}}</span>
+      <h2>{{t:start.film.titel}}</h2>
+      <p>{{t:start.film.text}}</p>
     </div>
     <div class="film-grid reveal d1">
       <a class="film-card portrait still" href="kollektion.html">
-        <img src="{{hero}}" alt="Model trägt Baqless Ohrringe">
-        <span class="film-label">Getragen · Amity Polaris</span>
+        <img src="{{hero}}" alt="{{t:start.film.alt_model}}">
+        <span class="film-label">{{t:start.film.label_getragen}} · Amity Polaris</span>
       </a>
       <div class="film-side">
         <div class="film-card" data-film>
           <video muted loop playsinline preload="auto" poster="{{life1}}"><source src="{{v_hero}}" type="video/mp4"></video>
-          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
-          <span class="film-label"><i></i>Loop · Getragen</span>
+          <div class="film-ui"><button class="play-btn" aria-label="{{t:start.film.knopf_abspielen}}"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>{{t:start.film.label_loop}} · {{t:start.film.label_getragen}}</span>
           <div class="film-progress"></div>
         </div>
         <div class="film-card" data-film>
           <video muted loop playsinline preload="auto" poster="{{d_polaris_yg}}"><source src="{{v_macro}}" type="video/mp4"></video>
-          <div class="film-ui"><button class="play-btn" aria-label="Video abspielen"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
-          <span class="film-label"><i></i>Loop · Amity Polaris</span>
+          <div class="film-ui"><button class="play-btn" aria-label="{{t:start.film.knopf_abspielen}}"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div>
+          <span class="film-label"><i></i>{{t:start.film.label_loop}} · Amity Polaris</span>
           <div class="film-progress"></div>
         </div>
       </div>
@@ -233,17 +235,17 @@
 <section class="section wa" id="wa">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">WA · Limitierte Serie</span>
+      <span class="eyebrow">WA · {{t:start.wa.augenbraue}}</span>
       <div class="wa-line"></div>
-      <h2>Japan, in Gold gefasst.</h2>
-      <p>Traditionelle japanische Muster, gefertigt für die WA&#8209;Serie. Jede Auflage ist nummeriert. Nachproduziert wird nicht.</p>
+      <h2>{{t:start.wa.titel}}</h2>
+      <p>{{t:start.wa.text}}</p>
     </div>
     <div class="wa-grid reveal d1">
-      <figure class="wa-card"><a href="produkt.html?p=wasumiiri"><img src="{{wa_sumiiri}}" alt="SUMIIRI II Ohrringe" loading="lazy"><figcaption>SUMIIRI II <span class="price">CHF 89</span></figcaption></a></figure>
-      <figure class="wa-card"><a href="produkt.html?p=wahamon"><img src="{{wa_hamon}}" alt="HAMON II Ohrringe" loading="lazy"><figcaption>HAMON II <span class="price">CHF 89</span></figcaption></a></figure>
-      <figure class="wa-card"><a href="produkt.html?p=wakumo"><img src="{{wa_kumo}}" alt="KUMO III Ohrringe" loading="lazy"><figcaption>KUMO III <span class="price">CHF 95</span></figcaption></a></figure>
+      <figure class="wa-card"><a href="produkt.html?p=wasumiiri"><img src="{{wa_sumiiri}}" alt="{{t:start.wa.alt_sumiiri}}" loading="lazy"><figcaption>SUMIIRI II <span class="price">CHF 89</span></figcaption></a></figure>
+      <figure class="wa-card"><a href="produkt.html?p=wahamon"><img src="{{wa_hamon}}" alt="{{t:start.wa.alt_hamon}}" loading="lazy"><figcaption>HAMON II <span class="price">CHF 89</span></figcaption></a></figure>
+      <figure class="wa-card"><a href="produkt.html?p=wakumo"><img src="{{wa_kumo}}" alt="{{t:start.wa.alt_kumo}}" loading="lazy"><figcaption>KUMO III <span class="price">CHF 95</span></figcaption></a></figure>
     </div>
-    <div class="reveal d2"><a class="btn btn-gold" href="kollektion.html?c=WA">Zur WA Kollektion</a></div>
+    <div class="reveal d2"><a class="btn btn-gold" href="kollektion.html?c=WA">{{t:start.wa.knopf}}</a></div>
   </div>
 </section>
 
@@ -252,22 +254,22 @@
   <div class="wrap story-grid">
     <div class="story-copy reveal">
       <div class="sec-head" style="margin-bottom:22px">
-        <span class="eyebrow">Die Story</span>
-        <h2>Acht Jahre für einen Klick.</h2>
+        <span class="eyebrow">{{t:start.story.augenbraue}}</span>
+        <h2>{{t:start.story.titel}}</h2>
       </div>
-      <p>Eine Idee aus dem Schmuckdesign, umgesetzt mit der Präzision einer Schweizer Uhrenmanufaktur: ein Ohrring, der ohne Rückteil hält.</p>
-      <p>Entwickelt in der Schweiz, von Hand gefertigt. Weniger Teile, mehr Freiheit.</p>
+      <p>{{t:start.story.text1}}</p>
+      <p>{{t:start.story.text2}}</p>
       <div class="stats">
-        <div class="stat"><b data-count="8">0</b><span>Jahre Entwicklung</span></div>
-        <div class="stat"><b data-count="1">0</b><span>Klick</span></div>
-        <div class="stat"><b data-count="0">0</b><span>Rückteile</span></div>
+        <div class="stat"><b data-count="8">0</b><span>{{t:start.story.stat_jahre}}</span></div>
+        <div class="stat"><b data-count="1">0</b><span>{{t:start.story.stat_klick}}</span></div>
+        <div class="stat"><b data-count="0">0</b><span>{{t:start.story.stat_rueckteile}}</span></div>
       </div>
-      <a class="btn btn-ghost" style="margin-top:26px" href="story.html">Die ganze Story</a>
+      <a class="btn btn-ghost" style="margin-top:26px" href="story.html">{{t:start.story.knopf}}</a>
     </div>
     <div class="collage reveal d1">
-      <img class="tall" src="{{life1}}" alt="Baqless am Ohr getragen" loading="lazy">
-      <img class="sq" src="{{life2}}" alt="Baqless Detailaufnahme" loading="lazy">
-      <img class="sq" src="{{life3}}" alt="Baqless Lifestyle" loading="lazy">
+      <img class="tall" src="{{life1}}" alt="{{t:start.story.alt_getragen}}" loading="lazy">
+      <img class="sq" src="{{life2}}" alt="{{t:start.story.alt_detail}}" loading="lazy">
+      <img class="sq" src="{{life3}}" alt="{{t:start.story.alt_lifestyle}}" loading="lazy">
     </div>
   </div>
 </section>
@@ -277,18 +279,18 @@
   <div class="wrap ben-grid">
     <div class="ben reveal">
       <div class="ico ico-coral"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3.5 4.4 6 7.6 6 10.6a6 6 0 0 1-12 0C6 10.6 8.5 7.4 12 3Z"/></svg></div>
-      <h3>Wasserfest</h3>
-      <p>Duschen, Sport, Meer. Du musst sie nie mehr abnehmen.</p>
+      <h3>{{t:start.vorteile.wasserfest_titel}}</h3>
+      <p>{{t:start.vorteile.wasserfest_text}}</p>
     </div>
     <div class="ben reveal d1">
       <div class="ico ico-sage"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 4v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg></div>
-      <h3>Sterling Silber 925</h3>
-      <p>Echter Silberschmuck. Nur der Stift hinten ist chirurgischer Edelstahl.</p>
+      <h3>{{t:start.vorteile.silber_titel}}</h3>
+      <p>{{t:start.vorteile.silber_text}}</p>
     </div>
     <div class="ben reveal d2">
       <div class="ico ico-lav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c4-1 5-3 5-6l7-7 3 3-7 7c-3 0-5 1-6 5l-2-2Z"/><path d="M14 5l2-2 3 3-2 2"/></svg></div>
-      <h3>Handgefertigt</h3>
-      <p>Entwickelt in der Schweiz, von Hand gefertigt.</p>
+      <h3>{{t:start.vorteile.handgefertigt_titel}}</h3>
+      <p>{{t:start.vorteile.handgefertigt_text}}</p>
     </div>
   </div>
 </section>
@@ -298,12 +300,12 @@
   <div class="blob" style="width:340px;height:340px;background:var(--coral-tint);top:-80px;left:-120px"></div>
   <div class="blob" style="width:300px;height:300px;background:var(--lav-tint);bottom:-100px;right:-80px"></div>
   <div class="wrap reveal">
-    <span class="eyebrow">Newsletter</span>
-    <h2>Bleib dran.</h2>
-    <p>Neue Drops zuerst. Höchstens zwei Mails im Monat.</p>
+    <span class="eyebrow">{{t:start.newsletter.augenbraue}}</span>
+    <h2>{{t:start.newsletter.titel}}</h2>
+    <p>{{t:start.newsletter.text}}</p>
     <form class="nl-form" id="nlForm" data-nlform>
-      <input type="email" placeholder="deine@mail.ch" required aria-label="E-Mail-Adresse">
-      <button class="btn btn-coral" type="submit">Anmelden</button>
+      <input type="email" placeholder="deine@mail.ch" required aria-label="{{t:start.newsletter.feld_label}}">
+      <button class="btn btn-coral" type="submit">{{t:start.newsletter.knopf}}</button>
     </form>
   </div>
 </section>
@@ -413,7 +415,7 @@ rail.innerHTML = PRODUCTS.slice(0, 8).map(p => `
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <span class="price">CHF ${p.price}</span>
     </div>
-    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('start.js.knopf_warenkorb')}</button>
   </article>`).join('');
 rail.addEventListener('click', e => {
   const box = e.target.closest('[data-flip]');
@@ -436,11 +438,11 @@ let locked = false;
 lockBtn.addEventListener('click', () => {
   locked = !locked;
   stage.classList.toggle('locked', locked);
-  stateLabel.textContent = locked ? 'Gesichert' : 'Offen';
-  lockBtn.textContent = locked ? 'Öffnen' : 'Klick.';
+  stateLabel.textContent = locked ? txt('start.clicklock.zustand_gesichert') : txt('start.clicklock.zustand_offen');
+  lockBtn.textContent = locked ? txt('start.clicklock.knopf_oeffnen') : txt('start.clicklock.knopf_klick');
   tugBtn.disabled = !locked;
   tugBtn.style.opacity = locked ? 1 : .4;
-  caption.textContent = locked ? 'Sitzt. Vergiss Rückteile.' : 'Eine Vierteldrehung. Probier’s.';
+  caption.textContent = locked ? txt('start.clicklock.bildtext_gesichert') : txt('start.clicklock.bildtext_offen');
   caption.classList.add('show');
   [1,2,3].forEach(i => document.getElementById('step'+i).classList.toggle('active', locked));
   if (locked){ pop(880); if (navigator.vibrate) navigator.vibrate(12); }
@@ -448,7 +450,7 @@ lockBtn.addEventListener('click', () => {
 tugBtn.addEventListener('click', () => {
   if (!locked) return;
   stage.classList.remove('tugging'); void stage.offsetWidth; stage.classList.add('tugging');
-  caption.textContent = 'Bleibt.';
+  caption.textContent = txt('start.clicklock.bildtext_haelt');
 });
 
 // ---------- Film: Autoplay im Viewport, Klick = Pause ----------
@@ -482,19 +484,19 @@ const STIMMEN = {{STIMMEN_JSON}};
 document.getElementById('revGrid').innerHTML = STIMMEN.map(r => `
   <figure class="rev-card">
     <span class="rev-mark" aria-hidden="true">&ldquo;</span>
-    <span class="rev-kind">${r.art === 'zitat' ? 'Im Wortlaut' : 'Aus dem Porträt'}</span>
-    <blockquote class="rev-text">${r.art === 'zitat' ? '«' + r.text + '»' : r.text}</blockquote>
+    <span class="rev-kind">${r.art === 'zitat' ? txt('start.stimmen.art_zitat') : txt('start.stimmen.art_portraet')}</span>
+    <blockquote class="rev-text">${r.art === 'zitat' ? txt('start.stimmen.zitat_rahmen', {text: r.text}) : r.text}</blockquote>
     <p class="rev-role">${r.kontext}</p>
     <figcaption class="rev-meta">
       <b>${r.name}</b> · ${r.ort}<br>${r.rolle}<br>
-      <a href="journal.html">Zum Porträt</a> · <span class="rev-src">${r.quelle}</span>
+      <a href="journal.html">${txt('start.stimmen.link_portraet')}</a> · <span class="rev-src">${r.quelle}</span>
     </figcaption>
   </figure>`).join('');
 
 // ---------- Kollektions-Kacheln: Stückzahlen live aus den Produktdaten ----------
 document.querySelectorAll('[data-colcount]').forEach(el => {
   const n = PRODUCTS.filter(p => p.collection === el.dataset.colcount).length;
-  el.textContent = n + (n === 1 ? ' Paar' : ' Paare');
+  el.textContent = txtN('stueck.paar', n);
 });
 
 // ---------- Hero-Video respektiert reduzierte Bewegung ----------

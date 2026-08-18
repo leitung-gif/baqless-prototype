@@ -1,9 +1,9 @@
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
-<aside id="drawer" aria-label="Warenkorb" aria-modal="false">
+<aside id="drawer" aria-label="{{t:drawer.aria.warenkorb}}" aria-modal="false">
   <div class="drawer-head">
-    <h3>Warenkorb</h3>
-    <button class="drawer-close" id="drawerClose" aria-label="Schliessen">×</button>
+    <h3>{{t:drawer.kopf.titel}}</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="{{t:drawer.kopf.aria_schliessen}}">×</button>
   </div>
   <div class="ship-progress" id="shipProgress">
     <div class="ship-progress-text" id="shipText"></div>
@@ -11,22 +11,22 @@
   </div>
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-foot">
-    <div class="drawer-total"><span>Zwischensumme</span><span id="drawerTotal">CHF 0</span></div>
-    <button class="btn btn-coral" id="checkoutBtn" style="width:100%; justify-content:center">Zur Kasse</button>
-    <a class="drawer-cart-link" href="warenkorb.html">Warenkorb ansehen</a>
+    <div class="drawer-total"><span>{{t:drawer.fuss.zwischensumme}}</span><span id="drawerTotal">CHF 0</span></div>
+    <button class="btn btn-coral" id="checkoutBtn" style="width:100%; justify-content:center">{{t:drawer.fuss.knopf_kasse}}</button>
+    <a class="drawer-cart-link" href="warenkorb.html">{{t:drawer.fuss.link_warenkorb}}</a>
   </div>
 </aside>
 
 <!-- Such-Overlay -->
-<div id="searchOverlay" role="dialog" aria-label="Suche" aria-modal="false">
+<div id="searchOverlay" role="dialog" aria-label="{{t:suche.overlay.aria_dialog}}" aria-modal="false">
   <div class="so-inner">
     <div class="so-bar">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
-      <label for="soInput" class="visually-hidden">Suche nach Ohrringen und Kollektionen</label>
-      <input id="soInput" type="text" placeholder="Suche nach Ohrringen, Kollektionen …" autocomplete="off">
-      <button class="so-close" id="soClose" aria-label="Schliessen">×</button>
+      <label for="soInput" class="visually-hidden">{{t:suche.feld.label}}</label>
+      <input id="soInput" type="text" placeholder="{{t:suche.feld.platzhalter}}" autocomplete="off">
+      <button class="so-close" id="soClose" aria-label="{{t:suche.feld.aria_schliessen}}">×</button>
     </div>
-    <div class="so-hint" id="soHint">Beliebt: <button data-q="Polaris">Polaris</button><button data-q="Gold">Gold</button><button data-q="Honesty">Honesty</button><button data-q="Limitiert">Limitiert</button></div>
+    <div class="so-hint" id="soHint">{{t:suche.hinweis.beliebt}} <button data-q="Polaris">Polaris</button><button data-q="{{t:suche.hinweis.chip_gold}}">{{t:suche.hinweis.chip_gold}}</button><button data-q="Honesty">Honesty</button><button data-q="{{t:suche.hinweis.chip_limitiert}}">{{t:suche.hinweis.chip_limitiert}}</button></div>
     <div class="so-results" id="soResults"></div>
   </div>
 </div>

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Alle Baqless Kollektionen: Honesty, Amity und Embrace. Jedes Paar mit Click-Lock, wasserfest und gemacht für jeden Tag.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Kollektionen</title>
+<meta name="description" content="{{t:seite.kollektion.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.kollektion.titel}}</title>
 <style>
 {{CSS}}
 </style>
@@ -21,22 +23,22 @@
   <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
   <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
   <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
-  <h1>Alle Kollektionen. <em>Null Rückteile.</em></h1>
-  <p>Jedes Paar mit Click-Lock. Sterling Silber 925, wasserfest, gebaut für jeden Tag. Finde deins.</p>
+  <h1>{{t:plp.kollektion.hero.titel}}</h1>
+  <p>{{t:plp.kollektion.hero.text}}</p>
 </header>
 
 <main class="plp-wrap">
   <div class="plp-tools" id="plpTools">
-    <button class="fpill active" data-c="alle">Alle</button>
+    <button class="fpill active" data-c="alle">{{t:plp.filter.alle}}</button>
     <button class="fpill" data-c="Honesty">Honesty</button>
     <button class="fpill" data-c="Amity">Amity</button>
     <button class="fpill" data-c="Embrace">Embrace</button>
     <button class="fpill" data-c="WA">WA</button>
-    <select id="plpSort" aria-label="Sortieren">
-      <option value="std">Empfohlen</option>
-      <option value="asc">Preis aufsteigend</option>
-      <option value="desc">Preis absteigend</option>
-      <option value="neu">Neuheiten zuerst</option>
+    <select id="plpSort" aria-label="{{t:plp.sort.label}}">
+      <option value="std">{{t:plp.sort.empfohlen}}</option>
+      <option value="asc">{{t:plp.sort.preis_auf}}</option>
+      <option value="desc">{{t:plp.sort.preis_ab}}</option>
+      <option value="neu">{{t:plp.sort.neu_zuerst}}</option>
     </select>
   </div>
   <div class="plp-count" id="plpCount"></div>
@@ -70,7 +72,7 @@ function cardHtml(p, i){
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <span class="price">CHF ${p.price}</span>
     </div>
-    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('plp.karte.knopf_warenkorb')}</button>
   </article>`;
 }
 
@@ -83,13 +85,13 @@ function renderPlp(){
   // Editorial-Kachel bricht die Monotonie des Rasters nach der zweiten Reihe
   if (karten.length > 8) karten.splice(8, 0, `
     <div class="ed-break">
-      <span class="kicker">Manufaktur</span>
-      <p>Jedes Paar wird einzeln gefasst, poliert und geprüft.</p>
-      <a href="story.html">Die Story ansehen</a>
+      <span class="kicker">${txt('plp.editorial.kicker')}</span>
+      <p>${txt('plp.editorial.text')}</p>
+      <a href="story.html">${txt('plp.editorial.link')}</a>
     </div>`);
   grid.innerHTML = karten.join('');
   document.getElementById('plpCount').textContent =
-    `${list.length} ${list.length === 1 ? 'Paar' : 'Paare'}${fCol !== 'alle' ? ' · ' + fCol + ' Kollektion' : ''} · alle mit Click-Lock`;
+    `${txtN('stueck.paar', list.length)}${fCol !== 'alle' ? ' · ' + txt('plp.count.kollektion', {name: fCol}) : ''} · ${txt('plp.count.click_lock')}`;
   const url = new URL(location);
   fCol === 'alle' ? url.searchParams.delete('c') : url.searchParams.set('c', fCol);
   history.replaceState(null, '', url);

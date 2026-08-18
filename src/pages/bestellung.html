@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Bestellbestätigung von Baqless.">
+<meta name="description" content="{{t:seite.bestellung.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
 <meta name="robots" content="noindex">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Bestellung</title>
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.bestellung.titel}}</title>
 <style>
 {{CSS}}
 
@@ -69,52 +71,57 @@ const box = document.getElementById('dank');
 
 if (!best){
   box.innerHTML = `
-    <h1>Hier ist gerade nichts.</h1>
-    <p class="lead">Wir finden keine Bestellung in diesem Browser. Vielleicht hast du die Seite direkt aufgerufen.</p>
-    <div class="dank-cta"><a class="btn btn-coral" href="kollektion.html">Zu den Kollektionen</a></div>`;
+    <h1>${txt('kauf.bestellung.leer.titel')}</h1>
+    <p class="lead">${txt('kauf.bestellung.leer.text')}</p>
+    <div class="dank-cta"><a class="btn btn-coral" href="kollektion.html">${txt('kauf.bestellung.leer.knopf')}</a></div>`;
 } else {
   const d = new Date(best.datum);
-  const datum = d.toLocaleDateString('de-CH', { day: '2-digit', month: 'long', year: 'numeric' });
+  // Das Datumsformat folgt der Fassung, nicht der Ausgangssprache
+  const datum = d.toLocaleDateString(I18N.locale, { day: '2-digit', month: 'long', year: 'numeric' });
+  const versandName = txt(best.versandart === 'express' ? 'kauf.versand.express.name' : 'kauf.versand.standard.name');
+  const versandDauer = txt(best.versandart === 'express' ? 'kauf.versand.express.dauer' : 'kauf.versand.standard.dauer');
+  // TWINT, PayPal und Apple Pay sind Namen und bleiben stehen. Nur die Karte hat einen Begriff.
+  const zahlungName = best.zahlung === 'Kreditkarte' ? txt('kauf.zahlung.karte.name') : best.zahlung;
   box.innerHTML = `
     <div class="ring" aria-hidden="true">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
     </div>
-    <h1>Sitzt. Danke, ${best.name.split(' ')[0]}.</h1>
-    <p class="lead">Deine Bestellung ist eingegangen. Die Bestätigung schicken wir an ${best.mail}, die Versandmeldung mit Sendungsnummer folgt, sobald dein Paket unterwegs ist.</p>
-    <div class="nr"><span>Bestellnummer</span><b>${best.nr}</b></div>
+    <h1>${txt('kauf.bestellung.dank.titel', {name: best.name.split(' ')[0]})}</h1>
+    <p class="lead">${txt('kauf.bestellung.dank.text', {mail: best.mail})}</p>
+    <div class="nr"><span>${txt('kauf.bestellung.nummer_label')}</span><b>${best.nr}</b></div>
 
     <section class="bsec">
-      <h2>Bestellt am ${datum}</h2>
+      <h2>${txt('kauf.bestellung.bestellt_am', {datum})}</h2>
       ${best.artikel.map(a => `
         <div class="bline">
-          <div>${a.name}<span class="q">${a.variant} · ${a.qty} ${a.variant.includes('Einzelohr') ? (a.qty === 1 ? 'Ohr' : 'Ohren') : (a.qty === 1 ? 'Paar' : 'Paare')}</span></div>
+          <div>${a.name}<span class="q">${a.variant} · ${stueckVon(a, a.qty)}</span></div>
           <div class="pr">${fmtCHF(a.price * a.qty)}</div>
         </div>`).join('')}
-      <div class="bline"><div>Versand (${best.versandart})</div><div class="pr">${best.versand === 0 ? 'Gratis' : fmtCHF(best.versand)}</div></div>
-      <div class="bline total"><div>Total</div><div class="pr">${fmtCHF(best.total)}</div></div>
+      <div class="bline"><div>${txt('kauf.summe.versand')} (${versandName})</div><div class="pr">${best.versand === 0 ? txt('kauf.versand.gratis') : fmtCHF(best.versand)}</div></div>
+      <div class="bline total"><div>${txt('kauf.summe.total')}</div><div class="pr">${fmtCHF(best.total)}</div></div>
     </section>
 
     <section class="bsec">
-      <h2>Lieferung und Zahlung</h2>
+      <h2>${txt('kauf.bestellung.liefer_zahlung.titel')}</h2>
       <div class="bgrid2">
-        <div class="bbox"><b>Lieferadresse</b>${best.name}<br>${best.adresse}<br>${best.land}</div>
-        <div class="bbox"><b>Zahlung</b>${best.zahlung}<br><span style="color:var(--ink-soft); font-size:13.5px">Im Prototyp wurde nichts belastet.</span></div>
+        <div class="bbox"><b>${txt('kauf.adresse.lieferadresse')}</b>${best.name}<br>${best.adresse}<br>${best.land}</div>
+        <div class="bbox"><b>${txt('kauf.zahlung.titel')}</b>${zahlungName}<br><span style="color:var(--ink-soft); font-size:13.5px">${txt('kauf.bestellung.zahlung.hinweis')}</span></div>
       </div>
     </section>
 
     <section class="bsec schritte">
-      <h2>Wie es weitergeht</h2>
-      <div class="schritt"><i>01</i><div><b>Bestätigung per Mail</b><span>Kommt sofort, mit dieser Bestellnummer.</span></div></div>
-      <div class="schritt"><i>02</i><div><b>Wir prüfen den Bestand und packen</b><span>Von Hand, mit der Baqless Verpackung. Du bekommst eine zweite Mail, sobald die Bestellung angenommen ist.</span></div></div>
-      <div class="schritt"><i>03</i><div><b>Versandmeldung mit Sendungsnummer</b><span>${best.versandart === 'Express' ? '1 bis 2 Werktage' : '2 bis 4 Werktage'} bis zu dir. Der Zoll ist im Versand enthalten, an der Tür kommt nichts dazu.</span></div></div>
-      <div class="schritt"><i>04</i><div><b>Einstecken, drehen, klick</b><span>Passt etwas nicht, hast du 30 Tage Zeit. Ungetragen und in der Originalverpackung.</span></div></div>
+      <h2>${txt('kauf.bestellung.schritte.titel')}</h2>
+      <div class="schritt"><i>01</i><div><b>${txt('kauf.bestellung.schritt1.titel')}</b><span>${txt('kauf.bestellung.schritt1.text')}</span></div></div>
+      <div class="schritt"><i>02</i><div><b>${txt('kauf.bestellung.schritt2.titel')}</b><span>${txt('kauf.bestellung.schritt2.text')}</span></div></div>
+      <div class="schritt"><i>03</i><div><b>${txt('kauf.bestellung.schritt3.titel')}</b><span>${txt('kauf.bestellung.schritt3.text', {dauer: versandDauer})}</span></div></div>
+      <div class="schritt"><i>04</i><div><b>${txt('kauf.bestellung.schritt4.titel')}</b><span>${txt('kauf.bestellung.schritt4.text')}</span></div></div>
     </section>
 
-    <div class="dank-note"><b>Prototyp.</b> Diese Bestellung ist eine Simulation. Es wurde keine Zahlung ausgelöst, keine Mail versendet und nichts an einen Server übermittelt. Die Daten liegen nur in deinem Browser.</div>
+    <div class="dank-note">${txt('kauf.bestellung.hinweis_prototyp')}</div>
 
     <div class="dank-cta">
-      <a class="btn btn-coral" href="kollektion.html">Weiter shoppen</a>
-      <a class="btn btn-ghost" href="journal.html">Ins Journal</a>
+      <a class="btn btn-coral" href="kollektion.html">${txt('kauf.aktion.weiter_shoppen')}</a>
+      <a class="btn btn-ghost" href="journal.html">${txt('kauf.bestellung.knopf_journal')}</a>
     </div>`;
 }
 </script>

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Die Baqless Story: acht Jahre Entwicklung für einen Ohrring, der ohne Rückteil hält. Entwickelt in der Schweiz, von Hand gefertigt.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Story</title>
+<meta name="description" content="{{t:seite.story.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.story.titel}}</title>
 <style>
 {{CSS}}
 
@@ -50,56 +52,56 @@
   <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
   <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
   <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
-  <h1>Acht Jahre für <em>einen Klick.</em></h1>
-  <p>Die Geschichte eines Ohrrings, der ohne Rückteil hält. Entwickelt in der Schweiz, von Hand gefertigt.</p>
+  <h1>{{t:story.hero.titel}}</h1>
+  <p>{{t:story.hero.text}} {{t:story.herkunft.formel}}.</p>
 </header>
 
 <main>
   <section class="story-ed reveal">
     <div>
       <span class="num">01</span>
-      <span class="eyebrow">Die Idee</span>
-      <h2>Warum überhaupt ein Rückteil?</h2>
-      <p>Am Anfang stand ein Ärgernis, das du kennst: Das Rückteil drückt beim Telefonieren, zwickt in der Nacht und ist irgendwann einfach weg. Meist genau dann, wenn der Ohrring am liebsten getragen wird.</p>
-      <p>Die Frage dahinter war einfach. Warum braucht ein Ohrring ein Gegenstück, das nur stört? Die Antwort brauchte etwas länger.</p>
+      <span class="eyebrow">{{t:story.idee.eyebrow}}</span>
+      <h2>{{t:story.idee.titel}}</h2>
+      <p>{{t:story.idee.text1}}</p>
+      <p>{{t:story.idee.text2}}</p>
     </div>
     <div class="sed-img">
       <span class="dot" style="width:120px;height:120px;background:var(--coral-tint);top:-30px;right:-26px"></span>
-      <img src="{{story_sketch}}" alt="Entwurfsskizzen des Click-Lock Verschlusses auf Papier" loading="lazy">
+      <img src="{{story_sketch}}" alt="{{t:story.idee.bild_alt}}" loading="lazy">
     </div>
   </section>
 
   <section class="story-ed flip reveal">
     <div class="sed-img arch">
       <span class="dot" style="width:150px;height:150px;background:var(--lav-tint);bottom:-34px;left:-30px"></span>
-      <img src="{{story_polish}}" alt="Feinschliff eines Baqless Ohrrings von Hand" loading="lazy">
+      <img src="{{story_polish}}" alt="{{t:story.entwicklung.bild_alt}}" loading="lazy">
     </div>
     <div>
       <span class="num">02</span>
-      <span class="eyebrow">Die Entwicklung</span>
-      <h2>Zeichnen, feilen, verwerfen.</h2>
-      <p>Acht Jahre lang wurde skizziert, gebaut und wieder verworfen. Prototyp um Prototyp, bis der Verschluss sass: ein T&#8209;Anker, der sich mit einer Vierteldrehung quer stellt und hält.</p>
-      <p>Einstecken, drehen, klick. Beim Sport, unter der Dusche, im Meer. Ohne dass du je wieder an ein Rückteil denkst.</p>
-      <a class="btn btn-ghost" href="index.html#clicklock">So funktioniert der Click&#8209;Lock</a>
+      <span class="eyebrow">{{t:story.entwicklung.eyebrow}}</span>
+      <h2>{{t:story.entwicklung.titel}}</h2>
+      <p>{{t:story.entwicklung.text1}}</p>
+      <p>{{t:story.entwicklung.text2}}</p>
+      <a class="btn btn-ghost" href="index.html#clicklock">{{t:story.entwicklung.knopf_clicklock}}</a>
     </div>
   </section>
 
   <figure class="story-wide reveal">
-    <img src="{{story_atelier}}" alt="Die Manufaktur: Werkbänke am Fenster, Fertigung von Hand" loading="lazy">
-    <figcaption>Die Manufaktur: kleine Werkbänke, grosse Fenster, keine Fliessbänder.</figcaption>
+    <img src="{{story_atelier}}" alt="{{t:story.atelier.bild_alt}}" loading="lazy">
+    <figcaption>{{t:story.atelier.bildunterschrift}}</figcaption>
   </figure>
 
   <section class="story-ed reveal">
     <div>
       <span class="num">03</span>
-      <span class="eyebrow">Die Manufaktur</span>
-      <h2>Durch echte Hände.</h2>
-      <p>Entwickelt in der Schweiz, von Hand gefertigt: Jedes Paar wird einzeln gefasst, poliert und geprüft, bevor es zu dir reist.</p>
-      <p>Sterling Silber 925, wasserfest und gemacht für jeden Tag. Einzig der Stift hinter dem Ohr ist chirurgischer Edelstahl, dort wo es auf die Mechanik ankommt. Weniger Teile, mehr Freiheit.</p>
+      <span class="eyebrow">{{t:story.manufaktur.eyebrow}}</span>
+      <h2>{{t:story.manufaktur.titel}}</h2>
+      <p>{{t:story.herkunft.formel}}: {{t:story.manufaktur.text1}}</p>
+      <p>{{t:story.manufaktur.text2}}</p>
     </div>
     <div class="sed-img">
       <span class="dot" style="width:130px;height:130px;background:var(--sage-tint);top:-28px;left:-28px"></span>
-      <img src="{{story_hands}}" alt="Handfertigung eines Baqless Ohrrings in der Manufaktur" loading="lazy">
+      <img src="{{story_hands}}" alt="{{t:story.manufaktur.bild_alt}}" loading="lazy">
     </div>
   </section>
 
@@ -107,17 +109,17 @@
     <div class="bg-bubble" style="width:300px;height:300px;background:var(--coral);top:-100px;right:8%"></div>
     <div class="bg-bubble" style="width:160px;height:160px;border:2px solid var(--gold);bottom:-40px;left:6%"></div>
     <div class="stats">
-      <div class="stat"><b data-count="8">0</b><span>Jahre Entwicklung</span></div>
-      <div class="stat"><b data-count="1">0</b><span>Klick</span></div>
-      <div class="stat"><b data-count="0">0</b><span>Rückteile</span></div>
+      <div class="stat"><b data-count="8">0</b><span>{{t:story.zahlen.jahre}}</span></div>
+      <div class="stat"><b data-count="1">0</b><span>{{t:story.zahlen.klick}}</span></div>
+      <div class="stat"><b data-count="0">0</b><span>{{t:story.zahlen.rueckteile}}</span></div>
     </div>
   </section>
 
   <section class="story-cta">
-    <span class="eyebrow">Und jetzt du</span>
-    <h2>Der Rest ist deine Story.</h2>
-    <a class="btn btn-coral" href="kollektion.html">Finde deins</a>
-    <a class="btn btn-ghost" href="neuheiten.html">Neuheiten ansehen</a>
+    <span class="eyebrow">{{t:story.cta.eyebrow}}</span>
+    <h2>{{t:story.cta.titel}}</h2>
+    <a class="btn btn-coral" href="kollektion.html">{{t:story.cta.knopf_kollektion}}</a>
+    <a class="btn btn-ghost" href="neuheiten.html">{{t:story.cta.knopf_neuheiten}}</a>
   </section>
 </main>
 

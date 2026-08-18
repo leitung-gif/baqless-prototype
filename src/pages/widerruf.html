@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Versand, Rückgabe und Widerruf bei Baqless. 30 Tage Zeit.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Versand &amp; Retouren</title>
+<meta name="description" content="{{t:seite.widerruf.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.widerruf.titel}}</title>
 <style>
 {{CSS}}
 </style>
@@ -18,39 +20,39 @@
 {{HEADER}}
 
 <main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Versand &amp; Retouren</span></div>
-  <h1>Versand &amp; Retouren.</h1>
-  <p class="lead">30 Tage Zeit, klare Wege. So einfach wie der Klick.</p>
+  <div class="crumbs"><a href="index.html">{{t:recht.krumen.start}}</a><span class="sep">/</span><span>{{t:recht.widerruf.krumen.aktuell}}</span></div>
+  <h1>{{t:recht.widerruf.h1}}</h1>
+  <p class="lead">{{t:recht.widerruf.lead}}</p>
 
-  <h2>Versand</h2>
-  <p>Wir versenden aus der Schweiz und aus Japan, je nachdem, wo du bestellst:</p>
+  <h2>{{t:recht.widerruf.versand.titel}}</h2>
+  <p>{{t:recht.widerruf.versand.text}}</p>
   <ul>
-    <li>Schweiz, Deutschland, Österreich, Frankreich, Italien und Liechtenstein: Versand aus der Schweiz.</li>
-    <li>Übrige Länder: Versand aus Japan.</li>
+    <li>{{t:recht.widerruf.versand.li_schweiz}}</li>
+    <li>{{t:recht.widerruf.versand.li_uebrige}}</li>
   </ul>
-  <p>Ab CHF 99 Bestellwert ist der Versand gratis. Versandkosten und Lieferzeiten für dein Land siehst du im Checkout. <span class="ph">[Konkrete Tarife und Laufzeiten werden vor dem Livegang ergänzt.]</span></p>
+  <p>{{t:recht.widerruf.versand.gratis}} <span class="ph">{{t:recht.widerruf.versand.platzhalter_tarife}}</span></p>
 
-  <h2>Zoll bei internationalen Lieferungen</h2>
-  <p>Die Einfuhrabgaben sind in der Versandgebühr enthalten. An der Tür kommt nichts dazu, und du bekommst keine Nachforderung vom Zoll. <span class="ph">[Für welche Länder das gilt, wird vor dem Livegang festgelegt.]</span></p>
+  <h2>{{t:recht.widerruf.zoll.titel}}</h2>
+  <p>{{t:recht.widerruf.zoll.text}} <span class="ph">{{t:recht.widerruf.zoll.platzhalter_laender}}</span></p>
 
-  <h2>Rückgabe</h2>
-  <p>Du hast 30 Tage ab Erhalt, um deine Bestellung zurückzugeben. Aus Hygienegründen gilt: ungetragen und in der Originalverpackung. So gehst du vor:</p>
+  <h2>{{t:recht.widerruf.ruecknahme.titel}}</h2>
+  <p>{{t:recht.widerruf.ruecknahme.text}}</p>
   <ol>
-    <li>Schreib uns kurz über das <a href="kontakt.html">Kontaktformular</a> oder an <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</li>
-    <li>Du bekommst von uns die Rücksendeadresse und ein Retourenlabel.</li>
-    <li>Sobald das Paket bei uns ist, erstatten wir dir den Kaufpreis auf dein ursprüngliches Zahlungsmittel. In der Regel innert 5 Arbeitstagen.</li>
+    <li>{{t:recht.widerruf.ruecknahme.schritt1_vor}} <a href="kontakt.html">{{t:recht.widerruf.ruecknahme.schritt1_link}}</a> {{t:recht.widerruf.ruecknahme.schritt1_nach}} <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</li>
+    <li>{{t:recht.widerruf.ruecknahme.schritt2}}</li>
+    <li>{{t:recht.widerruf.ruecknahme.schritt3}}</li>
   </ol>
 
-  <h2>Umtausch</h2>
-  <p>Du willst eine andere Variante oder Farbe? Gib das bei deiner Rückmeldung einfach an. Wir reservieren dir das neue Paar, sobald deine Retoure unterwegs ist.</p>
+  <h2>{{t:recht.widerruf.umtausch.titel}}</h2>
+  <p>{{t:recht.widerruf.umtausch.text}}</p>
 
-  <h2 id="widerruf">Widerruf vor dem Versand</h2>
-  <p>Du hast es dir anders überlegt, bevor dein Paket unterwegs ist? Schreib uns. Wir stornieren die Bestellung und erstatten dir den vollen Betrag sofort.</p>
+  <h2 id="widerruf">{{t:recht.widerruf.storno.titel}}</h2>
+  <p>{{t:recht.widerruf.storno.text}}</p>
 
-  <h2>Etwas stimmt nicht?</h2>
-  <p>Kaputt angekommen oder falsch geliefert? Das geht auf uns. Melde dich, wir schicken sofort Ersatz und kümmern uns um den Rest.</p>
+  <h2>{{t:recht.widerruf.mangel.titel}}</h2>
+  <p>{{t:recht.widerruf.mangel.text}}</p>
 
-  <p class="legal-note">Entwurf für den Prototyp. Finale Konditionen, Tarife und Laufzeiten liefert Baqless vor dem Livegang.</p>
+  <p class="legal-note">{{t:recht.widerruf.hinweis}}</p>
 </main>
 
 {{FOOTER}}

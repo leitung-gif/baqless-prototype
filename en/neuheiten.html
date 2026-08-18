@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Neu bei Baqless: die neuesten Ohrringe mit Click-Lock, dazu limitierte Paare aus Japan. Entwickelt in der Schweiz, von Hand gefertigt.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://baqless.com/en/neuheiten.html">
+<link rel="alternate" hreflang="de" href="https://baqless.com/neuheiten.html">
+<link rel="alternate" hreflang="en" href="https://baqless.com/en/neuheiten.html">
+<link rel="alternate" hreflang="fr" href="https://baqless.com/fr/neuheiten.html">
+<link rel="alternate" hreflang="x-default" href="https://baqless.com/neuheiten.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <title>Baqless · Neuheiten</title>
 <style>
 
@@ -1192,7 +1197,7 @@ function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(c
 function renderCart(){
   const body = document.getElementById('drawerBody');
   if (!cart.length){
-    body.innerHTML = `<div class="drawer-empty"><em>Noch nichts drin.</em>Finde deins.</div>`;
+    body.innerHTML = `<div class="drawer-empty"><em>${txt('js.korb.leer_titel')}</em>${txt('js.korb.leer_text')}</div>`;
   } else {
     body.innerHTML = cart.map(item => `
       <div class="drawer-item" data-line="${item.key || item.id}">
@@ -1200,13 +1205,13 @@ function renderCart(){
         <div>
           <h4>${item.name}</h4><span>${item.variant}</span>
           <div class="qty-ctrl">
-            <button data-qminus="${item.key || item.id}" aria-label="Menge verringern">−</button>
+            <button data-qminus="${item.key || item.id}" aria-label="${txt('js.korb.menge_minus')}">−</button>
             <span class="qv">${item.qty}</span>
-            <button data-qplus="${item.key || item.id}" aria-label="Menge erhöhen">+</button>
+            <button data-qplus="${item.key || item.id}" aria-label="${txt('js.korb.menge_plus')}">+</button>
           </div>
         </div>
         <span class="price">${fmtCHF(item.price * item.qty)}</span>
-        <button class="line-remove" data-remove="${item.key || item.id}" aria-label="Entfernen">×</button>
+        <button class="line-remove" data-remove="${item.key || item.id}" aria-label="${txt('js.korb.entfernen')}">×</button>
       </div>`).join('');
   }
   const sub = cart.reduce((s,i) => s + i.price*i.qty, 0);
@@ -1214,13 +1219,13 @@ function renderCart(){
   const n = cart.reduce((s,i) => s + i.qty, 0);
   cartCount.textContent = n;
   cartCount.classList.toggle('on', n > 0);
-  const fill = document.getElementById('shipFill'), txt = document.getElementById('shipText');
-  if (fill && txt){
+  const fill = document.getElementById('shipFill'), versandTxt = document.getElementById('shipText');
+  if (fill && versandTxt){
     fill.style.width = Math.min(sub / FREE_SHIP * 100, 100) + '%';
     fill.classList.toggle('done', sub >= FREE_SHIP);
-    if (!cart.length){ txt.innerHTML = `Gratisversand ab <b>CHF ${FREE_SHIP}</b>`; txt.classList.remove('done'); }
-    else if (sub >= FREE_SHIP){ txt.textContent = '✓ Gratisversand gesichert.'; txt.classList.add('done'); }
-    else { txt.innerHTML = `Noch <b>CHF ${FREE_SHIP - sub}</b> bis zum Gratisversand`; txt.classList.remove('done'); }
+    if (!cart.length){ versandTxt.innerHTML = txt('js.versand.gratis_ab', {betrag: FREE_SHIP}); versandTxt.classList.remove('done'); }
+    else if (sub >= FREE_SHIP){ versandTxt.textContent = '✓ ' + txt('js.versand.gesichert'); versandTxt.classList.add('done'); }
+    else { versandTxt.innerHTML = txt('js.versand.rest', {betrag: FREE_SHIP - sub}); versandTxt.classList.remove('done'); }
   }
   saveCart();
 }
@@ -1237,7 +1242,7 @@ function addToCart(id, qty, einzelohr){
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   if (p.lager === 'ausverkauft'){
-    toast(`<span class="tick">i</span><span><b>Gerade aus.</b> Lass dich benachrichtigen, sobald ${p.name} zurück ist.</span>`);
+    toast(`<span class="tick">i</span><span><b>${txt('js.lager.aus_titel')}</b> ${txt('js.lager.aus_text', {name: p.name})}</span>`);
     return;
   }
   // Paar oder Einzelohr sind in Shopify zwei Varianten desselben Produkts.
@@ -1252,7 +1257,7 @@ function addToCart(id, qty, einzelohr){
   track('add_to_cart', { currency: 'CHF', value: preis * qty,
     items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
   cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
-  toast(`<span class="tick">✓</span><span><b>Sitzt.</b> ${p.name} ${bez} ist im Warenkorb.</span>`);
+  toast(`<span class="tick">✓</span><span><b>${txt('js.korb.titel')}</b> ${txt('js.korb.text', {name: p.name + ' ' + bez})}</span>`);
 }
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
@@ -1268,7 +1273,7 @@ document.addEventListener('click', e => {
     if (!add.dataset.busy && add.classList.contains('add-btn')){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
-      add.textContent = '\u2713 Im Warenkorb';
+      add.textContent = '\u2713 ' + txt('js.knopf.im_warenkorb');
       add.classList.add('added');
       setTimeout(() => { add.textContent = zurueck; add.classList.remove('added'); delete add.dataset.busy; }, 1600);
     }
@@ -1279,11 +1284,11 @@ document.addEventListener('click', e => {
     const l = cart.find(x => (x.key || x.id) === plus.dataset.qplus);
     const pr = l && PRODUCTS.find(x => x.id === l.id);
     if (l && pr && pr.lager === 'ausverkauft'){
-      toast(`<span class="tick">i</span><span><b>Gerade aus.</b> ${pr.name} ist nicht mehr verfügbar.</span>`);
+      toast(`<span class="tick">i</span><span><b>${txt('js.lager.aus_titel')}</b> ${txt('js.lager.nicht_verfuegbar', {name: pr.name})}</span>`);
       return;
     }
     if (l && l.qty >= 9){
-      toast(`<span class="tick">i</span><span><b>Neun sind das Maximum.</b> Brauchst du mehr, <a href="kontakt.html">schreib uns</a>.</span>`);
+      toast(`<span class="tick">i</span><span><b>${txt('js.korb.max_titel')}</b> ${txt('js.korb.max_text', {link: `<a href="kontakt.html">${txt('js.korb.max_link')}</a>`})}</span>`);
       return;
     }
     if (l){ l.qty++; renderCart(); }
@@ -1299,7 +1304,7 @@ document.addEventListener('click', e => {
 // ---------- Kollektions-Menue im Kopf: Stueckzahlen aus den Produktdaten ----------
 document.querySelectorAll('[data-navcount]').forEach(el => {
   const n = PRODUCTS.filter(p => p.collection === el.dataset.navcount).length;
-  el.textContent = n + (n === 1 ? ' Paar' : ' Paare');
+  el.textContent = txtN('stueck.paar', n);
 });
 
 // ---------- Ausverkauft-Zustand auf allen Karten, egal wann sie gerendert werden ----------
@@ -1314,11 +1319,11 @@ function markSoldOut(){
     if (box && !box.querySelector('.out-flag')){
       const flag = document.createElement('span');
       flag.className = 'out-flag';
-      flag.textContent = 'Ausverkauft';
+      flag.textContent = txt('js.lager.flagge');
       box.appendChild(flag);
     }
     const btn = card.querySelector('[data-add]');
-    if (btn){ btn.textContent = 'Benachrichtigen'; btn.dataset.notify = p.id; btn.removeAttribute('data-add'); }
+    if (btn){ btn.textContent = txt('js.knopf.benachrichtigen'); btn.dataset.notify = p.id; btn.removeAttribute('data-add'); }
   });
 }
 let soRaf;
@@ -1403,7 +1408,7 @@ document.getElementById('drawerClose').addEventListener('click', () => openDrawe
 overlay.addEventListener('click', () => openDrawer(false));
 document.getElementById('checkoutBtn').addEventListener('click', () => {
   if (!cart.length){
-    toast(`<span class="tick">i</span><span><b>Noch leer.</b> Leg zuerst ein Paar in den Warenkorb.</span>`);
+    toast(`<span class="tick">i</span><span><b>${txt('js.kasse.leer_titel')}</b> ${txt('js.kasse.leer_text')}</span>`);
     return;
   }
   location.href = 'kasse.html';
@@ -1510,7 +1515,7 @@ setupDd('langDd', 'langBtn', b => {
 });
 setupDd('marketDd', 'marketBtn', b => {
   document.getElementById('marketLabel').textContent = b.dataset.market;
-  toast(`<span class="tick">✓</span><span><b>${b.dataset.market}.</b> Dein Markt ist gemerkt.</span>`);
+  toast(`<span class="tick">✓</span><span><b>${b.dataset.market}.</b> ${txt('js.markt.gemerkt')}</span>`);
 });
 // ---------- Suche (Live-Overlay, Taste "/") ----------
 const so = document.getElementById('searchOverlay');
@@ -1536,10 +1541,10 @@ function soSearch(q){
   soResults.innerHTML = hits.length ? hits.map(p => `
     <a class="so-item" href="produkt.html?p=${p.id}">
       <img src="${p.thumb}" alt="">
-      <div class="si-meta"><h4>${p.name} · ${p.variant}</h4><span>${p.collection} Kollektion · Click-Lock</span></div>
+      <div class="si-meta"><h4>${p.name} · ${p.variant}</h4><span>${txt('js.suche.kollektion_meta', {name: p.collection})} · Click-Lock</span></div>
       <span class="si-price">CHF ${p.price}</span>
     </a>`).join('')
-    : `<div class="so-empty"><b>Nichts gefunden.</b>Versuch es mit «Gold», «Polaris» oder «Honesty».</div>`;
+    : `<div class="so-empty"><b>${txt('js.suche.leer_titel')}</b>${txt('js.suche.leer_text')}</div>`;
 }
 document.getElementById('searchBtn')?.addEventListener('click', () => openSearch(true));
 document.getElementById('soClose').addEventListener('click', () => openSearch(false));
@@ -1561,7 +1566,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape') openDrawer(false); })
 document.querySelectorAll('[data-nlform]').forEach(form => form.addEventListener('submit', e => {
   e.preventDefault();
   track('generate_lead', { method: 'newsletter' });
-  toast(`<span class="tick">\u2713</span><span><b>Angemeldet.</b> Neue Drops landen zuerst bei dir.</span>`);
+  toast(`<span class="tick">\u2713</span><span><b>${txt('js.newsletter.ok_titel')}</b> ${txt('js.newsletter.ok_text')}</span>`);
   e.target.reset();
 }));
 
@@ -1583,14 +1588,14 @@ function cardHtml(p, i){
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <span class="price">CHF ${p.price}</span>
     </div>
-    <button class="add-btn" data-qty="1" data-add="${p.id}">In den Warenkorb</button>
+    <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('plp.karte.knopf_warenkorb')}</button>
   </article>`;
 }
 
 grid.innerHTML = list.map(cardHtml).join('');
 const nNeu = list.filter(p => p.tag === 'Neu').length;
 document.getElementById('plpCount').textContent =
-  `${nNeu} neue Paare · ${list.length} insgesamt · alle mit Click-Lock`;
+  `${txtN('plp.neuheiten.count.neu', nNeu)} · ${txt('plp.neuheiten.count.gesamt', {n: list.length})} · ${txt('plp.count.click_lock')}`;
 
 grid.addEventListener('click', e => {
   if (e.target.closest('[data-add]') || e.target.closest('.card-link')) return;

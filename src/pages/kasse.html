@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kasse bei Baqless. Versand aus der Schweiz und Japan, Zoll inklusive, 30 Tage Rückgaberecht.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Kasse</title>
+<meta name="description" content="{{t:seite.kasse.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.kasse.titel}}</title>
 <style>
 {{CSS}}
 
@@ -74,111 +76,111 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 {{HEADER}}
 
 <main class="ko-wrap">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><a href="warenkorb.html">Warenkorb</a><span class="sep">/</span><span>Kasse</span></div>
-  <h1>Kasse.</h1>
-  <div class="ko-steps"><span>Warenkorb</span><span>→</span><b>Adresse und Zahlung</b><span>→</span><span>Bestätigung</span></div>
+  <div class="crumbs"><a href="index.html">{{t:kauf.brotkrume.start}}</a><span class="sep">/</span><a href="warenkorb.html">{{t:kauf.brotkrume.warenkorb}}</a><span class="sep">/</span><span>{{t:kauf.brotkrume.kasse}}</span></div>
+  <h1>{{t:kauf.kasse.titel}}</h1>
+  <div class="ko-steps"><span>{{t:kauf.kasse.schritte.warenkorb}}</span><span>→</span><b>{{t:kauf.kasse.schritte.adresse}}</b><span>→</span><span>{{t:kauf.kasse.schritte.bestaetigung}}</span></div>
 
   <div class="ko-note">
-    <b>Prototyp.</b> Diese Kasse zeigt den kompletten Ablauf, verarbeitet aber keine Zahlung und sendet nichts an einen Server. Alles bleibt in deinem Browser. Im Livegang übernimmt das der Shopify-Checkout mit TWINT, Karte und den übrigen Zahlarten.
+    {{t:kauf.kasse.hinweis_prototyp}}
   </div>
 
   <div class="ko-grid">
     <form id="koForm" novalidate>
       <fieldset>
-        <legend>Kontakt</legend>
+        <legend>{{t:kauf.kasse.kontakt.legende}}</legend>
         <div class="field">
-          <label for="fMail">E-Mail für die Bestellbestätigung</label>
+          <label for="fMail">{{t:kauf.kasse.feld.mail}}</label>
           <input type="email" id="fMail" aria-describedby="errMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
-          <span class="err" id="errMail" role="alert">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+          <span class="err" id="errMail" role="alert">{{t:kauf.kasse.fehler.mail}}</span>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>Lieferadresse</legend>
+        <legend>{{t:kauf.adresse.lieferadresse}}</legend>
         <div class="frow">
           <div class="field">
-            <label for="fVor">Vorname</label>
+            <label for="fVor">{{t:kauf.kasse.feld.vorname}}</label>
             <input type="text" id="fVor" aria-describedby="errVor" name="vorname" autocomplete="given-name" required>
-            <span class="err" id="errVor" role="alert">Bitte gib deinen Vornamen ein.</span>
+            <span class="err" id="errVor" role="alert">{{t:kauf.kasse.fehler.vorname}}</span>
           </div>
           <div class="field">
-            <label for="fNach">Nachname</label>
+            <label for="fNach">{{t:kauf.kasse.feld.nachname}}</label>
             <input type="text" id="fNach" aria-describedby="errNach" name="nachname" autocomplete="family-name" required>
-            <span class="err" id="errNach" role="alert">Bitte gib deinen Nachnamen ein.</span>
+            <span class="err" id="errNach" role="alert">{{t:kauf.kasse.fehler.nachname}}</span>
           </div>
         </div>
         <div class="frow one">
           <div class="field">
-            <label for="fStr">Strasse und Nummer</label>
+            <label for="fStr">{{t:kauf.kasse.feld.strasse}}</label>
             <input type="text" id="fStr" aria-describedby="errStr" name="strasse" autocomplete="street-address" required>
-            <span class="err" id="errStr" role="alert">Bitte gib Strasse und Nummer ein.</span>
+            <span class="err" id="errStr" role="alert">{{t:kauf.kasse.fehler.strasse}}</span>
           </div>
         </div>
         <div class="frow plz">
           <div class="field">
-            <label for="fPlz">PLZ</label>
+            <label for="fPlz">{{t:kauf.kasse.feld.plz}}</label>
             <input type="text" id="fPlz" name="plz" autocomplete="postal-code" inputmode="numeric" aria-describedby="errPlz" required>
-            <span class="err" id="errPlz">Bitte eine gültige Postleitzahl eingeben.</span>
+            <span class="err" id="errPlz">{{t:kauf.kasse.fehler.plz}}</span>
           </div>
           <div class="field">
-            <label for="fOrt">Ort</label>
+            <label for="fOrt">{{t:kauf.kasse.feld.ort}}</label>
             <input type="text" id="fOrt" aria-describedby="errOrt" name="ort" autocomplete="address-level2" required>
-            <span class="err" id="errOrt" role="alert">Bitte gib den Ort ein.</span>
+            <span class="err" id="errOrt" role="alert">{{t:kauf.kasse.fehler.ort}}</span>
           </div>
         </div>
         <div class="frow">
           <div class="field">
-            <label for="fLand">Land</label>
+            <label for="fLand">{{t:kauf.kasse.feld.land}}</label>
             <select id="fLand" name="land" autocomplete="country-name">
-              <option>Schweiz</option><option>Deutschland</option><option>Österreich</option>
-              <option>Liechtenstein</option><option>Frankreich</option><option>Italien</option>
-              <option disabled>Weitere Länder folgen mit dem Livegang</option>
+              <option>{{t:kauf.land.schweiz}}</option><option>{{t:kauf.land.deutschland}}</option><option>{{t:kauf.land.oesterreich}}</option>
+              <option>{{t:kauf.land.liechtenstein}}</option><option>{{t:kauf.land.frankreich}}</option><option>{{t:kauf.land.italien}}</option>
+              <option disabled>{{t:kauf.land.weitere_folgen}}</option>
             </select>
           </div>
           <div class="field">
-            <label for="fTel">Telefon (optional)</label>
+            <label for="fTel">{{t:kauf.kasse.feld.telefon}}</label>
             <input type="tel" id="fTel" name="telefon" autocomplete="tel">
           </div>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>Versandart</legend>
+        <legend>{{t:kauf.kasse.versand.legende}}</legend>
         <label class="opt sel" data-opt="versand">
           <input type="radio" name="versand" value="standard" data-preis="0" checked>
-          <span><b>Standard</b><span>2 bis 4 Werktage, Zoll inklusive</span></span>
-          <span class="pr" id="prStandard">Gratis</span>
+          <span><b>{{t:kauf.versand.standard.name}}</b><span>{{t:kauf.versand.standard.beschreibung}}</span></span>
+          <span class="pr" id="prStandard">{{t:kauf.versand.gratis}}</span>
         </label>
         <label class="opt" data-opt="versand">
           <input type="radio" name="versand" value="express" data-preis="14">
-          <span><b>Express</b><span>1 bis 2 Werktage, Zoll inklusive</span></span>
+          <span><b>{{t:kauf.versand.express.name}}</b><span>{{t:kauf.versand.express.beschreibung}}</span></span>
           <span class="pr">CHF 14</span>
         </label>
       </fieldset>
 
       <fieldset>
-        <legend>Zahlung</legend>
+        <legend>{{t:kauf.zahlung.titel}}</legend>
         <label class="opt sel" data-opt="zahlung">
           <input type="radio" name="zahlung" value="TWINT" checked>
-          <span><b>TWINT</b><span>Du bestätigst die Zahlung in deiner TWINT-App.</span></span>
+          <span><b>TWINT</b><span>{{t:kauf.zahlung.twint.text}}</span></span>
         </label>
         <label class="opt" data-opt="zahlung">
           <input type="radio" name="zahlung" value="Kreditkarte">
-          <span><b>Kreditkarte</b><span>Visa, Mastercard und American Express.</span></span>
+          <span><b>{{t:kauf.zahlung.karte.name}}</b><span>{{t:kauf.zahlung.karte.text}}</span></span>
         </label>
         <label class="opt" data-opt="zahlung">
           <input type="radio" name="zahlung" value="PayPal">
-          <span><b>PayPal</b><span>Weiterleitung zu PayPal.</span></span>
+          <span><b>PayPal</b><span>{{t:kauf.zahlung.paypal.text}}</span></span>
         </label>
         <label class="opt" data-opt="zahlung">
           <input type="radio" name="zahlung" value="Apple Pay">
-          <span><b>Apple Pay oder Google Pay</b><span>Zahlung über dein Gerät.</span></span>
+          <span><b>{{t:kauf.zahlung.geraet.name}}</b><span>{{t:kauf.zahlung.geraet.text}}</span></span>
         </label>
-        <p style="font-size:13px; color:var(--ink-soft); margin-top:6px">Die Zahlungsdaten werden im Livegang direkt vom Zahlungsanbieter erfasst, nie von uns.</p>
+        <p style="font-size:13px; color:var(--ink-soft); margin-top:6px">{{t:kauf.zahlung.hinweis_anbieter}}</p>
       </fieldset>
 
-      <p class="ko-recht">Alle Preise in Schweizer Franken inklusive Mehrwertsteuer. Mit dem Kauf bestätigst du unsere <a href="agb.html">AGB</a> und die <a href="datenschutz.html">Datenschutzerklärung</a>. Dein <a href="widerruf.html#widerruf">Widerrufsrecht</a> bleibt davon unberührt.</p>
-      <a class="ko-back" href="warenkorb.html">Zurück zum Warenkorb</a>
+      <p class="ko-recht">{{t:kauf.kasse.recht.vor_agb}} <a href="agb.html">{{t:kauf.kasse.recht.agb}}</a> {{t:kauf.kasse.recht.zwischen}} <a href="datenschutz.html">{{t:kauf.kasse.recht.datenschutz}}</a>. {{t:kauf.kasse.recht.vor_widerruf}} <a href="widerruf.html#widerruf">{{t:kauf.kasse.recht.widerruf}}</a> {{t:kauf.kasse.recht.nach_widerruf}}</p>
+      <a class="ko-back" href="warenkorb.html">{{t:kauf.kasse.zurueck_korb}}</a>
     </form>
 
     <aside class="ko-sum" id="koSum"></aside>
@@ -205,9 +207,9 @@ function versandPreis(){
 function renderSum(){
   const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const vs = versandPreis();
-  document.getElementById('prStandard').textContent = sub >= FREE_SHIP ? 'Gratis' : 'CHF 7';
+  document.getElementById('prStandard').textContent = sub >= FREE_SHIP ? txt('kauf.versand.gratis') : 'CHF 7';
   koSum.innerHTML = `
-    <h2>Deine Bestellung</h2>
+    <h2>${txt('kauf.kasse.summe.titel')}</h2>
     ${cart.map(i => `
       <div class="ko-line">
         <span class="pic"><img src="${bildVon(i)}" alt=""></span>
@@ -215,10 +217,10 @@ function renderSum(){
         <span class="pr">${fmtCHF(i.price * i.qty)}</span>
       </div>`).join('')}
     <div class="sep"></div>
-    <div class="row"><span>Zwischensumme</span><span>${fmtCHF(sub)}</span></div>
-    <div class="row"><span>Versand</span><span>${vs === 0 ? 'Gratis' : fmtCHF(vs)}</span></div>
-    <div class="row total"><span>Total</span><span>${fmtCHF(sub + vs)}</span></div>
-    <button class="btn btn-coral ko-submit" type="submit" form="koForm">Kaufen · ${fmtCHF(sub + vs)}</button>`;
+    <div class="row"><span>${txt('kauf.summe.zwischensumme')}</span><span>${fmtCHF(sub)}</span></div>
+    <div class="row"><span>${txt('kauf.summe.versand')}</span><span>${vs === 0 ? txt('kauf.versand.gratis') : fmtCHF(vs)}</span></div>
+    <div class="row total"><span>${txt('kauf.summe.total')}</span><span>${fmtCHF(sub + vs)}</span></div>
+    <button class="btn btn-coral ko-submit" type="submit" form="koForm">${txt('kauf.kasse.knopf_kaufen', {betrag: fmtCHF(sub + vs)})}</button>`;
 }
 
 if (!cart.length){
@@ -280,7 +282,7 @@ if (!cart.length){
     if (ersterFehler){
       ersterFehler.focus();
       ersterFehler.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      toast(`<span class="tick">i</span><span><b>Fast.</b> Ein paar Felder fehlen noch.</span>`);
+      toast(`<span class="tick">i</span><span><b>${txt('kauf.kasse.fehler.toast_titel')}</b> ${txt('kauf.kasse.fehler.toast_text')}</span>`);
       return;
     }
 
@@ -294,9 +296,13 @@ if (!cart.length){
       name: form.fVor.value.trim() + ' ' + form.fNach.value.trim(),
       adresse: form.fStr.value.trim() + ', ' + form.fPlz.value.trim() + ' ' + form.fOrt.value.trim(),
       land: form.fLand.value,
-      versandart: form.querySelector('input[name="versand"]:checked').value === 'express' ? 'Express' : 'Standard',
+      // Die Versandart wandert als Schluessel in die Bestellung, nicht als deutscher Name:
+      // die Bestaetigungsseite kann sie sonst nicht in ihrer eigenen Sprache anschreiben.
+      versandart: form.querySelector('input[name="versand"]:checked').value,
       zahlung: form.querySelector('input[name="zahlung"]:checked').value,
-      artikel: cart.map(i => ({ name: i.name, variant: i.variant, qty: i.qty, price: i.price })),
+      // einzel muss mit, sonst muesste die Bestaetigung aus dem Variantentext raten,
+      // ob ein Ohr oder ein Paar bestellt wurde. Der Text ist uebersetzt, der Wahrheitswert nicht.
+      artikel: cart.map(i => ({ name: i.name, variant: i.variant, qty: i.qty, price: i.price, einzel: istEinzel(i) })),
       zwischensumme: sub, versand: vs, total: sub + vs
     };
     try { localStorage.setItem('baqless_bestellung', JSON.stringify(bestellung)); } catch(err) {}

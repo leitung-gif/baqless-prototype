@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Impressum der Baqless AG.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Baqless · Impressum</title>
+<meta name="description" content="{{t:seite.impressum.beschreibung}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG}}
+<link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
+<link rel="apple-touch-icon" href="{{BASE}}apple-touch-icon.png">
+<title>{{t:seite.impressum.titel}}</title>
 <style>
 {{CSS}}
 </style>
@@ -18,33 +20,33 @@
 {{HEADER}}
 
 <main class="legal">
-  <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Impressum</span></div>
-  <h1>Impressum.</h1>
-  <p class="lead">Wer hinter Baqless steht.</p>
+  <div class="crumbs"><a href="index.html">{{t:recht.krumen.start}}</a><span class="sep">/</span><span>{{t:recht.impressum.krumen.aktuell}}</span></div>
+  <h1>{{t:recht.impressum.h1}}</h1>
+  <p class="lead">{{t:recht.impressum.lead}}</p>
 
-  <h2>Betreiberin</h2>
+  <h2>{{t:recht.impressum.betreiberin.titel}}</h2>
   <p>Baqless AG<br>
-  <span class="ph">[Strasse Nr.]</span><br>
-  <span class="ph">[PLZ Ort]</span>, Schweiz</p>
+  <span class="ph">{{t:recht.platzhalter.strasse}}</span><br>
+  <span class="ph">{{t:recht.platzhalter.plz_ort}}</span>, {{t:recht.impressum.betreiberin.land}}</p>
 
-  <h2>Kontakt</h2>
-  <p>E-Mail: <a href="mailto:hello@baqless.com">hello@baqless.com</a><br>
-  Kontaktformular: <a href="kontakt.html">baqless.com/kontakt</a></p>
+  <h2>{{t:recht.impressum.kontakt.titel}}</h2>
+  <p>{{t:recht.impressum.kontakt.label_mail}} <a href="mailto:hello@baqless.com">hello@baqless.com</a><br>
+  {{t:recht.impressum.kontakt.label_formular}} <a href="kontakt.html">baqless.com/kontakt</a></p>
 
-  <h2>Handelsregister</h2>
-  <p>Eingetragen im Handelsregister des Kantons <span class="ph">[Kanton]</span><br>
-  UID: <span class="ph">[CHE-XXX.XXX.XXX]</span></p>
+  <h2>{{t:recht.impressum.handelsregister.titel}}</h2>
+  <p>{{t:recht.impressum.handelsregister.text_kanton}} <span class="ph">{{t:recht.platzhalter.kanton}}</span><br>
+  {{t:recht.impressum.handelsregister.label_uid}} <span class="ph">[CHE-XXX.XXX.XXX]</span></p>
 
-  <h2>Vertretungsberechtigt</h2>
-  <p><span class="ph">[Name, Funktion]</span></p>
+  <h2>{{t:recht.impressum.vertretung.titel}}</h2>
+  <p><span class="ph">{{t:recht.platzhalter.vertretung}}</span></p>
 
-  <h2>Haftungshinweis</h2>
-  <p>Wir prüfen die Inhalte dieser Website sorgfältig. Für Inhalte externer Links übernehmen wir keine Verantwortung. Für verlinkte Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
+  <h2>{{t:recht.impressum.haftung.titel}}</h2>
+  <p>{{t:recht.impressum.haftung.text}}</p>
 
-  <h2>Konzept &amp; Umsetzung</h2>
+  <h2>{{t:recht.impressum.umsetzung.titel}}</h2>
   <p>Lorien Group, Aarau</p>
 
-  <p class="legal-note">Entwurf für den Prototyp. Die markierten Angaben ergänzt Baqless vor dem Livegang.</p>
+  <p class="legal-note">{{t:recht.impressum.hinweis}}</p>
 </main>
 
 {{FOOTER}}
