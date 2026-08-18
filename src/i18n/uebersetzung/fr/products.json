@@ -1,0 +1,115 @@
+{
+  "bandgold": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Un anneau fin qui se pose autour de l'oreille comme une promesse. Se ferme d'un clic, tient toute la journée.",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Nouveau",
+    "variant": "Gold"
+  },
+  "blackhoop": {
+    "care": "Le revêtement PVD noir est résistant à l'eau et aux rayures, mais il ne supporte pas les produits abrasifs. Appliquez parfum et laque avant de les mettre. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Noir mat, arête nette. La créole de celles qui se font remarquer sans bruit.",
+    "materials": "Argent sterling 925 avec revêtement noir. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Hoop"
+  },
+  "dew": {
+    "care": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Comme une goutte de rosée : petite, claire, précise. Dew, c'est l'entrée dans l'univers Baqless. Et souvent le début d'une collection.",
+    "masse": "3.68 × 8.72 × 2.34 mm",
+    "materials": "Argent sterling 925 avec émail blanc. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "White"
+  },
+  "friendship": {
+    "care": "L'argent sterling 925 s'entretient facilement. Les pièces rhodiées restent claires longtemps, l'argent non traité peut foncer avec le temps. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Deux paires, une amitié. Une pour vous, une à offrir. Les deux avec Click-Lock.",
+    "materials": "Argent sterling 925 rhodié. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Duo"
+  },
+  "leafblack": {
+    "care": "Le revêtement PVD noir est résistant à l'eau et aux rayures, mais il ne supporte pas les produits abrasifs. Appliquez parfum et laque avant de les mettre. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "La même feuille, une autre attitude : noir profond, élégance mate. Leaf Black se porte de la réunion jusqu'à minuit.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "materials": "Argent sterling 925 avec revêtement noir. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Black"
+  },
+  "leafsea": {
+    "care": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Une feuille, prise entre le bleu de la mer et la lumière. Leaf Sea apporte de la couleur à l'oreille sans hausser le ton.",
+    "masse": "3.06 × 6.56 × 2.70 mm",
+    "materials": "Argent sterling 925 avec incrustation d'émail. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Sea"
+  },
+  "lunapearl": {
+    "care": "Les perles d'eau douce sont une matière naturelle et n'aiment pas les produits chimiques : appliquez parfum, laque et nettoyants avant de les mettre, puis laissez sécher. Pour la douche et la baignade, retirez-les de préférence. Essuyez-les ensuite avec un chiffon doux et légèrement humide, ne les faites jamais tremper. La tige en acier reste résistante à l'eau, sinon la perle finit par ternir par endroits.",
+    "desc": "Une perle qui participe au lieu de simplement suivre. Luna reste en place, du café du matin au dernier métro.",
+    "materials": "Argent sterling 925 avec perle d'eau douce. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Nouveau",
+    "variant": "Pearl"
+  },
+  "minelta": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Des courbes douces, un or chaud. Minelta se pose si légèrement sur l'oreille que vous l'oubliez. Jusqu'à ce qu'on vous en parle.",
+    "masse": "3.40 × 3.40 × 1.20 mm",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Nouveau",
+    "variant": "Gold"
+  },
+  "polarissv": {
+    "care": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Polaris en argent froid : la même étoile, un peu plus discrète, tout aussi précise. Pour celles qui font scintiller la retenue.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "materials": "Argent sterling 925 rhodié, pierre de zircone. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Argent"
+  },
+  "polarisyg": {
+    "care": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Notre étoile polaire : une étoile avec une pierre scintillante qui éclaire chaque tenue d'un cran.",
+    "masse": "5.84 × 5.84 × 1.77 mm",
+    "materials": "Argent sterling 925 plaqué or 18 carats, pierre de zircone. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Gold"
+  },
+  "sageneon": {
+    "care": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Série limitée : rose néon sur une forme sculpturale. Embrace Sage est faite pour les jours où vous voulez être vue.",
+    "masse": "12 × 13 mm de diamètre extérieur",
+    "materials": "Argent sterling 925 avec émail néon. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Édition limitée",
+    "variant": "Neon Pink"
+  },
+  "slice": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Une ligne nette, de l'or brossé, zéro distraction. Slice, c'est la signature de celles qui ne confondent pas minimalisme et ennui.",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Nouveau",
+    "variant": "Gold"
+  },
+  "wahamon": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Hamon, la ligne de trempe des sabres japonais, en boucle d'oreille. Numérotée, limitée, jamais rééditée.",
+    "masse": "4.32 × 15.36 × 3.69 mm",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Édition limitée",
+    "variant": "Gold"
+  },
+  "wakumo": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Kumo signifie nuage. Le troisième et dernier motif de l'édition WA actuelle.",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Édition limitée",
+    "variant": "Gold"
+  },
+  "wasumiiri": {
+    "care": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Motif Sumiiri traditionnel, serti d'or. Chaque édition est numérotée. Il n'y aura pas de réédition.",
+    "masse": "3.93 × 13.90 × 3.70 mm",
+    "materials": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau.",
+    "tag": "Édition limitée",
+    "variant": "Gold"
+  },
+  "zirkonia": {
+    "care": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire.",
+    "desc": "Scintille comme il faut et tient comme il se doit. Zirkonia, c'est l'entrée en scène des jours qui méritent plus.",
+    "materials": "Argent sterling 925 rhodié, pierres de zircone. Tige en acier chirurgical. Résistant à l'eau.",
+    "variant": "Argent"
+  }
+}

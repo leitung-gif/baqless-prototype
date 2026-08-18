@@ -60,6 +60,33 @@ async function run() {
       return !!b && b.dataset.q === b.textContent.trim();
     })());
 
+    // Das Dreh-Siegel laeuft als textPath auf einem Kreisbogen. Wird die Uebersetzung
+    // laenger als der Bogen, laeuft der Text in sich selbst hinein. Auf einem Bildschirmfoto
+    // sieht man das kaum, weil sich das Siegel dreht, darum wird gerechnet.
+    // Geprüft wird die Zusicherung selbst: der Text ist auf die Bogenlänge gespannt.
+    // getComputedTextLength taugt dafür nicht, Chrome rechnet die Spannung dort nicht ein.
+    log(`${P} Siegeltext ist auf den Bogen gespannt`, (() => {
+      const tp = d.querySelector('.spin-badge textPath');
+      if (!tp) return true;
+      const id = (tp.getAttribute('href') || tp.getAttribute('xlink:href') || '').slice(1);
+      const pfad = id && d.getElementById(id);
+      if (!pfad || !pfad.getTotalLength) return true;
+      const gesetzt = parseFloat(tp.getAttribute('textLength') || '0');
+      return tp.getAttribute('lengthAdjust') === 'spacing'
+        && Math.abs(gesetzt - pfad.getTotalLength()) < 1;
+    })(), (() => {
+      const tp = d.querySelector('.spin-badge textPath');
+      return tp ? `textLength ${Math.round(parseFloat(tp.getAttribute('textLength') || 0))}` : '';
+    })());
+
+    // Die Herkunftsformel ist woertlich gebunden und darf im Laufband nicht geteilt werden
+    log(`${P} Laufband trägt die Herkunftsformel ungeteilt`, (() => {
+      const teile = [...d.querySelectorAll('.marquee span > span, .marquee span')].map(x => x.textContent);
+      const ganz = teile.join(' | ');
+      const geteilt = /Entwickelt in der Schweiz(?!,)|Developed in Switzerland(?!,)|Conçu en Suisse(?!,)/.test(ganz);
+      return !geteilt;
+    })());
+
     // ---------- Produktseite und Warenkorb ----------
     [d, w] = await geh(`/${v.pfad}produkt.html?p=polarisyg`);
     w.localStorage.clear();

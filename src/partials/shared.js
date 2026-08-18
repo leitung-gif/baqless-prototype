@@ -18,6 +18,19 @@ function txtN(schluessel, n){
   return txt(schluessel + (einzahl ? '.eins' : '.viele'), { n });
 }
 
+// Der Siegeltext laeuft als textPath auf einem Kreisbogen. Je nach Sprache ist er
+// laenger oder kuerzer als der Bogen und laeuft dann in sich selbst hinein. textLength
+// spannt ihn auf genau die Bogenlaenge, die Laufweite gleicht den Rest aus.
+(function siegelSpannen(){
+  document.querySelectorAll('.spin-badge textPath').forEach(function(tp){
+    const id = (tp.getAttribute('href') || tp.getAttribute('xlink:href') || '').slice(1);
+    const pfad = id && document.getElementById(id);
+    if (!pfad || !pfad.getTotalLength) return;
+    tp.setAttribute('textLength', pfad.getTotalLength());
+    tp.setAttribute('lengthAdjust', 'spacing');
+  });
+})();
+
 // Die Fassung liegt im Pfad, genau wie bei Shopify: / fuer Deutsch, /en/ und /fr/ daneben.
 // Der Wechsel behaelt Seite, Abfrage und Sprungmarke, damit niemand auf der Startseite landet.
 function sprachUrl(code){

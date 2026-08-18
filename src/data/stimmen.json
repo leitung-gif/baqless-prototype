@@ -1,32 +1,68 @@
 [
-  {
-    "name": "Taeko Wako",
-    "rolle": "Verkaufsprofi und Style Consultant, Beams",
-    "ort": "Shonan",
-    "art": "zitat",
-    "text": "365 Tage im Jahr unverzichtbar in meinem Leben.",
-    "kontext": "Trägt sie rund um die Uhr, auch beim Duschen und Schlafen. Klassische Stecker gingen ihr verloren oder blieben im Winter am Schal hängen.",
-    "kollektion": "Amity",
-    "quelle": "baqless.jp/view/page/taekowako"
+ {
+  "name": "Taeko Wako",
+  "rolle": {
+   "de": "Verkaufsprofi und Style Consultant, Beams",
+   "en": "Sales professional and style consultant, Beams",
+   "fr": "Professionnelle de la vente et conseillère en style, Beams"
   },
-  {
-    "name": "Yuri Nakajima",
-    "rolle": "Ultramarathon-Läuferin, vier 100-Meilen-Finishes",
-    "ort": "Tsukuba",
-    "art": "aussage",
-    "text": "Trug sie durch ein 100-Meilen-Rennen und vergass unterwegs, dass sie sie überhaupt anhat.",
-    "kontext": "Bei normalen Steckern fasste sie ständig nach, ob noch beide dran sind. Das fällt jetzt weg.",
-    "kollektion": "Embrace",
-    "quelle": "baqless.jp/view/page/yurinakajima"
+  "ort": "Shonan",
+  "art": "zitat",
+  "text": {
+   "de": "365 Tage im Jahr unverzichtbar in meinem Leben.",
+   "en": "Indispensable in my life 365 days a year.",
+   "fr": "365 jours par an, indispensables dans ma vie."
   },
-  {
-    "name": "Lisa Halim",
-    "rolle": "Singer-Songwriterin, Surferin",
-    "ort": "Tokio",
-    "art": "aussage",
-    "text": "Sie nimmt sie gar nicht mehr ab, sie bleiben bis in die Badewanne dran.",
-    "kontext": "Wenn nichts nach Plan läuft, ändern Haare richten, Lippenstift und Ohrringe anlegen die Stimmung komplett.",
-    "kollektion": "Honesty",
-    "quelle": "baqless.jp/view/page/lisahalimbaqless"
-  }
+  "kontext": {
+   "de": "Trägt sie rund um die Uhr, auch beim Duschen und Schlafen. Klassische Stecker gingen ihr verloren oder blieben im Winter am Schal hängen.",
+   "en": "She wears them around the clock, in the shower and asleep. Classic studs used to go missing on her, or catch on her scarf in winter.",
+   "fr": "Elle les porte 24 heures sur 24, même sous la douche et pour dormir. Les clous classiques, elle les perdait ou ils restaient accrochés à son écharpe en hiver."
+  },
+  "kollektion": "Amity",
+  "quelle": "baqless.jp/view/page/taekowako"
+ },
+ {
+  "name": "Yuri Nakajima",
+  "rolle": {
+   "de": "Ultramarathon-Läuferin, vier 100-Meilen-Finishes",
+   "en": "Ultramarathon runner, four 100-mile finishes",
+   "fr": "Coureuse d'ultramarathon, quatre arrivées sur 100 miles"
+  },
+  "ort": "Tsukuba",
+  "art": "aussage",
+  "text": {
+   "de": "Trug sie durch ein 100-Meilen-Rennen und vergass unterwegs, dass sie sie überhaupt anhat.",
+   "en": "Wore them through a 100-mile race and forgot along the way that she had them on at all.",
+   "fr": "Elle les a portées sur une course de 100 miles et a oublié en chemin qu'elle les avait aux oreilles."
+  },
+  "kontext": {
+   "de": "Bei normalen Steckern fasste sie ständig nach, ob noch beide dran sind. Das fällt jetzt weg.",
+   "en": "With normal studs she kept reaching up to check that both were still there. That has gone.",
+   "fr": "Avec des clous ordinaires, elle vérifiait sans cesse si les deux étaient encore là. Cela ne lui arrive plus."
+  },
+  "kollektion": "Embrace",
+  "quelle": "baqless.jp/view/page/yurinakajima"
+ },
+ {
+  "name": "Lisa Halim",
+  "rolle": {
+   "de": "Singer-Songwriterin, Surferin",
+   "en": "Singer-songwriter, surfer",
+   "fr": "Autrice-compositrice-interprète, surfeuse"
+  },
+  "ort": "Tokio",
+  "art": "aussage",
+  "text": {
+   "de": "Sie nimmt sie gar nicht mehr ab, sie bleiben bis in die Badewanne dran.",
+   "en": "She does not take them off any more. They stay in right up to the bathtub.",
+   "fr": "Elle ne les enlève plus du tout, elles restent en place jusque dans la baignoire."
+  },
+  "kontext": {
+   "de": "Wenn nichts nach Plan läuft, ändern Haare richten, Lippenstift und Ohrringe anlegen die Stimmung komplett.",
+   "en": "When nothing goes to plan, doing her hair, putting on lipstick and clicking in her earrings changes the mood completely.",
+   "fr": "Quand rien ne se passe comme prévu, se recoiffer, mettre du rouge à lèvres et des boucles d'oreilles change complètement l'humeur."
+  },
+  "kollektion": "Honesty",
+  "quelle": "baqless.jp/view/page/lisahalimbaqless"
+ }
 ]

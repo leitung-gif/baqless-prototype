@@ -22,18 +22,27 @@ const DARF_GLEICH_SEIN = new Set([
   'Instagram', 'TikTok', 'Pinterest', 'TWINT', 'VISA', 'Mastercard', 'Amex', 'PayPal',
   'Apple Pay', 'Google Pay', 'Gold', 'Sea', 'Black', 'White', 'Pearl', 'Duo',
   'Hamon', 'Kumo', 'Hishimon', 'Nagare', 'Ten', 'Waku', 'Shirube', 'Sumiiri',
+  'Story', 'Film', 'Shop', 'Newsletter', 'Standard', 'Express', 'Total', 'Material',
+  'Liechtenstein', 'Breadcrumb', 'Scroll', 'Loop', 'Garantie', 'Sport',
 ]);
 
 const VERBOTEN = [
   [/hypoallergen/i, 'Vertraeglichkeitsaussage'],
   [/hypoallerg[eé]nique/i, 'Vertraeglichkeitsaussage'],
   [/nickel[\s-]?(free|frei)|sans nickel/i, 'Nickelaussage'],
-  [/sensitive ears|oreilles sensibles/i, 'Vertraeglichkeitsaussage'],
-  [/patent(ed|iert|é)?\b/i, 'Patentaussage'],
-  [/waterproof|étanche/i, 'zu starke Wasseraussage'],
+  // Jede Regel kennt auch die deutsche Entsprechung. Sonst kann das Original eine
+  // Aussage nie ausloesen, und eine im Deutschen freigegebene Stelle gilt in der
+  // Uebersetzung faelschlich als neuer Verstoss.
+  [/sensitive ears|oreilles sensibles|empfindliche ohren/i, 'Vertraeglichkeitsaussage'],
+  [/patent(ed|iert|é|e)?[^a-zäöü]/i, 'Patentaussage'],
+  [/waterproof|étanche|wasserdicht/i, 'zu starke Wasseraussage'],
   [/swiss\s?made|made in switzerland|fabriqué en suisse/i, 'unzulaessige Herkunftsaussage'],
-  [/never lose|guarantee[ds]?\b|garanti\b/i, 'unzulaessige Zusicherung'],
-  [/surgical steel(?!.{0,40}post)|acier chirurgical(?!.{0,40}tige)/i, 'Stahl als Material des Schmucks'],
+  [/never lose|nie verlieren|guaranteed|garantie de perte/i, 'unzulaessige Zusicherung'],
+  // Stahl ist nur dann falsch, wenn im selben Wert nirgends vom Stift die Rede ist.
+  // Die Wortstellung unterscheidet sich je Sprache, darum kein Blick nach vorn oder hinten.
+  [t => /surgical steel|acier chirurgical|chirurgische[mr]? edelstahl/i.test(t)
+      && !/post|tige|stift|pièce|piece|partie|part|teil/i.test(t),
+    'Stahl als Material des Schmucks'],
 ];
 
 const ZEICHEN = [
@@ -44,7 +53,9 @@ const ZEICHEN = [
 
 const lies = p => JSON.parse(readFileSync(p, 'utf8'));
 const platzhalter = s => (s.match(/\{[a-zA-Z_][a-zA-Z0-9_]*\}/g) || []).sort();
-const entitaeten = s => (s.match(/&[a-zA-Z]+;|&#\d+;/g) || []).sort();
+// &amp; ist ein gewoehnliches Und-Zeichen: das Franzoesische schreibt dafuer «et».
+// Bedeutungstragend sind nur die uebrigen Entitaeten, etwa der geschuetzte Bindestrich.
+const entitaeten = s => (s.match(/&[a-zA-Z]+;|&#\d+;/g) || []).filter(e => e !== '&amp;').sort();
 const tags = s => (s.match(/<\/?[a-zA-Z]+>/g) || []).sort();
 const gleich = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
 
@@ -76,8 +87,11 @@ for (const sp of SPRACHEN) {
     if (!gleich(tags(dtext), tags(t)))
       melde(true, sp, k, `Auszeichnung weicht ab: ${tags(dtext).join(' ') || 'keine'} gegen ${tags(t).join(' ') || 'keine'}`);
 
-    for (const [muster, was] of VERBOTEN)
-      if (muster.test(t)) melde(true, sp, k, `${was}: ${t.slice(0, 70)}`);
+    // Eine Aussage, die schon im deutschen Original steht, ist dort freigegeben worden.
+    // Gemeldet wird nur, was die Uebersetzung neu hineinbringt.
+    const trifft = (regel, text) => typeof regel === 'function' ? regel(text) : regel.test(text);
+    for (const [regel, was] of VERBOTEN)
+      if (trifft(regel, t) && !trifft(regel, dtext)) melde(true, sp, k, `${was}: ${t.slice(0, 70)}`);
     for (const [muster, was] of ZEICHEN)
       if (muster.test(t)) melde(true, sp, k, `${was} im Text`);
 

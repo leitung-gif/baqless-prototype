@@ -1,422 +1,746 @@
 [
-  {
-    "id": "slice",
-    "group": "honesty-slice",
-    "name": "Honesty Slice",
-    "variant": "Gold",
-    "price": 59,
-    "tag": "Neu",
-    "tagCls": "tag-coral",
-    "thumb": "{{p_slice}}",
-    "detail": "{{d_slice}}",
-    "sku": "BQ-HON-SLC-G",
-    "collection": "Honesty",
-    "desc": "Eine klare Linie, gebürstetes Gold, null Ablenkung. Slice ist das Statement für alle, die Minimalismus nicht mit Langeweile verwechseln.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 35,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+ {
+  "id": "slice",
+  "group": "honesty-slice",
+  "name": "Honesty Slice",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
   },
-  {
-    "id": "minelta",
-    "group": "honesty-minelta",
-    "name": "Honesty Minelta",
-    "variant": "Gold",
-    "price": 59,
-    "tag": "Neu",
-    "tagCls": "tag-coral",
-    "thumb": "{{p_minelta}}",
-    "detail": "{{d_minelta}}",
-    "sku": "BQ-HON-MIN-G",
-    "collection": "Honesty",
-    "desc": "Weiche Rundungen, warmes Gold. Minelta liegt so leicht am Ohr, dass du sie vergisst. Bis dich jemand darauf anspricht.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "3.40 × 3.40 × 1.20 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 35,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 3.4,
-      "h": 3.4,
-      "t": 1.2
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "price": 59,
+  "tag": {
+   "de": "Neu",
+   "en": "New",
+   "fr": "Nouveau"
   },
-  {
-    "id": "leafsea",
-    "group": "honesty-leaf",
-    "name": "Honesty Leaf",
-    "variant": "Sea",
-    "price": 55,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{p_leafsea}}",
-    "detail": "{{d_leafsea}}",
-    "sku": "BQ-HON-LEF-S",
-    "collection": "Honesty",
-    "desc": "Ein Blatt, gefangen zwischen Meerblau und Licht. Leaf Sea bringt Farbe ans Ohr, ohne laut zu werden.",
-    "materials": "Sterling Silber 925 mit Emaille-Einlage. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "3.06 × 6.56 × 2.70 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 32,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 3.06,
-      "h": 6.56,
-      "t": 2.7
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "tagCls": "tag-coral",
+  "thumb": "{{p_slice}}",
+  "detail": "{{d_slice}}",
+  "sku": "BQ-HON-SLC-G",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Eine klare Linie, gebürstetes Gold, null Ablenkung. Slice ist das Statement für alle, die Minimalismus nicht mit Langeweile verwechseln.",
+   "en": "One clean line, brushed gold, zero distraction. Slice is the statement for everyone who never mistook minimalism for boredom.",
+   "fr": "Une ligne nette, de l'or brossé, zéro distraction. Slice, c'est la signature de celles qui ne confondent pas minimalisme et ennui."
   },
-  {
-    "id": "leafblack",
-    "group": "honesty-leaf",
-    "name": "Honesty Leaf",
-    "variant": "Black",
-    "price": 55,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{p_leafblack}}",
-    "detail": "{{d_leafblack}}",
-    "sku": "BQ-HON-LEF-B",
-    "collection": "Honesty",
-    "desc": "Dasselbe Blatt, andere Haltung: tiefes Schwarz, matte Eleganz. Leaf Black trägt sich vom Meeting bis Mitternacht.",
-    "materials": "Sterling Silber 925 mit schwarzer Beschichtung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die schwarze PVD-Beschichtung ist wasserfest und kratzfest, verträgt aber keine Scheuermittel. Parfum und Haarspray vor dem Anlegen auftragen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "3.06 × 6.56 × 2.70 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 32,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 3.06,
-      "h": 6.56,
-      "t": 2.7
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
   },
-  {
-    "id": "dew",
-    "group": "honesty-dew",
-    "name": "Honesty Dew",
-    "variant": "White",
-    "price": 49,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{p_dew}}",
-    "detail": "{{d_dew}}",
-    "sku": "BQ-HON-DEW-W",
-    "collection": "Honesty",
-    "desc": "Wie ein Tautropfen: klein, hell, präzise. Dew ist der Einstieg in Baqless. Und oft der Anfang einer Sammlung.",
-    "materials": "Sterling Silber 925 mit weisser Emaille. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "3.68 × 8.72 × 2.34 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 29,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 3.68,
-      "h": 8.72,
-      "t": 2.34
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
   },
-  {
-    "id": "polarisyg",
-    "group": "amity-polaris",
-    "name": "Amity Polaris",
-    "variant": "Gold",
-    "price": 69,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{p_polaris_yg}}",
-    "detail": "{{d_polaris_yg}}",
-    "sku": "BQ-AMI-POL-G",
-    "collection": "Amity",
-    "desc": "Unser Nordstern: ein Stern mit funkelndem Stein, der jedes Outfit einen Tick heller macht.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung, Zirkonia-Stein. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "5.84 × 5.84 × 1.77 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 41,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 5.84,
-      "h": 5.84,
-      "t": 1.77
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 35,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "minelta",
+  "group": "honesty-minelta",
+  "name": "Honesty Minelta",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
   },
-  {
-    "id": "polarissv",
-    "group": "amity-polaris",
-    "name": "Amity Polaris",
-    "variant": "Silber",
-    "price": 59,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{p_polaris_sv}}",
-    "detail": "{{d_polaris_sv}}",
-    "sku": "BQ-AMI-POL-S",
-    "collection": "Amity",
-    "desc": "Polaris in kühlem Silber: derselbe Stern, etwas leiser, genauso präzise. Für alle, die Understatement funkeln lassen.",
-    "materials": "Sterling Silber 925, rhodiniert, mit Zirkonia-Stein. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "5.84 × 5.84 × 1.77 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 35,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 5.84,
-      "h": 5.84,
-      "t": 1.77
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "price": 59,
+  "tag": {
+   "de": "Neu",
+   "en": "New",
+   "fr": "Nouveau"
   },
-  {
-    "id": "sageneon",
-    "group": "embrace-sage",
-    "name": "Embrace Sage",
-    "variant": "Neon Pink",
-    "price": 65,
-    "tag": "Limitiert",
-    "tagCls": "tag-lav",
-    "thumb": "{{p_sageneon}}",
-    "detail": "{{d_sageneon}}",
-    "sku": "BQ-EMB-SAG-NP",
-    "collection": "Embrace",
-    "desc": "Limitierte Serie: Neon-Pink auf skulpturaler Form. Embrace Sage ist für Tage, an denen du gesehen werden willst.",
-    "materials": "Sterling Silber 925 mit Neon-Emaille. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "12 × 13 mm Aussendurchmesser",
-    "gewicht": "0.7 g pro Ohr",
-    "halb": true,
-    "preisHalb": 38,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 12.0,
-      "h": 13.0,
-      "t": null
-    },
-    "masseArt": "durchmesser",
-    "gewichtG": 0.7
+  "tagCls": "tag-coral",
+  "thumb": "{{p_minelta}}",
+  "detail": "{{d_minelta}}",
+  "sku": "BQ-HON-MIN-G",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Weiche Rundungen, warmes Gold. Minelta liegt so leicht am Ohr, dass du sie vergisst. Bis dich jemand darauf anspricht.",
+   "en": "Soft curves, warm gold. Minelta sits so lightly on the ear that you forget it is there. Until someone mentions it.",
+   "fr": "Des courbes douces, un or chaud. Minelta se pose si légèrement sur l'oreille que vous l'oubliez. Jusqu'à ce qu'on vous en parle."
   },
-  {
-    "id": "lunapearl",
-    "group": "amity-luna",
-    "name": "Amity Luna",
-    "variant": "Pearl",
-    "price": 75,
-    "tag": "Neu",
-    "tagCls": "tag-coral",
-    "thumb": "{{c_pearl}}",
-    "detail": "{{c_pearl}}",
-    "sku": "BQ-AMI-LUN-P",
-    "collection": "Amity",
-    "desc": "Eine Perle, die mitmacht statt nur mitkommt. Luna bleibt dran, vom Morgenkaffee bis zur letzten Bahn.",
-    "materials": "Sterling Silber 925 mit Süsswasserperle. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Süsswasserperlen sind ein Naturmaterial und mögen keine Chemie: Parfum, Haarspray und Reiniger vor dem Anlegen auftragen und trocknen lassen. Zum Duschen und Schwimmen nimmst du sie besser heraus. Danach mit einem weichen, leicht feuchten Tuch abwischen, nie einweichen. Der Stift aus Edelstahl bleibt wasserfest, die Perle bekommt sonst mit der Zeit stumpfe Stellen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 44,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
   },
-  {
-    "id": "friendship",
-    "group": "amity-friendship",
-    "name": "Amity Friendship",
-    "variant": "Duo",
-    "price": 79,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{c_friendship}}",
-    "detail": "{{c_friendship}}",
-    "sku": "BQ-AMI-FRD-D",
-    "collection": "Amity",
-    "desc": "Zwei Paare, eine Freundschaft. Eines für dich, eines zum Verschenken. Beide mit Click-Lock.",
-    "materials": "Sterling Silber 925, rhodiniert. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Sterling Silber 925 ist pflegeleicht. Rhodinierte Stücke bleiben lange hell, unbeschichtetes Silber darf mit der Zeit nachdunkeln. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 47,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
   },
-  {
-    "id": "bandgold",
-    "group": "embrace-band",
-    "name": "Embrace Band",
-    "variant": "Gold",
-    "price": 69,
-    "tag": "Neu",
-    "tagCls": "tag-coral",
-    "thumb": "{{c_band}}",
-    "detail": "{{c_band}}",
-    "sku": "BQ-EMB-BND-G",
-    "collection": "Embrace",
-    "desc": "Ein schmaler Reif, der sich ums Ohr legt wie ein Versprechen. Schliesst mit einem Klick, bleibt den ganzen Tag.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 41,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+  "masse": {
+   "de": "3.40 × 3.40 × 1.20 mm",
+   "en": "3.40 × 3.40 × 1.20 mm",
+   "fr": "3.40 × 3.40 × 1.20 mm"
   },
-  {
-    "id": "zirkonia",
-    "group": "embrace-zirkonia",
-    "name": "Embrace Zirkonia",
-    "variant": "Silber",
-    "price": 72,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{c_zirkonia}}",
-    "detail": "{{c_zirkonia}}",
-    "sku": "BQ-EMB-ZRK-S",
-    "collection": "Embrace",
-    "desc": "Funkelt wie es soll und hält wie es muss. Zirkonia ist der Auftritt für Tage, die mehr verdienen.",
-    "materials": "Sterling Silber 925, rhodiniert, mit Zirkonia-Steinen. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 42,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 35,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 3.4,
+   "h": 3.4,
+   "t": 1.2
   },
-  {
-    "id": "blackhoop",
-    "group": "honesty-black",
-    "name": "Honesty Black",
-    "variant": "Hoop",
-    "price": 62,
-    "tag": "",
-    "tagCls": "",
-    "thumb": "{{c_black}}",
-    "detail": "{{d_leafblack}}",
-    "sku": "BQ-HON-BLK-H",
-    "collection": "Honesty",
-    "desc": "Mattes Schwarz, klare Kante. Der Hoop für alle, die leise auffallen.",
-    "materials": "Sterling Silber 925 mit schwarzer Beschichtung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die schwarze PVD-Beschichtung ist wasserfest und kratzfest, verträgt aber keine Scheuermittel. Parfum und Haarspray vor dem Anlegen auftragen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 37,
-    "lager": "ausverkauft",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "leafsea",
+  "group": "honesty-leaf",
+  "name": "Honesty Leaf",
+  "variant": {
+   "de": "Sea",
+   "en": "Sea",
+   "fr": "Sea"
   },
-  {
-    "id": "wasumiiri",
-    "group": "wa-sumiiri",
-    "name": "WA Sumiiri II",
-    "variant": "Gold",
-    "price": 89,
-    "tag": "Limitiert",
-    "tagCls": "tag-lav",
-    "thumb": "{{wa_sumiiri}}",
-    "detail": "{{c_wa}}",
-    "sku": "BQ-WA-SUM-2",
-    "collection": "WA",
-    "desc": "Traditionelles Sumiiri-Muster, in Gold gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "3.93 × 13.90 × 3.70 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 53,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 3.93,
-      "h": 13.9,
-      "t": 3.7
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "price": 55,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{p_leafsea}}",
+  "detail": "{{d_leafsea}}",
+  "sku": "BQ-HON-LEF-S",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Ein Blatt, gefangen zwischen Meerblau und Licht. Leaf Sea bringt Farbe ans Ohr, ohne laut zu werden.",
+   "en": "A leaf, caught between sea blue and light. Leaf Sea brings colour to the ear without ever raising its voice.",
+   "fr": "Une feuille, prise entre le bleu de la mer et la lumière. Leaf Sea apporte de la couleur à l'oreille sans hausser le ton."
   },
-  {
-    "id": "wahamon",
-    "group": "wa-hamon",
-    "name": "WA Hamon II",
-    "variant": "Gold",
-    "price": 89,
-    "tag": "Limitiert",
-    "tagCls": "tag-lav",
-    "thumb": "{{wa_hamon}}",
-    "detail": "{{c_wa}}",
-    "sku": "BQ-WA-HAM-2",
-    "collection": "WA",
-    "desc": "Hamon, die Klingenlinie japanischer Schwerter, als Ohrring. Nummeriert, limitiert, nie wieder aufgelegt.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": "4.32 × 15.36 × 3.69 mm",
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 53,
-    "lager": "auf_lager",
-    "masseMm": {
-      "b": 4.32,
-      "h": 15.36,
-      "t": 3.69
-    },
-    "masseArt": "bht",
-    "gewichtG": null
+  "materials": {
+   "de": "Sterling Silber 925 mit Emaille-Einlage. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with an enamel inlay. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec incrustation d'émail. Tige en acier chirurgical. Résistant à l'eau."
   },
-  {
-    "id": "wakumo",
-    "group": "wa-kumo",
-    "name": "WA Kumo III",
-    "variant": "Gold",
-    "price": 95,
-    "tag": "Limitiert",
-    "tagCls": "tag-lav",
-    "thumb": "{{wa_kumo}}",
-    "detail": "{{c_wa}}",
-    "sku": "BQ-WA-KUM-3",
-    "collection": "WA",
-    "desc": "Kumo heisst Wolke. Das dritte und letzte Muster der aktuellen WA-Auflage.",
-    "materials": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-    "care": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-    "masse": null,
-    "gewicht": null,
-    "halb": true,
-    "preisHalb": 56,
-    "lager": "auf_lager",
-    "masseMm": null,
-    "masseArt": null,
-    "gewichtG": null
-  }
+  "care": {
+   "de": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The enamel is water-resistant and colourfast. It has no time for hard knocks on the edges. Otherwise very little bothers it. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "3.06 × 6.56 × 2.70 mm",
+   "en": "3.06 × 6.56 × 2.70 mm",
+   "fr": "3.06 × 6.56 × 2.70 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 32,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 3.06,
+   "h": 6.56,
+   "t": 2.7
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "leafblack",
+  "group": "honesty-leaf",
+  "name": "Honesty Leaf",
+  "variant": {
+   "de": "Black",
+   "en": "Black",
+   "fr": "Black"
+  },
+  "price": 55,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{p_leafblack}}",
+  "detail": "{{d_leafblack}}",
+  "sku": "BQ-HON-LEF-B",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Dasselbe Blatt, andere Haltung: tiefes Schwarz, matte Eleganz. Leaf Black trägt sich vom Meeting bis Mitternacht.",
+   "en": "The same leaf, a different mood: deep black, matt elegance. Leaf Black carries you from the meeting to midnight.",
+   "fr": "La même feuille, une autre attitude : noir profond, élégance mate. Leaf Black se porte de la réunion jusqu'à minuit."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit schwarzer Beschichtung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with a black coating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec revêtement noir. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die schwarze PVD-Beschichtung ist wasserfest und kratzfest, verträgt aber keine Scheuermittel. Parfum und Haarspray vor dem Anlegen auftragen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The black PVD coating is water-resistant and scratch-resistant, but abrasives are too much for it. Put on perfume and hairspray before you put the earrings in. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD noir est résistant à l'eau et aux rayures, mais il ne supporte pas les produits abrasifs. Appliquez parfum et laque avant de les mettre. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "3.06 × 6.56 × 2.70 mm",
+   "en": "3.06 × 6.56 × 2.70 mm",
+   "fr": "3.06 × 6.56 × 2.70 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 32,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 3.06,
+   "h": 6.56,
+   "t": 2.7
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "dew",
+  "group": "honesty-dew",
+  "name": "Honesty Dew",
+  "variant": {
+   "de": "White",
+   "en": "White",
+   "fr": "White"
+  },
+  "price": 49,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{p_dew}}",
+  "detail": "{{d_dew}}",
+  "sku": "BQ-HON-DEW-W",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Wie ein Tautropfen: klein, hell, präzise. Dew ist der Einstieg in Baqless. Und oft der Anfang einer Sammlung.",
+   "en": "Like a drop of dew: small, bright, precise. Dew is the way into Baqless. And often the start of a collection.",
+   "fr": "Comme une goutte de rosée : petite, claire, précise. Dew, c'est l'entrée dans l'univers Baqless. Et souvent le début d'une collection."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit weisser Emaille. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with white enamel. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec émail blanc. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The enamel is water-resistant and colourfast. It has no time for hard knocks on the edges. Otherwise very little bothers it. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "3.68 × 8.72 × 2.34 mm",
+   "en": "3.68 × 8.72 × 2.34 mm",
+   "fr": "3.68 × 8.72 × 2.34 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 29,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 3.68,
+   "h": 8.72,
+   "t": 2.34
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "polarisyg",
+  "group": "amity-polaris",
+  "name": "Amity Polaris",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
+  },
+  "price": 69,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{p_polaris_yg}}",
+  "detail": "{{d_polaris_yg}}",
+  "sku": "BQ-AMI-POL-G",
+  "collection": "Amity",
+  "desc": {
+   "de": "Unser Nordstern: ein Stern mit funkelndem Stein, der jedes Outfit einen Tick heller macht.",
+   "en": "Our north star: a star with a sparkling stone that lifts any outfit a shade brighter.",
+   "fr": "Notre étoile polaire : une étoile avec une pierre scintillante qui éclaire chaque tenue d'un cran."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung, Zirkonia-Stein. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating, cubic zirconia stone. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats, pierre de zircone. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The cubic zirconia looks its best when the setting is clean: rinse it now and then with a soft brush and lukewarm water, then pat it dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "5.84 × 5.84 × 1.77 mm",
+   "en": "5.84 × 5.84 × 1.77 mm",
+   "fr": "5.84 × 5.84 × 1.77 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 41,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 5.84,
+   "h": 5.84,
+   "t": 1.77
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "polarissv",
+  "group": "amity-polaris",
+  "name": "Amity Polaris",
+  "variant": {
+   "de": "Silber",
+   "en": "Silver",
+   "fr": "Argent"
+  },
+  "price": 59,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{p_polaris_sv}}",
+  "detail": "{{d_polaris_sv}}",
+  "sku": "BQ-AMI-POL-S",
+  "collection": "Amity",
+  "desc": {
+   "de": "Polaris in kühlem Silber: derselbe Stern, etwas leiser, genauso präzise. Für alle, die Understatement funkeln lassen.",
+   "en": "Polaris in cool silver: the same star, a little quieter, just as precise. For everyone who likes their understatement with a sparkle.",
+   "fr": "Polaris en argent froid : la même étoile, un peu plus discrète, tout aussi précise. Pour celles qui font scintiller la retenue."
+  },
+  "materials": {
+   "de": "Sterling Silber 925, rhodiniert, mit Zirkonia-Stein. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated, with a cubic zirconia stone. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 rhodié, pierre de zircone. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The cubic zirconia looks its best when the setting is clean: rinse it now and then with a soft brush and lukewarm water, then pat it dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "5.84 × 5.84 × 1.77 mm",
+   "en": "5.84 × 5.84 × 1.77 mm",
+   "fr": "5.84 × 5.84 × 1.77 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 35,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 5.84,
+   "h": 5.84,
+   "t": 1.77
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "sageneon",
+  "group": "embrace-sage",
+  "name": "Embrace Sage",
+  "variant": {
+   "de": "Neon Pink",
+   "en": "Neon Pink",
+   "fr": "Neon Pink"
+  },
+  "price": 65,
+  "tag": {
+   "de": "Limitiert",
+   "en": "Limited",
+   "fr": "Édition limitée"
+  },
+  "tagCls": "tag-lav",
+  "thumb": "{{p_sageneon}}",
+  "detail": "{{d_sageneon}}",
+  "sku": "BQ-EMB-SAG-NP",
+  "collection": "Embrace",
+  "desc": {
+   "de": "Limitierte Serie: Neon-Pink auf skulpturaler Form. Embrace Sage ist für Tage, an denen du gesehen werden willst.",
+   "en": "Limited run: neon pink on a sculptural shape. Embrace Sage is for the days when you want to be seen.",
+   "fr": "Série limitée : rose néon sur une forme sculpturale. Embrace Sage est faite pour les jours où vous voulez être vue."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit Neon-Emaille. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with neon enamel. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec émail néon. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die Emaille ist wasserfest und farbecht. Sie mag keine harten Schläge auf Kanten, sonst bleibt sie unempfindlich. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The enamel is water-resistant and colourfast. It has no time for hard knocks on the edges. Otherwise very little bothers it. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "L'émail est résistant à l'eau et ne se décolore pas. Il ne supporte pas les chocs violents sur les arêtes, pour le reste rien ne l'atteint. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "12 × 13 mm Aussendurchmesser",
+   "en": "12 × 13 mm outer diameter",
+   "fr": "12 × 13 mm de diamètre extérieur"
+  },
+  "gewicht": "0.7 g pro Ohr",
+  "halb": true,
+  "preisHalb": 38,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 12,
+   "h": 13,
+   "t": null
+  },
+  "masseArt": "durchmesser",
+  "gewichtG": 0.7
+ },
+ {
+  "id": "lunapearl",
+  "group": "amity-luna",
+  "name": "Amity Luna",
+  "variant": {
+   "de": "Pearl",
+   "en": "Pearl",
+   "fr": "Pearl"
+  },
+  "price": 75,
+  "tag": {
+   "de": "Neu",
+   "en": "New",
+   "fr": "Nouveau"
+  },
+  "tagCls": "tag-coral",
+  "thumb": "{{c_pearl}}",
+  "detail": "{{c_pearl}}",
+  "sku": "BQ-AMI-LUN-P",
+  "collection": "Amity",
+  "desc": {
+   "de": "Eine Perle, die mitmacht statt nur mitkommt. Luna bleibt dran, vom Morgenkaffee bis zur letzten Bahn.",
+   "en": "A pearl that joins in rather than just tags along. Luna stays put, from the morning coffee to the last tram.",
+   "fr": "Une perle qui participe au lieu de simplement suivre. Luna reste en place, du café du matin au dernier métro."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit Süsswasserperle. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with a freshwater pearl. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec perle d'eau douce. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Süsswasserperlen sind ein Naturmaterial und mögen keine Chemie: Parfum, Haarspray und Reiniger vor dem Anlegen auftragen und trocknen lassen. Zum Duschen und Schwimmen nimmst du sie besser heraus. Danach mit einem weichen, leicht feuchten Tuch abwischen, nie einweichen. Der Stift aus Edelstahl bleibt wasserfest, die Perle bekommt sonst mit der Zeit stumpfe Stellen.",
+   "en": "Freshwater pearls are a natural material and have no patience for chemistry: put on perfume, hairspray and cleaning products before you put the earrings in, and let everything dry. For showering and swimming, take this pair out. Afterwards wipe with a soft, slightly damp cloth, and never soak it. The stainless steel post stays water-resistant. The pearl would otherwise go dull in places over time.",
+   "fr": "Les perles d'eau douce sont une matière naturelle et n'aiment pas les produits chimiques : appliquez parfum, laque et nettoyants avant de les mettre, puis laissez sécher. Pour la douche et la baignade, retirez-les de préférence. Essuyez-les ensuite avec un chiffon doux et légèrement humide, ne les faites jamais tremper. La tige en acier reste résistante à l'eau, sinon la perle finit par ternir par endroits."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 44,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "friendship",
+  "group": "amity-friendship",
+  "name": "Amity Friendship",
+  "variant": {
+   "de": "Duo",
+   "en": "Duo",
+   "fr": "Duo"
+  },
+  "price": 79,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{c_friendship}}",
+  "detail": "{{c_friendship}}",
+  "sku": "BQ-AMI-FRD-D",
+  "collection": "Amity",
+  "desc": {
+   "de": "Zwei Paare, eine Freundschaft. Eines für dich, eines zum Verschenken. Beide mit Click-Lock.",
+   "en": "Two pairs, one friendship. One for you, one to give away. Both with Click-Lock.",
+   "fr": "Deux paires, une amitié. Une pour vous, une à offrir. Les deux avec Click-Lock."
+  },
+  "materials": {
+   "de": "Sterling Silber 925, rhodiniert. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 rhodié. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Sterling Silber 925 ist pflegeleicht. Rhodinierte Stücke bleiben lange hell, unbeschichtetes Silber darf mit der Zeit nachdunkeln. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "Sterling silver 925 is easy to look after. Rhodium-plated pieces stay bright for a long time, and uncoated silver is allowed to darken as the years pass. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "L'argent sterling 925 s'entretient facilement. Les pièces rhodiées restent claires longtemps, l'argent non traité peut foncer avec le temps. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 47,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "bandgold",
+  "group": "embrace-band",
+  "name": "Embrace Band",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
+  },
+  "price": 69,
+  "tag": {
+   "de": "Neu",
+   "en": "New",
+   "fr": "Nouveau"
+  },
+  "tagCls": "tag-coral",
+  "thumb": "{{c_band}}",
+  "detail": "{{c_band}}",
+  "sku": "BQ-EMB-BND-G",
+  "collection": "Embrace",
+  "desc": {
+   "de": "Ein schmaler Reif, der sich ums Ohr legt wie ein Versprechen. Schliesst mit einem Klick, bleibt den ganzen Tag.",
+   "en": "A slim band that wraps around the ear like a promise. Closes with a click, stays all day.",
+   "fr": "Un anneau fin qui se pose autour de l'oreille comme une promesse. Se ferme d'un clic, tient toute la journée."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 41,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "zirkonia",
+  "group": "embrace-zirkonia",
+  "name": "Embrace Zirkonia",
+  "variant": {
+   "de": "Silber",
+   "en": "Silver",
+   "fr": "Argent"
+  },
+  "price": 72,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{c_zirkonia}}",
+  "detail": "{{c_zirkonia}}",
+  "sku": "BQ-EMB-ZRK-S",
+  "collection": "Embrace",
+  "desc": {
+   "de": "Funkelt wie es soll und hält wie es muss. Zirkonia ist der Auftritt für Tage, die mehr verdienen.",
+   "en": "Sparkles the way it should and holds the way it must. Zirkonia is the entrance for days that deserve a bit more.",
+   "fr": "Scintille comme il faut et tient comme il se doit. Zirkonia, c'est l'entrée en scène des jours qui méritent plus."
+  },
+  "materials": {
+   "de": "Sterling Silber 925, rhodiniert, mit Zirkonia-Steinen. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated, with cubic zirconia stones. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 rhodié, pierres de zircone. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Der Zirkonia bleibt am schönsten, wenn die Fassung sauber ist: gelegentlich mit einer weichen Bürste und lauwarmem Wasser ausspülen, dann trocken tupfen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The cubic zirconia looks its best when the setting is clean: rinse it now and then with a soft brush and lukewarm water, then pat it dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "La zircone reste plus belle quand le sertissage est propre : rincez-le de temps en temps avec une brosse douce et de l'eau tiède, puis tamponnez pour sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 42,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "blackhoop",
+  "group": "honesty-black",
+  "name": "Honesty Black",
+  "variant": {
+   "de": "Hoop",
+   "en": "Hoop",
+   "fr": "Hoop"
+  },
+  "price": 62,
+  "tag": "",
+  "tagCls": "",
+  "thumb": "{{c_black}}",
+  "detail": "{{d_leafblack}}",
+  "sku": "BQ-HON-BLK-H",
+  "collection": "Honesty",
+  "desc": {
+   "de": "Mattes Schwarz, klare Kante. Der Hoop für alle, die leise auffallen.",
+   "en": "Matt black, one clean edge. The hoop for everyone who stands out quietly.",
+   "fr": "Noir mat, arête nette. La créole de celles qui se font remarquer sans bruit."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit schwarzer Beschichtung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with a black coating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 avec revêtement noir. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die schwarze PVD-Beschichtung ist wasserfest und kratzfest, verträgt aber keine Scheuermittel. Parfum und Haarspray vor dem Anlegen auftragen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The black PVD coating is water-resistant and scratch-resistant, but abrasives are too much for it. Put on perfume and hairspray before you put the earrings in. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD noir est résistant à l'eau et aux rayures, mais il ne supporte pas les produits abrasifs. Appliquez parfum et laque avant de les mettre. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 37,
+  "lager": "ausverkauft",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ },
+ {
+  "id": "wasumiiri",
+  "group": "wa-sumiiri",
+  "name": "WA Sumiiri II",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
+  },
+  "price": 89,
+  "tag": {
+   "de": "Limitiert",
+   "en": "Limited",
+   "fr": "Édition limitée"
+  },
+  "tagCls": "tag-lav",
+  "thumb": "{{wa_sumiiri}}",
+  "detail": "{{c_wa}}",
+  "sku": "BQ-WA-SUM-2",
+  "collection": "WA",
+  "desc": {
+   "de": "Traditionelles Sumiiri-Muster, in Gold gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
+   "en": "The traditional Sumiiri pattern, set in gold. Every edition is numbered. None of it is ever made again.",
+   "fr": "Motif Sumiiri traditionnel, serti d'or. Chaque édition est numérotée. Il n'y aura pas de réédition."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "3.93 × 13.90 × 3.70 mm",
+   "en": "3.93 × 13.90 × 3.70 mm",
+   "fr": "3.93 × 13.90 × 3.70 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 53,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 3.93,
+   "h": 13.9,
+   "t": 3.7
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "wahamon",
+  "group": "wa-hamon",
+  "name": "WA Hamon II",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
+  },
+  "price": 89,
+  "tag": {
+   "de": "Limitiert",
+   "en": "Limited",
+   "fr": "Édition limitée"
+  },
+  "tagCls": "tag-lav",
+  "thumb": "{{wa_hamon}}",
+  "detail": "{{c_wa}}",
+  "sku": "BQ-WA-HAM-2",
+  "collection": "WA",
+  "desc": {
+   "de": "Hamon, die Klingenlinie japanischer Schwerter, als Ohrring. Nummeriert, limitiert, nie wieder aufgelegt.",
+   "en": "Hamon, the tempered blade line of Japanese swords, as an earring. Numbered, limited, never issued again.",
+   "fr": "Hamon, la ligne de trempe des sabres japonais, en boucle d'oreille. Numérotée, limitée, jamais rééditée."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": {
+   "de": "4.32 × 15.36 × 3.69 mm",
+   "en": "4.32 × 15.36 × 3.69 mm",
+   "fr": "4.32 × 15.36 × 3.69 mm"
+  },
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 53,
+  "lager": "auf_lager",
+  "masseMm": {
+   "b": 4.32,
+   "h": 15.36,
+   "t": 3.69
+  },
+  "masseArt": "bht",
+  "gewichtG": null
+ },
+ {
+  "id": "wakumo",
+  "group": "wa-kumo",
+  "name": "WA Kumo III",
+  "variant": {
+   "de": "Gold",
+   "en": "Gold",
+   "fr": "Gold"
+  },
+  "price": 95,
+  "tag": {
+   "de": "Limitiert",
+   "en": "Limited",
+   "fr": "Édition limitée"
+  },
+  "tagCls": "tag-lav",
+  "thumb": "{{wa_kumo}}",
+  "detail": "{{c_wa}}",
+  "sku": "BQ-WA-KUM-3",
+  "collection": "WA",
+  "desc": {
+   "de": "Kumo heisst Wolke. Das dritte und letzte Muster der aktuellen WA-Auflage.",
+   "en": "Kumo means cloud. The third and last pattern of the current WA edition.",
+   "fr": "Kumo signifie nuage. Le troisième et dernier motif de l'édition WA actuelle."
+  },
+  "materials": {
+   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+  },
+  "care": {
+   "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
+   "en": "The PVD coating handles showers, sport and the sea. To keep it looking even for years, spray on perfume and hairspray before you put the earrings in and let everything dry. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
+   "fr": "Le revêtement PVD supporte la douche, le sport et la mer. Pour qu'il reste uniforme longtemps, appliquez parfum et laque avant de les mettre, puis laissez sécher. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
+  },
+  "masse": null,
+  "gewicht": null,
+  "halb": true,
+  "preisHalb": 56,
+  "lager": "auf_lager",
+  "masseMm": null,
+  "masseArt": null,
+  "gewichtG": null
+ }
 ]
