@@ -35,6 +35,8 @@ async function run() {
   const acc2 = d.querySelectorAll('.acc-item')[1];
   acc2?.querySelector('button')?.click(); await sleep(150);
   log('Akkordeon öffnet', acc2?.classList.contains('open') === true);
+  log('Akkordeon meldet seinen Zustand', acc2?.querySelector('button')?.getAttribute('aria-expanded') === 'true'
+    && d.querySelectorAll('.acc-item button[aria-expanded]').length === 6);
 
   // ===== Verschluss-Erklärmodul (die Lücke beider echten Shops) =====
   log('PDP: Verschluss-Modul mit 3 Schritten', d.querySelectorAll('.mech .mech-step').length === 3
@@ -52,6 +54,8 @@ async function run() {
     && d.querySelectorAll('#halbToggle button').length === 2);
   log('PDP: Einzelpreis bei 59 Prozent', d.querySelector('#halbToggle button:last-child span')?.textContent === 'CHF 41');
   click(d, '#halbToggle button[data-einzelset="1"]'); await sleep(120);
+  log('PDP: Umschalter meldet seinen Zustand', d.querySelector('#halbToggle button[data-einzelset="1"]')?.getAttribute('aria-pressed') === 'true'
+    && d.querySelector('#halbToggle button[data-einzelset="0"]')?.getAttribute('aria-pressed') === 'false');
   log('PDP: Umschalten ändert Preis und SKU', d.querySelector('.price-big')?.textContent === 'CHF 41'
     && d.querySelector('.variant-line')?.textContent.includes('-H'));
   click(d, '#mainAdd'); await sleep(200);
@@ -282,6 +286,26 @@ async function run() {
   log('Home: keine Versandstandorte-Statistik', !d.body.innerText.includes('Versandstandorte'));
   log('Home: Story-CTA → Subpage', !!d.querySelector('.story a.btn[href="story.html"]'));
   log('Home: Nav → Story-Subpage', !!d.querySelector('nav a[href="story.html"]'));
+  log('Zugang: Sprunglink zum Inhalt', (() => {
+    const sk = d.querySelector('.skip-link');
+    return !!sk && sk.getAttribute('href') === '#inhalt' && !!d.getElementById('inhalt');
+  })());
+  log('Zugang: Warenkorb öffnet als Dialog und führt den Fokus', (() => {
+    const btn = d.getElementById('cartBtn');
+    btn.focus(); btn.click();
+    const dr = d.getElementById('drawer');
+    return dr.getAttribute('aria-modal') === 'true' && dr.getAttribute('role') === 'dialog'
+      && btn.getAttribute('aria-expanded') === 'true';
+  })());
+  await sleep(200);
+  log('Zugang: Fokus steht im Warenkorb', d.activeElement === d.getElementById('drawerClose'));
+  d.dispatchEvent(new f.contentWindow.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  f.contentWindow.dispatchEvent(new f.contentWindow.KeyboardEvent('keydown', { key: 'Escape' }));
+  await sleep(200);
+  log('Zugang: Escape schliesst und gibt den Fokus zurück', !d.getElementById('drawer').classList.contains('open')
+    && d.activeElement === d.getElementById('cartBtn'));
+  log('Zugang: Suchfeld hat eine Beschriftung', !!d.querySelector('label[for="soInput"]'));
+  await sleep(400); // die Sichtbarkeit schaltet erst nach der Schliessanimation um
   log('Zugang: geschlossene Overlays sind nicht tabbar', (() => {
     const w2 = f.contentWindow;
     return w2.getComputedStyle(d.getElementById('drawer')).visibility === 'hidden'

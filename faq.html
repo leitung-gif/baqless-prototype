@@ -90,6 +90,16 @@ body{
 img,video{max-width:100%; display:block}
 a{color:inherit; text-decoration:none}
 :root{--focus-ring:#0B1D3F}
+.skip-link{
+  position:fixed; top:8px; left:8px; z-index:400; transform:translateY(-160%);
+  background:var(--navy); color:var(--ground); padding:12px 20px; border-radius:4px;
+  font-size:14px; font-weight:600; transition:transform .12s;
+}
+.skip-link:focus{transform:none}
+.visually-hidden{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
 :focus-visible{outline:2px solid var(--focus-ring); outline-offset:2px}
 /* Auf dunklem Grund braucht der Fokus die helle Fassung, sonst sieht man ihn nicht */
 .hero, footer, .mnav, .wa, .cl-band, .plp-hero, .jhead, .befunde, .story-stats, .col-card{--focus-ring:#FAF7F2}
@@ -711,6 +721,8 @@ footer ul a:hover{color:var(--coral)}
   .reveal{opacity:1; transform:none}
   .hero h1 .line span{transform:none}
   .hero-sub,.hero-ctas,.hero-arch,.hero-ring{opacity:1; transform:none}
+  .marquee-track{animation:none !important; transform:none !important}
+  .spin-badge svg{animation:none !important}
 }
 
 /* ===== V2: Shop-Header (Sprache/Land/Suche) ===== */
@@ -868,6 +880,7 @@ footer ul a:hover{color:var(--coral)}
 </head>
 <body class="page-light">
 
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 <nav id="nav" aria-label="Hauptnavigation">
   <a class="wordmark" href="index.html">baqless<em>.</em></a>
   <div class="nav-links">
@@ -886,7 +899,7 @@ footer ul a:hover{color:var(--coral)}
     <a href="story.html">Story</a>
   </div>
   <div class="nav-right">
-    <button class="nav-icon-btn" id="searchBtn" aria-label="Suche">
+    <button class="nav-icon-btn" id="searchBtn" aria-label="Suche öffnen" aria-expanded="false" aria-controls="searchOverlay">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
     </button>
     <div class="v2-dd" id="langDd">
@@ -912,7 +925,7 @@ footer ul a:hover{color:var(--coral)}
         <div class="v2-menu-note">Weltweiter Versand. Dein Markt wird automatisch erkannt.</div>
       </div>
     </div>
-    <button class="cart-btn" id="cartBtn" aria-label="Warenkorb öffnen">
+    <button class="cart-btn" id="cartBtn" aria-label="Warenkorb öffnen" aria-expanded="false" aria-controls="drawer">
       <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1.2 12.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
       <span class="cart-count" id="cartCount">0</span>
     </button>
@@ -1060,9 +1073,9 @@ footer ul a:hover{color:var(--coral)}
     <span class="foot-dots"><i style="background:var(--coral)"></i><i style="background:var(--sage)"></i><i style="background:var(--lavender)"></i><i style="background:var(--gold)"></i></span>
   </div>
 </footer>
-<div id="toast" role="status"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
-<aside id="drawer" aria-label="Warenkorb">
+<aside id="drawer" aria-label="Warenkorb" aria-modal="false">
   <div class="drawer-head">
     <h3>Warenkorb</h3>
     <button class="drawer-close" id="drawerClose" aria-label="Schliessen">×</button>
@@ -1080,10 +1093,11 @@ footer ul a:hover{color:var(--coral)}
 </aside>
 
 <!-- Such-Overlay -->
-<div id="searchOverlay" role="dialog" aria-label="Suche">
+<div id="searchOverlay" role="dialog" aria-label="Suche" aria-modal="false">
   <div class="so-inner">
     <div class="so-bar">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      <label for="soInput" class="visually-hidden">Suche nach Ohrringen und Kollektionen</label>
       <input id="soInput" type="text" placeholder="Suche nach Ohrringen, Kollektionen …" autocomplete="off">
       <button class="so-close" id="soClose" aria-label="Schliessen">×</button>
     </div>
@@ -1640,9 +1654,42 @@ document.addEventListener('click', e => {
   toast(`<span class="tick">✓</span><span><b>Notiert.</b> Wir melden uns, sobald ${p ? p.name : 'das Paar'} zurück ist.</span>`);
 });
 
+// ---------- Fokusfuehrung fuer Overlays ----------
+// Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
+// und kehrt beim Schliessen an die ausloesende Stelle zurueck.
+const fokusFalle = new Map();
+function fokusFuehren(el, open, ersterKandidat){
+  if (!el) return;
+  if (open){
+    fokusFalle.set(el, document.activeElement);
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('role', 'dialog');
+    const ziel = ersterKandidat || el.querySelector('button, [href], input, select, textarea');
+    setTimeout(() => ziel && ziel.focus(), 60);
+  } else {
+    el.removeAttribute('aria-modal');
+    const zurueck = fokusFalle.get(el);
+    fokusFalle.delete(el);
+    if (zurueck && document.contains(zurueck)) zurueck.focus();
+  }
+}
+addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const offen = document.querySelector('#drawer.open, .mnav.open, #searchOverlay.open');
+  if (!offen) return;
+  const fokussierbar = [...offen.querySelectorAll('button, [href], input, select, textarea')]
+    .filter(x => !x.disabled && x.offsetParent !== null);
+  if (!fokussierbar.length) return;
+  const erster = fokussierbar[0], letzter = fokussierbar[fokussierbar.length - 1];
+  if (e.shiftKey && document.activeElement === erster){ e.preventDefault(); letzter.focus(); }
+  else if (!e.shiftKey && document.activeElement === letzter){ e.preventDefault(); erster.focus(); }
+});
+
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
+  document.getElementById('cartBtn')?.setAttribute('aria-expanded', open);
+  fokusFuehren(drawer, open, document.getElementById('drawerClose'));
 }
 document.getElementById('cartBtn').addEventListener('click', () => {
   openDrawer(true);
@@ -1676,7 +1723,9 @@ if (mnav && burgerBtn){
     mnav.classList.toggle('open', open);
     burgerBtn.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    fokusFuehren(mnav, open, document.getElementById('mnavClose'));
   };
+  addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('open')) setMnav(false); });
   burgerBtn.addEventListener('click', () => setMnav(true));
   document.getElementById('mnavClose').addEventListener('click', () => setMnav(false));
   mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMnav(false)));

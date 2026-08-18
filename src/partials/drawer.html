@@ -1,6 +1,6 @@
-<div id="toast" role="status"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
-<aside id="drawer" aria-label="Warenkorb">
+<aside id="drawer" aria-label="Warenkorb" aria-modal="false">
   <div class="drawer-head">
     <h3>Warenkorb</h3>
     <button class="drawer-close" id="drawerClose" aria-label="Schliessen">×</button>
@@ -18,10 +18,11 @@
 </aside>
 
 <!-- Such-Overlay -->
-<div id="searchOverlay" role="dialog" aria-label="Suche">
+<div id="searchOverlay" role="dialog" aria-label="Suche" aria-modal="false">
   <div class="so-inner">
     <div class="so-bar">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      <label for="soInput" class="visually-hidden">Suche nach Ohrringen und Kollektionen</label>
       <input id="soInput" type="text" placeholder="Suche nach Ohrringen, Kollektionen …" autocomplete="off">
       <button class="so-close" id="soClose" aria-label="Schliessen">×</button>
     </div>

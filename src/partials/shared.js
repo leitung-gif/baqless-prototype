@@ -207,9 +207,42 @@ document.addEventListener('click', e => {
   toast(`<span class="tick">✓</span><span><b>Notiert.</b> Wir melden uns, sobald ${p ? p.name : 'das Paar'} zurück ist.</span>`);
 });
 
+// ---------- Fokusfuehrung fuer Overlays ----------
+// Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
+// und kehrt beim Schliessen an die ausloesende Stelle zurueck.
+const fokusFalle = new Map();
+function fokusFuehren(el, open, ersterKandidat){
+  if (!el) return;
+  if (open){
+    fokusFalle.set(el, document.activeElement);
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('role', 'dialog');
+    const ziel = ersterKandidat || el.querySelector('button, [href], input, select, textarea');
+    setTimeout(() => ziel && ziel.focus(), 60);
+  } else {
+    el.removeAttribute('aria-modal');
+    const zurueck = fokusFalle.get(el);
+    fokusFalle.delete(el);
+    if (zurueck && document.contains(zurueck)) zurueck.focus();
+  }
+}
+addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const offen = document.querySelector('#drawer.open, .mnav.open, #searchOverlay.open');
+  if (!offen) return;
+  const fokussierbar = [...offen.querySelectorAll('button, [href], input, select, textarea')]
+    .filter(x => !x.disabled && x.offsetParent !== null);
+  if (!fokussierbar.length) return;
+  const erster = fokussierbar[0], letzter = fokussierbar[fokussierbar.length - 1];
+  if (e.shiftKey && document.activeElement === erster){ e.preventDefault(); letzter.focus(); }
+  else if (!e.shiftKey && document.activeElement === letzter){ e.preventDefault(); erster.focus(); }
+});
+
 function openDrawer(open){
   drawer.classList.toggle('open', open);
   overlay.classList.toggle('on', open);
+  document.getElementById('cartBtn')?.setAttribute('aria-expanded', open);
+  fokusFuehren(drawer, open, document.getElementById('drawerClose'));
 }
 document.getElementById('cartBtn').addEventListener('click', () => {
   openDrawer(true);
@@ -243,7 +276,9 @@ if (mnav && burgerBtn){
     mnav.classList.toggle('open', open);
     burgerBtn.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    fokusFuehren(mnav, open, document.getElementById('mnavClose'));
   };
+  addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('open')) setMnav(false); });
   burgerBtn.addEventListener('click', () => setMnav(true));
   document.getElementById('mnavClose').addEventListener('click', () => setMnav(false));
   mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMnav(false)));

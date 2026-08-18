@@ -26,6 +26,7 @@
 </div>
 
 <!-- ================= HERO ================= -->
+<main id="inhalt">
 <header class="hero" id="top">
   <canvas id="bubbles" aria-hidden="true"></canvas>
   <div class="hero-copy">
@@ -304,6 +305,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ================= FOOTER ================= -->
 {{FOOTER}}
 
@@ -486,6 +489,14 @@ document.querySelectorAll('[data-colcount]').forEach(el => {
   const n = PRODUCTS.filter(p => p.collection === el.dataset.colcount).length;
   el.textContent = n + (n === 1 ? ' Paar' : ' Paare');
 });
+
+// ---------- Hero-Video respektiert reduzierte Bewegung ----------
+const heroVid = document.querySelector('.hero-arch video');
+if (heroVid && matchMedia('(prefers-reduced-motion: reduce)').matches){
+  heroVid.removeAttribute('autoplay');
+  heroVid.pause();
+  heroVid.setAttribute('controls', '');
+}
 
 // ---------- Marquee ----------
 const mqTrack = document.getElementById('marqueeTrack');

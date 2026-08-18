@@ -222,8 +222,8 @@ document.getElementById('buy').innerHTML = `
   </div>` : ''}
   ${P.halb ? `
   <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="Paar oder Einzelohr">
-    <button type="button" class="active" data-einzelset="0">Paar<span>CHF ${P.price}</span></button>
-    <button type="button" data-einzelset="1">Einzelohr<span>CHF ${P.preisHalb}</span></button>
+    <button type="button" class="active" data-einzelset="0" aria-pressed="true">Paar<span>CHF ${P.price}</span></button>
+    <button type="button" data-einzelset="1" aria-pressed="false">Einzelohr<span>CHF ${P.preisHalb}</span></button>
   </div>
   <div class="halb-note">Einzeln fürs zweite Loch oder zum Kombinieren mit einem anderen Paar.</div>` : ''}
   <div class="buy-ctas">
@@ -310,7 +310,10 @@ if (halbToggle){
     if (!b) return;
     const einzel = b.dataset.einzelset === '1';
     halbToggle.dataset.einzel = einzel ? '1' : '0';
-    [...halbToggle.children].forEach(x => x.classList.toggle('active', x === b));
+    [...halbToggle.children].forEach(x => {
+      x.classList.toggle('active', x === b);
+      x.setAttribute('aria-pressed', x === b);
+    });
     const preis = einzel ? P.preisHalb : P.price;
     document.querySelector('.price-big').textContent = 'CHF ' + preis;
     const add = document.getElementById('mainAdd');
@@ -371,7 +374,13 @@ if (halbToggle){
 document.querySelectorAll('.acc-item').forEach(item => {
   const body = item.querySelector('.acc-body');
   const sync = () => { body.style.maxHeight = item.classList.contains('open') ? body.scrollHeight + 'px' : '0'; };
-  item.querySelector('button').addEventListener('click', () => { item.classList.toggle('open'); sync(); });
+  const knopf = item.querySelector('button');
+  knopf.setAttribute('aria-expanded', item.classList.contains('open'));
+  knopf.addEventListener('click', () => {
+    item.classList.toggle('open');
+    knopf.setAttribute('aria-expanded', item.classList.contains('open'));
+    sync();
+  });
   sync();
 });
 const saveBtn = document.getElementById('saveBtn');
