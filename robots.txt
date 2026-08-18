@@ -1,7 +1,13 @@
 User-agent: *
 Allow: /
-Disallow: /bestellung.html
 Disallow: /kasse.html
+Disallow: /bestellung.html
+Disallow: /en/kasse.html
+Disallow: /en/bestellung.html
+Disallow: /fr/kasse.html
+Disallow: /fr/bestellung.html
 Disallow: /test-smoke.html
+Disallow: /test-i18n.html
+Disallow: /test-geld.html
 
-Sitemap: https://leitung-gif.github.io/baqless-prototype/sitemap.xml
+Sitemap: https://baqless.com/sitemap.xml
