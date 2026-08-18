@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Baqless Sprachfassungen, Test</title></head>
+<body>
+<pre id="out">RUNNING</pre>
+<iframe id="f" src="/index.html" style="width:1280px;height:900px"></iframe>
+<script>
+const out = [];
+const log = (name, ok, info = '') => out.push(`${ok ? 'PASS' : 'FAIL'} ${name}${info ? ' — ' + info : ''}`);
+const f = document.getElementById('f');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const loadOnce = (ms = 15000) => new Promise(r => {
+  const done = () => { clearTimeout(t); r(); };
+  const t = setTimeout(() => { f.removeEventListener('load', done); r(); }, ms);
+  f.addEventListener('load', done, { once: true });
+});
+const geh = async (url) => { f.src = url; await loadOnce(); await sleep(450); return [f.contentDocument, f.contentWindow]; };
+
+// Was in jeder Fassung stehen MUSS. Damit erzwingt der Test das Glossar,
+// statt nur zu pruefen, dass irgendetwas uebersetzt wurde.
+const FASSUNGEN = [
+  { code: 'de', pfad: '', warenkorb: 'Warenkorb', kasse: 'Zur Kasse', hinzu: 'In den Warenkorb',
+    neuheiten: 'Neuheiten', zwischen: 'Zwischensumme', label: 'DE' },
+  { code: 'en', pfad: 'en/', warenkorb: 'Cart', kasse: 'Checkout', hinzu: 'Add to cart',
+    neuheiten: 'New in', zwischen: 'Subtotal', label: 'EN' },
+  { code: 'fr', pfad: 'fr/', warenkorb: 'Panier', kasse: 'Passer commande', hinzu: 'Ajouter au panier',
+    neuheiten: 'Nouveautés', zwischen: 'Sous-total', label: 'FR' },
+];
+
+async function run() {
+  for (const v of FASSUNGEN) {
+    const P = `[${v.code}]`;
+
+    // ---------- Startseite ----------
+    let [d, w] = await geh(`/${v.pfad}index.html`);
+    log(`${P} Seite lädt`, !!d && !!d.documentElement);
+    log(`${P} lang-Attribut`, d.documentElement.getAttribute('lang') === v.code,
+      d.documentElement.getAttribute('lang'));
+
+    const roh = d.documentElement.innerHTML;
+    const luecken = (roh.match(/\[\[[a-z0-9_.]+\]\]/g) || []);
+    log(`${P} keine fehlenden Schlüssel`, luecken.length === 0,
+      luecken.length ? [...new Set(luecken)].slice(0, 5).join(' ') : '');
+
+    const kanon = d.querySelector('link[rel="canonical"]')?.href || '';
+    log(`${P} canonical zeigt auf die eigene Fassung`,
+      v.pfad ? kanon.includes('/' + v.pfad) : (!!kanon && !/\/(en|fr)\//.test(kanon)), kanon);
+
+    const alt = [...d.querySelectorAll('link[rel="alternate"][hreflang]')].map(a => a.getAttribute('hreflang'));
+    log(`${P} hreflang für alle drei Sprachen und x-default`,
+      ['de', 'en', 'fr', 'x-default'].every(h => alt.includes(h)), alt.join(' '));
+
+    log(`${P} Navigation übersetzt`, d.body.textContent.includes(v.neuheiten), v.neuheiten);
+    log(`${P} Sprachlabel im Kopf`, d.getElementById('langLabel')?.textContent.trim() === v.label);
+    log(`${P} eigene Sprache ist markiert`,
+      d.querySelector(`#langDd .v2-menu button[data-lang="${v.label}"]`)?.classList.contains('active') === true);
+
+    log(`${P} Suchchip sucht, was er beschriftet`, (() => {
+      const b = [...d.querySelectorAll('.so-hint button')].pop();
+      return !!b && b.dataset.q === b.textContent.trim();
+    })());
+
+    // ---------- Produktseite und Warenkorb ----------
+    [d, w] = await geh(`/${v.pfad}produkt.html?p=polarisyg`);
+    w.localStorage.clear();
+    log(`${P} Produktseite ohne fehlende Schlüssel`,
+      !/\[\[[a-z0-9_.]+\]\]/.test(d.documentElement.innerHTML));
+    log(`${P} Kaufknopf übersetzt`,
+      (d.getElementById('mainAdd')?.textContent || '').includes(v.hinzu), v.hinzu);
+
+    const spec = d.querySelector('table.spec')?.textContent || '';
+    log(`${P} Spec-Tabelle gefüllt`, spec.length > 40 && !spec.includes('[['));
+
+    d.getElementById('mainAdd')?.click(); await sleep(400);
+    log(`${P} Warenkorb-Titel übersetzt`,
+      (d.querySelector('.drawer-head h3')?.textContent || '').trim() === v.warenkorb,
+      d.querySelector('.drawer-head h3')?.textContent);
+    log(`${P} Zwischensumme übersetzt`,
+      (d.querySelector('.drawer-foot')?.textContent || '').includes(v.zwischen), v.zwischen);
+    log(`${P} Kassenknopf übersetzt`,
+      (d.getElementById('checkoutBtn')?.textContent || '').includes(v.kasse), v.kasse);
+    log(`${P} Preis bleibt in CHF`,
+      (d.getElementById('drawerTotal')?.textContent || '').includes('CHF'),
+      d.getElementById('drawerTotal')?.textContent);
+
+    // Mehrzahl: eine zweite Einheit muss die Vielzahlform ziehen.
+    // stueckVon und einheitVon sind const, stehen also nicht auf window: eval statt Zugriff.
+    const ruf = (code) => w.eval(code);
+    const einheitEins = ruf("stueckVon({id:'polarisyg',einzel:false},1)");
+    const einheitZwei = ruf("stueckVon({id:'polarisyg',einzel:false},2)");
+    log(`${P} Mehrzahl unterscheidet sich von der Einzahl`,
+      !!einheitEins && !!einheitZwei && einheitEins !== einheitZwei, `${einheitEins} / ${einheitZwei}`);
+    log(`${P} Mehrzahl trägt die Zahl`, einheitZwei.includes('2'), einheitZwei);
+    if (v.code === 'fr') {
+      const null0 = ruf("stueckVon({id:'x',einzel:false},0)");
+      log(`${P} Null steht im Singular`, null0.replace('0 ', '') === einheitEins.replace('1 ', ''), null0);
+    }
+
+    // Einzelohr zieht die andere Einheit, ohne den Variantentext zu lesen
+    const ohr = ruf("einheitVon({einzel:true})"), paar = ruf("einheitVon({einzel:false})");
+    log(`${P} Einzelohr hat eine eigene Einheit`, ohr !== paar, `${ohr} / ${paar}`);
+
+    // ---------- Sprachwechsel ----------
+    for (const ziel of FASSUNGEN) {
+      const url = w.sprachUrl(ziel.code);
+      const passt = ziel.pfad
+        ? url.includes(`/${ziel.pfad}produkt.html`)
+        : /\/produkt\.html/.test(url) && !/\/(en|fr)\//.test(url);
+      log(`${P} Wechsel nach ${ziel.code} trifft die richtige Seite`, passt, url);
+      log(`${P} Wechsel nach ${ziel.code} behält die Abfrage`, url.includes('p=polarisyg'));
+    }
+  }
+
+  // ---------- Verbotene Aussagen, in allen Fassungen ----------
+  const VERBOTEN = [/hypoallerg/i, /patent/i, /waterproof/i, /étanche/i, /swiss\s?made/i, /—/, /ß/];
+  for (const v of FASSUNGEN) {
+    const [d] = await geh(`/${v.pfad}faq.html`);
+    const t = d.body.textContent;
+    const treffer = VERBOTEN.filter(r => r.test(t)).map(String);
+    log(`[${v.code}] FAQ ohne verbotene Aussagen`, treffer.length === 0, treffer.join(' '));
+  }
+
+  const anzFail = out.filter(l => l.startsWith('FAIL')).length;
+  out.push('', `${out.filter(l => l.startsWith('PASS')).length} PASS, ${anzFail} FAIL`);
+  document.getElementById('out').textContent = out.join('\n');
+}
+run().catch(e => { document.getElementById('out').textContent = out.join('\n') + '\n\nABBRUCH ' + e.message + '\n' + e.stack; });
+</script>
+</body>
+</html>

@@ -1382,8 +1382,12 @@ function txt(schluessel, werte){
   if (werte) for (const k in werte) s = s.split('{' + k + '}').join(werte[k]);
   return s;
 }
-// Ein oder mehr: nimmt <schluessel>.eins oder <schluessel>.viele und setzt {n} ein
-function txtN(schluessel, n){ return txt(schluessel + (n === 1 ? '.eins' : '.viele'), { n }); }
+// Ein oder mehr: nimmt <schluessel>.eins oder <schluessel>.viele und setzt {n} ein.
+// Franzoesisch stellt auch die Null in den Singular, «0 paire», Deutsch und Englisch nicht.
+function txtN(schluessel, n){
+  const einzahl = I18N.lang === 'fr' ? Math.abs(n) < 2 : n === 1;
+  return txt(schluessel + (einzahl ? '.eins' : '.viele'), { n });
+}
 
 // Die Fassung liegt im Pfad, genau wie bei Shopify: / fuer Deutsch, /en/ und /fr/ daneben.
 // Der Wechsel behaelt Seite, Abfrage und Sprungmarke, damit niemand auf der Startseite landet.
