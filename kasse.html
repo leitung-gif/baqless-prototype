@@ -904,6 +904,7 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 .field input:focus, .field select:focus{border-color:var(--navy)}
 .field input[aria-invalid="true"]{border-color:var(--coral-deep)}
 .field .err{font-size:12.5px; color:var(--coral-deep); display:none}
+.field .err[role="alert"]{display:none}
 .field input[aria-invalid="true"] ~ .err{display:block}
 
 .opt{display:flex; gap:14px; align-items:flex-start; border:1.5px solid #e3dccf; border-radius:4px;
@@ -1031,8 +1032,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <legend>Kontakt</legend>
         <div class="field">
           <label for="fMail">E-Mail für die Bestellbestätigung</label>
-          <input type="email" id="fMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
-          <span class="err">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+          <input type="email" id="fMail" aria-describedby="errMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
+          <span class="err" id="errMail" role="alert">Bitte gib eine gültige E-Mail-Adresse ein.</span>
         </div>
       </fieldset>
 
@@ -1041,20 +1042,20 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <div class="frow">
           <div class="field">
             <label for="fVor">Vorname</label>
-            <input type="text" id="fVor" name="vorname" autocomplete="given-name" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fVor" aria-describedby="errVor" name="vorname" autocomplete="given-name" required>
+            <span class="err" id="errVor" role="alert">Bitte gib deinen Vornamen ein.</span>
           </div>
           <div class="field">
             <label for="fNach">Nachname</label>
-            <input type="text" id="fNach" name="nachname" autocomplete="family-name" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fNach" aria-describedby="errNach" name="nachname" autocomplete="family-name" required>
+            <span class="err" id="errNach" role="alert">Bitte gib deinen Nachnamen ein.</span>
           </div>
         </div>
         <div class="frow one">
           <div class="field">
             <label for="fStr">Strasse und Nummer</label>
-            <input type="text" id="fStr" name="strasse" autocomplete="street-address" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fStr" aria-describedby="errStr" name="strasse" autocomplete="street-address" required>
+            <span class="err" id="errStr" role="alert">Bitte gib Strasse und Nummer ein.</span>
           </div>
         </div>
         <div class="frow plz">
@@ -1065,8 +1066,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
           </div>
           <div class="field">
             <label for="fOrt">Ort</label>
-            <input type="text" id="fOrt" name="ort" autocomplete="address-level2" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fOrt" aria-describedby="errOrt" name="ort" autocomplete="address-level2" required>
+            <span class="err" id="errOrt" role="alert">Bitte gib den Ort ein.</span>
           </div>
         </div>
         <div class="frow">
@@ -1234,7 +1235,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "minelta",
@@ -1255,7 +1259,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.4,
+      "h": 3.4,
+      "t": 1.2
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafsea",
@@ -1276,7 +1287,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafblack",
@@ -1297,7 +1315,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "dew",
@@ -1318,7 +1343,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 29,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.68,
+      "h": 8.72,
+      "t": 2.34
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarisyg",
@@ -1339,7 +1371,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarissv",
@@ -1360,7 +1399,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "sageneon",
@@ -1381,7 +1427,14 @@ const PRODUCTS = [
     "gewicht": "0.7 g pro Ohr",
     "halb": true,
     "preisHalb": 38,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 12.0,
+      "h": 13.0,
+      "t": null
+    },
+    "masseArt": "durchmesser",
+    "gewichtG": 0.7
   },
   {
     "id": "lunapearl",
@@ -1402,7 +1455,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 44,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "friendship",
@@ -1423,7 +1479,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 47,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "bandgold",
@@ -1444,7 +1503,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "zirkonia",
@@ -1465,7 +1527,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 42,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "blackhoop",
@@ -1486,7 +1551,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 37,
-    "lager": "ausverkauft"
+    "lager": "ausverkauft",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "wasumiiri",
@@ -1507,7 +1575,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.93,
+      "h": 13.9,
+      "t": 3.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wahamon",
@@ -1528,7 +1603,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 4.32,
+      "h": 15.36,
+      "t": 3.69
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wakumo",
@@ -1549,15 +1631,20 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 56,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   }
 ]
 ;
 
 // ---------- Tracking-Blaupause ----------
-// Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
-// Im Shopify-Build laufen sie 1:1 ueber Customer Events bzw. die GA4-/Meta-Integrationen
-// (add_to_cart -> AddToCart usw.). Im Prototyp landen sie in window.dataLayer (Konsole).
+// Die Ereignisse tragen die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...),
+// damit die Namensgebung spaeter uebereinstimmt. ACHTUNG fuer den Shopify-Build: eine
+// Eins-zu-eins-Uebernahme gibt es nicht. Shopify liefert Checkout-Ereignisse ueber Customer
+// Events in der eigenen Sandbox, die Ereignisse vor dem Checkout kommen aus dem Theme.
+// Der dataLayer hier ist die Blaupause fuer die Namen und die Nutzlast, nicht die Verdrahtung.
 window.dataLayer = window.dataLayer || [];
 function track(event, params){
   window.dataLayer.push(Object.assign({ event }, params || {}));
@@ -1617,6 +1704,10 @@ const overlay = document.getElementById('overlay');
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
 // Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
+// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen
+const einheitVon = item => (item.variant || '').includes('Einzelohr') ? 'pro Ohr' : 'pro Paar';
+const stueckVon = (item, n) => (item.variant || '').includes('Einzelohr')
+  ? `${n} ${n === 1 ? 'Ohr' : 'Ohren'}` : `${n} ${n === 1 ? 'Paar' : 'Paare'}`;
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -1692,7 +1783,9 @@ document.addEventListener('click', e => {
       ? document.getElementById('qtyVal')?.textContent : null) || 1),
       add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
-    if (!add.dataset.busy){
+    // Nur bei Kartenknoepfen mit fester Beschriftung. Der Hauptknopf traegt einen
+    // Preis, der sich beim Umschalten aendert, dort waere das Zuruecksetzen falsch.
+    if (!add.dataset.busy && add.classList.contains('add-btn')){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
       add.textContent = '\u2713 Im Warenkorb';
@@ -1990,7 +2083,7 @@ function renderSum(){
     ${cart.map(i => `
       <div class="ko-line">
         <span class="pic"><img src="${i.thumb}" alt=""></span>
-        <span class="nm">${i.name}<span>${i.variant} · ${i.qty} Stück</span></span>
+        <span class="nm">${i.name}<span>${i.variant} · ${stueckVon(i, i.qty)}</span></span>
         <span class="pr">${fmtCHF(i.price * i.qty)}</span>
       </div>`).join('')}
     <div class="sep"></div>

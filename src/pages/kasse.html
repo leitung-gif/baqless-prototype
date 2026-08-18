@@ -36,6 +36,7 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 .field input:focus, .field select:focus{border-color:var(--navy)}
 .field input[aria-invalid="true"]{border-color:var(--coral-deep)}
 .field .err{font-size:12.5px; color:var(--coral-deep); display:none}
+.field .err[role="alert"]{display:none}
 .field input[aria-invalid="true"] ~ .err{display:block}
 
 .opt{display:flex; gap:14px; align-items:flex-start; border:1.5px solid #e3dccf; border-radius:4px;
@@ -84,8 +85,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <legend>Kontakt</legend>
         <div class="field">
           <label for="fMail">E-Mail für die Bestellbestätigung</label>
-          <input type="email" id="fMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
-          <span class="err">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+          <input type="email" id="fMail" aria-describedby="errMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
+          <span class="err" id="errMail" role="alert">Bitte gib eine gültige E-Mail-Adresse ein.</span>
         </div>
       </fieldset>
 
@@ -94,20 +95,20 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <div class="frow">
           <div class="field">
             <label for="fVor">Vorname</label>
-            <input type="text" id="fVor" name="vorname" autocomplete="given-name" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fVor" aria-describedby="errVor" name="vorname" autocomplete="given-name" required>
+            <span class="err" id="errVor" role="alert">Bitte gib deinen Vornamen ein.</span>
           </div>
           <div class="field">
             <label for="fNach">Nachname</label>
-            <input type="text" id="fNach" name="nachname" autocomplete="family-name" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fNach" aria-describedby="errNach" name="nachname" autocomplete="family-name" required>
+            <span class="err" id="errNach" role="alert">Bitte gib deinen Nachnamen ein.</span>
           </div>
         </div>
         <div class="frow one">
           <div class="field">
             <label for="fStr">Strasse und Nummer</label>
-            <input type="text" id="fStr" name="strasse" autocomplete="street-address" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fStr" aria-describedby="errStr" name="strasse" autocomplete="street-address" required>
+            <span class="err" id="errStr" role="alert">Bitte gib Strasse und Nummer ein.</span>
           </div>
         </div>
         <div class="frow plz">
@@ -118,8 +119,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
           </div>
           <div class="field">
             <label for="fOrt">Ort</label>
-            <input type="text" id="fOrt" name="ort" autocomplete="address-level2" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fOrt" aria-describedby="errOrt" name="ort" autocomplete="address-level2" required>
+            <span class="err" id="errOrt" role="alert">Bitte gib den Ort ein.</span>
           </div>
         </div>
         <div class="frow">
@@ -207,7 +208,7 @@ function renderSum(){
     ${cart.map(i => `
       <div class="ko-line">
         <span class="pic"><img src="${i.thumb}" alt=""></span>
-        <span class="nm">${i.name}<span>${i.variant} · ${i.qty} Stück</span></span>
+        <span class="nm">${i.name}<span>${i.variant} · ${stueckVon(i, i.qty)}</span></span>
         <span class="pr">${fmtCHF(i.price * i.qty)}</span>
       </div>`).join('')}
     <div class="sep"></div>

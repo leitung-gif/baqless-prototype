@@ -1,9 +1,11 @@
 const PRODUCTS = {{PRODUCTS_JSON}};
 
 // ---------- Tracking-Blaupause ----------
-// Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
-// Im Shopify-Build laufen sie 1:1 ueber Customer Events bzw. die GA4-/Meta-Integrationen
-// (add_to_cart -> AddToCart usw.). Im Prototyp landen sie in window.dataLayer (Konsole).
+// Die Ereignisse tragen die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...),
+// damit die Namensgebung spaeter uebereinstimmt. ACHTUNG fuer den Shopify-Build: eine
+// Eins-zu-eins-Uebernahme gibt es nicht. Shopify liefert Checkout-Ereignisse ueber Customer
+// Events in der eigenen Sandbox, die Ereignisse vor dem Checkout kommen aus dem Theme.
+// Der dataLayer hier ist die Blaupause fuer die Namen und die Nutzlast, nicht die Verdrahtung.
 window.dataLayer = window.dataLayer || [];
 function track(event, params){
   window.dataLayer.push(Object.assign({ event }, params || {}));
@@ -63,6 +65,10 @@ const overlay = document.getElementById('overlay');
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
 // Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
+// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen
+const einheitVon = item => (item.variant || '').includes('Einzelohr') ? 'pro Ohr' : 'pro Paar';
+const stueckVon = (item, n) => (item.variant || '').includes('Einzelohr')
+  ? `${n} ${n === 1 ? 'Ohr' : 'Ohren'}` : `${n} ${n === 1 ? 'Paar' : 'Paare'}`;
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -138,7 +144,9 @@ document.addEventListener('click', e => {
       ? document.getElementById('qtyVal')?.textContent : null) || 1),
       add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
-    if (!add.dataset.busy){
+    // Nur bei Kartenknoepfen mit fester Beschriftung. Der Hauptknopf traegt einen
+    // Preis, der sich beim Umschalten aendert, dort waere das Zuruecksetzen falsch.
+    if (!add.dataset.busy && add.classList.contains('add-btn')){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
       add.textContent = '\u2713 Im Warenkorb';

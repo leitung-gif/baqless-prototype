@@ -1054,7 +1054,7 @@ footer ul a:hover{color:var(--coral)}
   <div class="ring" aria-hidden="true"></div>
   <div class="in">
     <span class="kick">Journal</span>
-    <h1>Sie merken nicht mehr, dass sie <em>sie tragen.</em></h1>
+    <h1>Sechs Frauen, die sie <em>nicht mehr abnehmen.</em></h1>
     <p class="lead">Wir haben nicht nach Bewertungen gesucht, sondern nach Menschen, die diese Ohrringe seit Jahren tragen. Herausgekommen ist etwas Besseres als Sterne: sechs Personen, die unabhängig voneinander dasselbe erzählen.</p>
     <div class="meta"><span>Sechs Porträts</span><span>2022 bis 2025</span><span>Sport, Musik, Handel, Handwerk</span></div>
   </div>
@@ -1153,7 +1153,7 @@ footer ul a:hover{color:var(--coral)}
   <div class="zeit">
     <p class="intro">Die Marke stellt sich nicht in Vitrinen, sondern an Strände, in Laufevents und in Sportgeschäfte. Alle folgenden Stationen fanden in Japan statt.</p>
     <div class="zeile"><time>Sept. 2025</time><div><b>Pop-up bei Spick and Span, Yurakucho</b><span>Zwei Wochen im Damenmode-Handel, vom 11. bis 24. September.</span></div></div>
-    <div class="zeile"><time>Sept. 2025</time><div><b>Billabong Tahara Pro</b><span>Booth am Surf-Contest, 16. bis 21. September, mit über 25000 Besuchern und über 200 Surfern.</span></div></div>
+    <div class="zeile"><time>Sept. 2025</time><div><b>Billabong Tahara Pro</b><span>Booth am Surf-Contest, 16. bis 21. September, mit über 25’000 Besuchern und über 200 Surfern.</span></div></div>
     <div class="zeile"><time>Juli 2026</time><div><b>HULLE Aeon Mall Hiroshima Fuchu</b><span>Zweiter Shop-in-Shop beim Activewear-Händler, eröffnet am 24. Juli.</span></div></div>
     <div class="zeile"><time>Laufend</time><div><b>HULLE Aeon Mall Fukuoka</b><span>Der erste Shop-in-Shop, rund 150 Artikel vor Ort, mit Spiegel-Displays zum Anprobieren.</span></div></div>
     <div class="zeile"><time>Laufend</time><div><b>Tsujido Surf Fest</b><span>Im zweiten Jahr am Strand. Von dort stammt die einzige spontane Kundenstimme des ganzen Bestands: dass er beim Surfen nicht rausfalle, freue sie richtig.</span></div></div>
@@ -1282,7 +1282,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "minelta",
@@ -1303,7 +1306,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.4,
+      "h": 3.4,
+      "t": 1.2
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafsea",
@@ -1324,7 +1334,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafblack",
@@ -1345,7 +1362,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "dew",
@@ -1366,7 +1390,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 29,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.68,
+      "h": 8.72,
+      "t": 2.34
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarisyg",
@@ -1387,7 +1418,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarissv",
@@ -1408,7 +1446,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "sageneon",
@@ -1429,7 +1474,14 @@ const PRODUCTS = [
     "gewicht": "0.7 g pro Ohr",
     "halb": true,
     "preisHalb": 38,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 12.0,
+      "h": 13.0,
+      "t": null
+    },
+    "masseArt": "durchmesser",
+    "gewichtG": 0.7
   },
   {
     "id": "lunapearl",
@@ -1450,7 +1502,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 44,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "friendship",
@@ -1471,7 +1526,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 47,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "bandgold",
@@ -1492,7 +1550,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "zirkonia",
@@ -1513,7 +1574,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 42,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "blackhoop",
@@ -1534,7 +1598,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 37,
-    "lager": "ausverkauft"
+    "lager": "ausverkauft",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "wasumiiri",
@@ -1555,7 +1622,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.93,
+      "h": 13.9,
+      "t": 3.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wahamon",
@@ -1576,7 +1650,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 4.32,
+      "h": 15.36,
+      "t": 3.69
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wakumo",
@@ -1597,15 +1678,20 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 56,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   }
 ]
 ;
 
 // ---------- Tracking-Blaupause ----------
-// Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
-// Im Shopify-Build laufen sie 1:1 ueber Customer Events bzw. die GA4-/Meta-Integrationen
-// (add_to_cart -> AddToCart usw.). Im Prototyp landen sie in window.dataLayer (Konsole).
+// Die Ereignisse tragen die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...),
+// damit die Namensgebung spaeter uebereinstimmt. ACHTUNG fuer den Shopify-Build: eine
+// Eins-zu-eins-Uebernahme gibt es nicht. Shopify liefert Checkout-Ereignisse ueber Customer
+// Events in der eigenen Sandbox, die Ereignisse vor dem Checkout kommen aus dem Theme.
+// Der dataLayer hier ist die Blaupause fuer die Namen und die Nutzlast, nicht die Verdrahtung.
 window.dataLayer = window.dataLayer || [];
 function track(event, params){
   window.dataLayer.push(Object.assign({ event }, params || {}));
@@ -1665,6 +1751,10 @@ const overlay = document.getElementById('overlay');
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
 // Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
+// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen
+const einheitVon = item => (item.variant || '').includes('Einzelohr') ? 'pro Ohr' : 'pro Paar';
+const stueckVon = (item, n) => (item.variant || '').includes('Einzelohr')
+  ? `${n} ${n === 1 ? 'Ohr' : 'Ohren'}` : `${n} ${n === 1 ? 'Paar' : 'Paare'}`;
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -1740,7 +1830,9 @@ document.addEventListener('click', e => {
       ? document.getElementById('qtyVal')?.textContent : null) || 1),
       add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
-    if (!add.dataset.busy){
+    // Nur bei Kartenknoepfen mit fester Beschriftung. Der Hauptknopf traegt einen
+    // Preis, der sich beim Umschalten aendert, dort waere das Zuruecksetzen falsch.
+    if (!add.dataset.busy && add.classList.contains('add-btn')){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
       add.textContent = '\u2713 Im Warenkorb';

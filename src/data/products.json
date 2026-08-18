@@ -18,7 +18,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "minelta",
@@ -39,7 +42,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.4,
+      "h": 3.4,
+      "t": 1.2
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafsea",
@@ -60,7 +70,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafblack",
@@ -81,7 +98,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "dew",
@@ -102,7 +126,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 29,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.68,
+      "h": 8.72,
+      "t": 2.34
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarisyg",
@@ -123,7 +154,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarissv",
@@ -144,7 +182,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "sageneon",
@@ -165,7 +210,14 @@
     "gewicht": "0.7 g pro Ohr",
     "halb": true,
     "preisHalb": 38,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 12.0,
+      "h": 13.0,
+      "t": null
+    },
+    "masseArt": "durchmesser",
+    "gewichtG": 0.7
   },
   {
     "id": "lunapearl",
@@ -186,7 +238,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 44,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "friendship",
@@ -207,7 +262,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 47,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "bandgold",
@@ -228,7 +286,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "zirkonia",
@@ -249,7 +310,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 42,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "blackhoop",
@@ -270,7 +334,10 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 37,
-    "lager": "ausverkauft"
+    "lager": "ausverkauft",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "wasumiiri",
@@ -291,7 +358,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.93,
+      "h": 13.9,
+      "t": 3.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wahamon",
@@ -312,7 +386,14 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 4.32,
+      "h": 15.36,
+      "t": 3.69
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wakumo",
@@ -333,6 +414,9 @@
     "gewicht": null,
     "halb": true,
     "preisHalb": 56,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   }
 ]

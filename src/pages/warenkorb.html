@@ -122,7 +122,7 @@ function renderSeite(){
         <h3><a href="produkt.html?p=${i.id}">${i.name}</a></h3>
         <div class="vr">${i.variant} · Click-Lock</div>
         ${prodById[i.id]?.lager === 'ausverkauft' ? '<div class="cl-out">Gerade ausverkauft, bitte entfernen</div>' : ''}
-        <div class="unit">${fmtCHF(i.price)} pro Stück</div>
+        <div class="unit">${fmtCHF(i.price)} ${einheitVon(i)}</div>
         <div class="cq">
           <button data-qminus="${key}" aria-label="Menge verringern">−</button>
           <span>${i.qty}</span>

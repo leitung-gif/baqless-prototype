@@ -561,7 +561,7 @@ async function run() {
   f.src = '/journal.html';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('Journal: lädt', d.querySelector('.jhead h1')?.textContent.includes('nicht mehr, dass sie'));
+  log('Journal: lädt', d.querySelector('.jhead h1')?.textContent.includes('nicht mehr abnehmen'));
   log('Journal: Aufmacher mit Wortlaut-Zitat', !!d.querySelector('.feature .fquote blockquote')
     && d.querySelector('.feature .attr')?.textContent.includes('Taeko Wako'));
   log('Journal: sechs Befunde als Liste', d.querySelectorAll('.blist .bfind').length === 6);

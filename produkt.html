@@ -903,7 +903,7 @@ footer ul a:hover{color:var(--coral)}
 
 .buy .eyebrow{margin-bottom:10px}
 .buy h1{font-family:var(--serif); font-weight:300; font-size:clamp(34px,4.6vw,52px); line-height:1.05; color:var(--charcoal)}
-.buy .variant-line{font-size:14.5px; color:#8a8578; margin-top:6px}
+.buy .variant-line{font-size:14.5px; color:var(--ink-soft); margin-top:6px}
 .buy .price-row{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin:22px 0 4px}
 .buy .price-big{font-family:var(--serif); font-size:42px; color:var(--charcoal); position:relative; display:inline-block; z-index:0; white-space:nowrap; flex:none}
 .buy .price-big::after{content:''; position:absolute; left:0; bottom:4px; width:100%; height:10px;
@@ -926,8 +926,8 @@ footer ul a:hover{color:var(--coral)}
 @media(max-width:520px){.usps{grid-template-columns:1fr}}
 
 .pay-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
-.pay-row .pp{border:1px solid #e3ddd2; border-radius:6px; padding:4px 10px; font-size:10.5px;
-  letter-spacing:.05em; font-weight:500; color:#8a8578; background:#fff}
+.pay-row .pp{border:1px solid #e3ddd2; border-radius:6px; padding:4px 10px; font-size:11px;
+  letter-spacing:.05em; font-weight:500; color:var(--ink-soft); background:#fff}
 .trust-row{font-size:12px; color:var(--ink-soft); margin-top:10px; letter-spacing:.02em}
 
 /* Paar oder Einzelohr: im echten japanischen Shop Standard, hier als Variantenachse */
@@ -1218,7 +1218,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "minelta",
@@ -1239,7 +1242,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.4,
+      "h": 3.4,
+      "t": 1.2
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafsea",
@@ -1260,7 +1270,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "leafblack",
@@ -1281,7 +1298,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 32,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.06,
+      "h": 6.56,
+      "t": 2.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "dew",
@@ -1302,7 +1326,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 29,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.68,
+      "h": 8.72,
+      "t": 2.34
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarisyg",
@@ -1323,7 +1354,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "polarissv",
@@ -1344,7 +1382,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 35,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 5.84,
+      "h": 5.84,
+      "t": 1.77
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "sageneon",
@@ -1365,7 +1410,14 @@ const PRODUCTS = [
     "gewicht": "0.7 g pro Ohr",
     "halb": true,
     "preisHalb": 38,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 12.0,
+      "h": 13.0,
+      "t": null
+    },
+    "masseArt": "durchmesser",
+    "gewichtG": 0.7
   },
   {
     "id": "lunapearl",
@@ -1386,7 +1438,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 44,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "friendship",
@@ -1407,7 +1462,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 47,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "bandgold",
@@ -1428,7 +1486,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 41,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "zirkonia",
@@ -1449,7 +1510,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 42,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "blackhoop",
@@ -1470,7 +1534,10 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 37,
-    "lager": "ausverkauft"
+    "lager": "ausverkauft",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   },
   {
     "id": "wasumiiri",
@@ -1491,7 +1558,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 3.93,
+      "h": 13.9,
+      "t": 3.7
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wahamon",
@@ -1512,7 +1586,14 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 53,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": {
+      "b": 4.32,
+      "h": 15.36,
+      "t": 3.69
+    },
+    "masseArt": "bht",
+    "gewichtG": null
   },
   {
     "id": "wakumo",
@@ -1533,15 +1614,20 @@ const PRODUCTS = [
     "gewicht": null,
     "halb": true,
     "preisHalb": 56,
-    "lager": "auf_lager"
+    "lager": "auf_lager",
+    "masseMm": null,
+    "masseArt": null,
+    "gewichtG": null
   }
 ]
 ;
 
 // ---------- Tracking-Blaupause ----------
-// Events tragen exakt die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...).
-// Im Shopify-Build laufen sie 1:1 ueber Customer Events bzw. die GA4-/Meta-Integrationen
-// (add_to_cart -> AddToCart usw.). Im Prototyp landen sie in window.dataLayer (Konsole).
+// Die Ereignisse tragen die GA4-E-Commerce-Namen (add_to_cart, view_item, begin_checkout ...),
+// damit die Namensgebung spaeter uebereinstimmt. ACHTUNG fuer den Shopify-Build: eine
+// Eins-zu-eins-Uebernahme gibt es nicht. Shopify liefert Checkout-Ereignisse ueber Customer
+// Events in der eigenen Sandbox, die Ereignisse vor dem Checkout kommen aus dem Theme.
+// Der dataLayer hier ist die Blaupause fuer die Namen und die Nutzlast, nicht die Verdrahtung.
 window.dataLayer = window.dataLayer || [];
 function track(event, params){
   window.dataLayer.push(Object.assign({ event }, params || {}));
@@ -1601,6 +1687,10 @@ const overlay = document.getElementById('overlay');
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
 // Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
+// Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen
+const einheitVon = item => (item.variant || '').includes('Einzelohr') ? 'pro Ohr' : 'pro Paar';
+const stueckVon = (item, n) => (item.variant || '').includes('Einzelohr')
+  ? `${n} ${n === 1 ? 'Ohr' : 'Ohren'}` : `${n} ${n === 1 ? 'Paar' : 'Paare'}`;
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
@@ -1676,7 +1766,9 @@ document.addEventListener('click', e => {
       ? document.getElementById('qtyVal')?.textContent : null) || 1),
       add.dataset.einzel === '1');
     // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
-    if (!add.dataset.busy){
+    // Nur bei Kartenknoepfen mit fester Beschriftung. Der Hauptknopf traegt einen
+    // Preis, der sich beim Umschalten aendert, dort waere das Zuruecksetzen falsch.
+    if (!add.dataset.busy && add.classList.contains('add-btn')){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
       add.textContent = '\u2713 Im Warenkorb';
@@ -2116,6 +2208,12 @@ document.getElementById('buy').innerHTML = `
 // Paar oder Einzelohr umschalten (in Shopify: Variantenwechsel)
 const halbToggle = document.getElementById('halbToggle');
 if (halbToggle){
+  // Die Variante gehoert in die Adresse, sonst laesst sich ein Einzelohr nicht teilen
+  const setzeUrl = einzel => {
+    const u = new URL(location);
+    einzel ? u.searchParams.set('v', 'einzel') : u.searchParams.delete('v');
+    history.replaceState(null, '', u);
+  };
   halbToggle.addEventListener('click', e => {
     const b = e.target.closest('[data-einzelset]');
     if (!b) return;
@@ -2139,20 +2237,26 @@ if (halbToggle){
     if (sbPreis) sbPreis.textContent = 'CHF ' + preis;
     document.querySelector('.variant-line').textContent =
       `${P.variant}${einzel ? ' · Einzelohr' : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
+    setzeUrl(einzel);
   });
+}
+
+// Beim Laden die Variante aus der Adresse uebernehmen
+if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
+  document.querySelector('#halbToggle button[data-einzelset="1"]')?.click();
 }
 
 // Groessenvergleich: echte Masse gegen einen Millimeter-Massstab, statt Raterei am Foto
 (function sizeViz(){
   const box = document.getElementById('accSize');
   if (!box) return;
-  const zahlen = (P.masse || '').match(/[\d.]+/g);
+  const m = P.masseMm;
   const hinweis = `<p>Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Miss im Zweifel die Dicke deines Ohrläppchens und <a href="kontakt.html">frag uns kurz</a>, wir sagen dir ehrlich, ob es passt.</p>`;
-  if (!zahlen || zahlen.length < 2){
+  if (!m){
     box.innerHTML = `<p><span class="ph">[Grössengrafik folgt, sobald die Masse dieses Modells vorliegen.]</span></p>` + hinweis;
     return;
   }
-  const b = parseFloat(zahlen[0]), h = parseFloat(zahlen[1]);
+  const b = m.b, h = m.h;
   // Eine Einheit im viewBox ist genau ein Millimeter, und die Breite wird in
   // Millimetern gesetzt. Damit zeichnet der Browser massstabsgetreu, statt dass
   // wir Pixel je Millimeter raten. Bildschirme weichen davon leicht ab, das steht
