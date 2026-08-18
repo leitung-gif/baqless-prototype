@@ -202,10 +202,25 @@ markSoldOut();
 document.addEventListener('click', e => {
   const n = e.target.closest('[data-notify]');
   if (!n) return;
-  const p = PRODUCTS.find(x => x.id === n.dataset.notify);
-  track('generate_lead', { method: 'back_in_stock', item_id: p ? p.sku : n.dataset.notify });
-  toast(`<span class="tick">✓</span><span><b>Notiert.</b> Wir melden uns, sobald ${p ? p.name : 'das Paar'} zurück ist.</span>`);
+  // Ohne Adresse koennen wir nichts melden. Auf der Produktseite steht das Feld,
+  // von einer Karte aus fuehren wir dorthin, statt etwas zu versprechen.
+  const feld = document.getElementById('notifyForm');
+  if (feld){
+    feld.hidden = false;
+    feld.querySelector('input')?.focus();
+    return;
+  }
+  location.href = 'produkt.html?p=' + n.dataset.notify;
 });
+
+// ---------- Merkliste ----------
+function merkAnzahl(){ return merkliste.length; }
+function syncMerkZaehler(){
+  document.querySelectorAll('[data-merkcount]').forEach(el => {
+    el.textContent = merkliste.length;
+    el.classList.toggle('on', merkliste.length > 0);
+  });
+}
 
 // ---------- Fokusfuehrung fuer Overlays ----------
 // Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
@@ -266,8 +281,11 @@ function merkeUm(id){
   const drin = merkliste.includes(id);
   merkliste = drin ? merkliste.filter(x => x !== id) : merkliste.concat(id);
   try { localStorage.setItem('baqless_merk', JSON.stringify(merkliste)); } catch(e) {}
+  syncMerkZaehler();
   return !drin;
 }
+addEventListener('DOMContentLoaded', syncMerkZaehler);
+syncMerkZaehler();
 
 // ---------- Burger / Mobilmenü ----------
 const mnav = document.getElementById('mnav');

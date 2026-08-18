@@ -57,6 +57,11 @@
 // ---------- Bestellbestätigung ----------
 let best = null;
 try { best = JSON.parse(localStorage.getItem('baqless_bestellung') || 'null'); } catch(e) {}
+// Eine Bestellbestaetigung ist ein Moment, kein Dauerzustand. Nach einem Tag ist sie weg.
+if (best && best.datum && (Date.now() - new Date(best.datum).getTime()) > 86400000){
+  try { localStorage.removeItem('baqless_bestellung'); } catch(e) {}
+  best = null;
+}
 const box = document.getElementById('dank');
 
 if (!best){

@@ -196,9 +196,13 @@ async function run() {
     const s = f.contentWindow.getComputedStyle(d.querySelector('#plpGrid .card .card-img'));
     return s.backgroundImage === 'none' && s.backgroundColor === 'rgb(255, 255, 255)';
   })());
-  log('CI: Bestseller-Tag mit Navy-Schrift', (() => {
-    const t = d.querySelector('#plpGrid .tag.tag-sage');
+  log('CI: Neu-Tag mit Navy-Schrift auf Coral', (() => {
+    const t = d.querySelector('#plpGrid .tag.tag-coral');
     return !!t && f.contentWindow.getComputedStyle(t).color === 'rgb(11, 29, 63)';
+  })());
+  log('Katalog führt nur belegbare Auszeichnungen', (() => {
+    const tags = JSON.parse(f.contentWindow.eval('JSON.stringify(PRODUCTS.map(p => p.tag).filter(Boolean))'));
+    return [...new Set(tags)].every(t => t === 'Neu' || t === 'Limitiert');
   })());
   log('CI: Limitiert-Tag auf Lavender Deep', (() => {
     const t = d.querySelector('#plpGrid .tag.tag-lav');
@@ -236,9 +240,33 @@ async function run() {
     const b = c?.querySelector('[data-notify]');
     return !!b && !c.querySelector('[data-add]') && b.textContent === 'Benachrichtigen';
   })());
-  d.querySelector('.card[data-id="blackhoop"] [data-notify]')?.click(); await sleep(200);
-  log('PLP: Benachrichtigung bestätigt und getrackt', d.getElementById('toast')?.textContent.includes('Notiert')
-    && f.contentWindow.dataLayer.some(x => x.event === 'generate_lead'));
+  d.querySelector('.card[data-id="blackhoop"] [data-notify]')?.click();
+  await loadOnce(); await sleep(400);
+  d = f.contentDocument;
+  log('PLP: Benachrichtigung führt zur Produktseite statt zu leerem Versprechen',
+    f.contentWindow.location.search.includes('p=blackhoop') && !!d.getElementById('notifyForm'));
+  log('PDP: Benachrichtigung fragt erst nach der Adresse', (() => {
+    const form = d.getElementById('notifyForm');
+    const vorher = form.hidden;
+    d.querySelector('#stickybar [data-notify], .buy-ctas [data-notify]')?.click();
+    return vorher === true && form.hidden === false && !!d.getElementById('notifyMail');
+  })());
+  log('PDP: ungültige Adresse wird abgewiesen', (() => {
+    const mail = d.getElementById('notifyMail');
+    mail.value = 'keine-adresse';
+    d.getElementById('notifyForm').dispatchEvent(new f.contentWindow.Event('submit', { cancelable: true, bubbles: true }));
+    return mail.getAttribute('aria-invalid') === 'true';
+  })());
+  log('PDP: gültige Adresse wird quittiert und getrackt', (() => {
+    const mail = d.getElementById('notifyMail');
+    mail.value = 'test@lorien.group';
+    d.getElementById('notifyForm').dispatchEvent(new f.contentWindow.Event('submit', { cancelable: true, bubbles: true }));
+    return d.getElementById('notifyForm').textContent.includes('Eingetragen')
+      && f.contentWindow.dataLayer.some(x => x.event === 'generate_lead');
+  })());
+  f.src = '/kollektion.html';
+  await loadOnce(); await sleep(500);
+  d = f.contentDocument;
 
   // ===== Neuheiten-Subpage =====
   f.src = '/neuheiten.html';
@@ -338,6 +366,17 @@ async function run() {
   log('Home: keine Gedankenstriche im Text', !d.body.innerText.includes('—'));
   log('Home: keine Patent-Aussagen', !/patent/i.test(d.body.innerText));
   log('Home: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
+  log('Home: keine erfundenen Verkaufszahlen', !/meistverkauft|bestseller/i.test(d.body.innerText));
+  log('Home: Kollektionszahl stimmt mit dem Katalog', (() => {
+    const t = d.body.innerText;
+    const anzahl = new Set(f.contentWindow.eval('JSON.stringify(PRODUCTS.map(p => p.collection))')
+      ? JSON.parse(f.contentWindow.eval('JSON.stringify(PRODUCTS.map(p => p.collection))')) : []).size;
+    return anzahl === 4 && t.includes('Vier Welten') && !t.includes('Drei Welten');
+  })());
+  log('Home: WA-Karten sind verlinkt und mit Tastatur erreichbar', (() => {
+    const links = [...d.querySelectorAll('.wa-card a[href^="produkt.html?p=wa"]')];
+    return links.length === 3 && !d.querySelector('.wa-card[onclick]');
+  })());
   log('CI: Eyebrow in Coral Deep #C93B27', (() => {
     const c = f.contentWindow.getComputedStyle(d.querySelector('.eyebrow')).color;
     return c === 'rgb(201, 59, 39)';
@@ -502,6 +541,9 @@ async function run() {
   log('FAQ: neue Guide-Themen drin', ['Garantie','Geschenkverpackung','ausverkauft','Klemmkraft','einzelnen Ohrring']
     .every(t => d.body.innerText.includes(t)));
   log('FAQ: keine Verträglichkeits-Claims', !/verträglich|hypoallergen/i.test(d.body.innerText));
+  log('FAQ: Zahlarten decken sich mit der Kasse', ['TWINT','Visa','Mastercard','American Express','PayPal','Apple Pay','Google Pay']
+    .every(z => d.body.innerText.includes(z)));
+  log('FAQ: Perlen-Ausnahme zur Wasserfestigkeit benannt', d.body.innerText.includes('echter Perle'));
 
   // ===== Story-Subpage =====
   f.src = '/story.html';

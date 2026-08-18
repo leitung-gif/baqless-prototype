@@ -92,6 +92,13 @@ table.spec th, table.spec td{text-align:left; padding:8px 0; border-bottom:1px s
 table.spec th{font-weight:500; color:var(--ink-soft); width:42%; font-size:13px}
 table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 
+.notify-form{margin-top:14px; display:flex; flex-direction:column; gap:7px}
+.notify-form label{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft)}
+.notify-row{display:flex; gap:8px}
+.notify-row input{flex:1; min-width:0; border:1.5px solid #e3dccf; border-radius:4px; padding:11px 12px; font:inherit; font-size:15px; background:#fff}
+.notify-row input:focus{border-color:var(--navy)}
+.notify-note{font-size:12.5px; color:var(--ink-soft)}
+
 /* Groessenvergleich in Millimetern statt Raterei */
 .sizeviz{margin:4px 0 12px}
 .sizeviz svg{max-width:100%; height:auto}
@@ -167,7 +174,20 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 // ---------- PDP ----------
 const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
 const param = new URLSearchParams(location.search).get('p');
-const P = byId[param] || byId['polarisyg'] || PRODUCTS[0];
+const P = byId[param] || (param ? null : PRODUCTS[0]);
+if (!P){
+  document.querySelector('.pdp').innerHTML = `
+    <div class="crumbs"><a href="index.html">Startseite</a><span class="sep">/</span><span>Nicht gefunden</span></div>
+    <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);margin:14px 0 12px">Dieses Paar gibt es nicht.</h1>
+    <p style="font-size:17px;line-height:1.65;color:#5c564e;max-width:48ch">Der Link führt zu einem Produkt, das wir nicht kennen. Vielleicht wurde es umbenannt oder ist aus dem Sortiment.</p>
+    <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-coral" href="kollektion.html">Alle Paare ansehen</a>
+      <a class="btn btn-ghost" href="index.html">Zur Startseite</a>
+    </div>`;
+  document.title = 'Baqless · Nicht gefunden';
+  document.getElementById('stickybar')?.remove();
+  throw new Error('Produkt nicht gefunden');
+}
 document.title = `Baqless · ${P.name} ${P.variant}`;
 track('view_item', { currency: 'CHF', value: P.price, items: [{ item_id: P.sku, item_name: `${P.name} ${P.variant}`, price: P.price }] });
 
@@ -209,7 +229,15 @@ document.getElementById('buy').innerHTML = `
   <h1>${P.name}</h1>
   <div class="variant-line">${P.variant} · Click-Lock · ${P.sku}</div>
   ${P.lager === 'ausverkauft' ? `<div class="ausverkauft-hinweis">
-    <b>Zurzeit ausverkauft.</b> Wir fertigen von Hand, darum dauert es manchmal. Trag dich ein, wir melden uns, sobald dieses Paar zurück ist.
+    <b>Zurzeit ausverkauft.</b> Wir fertigen von Hand, darum dauert es manchmal.
+    <form id="notifyForm" class="notify-form" hidden>
+      <label for="notifyMail">Deine E-Mail, dann melden wir uns</label>
+      <div class="notify-row">
+        <input type="email" id="notifyMail" placeholder="deine@mail.ch" required>
+        <button class="btn btn-navy" type="submit">Eintragen</button>
+      </div>
+      <span class="notify-note">Nur für diese eine Meldung, kein Newsletter.</span>
+    </form>
   </div>` : ''}
   <div class="price-row">
     <span class="price-big">CHF ${P.price}</span>
@@ -238,7 +266,7 @@ document.getElementById('buy').innerHTML = `
     <button class="btn btn-ghost" id="saveBtn">Merken</button>
   </div>
   <div class="pay-row" aria-label="Zahlarten und Sicherheit">
-    <span class="pp">TWINT</span><span class="pp">VISA</span><span class="pp">Mastercard</span><span class="pp">Apple Pay</span><span class="pp">Google Pay</span>
+    <span class="pp">TWINT</span><span class="pp">VISA</span><span class="pp">Mastercard</span><span class="pp">Amex</span><span class="pp">PayPal</span><span class="pp">Apple Pay</span><span class="pp">Google Pay</span>
   </div>
   <div class="trust-row">Entwickelt in der Schweiz, von Hand gefertigt · Edelstahl 316L · 30 Tage Rückgabe</div>
   <div class="mech">
@@ -276,8 +304,8 @@ document.getElementById('buy').innerHTML = `
   <ul class="usps">
     <li>Wasserfest. Duschen, Sport, Meer.</li>
     <li>Chirurgischer Edelstahl 316L</li>
-    <li>Gratisversand ab CHF 99</li>
-    <li>Versand aus der Schweiz und Japan</li>
+    <li>Gratisversand ab CHF 99, sonst CHF 7</li>
+    <li>Lieferung in 2 bis 4 Werktagen</li>
   </ul>
   <div class="acc" id="acc">
     <div class="acc-item open"><button>Beschreibung<span class="plus">+</span></button>
@@ -428,6 +456,22 @@ galMain.addEventListener('click', e => {
   img.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`;
   galMain.classList.toggle('zoom');
 });
+
+// Benachrichtigung: ohne Adresse kein Versprechen
+const notifyForm = document.getElementById('notifyForm');
+if (notifyForm){
+  notifyForm.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const mail = document.getElementById('notifyMail');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())){
+      mail.setAttribute('aria-invalid', 'true');
+      mail.focus();
+      return;
+    }
+    track('generate_lead', { method: 'back_in_stock', item_id: P.sku });
+    notifyForm.innerHTML = `<span class="notify-note"><b>Eingetragen.</b> Wir schreiben dir an ${mail.value.trim()}, sobald ${P.name} zurück ist. <span class="ph">[Im Prototyp wird nichts versendet.]</span></span>`;
+  });
+}
 
 // ---------- V3: Sticky-Kaufleiste (mobil) ----------
 const sb = document.getElementById('stickybar');

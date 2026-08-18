@@ -113,8 +113,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <div class="frow plz">
           <div class="field">
             <label for="fPlz">PLZ</label>
-            <input type="text" id="fPlz" name="plz" autocomplete="postal-code" inputmode="numeric" required>
-            <span class="err">Bitte ausfüllen.</span>
+            <input type="text" id="fPlz" name="plz" autocomplete="postal-code" inputmode="numeric" aria-describedby="errPlz" required>
+            <span class="err" id="errPlz">Bitte eine gültige Postleitzahl eingeben.</span>
           </div>
           <div class="field">
             <label for="fOrt">Ort</label>
@@ -128,6 +128,7 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
             <select id="fLand" name="land" autocomplete="country-name">
               <option>Schweiz</option><option>Deutschland</option><option>Österreich</option>
               <option>Liechtenstein</option><option>Frankreich</option><option>Italien</option>
+              <option disabled>Weitere Länder folgen mit dem Livegang</option>
             </select>
           </div>
           <div class="field">
@@ -207,13 +208,13 @@ function renderSum(){
       <div class="ko-line">
         <span class="pic"><img src="${i.thumb}" alt=""></span>
         <span class="nm">${i.name}<span>${i.variant} · ${i.qty} Stück</span></span>
-        <span class="pr">CHF ${i.price * i.qty}</span>
+        <span class="pr">${fmtCHF(i.price * i.qty)}</span>
       </div>`).join('')}
     <div class="sep"></div>
-    <div class="row"><span>Zwischensumme</span><span>CHF ${sub}</span></div>
-    <div class="row"><span>Versand</span><span>${vs === 0 ? 'Gratis' : 'CHF ' + vs}</span></div>
-    <div class="row total"><span>Total</span><span>CHF ${sub + vs}</span></div>
-    <button class="btn btn-coral ko-submit" type="submit" form="koForm">Kaufen · CHF ${sub + vs}</button>`;
+    <div class="row"><span>Zwischensumme</span><span>${fmtCHF(sub)}</span></div>
+    <div class="row"><span>Versand</span><span>${vs === 0 ? 'Gratis' : fmtCHF(vs)}</span></div>
+    <div class="row total"><span>Total</span><span>${fmtCHF(sub + vs)}</span></div>
+    <button class="btn btn-coral ko-submit" type="submit" form="koForm">Kaufen · ${fmtCHF(sub + vs)}</button>`;
 }
 
 if (!cart.length){
@@ -254,12 +255,18 @@ if (!cart.length){
   form.addEventListener('submit', e => {
     e.preventDefault();
     if (laeuft) return;
+    // Der sicherste Weg gegen die leere Bestellung: gar nicht erst kaufen lassen
+    if (!cart.length){ location.replace('warenkorb.html'); return; }
     const pflicht = [...form.querySelectorAll('input[required]')];
     let ersterFehler = null;
     pflicht.forEach(inp => {
-      const leer = !inp.value.trim();
-      const mailFalsch = inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inp.value.trim());
-      if (leer || mailFalsch){
+      const wert = inp.value.trim();
+      const leer = !wert;
+      const mailFalsch = inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(wert);
+      // Postleitzahl und Namen wenigstens auf Plausibilitaet pruefen, statt alles zu schlucken
+      const plzFalsch = inp.id === 'fPlz' && !/^[0-9]{4,6}$/.test(wert);
+      const nameFalsch = (inp.id === 'fVor' || inp.id === 'fNach') && !/[A-Za-zÀ-ÿ]{2}/.test(wert);
+      if (leer || mailFalsch || plzFalsch || nameFalsch){
         inp.setAttribute('aria-invalid', 'true');
         if (!ersterFehler) ersterFehler = inp;
       } else {
