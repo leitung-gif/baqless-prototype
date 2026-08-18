@@ -80,7 +80,7 @@ function renderPlp(){
   let list = fCol === 'alle' ? [...PRODUCTS] : PRODUCTS.filter(p => p.collection === fCol);
   if (fSort === 'asc') list.sort((a,b) => a.price - b.price);
   if (fSort === 'desc') list.sort((a,b) => b.price - a.price);
-  if (fSort === 'neu') list.sort((a,b) => (b.tag === 'Neu') - (a.tag === 'Neu'));
+  if (fSort === 'neu') list.sort((a,b) => (b.neu === true) - (a.neu === true));
   const karten = list.map(cardHtml);
   // Editorial-Kachel bricht die Monotonie des Rasters nach der zweiten Reihe
   if (karten.length > 8) karten.splice(8, 0, `

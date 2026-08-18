@@ -41,7 +41,9 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": true,
+  "limitiert": false
  },
  {
   "id": "minelta",
@@ -93,7 +95,9 @@
    "t": 1.2
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": true,
+  "limitiert": false
  },
  {
   "id": "leafsea",
@@ -141,7 +145,9 @@
    "t": 2.7
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "leafblack",
@@ -182,14 +188,16 @@
   "gewicht": null,
   "halb": true,
   "preisHalb": 32,
-  "lager": "auf_lager",
+  "lager": "ausverkauft",
   "masseMm": {
    "b": 3.06,
    "h": 6.56,
    "t": 2.7
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "dew",
@@ -237,7 +245,9 @@
    "t": 2.34
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "polarisyg",
@@ -285,7 +295,9 @@
    "t": 1.77
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "polarissv",
@@ -333,7 +345,9 @@
    "t": 1.77
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "sageneon",
@@ -385,7 +399,9 @@
    "t": null
   },
   "masseArt": "durchmesser",
-  "gewichtG": 0.7
+  "gewichtG": 0.7,
+  "neu": false,
+  "limitiert": true
  },
  {
   "id": "lunapearl",
@@ -429,7 +445,9 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": true,
+  "limitiert": false
  },
  {
   "id": "friendship",
@@ -469,7 +487,9 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "bandgold",
@@ -513,7 +533,9 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": true,
+  "limitiert": false
  },
  {
   "id": "zirkonia",
@@ -553,56 +575,18 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
- },
- {
-  "id": "blackhoop",
-  "group": "honesty-black",
-  "name": "Honesty Black",
-  "variant": {
-   "de": "Hoop",
-   "en": "Hoop",
-   "fr": "Hoop"
-  },
-  "price": 62,
-  "tag": "",
-  "tagCls": "",
-  "thumb": "{{c_black}}",
-  "detail": "{{d_leafblack}}",
-  "sku": "BQ-HON-BLK-H",
-  "collection": "Honesty",
-  "desc": {
-   "de": "Mattes Schwarz, klare Kante. Der Hoop für alle, die leise auffallen.",
-   "en": "Matt black, one clean edge. The hoop for everyone who stands out quietly.",
-   "fr": "Noir mat, arête nette. La créole de celles qui se font remarquer sans bruit."
-  },
-  "materials": {
-   "de": "Sterling Silber 925 mit schwarzer Beschichtung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-   "en": "Sterling silver 925 with a black coating. Post in surgical stainless steel. Water-resistant.",
-   "fr": "Argent sterling 925 avec revêtement noir. Tige en acier chirurgical. Résistant à l'eau."
-  },
-  "care": {
-   "de": "Die schwarze PVD-Beschichtung ist wasserfest und kratzfest, verträgt aber keine Scheuermittel. Parfum und Haarspray vor dem Anlegen auftragen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
-   "en": "The black PVD coating is water-resistant and scratch-resistant, but abrasives are too much for it. Put on perfume and hairspray before you put the earrings in. Wipe with a soft cloth. No ultrasonic cleaners, no harsh products. After the sea, rinse briefly with fresh water.",
-   "fr": "Le revêtement PVD noir est résistant à l'eau et aux rayures, mais il ne supporte pas les produits abrasifs. Appliquez parfum et laque avant de les mettre. Essuyez avec un chiffon doux. Pas d'ultrasons, pas de nettoyants agressifs. Après la mer, rincez brièvement à l'eau claire."
-  },
-  "masse": null,
-  "gewicht": null,
-  "halb": true,
-  "preisHalb": 37,
-  "lager": "ausverkauft",
-  "masseMm": null,
-  "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": false
  },
  {
   "id": "wasumiiri",
   "group": "wa-sumiiri",
   "name": "WA Sumiiri II",
   "variant": {
-   "de": "Gold",
-   "en": "Gold",
-   "fr": "Gold"
+   "de": "Silber",
+   "en": "Silver",
+   "fr": "Argent"
   },
   "price": 89,
   "tag": {
@@ -616,14 +600,14 @@
   "sku": "BQ-WA-SUM-2",
   "collection": "WA",
   "desc": {
-   "de": "Traditionelles Sumiiri-Muster, in Gold gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
-   "en": "The traditional Sumiiri pattern, set in gold. Every edition is numbered. None of it is ever made again.",
-   "fr": "Motif Sumiiri traditionnel, serti d'or. Chaque édition est numérotée. Il n'y aura pas de réédition."
+   "de": "Traditionelles Sumiiri-Muster, in Silber gefasst. Jede Auflage ist nummeriert. Nachproduziert wird nicht.",
+   "en": "The traditional Sumiiri pattern, set in silver. Every edition is numbered. None of it is ever made again.",
+   "fr": "Motif Sumiiri traditionnel, serti d'argent. Chaque édition est numérotée. Il n'y aura pas de réédition."
   },
   "materials": {
-   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
-   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+   "de": "Sterling Silber 925, rhodiniert. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925, rhodié. Tige en acier chirurgical. Résistant à l'eau."
   },
   "care": {
    "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
@@ -645,16 +629,18 @@
    "t": 3.7
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": true
  },
  {
   "id": "wahamon",
   "group": "wa-hamon",
   "name": "WA Hamon II",
   "variant": {
-   "de": "Gold",
-   "en": "Gold",
-   "fr": "Gold"
+   "de": "Silber",
+   "en": "Silver",
+   "fr": "Argent"
   },
   "price": 89,
   "tag": {
@@ -673,9 +659,9 @@
    "fr": "Hamon, la ligne de trempe des sabres japonais, en boucle d'oreille. Numérotée, limitée, jamais rééditée."
   },
   "materials": {
-   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
-   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+   "de": "Sterling Silber 925, rhodiniert. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925, rhodié. Tige en acier chirurgical. Résistant à l'eau."
   },
   "care": {
    "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
@@ -697,16 +683,18 @@
    "t": 3.69
   },
   "masseArt": "bht",
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": true
  },
  {
   "id": "wakumo",
   "group": "wa-kumo",
   "name": "WA Kumo III",
   "variant": {
-   "de": "Gold",
-   "en": "Gold",
-   "fr": "Gold"
+   "de": "Silber",
+   "en": "Silver",
+   "fr": "Argent"
   },
   "price": 95,
   "tag": {
@@ -725,9 +713,9 @@
    "fr": "Kumo signifie nuage. Le troisième et dernier motif de l'édition WA actuelle."
   },
   "materials": {
-   "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
-   "en": "Sterling silver 925 with 18 carat gold plating. Post in surgical stainless steel. Water-resistant.",
-   "fr": "Argent sterling 925 plaqué or 18 carats. Tige en acier chirurgical. Résistant à l'eau."
+   "de": "Sterling Silber 925, rhodiniert. Stift aus chirurgischem Edelstahl. Wasserfest.",
+   "en": "Sterling silver 925, rhodium-plated. Post in surgical stainless steel. Water-resistant.",
+   "fr": "Argent sterling 925, rhodié. Tige en acier chirurgical. Résistant à l'eau."
   },
   "care": {
    "de": "Die PVD-Beschichtung hält Duschen, Sport und Meer aus. Damit sie lange gleichmässig bleibt, sprühst du Parfum und Haarspray vor dem Anlegen auf und lässt es trocknen. Mit einem weichen Tuch abwischen. Kein Ultraschall, keine aggressiven Reiniger. Nach dem Meer kurz mit Süsswasser abspülen.",
@@ -741,6 +729,8 @@
   "lager": "auf_lager",
   "masseMm": null,
   "masseArt": null,
-  "gewichtG": null
+  "gewichtG": null,
+  "neu": false,
+  "limitiert": true
  }
 ]

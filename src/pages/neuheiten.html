@@ -40,7 +40,8 @@
 
 // ---------- Neuheiten: Neu zuerst, dann Limitiert, dann alle ----------
 const grid = document.getElementById('plpGrid');
-const rank = p => p.tag === 'Neu' ? 0 : p.tag === 'Limitiert' ? 1 : 2;
+// Zustand nie am uebersetzten Anzeigetext festmachen, der heisst in en «New» und in fr «Nouveau»
+const rank = p => p.neu ? 0 : p.limitiert ? 1 : 2;
 const list = [...PRODUCTS].sort((a, b) => rank(a) - rank(b));
 
 function cardHtml(p, i){
@@ -60,7 +61,7 @@ function cardHtml(p, i){
 }
 
 grid.innerHTML = list.map(cardHtml).join('');
-const nNeu = list.filter(p => p.tag === 'Neu').length;
+const nNeu = list.filter(p => p.neu).length;
 document.getElementById('plpCount').textContent =
   `${txtN('plp.neuheiten.count.neu', nNeu)} · ${txt('plp.neuheiten.count.gesamt', {n: list.length})} · ${txt('plp.count.click_lock')}`;
 

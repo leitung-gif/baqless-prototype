@@ -106,12 +106,12 @@ async function run() {
   f.src = '/kollektion.html?r=1';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('Robust: Katalog rendert trotz kaputtem Warenkorb-Wert', d.querySelectorAll('#plpGrid .card').length === 16
+  log('Robust: Katalog rendert trotz kaputtem Warenkorb-Wert', d.querySelectorAll('#plpGrid .card').length === f.contentWindow.eval('PRODUCTS.length')
     && d.getElementById('cartCount')?.textContent === '0');
   f.contentWindow.localStorage.clear();
 
   // ===== Ausverkauft auf der Produktseite =====
-  f.src = '/produkt.html?p=blackhoop';
+  f.src = '/produkt.html?p=leafblack';
   await loadOnce(); await sleep(450);
   d = f.contentDocument;
   log('PDP ausverkauft: Hinweis steht in der Buybox', !!d.querySelector('.ausverkauft-hinweis')
@@ -207,7 +207,8 @@ async function run() {
   f.src = '/kollektion.html';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('PLP: 16 Karten', d.querySelectorAll('#plpGrid .card').length === 16);
+  log('PLP: alle Artikel als Karte', d.querySelectorAll('#plpGrid .card').length === f.contentWindow.eval('PRODUCTS.length'),
+    d.querySelectorAll('#plpGrid .card').length + ' von ' + f.contentWindow.eval('PRODUCTS.length'));
   log('Karten: Front cream, nicht farbig', (() => {
     const s = f.contentWindow.getComputedStyle(d.querySelector('#plpGrid .card .card-img'));
     return s.backgroundImage === 'none' && s.backgroundColor === 'rgb(255, 255, 255)';
@@ -225,14 +226,15 @@ async function run() {
     return !!t && f.contentWindow.getComputedStyle(t).backgroundColor === 'rgb(99, 85, 196)';
   })());
   click(d, '.fpill[data-c="Honesty"]'); await sleep(200);
-  log('PLP-Filter Honesty → 6', d.querySelectorAll('#plpGrid .card').length === 6);
-  log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes('6'));
+  const nHonesty = f.contentWindow.eval("PRODUCTS.filter(p => p.collection === 'Honesty').length");
+  log('PLP-Filter Honesty', d.querySelectorAll('#plpGrid .card').length === nHonesty, 'gefiltert auf ' + nHonesty);
+  log('PLP-Count-Text', d.getElementById('plpCount')?.textContent.includes(String(nHonesty)));
   log('PLP-URL-Param', f.contentWindow.location.search.includes('c=Honesty'));
   const sort = d.getElementById('plpSort');
   sort.value = 'asc'; sort.dispatchEvent(new f.contentWindow.Event('change')); await sleep(200);
   log('PLP-Sortierung Preis ↑', d.querySelector('#plpGrid .card .price')?.textContent.includes('49'));
   click(d, '.fpill[data-c="alle"]'); await sleep(150);
-  log('PLP zurück auf Alle', d.querySelectorAll('#plpGrid .card').length === 16);
+  log('PLP zurück auf Alle', d.querySelectorAll('#plpGrid .card').length === f.contentWindow.eval('PRODUCTS.length'));
   click(d, '.fpill[data-c="WA"]'); await sleep(200);
   log('PLP-Filter WA → 3', d.querySelectorAll('#plpGrid .card').length === 3);
   click(d, '.fpill[data-c="alle"]'); await sleep(150);
@@ -248,19 +250,19 @@ async function run() {
   await loadOnce(); await sleep(600);
   d = f.contentDocument;
   log('PLP: ausverkaufte Karte markiert', (() => {
-    const c = d.querySelector('.card[data-id="blackhoop"]');
+    const c = d.querySelector('.card[data-id="leafblack"]');
     return !!c && c.classList.contains('soldout') && !!c.querySelector('.out-flag');
   })());
   log('PLP: ausverkauft bietet Benachrichtigung statt Warenkorb', (() => {
-    const c = d.querySelector('.card[data-id="blackhoop"]');
+    const c = d.querySelector('.card[data-id="leafblack"]');
     const b = c?.querySelector('[data-notify]');
     return !!b && !c.querySelector('[data-add]') && b.textContent === 'Benachrichtigen';
   })());
-  d.querySelector('.card[data-id="blackhoop"] [data-notify]')?.click();
+  d.querySelector('.card[data-id="leafblack"] [data-notify]')?.click();
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
   log('PLP: Benachrichtigung führt zur Produktseite statt zu leerem Versprechen',
-    f.contentWindow.location.search.includes('p=blackhoop') && !!d.getElementById('notifyForm'));
+    f.contentWindow.location.search.includes('p=leafblack') && !!d.getElementById('notifyForm'));
   log('PDP: Benachrichtigung fragt erst nach der Adresse', (() => {
     const form = d.getElementById('notifyForm');
     const vorher = form.hidden;
@@ -288,7 +290,7 @@ async function run() {
   f.src = '/neuheiten.html';
   await loadOnce(); await sleep(500);
   d = f.contentDocument;
-  log('Neuheiten: 16 Karten', d.querySelectorAll('#plpGrid .card').length === 16);
+  log('Neuheiten: alle Artikel als Karte', d.querySelectorAll('#plpGrid .card').length === f.contentWindow.eval('PRODUCTS.length'));
   log('Neuheiten: Neu zuerst', d.querySelector('#plpGrid .card .tag')?.textContent === 'Neu');
   log('Neuheiten: Zähler-Text', d.getElementById('plpCount')?.textContent.includes('4 neue Paare'));
   log('Neuheiten: view_item_list-Tracking', f.contentWindow.dataLayer
@@ -446,7 +448,7 @@ async function run() {
     const hrefs = [...d.querySelectorAll('.col-card')].map(a => a.getAttribute('href'));
     return hrefs.length === 3 && ['Honesty','Amity','Embrace'].every(c => hrefs.includes('kollektion.html?c=' + c));
   })());
-  log('Home: Kachel-Zähler korrekt', d.querySelector('[data-colcount="Honesty"]')?.textContent === '6 Paare'
+  log('Home: Kachel-Zähler korrekt', d.querySelector('[data-colcount="Honesty"]')?.textContent === f.contentWindow.eval("PRODUCTS.filter(p => p.collection === 'Honesty').length") + ' Paare'
     && d.querySelector('[data-colcount="Amity"]')?.textContent === '4 Paare'
     && d.querySelector('[data-colcount="Embrace"]')?.textContent === '3 Paare');
   log('Home: Nav entschlackt', (() => {
@@ -455,9 +457,12 @@ async function run() {
   })());
   log('Home: Kollektions-Menü mit Live-Zählern', (() => {
     const links = [...d.querySelectorAll('.nav-panel a[href*="?c="]')];
+    // Gegen den Katalog rechnen, nicht gegen eine feste Zahl: sonst faellt der Test
+    // beim naechsten Artikel um, obwohl der Zaehler richtig ist.
+    const zahl = k => f.contentWindow.eval(`PRODUCTS.filter(p => p.collection === '${k}').length`);
     return links.length === 4
-      && d.querySelector('[data-navcount="Honesty"]')?.textContent === '6 Paare'
-      && d.querySelector('[data-navcount="WA"]')?.textContent === '3 Paare';
+      && d.querySelector('[data-navcount="Honesty"]')?.textContent === zahl('Honesty') + ' Paare'
+      && d.querySelector('[data-navcount="WA"]')?.textContent === zahl('WA') + ' Paare';
   })());
 
   // ===== Echter Kaufweg: Warenkorb, Kasse, Bestätigung =====
@@ -485,7 +490,7 @@ async function run() {
   })());
   log('Warenkorbseite: Cross-Sell nur mit Verfügbarem', (() => {
     const ids = [...d.querySelectorAll('#xrailRail .card')].map(c => c.dataset.id);
-    return ids.length === 4 && !ids.includes('blackhoop') && !ids.includes('sageneon');
+    return ids.length === 4 && !ids.includes('leafblack') && !ids.includes('sageneon');
   })());
   click(d, '.cline [data-qplus]'); await sleep(250);
   log('Warenkorbseite: Menge erhöhen rechnet neu', d.querySelector('.cline .cq span')?.textContent === '2'
