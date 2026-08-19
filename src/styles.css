@@ -4,9 +4,9 @@
 :root{
   --coral:#FF7A6A; --coral-deep:#C93B27; --coral-hover:#EB7062; --coral-tint:#FFE3DE;
   --navy:#0B1D3F; --navy-2:#122b57;
-  --sage:#37B369; --sage-tint:#DFF3E7;
+  --sage:#37B369; --sage-deep:#27804C; --sage-tint:#DFF3E7;
   --lavender:#7D6FD6; --lav-tint:#EAE6FA;
-  --charcoal:#222222; --warmgrey:#BFB8B0; --softgray:#EAEAEA; --ink-soft:#6b655c;
+  --charcoal:#222222; --warmgrey:#BFB8B0; --grey-deep:#8A8378; --softgray:#EAEAEA; --ink-soft:#6b655c;
   --gold:#D9C1A0; --black:#0A0A0A;
   --ground:#FAF7F2; --paper:#FFFFFF;
   --serif:'Cormorant Garamond', Georgia, serif;
@@ -150,23 +150,30 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 @keyframes bump{40%{transform:scale(1.45)}}
 
 /* ---------- Dot side navigation ---------- */
+/* Die Trefferflaeche ist 24 x 24, der sichtbare Punkt bleibt 10 Pixel. Ohne Abstand
+   liegen die Flaechen buendig aneinander, damit bleibt der Abstand der Punkte bei 24
+   Pixeln, genau wie mit den frueheren 10 Pixeln plus 14 Pixeln Luft. */
 .dotnav{
-  position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:90;
-  display:flex; flex-direction:column; gap:14px;
+  position:fixed; right:15px; top:50%; transform:translateY(-50%); z-index:90;
+  display:flex; flex-direction:column; gap:0;
 }
 .dotnav a{
-  width:10px; height:10px; border-radius:50%; background:var(--warmgrey);
-  transition:transform .3s, background .3s; position:relative;
+  width:24px; height:24px; position:relative;
+  display:flex; align-items:center; justify-content:center;
 }
-.dotnav a:hover{transform:scale(1.5)}
-.dotnav a.active{background:var(--coral); transform:scale(1.6)}
+.dotnav a::before{
+  content:''; flex:none; width:10px; height:10px; border-radius:50%; background:var(--grey-deep);
+  transition:transform .3s, background .3s;
+}
+.dotnav a:hover::before, .dotnav a:focus-visible::before{transform:scale(1.5)}
+.dotnav a.active::before{background:var(--coral); transform:scale(1.6)}
 .dotnav a span{
-  position:absolute; right:22px; top:50%; transform:translateY(-50%);
+  position:absolute; right:29px; top:50%; transform:translateY(-50%);
   font-size:10px; letter-spacing:.18em; text-transform:uppercase; white-space:nowrap;
   background:var(--charcoal); color:var(--ground); padding:4px 10px; border-radius:2px;
   opacity:0; pointer-events:none; transition:opacity .25s;
 }
-.dotnav a:hover span{opacity:1}
+.dotnav a:hover span, .dotnav a:focus-visible span{opacity:1}
 @media(max-width:920px){.dotnav{display:none}}
 
 /* ---------- Buttons ---------- */
@@ -224,10 +231,6 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   position:absolute; width:min(100%,480px); aspect-ratio:4/5; right:calc(var(--pad) + 22px); top:98px;
   border:2px solid var(--coral); border-radius:240px 240px 6px 6px; z-index:1;
   opacity:0; animation:fade 1s .7s forwards;
-}
-.bubble-hint{
-  position:absolute; bottom:26px; right:var(--pad); z-index:3;
-  font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:rgba(250,247,242,.45);
 }
 .scroll-hint{
   position:absolute; bottom:26px; left:var(--pad); z-index:3;
@@ -303,9 +306,9 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   font-size:11px; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
   display:flex; align-items:center; gap:9px; color:var(--ink-soft); transition:color .3s;
 }
-.cl-state .led{width:8px; height:8px; border-radius:50%; background:var(--warmgrey); transition:background .3s, box-shadow .3s}
-.cl-stage.locked .cl-state{color:var(--sage)}
-.cl-stage.locked .cl-state .led{background:var(--sage); box-shadow:0 0 12px rgba(55,179,105,.6)}
+.cl-state .led{width:8px; height:8px; border-radius:50%; background:var(--grey-deep); transition:background .3s, box-shadow .3s}
+.cl-stage.locked .cl-state{color:var(--sage-deep)}
+.cl-stage.locked .cl-state .led{background:var(--sage-deep); box-shadow:0 0 12px rgba(39,128,76,.55)}
 .cl-actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
 #tbar{transition:transform .55s cubic-bezier(.34,1.56,.64,1); transform-box:fill-box; transform-origin:center}
 .locked #tbar{transform:rotate(90deg)}
@@ -406,7 +409,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   color:#fff; padding:5px 10px; border-radius:2px;
 }
-.tag-coral{background:var(--coral); color:var(--navy)} .tag-sage{background:var(--sage); color:var(--navy)} .tag-lav{background:#6355C4}
+.tag-coral{background:var(--coral); color:var(--navy)} .tag-lav{background:#6355C4}
 .card-meta{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-top:6px}
 .card-meta h3{font-size:20px; font-weight:500}
 .card-meta .variant{font-size:12px; color:var(--ink-soft); letter-spacing:.06em}
@@ -418,7 +421,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   transition:color .25s, border-color .25s;
 }
 .add-btn:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
-.add-btn.added{color:#27804C; border-color:#27804C}
+.add-btn.added{color:var(--sage-deep); border-color:var(--sage-deep)}
 .ausverkauft-hinweis{
   margin:16px 0 2px; padding:14px 16px; border-radius:4px; border:1px solid rgba(11,29,63,.16);
   background:rgba(11,29,63,.04); font-size:14.5px; line-height:1.55; color:#4a453e;
@@ -544,9 +547,12 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 .nl-form input{
   font-family:var(--sans); font-size:14px; font-weight:300;
   padding:15px 20px; width:min(360px,80vw);
-  border:1px solid rgba(34,34,34,.3); border-radius:2px; background:#fff; color:var(--charcoal);
-  outline:none; transition:border-color .25s;
+  border:1px solid var(--grey-deep); border-radius:2px; background:#fff; color:var(--charcoal);
+  transition:border-color .25s;
 }
+/* outline:none stand hier und schlug mit hoeherer Spezifitaet die globale Regel
+   :focus-visible. Der Rahmenwechsel auf Coral bleibt als Zugabe, die Fokusmarke ist
+   wieder der Rahmen aus der globalen Regel. */
 .nl-form input:focus{border-color:var(--coral)}
 
 /* ---------- Footer ---------- */
@@ -560,7 +566,7 @@ footer{background:var(--navy); color:rgba(250,247,242,.78); padding:0 var(--pad)
 .foot-nl h3 em{font-style:normal; color:var(--coral)}
 .foot-nl p{font-size:14px; color:rgba(250,247,242,.62); margin-top:4px}
 .foot-nl .nl-form{justify-content:flex-start; flex:1; min-width:min(380px,100%); max-width:460px}
-.foot-nl .nl-form input{background:var(--navy-2); border-color:rgba(250,247,242,.2); color:#fff}
+.foot-nl .nl-form input{background:var(--navy-2); border-color:rgba(250,247,242,.45); color:#fff}
 .foot-grid{display:grid; grid-template-columns:1.7fr repeat(4, minmax(0,1fr)); gap:40px 32px; max-width:1280px; margin:0 auto 46px; padding-top:46px; position:relative}
 @media(max-width:1080px){.foot-grid{grid-template-columns:repeat(4, minmax(0,1fr))}.foot-brand{grid-column:1/-1}}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr; gap:30px}}
@@ -625,7 +631,7 @@ footer ul a:hover{color:var(--coral)}
 .cform{background:#fff; border:1px solid #eee5d8; border-radius:16px; padding:26px}
 .cform label{display:block; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin:16px 0 6px; font-weight:500}
 .cform label:first-child{margin-top:0}
-.cform input, .cform textarea{width:100%; border:1.5px solid #e3dccf; border-radius:10px; padding:12px 14px; font:inherit; font-size:14.5px; background:var(--ground); color:var(--charcoal)}
+.cform input, .cform textarea{width:100%; border:1.5px solid var(--grey-deep); border-radius:10px; padding:12px 14px; font:inherit; font-size:14.5px; background:var(--ground); color:var(--charcoal)}
 .cform input:focus, .cform textarea:focus{border-color:var(--navy)}
 .cform .btn{margin-top:20px; width:100%; justify-content:center}
 
@@ -721,20 +727,22 @@ footer ul a:hover{color:var(--coral)}
 .ship-progress{padding:14px 22px 4px}
 .ship-progress-text{font-size:12px; color:#6d675e; margin-bottom:7px}
 .ship-progress-text b{color:var(--charcoal)}
-.ship-progress-text.done{color:var(--sage); font-weight:500}
+.ship-progress-text.done{color:var(--sage-deep); font-weight:500}
 .ship-progress-track{height:6px; border-radius:3px; background:#efe9df; overflow:hidden}
-.ship-progress-fill{height:100%; width:0; border-radius:3px; background:var(--coral); transition:width .5s cubic-bezier(.22,1,.36,1), background .35s}
-.ship-progress-fill.done{background:var(--sage)}
+/* Der gefuellte Teil muss sich von der Spur abheben, darum die tiefen Toene.
+   Coral bleibt Flaechenfarbe an den grossen Flaechen, hier zaehlt der Kontrast. */
+.ship-progress-fill{height:100%; width:0; border-radius:3px; background:var(--coral-deep); transition:width .5s cubic-bezier(.22,1,.36,1), background .35s}
+.ship-progress-fill.done{background:var(--sage-deep)}
 
 /* ===== V3: Drawer-Stepper ===== */
 .drawer-item{position:relative}
 .qty-ctrl{display:flex; align-items:center; gap:2px; margin-top:6px}
-.qty-ctrl button{width:44px; height:44px; border-radius:10px; border:1px solid #e3ddd2; background:#fff;
+.qty-ctrl button{width:44px; height:44px; border-radius:10px; border:1px solid var(--grey-deep); background:#fff;
   cursor:pointer; font-size:14px; line-height:1; color:var(--charcoal); transition:border-color .2s}
-.qty-ctrl button:hover{border-color:var(--coral)}
+.qty-ctrl button:hover{border-color:var(--coral-deep)}
 .qty-ctrl .qv{min-width:26px; text-align:center; font-size:13px; font-weight:500}
 .line-remove{position:absolute; top:8px; right:0; background:none; border:none; cursor:pointer;
-  color:#c9c2b6; font-size:15px; padding:4px; line-height:1}
+  color:var(--ink-soft); font-size:15px; padding:4px; line-height:1}
 .line-remove:hover{color:var(--coral-deep)}
 
 /* ===== V3: Such-Overlay ===== */
@@ -745,9 +753,11 @@ footer ul a:hover{color:var(--coral)}
   box-shadow:0 40px 90px -20px rgba(11,29,63,.5); animation:soIn .3s cubic-bezier(.22,1,.36,1)}
 @keyframes soIn{from{opacity:0; transform:translateY(14px) scale(.985)}}
 .so-bar{display:flex; align-items:center; gap:12px; padding:18px 20px; border-bottom:1px solid #f0ebe2; color:var(--charcoal)}
-.so-bar input{flex:1; border:none; outline:none; font:inherit; font-size:16.5px; color:var(--charcoal); background:none}
-.so-bar input::placeholder{color:#b9b2a6}
-.so-close{background:none; border:none; font-size:26px; line-height:1; color:#b9b2a6; cursor:pointer; padding:2px 6px}
+/* Kein outline:none: das Suchfeld hatte sonst gar keine Fokusmarke, weil es auch
+   keinen Rahmen und keinen Hintergrundwechsel kennt. Jetzt greift :focus-visible. */
+.so-bar input{flex:1; border:none; font:inherit; font-size:16.5px; color:var(--charcoal); background:none}
+.so-bar input::placeholder{color:var(--ink-soft)}
+.so-close{background:none; border:none; font-size:26px; line-height:1; color:var(--ink-soft); cursor:pointer; padding:2px 6px}
 .so-close:hover{color:var(--coral-deep)}
 .so-hint{padding:12px 20px 4px; font-size:12px; color:var(--ink-soft)}
 .so-hint button{background:#FAF7F2; border:1px solid #eee5d8; border-radius:99px; font:inherit;
@@ -765,7 +775,7 @@ footer ul a:hover{color:var(--coral)}
 .so-empty b{display:block; font-family:var(--serif); font-size:19px; color:var(--charcoal); margin-bottom:4px}
 
 /* ===== V3: PDP Menge + Sticky-Bar + Zoom ===== */
-.qty-inline{display:flex; align-items:center; border:1.5px solid var(--warmgrey); border-radius:99px; overflow:hidden}
+.qty-inline{display:flex; align-items:center; border:1.5px solid var(--grey-deep); border-radius:99px; overflow:hidden}
 .qty-inline button{width:42px; height:50px; border:none; background:none; font-size:18px; cursor:pointer; color:var(--charcoal)}
 .qty-inline button:hover{color:var(--coral-deep)}
 .qty-inline .qv{min-width:34px; text-align:center; font-size:15px; font-weight:500}
@@ -791,11 +801,11 @@ footer ul a:hover{color:var(--coral)}
 .plp-hero p{margin-top:12px; font-size:15px; color:rgba(250,247,242,.82); max-width:52ch}
 .plp-wrap{max-width:1180px; margin:0 auto; padding:34px var(--pad) 90px; position:relative; overflow:hidden}
 .plp-tools{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px}
-.fpill{border:1.5px solid var(--warmgrey); background:none; border-radius:99px; font:inherit; font-size:13.5px;
+.fpill{border:1.5px solid var(--grey-deep); background:none; border-radius:99px; font:inherit; font-size:13.5px;
   font-weight:500; color:var(--charcoal); padding:9px 18px; cursor:pointer; transition:all .25s}
 .fpill:hover{border-color:var(--coral-deep)}
 .fpill.active{background:var(--navy); border-color:var(--navy); color:#fff}
-.plp-tools select{margin-left:auto; border:1.5px solid var(--warmgrey); border-radius:99px; background:#fff;
+.plp-tools select{margin-left:auto; border:1.5px solid var(--grey-deep); border-radius:99px; background:#fff;
   font:inherit; font-size:13px; padding:9px 14px; color:var(--charcoal); cursor:pointer}
 .plp-count{font-size:12.5px; color:var(--ink-soft); margin:6px 0 18px}
 .plp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; position:relative; z-index:2}

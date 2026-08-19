@@ -24,25 +24,25 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
     </button>
     <div class="v2-dd" id="langDd">
-      <button class="nav-icon-btn" id="langBtn" aria-haspopup="true" aria-expanded="false"><span id="langLabel">DE</span>
+      <button class="nav-icon-btn" id="langBtn" aria-expanded="false" aria-controls="langMenu"><span id="langLabel">DE</span>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
       </button>
-      <div class="v2-menu" role="menu">
-        <div class="v2-menu-label">{{t:nav.sprache.titel}}</div>
-        <button class="active" data-lang="DE">Deutsch <span class="tick">✓</span></button>
-        <button data-lang="EN">English <span class="tick">✓</span></button>
-        <button data-lang="FR">Français <span class="tick">✓</span></button>
+      <div class="v2-menu" id="langMenu" role="group" aria-labelledby="langMenuTitel">
+        <div class="v2-menu-label" id="langMenuTitel">{{t:nav.sprache.titel}}</div>
+        <button class="active" data-lang="DE" aria-current="true">Deutsch <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-lang="EN" aria-current="false">English <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-lang="FR" aria-current="false">Français <span class="tick" aria-hidden="true">✓</span></button>
       </div>
     </div>
     <div class="v2-dd" id="marketDd">
-      <button class="nav-icon-btn" id="marketBtn" aria-haspopup="true" aria-expanded="false"><span class="market-flag"></span><span id="marketLabel">CH · CHF</span></button>
-      <div class="v2-menu" role="menu">
-        <div class="v2-menu-label">{{t:nav.markt.titel}}</div>
-        <button class="active" data-market="CH · CHF">Schweiz · CHF <span class="tick">✓</span></button>
-        <button data-market="DE · EUR">Deutschland · EUR <span class="tick">✓</span></button>
-        <button data-market="AT · EUR">Österreich · EUR <span class="tick">✓</span></button>
-        <button data-market="FR · EUR">France · EUR <span class="tick">✓</span></button>
-        <button data-market="IT · EUR">Italia · EUR <span class="tick">✓</span></button>
+      <button class="nav-icon-btn" id="marketBtn" aria-expanded="false" aria-controls="marketMenu"><span class="market-flag"></span><span id="marketLabel">CH · CHF</span></button>
+      <div class="v2-menu" id="marketMenu" role="group" aria-labelledby="marketMenuTitel">
+        <div class="v2-menu-label" id="marketMenuTitel">{{t:nav.markt.titel}}</div>
+        <button class="active" data-market="CH · CHF" aria-current="true">{{t:kauf.land.schweiz}} · CHF <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-market="DE · EUR" aria-current="false">{{t:kauf.land.deutschland}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-market="AT · EUR" aria-current="false">{{t:kauf.land.oesterreich}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-market="FR · EUR" aria-current="false">{{t:kauf.land.frankreich}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+        <button data-market="IT · EUR" aria-current="false">{{t:kauf.land.italien}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
         <div class="v2-menu-note">{{t:nav.markt.notiz}}</div>
       </div>
     </div>
@@ -73,6 +73,25 @@
     <a href="journal.html">{{t:nav.mobil.journal}}</a>
     <a href="faq.html">{{t:nav.mobil.gut_zu_wissen}}</a>
     <a href="kontakt.html">{{t:nav.mobil.kontakt}}</a>
+  </div>
+  <div class="mnav-switch" style="position:relative; display:grid; gap:14px; margin-top:30px">
+    <div class="v2-menu" role="group" aria-labelledby="mnavSpracheTitel"
+         style="position:static; display:block; min-width:0; box-shadow:none; --focus-ring:var(--navy)">
+      <div class="v2-menu-label" id="mnavSpracheTitel">{{t:nav.sprache.titel}}</div>
+      <button class="active" data-lang="DE" aria-current="true" style="min-height:44px">Deutsch <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-lang="EN" aria-current="false" style="min-height:44px">English <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-lang="FR" aria-current="false" style="min-height:44px">Français <span class="tick" aria-hidden="true">✓</span></button>
+    </div>
+    <div class="v2-menu" role="group" aria-labelledby="mnavMarktTitel"
+         style="position:static; display:block; min-width:0; box-shadow:none; --focus-ring:var(--navy)">
+      <div class="v2-menu-label" id="mnavMarktTitel">{{t:nav.markt.titel}}</div>
+      <button class="active" data-market="CH · CHF" aria-current="true" style="min-height:44px">{{t:kauf.land.schweiz}} · CHF <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-market="DE · EUR" aria-current="false" style="min-height:44px">{{t:kauf.land.deutschland}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-market="AT · EUR" aria-current="false" style="min-height:44px">{{t:kauf.land.oesterreich}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-market="FR · EUR" aria-current="false" style="min-height:44px">{{t:kauf.land.frankreich}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+      <button data-market="IT · EUR" aria-current="false" style="min-height:44px">{{t:kauf.land.italien}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
+      <div class="v2-menu-note" style="max-width:none">{{t:nav.markt.notiz}}</div>
+    </div>
   </div>
   <div class="mnav-sub">
     <a href="widerruf.html">{{t:nav.mobil_sub.versand}}</a>

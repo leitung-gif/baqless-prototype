@@ -65,6 +65,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 .ko-sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:15px; font-size:20px; font-weight:500; color:var(--charcoal)}
 .ko-sum .sep{border-top:1px solid rgba(11,29,63,.1); margin:12px 0 4px}
 .ko-submit{width:100%; justify-content:center; margin-top:22px}
+.ko-leer{font-size:14px; line-height:1.6; color:#4a453e; padding:4px 0 2px}
+.ko-leer b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; color:var(--charcoal); margin-bottom:4px}
 .ko-recht{margin-top:22px; font-size:13px; line-height:1.6; color:var(--ink-soft)}
 .ko-recht a{color:var(--coral-deep); font-weight:600}
 .ko-back{display:block; text-align:center; margin-top:26px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
@@ -196,6 +198,9 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 // ---------- Kasse ----------
 const koSum = document.getElementById('koForm') ? document.getElementById('koSum') : null;
 const form = document.getElementById('koForm');
+// Steht auf true, sobald der Kauf abgeschickt ist. Danach ist der geleerte Warenkorb
+// kein Fehler mehr, sondern der Weg zur Bestaetigung.
+let laeuft = false;
 
 function versandPreis(){
   const gewaehlt = form.querySelector('input[name="versand"]:checked');
@@ -204,7 +209,20 @@ function versandPreis(){
   return sub >= FREE_SHIP ? 0 : 7;
 }
 
+// Der Warenkorb kann sich waehrend des Ausfuellens leeren, etwa wenn im Drawer die
+// letzte Zeile entfernt wird. Wegspringen wuerde alle Eingaben wegwerfen, darum bleibt
+// das Formular stehen und die Zusammenfassung sagt an Ort und Stelle, was los ist.
+function renderLeer(){
+  koSum.innerHTML = `
+    <h2>${txt('kauf.kasse.summe.titel')}</h2>
+    <div class="ko-leer" role="status"><b>${txt('kauf.korb.leer.titel')}</b>${txt('kauf.korb.leer.text')}</div>
+    <a class="btn btn-coral ko-submit" href="kollektion.html">${txt('kauf.korb.leer.knopf')}</a>`;
+}
+
 function renderSum(){
+  // Nach dem Absenden ist der Warenkorb absichtlich leer, dann nicht dazwischenfunken.
+  if (laeuft) return;
+  if (!cart.length){ renderLeer(); return; }
   const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const vs = versandPreis();
   document.getElementById('prStandard').textContent = sub >= FREE_SHIP ? txt('kauf.versand.gratis') : 'CHF 7';
@@ -224,14 +242,15 @@ function renderSum(){
 }
 
 if (!cart.length){
-  location.replace('warenkorb.html');
+  // Kein Wegspringen, auch nicht beim Einstieg: location.replace loescht den Verlaufseintrag,
+  // der Zurueck-Knopf fuehrt dann an der Kasse vorbei. Der Leerzustand sagt es an Ort und Stelle.
+  renderLeer();
 } else {
   // Der Drawer kann den Warenkorb auch hier aendern. Die Zusammenfassung haengt
   // sich deshalb an denselben Render-Aufruf, statt einmalig zu rechnen.
   const drawerRender = renderCart;
   renderCart = function(){
     drawerRender();
-    if (!cart.length){ location.replace('warenkorb.html'); return; }
     renderSum();
   };
   renderSum();
@@ -257,12 +276,17 @@ if (!cart.length){
     if (e.target.matches('input')) e.target.removeAttribute('aria-invalid');
   });
 
-  let laeuft = false;
   form.addEventListener('submit', e => {
     e.preventDefault();
     if (laeuft) return;
-    // Der sicherste Weg gegen die leere Bestellung: gar nicht erst kaufen lassen
-    if (!cart.length){ location.replace('warenkorb.html'); return; }
+    // Der sicherste Weg gegen die leere Bestellung: gar nicht erst kaufen lassen.
+    // Die Eingaben bleiben trotzdem stehen, gemeldet wird es in der Zusammenfassung.
+    if (!cart.length){
+      renderLeer();
+      koSum.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      toast(`<span class="tick">i</span><span><b>${txt('kauf.korb.leer.titel')}</b> ${txt('kauf.korb.leer.text')}</span>`);
+      return;
+    }
     const pflicht = [...form.querySelectorAll('input[required]')];
     let ersterFehler = null;
     pflicht.forEach(inp => {

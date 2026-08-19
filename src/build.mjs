@@ -9,7 +9,7 @@ const repoRoot = join(root, '..');
 // Genau so bedient Shopify Sprachfassungen: gleicher Dateiname, Praefix im Pfad.
 const SPRACHEN = [
   { code: 'de', ordner: '', basis: '', hreflang: 'de', locale: 'de-CH', name: 'Deutsch', xdefault: true },
-  { code: 'en', ordner: 'en', basis: '../', hreflang: 'en', locale: 'en', name: 'English' },
+  { code: 'en', ordner: 'en', basis: '../', hreflang: 'en', locale: 'en-GB', name: 'English' },
   { code: 'fr', ordner: 'fr', basis: '../', hreflang: 'fr', locale: 'fr-CH', name: 'Français' },
 ];
 const HOST = 'https://baqless.com';

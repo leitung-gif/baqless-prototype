@@ -19,21 +19,24 @@
 
 {{HEADER}}
 
-<header class="plp-hero">
+<main id="inhalt">
+
+<div class="plp-hero">
   <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
   <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
   <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
   <h1>{{t:plp.kollektion.hero.titel}}</h1>
   <p>{{t:plp.kollektion.hero.text}}</p>
-</header>
+</div>
 
-<main id="inhalt" class="plp-wrap">
+<div class="plp-wrap">
+  <h2 class="visually-hidden">{{t:nav.link.kollektionen}}</h2>
   <div class="plp-tools" id="plpTools">
-    <button class="fpill active" data-c="alle">{{t:plp.filter.alle}}</button>
-    <button class="fpill" data-c="Honesty">Honesty</button>
-    <button class="fpill" data-c="Amity">Amity</button>
-    <button class="fpill" data-c="Embrace">Embrace</button>
-    <button class="fpill" data-c="WA">WA</button>
+    <button class="fpill active" data-c="alle" aria-pressed="true">{{t:plp.filter.alle}}</button>
+    <button class="fpill" data-c="Honesty" aria-pressed="false">Honesty</button>
+    <button class="fpill" data-c="Amity" aria-pressed="false">Amity</button>
+    <button class="fpill" data-c="Embrace" aria-pressed="false">Embrace</button>
+    <button class="fpill" data-c="WA" aria-pressed="false">WA</button>
     <select id="plpSort" aria-label="{{t:plp.sort.label}}">
       <option value="std">{{t:plp.sort.empfohlen}}</option>
       <option value="asc">{{t:plp.sort.preis_auf}}</option>
@@ -41,8 +44,10 @@
       <option value="neu">{{t:plp.sort.neu_zuerst}}</option>
     </select>
   </div>
-  <div class="plp-count" id="plpCount"></div>
+  <div class="plp-count" id="plpCount" role="status" aria-live="polite" aria-atomic="true"></div>
   <div class="plp-grid" id="plpGrid"></div>
+</div>
+
 </main>
 
 {{FOOTER}}
@@ -58,7 +63,17 @@ const grid = document.getElementById('plpGrid');
 const pills = [...document.querySelectorAll('.fpill')];
 const validCols = pills.map(b => b.dataset.c);
 if (!validCols.includes(fCol)) fCol = 'alle';
-pills.forEach(b => b.classList.toggle('active', b.dataset.c === fCol));
+// Der Zustand darf nicht nur farbig sein: aria-pressed geht denselben Weg wie die Klasse
+function markiereFilter(){
+  pills.forEach(b => {
+    const an = b.dataset.c === fCol;
+    b.classList.toggle('active', an);
+    b.setAttribute('aria-pressed', an ? 'true' : 'false');
+  });
+}
+markiereFilter();
+// Sortierung ohne eigene Meldung bliebe stumm, darum steht sie in der Trefferzeile
+const SORT_SCHLUESSEL = {asc: 'plp.sort.preis_auf', desc: 'plp.sort.preis_ab', neu: 'plp.sort.neu_zuerst'};
 
 function cardHtml(p, i){
   return `
@@ -91,7 +106,7 @@ function renderPlp(){
     </div>`);
   grid.innerHTML = karten.join('');
   document.getElementById('plpCount').textContent =
-    `${txtN('stueck.paar', list.length)}${fCol !== 'alle' ? ' · ' + txt('plp.count.kollektion', {name: fCol}) : ''} · ${txt('plp.count.click_lock')}`;
+    `${txtN('stueck.paar', list.length)}${fCol !== 'alle' ? ' · ' + txt('plp.count.kollektion', {name: fCol}) : ''} · ${txt('plp.count.click_lock')}${SORT_SCHLUESSEL[fSort] ? ' · ' + txt(SORT_SCHLUESSEL[fSort]) : ''}`;
   const url = new URL(location);
   fCol === 'alle' ? url.searchParams.delete('c') : url.searchParams.set('c', fCol);
   history.replaceState(null, '', url);
@@ -100,7 +115,7 @@ document.getElementById('plpTools').addEventListener('click', e => {
   const b = e.target.closest('.fpill');
   if (!b) return;
   fCol = b.dataset.c;
-  pills.forEach(x => x.classList.toggle('active', x === b));
+  markiereFilter();
   renderPlp();
 });
 document.getElementById('plpSort').addEventListener('change', e => { fSort = e.target.value; renderPlp(); });

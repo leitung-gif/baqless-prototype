@@ -304,9 +304,9 @@
   "group": "amity-polaris",
   "name": "Amity Polaris",
   "variant": {
-   "de": "Silber",
+   "de": "Silver",
    "en": "Silver",
-   "fr": "Argent"
+   "fr": "Silver"
   },
   "price": 59,
   "tag": "",
@@ -466,9 +466,9 @@
   "sku": "BQ-AMI-FRD-D",
   "collection": "Amity",
   "desc": {
-   "de": "Zwei Paare, eine Freundschaft. Eines für dich, eines zum Verschenken. Beide mit Click-Lock.",
-   "en": "Two pairs, one friendship. One for you, one to give away. Both with Click-Lock.",
-   "fr": "Deux paires, une amitié. Une pour vous, une à offrir. Les deux avec Click-Lock."
+   "de": "Ein Paar, eine Freundschaft. Trag beide, oder gib eines weiter. Es gibt Friendship auch einzeln, mit Click-Lock.",
+   "en": "One pair, one friendship. Wear both, or pass one on. Friendship also comes as a single earring, with Click-Lock.",
+   "fr": "Une paire, une amitié. Portez les deux, ou offrez-en une. Friendship existe aussi en boucle seule, avec Click-Lock."
   },
   "materials": {
    "de": "Sterling Silber 925 mit 18 Karat Vergoldung. Stift aus chirurgischem Edelstahl. Wasserfest.",
@@ -544,7 +544,7 @@
   "variant": {
    "de": "Gold",
    "en": "Gold",
-   "fr": "Or"
+   "fr": "Gold"
   },
   "price": 72,
   "tag": "",
@@ -584,9 +584,9 @@
   "group": "wa-sumiiri",
   "name": "WA Sumiiri II",
   "variant": {
-   "de": "Silber",
+   "de": "Silver",
    "en": "Silver",
-   "fr": "Argent"
+   "fr": "Silver"
   },
   "price": 89,
   "tag": {
@@ -596,7 +596,7 @@
   },
   "tagCls": "tag-lav",
   "thumb": "{{wa_sumiiri}}",
-  "detail": "{{c_wa}}",
+  "detail": "{{wa_sumiiri}}",
   "sku": "BQ-WA-SUM-2",
   "collection": "WA",
   "desc": {
@@ -638,9 +638,9 @@
   "group": "wa-hamon",
   "name": "WA Hamon II",
   "variant": {
-   "de": "Silber",
+   "de": "Silver",
    "en": "Silver",
-   "fr": "Argent"
+   "fr": "Silver"
   },
   "price": 89,
   "tag": {
@@ -650,7 +650,7 @@
   },
   "tagCls": "tag-lav",
   "thumb": "{{wa_hamon}}",
-  "detail": "{{c_wa}}",
+  "detail": "{{wa_hamon}}",
   "sku": "BQ-WA-HAM-2",
   "collection": "WA",
   "desc": {
@@ -692,9 +692,9 @@
   "group": "wa-kumo",
   "name": "WA Kumo III",
   "variant": {
-   "de": "Silber",
+   "de": "Silver",
    "en": "Silver",
-   "fr": "Argent"
+   "fr": "Silver"
   },
   "price": 95,
   "tag": {
@@ -704,7 +704,7 @@
   },
   "tagCls": "tag-lav",
   "thumb": "{{wa_kumo}}",
-  "detail": "{{c_wa}}",
+  "detail": "{{wa_kumo}}",
   "sku": "BQ-WA-KUM-3",
   "collection": "WA",
   "desc": {

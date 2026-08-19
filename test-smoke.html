@@ -192,11 +192,14 @@ async function run() {
 
   // ===== Cross-Sell + Variante =====
   log('Cross-Sell 4 Karten', d.querySelectorAll('#xsellRail .card').length === 4);
-  const silber = [...d.querySelectorAll('.pills a')].find(a => a.textContent.includes('Silber'));
+  // Variantennamen sind laut Glossar unuebersetzt und in allen drei Fassungen englisch
+  const silber = [...d.querySelectorAll('.pills a')].find(a => a.textContent.includes('Silver'));
+  log('Variantenpille Silver gefunden', !!silber,
+    [...d.querySelectorAll('.pills a')].map(a => a.textContent.trim()).join(' | '));
   silber?.click(); await loadOnce(); await sleep(400);
   d = f.contentDocument;
-  log('Varianten-Wechsel: Silber CHF 59', d.querySelector('.price-big')?.textContent.includes('59')
-    && d.querySelector('.variant-line')?.textContent.includes('Silber'));
+  log('Varianten-Wechsel: Silver CHF 59', d.querySelector('.price-big')?.textContent.includes('59')
+    && d.querySelector('.variant-line')?.textContent.includes('Silver'));
 
   // ===== V3: Zuletzt angesehen (nach 2. Produkt) =====
   log('Seen-Rail erscheint', !!d.querySelector('#seenRail .card'));

@@ -35,6 +35,8 @@
   background:var(--lav-tint); top:-34px; left:-40px; z-index:-1}
 .gal-main .tag{position:absolute; top:16px; left:16px; z-index:2}
 .gal-thumbs{display:flex; gap:12px; margin-top:16px}
+/* display aus der eigenen Regel schlaegt [hidden], darum hier ausdruecklich */
+.gal-thumbs[hidden]{display:none}
 .gal-thumbs button{width:76px; height:76px; border-radius:16px; overflow:hidden; border:2px solid transparent;
   padding:0; cursor:pointer; background:#fff; transition:border-color .25s, transform .25s}
 .gal-thumbs button img{width:100%; height:100%; object-fit:cover; display:block}
@@ -136,6 +138,10 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 .cl-band .clb-head h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,40px)}
 .cl-band .clb-head a{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--coral); font-weight:500}
 
+/* Karten ohne zweites Bild: der Wechsel beim Ueberfahren blendet sonst dasselbe
+   Foto gegen sich selbst, das Motiv wuerde nur springen */
+.card-img.single img.thumb{opacity:1}
+
 .xsell{padding:70px var(--pad) 90px; max-width:1180px; margin:0 auto; position:relative; overflow:hidden}
 .xsell > *{position:relative; z-index:2}
 .xsell h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,40px); color:var(--charcoal); margin-bottom:26px}
@@ -212,10 +218,12 @@ document.getElementById('crumbs').innerHTML =
 // Galerie
 const galMain = document.getElementById('galMain');
 const galThumbs = document.getElementById('galThumbs');
-const views = [
-  {src: P.thumb, label: txt('pdp.galerie.ansicht_produkt')},
-  {src: P.detail, label: txt('pdp.galerie.ansicht_getragen')},
-];
+// Eine zweite Ansicht gibt es nur, wenn es wirklich ein zweites Bild gibt.
+// Wo thumb und detail dieselbe Datei sind, waere «Getragen» eine Beschriftung
+// ohne Aufnahme dahinter.
+const zweiteAnsicht = !!P.detail && P.detail !== P.thumb;
+const views = [{src: P.thumb, label: txt('pdp.galerie.ansicht_produkt')}];
+if (zweiteAnsicht) views.push({src: P.detail, label: txt('pdp.galerie.ansicht_getragen')});
 const COLLECTION_BG = {
   Honesty: 'linear-gradient(150deg,#FFDFD6,#FFC0AF)',
   Amity: 'linear-gradient(150deg,#E4DCF7,#CBBCEE)',
@@ -228,14 +236,18 @@ function setView(i){
   galMain.style.background = i === 0 ? (COLLECTION_BG[P.collection] || '#fff') : '#fff';
   [...galThumbs.children].forEach((b, k) => b.classList.toggle('active', k === i));
 }
-galThumbs.innerHTML = views.map((v, i) =>
+// Eine einzige Ansicht braucht keine Vorschauleiste
+galThumbs.hidden = views.length < 2;
+galThumbs.innerHTML = views.length < 2 ? '' : views.map((v, i) =>
   `<button aria-label="${v.label}"><img src="${v.src}" alt=""></button>`).join('');
 [...galThumbs.children].forEach((b, i) => b.addEventListener('click', () => setView(i)));
 setView(0);
 
 // Buybox
 const siblings = PRODUCTS.filter(x => x.group === P.group);
-const pillDots = {Gold:'#D9B14C', Silber:'#C9CDD4', Sea:'#4C8FD9', Black:'#222', White:'#F1EEE8', 'Neon Pink':'#FF3F8E'};
+// Farbpunkt am Variantennamen, und der ist in allen drei Fassungen derselbe englische Begriff.
+// Frueher stand hier «Silber», das griff in en und fr nicht und fiel auf Warmgrau zurueck.
+const pillDots = {Gold:'#D9B14C', Silver:'#C9CDD4', Sea:'#4C8FD9', Black:'#222', White:'#F1EEE8', Pearl:'#EDE6DA', Duo:'#D9B14C', 'Neon Pink':'#FF3F8E'};
 document.getElementById('buy').innerHTML = `
   <span class="eyebrow">${txt('pdp.buy.kollektion', {kollektion: P.collection})}</span>
   <h1>${P.name}</h1>
@@ -256,7 +268,7 @@ document.getElementById('buy').innerHTML = `
     <span class="price-note">${txt('pdp.buy.preis_hinweis')}</span>
   </div>
   ${siblings.length > 1 ? `
-  <div class="pills" aria-label="${txt('pdp.buy.varianten_aria')}">
+  <div class="pills" role="group" aria-label="${txt('pdp.buy.varianten_aria')}">
     ${siblings.map(s => `<a href="produkt.html?p=${s.id}" class="${s.id === P.id ? 'active' : ''}">
       <span class="dot" style="background:${pillDots[s.variant] || 'var(--warmgrey)'}"></span>${s.variant}</a>`).join('')}
   </div>` : ''}
@@ -267,14 +279,14 @@ document.getElementById('buy').innerHTML = `
   </div>
   <div class="halb-note">${txt('pdp.halb.hinweis')}</div>` : ''}
   <div class="buy-ctas">
-    <div class="qty-inline" aria-label="${txt('pdp.menge.aria')}">
+    <div class="qty-inline" role="group" aria-label="${txt('pdp.menge.aria')}">
       <button id="qtyMinus" aria-label="${txt('pdp.menge.verringern')}">−</button>
       <span class="qv" id="qtyVal">1</span>
       <button id="qtyPlus" aria-label="${txt('pdp.menge.erhoehen')}">+</button>
     </div>
     ${P.lager === 'ausverkauft'
       ? `<button class="btn btn-navy" data-notify="${P.id}" id="mainAdd">${txt('pdp.buy.knopf_benachrichtigen')}</button>`
-      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">${txt('pdp.buy.knopf_kaufen', {preis: P.price})}</button>`}
+      : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0" id="mainAdd">${txt('pdp.knopf.in_den_warenkorb')}</button>`}
     <button class="btn btn-ghost" id="saveBtn">${txt('pdp.buy.knopf_merken')}</button>
   </div>
   <div class="pay-row" aria-label="${txt('pdp.buy.zahlarten_aria')}">
@@ -362,25 +374,21 @@ if (halbToggle){
     });
     const preis = einzel ? P.preisHalb : P.price;
     document.querySelector('.price-big').textContent = 'CHF ' + preis;
+    // Der Knopf traegt keinen Betrag mehr, nur noch die Variante. Der Preis steht
+    // gross darueber und im Umschalter, und dort stimmt er auch bei Menge ueber 1.
     const add = document.getElementById('mainAdd');
-    if (add && add.dataset.add){
-      add.dataset.einzel = einzel ? '1' : '0';
-      add.textContent = txt('pdp.buy.knopf_kaufen', {preis});
-    }
+    if (add && add.dataset.add) add.dataset.einzel = einzel ? '1' : '0';
     // Die mobile Kaufleiste ist derselbe Kauf, also muss sie dasselbe zeigen und tun
     const sbAdd = document.querySelector('#stickybar [data-add]');
     const sbPreis = document.querySelector('#stickybar .sb-meta span');
     if (sbAdd) sbAdd.dataset.einzel = einzel ? '1' : '0';
-    if (sbPreis) sbPreis.textContent = 'CHF ' + preis;
+    // In der Leiste steht an dieser Stelle bei ausverkauften Artikeln der Zustand,
+    // nicht der Preis. Der Zustand haengt am Datenwert, nicht am Text.
+    if (sbPreis && P.lager !== 'ausverkauft') sbPreis.textContent = 'CHF ' + preis;
     document.querySelector('.variant-line').textContent =
       `${P.variant}${einzel ? ' · ' + txt('variante.einzelohr') : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
     setzeUrl(einzel);
   });
-}
-
-// Beim Laden die Variante aus der Adresse uebernehmen
-if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
-  document.querySelector('#halbToggle button[data-einzelset="1"]')?.click();
 }
 
 // Groessenvergleich: echte Masse gegen einen Millimeter-Massstab, statt Raterei am Foto
@@ -448,12 +456,14 @@ saveBtn.addEventListener('click', () => {
 
 // Cross-Sell: andere Produkte (max 4, andere Gruppe zuerst)
 const others = PRODUCTS.filter(x => x.group !== P.group).slice(0, 4);
+// Zweites Kartenbild nur, wo es eines gibt, sonst wechselt das Foto gegen sich selbst
+const hatDetail = p => !!p.detail && p.detail !== p.thumb;
 document.getElementById('xsellRail').innerHTML = others.map(p => `
   <article class="card" data-id="${p.id}">
-    <div class="card-img" data-flip>
+    <div class="card-img${hatDetail(p) ? '' : ' single'}" data-flip>
       ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
       <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
-      <img class="detail" src="${p.detail}" alt="" loading="lazy">
+      ${hatDetail(p) ? `<img class="detail" src="${p.detail}" alt="" loading="lazy">` : ''}
     </div>
     <div class="card-meta">
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
@@ -504,7 +514,7 @@ sb.innerHTML = `
   <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? txt('pdp.leiste.ausverkauft') : 'CHF ' + P.price}</span></div>
   ${P.lager === 'ausverkauft'
     ? `<button class="btn btn-navy" data-notify="${P.id}">${txt('pdp.leiste.knopf_benachrichtigen')}</button>`
-    : `<button class="btn btn-coral" data-add="${P.id}" data-einzel="0">${txt('pdp.knopf.in_den_warenkorb')}</button>`}`;
+    : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0">${txt('pdp.knopf.in_den_warenkorb')}</button>`}`;
 const ctasEl = document.querySelector('.buy-ctas');
 function updateSticky(){
   const show = ctasEl.getBoundingClientRect().bottom < 0;
@@ -513,6 +523,14 @@ function updateSticky(){
 }
 addEventListener('scroll', updateSticky, {passive:true});
 updateSticky();
+
+// Beim Laden die Variante aus der Adresse uebernehmen. Das steht bewusst hier
+// unten: der Umschalter setzt auch die Kaufleiste, und die gibt es erst jetzt.
+// Weiter oben liefen Preis und Variante der Leiste ins Leere, sie zeigte
+// danach das Paar zum vollen Preis.
+if (new URLSearchParams(location.search).get('v') === 'einzel' && P.halb){
+  document.querySelector('#halbToggle button[data-einzelset="1"]')?.click();
+}
 
 // ---------- V3: Strukturierte Daten (SEO/GEO-Blaupause) ----------
 const ld = document.createElement('script');
@@ -552,9 +570,9 @@ if (seenPrev.length){
     const p = byId[id];
     return `
     <article class="card" data-id="${p.id}">
-      <div class="card-img" data-flip>
+      <div class="card-img${hatDetail(p) ? '' : ' single'}" data-flip>
         <img class="thumb" src="${p.thumb}" alt="${p.name} ${p.variant}" loading="lazy">
-        <img class="detail" src="${p.detail}" alt="" loading="lazy">
+        ${hatDetail(p) ? `<img class="detail" src="${p.detail}" alt="" loading="lazy">` : ''}
       </div>
       <div class="card-meta">
         <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>

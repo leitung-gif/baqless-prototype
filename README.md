@@ -59,19 +59,34 @@ entscheidet die Laufzeit selbst.
 
 ## Tests
 
+Im Wurzelverzeichnis liegen drei Testdateien. Sie laden die gebauten Seiten in
+einem iframe, bedienen sie wie eine Besucherin und schreiben je Prüfung eine
+Zeile `PASS` oder `FAIL` in das Feld oben. Weil sie die echten Adressen aufrufen,
+brauchen sie einen lokalen Server:
+
 ```
 python -m http.server 8123
 ```
 
-- `test-smoke.html`, 200 Prüfungen: Kaufweg, Varianten, Warenkorb, Kasse, Zugänglichkeit
+- `test-smoke.html`, rund 200 Prüfungen: Kaufweg, Varianten, Warenkorb, Kasse, Zugänglichkeit
 - `test-i18n.html`, 85 Prüfungen: alle drei Fassungen, Glossar-Begriffe, hreflang,
   fehlende Schlüssel, Mehrzahl, Sprachwechsel, verbotene Aussagen
+- `test-geld.html`, 39 Prüfungen, 13 je Sprachfassung: rechnet Einzelohrpreis,
+  Zwischensumme, Gratisversand-Schwelle, Versandpauschale und Gesamtbetrag
+  unabhängig vom Code nach und vergleicht mit dem, was auf dem Bildschirm steht
 
-Beide laufen auch ohne Fenster:
+Alle drei laufen auch ohne Fenster:
 
 ```
 chrome --headless=new --virtual-time-budget=400000 --dump-dom http://localhost:8123/test-smoke.html
 ```
+
+Die drei Dateien sind Prüfwerkzeug und **kein Bestandteil der Auslieferung**.
+Der Bau erzeugt sie nicht, du änderst sie also direkt. Keine Seite verlinkt sie,
+die Sitemap führt sie nicht, und `robots.txt` sperrt alle drei für Suchmaschinen.
+Sie bleiben im Repository, weil sie hier gebraucht werden. Gibst du den Stand an
+Baqless oder an eine andere Agentur weiter, löschst du `test-smoke.html`,
+`test-i18n.html` und `test-geld.html` vorher aus dem Auslieferungsordner.
 
 ## Was Platzhalter ist
 

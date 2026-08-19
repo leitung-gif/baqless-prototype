@@ -114,24 +114,46 @@ const overlay = document.getElementById('overlay');
 // Schweizer Tausendertrennung mit typografischem Apostroph. Die Locale liefert je
 // nach Browser ein gerades Apostroph oder ein schmales Leerzeichen, darum vereinheitlichen.
 const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
-// Bilder kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
-const bildVon = item => (PRODUCTS.find(x => x.id === item.id) || {}).thumb || '';
+// Bilder, Name und Variante kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
+const produktVon = item => PRODUCTS.find(x => x.id === item.id) || {};
+const bildVon = item => produktVon(item).thumb || '';
 // Beim Einzelohr ist ein Stueck ein Ohr, das muss dastehen.
 // Der Zustand haengt am Wahrheitswert der Zeile, nie am Variantentext: der ist uebersetzt.
 const istEinzel = item => item.einzel === true || String(item.key || '').endsWith('|einzel');
 const einheitVon = item => txt(istEinzel(item) ? 'einheit.pro_ohr' : 'einheit.pro_paar');
 const stueckVon = (item, n) => txtN(istEinzel(item) ? 'stueck.ohr' : 'stueck.paar', n);
+const istAus = item => produktVon(item).lager === 'ausverkauft';
+// Der gespeicherte Text bleibt nur der Notnagel fuer ein Produkt, das es nicht mehr gibt.
+const nameVon = item => produktVon(item).name || item.name || '';
+const variantVon = item => {
+  const p = produktVon(item);
+  // Gibt es das Produkt nicht mehr, bleibt nur der gespeicherte Text. Der traegt den
+  // Zusatz «Einzelohr» bereits, ein zweiter Anbau wuerde ihn doppelt hinschreiben.
+  if (!p.id) return item.variant || '';
+  const basis = p.variant || '';
+  return istEinzel(item) ? basis + ' · ' + txt('variante.einzelohr') : basis;
+};
+// Eine Zeile, die auf Deutsch entstanden ist, trug ihren deutschen Variantentext bisher
+// in die englische und franzoesische Fassung. Darum beim Laden aus PRODUCTS auffrischen,
+// genau wie das Bild. So stimmen auch Warenkorbseite, Kasse und Bestaetigung.
+cart.forEach(item => {
+  if (!produktVon(item).id) return;
+  item.name = nameVon(item);
+  item.variant = variantVon(item);
+});
 function saveCart(){ try { localStorage.setItem('baqless_cart', JSON.stringify(cart)); } catch(e) {} }
 function renderCart(){
   const body = document.getElementById('drawerBody');
   if (!cart.length){
-    body.innerHTML = `<div class="drawer-empty"><em>${txt('js.korb.leer_titel')}</em>${txt('js.korb.leer_text')}</div>`;
+    body.innerHTML = `<div class="drawer-empty"><em>${txt('js.korb.leer_titel')}</em>${txt('js.korb.leer_text')}
+      <div style="margin-top:14px"><a href="kollektion.html">${txt('kauf.aktion.weiter_shoppen')}</a></div></div>`;
   } else {
     body.innerHTML = cart.map(item => `
       <div class="drawer-item" data-line="${item.key || item.id}">
         <img src="${bildVon(item)}" alt="">
         <div>
-          <h4>${item.name}</h4><span>${item.variant}</span>
+          <h4>${nameVon(item)}</h4><span>${variantVon(item)}</span>
+          ${istAus(item) ? `<div style="margin-top:6px; font-size:12px; font-weight:600; color:var(--coral-deep)">${txt('kauf.korb.zeile.ausverkauft')}</div>` : ''}
           <div class="qty-ctrl">
             <button data-qminus="${item.key || item.id}" aria-label="${txt('js.korb.menge_minus')}">−</button>
             <span class="qv">${item.qty}</span>
@@ -147,6 +169,12 @@ function renderCart(){
   const n = cart.reduce((s,i) => s + i.qty, 0);
   cartCount.textContent = n;
   cartCount.classList.toggle('on', n > 0);
+  // Das feste aria-label am Knopf verdeckt den Zaehler im span, die Zahl war fuer
+  // Screenreader also gar nicht da. Sie gehoert in den zugaenglichen Namen.
+  // Angesagt wird die Aenderung vom Toast (role="status"), darum keine zweite Live-Region.
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartBtn) cartBtn.setAttribute('aria-label',
+    n > 0 ? txtN('nav.aria.warenkorb_mit_anzahl', n) : txt('nav.aria.warenkorb_oeffnen'));
   const fill = document.getElementById('shipFill'), versandTxt = document.getElementById('shipText');
   if (fill && versandTxt){
     fill.style.width = Math.min(sub / FREE_SHIP * 100, 100) + '%';
@@ -166,6 +194,12 @@ function toast(html){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
 }
+// Neun Stueck je Zeile. Die Grenze gilt an jeder Stelle gleich, sonst haengt sie
+// am Weg: der Plusknopf hielt sie ein, zweimal Kaufen ergab 18.
+const MAX_QTY = 9;
+function toastMax(){
+  toast(`<span class="tick">i</span><span><b>${txt('js.korb.max_titel')}</b> ${txt('js.korb.max_text', {link: `<a href="kontakt.html">${txt('js.korb.max_link')}</a>`})}</span>`);
+}
 function addToCart(id, qty, einzelohr){
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
@@ -180,31 +214,40 @@ function addToCart(id, qty, einzelohr){
   const preis = einzel ? p.preisHalb : p.price;
   const bez = einzel ? p.variant + ' \u00b7 ' + txt('variante.einzelohr') : p.variant;
   const line = cart.find(x => (x.key || x.id) === key);
-  line ? line.qty += qty : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty, einzel});
+  const platz = MAX_QTY - (line ? line.qty : 0);
+  if (platz <= 0){ toastMax(); return; }
+  const dazu = Math.min(qty, platz);
+  line ? line.qty += dazu : cart.push({key, id:p.id, name:p.name, variant:bez, price:preis, qty:dazu, einzel});
   renderCart(); pop(720);
-  track('add_to_cart', { currency: 'CHF', value: preis * qty,
-    items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: qty }] });
+  track('add_to_cart', { currency: 'CHF', value: preis * dazu,
+    items: [{ item_id: einzel ? p.sku + '-H' : p.sku, item_name: `${p.name} ${bez}`, price: preis, quantity: dazu }] });
   cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
-  toast(`<span class="tick">✓</span><span><b>${txt('js.korb.titel')}</b> ${txt('js.korb.text', {name: p.name + ' ' + bez})}</span>`);
+  // Wurde gekappt, sagt die Meldung warum, statt einen Zuwachs zu behaupten, den es nicht gab.
+  if (dazu < qty) toastMax();
+  else toast(`<span class="tick">✓</span><span><b>${txt('js.korb.titel')}</b> ${txt('js.korb.text', {name: p.name + ' ' + bez})}</span>`);
 }
 document.addEventListener('click', e => {
   const add = e.target.closest('[data-add]');
   if (add){
-    // Die Variante haengt am Knopf selbst. Nie an einem Seitenzustand, sonst
-    // erben fremde Karten (Cross-Sell, zuletzt angesehen) den Einzelohr-Preis.
-    addToCart(add.dataset.add, +(add.dataset.qty || (add.dataset.usesQty === '1'
-      ? document.getElementById('qtyVal')?.textContent : null) || 1),
-      add.dataset.einzel === '1');
-    // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt
+    // Mikrobestaetigung direkt am Knopf: der Klick hat sichtbar gewirkt.
+    // Sie steht vor addToCart, weil renderCart auf der Warenkorbseite die Kacheln
+    // neu baut. Danach haengt der geklickte Knopf nicht mehr im Dokument und die
+    // Beschriftung liefe ins Leere.
     // Nur bei Kartenknoepfen mit fester Beschriftung. Der Hauptknopf traegt einen
     // Preis, der sich beim Umschalten aendert, dort waere das Zuruecksetzen falsch.
-    if (!add.dataset.busy && add.classList.contains('add-btn')){
+    if (!add.dataset.busy && add.classList.contains('add-btn')
+        && !istAus({id: add.dataset.add})){
       const zurueck = add.textContent;
       add.dataset.busy = '1';
       add.textContent = '\u2713 ' + txt('js.knopf.im_warenkorb');
       add.classList.add('added');
       setTimeout(() => { add.textContent = zurueck; add.classList.remove('added'); delete add.dataset.busy; }, 1600);
     }
+    // Die Variante haengt am Knopf selbst. Nie an einem Seitenzustand, sonst
+    // erben fremde Karten (Cross-Sell, zuletzt angesehen) den Einzelohr-Preis.
+    addToCart(add.dataset.add, +(add.dataset.qty || (add.dataset.usesQty === '1'
+      ? document.getElementById('qtyVal')?.textContent : null) || 1),
+      add.dataset.einzel === '1');
     return;
   }
   const plus = e.target.closest('[data-qplus]');
@@ -215,10 +258,7 @@ document.addEventListener('click', e => {
       toast(`<span class="tick">i</span><span><b>${txt('js.lager.aus_titel')}</b> ${txt('js.lager.nicht_verfuegbar', {name: pr.name})}</span>`);
       return;
     }
-    if (l && l.qty >= 9){
-      toast(`<span class="tick">i</span><span><b>${txt('js.korb.max_titel')}</b> ${txt('js.korb.max_text', {link: `<a href="kontakt.html">${txt('js.korb.max_link')}</a>`})}</span>`);
-      return;
-    }
+    if (l && l.qty >= MAX_QTY){ toastMax(); return; }
     if (l){ l.qty++; renderCart(); }
     return;
   }
@@ -272,15 +312,6 @@ document.addEventListener('click', e => {
   }
   location.href = 'produkt.html?p=' + n.dataset.notify;
 });
-
-// ---------- Merkliste ----------
-function merkAnzahl(){ return merkliste.length; }
-function syncMerkZaehler(){
-  document.querySelectorAll('[data-merkcount]').forEach(el => {
-    el.textContent = merkliste.length;
-    el.classList.toggle('on', merkliste.length > 0);
-  });
-}
 
 // ---------- Fokusfuehrung fuer Overlays ----------
 // Ein geoeffnetes Overlay ist ein Dialog: der Fokus geht hinein, bleibt drin,
@@ -339,10 +370,21 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
     toast(`<span class="tick">i</span><span><b>${txt('js.kasse.leer_titel')}</b> ${txt('js.kasse.leer_text')}</span>`);
     return;
   }
+  // Dieselbe Sperre wie auf der Warenkorbseite: eine ausverkaufte Zeile kommt nicht
+  // an die Kasse. Sonst fuehrt der Drawer an der Pruefung vorbei.
+  const aus = cart.find(istAus);
+  if (aus){
+    toast(`<span class="tick">i</span><span><b>${txt('js.lager.aus_titel')}</b> ${txt('js.kasse.ausverkauft_text', {name: nameVon(aus)})}</span>`);
+    return;
+  }
   location.href = 'kasse.html';
 });
 
-// ---------- Merken: bleibt erhalten, statt nur kurz aufzublinken ----------
+// ---------- Merken ----------
+// Sichtbar wird die Merkung einzig als Beschriftung des Knopfes auf der Produktseite.
+// Es gibt keinen Zaehler im Kopf und keine Merkliste-Seite, darum steht hier auch
+// keine Zaehlerfunktion mehr. Faellt der Knopf in produkt.html weg, faellt dieser
+// Block mit ihm.
 let merkliste = [];
 try {
   merkliste = JSON.parse(localStorage.getItem('baqless_merk') || '[]');
@@ -353,11 +395,8 @@ function merkeUm(id){
   const drin = merkliste.includes(id);
   merkliste = drin ? merkliste.filter(x => x !== id) : merkliste.concat(id);
   try { localStorage.setItem('baqless_merk', JSON.stringify(merkliste)); } catch(e) {}
-  syncMerkZaehler();
   return !drin;
 }
-addEventListener('DOMContentLoaded', syncMerkZaehler);
-syncMerkZaehler();
 
 // ---------- Burger / Mobilmenü ----------
 const mnav = document.getElementById('mnav');
@@ -410,40 +449,83 @@ const cio = new IntersectionObserver(entries => {
 document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
 // ---------- V2: Sprache / Markt / Suche ----------
+// Ein zugeklapptes Menue meldet auch zugeklappt. aria-expanded blieb sonst auf true
+// stehen, sobald das Menue anders als ueber seinen Knopf zuging.
+function ddZu(o){
+  o.classList.remove('open');
+  o.querySelector('button[aria-expanded]')?.setAttribute('aria-expanded', 'false');
+}
+// Der Zustand steckt in der Klasse active und in aria-current: die Klasse faerbt,
+// aria-current sagt an. Beides laeuft zusammen, sonst liest das Vorleseprogramm in
+// en/ und fr/ weiter Deutsch als aktuellen Eintrag. Markiert werden immer beide
+// Menues, das im Kopf und das im Mobilmenue, denn beide fuehren dieselbe Wahl.
+function markiereWahl(auswahl, feld, wert){
+  document.querySelectorAll(auswahl).forEach(b => {
+    const an = (b.dataset[feld] || '').toUpperCase() === String(wert).toUpperCase();
+    b.classList.toggle('active', an);
+    b.setAttribute('aria-current', an ? 'true' : 'false');
+  });
+}
 function setupDd(ddId, btnId, onPick) {
   const dd = document.getElementById(ddId), btn = document.getElementById(btnId);
+  if (!dd || !btn) return;
   btn.addEventListener('click', e => {
     e.stopPropagation();
-    document.querySelectorAll('.v2-dd.open').forEach(o => { if (o !== dd) o.classList.remove('open'); });
+    document.querySelectorAll('.v2-dd.open').forEach(o => { if (o !== dd) ddZu(o); });
     dd.classList.toggle('open');
     btn.setAttribute('aria-expanded', dd.classList.contains('open'));
   });
   dd.querySelectorAll('.v2-menu button').forEach(b => b.addEventListener('click', () => {
-    dd.querySelectorAll('.v2-menu button').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    dd.classList.remove('open');
+    ddZu(dd);
     onPick(b);
   }));
 }
-document.addEventListener('click', () => document.querySelectorAll('.v2-dd.open').forEach(o => o.classList.remove('open')));
+document.addEventListener('click', () => document.querySelectorAll('.v2-dd.open').forEach(o => ddZu(o)));
 // Aktuelle Fassung im Menue markieren, der Kopf ist fuer alle Sprachen dieselbe Datei
 (function markiereSprache(){
   const oben = I18N.lang.toUpperCase();
   const label = document.getElementById('langLabel');
   if (label) label.textContent = oben;
-  document.querySelectorAll('#langDd .v2-menu button').forEach(b => {
-    b.classList.toggle('active', (b.dataset.lang || '').toUpperCase() === oben);
-  });
+  markiereWahl('[data-lang]', 'lang', oben);
 })();
-setupDd('langDd', 'langBtn', b => {
+function waehleSprache(b){
   const code = (b.dataset.lang || '').toLowerCase();
   if (!code || code === I18N.lang) return;
   try { localStorage.setItem('baqless_lang', code); } catch(e) {}
   location.href = sprachUrl(code);
-});
-setupDd('marketDd', 'marketBtn', b => {
-  document.getElementById('marketLabel').textContent = b.dataset.market;
-  toast(`<span class="tick">✓</span><span><b>${b.dataset.market}.</b> ${txt('js.markt.gemerkt')}</span>`);
+}
+setupDd('langDd', 'langBtn', waehleSprache);
+// Der gemerkte Markt wird beim Laden wieder gesetzt, sonst behauptet die Rueckmeldung
+// etwas, das die naechste Seite schon nicht mehr weiss. Gespeichert wird der
+// sprachneutrale data-market-Wert, genau wie beim Sprachwechsel der Code.
+(function markiereMarkt(){
+  let markt = null;
+  try { markt = localStorage.getItem('baqless_markt'); } catch(e) {}
+  if (!markt) return;
+  const knoepfe = [...document.querySelectorAll('[data-market]')];
+  if (!knoepfe.some(b => b.dataset.market === markt)) return;
+  markiereWahl('[data-market]', 'market', markt);
+  const label = document.getElementById('marketLabel');
+  if (label) label.textContent = markt;
+})();
+function waehleMarkt(b){
+  const markt = b.dataset.market;
+  if (!markt) return;
+  const label = document.getElementById('marketLabel');
+  if (label) label.textContent = markt;
+  try { localStorage.setItem('baqless_markt', markt); } catch(e) {}
+  markiereWahl('[data-market]', 'market', markt);
+  toast(`<span class="tick">✓</span><span><b>${markt}.</b> ${txt('js.markt.gemerkt')}</span>`);
+}
+setupDd('marketDd', 'marketBtn', waehleMarkt);
+// Unter 560 px nimmt styles.css beide Menues aus dem Kopf, das Mobilmenue fuehrt
+// dieselben Knoepfe noch einmal. Sie haengen an keinem Aufklappmenue und bekommen
+// ihren Klick darum hier, ueber denselben Weg wie oben.
+if (mnav) mnav.addEventListener('click', e => {
+  const sprache = e.target.closest('[data-lang]');
+  if (sprache){ waehleSprache(sprache); return; }
+  const markt = e.target.closest('[data-market]');
+  if (markt) waehleMarkt(markt);
 });
 // ---------- Suche (Live-Overlay, Taste "/") ----------
 const so = document.getElementById('searchOverlay');

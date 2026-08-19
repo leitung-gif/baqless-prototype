@@ -1,6 +1,17 @@
+# Probedateien und lokale Notizen: alles, was mit _ beginnt
+_*
 
-# Probe- und Hilfsdateien der Audit-Agenten
-_*.html
-_*.sh
-_probe/
-src/*_pass.py
+# Betriebssystem und Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Werkzeuge
+node_modules/
+*.log
+
+# Mit Absicht NICHT ignoriert: test-smoke.html, test-i18n.html und
+# test-geld.html. Sie sind Prüfwerkzeug und gehören ins Repository,
+# aber nicht in die Auslieferung an den Kunden. Siehe README, Abschnitt Tests.

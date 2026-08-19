@@ -53,7 +53,9 @@
 .weiter-link{display:inline-block; margin-top:22px; padding:11px 0; font-size:13.5px;
   color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
 .weiter-link:hover{color:var(--coral-deep)}
-.sum[hidden]{display:none}
+/* Eigene Regeln mit display schlagen die Browserregel [hidden]{display:none}.
+   Jeder Baustein, der hier versteckt wird, braucht darum seine eigene Zeile. */
+.cart-grid[hidden], .sum[hidden]{display:none}
 .cline .drop{padding:11px 0; min-height:44px}
 .cq button{width:44px; height:44px}
 .leer{padding:60px 0 30px; max-width:46ch}
