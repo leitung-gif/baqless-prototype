@@ -34,7 +34,10 @@ const VERBOTEN = [
   // Aussage nie ausloesen, und eine im Deutschen freigegebene Stelle gilt in der
   // Uebersetzung faelschlich als neuer Verstoss.
   [/sensitive ears|oreilles sensibles|empfindliche ohren/i, 'Vertraeglichkeitsaussage'],
-  [/patent(ed|iert|é|e)?[^a-zäöü]/i, 'Patentaussage'],
+  // Der Patenthinweis darf allgemein stehen. Gesperrt ist nur, was ihn pruefbar macht:
+  // eine Nummer oder ein Land. Entscheid der Marke vom 19.08.2026.
+  [/patent[^.]{0,60}(nr\.|nummer|n°|no\.|\d{4,}|schweiz|switzerland|suisse|japan|japon|deutschland|germany|france|frankreich)/i,
+    'Patenthinweis mit Nummer oder Land'],
   [/waterproof|étanche|wasserdicht/i, 'zu starke Wasseraussage'],
   [/swiss\s?made|made in switzerland|fabriqué en suisse/i, 'unzulaessige Herkunftsaussage'],
   [/never lose|nie verlieren|guaranteed|garantie de perte/i, 'unzulaessige Zusicherung'],

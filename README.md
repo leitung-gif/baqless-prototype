@@ -6,7 +6,7 @@ Interaktiver Prototyp für den Baqless-Relaunch im DACH-Raum, dreisprachig.
 Jede Seite ist eine eigenständige HTML-Datei: Bilder, Videos und Schriften sind
 als Data-URI eingebettet, es braucht keinen Server und keine Abhängigkeiten.
 
-Verbindlich ist das Handbuch der Marke, Fassung 3.0, unter
+Verbindlich ist das Handbuch der Marke unter
 `02 Kunden\Baqless\Baqless-CI-Handbuch.pdf`.
 
 ## Sprachfassungen

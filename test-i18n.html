@@ -139,7 +139,10 @@ async function run() {
   }
 
   // ---------- Verbotene Aussagen, in allen Fassungen ----------
-  const VERBOTEN = [/hypoallerg/i, /patent/i, /waterproof/i, /étanche/i, /swiss\s?made/i, /—/, /ß/];
+  // Der Patenthinweis darf allgemein stehen, gesperrt sind Nummer und Land.
+  const VERBOTEN = [/hypoallerg/i,
+    /patent[^.]{0,60}(nr\.|nummer|n°|\d{4,}|schweiz|switzerland|suisse|japan)/i,
+    /waterproof/i, /étanche/i, /swiss\s?made/i, /—/, /ß/];
   for (const v of FASSUNGEN) {
     const [d] = await geh(`/${v.pfad}faq.html`);
     const t = d.body.textContent;

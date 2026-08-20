@@ -24,7 +24,7 @@ erst mit dem Livegang.
 
 ## Was nie übersetzt wird
 
-Baqless · Click-Lock · Honesty · Amity · Embrace · WA · alle Produktnamen ·
+Baqless · BAQLESS · Click-Lock · Honesty · Amity · Embrace · WA · alle Produktnamen ·
 alle Variantennamen · SKU · TWINT · VISA · Mastercard · Amex · PayPal · Apple Pay ·
 Google Pay · Instagram · TikTok · Pinterest · Namen von Personen und Orten ·
 die WA-Motivnamen Hamon, Kumo, Hishimon, Nagare, Ten, Waku, Shirube, Sumiiri, Wa
@@ -72,7 +72,9 @@ Kein Synonym, keine Umstellung, keine Aufteilung auf zwei Stellen.
 
 ## Verboten in allen Sprachen
 
-Kein Patenthinweis, in keiner Form, auch keine Nummer.
+Beim Patent bleibt der Hinweis allgemein. Keine Nummer, kein Land, keine Liste von
+Märkten. Sobald eine Nummer oder ein Land danebensteht, wird aus einem Hinweis eine
+prüfbare Zusage, und die müsste je Markt belegt sein.
 Kein `hypoallergenic`, `hypoallergénique`, `nickelfrei`, `nickel free`, `sans nickel`,
 `for sensitive ears`, `pour oreilles sensibles`. Der Nickelprüfbericht fehlt.
 Kein `surgical steel` als Material des Schmucks, nur für den Stift.
@@ -129,7 +131,7 @@ Wirkung, nicht der Wortlaut.
 | Versand | Shipping | Livraison |
 | Gratisversand ab CHF 99 | Free shipping from CHF 99 | Livraison offerte dès CHF 99 |
 | 30 Tage Rückgaberecht | 30-day returns | Retour sous 30 jours |
-| Versand & Retouren | Shipping & returns | Livraison et retours |
+| Versand & Retouren | Shipping & returns | Livraison &amp; retours |
 | Grössenguide | Size guide | Guide des tailles |
 | Suche nach Ohrringen, Kollektionen … | Search earrings, collections … | Rechercher des boucles, des collections … |
 | Beliebt | Popular | Populaire |
