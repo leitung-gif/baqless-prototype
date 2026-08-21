@@ -688,6 +688,45 @@ async function run() {
   log('Jede Seite: hat einen Hauptbereich', ohneMain.length === 0, ohneMain.join(', '));
   log('Jede Seite: trägt einen Titel mit Markennamen', ohneTitel.length === 0, ohneTitel.join(', '));
 
+  // ===== Doppelte Bausteine =====
+  // Die Huelle bringt auf jede Seite einen Halt-Block und eine Anmeldung mit. Wo eine
+  // Seite dasselbe selbst schon fuehrt, stand es zweimal untereinander: auf der
+  // Startseite lagen zwei Anmeldeformulare 550 Pixel auseinander, mit demselben Titel
+  // und demselben Feld. Gefunden hat das niemand, weil Seite und Huelle verschiedenen
+  // Haenden gehoerten. Diese drei Pruefungen finden es beim naechsten Mal sofort.
+  const dopp = [], vieleNl = [], leereAbschnitte = [];
+  for (const seite of ALLE) {
+    f.src = '/' + seite; await loadOnce(); await sleep(300);
+    const dd = f.contentDocument, dw = f.contentWindow;
+    const sichtbar = el => el && dw.getComputedStyle(el).display !== 'none'
+      && el.offsetParent !== null;
+
+    // Produktnamen duerfen mehrfach vorkommen, ein Artikel steht in zwei Reihen.
+    const titel = [...dd.querySelectorAll('h1,h2,h3')]
+      .filter(h => sichtbar(h) && !h.closest('article.card'))
+      .map(h => h.textContent.trim().replace(/\s+/g, ' '))
+      .filter(t => t.length > 2);
+    const zaehl = {};
+    titel.forEach(t => zaehl[t] = (zaehl[t] || 0) + 1);
+    const mehrfach = Object.entries(zaehl).filter(([, n]) => n > 1).map(([t]) => t);
+    if (mehrfach.length) dopp.push(seite + ': ' + mehrfach.join(' / '));
+
+    const nl = [...dd.querySelectorAll('form[data-nlform]')].filter(sichtbar);
+    if (nl.length > 1) vieleNl.push(seite + ': ' + nl.length);
+
+    // Ein Abschnitt mit Ueberschrift und ohne Text ist ein Baurest.
+    for (const s of dd.querySelectorAll('main section')) {
+      if (!sichtbar(s)) continue;
+      const h = s.querySelector('h1,h2,h3');
+      if (!h) continue;
+      const text = s.textContent.replace(h.textContent, '').replace(/\s+/g, ' ').trim();
+      if (text.length < 40) leereAbschnitte.push(seite + ': ' + h.textContent.trim().slice(0, 40));
+    }
+  }
+  log('Jede Seite: keine Überschrift doppelt', dopp.length === 0, dopp.join(' | '));
+  log('Jede Seite: höchstens eine Anmeldung sichtbar', vieleNl.length === 0, vieleNl.join(' | '));
+  log('Jede Seite: kein Abschnitt ohne Text', leereAbschnitte.length === 0, leereAbschnitte.join(' | '));
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });

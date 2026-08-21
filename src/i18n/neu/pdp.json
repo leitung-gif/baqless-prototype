@@ -1,0 +1,257 @@
+{
+ "pdp.zweck.honesty-slice": {
+  "de": "Das Paar für jeden Tag. Morgens einklicken, abends merken, dass du kein einziges Mal daran gedacht hast.",
+  "en": "The pair for every day. You click them in first thing and notice at night that you never once thought about them.",
+  "fr": "La paire de tous les jours. Vous les clipsez le matin et vous constatez le soir que vous n'y avez pas pensé une seule fois."
+ },
+ "pdp.zweck.honesty-minelta": {
+  "de": "Für alle, die Gold mögen und trotzdem nicht auffallen wollen. Passt zum Hemd im Büro und zum Handtuch am See.",
+  "en": "For everyone who likes gold and still would rather not stand out. It works with a shirt at the office and with a towel by the lake.",
+  "fr": "Pour celles qui aiment l'or sans vouloir se faire remarquer. Elle va avec la chemise du bureau comme avec la serviette au bord du lac."
+ },
+ "pdp.zweck.honesty-leaf": {
+  "de": "Für den Tag mit Programm: Sitzung, Abendessen, letzte Bahn. Du legst sie einmal an und lässt sie dort.",
+  "en": "For the day with a full schedule: meeting, dinner, last train. You put them in once and leave them there.",
+  "fr": "Pour la journée bien remplie : réunion, dîner, dernier train. Vous les mettez une fois et vous les laissez."
+ },
+ "pdp.zweck.honesty-dew": {
+  "de": "Der kleine Anfang. Für das erste Baqless Paar, und für alle, die schon viel tragen und noch einen ruhigen Punkt suchen.",
+  "en": "The small beginning. For a first Baqless pair, and for everyone who already wears a lot and is looking for one quiet point.",
+  "fr": "Le petit début. Pour une première paire Baqless, et pour celles qui portent déjà beaucoup et cherchent un point discret."
+ },
+ "pdp.zweck.amity-polaris": {
+  "de": "Für den Abend, an dem ein Funken reicht. Klein genug fürs Büro, hell genug fürs Restaurant danach.",
+  "en": "For the evening where one spark is enough. Small enough for the office, bright enough for the restaurant afterwards.",
+  "fr": "Pour le soir où une étincelle suffit. Assez discrète pour le bureau, assez lumineuse pour le restaurant ensuite."
+ },
+ "pdp.zweck.amity-luna": {
+  "de": "Eine Perle für einen ganzen Tag, nicht für zwei Stunden. Für alle, die Perlen mögen und keine Lust auf ein Schmuckkästchen haben.",
+  "en": "A pearl for a whole day, not for two hours. For everyone who likes pearls and has no patience for a jewellery box.",
+  "fr": "Une perle pour toute une journée, pas pour deux heures. Pour celles qui aiment les perles sans vouloir d'écrin."
+ },
+ "pdp.zweck.amity-friendship": {
+  "de": "Gedacht für zwei. Ob das zwei Menschen sind oder zwei Löcher in einem Ohr, entscheidest du.",
+  "en": "Made for two. Whether that is two people or two piercings in one ear is up to you.",
+  "fr": "Pensée pour deux. Que ce soit deux personnes ou deux trous dans une oreille, c'est vous qui décidez."
+ },
+ "pdp.zweck.embrace-sage": {
+  "de": "Die Emaille ist farbecht und wasserfest. Neon ist hier also kein Auftritt für einen Abend, sondern für eine Woche am Stück.",
+  "en": "The enamel is colourfast and water-resistant. So neon here is not one evening out, it is a whole week at a time.",
+  "fr": "L'émail ne se décolore pas et résiste à l'eau. Le néon n'est donc pas ici une sortie d'un soir, mais une semaine entière."
+ },
+ "pdp.zweck.embrace-band": {
+  "de": "Die Form einer Creole, ohne das Gefummel beim Schliessen. Für alle, die Reifen mögen und Verschlüsse nie mochten.",
+  "en": "The shape of a hoop, without the fiddling when you close it. For everyone who likes hoops and never liked fastenings.",
+  "fr": "La forme d'une créole, sans la gymnastique à la fermeture. Pour celles qui aiment les anneaux et n'ont jamais aimé les fermoirs."
+ },
+ "pdp.zweck.embrace-zirkonia": {
+  "de": "Für den Anlass, an dem fotografiert wird. Funkeln vorne, hinten ein Stift, der quer steht.",
+  "en": "For the occasion where photographs get taken. Sparkle at the front, and at the back a post standing crosswise.",
+  "fr": "Pour l'occasion où l'on prend des photos. De l'éclat devant, et derrière une tige placée en travers."
+ },
+ "pdp.zweck.wa-sumiiri": {
+  "de": "Sumiiri heisst Tuscheeintrag, der erste Strich auf leerem Papier. Für den Tag, an dem du etwas anfängst.",
+  "en": "Sumiiri means the ink mark, the first stroke on empty paper. For the day you begin something.",
+  "fr": "Sumiiri désigne le trait d'encre, le premier geste sur une page vide. Pour le jour où vous commencez quelque chose."
+ },
+ "pdp.zweck.wa-hamon": {
+  "de": "Für den Tag, an dem ein Muster mehr erzählt als ein Stein. Du trägst eine Linie, keine Fassung.",
+  "en": "For the day when a pattern says more than a stone. What you wear is a line, not a setting.",
+  "fr": "Pour le jour où un motif en dit plus qu'une pierre. Ce que vous portez, c'est une ligne, pas un sertissage."
+ },
+ "pdp.zweck.wa-kumo": {
+  "de": "Wolke statt Welle, Wolke statt Tuschestrich. Für den Tag, an dem du nichts erklären willst.",
+  "en": "A cloud instead of a wave, a cloud instead of an ink stroke. For the day when you do not want to explain anything.",
+  "fr": "Un nuage plutôt qu'une vague, un nuage plutôt qu'un trait d'encre. Pour le jour où vous n'avez envie de rien expliquer."
+ },
+ "pdp.zweck.standard": {
+  "de": "Ohrringe mit Click-Lock: einstecken, Vierteldrehung, klick. Ein Rückteil brauchst du dafür nie.",
+  "en": "Earrings with Click-Lock: push in, quarter turn, click. You never need a back for them.",
+  "fr": "Des boucles d'oreilles avec Click-Lock : insérez, quart de tour, clic. Vous n'avez jamais besoin de poussoir."
+ },
+ "pdp.sorge.titel": {
+  "de": "Was Leute vor dem Kauf fragen",
+  "en": "What people ask before they buy",
+  "fr": "Ce que l'on nous demande avant d'acheter"
+ },
+ "pdp.sorge.wasser.frage": {
+  "de": "Muss ich sie zum Duschen abnehmen?",
+  "en": "Do I have to take them out to shower?",
+  "fr": "Dois-je les retirer pour la douche ?"
+ },
+ "pdp.sorge.wasser.antwort": {
+  "de": "Bleibt drin beim Duschen und Schwimmen. Nach dem Meer spülst du sie kurz mit Süsswasser ab, mehr braucht es nicht. Die eine Ausnahme nennen wir selbst: Modelle mit echter Perle nimmst du vorher heraus, das steht unten unter Pflege.",
+  "en": "Stays in in the shower and in the sea. After the sea you rinse them briefly with fresh water, and that is all. We name the one exception ourselves: models with a real pearl come out first, and it says so below under care.",
+  "fr": "Reste en place sous la douche et dans l'eau. Après la mer, vous les rincez brièvement à l'eau claire, rien de plus. Nous signalons nous-mêmes la seule exception : les modèles avec une véritable perle, retirez-les avant, c'est indiqué plus bas sous Entretien."
+ },
+ "pdp.sorge.material.frage": {
+  "de": "Was habe ich da im Ohr?",
+  "en": "What am I putting in my ear?",
+  "fr": "Qu'est-ce que je mets dans mon oreille ?"
+ },
+ "pdp.sorge.material.antwort": {
+  "de": "Sterling Silber 925. Nur der Stift hinter dem Ohr ist chirurgischer Edelstahl, weil er die Drehung tragen muss.",
+  "en": "Sterling silver 925. Only the post behind the ear is surgical stainless steel, because it has to carry the turn.",
+  "fr": "Argent sterling 925. Seule la tige derrière l'oreille est en acier chirurgical, parce qu'elle doit encaisser la rotation."
+ },
+ "pdp.sorge.passform.frage": {
+  "de": "Passt das an jedes Ohr?",
+  "en": "Does it fit every ear?",
+  "fr": "Est-ce que cela va à toutes les oreilles ?"
+ },
+ "pdp.sorge.passform.antwort": {
+  "de": "Nein. Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Unten unter Grösse und Passform steht, wie du das vorher prüfst.",
+  "en": "No. The fastening needs room for a quarter turn. On very thick earlobes it cannot rotate. Below, under Size and fit, you can read how to check this beforehand.",
+  "fr": "Non. Le fermoir a besoin de place pour un quart de tour. Sur un lobe très épais, il ne peut pas tourner. Plus bas, sous Taille et ajustement, vous lisez comment le vérifier à l'avance."
+ },
+ "pdp.sorge.rueckgabe.frage": {
+  "de": "Und wenn es doch nicht passt?",
+  "en": "And if it does not fit after all?",
+  "fr": "Et si finalement cela ne convient pas ?"
+ },
+ "pdp.sorge.rueckgabe.antwort": {
+  "de": "30 Tage Rückgaberecht. Ungetragen, die Originalverpackung genügt. Den ganzen Ablauf liest du unten unter Versand und Retouren.",
+  "en": "30-day returns. Unworn, the original packaging is enough. The whole process is set out below under Shipping and returns.",
+  "fr": "Retour sous 30 jours. Non portée, l'emballage d'origine suffit. Le déroulement complet figure plus bas, sous Livraison et retours."
+ },
+ "pdp.mech.folge.titel": {
+  "de": "Und was heisst das im Alltag?",
+  "en": "And what does that mean day to day?",
+  "fr": "Et concrètement, au quotidien ?"
+ },
+ "pdp.mech.folge.text": {
+  "de": "Du musst sie abends nicht mehr herausnehmen. Kein Rückteil, das im Waschbecken landet. Kein Suchen im Bettzeug. Kein zweites Paar in der Tasche, für den Fall der Fälle.",
+  "en": "You no longer have to take them out in the evening. No back that ends up in the basin. No hunting through the bedding. No second pair in your bag, just in case.",
+  "fr": "Vous n'avez plus à les retirer le soir. Pas de poussoir qui finit dans le lavabo. Pas de recherche dans les draps. Pas de seconde paire au fond du sac, au cas où."
+ },
+ "pdp.teaser.beschreibung": {
+  "de": "Was dieses Modell ausmacht",
+  "en": "What sets this model apart",
+  "fr": "Ce qui caractérise ce modèle"
+ },
+ "pdp.teaser.material": {
+  "de": "Silber, Stift, Masse, Gewicht",
+  "en": "Silver, post, dimensions, weight",
+  "fr": "Argent, tige, dimensions, poids"
+ },
+ "pdp.teaser.groesse": {
+  "de": "In Millimetern, an einem Massstab",
+  "en": "In millimetres, against a scale",
+  "fr": "En millimètres, sur une règle"
+ },
+ "pdp.teaser.handhabung": {
+  "de": "Anlegen, justieren, lösen",
+  "en": "Putting in, adjusting, taking out",
+  "fr": "Mettre, ajuster, retirer"
+ },
+ "pdp.teaser.pflege": {
+  "de": "Was sie aushalten und was nicht",
+  "en": "What they take and what they do not",
+  "fr": "Ce qu'elles supportent et ce qu'elles ne supportent pas"
+ },
+ "pdp.teaser.versand": {
+  "de": "Länder, Fristen, Rückgabe",
+  "en": "Countries, timings, returns",
+  "fr": "Pays, délais, retour"
+ },
+ "pdp.nachkauf.titel": {
+  "de": "Nach dem Klick auf Kaufen.",
+  "en": "After you click buy.",
+  "fr": "Après le clic sur Acheter."
+ },
+ "pdp.nachkauf.lead": {
+  "de": "Damit du weisst, was kommt, bevor du bestellst.",
+  "en": "So you know what happens before you order.",
+  "fr": "Pour savoir ce qui vous attend avant de commander."
+ },
+ "pdp.nachkauf.schritt1.titel": {
+  "de": "Bestätigung, sofort",
+  "en": "Confirmation, straight away",
+  "fr": "Confirmation, tout de suite"
+ },
+ "pdp.nachkauf.schritt1.text": {
+  "de": "Eine Mail mit der Bestellnummer, direkt nach dem Kauf. Ein Konto brauchst du dafür nicht.",
+  "en": "An email with the order number, right after the purchase. You do not need an account for it.",
+  "fr": "Un e-mail avec le numéro de commande, juste après l'achat. Aucun compte n'est nécessaire."
+ },
+ "pdp.nachkauf.schritt2.titel": {
+  "de": "Von Hand gepackt",
+  "en": "Packed by hand",
+  "fr": "Emballé à la main"
+ },
+ "pdp.nachkauf.schritt2.text": {
+  "de": "Wir prüfen den Bestand und packen. Die zweite Mail bestätigt dir die Annahme der Bestellung.",
+  "en": "We check the stock and pack. The second email confirms that your order has been accepted.",
+  "fr": "Nous vérifions le stock et nous emballons. Le deuxième e-mail vous confirme l'acceptation de la commande."
+ },
+ "pdp.nachkauf.schritt3.titel": {
+  "de": "Versandmeldung mit Sendungsnummer",
+  "en": "Dispatch note with tracking number",
+  "fr": "Avis d'expédition avec numéro de suivi"
+ },
+ "pdp.nachkauf.schritt3.text": {
+  "de": "Versand aus der Schweiz oder aus Japan. Lieferzeit [wird vor dem Livegang je Land festgelegt].",
+  "en": "Shipped from Switzerland or from Japan. Delivery time [set per country before launch].",
+  "fr": "Expédition depuis la Suisse ou depuis le Japon. Délai de livraison [fixé par pays avant le lancement]."
+ },
+ "pdp.nachkauf.schritt4.titel": {
+  "de": "Ankommen und anlegen",
+  "en": "Arriving, and putting them in",
+  "fr": "À la réception"
+ },
+ "pdp.nachkauf.schritt4.text": {
+  "de": "Einstecken, drehen, klick. Passt etwas nicht, hast du 30 Tage Zeit, und wir erstatten auf dasselbe Zahlmittel.",
+  "en": "Push in, turn, click. If something is not right, you have 30 days, and we refund to the same means of payment.",
+  "fr": "Insérez, tournez, clic. Si quelque chose ne va pas, vous avez 30 jours, et nous remboursons sur le même moyen de paiement."
+ },
+ "pdp.schema.label": {
+  "de": "Verschluss im Schnitt",
+  "en": "Fastening in cross-section",
+  "fr": "Fermoir en coupe"
+ },
+ "pdp.schema.aria": {
+  "de": "Schematischer Schnitt durch das Ohrläppchen. Der T-förmige Stift steht nach der Vierteldrehung quer hinter dem Ohr, der Ohrring liegt vorne auf.",
+  "en": "Schematic cross-section through the earlobe. After the quarter turn the T-shaped post stands crosswise behind the ear, with the earring sitting at the front.",
+  "fr": "Coupe schématique du lobe. Après le quart de tour, la tige en T se place en travers derrière l'oreille, la boucle reposant devant."
+ },
+ "pdp.schema.legende": {
+  "de": "Schematische Zeichnung, kein Foto. Der Verschluss ist bei allen Baqless Ohrringen derselbe.",
+  "en": "A schematic drawing, not a photograph. The fastening is the same on every Baqless earring.",
+  "fr": "Dessin schématique, pas une photographie. Le fermoir est le même sur toutes les boucles Baqless."
+ },
+ "pdp.schema.teil_ohrring": {
+  "de": "Ohrring",
+  "en": "Earring",
+  "fr": "Boucle"
+ },
+ "pdp.schema.teil_lappen": {
+  "de": "Ohrläppchen",
+  "en": "Earlobe",
+  "fr": "Lobe"
+ },
+ "pdp.schema.teil_anker": {
+  "de": "Anker, quer",
+  "en": "Anchor, crosswise",
+  "fr": "Ancre, en travers"
+ },
+ "pdp.schema.teil_drehung": {
+  "de": "Vierteldrehung",
+  "en": "Quarter turn",
+  "fr": "Quart de tour"
+ },
+ "pdp.halb.wofuer": {
+  "de": "Ein einzelnes Ohr nimmst du fürs zweite Loch, zum Kombinieren mit einem anderen Paar, oder als Ersatz, wenn eines abhandengekommen ist.",
+  "en": "You take a single earring for a second piercing, to combine with another pair, or as a replacement when one has gone missing.",
+  "fr": "Vous prenez une boucle seule pour un deuxième trou, pour la combiner avec une autre paire, ou en remplacement si vous en avez perdu une."
+ },
+ "pdp.halb.anker": {
+  "de": "Zwei einzelne Ohren kosten CHF {zwei}. Das Paar kostet CHF {paar}.",
+  "en": "Two single earrings cost CHF {zwei}. The pair costs CHF {paar}.",
+  "fr": "Deux boucles seules coûtent CHF {zwei}. La paire coûte CHF {paar}."
+ },
+ "pdp.versand.detail": {
+  "de": "Versand aus der Schweiz (CH, DE, AT, FR, IT, FL) und aus Japan (Rest der Welt). Gratisversand ab CHF 99, sonst [Tarif folgt]. Lieferzeit [wird vor dem Livegang je Land festgelegt]. Rückgabe innert 30 Tagen: ungetragen, die Originalverpackung genügt. Du schreibst uns, wir schicken dir den Retourenschein, und wir erstatten auf dasselbe Zahlmittel. [Wer die Rücksendung zahlt, steht vor dem Livegang fest.]",
+  "en": "We ship from Switzerland (CH, DE, AT, FR, IT, FL) and from Japan (rest of the world). Free shipping from CHF 99, otherwise [rate to follow]. Delivery time [set per country before launch]. Returns within 30 days: unworn, the original packaging is enough. You write to us, we send you the return slip, and we refund to the same means of payment. [Who pays for the return is settled before launch.]",
+  "fr": "Expédition depuis la Suisse (CH, DE, AT, FR, IT, FL) et depuis le Japon (reste du monde). Livraison offerte dès CHF 99, sinon [tarif à venir]. Délai de livraison [fixé par pays avant le lancement]. Retour sous 30 jours : non portée, l'emballage d'origine suffit. Vous nous écrivez, nous vous envoyons le bon de retour et nous remboursons sur le même moyen de paiement. [Qui paie le retour sera fixé avant le lancement.]"
+ }
+}

@@ -1,3 +1,86 @@
+<style>
+/* ============================================================
+   Huelle, Kopf. Seiteneigene Regeln, styles.css bleibt unberuehrt.
+   Der Block steht vor dem Markup, damit er beim Aufbau schon greift.
+   ============================================================ */
+
+/* Trefferflaechen. Neun Pixel Polster allein reichten nicht: die Zeile erbt
+   1.65 vom Grundtext, bei 13 Pixel Schrift sind das 21.45 Pixel, macht 39.5
+   statt 44. Die Zeilenhoehe wird darum fest auf 26 gesetzt, 26 plus zweimal 9
+   ergibt genau 44. Die Kopfhoehe bleibt bei 80, weil die Werkzeugleiste
+   rechts ohnehin 44 hoch ist. Der Unterstrich sitzt am Fuss der Zeile. */
+.nav-links > a, .nav-links > .nav-drop > a{display:block; line-height:26px; padding:9px 0}
+.nav-links > a::after, .nav-links > .nav-drop > a::after{bottom:9px}
+
+/* Hilfe war bisher nur ueber den Fuss zu erreichen. Sie gehoert in die
+   Werkzeugleiste neben Suche und Warenkorb, nicht in die Inhaltsnavigation:
+   die bleibt bei vier Eintraegen. Unter 920 Pixel fuehrt das Mobilmenue
+   dieselben Seiten, dort waere das Zeichen doppelt. */
+#helpBtn{color:inherit}
+@media(max-width:920px){#helpBtn{display:none}}
+
+/* Das Kollektionsmenue war eine Liste mit Zahlen. Jetzt sagt es auch,
+   wofuer die vier Welten stehen, und faengt Erstbesucherinnen auf.
+   Wer zum ersten Mal hier ist, sucht nicht Honesty, sondern eine Antwort
+   auf die Frage, was ein Ohrring ohne Rueckteil ueberhaupt ist. */
+/* Zwischen der Zeile und dem Menue liegen vierzehn Pixel Nichts. Wer die Maus
+   nach unten fuehrt, verliert dort das Ueberfahren, und das Menue faellt zu,
+   bevor die Hand ankommt. Eine unsichtbare Bruecke in Menuebreite haelt den
+   Zustand. Sie steht nur da, solange das Menue offen ist, sonst wuerde sie
+   Klicks auf den Inhalt darunter abfangen. */
+.nav-drop::after{content:''; position:absolute; top:100%; left:50%;
+  transform:translateX(-50%); width:min(370px,86vw); height:16px; display:none}
+.nav-drop:hover::after, .nav-drop:focus-within::after{display:block}
+
+.nav-panel{min-width:min(370px,86vw); padding:10px}
+.nav-panel a{display:grid; grid-template-columns:1fr auto; gap:2px 16px;
+  align-items:baseline; padding:10px 12px; min-height:44px}
+.nav-panel a b{grid-area:1 / 1}
+.nav-panel a span{grid-area:1 / 2}
+.nav-panel a i{grid-area:2 / 1; font-style:normal; font-size:12px; line-height:1.4;
+  color:var(--ink-soft); transition:color .12s cubic-bezier(.19,1,.22,1)}
+.nav-panel a:hover i{color:var(--charcoal)}
+/* Die Panel-Links liegen in .nav-links und erbten deren Unterstrich. Weil sie
+   selbst nicht positioniert sind, wuchs beim Ueberfahren ein Coral-Balken quer
+   ueber den ganzen Panelboden. Der Strich gehoert in die Hauptzeile, nicht hier. */
+.nav-panel a::after{display:none}
+.nav-panel .np-all{display:flex; align-items:center; justify-content:space-between;
+  gap:14px; min-height:44px; padding:11px 12px; margin-top:6px}
+.nav-panel .np-all::after{display:inline; content:'\2192'; position:static;
+  width:auto; height:auto; background:none; font-weight:400}
+.nav-panel .np-neu{display:block; margin-top:8px; padding:13px 14px; border-radius:8px;
+  background:var(--coral-tint); transition:background .12s cubic-bezier(.19,1,.22,1)}
+.nav-panel .np-neu:hover{background:#FFD3CB}
+.nav-panel .np-neu b{display:block; font-size:13.5px; font-weight:600; color:var(--coral-deep)}
+.nav-panel .np-neu i{display:block; font-style:normal; font-size:12px; line-height:1.45;
+  color:var(--charcoal); margin-top:3px}
+
+/* Derselbe Einstieg im Mobilmenue, dort sogar an erster Stelle: auf dem
+   Telefon ist das Menue oft der erste Ort, an dem jemand etwas sucht. */
+.mnav-head{margin-bottom:24px}
+.mnav-neu{position:relative; display:flex; align-items:center; gap:14px;
+  margin-bottom:26px; padding:15px 16px; min-height:44px;
+  border:1px solid rgba(250,247,242,.22); border-radius:8px;
+  background:rgba(250,247,242,.06);
+  transition:border-color .12s cubic-bezier(.19,1,.22,1), background .12s cubic-bezier(.19,1,.22,1)}
+.mnav-neu:hover, .mnav-neu:active{border-color:var(--coral); background:rgba(255,122,106,.1)}
+.mnav-neu b{display:block; font-size:15px; font-weight:600; color:#fff}
+.mnav-neu i{display:block; font-style:normal; font-size:13px; line-height:1.45;
+  color:rgba(250,247,242,.7); margin-top:3px}
+.mnav-neu .mn-pfeil{margin-left:auto; flex:none; color:var(--coral); font-size:19px; line-height:1}
+
+/* Die Vertrauenszeile steht auch im Mobilmenue: wer hier haengt, hat Fragen. */
+.mnav-trust{position:relative; margin-top:auto; padding-top:26px;
+  border-top:1px solid rgba(250,247,242,.16);
+  display:grid; gap:10px; font-size:13.5px; color:rgba(250,247,242,.74)}
+.mnav-trust span{display:flex; align-items:flex-start; gap:11px}
+.mnav-trust svg{flex:none; margin-top:2px; opacity:.75}
+/* Der Trennstrich steht jetzt ueber der Vertrauenszeile, ein zweiter
+   zwanzig Pixel darunter waere nur Rauschen. */
+.mnav .mnav-sub{margin-top:22px; padding-top:0; border-top:0}
+.mnav .mnav-sub a{display:flex; align-items:center; min-height:44px; padding:0}
+</style>
+
 <a class="skip-link" href="#inhalt">{{t:nav.skip.zum_inhalt}}</a>
 <nav id="nav" aria-label="{{t:nav.aria.hauptnavigation}}">
   <a class="wordmark" href="index.html" aria-label="{{t:nav.aria.wortmarke}}">
@@ -9,11 +92,15 @@
     <div class="nav-drop">
       <a href="kollektion.html" aria-haspopup="true">{{t:nav.link.kollektionen}}</a>
       <div class="nav-panel">
-        <a href="kollektion.html?c=Honesty"><b>Honesty</b><span data-navcount="Honesty"></span></a>
-        <a href="kollektion.html?c=Amity"><b>Amity</b><span data-navcount="Amity"></span></a>
-        <a href="kollektion.html?c=Embrace"><b>Embrace</b><span data-navcount="Embrace"></span></a>
-        <a href="kollektion.html?c=WA"><b>WA</b><span data-navcount="WA"></span></a>
+        <a href="kollektion.html?c=Honesty"><b>Honesty</b><span data-navcount="Honesty"></span><i>{{t:huelle.nav.panel.honesty}}</i></a>
+        <a href="kollektion.html?c=Amity"><b>Amity</b><span data-navcount="Amity"></span><i>{{t:huelle.nav.panel.amity}}</i></a>
+        <a href="kollektion.html?c=Embrace"><b>Embrace</b><span data-navcount="Embrace"></span><i>{{t:huelle.nav.panel.embrace}}</i></a>
+        <a href="kollektion.html?c=WA"><b>WA</b><span data-navcount="WA"></span><i>{{t:huelle.nav.panel.wa}}</i></a>
         <a class="np-all" href="kollektion.html">{{t:nav.panel.alle_paare}}</a>
+        <a class="np-neu" href="index.html#clicklock">
+          <b>{{t:huelle.einstieg.titel}}</b>
+          <i>{{t:huelle.einstieg.text}}</i>
+        </a>
       </div>
     </div>
     <a href="journal.html">{{t:nav.link.journal}}</a>
@@ -23,6 +110,9 @@
     <button class="nav-icon-btn" id="searchBtn" aria-label="{{t:nav.aria.suche_oeffnen}}" aria-expanded="false" aria-controls="searchOverlay">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
     </button>
+    <a class="nav-icon-btn" id="helpBtn" href="faq.html" aria-label="{{t:huelle.nav.aria.hilfe}}" title="{{t:huelle.foot.support.gut_zu_wissen}}">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2A2.7 2.7 0 0 1 14.7 10c0 1.8-2.7 2.3-2.7 4"/><path d="M12 17.4h.01"/></svg>
+    </a>
     <div class="v2-dd" id="langDd">
       <button class="nav-icon-btn" id="langBtn" aria-expanded="false" aria-controls="langMenu"><span id="langLabel">DE</span>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
@@ -66,6 +156,13 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
+  <a class="mnav-neu" href="index.html#clicklock">
+    <span>
+      <b>{{t:huelle.einstieg.titel}}</b>
+      <i>{{t:huelle.einstieg.text}}</i>
+    </span>
+    <span class="mn-pfeil" aria-hidden="true">→</span>
+  </a>
   <div class="mnav-links">
     <a href="neuheiten.html">{{t:nav.mobil.neuheiten}}</a>
     <a href="kollektion.html">{{t:nav.mobil.kollektionen}}</a>
@@ -92,6 +189,11 @@
       <button data-market="IT · EUR" aria-current="false" style="min-height:44px">{{t:kauf.land.italien}} · EUR <span class="tick" aria-hidden="true">✓</span></button>
       <div class="v2-menu-note" style="max-width:none">{{t:nav.markt.notiz}}</div>
     </div>
+  </div>
+  <div class="mnav-trust">
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 15a9 9 0 1 0 2.1-9.6L3 8"/><path d="M3 3v5h5"/></svg>{{t:foot.trust.rueckgabe}}</span>
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2.5 0-4.5-1.1-4.5-2.7C7.5 3.9 8.6 3 10 3c1.8 0 2 2.5 2 5Zm0 0c2.5 0 4.5-1.1 4.5-2.7C16.5 3.9 15.4 3 14 3c-1.8 0-2 2.5-2 5Z"/></svg>{{t:foot.trust.gratisversand}}</span>
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.2 2.9 7.9 7 9.5 4.1-1.6 7-5.3 7-9.5V6l-7-3Z"/></svg>{{t:huelle.trust.material.titel}}</span>
   </div>
   <div class="mnav-sub">
     <a href="widerruf.html">{{t:nav.mobil_sub.versand}}</a>

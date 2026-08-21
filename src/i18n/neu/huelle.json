@@ -1,0 +1,172 @@
+{
+ "huelle.drawer.hinweis_versand": {
+  "de": "Versandkosten siehst du an der Kasse, bevor du bezahlst.",
+  "en": "Shipping costs appear at checkout, before you pay.",
+  "fr": "Les frais de livraison s'affichent à la commande, avant le paiement."
+ },
+ "huelle.drawer.rueckgabe": {
+  "de": "30 Tage Rückgaberecht, ungetragen und original verpackt.",
+  "en": "30-day returns, unworn and in the original packaging.",
+  "fr": "Retour sous 30 jours, non porté et dans son emballage d'origine."
+ },
+ "huelle.drawer.zahlung": {
+  "de": "Zahlung mit TWINT, Karte, PayPal, Apple Pay oder Google Pay.",
+  "en": "Pay with TWINT, card, PayPal, Apple Pay or Google Pay.",
+  "fr": "Paiement par TWINT, carte, PayPal, Apple Pay ou Google Pay."
+ },
+ "huelle.einstieg.text": {
+  "de": "Einstecken, drehen, klick. So hält ein Ohrring ohne Rückteil.",
+  "en": "Push in, turn, click. That is how an earring holds without a back.",
+  "fr": "Insérez, tournez, clic. C'est ainsi qu'une boucle tient sans poussoir."
+ },
+ "huelle.einstieg.titel": {
+  "de": "Neu hier?",
+  "en": "New here?",
+  "fr": "Première visite ?"
+ },
+ "huelle.foot.entdecken.clicklock": {
+  "de": "So funktioniert Click-Lock",
+  "en": "How Click-Lock works",
+  "fr": "Comment fonctionne Click-Lock"
+ },
+ "huelle.foot.entdecken.wa": {
+  "de": "Die WA-Serie",
+  "en": "The WA series",
+  "fr": "La série WA"
+ },
+ "huelle.foot.halt.augenbraue": {
+  "de": "Bevor du gehst",
+  "en": "Before you go",
+  "fr": "Avant de partir"
+ },
+ "huelle.foot.halt.frage": {
+  "de": "Lieber direkt fragen?",
+  "en": "Rather just ask?",
+  "fr": "Vous préférez demander directement ?"
+ },
+ "huelle.foot.halt.frage_link": {
+  "de": "Sag Hallo.",
+  "en": "Say hello.",
+  "fr": "Dites bonjour."
+ },
+ "huelle.foot.halt.klick.text": {
+  "de": "Der Verschluss in drei Handgriffen, Schritt für Schritt gezeigt.",
+  "en": "The fastening in three moves, shown step by step.",
+  "fr": "Le fermoir en trois gestes, montré étape par étape."
+ },
+ "huelle.foot.halt.klick.titel": {
+  "de": "Hält das ohne Rückteil?",
+  "en": "Does it hold without a back?",
+  "fr": "Est-ce que cela tient sans poussoir ?"
+ },
+ "huelle.foot.halt.passform.text": {
+  "de": "Wie fest der Verschluss klemmt und wo seine Grenze liegt. Wir nennen sie selbst.",
+  "en": "How firmly the fastening grips and where its limit lies. We name it ourselves.",
+  "fr": "La force du serrage et sa limite. Nous la nommons nous-mêmes."
+ },
+ "huelle.foot.halt.passform.titel": {
+  "de": "Passt das an mein Ohr?",
+  "en": "Will it fit my ear?",
+  "fr": "Est-ce que cela ira à mon oreille ?"
+ },
+ "huelle.foot.halt.retoure.text": {
+  "de": "Rückgabe, Versandwege und Zoll stehen auf einer Seite.",
+  "en": "Returns, shipping routes and customs on one page.",
+  "fr": "Retours, acheminement et douane sur une seule page."
+ },
+ "huelle.foot.halt.retoure.titel": {
+  "de": "Und wenn es doch nicht passt?",
+  "en": "And if it is not right after all?",
+  "fr": "Et si cela ne convient pas ?"
+ },
+ "huelle.foot.halt.titel": {
+  "de": "Drei Fragen, die vor dem ersten Paar kommen.",
+  "en": "Three questions that come before the first pair.",
+  "fr": "Trois questions qui précèdent la première paire."
+ },
+ "huelle.foot.marke.herkunft": {
+  "de": "Entwickelt in der Schweiz, von Hand gefertigt",
+  "en": "Developed in Switzerland, handcrafted",
+  "fr": "Conçu en Suisse, fabriqué à la main"
+ },
+ "huelle.foot.newsletter.fein": {
+  "de": "Höchstens zwei Mails im Monat. Abmelden mit einem Klick, in jeder Mail.",
+  "en": "Two emails a month at most. One click to unsubscribe, in every email.",
+  "fr": "Deux e-mails par mois au maximum. Désinscription en un clic, dans chaque e-mail."
+ },
+ "huelle.foot.note.preise": {
+  "de": "Alle Preise in CHF, inklusive Mehrwertsteuer. Versandkosten siehst du im Bestellprozess.",
+  "en": "All prices in CHF, including VAT. Shipping costs are shown during checkout.",
+  "fr": "Tous les prix en CHF, TVA comprise. Les frais de livraison s'affichent lors de la commande."
+ },
+ "huelle.foot.shop.alle": {
+  "de": "Alle Paare",
+  "en": "All pairs",
+  "fr": "Toutes les paires"
+ },
+ "huelle.foot.support.gut_zu_wissen": {
+  "de": "Gut zu wissen",
+  "en": "Good to know",
+  "fr": "Bon à savoir"
+ },
+ "huelle.foot.trust.aria": {
+  "de": "Das gilt bei jeder Bestellung",
+  "en": "This applies to every order",
+  "fr": "Valable pour chaque commande"
+ },
+ "huelle.foot.zahlung.label": {
+  "de": "Bezahlen mit",
+  "en": "Pay with",
+  "fr": "Payer avec"
+ },
+ "huelle.nav.aria.hilfe": {
+  "de": "Gut zu wissen, Fragen und Antworten",
+  "en": "Good to know, questions and answers",
+  "fr": "Bon à savoir, questions et réponses"
+ },
+ "huelle.nav.panel.amity": {
+  "de": "Sterne, Monde, ein Funkeln.",
+  "en": "Stars, moons, a little sparkle.",
+  "fr": "Étoiles, lunes, un éclat."
+ },
+ "huelle.nav.panel.embrace": {
+  "de": "Form und Farbe, laut getragen.",
+  "en": "Shape and colour, worn loud.",
+  "fr": "Formes et couleurs, sans retenue."
+ },
+ "huelle.nav.panel.honesty": {
+  "de": "Klare Linien, für jeden Tag.",
+  "en": "Clean lines, for every day.",
+  "fr": "Des lignes nettes, pour tous les jours."
+ },
+ "huelle.nav.panel.wa": {
+  "de": "Japanische Muster, nummeriert.",
+  "en": "Japanese patterns, numbered.",
+  "fr": "Motifs japonais, numérotés."
+ },
+ "huelle.suche.tastatur": {
+  "de": "Die Taste / öffnet die Suche, Esc schliesst sie wieder.",
+  "en": "Press / to open search, Esc to close it again.",
+  "fr": "La touche / ouvre la recherche, Échap la referme."
+ },
+ "huelle.trust.material.text": {
+  "de": "Nur der Stift hinter dem Ohr ist chirurgischer Edelstahl.",
+  "en": "Only the post behind the ear is surgical stainless steel.",
+  "fr": "Seule la tige derrière l'oreille est en acier chirurgical."
+ },
+ "huelle.trust.material.titel": {
+  "de": "Sterling Silber 925",
+  "en": "Sterling silver 925",
+  "fr": "Argent sterling 925"
+ },
+ "huelle.trust.rueckgabe.text": {
+  "de": "Ungetragen und in der Originalverpackung zurück, 30 Tage ab Erhalt.",
+  "en": "Send them back unworn and in the original packaging, 30 days from delivery.",
+  "fr": "Renvoyez-les non portées et dans leur emballage d'origine, sous 30 jours après réception."
+ },
+ "huelle.trust.versand.text": {
+  "de": "Darunter siehst du die Kosten im Bestellprozess, bevor du bezahlst.",
+  "en": "Below that you see the cost during checkout, before you pay.",
+  "fr": "En dessous, vous voyez les frais lors de la commande, avant de payer."
+ }
+}

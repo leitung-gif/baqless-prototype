@@ -1,0 +1,457 @@
+{
+ "kaufweg.korb.balken.aria": {
+  "de": "Fortschritt bis zum Gratisversand",
+  "en": "Progress towards free shipping",
+  "fr": "Progression vers la livraison offerte"
+ },
+ "kaufweg.korb.balken.rest": {
+  "de": "Noch <b>{betrag}</b> bis zum Gratisversand",
+  "en": "<b>{betrag}</b> to go until free shipping",
+  "fr": "Encore <b>{betrag}</b> avant la livraison offerte"
+ },
+ "kaufweg.korb.balken.erreicht": {
+  "de": "Gratisversand gesichert. Der Versand kostet dich nichts.",
+  "en": "Free shipping secured. Delivery costs you nothing.",
+  "fr": "Livraison offerte acquise. Vous ne payez pas la livraison."
+ },
+ "kaufweg.korb.zeile.merken": {
+  "de": "Für später merken",
+  "en": "Save for later",
+  "fr": "Garder pour plus tard"
+ },
+ "kaufweg.korb.zeile.merken_titel": {
+  "de": "Gemerkt.",
+  "en": "Saved.",
+  "fr": "Gardé."
+ },
+ "kaufweg.korb.zeile.merken_text": {
+  "de": "{name} liegt jetzt weiter unten auf dieser Seite.",
+  "en": "{name} is now further down this page.",
+  "fr": "{name} se trouve maintenant plus bas sur cette page."
+ },
+ "kaufweg.korb.summe.mwst": {
+  "de": "Alle Preise in Schweizer Franken, inklusive Mehrwertsteuer.",
+  "en": "All prices in Swiss francs, VAT included.",
+  "fr": "Tous les prix en francs suisses, TVA comprise."
+ },
+ "kaufweg.korb.summe.versand_ab": {
+  "de": "Gratis ab {betrag}",
+  "en": "Free from {betrag}",
+  "fr": "Offerte dès {betrag}"
+ },
+ "kaufweg.korb.summe.naechster": {
+  "de": "Nächster Schritt: Adresse und Zahlung. Ohne Konto, in etwa zwei Minuten.",
+  "en": "Next step: address and payment. No account, about two minutes.",
+  "fr": "Étape suivante : adresse et paiement. Sans compte, environ deux minutes."
+ },
+ "kaufweg.korb.summe.aus_hinweis": {
+  "de": "Eine Zeile ist gerade ausverkauft. Nimm sie heraus, dann geht es weiter.",
+  "en": "One line is currently sold out. Remove it and you can carry on.",
+  "fr": "Une ligne est épuisée pour le moment. Retirez-la et vous pourrez continuer."
+ },
+ "kaufweg.korb.zahlarten.label": {
+  "de": "Bezahlen kannst du mit",
+  "en": "You can pay with",
+  "fr": "Vous pouvez payer avec"
+ },
+ "kaufweg.korb.vertrauen.zahlung": {
+  "de": "Zahlungsdaten erfasst der Zahlungsanbieter, nie wir",
+  "en": "Payment details go to the payment provider, never to us",
+  "fr": "Les données de paiement vont au prestataire, jamais à nous"
+ },
+ "kaufweg.korb.fragen.titel": {
+  "de": "Bevor du bestellst.",
+  "en": "Before you order.",
+  "fr": "Avant de commander."
+ },
+ "kaufweg.korb.fragen.dauer.titel": {
+  "de": "Wie lange dauert es?",
+  "en": "How long does it take?",
+  "fr": "Combien de temps cela prend-il ?"
+ },
+ "kaufweg.korb.fragen.dauer.text": {
+  "de": "Standard 2 bis 4 Werktage, Express 1 bis 2. Wir packen von Hand, in der Baqless Verpackung. Sobald dein Paket unterwegs ist, kommt die Sendungsnummer per Mail.",
+  "en": "Standard 2 to 4 working days, Express 1 to 2. We pack by hand, in the Baqless box. As soon as your parcel is on its way, the tracking number arrives by email.",
+  "fr": "Standard 2 à 4 jours ouvrables, Express 1 à 2. Nous emballons à la main, dans l'écrin Baqless. Dès que votre colis part, le numéro de suivi vous arrive par e-mail."
+ },
+ "kaufweg.korb.fragen.dauer.platzhalter": {
+  "de": "[Laufzeiten je Land werden vor dem Livegang bestätigt.]",
+  "en": "[Delivery times per country will be confirmed before launch.]",
+  "fr": "[Les délais par pays seront confirmés avant le lancement.]"
+ },
+ "kaufweg.korb.fragen.passform.titel": {
+  "de": "Passt der Verschluss bei mir?",
+  "en": "Will the fastening fit me?",
+  "fr": "Le fermoir me conviendra-t-il ?"
+ },
+ "kaufweg.korb.fragen.passform.text": {
+  "de": "Fast immer, aber nicht immer. Der Anker braucht Platz für die Vierteldrehung hinter dem Ohrläppchen. Bei sehr dicken Ohrläppchen dreht er nicht. Das sagen wir dir lieber jetzt als nach dem Auspacken.",
+  "en": "Almost always, but not always. The anchor needs room for the quarter turn behind the earlobe. On very thick earlobes it will not turn. We would rather tell you now than after you unwrap it.",
+  "fr": "Presque toujours, mais pas toujours. L'ancre a besoin de place pour le quart de tour derrière le lobe. Sur un lobe très épais, elle ne tourne pas. Nous préférons vous le dire maintenant plutôt qu'au déballage."
+ },
+ "kaufweg.korb.fragen.passform.link": {
+  "de": "Frag uns kurz, wir antworten ehrlich.",
+  "en": "Ask us, we will answer honestly.",
+  "fr": "Écrivez-nous, nous répondons honnêtement."
+ },
+ "kaufweg.korb.fragen.rueckgabe.titel": {
+  "de": "Und wenn es doch nicht passt?",
+  "en": "And if it does not fit after all?",
+  "fr": "Et si cela ne convient pas ?"
+ },
+ "kaufweg.korb.fragen.rueckgabe.text": {
+  "de": "Du hast 30 Tage ab Erhalt. Ungetragen und in der Originalverpackung. Du schreibst uns, wir schicken dir die Rücksendeadresse und ein Retourenlabel.",
+  "en": "You have 30 days from delivery. Unworn and in the original packaging. You write to us, we send you the return address and a return label.",
+  "fr": "Vous avez 30 jours dès réception. Non portées et dans leur emballage d'origine. Vous nous écrivez, nous vous envoyons l'adresse de retour et une étiquette."
+ },
+ "kaufweg.korb.fragen.rueckgabe.link": {
+  "de": "Ablauf und Fristen",
+  "en": "Process and deadlines",
+  "fr": "Procédure et délais"
+ },
+ "kaufweg.korb.fragen.sicher.titel": {
+  "de": "Ist das sicher?",
+  "en": "Is this secure?",
+  "fr": "Est-ce sécurisé ?"
+ },
+ "kaufweg.korb.fragen.sicher.text": {
+  "de": "Die Verbindung ist verschlüsselt. Deine Zahlungsdaten gibst du beim Zahlungsanbieter ein, nicht bei uns. Ein Konto brauchst du nicht, und Kartendaten speichern wir keine.",
+  "en": "The connection is encrypted. You enter your payment details with the payment provider, not with us. You do not need an account, and we store no card details.",
+  "fr": "La connexion est chiffrée. Vous saisissez vos données de paiement chez le prestataire, pas chez nous. Aucun compte n'est nécessaire et nous ne conservons aucune donnée de carte."
+ },
+ "kaufweg.korb.gemerkt.titel": {
+  "de": "Für später gemerkt.",
+  "en": "Saved for later.",
+  "fr": "Gardé pour plus tard."
+ },
+ "kaufweg.korb.gemerkt.text": {
+  "de": "Bleibt in diesem Browser, bis du es zurücklegst.",
+  "en": "Stays in this browser until you put it back.",
+  "fr": "Reste dans ce navigateur jusqu'à ce que vous le remettiez."
+ },
+ "kaufweg.korb.gemerkt.entfernen": {
+  "de": "Nicht mehr merken",
+  "en": "Remove from saved",
+  "fr": "Ne plus garder"
+ },
+ "kaufweg.best.schritt4.text": {
+  "de": "Wie du sie anlegst, steht gleich hier unten, mit Bild.",
+  "en": "How to put them in is just below, with a picture.",
+  "fr": "Comment les mettre, c'est juste en dessous, avec une image."
+ },
+ "kaufweg.best.schritt4.titel": {
+  "de": "Dein Paket ist da.",
+  "en": "Your parcel has arrived.",
+  "fr": "Votre colis est arrivé."
+ },
+ "kaufweg.korb.leiste.aria": {
+  "de": "Warenkorb, Gesamtbetrag und Weg zur Kasse",
+  "en": "Cart, total and way to checkout",
+  "fr": "Panier, total et accès à la commande"
+ },
+ "kaufweg.kasse.mail.hilfe": {
+  "de": "Dorthin gehen die Bestätigung und die Sendungsnummer. Wir schreiben dir nur zu dieser Bestellung.",
+  "en": "This is where the confirmation and the tracking number go. We only write to you about this order.",
+  "fr": "C'est là qu'arrivent la confirmation et le numéro de suivi. Nous ne vous écrivons qu'au sujet de cette commande."
+ },
+ "kaufweg.kasse.telefon.hilfe": {
+  "de": "Nur für die Zustellmeldung. Wir rufen nicht an.",
+  "en": "Only for the delivery notice. We do not call.",
+  "fr": "Uniquement pour l'avis de livraison. Nous n'appelons pas."
+ },
+ "kaufweg.kasse.land.hilfe": {
+  "de": "Das Land bestimmt Versandkosten und Laufzeit.",
+  "en": "The country determines shipping cost and delivery time.",
+  "fr": "Le pays détermine les frais et le délai de livraison."
+ },
+ "kaufweg.kasse.land.ausland": {
+  "de": "Lieferung nach {land}: [Zoll, Einfuhrabgaben und Laufzeit werden vor dem Livegang je Land ergänzt.]",
+  "en": "Delivery to {land}: [customs, import charges and delivery time will be added per country before launch.]",
+  "fr": "Livraison vers {land} : [les droits de douane, les taxes à l'importation et le délai seront ajoutés par pays avant le lancement.]"
+ },
+ "kaufweg.kasse.rechnung.hinweis": {
+  "de": "Die Rechnungsadresse ist dieselbe wie die Lieferadresse. Brauchst du eine andere, schreib es uns nach der Bestellung.",
+  "en": "The billing address is the same as the delivery address. If you need a different one, write to us after ordering.",
+  "fr": "L'adresse de facturation est identique à l'adresse de livraison. S'il vous en faut une autre, écrivez-nous après la commande."
+ },
+ "kaufweg.kasse.versand.standard_zusatz": {
+  "de": "Mit Sendungsnummer.",
+  "en": "With tracking number.",
+  "fr": "Avec numéro de suivi."
+ },
+ "kaufweg.kasse.versand.express_zusatz": {
+  "de": "Mit Sendungsnummer, bevorzugt gepackt.",
+  "en": "With tracking number, packed first.",
+  "fr": "Avec numéro de suivi, emballé en priorité."
+ },
+ "kaufweg.kasse.summe.aendern": {
+  "de": "Ändern",
+  "en": "Edit",
+  "fr": "Modifier"
+ },
+ "kaufweg.kasse.summe.rest_gratis": {
+  "de": "Noch {betrag} bis zum Gratisversand.",
+  "en": "{betrag} to go until free shipping.",
+  "fr": "Encore {betrag} avant la livraison offerte."
+ },
+ "kaufweg.kasse.nach_kauf": {
+  "de": "Nach dem Klick siehst du die Bestätigung mit deiner Bestellnummer. Die Mail folgt sofort.",
+  "en": "After the click you see the confirmation with your order number. The email follows immediately.",
+  "fr": "Après le clic, vous voyez la confirmation avec votre numéro de commande. L'e-mail suit immédiatement."
+ },
+ "kaufweg.kasse.vertrauen.rueckgabe": {
+  "de": "30 Tage Rückgaberecht, ungetragen",
+  "en": "30-day returns, unworn",
+  "fr": "Retour sous 30 jours, non portées"
+ },
+ "kaufweg.kasse.vertrauen.zahlung": {
+  "de": "Kartendaten speichern wir keine",
+  "en": "We store no card details",
+  "fr": "Nous ne conservons aucune donnée de carte"
+ },
+ "kaufweg.kasse.vertrauen.konto": {
+  "de": "Kein Konto nötig",
+  "en": "No account needed",
+  "fr": "Aucun compte nécessaire"
+ },
+ "kaufweg.kasse.fehler.mail_leer": {
+  "de": "Wir brauchen noch deine E-Mail-Adresse.",
+  "en": "We still need your email address.",
+  "fr": "Il nous manque votre adresse e-mail."
+ },
+ "kaufweg.kasse.fehler.mail_falsch": {
+  "de": "Bitte prüf die E-Mail-Adresse.",
+  "en": "Please check the email address.",
+  "fr": "Vérifiez l'adresse e-mail."
+ },
+ "kaufweg.kasse.fehler.vorname": {
+  "de": "Wir brauchen noch deinen Vornamen.",
+  "en": "We still need your first name.",
+  "fr": "Il nous manque votre prénom."
+ },
+ "kaufweg.kasse.fehler.nachname": {
+  "de": "Wir brauchen noch deinen Nachnamen.",
+  "en": "We still need your surname.",
+  "fr": "Il nous manque votre nom."
+ },
+ "kaufweg.kasse.fehler.strasse": {
+  "de": "Wir brauchen noch deine Strasse.",
+  "en": "We still need your street.",
+  "fr": "Il nous manque votre rue."
+ },
+ "kaufweg.kasse.fehler.plz_leer": {
+  "de": "Wir brauchen noch die Postleitzahl.",
+  "en": "We still need the postcode.",
+  "fr": "Il nous manque le code postal."
+ },
+ "kaufweg.kasse.fehler.plz_falsch": {
+  "de": "Die Postleitzahl sieht noch nicht vollständig aus.",
+  "en": "The postcode does not look complete yet.",
+  "fr": "Le code postal semble incomplet."
+ },
+ "kaufweg.kasse.fehler.ort": {
+  "de": "Wir brauchen noch den Ort.",
+  "en": "We still need the town.",
+  "fr": "Il nous manque la localité."
+ },
+ "kaufweg.kasse.fehler.liste.eins": {
+  "de": "{n} Angabe fehlt noch",
+  "en": "{n} detail is still missing",
+  "fr": "{n} information manque encore"
+ },
+ "kaufweg.kasse.fehler.liste.viele": {
+  "de": "{n} Angaben fehlen noch",
+  "en": "{n} details are still missing",
+  "fr": "{n} informations manquent encore"
+ },
+ "kaufweg.kasse.fehler.liste_hilfe": {
+  "de": "Tipp an, was fehlt, dann springt der Cursor hin.",
+  "en": "Tap what is missing and the cursor jumps there.",
+  "fr": "Touchez ce qui manque et le curseur s'y place."
+ },
+ "kaufweg.kasse.hilfe.titel": {
+  "de": "Unsicher bei etwas?",
+  "en": "Unsure about something?",
+  "fr": "Un doute ?"
+ },
+ "kaufweg.kasse.hilfe.text": {
+  "de": "Schreib uns vor dem Kauf. Wir antworten innert 24 Stunden, auch wenn die Antwort «passt bei dir eher nicht» lautet.",
+  "en": "Write to us before you buy. We reply within 24 hours, even when the answer is “this is probably not right for you”.",
+  "fr": "Écrivez-nous avant d'acheter. Nous répondons sous 24 heures, même si la réponse est « cela ne vous conviendra sans doute pas »."
+ },
+ "kaufweg.kasse.hilfe.knopf": {
+  "de": "Sag Hallo",
+  "en": "Say hello",
+  "fr": "Dites bonjour"
+ },
+ "kaufweg.best.nummer.kopieren": {
+  "de": "Kopieren",
+  "en": "Copy",
+  "fr": "Copier"
+ },
+ "kaufweg.best.nummer.kopiert": {
+  "de": "Kopiert",
+  "en": "Copied",
+  "fr": "Copié"
+ },
+ "kaufweg.best.nummer.hinweis": {
+  "de": "Nimm sie mit, wenn du uns schreibst. Damit finden wir deine Bestellung sofort.",
+  "en": "Bring it along when you write to us. It lets us find your order straight away.",
+  "fr": "Indiquez-le quand vous nous écrivez. Nous retrouvons votre commande immédiatement."
+ },
+ "kaufweg.best.drucken": {
+  "de": "Bestellung drucken",
+  "en": "Print order",
+  "fr": "Imprimer la commande"
+ },
+ "kaufweg.best.liefer.titel": {
+  "de": "Voraussichtlich bei dir",
+  "en": "Expected to reach you",
+  "fr": "Livraison prévue"
+ },
+ "kaufweg.best.liefer.fenster": {
+  "de": "zwischen {von} und {bis}",
+  "en": "between {von} and {bis}",
+  "fr": "entre le {von} et le {bis}"
+ },
+ "kaufweg.best.liefer.hinweis": {
+  "de": "Gerechnet in Werktagen ab Versand, mit {art}.",
+  "en": "Counted in working days from dispatch, with {art}.",
+  "fr": "Calculé en jours ouvrables dès l'expédition, avec {art}."
+ },
+ "kaufweg.best.liefer.platzhalter": {
+  "de": "[Laufzeiten je Land werden vor dem Livegang bestätigt.]",
+  "en": "[Delivery times per country will be confirmed before launch.]",
+  "fr": "[Les délais par pays seront confirmés avant le lancement.]"
+ },
+ "kaufweg.best.zeitleiste.erledigt": {
+  "de": "Erledigt",
+  "en": "Done",
+  "fr": "Fait"
+ },
+ "kaufweg.best.bild_alt": {
+  "de": "Zwei Hände fassen einen Ohrring mit der Pinzette, an der Werkbank",
+  "en": "Two hands holding an earring with tweezers at the bench",
+  "fr": "Deux mains tenant une boucle d'oreille avec une pince, à l'établi"
+ },
+ "kaufweg.best.anlegen.titel": {
+  "de": "Einstecken, drehen, klick.",
+  "en": "Push in, turn, click.",
+  "fr": "Insérez, tournez, clic."
+ },
+ "kaufweg.best.anlegen.lead": {
+  "de": "Wenn dein Paket da ist, geht das mit einer Hand, ohne Spiegel.",
+  "en": "When your parcel arrives, this works with one hand and no mirror.",
+  "fr": "À l'arrivée du colis, cela se fait d'une seule main, sans miroir."
+ },
+ "kaufweg.best.anlegen.s1.titel": {
+  "de": "Einstecken",
+  "en": "Push in",
+  "fr": "Insérez"
+ },
+ "kaufweg.best.anlegen.s1.text": {
+  "de": "Wie bei einem normalen Stecker durchs Ohrloch führen.",
+  "en": "Guide it through the piercing like any ordinary stud.",
+  "fr": "Passez la tige dans le trou comme pour une puce ordinaire."
+ },
+ "kaufweg.best.anlegen.s2.titel": {
+  "de": "Eine Vierteldrehung",
+  "en": "A quarter turn",
+  "fr": "Un quart de tour"
+ },
+ "kaufweg.best.anlegen.s2.text": {
+  "de": "Den Ohrring drehen, bis der Anker quer hinter dem Ohrläppchen liegt.",
+  "en": "Turn the earring until the anchor lies crosswise behind the earlobe.",
+  "fr": "Tournez la boucle jusqu'à ce que l'ancre se place en travers derrière le lobe."
+ },
+ "kaufweg.best.anlegen.s3.titel": {
+  "de": "Klick",
+  "en": "Click",
+  "fr": "Clic"
+ },
+ "kaufweg.best.anlegen.s3.text": {
+  "de": "Du hörst und spürst es. Rückteile gibt es keine.",
+  "en": "You hear it and feel it. There are no backs.",
+  "fr": "Vous l'entendez et le sentez. Il n'y a pas de poussoir."
+ },
+ "kaufweg.best.anlegen.klemm": {
+  "de": "Sitzt es zu locker oder zu fest, verschiebst du das gedrehte Stiftteil ein Stück. Die Klemmkraft stellst du damit selbst ein.",
+  "en": "If the grip feels too loose or too tight, shift the turned part of the post a little. That is how you set the grip yourself.",
+  "fr": "Si le serrage est trop lâche ou trop ferme, déplacez légèrement la partie tournée de la tige. C'est ainsi que vous réglez vous-même le serrage."
+ },
+ "kaufweg.best.pflege.titel": {
+  "de": "So bleiben sie schön.",
+  "en": "How to keep them looking good.",
+  "fr": "Pour qu'elles restent belles."
+ },
+ "kaufweg.best.pflege.p1": {
+  "de": "Mit einem weichen Tuch abwischen. Das genügt.",
+  "en": "Wipe with a soft cloth. That is enough.",
+  "fr": "Essuyez avec un chiffon doux. Cela suffit."
+ },
+ "kaufweg.best.pflege.p2": {
+  "de": "Kein Ultraschall, keine scharfen Reiniger, kein Bleichmittel.",
+  "en": "No ultrasound, no harsh cleaners, no bleach.",
+  "fr": "Pas d'ultrasons, pas de nettoyants agressifs, pas de javel."
+ },
+ "kaufweg.best.pflege.p3": {
+  "de": "Parfum und Haarspray vor dem Anlegen auftragen. Beschichtete Modelle halten so länger.",
+  "en": "Put on perfume and hairspray before the earrings go in. Coated pieces last longer that way.",
+  "fr": "Appliquez parfum et laque avant de les mettre. Les modèles revêtus durent ainsi plus longtemps."
+ },
+ "kaufweg.best.pflege.p4": {
+  "de": "Nach dem Meer kurz mit Süsswasser abspülen. Modelle mit echter Perle nimmst du zum Duschen und Schwimmen besser heraus.",
+  "en": "Rinse briefly with fresh water after the sea. Pieces with a real pearl are better taken out for showering and swimming.",
+  "fr": "Rincez brièvement à l'eau douce après la mer. Les modèles à perle véritable, retirez-les plutôt pour la douche et la baignade."
+ },
+ "kaufweg.best.passt.titel": {
+  "de": "Wenn es nicht passt.",
+  "en": "If it does not fit.",
+  "fr": "Si cela ne convient pas."
+ },
+ "kaufweg.best.passt.text": {
+  "de": "30 Tage ab Erhalt, ungetragen und in der Originalverpackung. Du schreibst uns mit dieser Bestellnummer, wir schicken dir die Rücksendeadresse und ein Retourenlabel. Sobald das Paket bei uns ist, erstatten wir auf dein ursprüngliches Zahlungsmittel, in der Regel innert 5 Arbeitstagen.",
+  "en": "30 days from delivery, unworn and in the original packaging. You write to us quoting this order number, we send you the return address and a return label. Once the parcel is with us, we refund to your original means of payment, usually within 5 working days.",
+  "fr": "30 jours dès réception, non portées et dans leur emballage d'origine. Vous nous écrivez en indiquant ce numéro de commande, nous vous envoyons l'adresse de retour et une étiquette. Dès réception du colis, nous remboursons sur votre moyen de paiement d'origine, en général sous 5 jours ouvrables."
+ },
+ "kaufweg.best.passt.dreht_nicht": {
+  "de": "Dreht der Anker bei dir nicht, weil dein Ohrläppchen dicker ist als gedacht: Sag es uns. Das ist ein Rückgabegrund wie jeder andere, und wir haben ihn vorher angekündigt.",
+  "en": "If the anchor will not turn because your earlobe is thicker than expected, tell us. That is a reason for return like any other, and we said so beforehand.",
+  "fr": "Si l'ancre ne tourne pas parce que votre lobe est plus épais que prévu, dites-le-nous. C'est un motif de retour comme un autre, et nous l'avions annoncé."
+ },
+ "kaufweg.best.passt.knopf": {
+  "de": "Rückgabe und Fristen",
+  "en": "Returns and deadlines",
+  "fr": "Retours et délais"
+ },
+ "kaufweg.best.mail.titel": {
+  "de": "Keine Mail bekommen?",
+  "en": "No email yet?",
+  "fr": "Pas d'e-mail ?"
+ },
+ "kaufweg.best.mail.text": {
+  "de": "Schau zuerst im Spam-Ordner. Ist sie auch dort nicht, schreib uns mit dieser Bestellnummer. Wir schicken sie neu.",
+  "en": "Check the spam folder first. If it is not there either, write to us quoting this order number. We will send it again.",
+  "fr": "Regardez d'abord dans les indésirables. Si elle n'y est pas non plus, écrivez-nous en indiquant ce numéro. Nous la renvoyons."
+ },
+ "kaufweg.best.aendern.titel": {
+  "de": "Etwas ändern oder stornieren?",
+  "en": "Change or cancel something?",
+  "fr": "Modifier ou annuler ?"
+ },
+ "kaufweg.best.aendern.text": {
+  "de": "Bis das Paket raus ist, geht das. Adresse falsch, Variante vertauscht, doch lieber das andere Paar: schreib uns mit deiner Bestellnummer. Wir antworten innert 24 Stunden.",
+  "en": "Until the parcel leaves, that is possible. Wrong address, mixed-up variant, or you would rather have the other pair: write to us quoting your order number. We reply within 24 hours.",
+  "fr": "Tant que le colis n'est pas parti, c'est possible. Adresse erronée, variante inversée, ou vous préférez l'autre paire : écrivez-nous en indiquant votre numéro de commande. Nous répondons sous 24 heures."
+ },
+ "kaufweg.best.kontakt.knopf": {
+  "de": "Schreib uns",
+  "en": "Write to us",
+  "fr": "Écrivez-nous"
+ },
+ "kaufweg.best.weiter.titel": {
+  "de": "Der Rest ist deine Story.",
+  "en": "The rest is your story.",
+  "fr": "Le reste, c'est votre histoire."
+ }
+}

@@ -1,0 +1,452 @@
+{
+ "faq.meta.beschreibung": {
+  "de": "Hält der Verschluss? Passt er an jedes Ohr? Achtzehn Antworten zu Click-Lock, Bestellung, Versand und Rückgabe.",
+  "en": "Does the fastening hold? Does it fit every ear? Eighteen answers on Click-Lock, ordering, shipping and returns.",
+  "fr": "Le fermoir tient-il ? Convient-il à toutes les oreilles ? Dix-huit réponses sur le Click-Lock, la commande, la livraison et le retour."
+ },
+ "faq.kopf.eyebrow": {
+  "de": "Fragen und Antworten",
+  "en": "Questions and answers",
+  "fr": "Questions et réponses"
+ },
+ "faq.kopf.intro": {
+  "de": "Achtzehn Fragen, die uns wirklich gestellt werden. Zuoberst steht, was vor dem Kauf zählt: ob der Verschluss hält und ob er an dein Ohr passt. Danach kommen Auswahl, Bestellung, Versand und Rückgabe.",
+  "en": "Eighteen questions people really ask us. At the top is what matters before you buy: whether the fastening holds and whether it fits your ear. After that come choosing, ordering, shipping and returns.",
+  "fr": "Dix-huit questions qui nous sont réellement posées. En haut, ce qui compte avant l'achat : le fermoir tient-il et convient-il à votre oreille. Viennent ensuite le choix, la commande, la livraison et le retour."
+ },
+ "faq.zusage.antwort.titel": {
+  "de": "Antwort innert 24 Stunden",
+  "en": "An answer within 24 hours",
+  "fr": "Une réponse sous 24 heures"
+ },
+ "faq.zusage.antwort.text": {
+  "de": "Montag bis Freitag, von einer Person, nicht von einem Textbaustein.",
+  "en": "Monday to Friday, from a person, not from a template.",
+  "fr": "Du lundi au vendredi, par une personne, pas par un modèle type."
+ },
+ "faq.zusage.rueckgabe.titel": {
+  "de": "30 Tage Rückgabe",
+  "en": "30-day returns",
+  "fr": "Retour sous 30 jours"
+ },
+ "faq.zusage.rueckgabe.text": {
+  "de": "Ab Erhalt, ungetragen und in der Originalverpackung. Das Retourenlabel kommt von uns.",
+  "en": "From the day it arrives, unworn and in its original packaging. We send the return label.",
+  "fr": "À compter de la réception, non porté et dans son emballage d'origine. L'étiquette de retour vient de nous."
+ },
+ "faq.zusage.grenze.titel": {
+  "de": "Wir nennen die Grenze",
+  "en": "We name the limit",
+  "fr": "Nous disons la limite"
+ },
+ "faq.zusage.grenze.text": {
+  "de": "Der Verschluss passt nicht an jedes Ohr. Wo er nicht passt, steht es hier, vor dem Kauf.",
+  "en": "The fastening does not fit every ear. Where it does not, it says so here, before you buy.",
+  "fr": "Le fermoir ne convient pas à toutes les oreilles. Là où il ne convient pas, c'est écrit ici, avant l'achat."
+ },
+ "faq.nav.titel": {
+  "de": "Auf dieser Seite",
+  "en": "On this page",
+  "fr": "Sur cette page"
+ },
+ "faq.nav.hilfe.titel": {
+  "de": "Frage nicht dabei?",
+  "en": "Question not here?",
+  "fr": "Votre question n'y est pas ?"
+ },
+ "faq.nav.hilfe.text": {
+  "de": "Schreib uns. Antwort innert 24 Stunden.",
+  "en": "Write to us. An answer within 24 hours.",
+  "fr": "Écrivez-nous. Une réponse sous 24 heures."
+ },
+ "faq.nav.hilfe.knopf": {
+  "de": "Zum Kontakt",
+  "en": "Contact us",
+  "fr": "Nous contacter"
+ },
+ "faq.gruppe.halt.titel": {
+  "de": "Hält es? Passt es?",
+  "en": "Does it hold? Does it fit?",
+  "fr": "Ça tient ? Ça convient ?"
+ },
+ "faq.gruppe.halt.text": {
+  "de": "Die zwei Fragen, die vor jedem Kauf kommen. Darum stehen sie zuoberst.",
+  "en": "The two questions that come before every purchase. That is why they are at the top.",
+  "fr": "Les deux questions qui précèdent tout achat. C'est pourquoi elles sont en haut."
+ },
+ "faq.gruppe.auswahl.titel": {
+  "de": "Was du genau kaufst",
+  "en": "What exactly you are buying",
+  "fr": "Ce que vous achetez exactement"
+ },
+ "faq.gruppe.auswahl.text": {
+  "de": "Paar oder Einzelohr, Serie, Verpackung. Und was passiert, wenn dein Modell gerade weg ist.",
+  "en": "Pair or single earring, series, packaging. And what happens when your model is gone for the moment.",
+  "fr": "La paire ou la boucle seule, la série, l'emballage. Et ce qui se passe si votre modèle est momentanément épuisé."
+ },
+ "faq.gruppe.bestellen.titel": {
+  "de": "Bestellen, bezahlen, bekommen",
+  "en": "Ordering, paying, receiving",
+  "fr": "Commander, payer, recevoir"
+ },
+ "faq.gruppe.bestellen.text": {
+  "de": "Was du tust, was wir tun, und wann was bei dir ist.",
+  "en": "What you do, what we do, and when what reaches you.",
+  "fr": "Ce que vous faites, ce que nous faisons, et quand vous recevez quoi."
+ },
+ "faq.gruppe.danach.titel": {
+  "de": "Wenn es nicht passt, und danach",
+  "en": "If it does not fit, and afterwards",
+  "fr": "Si cela ne convient pas, et ensuite"
+ },
+ "faq.gruppe.danach.text": {
+  "de": "Rückgabe, Reparatur, Pflege. Der Teil, den man vor dem Kauf liest und nach dem Kauf braucht.",
+  "en": "Returns, repairs, care. The part you read before buying and need afterwards.",
+  "fr": "Retour, réparation, entretien. La partie qu'on lit avant l'achat et dont on a besoin après."
+ },
+ "faq.a.passform": {
+  "de": "Fast immer, aber nicht immer. Der Anker braucht hinter dem Ohrläppchen Platz für die Vierteldrehung. Bei sehr dicken Ohrläppchen findet er diesen Platz nicht. Das sagen wir dir lieber vorher als nachher. Nimm dein Ohrläppchen zwischen Daumen und Zeigefinger: lässt es sich leicht zusammendrücken, hast du keinen Grund zur Sorge. Bist du unsicher,",
+  "en": "Almost always, but not always. The anchor needs room behind the earlobe for its quarter turn. On very thick earlobes it does not find that room. We would rather tell you before than after. Take your earlobe between thumb and index finger: if it squeezes easily, you have nothing to worry about. If you are unsure,",
+  "fr": "Presque toujours, mais pas toujours. L'ancre a besoin de place derrière le lobe pour son quart de tour. Sur un lobe très épais, elle ne trouve pas cette place. Nous préférons vous le dire avant plutôt qu'après. Prenez votre lobe entre le pouce et l'index : s'il se comprime facilement, vous n'avez pas de souci à vous faire. En cas de doute,"
+ },
+ "faq.a.passform_schluss": {
+  "de": ". Wir antworten ehrlich, auch wenn die Antwort nein heisst.",
+  "en": ". We answer honestly, even when the answer is no.",
+  "fr": ". Nous répondons honnêtement, même si la réponse est non."
+ },
+ "faq.a.wasserfest": {
+  "de": "Bleibt drin beim Duschen und Schwimmen. Der Verschluss ist wasserfest, Sport, Seife und Meer machen ihm nichts aus. Eine Ausnahme: Modelle mit echter Perle nimmst du zum Duschen und Schwimmen besser heraus. Perlen mögen weder Salz noch Seife. Das steht auch auf der jeweiligen Produktseite.",
+  "en": "Stays in in the shower and in the sea. The fastening is water-resistant; sport, soap and salt water do not bother it. One exception: models with a real freshwater pearl are better taken out for showering and swimming. Pearls like neither salt nor soap. It says so on the product page of each of them.",
+  "fr": "Reste en place sous la douche et dans l'eau. Le fermoir est résistant à l'eau : le sport, le savon et l'eau de mer ne lui font rien. Une exception : les modèles avec une véritable perle d'eau douce, que vous retirez de préférence pour la douche et la baignade. Les perles n'aiment ni le sel ni le savon. C'est aussi indiqué sur la fiche produit concernée."
+ },
+ "faq.f.material": {
+  "de": "Woraus bestehen sie genau?",
+  "en": "What exactly are they made of?",
+  "fr": "De quoi sont-elles faites exactement ?"
+ },
+ "faq.a.material": {
+  "de": "Der Schmuck ist Sterling Silber 925. Je nach Modell rhodiniert, mit 18 Karat Vergoldung oder mit schwarzer Beschichtung. Bei einzelnen Modellen kommen Emaille, Zirkonia oder eine Süsswasserperle dazu. Nur der Stift, der durchs Ohrloch geht, ist chirurgischer Edelstahl. Die vollständige Materialangabe steht auf jeder Produktseite, Modell für Modell. Wenn du auf bestimmte Metalle reagierst, lies die Angabe vor dem Kauf.",
+  "en": "The jewellery is Sterling silver 925. Depending on the model rhodium-plated, with 18 carat gold plating or with a black coating. Some models add enamel, cubic zirconia or a freshwater pearl. Only the post that goes through the piercing is surgical stainless steel. The full material list is on every product page, model by model. If you react to certain metals, read that list before you buy.",
+  "fr": "Les bijoux sont en argent sterling 925. Selon le modèle rhodié, plaqué or 18 carats ou avec un revêtement noir. Certains modèles ajoutent de l'émail, de la zircone ou une perle d'eau douce. Seule la tige qui traverse le lobe est en acier chirurgical. La composition complète figure sur chaque fiche produit, modèle par modèle. Si vous réagissez à certains métaux, lisez cette liste avant d'acheter."
+ },
+ "faq.a.groessen": {
+  "de": "Ohrringe haben keine Konfektionsgrössen. Was zählt, ist der Stift, und der hat bei allen Baqless Modellen dasselbe Mass. Er passt durch ein normales, ausgeheiltes Ohrloch. Unterschiedlich ist nur, wie gross der sichtbare Teil vorne ausfällt. Wo uns die genauen Masse vorliegen, stehen sie in Millimetern auf der Produktseite, dazu eine Grafik im Massstab 1:1, die du an dein Ohr halten kannst.",
+  "en": "Earrings do not come in dress sizes. What matters is the post, and it has the same dimensions on every Baqless model. It goes through a normal, healed piercing. What differs is only how large the visible part at the front turns out. Where we have the exact measurements, they are on the product page in millimetres, together with a 1:1 drawing you can hold against your ear.",
+  "fr": "Les boucles d'oreille n'ont pas de tailles. Ce qui compte, c'est la tige, et elle a les mêmes dimensions sur tous les modèles Baqless. Elle passe dans un trou d'oreille normal et cicatrisé. Seule la taille de la partie visible à l'avant varie. Là où nous disposons des mesures exactes, elles figurent en millimètres sur la fiche produit, avec un dessin à l'échelle 1:1 que vous pouvez tenir contre votre oreille."
+ },
+ "faq.a.einzeln": {
+  "de": "Ja. Jedes Modell gibt es als Paar und einzeln, fürs zweite Loch oder zum Kombinieren mit einem anderen Paar. Den Einzelpreis siehst du auf der Produktseite direkt neben dem Paarpreis. Und wenn dir doch einmal einer abhandenkommt, ersetzt du einen, nicht zwei.",
+  "en": "Yes. Every model comes as a pair and as a single earring, for the second piercing or to combine with another pair. The single price sits right next to the pair price on the product page. And if one of them ever goes missing, you replace one, not two.",
+  "fr": "Oui. Chaque modèle existe à la paire et à l'unité, pour le deuxième trou ou pour combiner avec une autre paire. Le prix à l'unité figure sur la fiche produit, juste à côté du prix de la paire. Et si vous en perdez une un jour, vous en remplacez une, pas deux."
+ },
+ "faq.a.versandkosten": {
+  "de": "Ab CHF 99 Bestellwert liefern wir gratis. Darunter gilt eine Pauschale, die im Warenkorb steht, bevor du bezahlst. Wo die Einfuhrabgaben in der Versandgebühr enthalten sind, kommt an der Tür nichts dazu und vom Zoll keine Nachforderung. Für welche Länder das gilt, legt Baqless vor dem Livegang fest. Wie lange es dauert, hängt vom Lieferland ab.",
+  "en": "From CHF 99 order value we deliver free of charge. Below that a flat rate applies, shown in your cart before you pay. Where import duties are included in the shipping fee, nothing is added at the door and no bill follows from customs. Which countries that covers is set by Baqless before launch. How long it takes depends on the destination country.",
+  "fr": "Dès CHF 99 de commande, la livraison est offerte. En dessous, un forfait s'applique ; il figure dans le panier avant le paiement. Là où les droits d'importation sont compris dans les frais de livraison, rien ne s'ajoute à la porte et aucune facture ne suit de la douane. Les pays concernés seront fixés par Baqless avant la mise en ligne. Le délai dépend du pays de livraison."
+ },
+ "faq.a.lieferland": {
+  "de": "Aus zwei Lagern. Die Schweiz, Deutschland, Österreich, Liechtenstein, Frankreich und Italien beliefern wir aus der Schweiz, alle übrigen Länder aus Japan. Was das für Laufzeit und Zoll bedeutet, steht unter",
+  "en": "From two warehouses. Switzerland, Germany, Austria, Liechtenstein, France and Italy are served from Switzerland, all other countries from Japan. What that means for delivery times and customs is under",
+  "fr": "Depuis deux entrepôts. La Suisse, l'Allemagne, l'Autriche, le Liechtenstein, la France et l'Italie sont livrés depuis la Suisse, tous les autres pays depuis le Japon. Ce que cela implique pour les délais et la douane figure sous"
+ },
+ "faq.a.retoure": {
+  "de": "Ja, 30 Tage ab Erhalt, ungetragen und in der Originalverpackung, so will es die Hygiene bei Ohrschmuck. Du schreibst uns kurz, bekommst von uns die Rücksendeadresse und ein Retourenlabel, und sobald das Paket bei uns ist, erstatten wir auf dein ursprüngliches Zahlungsmittel, in der Regel innert fünf Arbeitstagen. Der ganze Ablauf steht unter",
+  "en": "Yes, 30 days from the day it arrives, unworn and in its original packaging, as hygiene demands with ear jewellery. You write us a short message, we send you the return address and a return label, and once the parcel is with us we refund to your original means of payment, as a rule within five working days. The whole process is under",
+  "fr": "Oui, 30 jours à compter de la réception, non porté et dans son emballage d'origine, comme l'exige l'hygiène pour les bijoux d'oreille. Vous nous écrivez un mot, nous vous envoyons l'adresse de retour et une étiquette, et dès que le colis nous parvient, nous remboursons sur votre moyen de paiement d'origine, en règle générale sous cinq jours ouvrables. La marche à suivre complète figure sous"
+ },
+ "faq.a.garantie": {
+  "de": "Auf Produktionsfehler gibt es ein Jahr Garantie ab Kauf, mit Kaufnachweis. Wir reparieren oder tauschen, ohne Kosten für dich. Schreib uns mit deiner Bestellnummer und einem Foto, das reicht für den Anfang. Verschleiss und Schäden durch Gewalt sind ausgenommen.",
+  "en": "On manufacturing faults there is a one-year warranty from purchase, with proof of purchase. We repair or replace at no cost to you. Write to us with your order number and a photo, that is enough to begin with. Wear and damage caused by force are excluded.",
+  "fr": "Sur les défauts de fabrication, la garantie est d'un an à compter de l'achat, sur présentation de la preuve d'achat. Nous réparons ou échangeons, sans frais pour vous. Écrivez-nous avec votre numéro de commande et une photo, cela suffit pour commencer. L'usure et les dommages dus à un choc sont exclus."
+ },
+ "faq.schluss.titel": {
+  "de": "Deine Frage steht nicht hier?",
+  "en": "Your question is not here?",
+  "fr": "Votre question ne figure pas ici ?"
+ },
+ "faq.schluss.text": {
+  "de": "Dann schreib sie uns. Eine Person liest sie und antwortet innert 24 Stunden, Montag bis Freitag. Auch wenn die ehrliche Antwort lautet: passt bei dir eher nicht.",
+  "en": "Then write it to us. A person reads it and answers within 24 hours, Monday to Friday. Even when the honest answer is: this is probably not right for you.",
+  "fr": "Alors écrivez-la-nous. Une personne la lit et répond sous 24 heures, du lundi au vendredi. Même quand la réponse honnête est : cela ne vous conviendra sans doute pas."
+ },
+ "faq.schluss.knopf": {
+  "de": "Frage stellen",
+  "en": "Ask your question",
+  "fr": "Poser votre question"
+ },
+ "kontakt.meta.beschreibung": {
+  "de": "Schreib uns. Antwort innert 24 Stunden, Montag bis Freitag, von einer Person.",
+  "en": "Write to us. An answer within 24 hours, Monday to Friday, from a person.",
+  "fr": "Écrivez-nous. Une réponse sous 24 heures, du lundi au vendredi, par une personne."
+ },
+ "kontakt.hero.eyebrow": {
+  "de": "Kontakt und Hilfe",
+  "en": "Contact and help",
+  "fr": "Contact et aide"
+ },
+ "kontakt.hero.intro": {
+  "de": "Frage zum Halt, zur Passform oder zu einer Bestellung? Schreib uns. Deine Nachricht liest eine Person, keine Warteschlange, keine Textbausteine. Und wenn die ehrliche Antwort «passt bei dir eher nicht» lautet, bekommst du die auch.",
+  "en": "A question about how it holds, about the fit, or about an order? Write to us. Your message is read by a person, no queue, no templates. And if the honest answer is “this is probably not right for you”, you will get that one too.",
+  "fr": "Une question sur la tenue, sur la forme ou sur une commande ? Écrivez-nous. Votre message est lu par une personne, pas de file d'attente, pas de modèle type. Et si la réponse honnête est « cela ne vous conviendra sans doute pas », vous l'aurez aussi."
+ },
+ "kontakt.zusage.zeit.titel": {
+  "de": "Innert 24 Stunden",
+  "en": "Within 24 hours",
+  "fr": "Sous 24 heures"
+ },
+ "kontakt.zusage.zeit.text": {
+  "de": "Montag bis Freitag. Was am Wochenende kommt, beantworten wir am Montag.",
+  "en": "Monday to Friday. Anything that arrives at the weekend is answered on Monday.",
+  "fr": "Du lundi au vendredi. Ce qui arrive le week-end reçoit une réponse le lundi."
+ },
+ "kontakt.zusage.mensch.titel": {
+  "de": "Eine Person, kein Bot",
+  "en": "A person, not a bot",
+  "fr": "Une personne, pas un robot"
+ },
+ "kontakt.zusage.mensch.text": {
+  "de": "Dieselbe, die die Ohrringe kennt. Du bekommst eine Antwort auf deine Frage, nicht auf eine ähnliche.",
+  "en": "The same one who knows the earrings. You get an answer to your question, not to a similar one.",
+  "fr": "La même qui connaît les boucles. Vous obtenez une réponse à votre question, pas à une question voisine."
+ },
+ "kontakt.zusage.daten.titel": {
+  "de": "Nur für die Antwort",
+  "en": "Only for the answer",
+  "fr": "Uniquement pour la réponse"
+ },
+ "kontakt.zusage.daten.text": {
+  "de": "Deine Angaben brauchen wir, um zu antworten. Kein Newsletter, keine Weitergabe.",
+  "en": "We need your details in order to reply. No newsletter, nothing passed on.",
+  "fr": "Nous avons besoin de vos informations pour vous répondre. Pas de newsletter, aucune transmission."
+ },
+ "kontakt.wege.titel": {
+  "de": "Vier Wege zur Antwort",
+  "en": "Four routes to an answer",
+  "fr": "Quatre chemins vers la réponse"
+ },
+ "kontakt.wege.text": {
+  "de": "Drei davon sind schneller als eine Mail, weil die Antwort schon geschrieben ist.",
+  "en": "Three of them are quicker than an email, because the answer is already written.",
+  "fr": "Trois d'entre eux sont plus rapides qu'un e-mail, car la réponse est déjà écrite."
+ },
+ "kontakt.weg.kauf.titel": {
+  "de": "Vor dem Kauf",
+  "en": "Before you buy",
+  "fr": "Avant l'achat"
+ },
+ "kontakt.weg.kauf.text": {
+  "de": "Hält der Verschluss, und passt er an dein Ohr? Beides steht zuoberst in der FAQ, samt der Stelle, an der er nicht passt.",
+  "en": "Does the fastening hold, and does it fit your ear? Both are answered at the top of the FAQ, including the case where it does not fit.",
+  "fr": "Le fermoir tient-il et convient-il à votre oreille ? Les deux réponses sont en haut de la FAQ, y compris le cas où il ne convient pas."
+ },
+ "kontakt.weg.kauf.link": {
+  "de": "Halt und Passform",
+  "en": "Hold and fit",
+  "fr": "Tenue et forme"
+ },
+ "kontakt.weg.bestellung.titel": {
+  "de": "Zu deiner Bestellung",
+  "en": "About your order",
+  "fr": "À propos de votre commande"
+ },
+ "kontakt.weg.bestellung.text": {
+  "de": "Halte die Bestellnummer bereit. Sie beginnt mit BQ und steht in der Bestätigungsmail, die du direkt nach dem Kauf bekommst. Mit ihr finden wir alles in einem Griff.",
+  "en": "Have your order number ready. It starts with BQ and is in the confirmation email you receive right after your purchase. With it we find everything in one go.",
+  "fr": "Ayez votre numéro de commande sous la main. Il commence par BQ et figure dans l'e-mail de confirmation reçu juste après l'achat. Avec lui, nous retrouvons tout d'un seul coup."
+ },
+ "kontakt.weg.clicklock.text": {
+  "de": "Einstecken, drehen, klick. Klemmt es, verschiebst du das gedrehte Stiftteil ein Stück, das stellt die Klemmkraft ein. Die Demo zum Ausprobieren findest du",
+  "en": "Push in, turn, click. If it sticks, shift the turned part of the post a little; that adjusts the grip. The demo to try it out is",
+  "fr": "Insérez, tournez, clic. Si cela accroche, déplacez légèrement la partie tournée de la tige : cela règle le serrage. La démo pour l'essayer se trouve"
+ },
+ "kontakt.weg.clicklock.nach": {
+  "de": "Klappt es dann immer noch nicht, schreib uns. Wir lassen dich damit nicht allein.",
+  "en": "If it still does not work, write to us. We will not leave you alone with it.",
+  "fr": "Si cela ne fonctionne toujours pas, écrivez-nous. Nous ne vous laissons pas tomber."
+ },
+ "kontakt.weg.retoure.titel": {
+  "de": "Rückgabe oder Umtausch",
+  "en": "Return or exchange",
+  "fr": "Retour ou échange"
+ },
+ "kontakt.weg.retoure.text": {
+  "de": "30 Tage ab Erhalt. Du schreibst uns, wir schicken Rücksendeadresse und Label. Der Ablauf mit allen Schritten steht unter",
+  "en": "30 days from the day it arrives. You write to us, we send the return address and a label. The process with all its steps is under",
+  "fr": "30 jours à compter de la réception. Vous nous écrivez, nous envoyons l'adresse de retour et une étiquette. La marche à suivre complète figure sous"
+ },
+ "kontakt.direkt.titel": {
+  "de": "Direkt",
+  "en": "Direct",
+  "fr": "En direct"
+ },
+ "kontakt.direkt.mail_hinweis": {
+  "de": "Schreib in die Betreffzeile, worum es geht. Das spart uns eine Rückfrage und dir einen Tag.",
+  "en": "Say in the subject line what it is about. That saves us a follow-up question and you a day.",
+  "fr": "Précisez le sujet dans l'objet du message. Cela nous évite une question de plus et vous fait gagner une journée."
+ },
+ "kontakt.direkt.telefon.titel": {
+  "de": "Kein Telefon",
+  "en": "No phone line",
+  "fr": "Pas de téléphone"
+ },
+ "kontakt.direkt.telefon.text": {
+  "de": "Wir haben keine Hotline. Dafür liest jede Nachricht eine Person, und die Antwort steht schriftlich da, damit du sie nachlesen kannst.",
+  "en": "We have no hotline. Instead every message is read by a person, and the answer comes in writing, so you can read it again.",
+  "fr": "Nous n'avons pas de ligne téléphonique. En revanche, chaque message est lu par une personne, et la réponse est écrite, pour que vous puissiez la relire."
+ },
+ "kontakt.direkt.social.titel": {
+  "de": "Instagram und TikTok",
+  "en": "Instagram and TikTok",
+  "fr": "Instagram et TikTok"
+ },
+ "kontakt.direkt.social.text": {
+  "de": "Dort liest du uns auch. Für alles, was deine Bestellung betrifft, ist die Mail schneller.",
+  "en": "You will find us there as well. For anything to do with your order, email is quicker.",
+  "fr": "Vous nous y trouverez aussi. Pour tout ce qui concerne votre commande, l'e-mail est plus rapide."
+ },
+ "kontakt.adresse.titel": {
+  "de": "Postadresse",
+  "en": "Postal address",
+  "fr": "Adresse postale"
+ },
+ "kontakt.adresse.hinweis": {
+  "de": "Bitte keine Retouren an diese Adresse. Die Rücksendeadresse bekommst du von uns, zusammen mit dem Label.",
+  "en": "Please do not send returns to this address. You get the return address from us, together with the label.",
+  "fr": "Merci de ne pas envoyer de retours à cette adresse. L'adresse de retour vous est communiquée par nos soins, avec l'étiquette."
+ },
+ "kontakt.formular.titel": {
+  "de": "Schreib uns",
+  "en": "Write to us",
+  "fr": "Écrivez-nous"
+ },
+ "kontakt.formular.lead": {
+  "de": "Vier Felder, zwei Minuten. Je konkreter deine Frage, desto genauer die Antwort.",
+  "en": "Four fields, two minutes. The more concrete your question, the more precise the answer.",
+  "fr": "Quatre champs, deux minutes. Plus votre question est précise, plus la réponse le sera."
+ },
+ "kontakt.formular.thema": {
+  "de": "Worum geht es?",
+  "en": "What is it about?",
+  "fr": "De quoi s'agit-il ?"
+ },
+ "kontakt.formular.thema_kauf": {
+  "de": "Vor dem Kauf",
+  "en": "Before buying",
+  "fr": "Avant l'achat"
+ },
+ "kontakt.formular.thema_bestellung": {
+  "de": "Zu meiner Bestellung",
+  "en": "About my order",
+  "fr": "À propos de ma commande"
+ },
+ "kontakt.formular.thema_retoure": {
+  "de": "Rückgabe oder Umtausch",
+  "en": "Return or exchange",
+  "fr": "Retour ou échange"
+ },
+ "kontakt.formular.thema_anderes": {
+  "de": "Etwas anderes",
+  "en": "Something else",
+  "fr": "Autre chose"
+ },
+ "kontakt.formular.mail_hinweis": {
+  "de": "Nur für die Antwort. Kein Newsletter.",
+  "en": "Only for the reply. No newsletter.",
+  "fr": "Uniquement pour la réponse. Pas de newsletter."
+ },
+ "kontakt.formular.bestellnummer": {
+  "de": "Bestellnummer",
+  "en": "Order number",
+  "fr": "Numéro de commande"
+ },
+ "kontakt.formular.optional": {
+  "de": "optional",
+  "en": "optional",
+  "fr": "facultatif"
+ },
+ "kontakt.formular.bestellnummer_hinweis": {
+  "de": "Steht in deiner Bestätigungsmail, im Format BQ-000000.",
+  "en": "It is in your confirmation email, in the format BQ-000000.",
+  "fr": "Il figure dans votre e-mail de confirmation, au format BQ-000000."
+ },
+ "kontakt.formular.nachricht_hinweis": {
+  "de": "Schreib, was du wissen willst. Geht es um die Passform, nenn uns, wie dick dein Ohrläppchen ungefähr ist.",
+  "en": "Write what you want to know. If it is about the fit, tell us roughly how thick your earlobe is.",
+  "fr": "Écrivez ce que vous voulez savoir. S'il s'agit de la forme, dites-nous à peu près l'épaisseur de votre lobe."
+ },
+ "kontakt.fehler.name": {
+  "de": "Wir brauchen noch deinen Namen.",
+  "en": "We still need your name.",
+  "fr": "Il nous manque votre nom."
+ },
+ "kontakt.fehler.mail_fehlt": {
+  "de": "Wir brauchen noch deine E-Mail-Adresse.",
+  "en": "We still need your email address.",
+  "fr": "Il nous manque votre adresse e-mail."
+ },
+ "kontakt.fehler.mail_falsch": {
+  "de": "Bitte prüf die E-Mail-Adresse.",
+  "en": "Please check the email address.",
+  "fr": "Vérifiez l'adresse e-mail."
+ },
+ "kontakt.fehler.nachricht": {
+  "de": "Schreib uns kurz, worum es geht.",
+  "en": "Tell us briefly what it is about.",
+  "fr": "Dites-nous brièvement de quoi il s'agit."
+ },
+ "kontakt.danach.titel": {
+  "de": "Was nach dem Absenden passiert",
+  "en": "What happens after you send",
+  "fr": "Ce qui se passe après l'envoi"
+ },
+ "kontakt.danach.s1": {
+  "de": "Du siehst sofort eine Bestätigung auf dieser Seite.",
+  "en": "You see a confirmation on this page straight away.",
+  "fr": "Vous voyez immédiatement une confirmation sur cette page."
+ },
+ "kontakt.danach.s2": {
+  "de": "Deine Nachricht landet in einem Postfach, das eine Person liest, nicht in einem Ticketsystem.",
+  "en": "Your message lands in an inbox read by a person, not in a ticketing system.",
+  "fr": "Votre message arrive dans une boîte lue par une personne, pas dans un système de tickets."
+ },
+ "kontakt.danach.s3": {
+  "de": "Die Antwort kommt innert 24 Stunden an die Adresse, die du angibst. Montag bis Freitag.",
+  "en": "The answer comes within 24 hours to the address you give. Monday to Friday.",
+  "fr": "La réponse arrive sous 24 heures à l'adresse que vous indiquez. Du lundi au vendredi."
+ },
+ "kontakt.formular.datenschutz_vor": {
+  "de": "Wir verwenden deine Angaben nur, um dir zu antworten. Mehr dazu im",
+  "en": "We use your details only to reply to you. More on that in our",
+  "fr": "Nous n'utilisons vos informations que pour vous répondre. Plus d'informations dans notre"
+ },
+ "kontakt.formular.datenschutz_link": {
+  "de": "Datenschutz",
+  "en": "Privacy",
+  "fr": "Confidentialité"
+ },
+ "kontakt.formular.prototyp": {
+  "de": "[Im Prototyp wird nichts versendet. Der Anschluss an das Postfach folgt vor dem Livegang.]",
+  "en": "[Nothing is sent in the prototype. The connection to the inbox follows before going live.]",
+  "fr": "[Rien n'est envoyé dans le prototype. La connexion à la boîte de réception suivra avant la mise en ligne.]"
+ },
+ "kontakt.dank.titel": {
+  "de": "Danke, {name}.",
+  "en": "Thank you, {name}.",
+  "fr": "Merci, {name}."
+ },
+ "kontakt.dank.text": {
+  "de": "Deine Nachricht ist notiert. Die Antwort geht an {mail}, innert 24 Stunden, Montag bis Freitag.",
+  "en": "Your message is noted. The answer will go to {mail}, within 24 hours, Monday to Friday.",
+  "fr": "Votre message est noté. La réponse partira à {mail}, sous 24 heures, du lundi au vendredi."
+ },
+ "kontakt.dank.weiter": {
+  "de": "Bis dahin:",
+  "en": "In the meantime:",
+  "fr": "En attendant :"
+ },
+ "kontakt.dank.link_faq": {
+  "de": "Gut zu wissen",
+  "en": "Good to know",
+  "fr": "Bon à savoir"
+ }
+}

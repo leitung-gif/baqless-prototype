@@ -1,7 +1,119 @@
+<style>
+/* ============================================================
+   Huelle, Fuss. Seiteneigene Regeln, styles.css bleibt unberuehrt.
+   Der Fuss ist der letzte Ort, an dem man jemanden halten kann.
+   Darum steht oben kein Linkfriedhof, sondern drei offene Fragen.
+   ============================================================ */
+
+.foot-halt{position:relative; max-width:1280px; margin:0 auto;
+  padding:72px 0 46px; border-bottom:1px solid rgba(250,247,242,.14)}
+.fh-kopf{display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 20px; margin-bottom:26px}
+.fh-augenbraue{font-size:11px; font-weight:600; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold)}
+.fh-titel{font-family:var(--serif); font-weight:300; font-size:clamp(23px,2.7vw,32px);
+  line-height:1.2; color:#fff}
+.fh-karten{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+@media(max-width:860px){.fh-karten{grid-template-columns:1fr}}
+.fh-karte{display:flex; flex-direction:column; gap:7px; min-height:44px;
+  padding:22px 22px 18px; border:1px solid rgba(250,247,242,.18); border-radius:8px;
+  background:rgba(250,247,242,.05);
+  transition:border-color .3s cubic-bezier(.19,1,.22,1),
+             background .3s cubic-bezier(.19,1,.22,1),
+             transform .3s cubic-bezier(.19,1,.22,1)}
+.fh-karte:hover{border-color:rgba(255,122,106,.55); background:rgba(250,247,242,.09); transform:translateY(-3px)}
+.fh-karte b{font-size:15.5px; font-weight:600; line-height:1.35; color:#fff}
+.fh-karte span{font-size:13.5px; line-height:1.55; color:rgba(250,247,242,.66)}
+.fh-karte i{font-style:normal; margin-top:6px; font-size:18px; line-height:1;
+  color:rgba(250,247,242,.4);
+  transition:color .12s cubic-bezier(.19,1,.22,1), transform .12s cubic-bezier(.19,1,.22,1)}
+.fh-karte:hover i{color:var(--coral); transform:translateX(5px)}
+.fh-frage{margin-top:20px; font-size:13.5px; color:rgba(250,247,242,.6)}
+.fh-frage a{display:inline-flex; align-items:center; min-height:44px; margin-left:6px;
+  color:var(--gold); text-decoration:underline; text-underline-offset:4px}
+.fh-frage a:hover{color:var(--coral)}
+/* An der Kasse und auf der Bestaetigung hat ein Ausgang nichts verloren.
+   Auf der Startseite fuehrt der Abschnitt «Fragen» dieselben drei Einwaende und
+   beantwortet sie auch, der Teaser waere anderthalb Bildschirme darunter die
+   zweite, schwaechere Fassung. Die drei Seiten gehoeren nicht der Huelle, darum
+   wird an ihrem Inhalt erkannt. Alle Ausnahmen stehen hier, an einer Stelle. */
+body:has(#koForm) .foot-halt,
+body:has(.dank-note) .foot-halt,
+body:has(#fragen) .foot-halt{display:none}
+
+/* Dasselbe fuer die Anmeldung: die Startseite schliesst mit einem eigenen
+   Newsletter-Abschnitt, der Kasten der Huelle stuende 550 Pixel darunter ein
+   zweites Mal, mit demselben Titel und demselben Feld. Zwei Formulare
+   untereinander lesen sich als Fehler, nicht als Angebot. */
+body:has(#nlForm) .foot-nl{display:none}
+
+.foot-nl{padding-top:46px}
+.nl-fein{flex-basis:100%; margin-top:4px; font-size:12px; line-height:1.55;
+  color:rgba(250,247,242,.5)}
+
+/* Marke: der Anspruch, danach die Herkunft im gebundenen Wortlaut. */
+.foot-claim{margin-bottom:14px}
+.foot-herkunft{margin-bottom:20px; padding-left:14px; border-left:2px solid var(--gold);
+  font-size:12.5px; line-height:1.5; color:rgba(250,247,242,.66)}
+.foot-social a{width:44px; height:44px}
+.foot-mail{display:inline-flex; align-items:center; min-height:44px}
+footer ul a{display:flex; align-items:center; min-height:44px; padding:0}
+
+/* Vertrauenszeile: drei Argumente, jedes mit einem Satz, der es pruefbar macht.
+   Vorher waren es zwei Stichworte ohne Beleg. */
+.foot-trust{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 34px;
+  max-width:1280px; margin:0 auto; padding:28px 0; align-items:start;
+  border-top:1px solid rgba(250,247,242,.12)}
+@media(max-width:860px){.foot-trust{grid-template-columns:1fr; gap:18px}}
+.foot-trust > span{display:grid; grid-template-columns:auto minmax(0,1fr); gap:3px 12px; align-items:start}
+.foot-trust svg{grid-row:1 / 3; margin-top:3px; opacity:.8}
+.foot-trust b{font-size:14px; font-weight:600; color:rgba(250,247,242,.95)}
+.foot-trust i{font-style:normal; font-size:13px; line-height:1.55; color:rgba(250,247,242,.6)}
+
+/* Die Zahlarten standen frueher rechts neben der Vertrauenszeile, darum schob
+   styles.css sie mit margin-left:auto nach aussen. Seit die Vertrauenszeile ein
+   eigenes Band ist, riss dieser Schub die Beschriftung und die Kuerzel ueber die
+   ganze Breite auseinander. Sie gehoeren nebeneinander. Und der eigene Strich
+   faellt weg: Vertrauenszeile und Zahlarten beantworten dieselbe Frage, was bei
+   jeder Bestellung gilt. Drei Haarlinien auf zweihundert Pixel waren ein Raster
+   zu viel. */
+.foot-market{gap:12px 18px; border-top:0; padding-top:4px}
+.foot-market .pay-pills{margin-left:0}
+.pay-label{font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(250,247,242,.5)}
+
+.fn-links{display:grid; gap:5px}
+.fn-preise{max-width:62ch; line-height:1.55; color:rgba(250,247,242,.5)}
+</style>
+
 <footer id="footer">
   <div class="foot-bubble" style="width:300px;height:300px;border:2px solid var(--coral);top:-90px;right:5%"></div>
   <div class="foot-bubble" style="width:150px;height:150px;background:var(--sage);bottom:15%;left:-50px"></div>
   <div class="foot-bubble" style="width:80px;height:80px;border:2px solid var(--lavender);top:34%;left:40%"></div>
+
+  <div class="foot-halt">
+    <div class="fh-kopf">
+      <span class="fh-augenbraue">{{t:huelle.foot.halt.augenbraue}}</span>
+      <h3 class="fh-titel">{{t:huelle.foot.halt.titel}}</h3>
+    </div>
+    <div class="fh-karten">
+      <a class="fh-karte" href="faq.html#passform">
+        <b>{{t:huelle.foot.halt.passform.titel}}</b>
+        <span>{{t:huelle.foot.halt.passform.text}}</span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a class="fh-karte" href="index.html#clicklock">
+        <b>{{t:huelle.foot.halt.klick.titel}}</b>
+        <span>{{t:huelle.foot.halt.klick.text}}</span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a class="fh-karte" href="widerruf.html">
+        <b>{{t:huelle.foot.halt.retoure.titel}}</b>
+        <span>{{t:huelle.foot.halt.retoure.text}}</span>
+        <i aria-hidden="true">→</i>
+      </a>
+    </div>
+    <p class="fh-frage">{{t:huelle.foot.halt.frage}}<a href="kontakt.html">{{t:huelle.foot.halt.frage_link}}</a></p>
+  </div>
 
   <div class="foot-nl">
     <div>
@@ -11,6 +123,7 @@
     <form class="nl-form" data-nlform>
       <input type="email" placeholder="deine@mail.ch" required aria-label="{{t:foot.newsletter.aria_mail}}">
       <button class="btn btn-coral" type="submit">{{t:foot.newsletter.knopf}}</button>
+      <p class="nl-fein">{{t:huelle.foot.newsletter.fein}}</p>
     </form>
   </div>
 
@@ -18,6 +131,7 @@
     <div class="foot-brand">
       <a class="wordmark" href="index.html" aria-label="{{t:foot.marke.aria_wortmarke}}"><img class="wm-hell" src="{{logo_white}}" alt="Baqless" width="119" height="33"></a>
       <p class="foot-claim">{{t:foot.marke.claim}}</p>
+      <p class="foot-herkunft">{{t:huelle.foot.marke.herkunft}}</p>
       <div class="foot-social">
         <a href="https://www.instagram.com/baqless" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
@@ -31,22 +145,42 @@
       </div>
       <a class="foot-mail" href="mailto:hello@baqless.com">hello@baqless.com</a>
     </div>
-    <div><h4>{{t:foot.spalte.shop}}</h4><ul><li><a href="neuheiten.html">{{t:foot.shop.neuheiten}}</a></li><li><a href="kollektion.html">{{t:foot.shop.kollektionen}}</a></li><li><a href="index.html#wa">{{t:foot.shop.wa_serie}}</a></li></ul></div>
-    <div><h4>{{t:foot.spalte.entdecken}}</h4><ul><li><a href="journal.html">{{t:foot.entdecken.journal}}</a></li><li><a href="story.html">{{t:foot.entdecken.story}}</a></li><li><a href="index.html#clicklock">Click-Lock</a></li></ul></div>
-    <div><h4>{{t:foot.spalte.support}}</h4><ul><li><a href="kontakt.html">{{t:foot.support.kontakt}}</a></li><li><a href="widerruf.html">{{t:foot.support.versand}}</a></li><li><a href="faq.html#groessen">{{t:foot.support.groessenguide}}</a></li><li><a href="faq.html">{{t:foot.support.faq}}</a></li></ul></div>
+    <div><h4>{{t:foot.spalte.shop}}</h4><ul><li><a href="kollektion.html">{{t:huelle.foot.shop.alle}}</a></li><li><a href="neuheiten.html">{{t:foot.shop.neuheiten}}</a></li><li><a href="kollektion.html?c=Honesty">Honesty</a></li><li><a href="kollektion.html?c=Amity">Amity</a></li><li><a href="kollektion.html?c=Embrace">Embrace</a></li><li><a href="kollektion.html?c=WA">WA</a></li></ul></div>
+    <div><h4>{{t:foot.spalte.entdecken}}</h4><ul><li><a href="index.html#clicklock">{{t:huelle.foot.entdecken.clicklock}}</a></li><li><a href="story.html">{{t:foot.entdecken.story}}</a></li><li><a href="journal.html">{{t:foot.entdecken.journal}}</a></li><li><a href="index.html#wa">{{t:huelle.foot.entdecken.wa}}</a></li></ul></div>
+    <div><h4>{{t:foot.spalte.support}}</h4><ul><li><a href="faq.html">{{t:huelle.foot.support.gut_zu_wissen}}</a></li><li><a href="faq.html#groessen">{{t:foot.support.groessenguide}}</a></li><li><a href="widerruf.html">{{t:foot.support.versand}}</a></li><li><a href="kontakt.html">{{t:foot.support.kontakt}}</a></li></ul></div>
     <div><h4>{{t:foot.spalte.rechtliches}}</h4><ul><li><a href="agb.html">{{t:foot.recht.agb}}</a></li><li><a href="datenschutz.html">{{t:foot.recht.datenschutz}}</a></li><li><a href="widerruf.html#widerruf">{{t:foot.recht.widerruf}}</a></li><li><a href="impressum.html">{{t:foot.recht.impressum}}</a></li></ul></div>
   </div>
+
+  <div class="foot-trust" aria-label="{{t:huelle.foot.trust.aria}}" role="group">
+    <span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 15a9 9 0 1 0 2.1-9.6L3 8"/><path d="M3 3v5h5"/></svg>
+      <b>{{t:foot.trust.rueckgabe}}</b>
+      <i>{{t:huelle.trust.rueckgabe.text}}</i>
+    </span>
+    <span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2.5 0-4.5-1.1-4.5-2.7C7.5 3.9 8.6 3 10 3c1.8 0 2 2.5 2 5Zm0 0c2.5 0 4.5-1.1 4.5-2.7C16.5 3.9 15.4 3 14 3c-1.8 0-2 2.5-2 5Z"/></svg>
+      <b>{{t:foot.trust.gratisversand}}</b>
+      <i>{{t:huelle.trust.versand.text}}</i>
+    </span>
+    <span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.2 2.9 7.9 7 9.5 4.1-1.6 7-5.3 7-9.5V6l-7-3Z"/></svg>
+      <b>{{t:huelle.trust.material.titel}}</b>
+      <i>{{t:huelle.trust.material.text}}</i>
+    </span>
+  </div>
+
   <div class="foot-market">
-    <div class="foot-trust">
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.5 15a9 9 0 1 0 2.1-9.6L3 8"/><path d="M3 3v5h5"/></svg>{{t:foot.trust.rueckgabe}}</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2.5 0-4.5-1.1-4.5-2.7C7.5 3.9 8.6 3 10 3c1.8 0 2 2.5 2 5Zm0 0c2.5 0 4.5-1.1 4.5-2.7C16.5 3.9 15.4 3 14 3c-1.8 0-2 2.5-2 5Z"/></svg>{{t:foot.trust.gratisversand}}</span>
-    </div>
+    <span class="pay-label">{{t:huelle.foot.zahlung.label}}</span>
     <div class="pay-pills" aria-label="{{t:foot.zahlung.aria}}">
       <span>TWINT</span><span>VISA</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Apple Pay</span><span>Google Pay</span>
     </div>
   </div>
+
   <div class="foot-note">
-    <span>{{t:foot.note.copyright}}</span>
+    <span class="fn-links">
+      <span>{{t:foot.note.copyright}}</span>
+      <span class="fn-preise">{{t:huelle.foot.note.preise}}</span>
+    </span>
     <span class="foot-dots"><i style="background:var(--coral)"></i><i style="background:var(--sage)"></i><i style="background:var(--lavender)"></i><i style="background:var(--gold)"></i></span>
   </div>
 </footer>

@@ -1,0 +1,312 @@
+{
+ "story.hero.eyebrow": {
+  "de": "Unsere Geschichte",
+  "en": "Our story",
+  "fr": "Notre histoire"
+ },
+ "story.vorspann.lead": {
+  "de": "Das Rückteil ist das kleinste Teil an einem Ohrring. Und das einzige, das darüber entscheidet, ob du ihn heute trägst oder suchst.",
+  "en": "The back is the smallest part of an earring. And the only one that decides whether you wear it today or go looking for it.",
+  "fr": "Le poussoir est la plus petite pièce d'une boucle d'oreille. Et la seule qui décide si vous la portez aujourd'hui ou si vous la cherchez."
+ },
+ "story.vorspann.text1": {
+  "de": "2010 hat jemand aufgehört, das hinzunehmen. Was daraus wurde, hat acht Jahre gedauert. Keine acht Jahre Marketing. Acht Jahre Mechanik.",
+  "en": "In 2010 someone stopped putting up with it. What came of that took eight years. Not eight years of marketing. Eight years of mechanics.",
+  "fr": "En 2010, quelqu'un a cessé de s'en accommoder. Ce qui en est sorti a demandé huit ans. Pas huit ans de marketing. Huit ans de mécanique."
+ },
+ "story.vorspann.text2": {
+  "de": "2018 war der Verschluss fertig. Er heisst Click-Lock. Das hier ist die Geschichte dazwischen.",
+  "en": "In 2018 the fastening was finished. It is called Click-Lock. This is the story of what happened in between.",
+  "fr": "En 2018, le fermoir était prêt. Il s'appelle Click-Lock. Voici l'histoire de ce qui s'est passé entre les deux."
+ },
+ "story.zeit.start": {
+  "de": "2010",
+  "en": "2010",
+  "fr": "2010"
+ },
+ "story.zeit.ende": {
+  "de": "2018",
+  "en": "2018",
+  "fr": "2018"
+ },
+ "story.zeit.spanne": {
+  "de": "acht Jahre",
+  "en": "eight years",
+  "fr": "huit ans"
+ },
+ "story.sprung.label": {
+  "de": "Kapitel dieser Seite",
+  "en": "Chapters on this page",
+  "fr": "Chapitres de cette page"
+ },
+ "story.kap1.marke": {
+  "de": "2010, die Frage",
+  "en": "2010, the question",
+  "fr": "2010, la question"
+ },
+ "story.kap1.text1": {
+  "de": "Du kennst den Moment. Der Verschluss drückt beim Telefonieren. Nachts zwickt er, also nimmst du die Ohrringe raus. Am Morgen liegt eines der beiden Rückteile irgendwo, und du trägst etwas anderes.",
+  "en": "You know the moment. The back digs in when you are on the phone. At night it pinches, so you take the earrings out. In the morning one of the two backs is somewhere else entirely, and you wear something different.",
+  "fr": "Vous connaissez ce moment. Le poussoir appuie quand vous téléphonez. La nuit, il pince, alors vous retirez les boucles. Au matin, l'un des deux poussoirs a disparu quelque part, et vous portez autre chose."
+ },
+ "story.kap1.text2": {
+  "de": "Das ist keine Katastrophe. Es ist jeden Tag ein bisschen ärgerlich, und irgendwann hört man auf, es zu bemerken.",
+  "en": "It is no disaster. It is a small annoyance every day, and at some point you stop noticing it.",
+  "fr": "Ce n'est pas un drame. C'est une petite contrariété quotidienne, et on finit par ne plus la remarquer."
+ },
+ "story.kap1.text3": {
+  "de": "2010 hat es doch jemand bemerkt und die Frage gestellt, die sonst niemand stellt: warum braucht ein Ohrring ein Gegenstück, das nur stört? Die Frage ist schnell gestellt. Die Antwort brauchte acht Jahre.",
+  "en": "In 2010 someone did notice, and asked the question nobody asks: why does an earring need a counterpart that only gets in the way? The question is quick to ask. The answer took eight years.",
+  "fr": "En 2010, quelqu'un l'a tout de même remarquée et a posé la question que personne ne pose : pourquoi une boucle d'oreille aurait-elle besoin d'une pièce à l'arrière qui ne fait que gêner ? La question se pose vite. La réponse a demandé huit ans."
+ },
+ "story.kap2.marke": {
+  "de": "Prototyp um Prototyp",
+  "en": "Prototype after prototype",
+  "fr": "Prototype après prototype"
+ },
+ "story.kap2.text1": {
+  "de": "Ein Ohrring ohne Rückteil muss zwei Dinge gleichzeitig können, die sich widersprechen: von allein halten und sich mit einer Hand wieder öffnen lassen. Genau daran ist die Sache acht Jahre lang hängengeblieben.",
+  "en": "An earring without a back has to do two things at once that contradict each other: hold on its own, and open again with one hand. That is exactly where it got stuck for eight years.",
+  "fr": "Une boucle d'oreille sans poussoir doit faire deux choses à la fois qui se contredisent : tenir toute seule et s'ouvrir d'une seule main. C'est précisément là que tout a bloqué pendant huit ans."
+ },
+ "story.kap2.text2": {
+  "de": "Am Ende war es ein T. Ein flacher Anker am Ende des Stifts. Du steckst ihn ein wie einen normalen Stecker, drehst eine Vierteldrehung, und der Anker stellt sich quer hinter dem Ohrläppchen. Klick. Geöffnet wird er nicht durch Ziehen, sondern durch die Rückdrehung.",
+  "en": "In the end it was a T. A flat anchor at the end of the post. You push it in like an ordinary stud, turn it a quarter turn, and the anchor sits crosswise behind the earlobe. Click. It opens by turning back, not by pulling.",
+  "fr": "À la fin, c'était un T. Une ancre plate au bout de la tige. Vous l'insérez comme une puce ordinaire, vous tournez d'un quart de tour, et l'ancre se met en travers derrière le lobe. Clic. Il s'ouvre par le quart de tour inverse, pas en tirant."
+ },
+ "story.kap2.text3": {
+  "de": "Wie fest er klemmt, stellst du selbst ein. Du verschiebst das gedrehte Stiftteil ein Stück, mit einer Hand, ohne Spiegel.",
+  "en": "How firmly it grips is up to you. You shift the turned part of the post a little, with one hand, without a mirror.",
+  "fr": "Le serrage, c'est vous qui le réglez. Vous déplacez légèrement la partie tournée de la tige, d'une seule main, sans miroir."
+ },
+ "story.durst.eyebrow": {
+  "de": "Die Durststrecke",
+  "en": "The long haul",
+  "fr": "La longue traversée"
+ },
+ "story.durst.titel": {
+  "de": "Acht Jahre sind 96 Monate.",
+  "en": "Eight years is 96 months.",
+  "fr": "Huit ans, c'est 96 mois."
+ },
+ "story.durst.text1": {
+  "de": "In einer Zahlenleiste sieht das gut aus. In der Werkstatt sieht es anders aus. In dieser Zeit gab es keinen Shop, keine Kundinnen und nichts zu zeigen. Es gab vier Anforderungen, die einander im Weg standen.",
+  "en": "In a row of figures that looks good. In the workshop it looks different. In all that time there was no shop, no customers and nothing to show. There were four requirements, and each one got in the way of the others.",
+  "fr": "Sur une frise de chiffres, cela fait bonne impression. À l'atelier, c'est autre chose. Pendant tout ce temps, il n'y avait ni boutique, ni clientes, ni rien à montrer. Il y avait quatre exigences, et chacune gênait les autres."
+ },
+ "story.durst.text2": {
+  "de": "Jede für sich ist einfach. Zusammen sind sie das Problem.",
+  "en": "Each one on its own is simple. Together they are the problem.",
+  "fr": "Chacune, prise à part, est simple. Ensemble, elles sont le problème."
+ },
+ "story.durst.a1.titel": {
+  "de": "Halten",
+  "en": "Hold",
+  "fr": "Tenir"
+ },
+ "story.durst.a1.text": {
+  "de": "Der Verschluss hält allein. Ohne Gegenstück, ohne Klemme, ohne Bügel.",
+  "en": "The fastening holds on its own. No counterpart, no clip, no hook.",
+  "fr": "Le fermoir tient tout seul. Sans pièce à l'arrière, sans pince, sans crochet."
+ },
+ "story.durst.a2.titel": {
+  "de": "Loslassen",
+  "en": "Let go",
+  "fr": "Lâcher"
+ },
+ "story.durst.a2.text": {
+  "de": "Und er geht mit einer Hand wieder auf. Ohne Spiegel, ohne Werkzeug, notfalls im Dunkeln.",
+  "en": "And it opens again with one hand. No mirror, no tools, in the dark if need be.",
+  "fr": "Et il se rouvre d'une seule main. Sans miroir, sans outil, au besoin dans le noir."
+ },
+ "story.durst.a3.titel": {
+  "de": "Passen",
+  "en": "Fit",
+  "fr": "S'adapter"
+ },
+ "story.durst.a3.text": {
+  "de": "Ohrläppchen sind verschieden dick. Ein fester Wert sitzt bei der einen gut und drückt bei der nächsten.",
+  "en": "Earlobes vary in thickness. One fixed setting sits well on one person and presses on the next.",
+  "fr": "Les lobes n'ont pas tous la même épaisseur. Un réglage fixe convient à l'une et appuie sur la suivante."
+ },
+ "story.durst.a4.titel": {
+  "de": "Aushalten",
+  "en": "Last",
+  "fr": "Encaisser"
+ },
+ "story.durst.a4.text": {
+  "de": "Wasserfest heisst auch: nie geschont. Ein Verschluss, den du nicht abnimmst, macht jeden Tag alles mit.",
+  "en": "Water-resistant also means never spared. A fastening you do not take out goes through everything, every day.",
+  "fr": "Résistant à l'eau veut aussi dire jamais ménagé. Un fermoir qu'on ne retire pas encaisse tout, tous les jours."
+ },
+ "story.moment.eyebrow": {
+  "de": "2018, die Antwort",
+  "en": "2018, the answer",
+  "fr": "2018, la réponse"
+ },
+ "story.moment.titel": {
+  "de": "Der Beweis war ein Geräusch.",
+  "en": "The proof was a sound.",
+  "fr": "La preuve, c'était un bruit."
+ },
+ "story.moment.text1": {
+  "de": "Kein Diagramm, kein Vortrag, kein Prospekt. Einstecken, drehen, klick. Dass etwas hält, kann man behaupten. Den Klick hörst du.",
+  "en": "No diagram, no presentation, no brochure. Push in, turn, click. Anyone can claim that something holds. The click you can hear.",
+  "fr": "Pas de schéma, pas d'exposé, pas de brochure. Insérez, tournez, clic. Que cela tienne, cela se prétend. Le clic, vous l'entendez."
+ },
+ "story.moment.text2": {
+  "de": "Ab diesem Klick ging es nicht mehr um Mechanik. Sondern um Schmuck.",
+  "en": "From that click on it was no longer about mechanics. It was about jewellery.",
+  "fr": "À partir de ce clic, il ne s'agissait plus de mécanique. Mais de bijoux."
+ },
+ "story.moment.knopf": {
+  "de": "Den Verschluss selbst ausprobieren",
+  "en": "Try the fastening yourself",
+  "fr": "Essayer le fermoir vous-même"
+ },
+ "story.kap3.text3": {
+  "de": "Weniger Teile heisst auch weniger, was fehlen kann. Kein Ersatzteil, das du nachbestellst. Kein Beutel mit Rückteilen in der Schublade.",
+  "en": "Fewer parts also means less that can go missing. No spare part to reorder. No little bag of backs in a drawer.",
+  "fr": "Moins de pièces, c'est aussi moins de choses qui peuvent manquer. Aucune pièce de rechange à recommander. Aucun sachet de poussoirs au fond d'un tiroir."
+ },
+ "story.kap3.knopf_pflege": {
+  "de": "Material und Pflege im Detail",
+  "en": "Materials and care in detail",
+  "fr": "Matières et entretien en détail"
+ },
+ "story.zahlen.unterzeile": {
+  "de": "Alles, was davon bei dir ankommt, ist der Klick.",
+  "en": "All that reaches you of it is the click.",
+  "fr": "De tout cela, il ne vous reste que le clic."
+ },
+ "story.dich.eyebrow": {
+  "de": "Für dich",
+  "en": "For you",
+  "fr": "Pour vous"
+ },
+ "story.dich.titel": {
+  "de": "Was acht Jahre dir bringen.",
+  "en": "What eight years give you.",
+  "fr": "Ce que huit ans vous apportent."
+ },
+ "story.dich.lead": {
+  "de": "Eine Firmengeschichte ist erst interessant, wenn sie an deinem Ohr endet. Also konkret, Zeile für Zeile.",
+  "en": "A company story only gets interesting when it ends at your ear. So here it is, line by line.",
+  "fr": "L'histoire d'une marque ne devient intéressante qu'une fois arrivée à votre oreille. Alors, concrètement, ligne par ligne."
+ },
+ "story.dich.spalte_vorher": {
+  "de": "Mit Rückteil",
+  "en": "With a back",
+  "fr": "Avec poussoir"
+ },
+ "story.dich.spalte_nachher": {
+  "de": "Mit Click-Lock",
+  "en": "With Click-Lock",
+  "fr": "Avec le Click-Lock"
+ },
+ "story.dich.z1.vorher": {
+  "de": "Abends raus, damit nichts drückt.",
+  "en": "Out in the evening so nothing digs in.",
+  "fr": "On les retire le soir pour que rien n'appuie."
+ },
+ "story.dich.z1.nachher": {
+  "de": "Hinten drückt nichts. Du nimmst sie ab, wenn du willst.",
+  "en": "Nothing digs in at the back. You take them out when you want to.",
+  "fr": "Rien n'appuie à l'arrière. Vous les retirez quand vous le voulez."
+ },
+ "story.dich.z2.vorher": {
+  "de": "Das Rückteil bleibt im Pullover, im Abfluss, im Sand.",
+  "en": "The back stays behind in a jumper, a drain, the sand.",
+  "fr": "Le poussoir reste dans un pull, dans un siphon, dans le sable."
+ },
+ "story.dich.z2.nachher": {
+  "de": "Rückteile gibt es keine.",
+  "en": "There are no backs.",
+  "fr": "Il n'y a pas de poussoir."
+ },
+ "story.dich.z3.vorher": {
+  "de": "Zwei Hände, ein Spiegel, drei Anläufe.",
+  "en": "Two hands, a mirror, three attempts.",
+  "fr": "Deux mains, un miroir, trois tentatives."
+ },
+ "story.dich.z3.nachher": {
+  "de": "Einstecken, drehen, klick.",
+  "en": "Push in, turn, click.",
+  "fr": "Insérez, tournez, clic."
+ },
+ "story.dich.z4.vorher": {
+  "de": "Zum Duschen raus, zum Schwimmen raus.",
+  "en": "Out for the shower, out for the swim.",
+  "fr": "On les enlève pour la douche, pour la piscine."
+ },
+ "story.dich.z4.nachher": {
+  "de": "Bleibt drin beim Duschen und Schwimmen.",
+  "en": "Stays in in the shower and in the sea.",
+  "fr": "Reste en place sous la douche et dans l'eau."
+ },
+ "story.dich.z5.vorher": {
+  "de": "Zu locker oder zu fest, und du kannst nichts machen.",
+  "en": "Too loose or too tight, and there is nothing you can do.",
+  "fr": "Trop lâche ou trop serré, et vous n'y pouvez rien."
+ },
+ "story.dich.z5.nachher": {
+  "de": "Die Klemmkraft stellst du selbst ein.",
+  "en": "You set the grip yourself.",
+  "fr": "Le serrage, c'est vous qui le réglez."
+ },
+ "story.dich.grenze.titel": {
+  "de": "Wo es nicht passt.",
+  "en": "Where it does not fit.",
+  "fr": "Là où cela ne convient pas."
+ },
+ "story.dich.grenze.text": {
+  "de": "Der Anker braucht hinter dem Ohrläppchen Platz für die Vierteldrehung. Bei sehr dicken Ohrläppchen kann er sich nicht querstellen. Das sagen wir vor dem Kauf, nicht danach.",
+  "en": "The anchor needs room behind the earlobe for the quarter turn. On very thick earlobes it cannot swing crosswise. We say so before you buy, not after.",
+  "fr": "L'ancre a besoin de place derrière le lobe pour son quart de tour. Sur un lobe très épais, elle ne peut pas se mettre en travers. Nous le disons avant l'achat, pas après."
+ },
+ "story.dich.grenze.link": {
+  "de": "So prüfst du das vorher",
+  "en": "How to check beforehand",
+  "fr": "Comment le vérifier à l'avance"
+ },
+ "story.dich.risiko.titel": {
+  "de": "Und wenn es doch nicht passt.",
+  "en": "And if it still does not fit.",
+  "fr": "Et si cela ne convient pas malgré tout."
+ },
+ "story.dich.risiko.text": {
+  "de": "Dann schickst du sie zurück. 30 Tage ab Erhalt, ungetragen und in der Originalverpackung.",
+  "en": "Then you send them back. 30 days from delivery, unworn and in the original packaging.",
+  "fr": "Vous nous les renvoyez. 30 jours à compter de la réception, non portées et dans leur emballage d'origine."
+ },
+ "story.dich.stimmen.titel": {
+  "de": "Wir haben nicht nach Sternen gesucht.",
+  "en": "We did not go looking for stars.",
+  "fr": "Nous n'avons pas cherché des étoiles."
+ },
+ "story.dich.stimmen.text": {
+  "de": "Sondern nach Menschen, die diese Ohrringe seit Jahren tragen. Sechs davon erzählen im Journal, wie das im Alltag aussieht.",
+  "en": "We went looking for people who have worn these earrings for years. Six of them describe in the Journal what that looks like day to day.",
+  "fr": "Nous avons cherché des personnes qui portent ces boucles depuis des années. Six d'entre elles racontent dans le Journal ce que cela donne au quotidien."
+ },
+ "story.dich.stimmen.link": {
+  "de": "Die sechs Porträts lesen",
+  "en": "Read the six portraits",
+  "fr": "Lire les six portraits"
+ },
+ "story.cta.text": {
+  "de": "Der Verschluss ist bei jedem Paar derselbe. Der Rest ist Geschmack.",
+  "en": "The fastening is the same on every pair. The rest is taste.",
+  "fr": "Le fermoir est le même sur chaque paire. Le reste, c'est une question de goût."
+ },
+ "story.durst.warum.titel": {
+  "de": "Ein Verschluss ist kein Zierteil.",
+  "en": "A fastening is not a decorative part.",
+  "fr": "Un fermoir n'est pas un ornement."
+ },
+ "story.durst.warum.text": {
+  "de": "Ein Zierteil muss gut aussehen. Ein Verschluss muss halten, jeden Tag, ohne dass du daran denkst. Das lässt sich nicht zeichnen. Es wird gebaut, getragen, verworfen und wieder gebaut. Genau das haben acht Jahre gedauert.",
+  "en": "A decorative part has to look right. A fastening has to hold, every day, without you thinking about it. That cannot be drawn. It gets built, worn, thrown out and built again. That is what took eight years.",
+  "fr": "Un ornement doit être beau. Un fermoir doit tenir, tous les jours, sans que vous y pensiez. Cela ne se dessine pas. Cela se fabrique, se porte, se jette et se refabrique. Voilà ce qui a demandé huit ans."
+ }
+}

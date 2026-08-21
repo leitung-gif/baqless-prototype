@@ -16,14 +16,43 @@
 
 .ko-wrap{max-width:1180px; margin:0 auto; padding:clamp(112px,12vw,150px) var(--pad) clamp(60px,7vw,96px)}
 .ko-wrap h1{font-size:clamp(32px,4.2vw,50px); margin-bottom:6px}
-.ko-steps{display:flex; gap:10px; flex-wrap:wrap; font-size:12px; font-weight:600; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink-soft); margin:16px 0 30px}
-.ko-steps b{color:var(--coral-deep); font-weight:600}
+
+/* ---------- Wo bin ich, was kommt noch ---------- */
+.ko-steps{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:18px 0 30px; padding:0; list-style:none}
+.ko-steps li{display:flex; gap:9px; align-items:center; font-size:12px; font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-soft)}
+.ko-steps li + li::before{content:''; width:26px; height:1px; background:rgba(11,29,63,.22)}
+.ko-steps i{font-style:normal; width:24px; height:24px; border-radius:50%; display:flex; align-items:center;
+  justify-content:center; font-size:11.5px; letter-spacing:0; border:1.5px solid rgba(11,29,63,.22); color:var(--ink-soft)}
+.ko-steps li.done i{background:var(--sage-tint); border-color:var(--sage); color:#1E6B3E}
+/* Auch der Rueckweg ist ein eigenstaendiger Link und darf nicht kleiner sein als ein Finger */
+.ko-steps li.done a{display:inline-flex; align-items:center; min-height:44px;
+  color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.ko-steps li.done a:hover{color:var(--coral-deep)}
+.ko-steps li.now{color:var(--coral-deep)}
+.ko-steps li.now i{background:var(--coral); border-color:var(--coral); color:var(--navy)}
+
 .ko-grid{display:grid; grid-template-columns:minmax(0,7fr) minmax(0,4fr); gap:clamp(28px,4vw,56px); align-items:start}
-@media(max-width:880px){.ko-grid{grid-template-columns:1fr}}
+@media(max-width:880px){.ko-grid{grid-template-columns:1fr}
+  /* Einspaltig steht die Zusammenfassung als letzter Block, kleben bringt dort nichts */
+  .ko-sum{position:static; top:auto}}
 
 .ko-note{border:1px dashed rgba(125,111,214,.55); background:rgba(125,111,214,.05); border-radius:8px;
-  padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5c564e; margin-bottom:28px}
+  padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5a554e; margin-bottom:28px}
+
+/* ---------- Was fehlt, steht oben und ist anklickbar ---------- */
+/* Weisser Grund statt Coral-Hauch: auf dem Hauch liegt die Coral-Deep-Zeile unter dem
+   Kontrastmass, auf Weiss darueber. Der Rahmen macht den Zustand deutlich genug. */
+.ko-fehler{border:1.5px solid var(--coral-deep); border-radius:8px; background:var(--paper);
+  padding:16px 18px; margin-bottom:26px}
+.ko-fehler[hidden]{display:none}
+.ko-fehler b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; color:var(--coral-deep); margin-bottom:8px}
+.ko-fehler ul{list-style:none; padding:0; margin:0}
+.ko-fehler li{margin:0}
+.ko-fehler button{background:none; border:none; cursor:pointer; font:inherit; font-size:14px; color:#4a453e;
+  padding:9px 0; min-height:44px; text-align:left; text-decoration:underline; text-underline-offset:3px}
+.ko-fehler button:hover{color:var(--coral-deep)}
+.ko-fehler .hint{display:block; margin-top:6px; font-size:12.5px; color:var(--ink-soft)}
 
 fieldset{border:none; border-top:1px solid rgba(11,29,63,.12); padding:26px 0 6px}
 fieldset:first-of-type{border-top:none; padding-top:0}
@@ -34,19 +63,29 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 @media(max-width:560px){.frow, .frow.plz{grid-template-columns:1fr}}
 .field{display:flex; flex-direction:column; gap:6px; margin-bottom:14px}
 .field label{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft)}
+/* Der Rahmen eines Feldes muss man sehen, sonst weiss niemand, wo er tippen kann.
+   #e3dccf lag auf Weiss bei 1.4 zu 1 und damit unter dem Mass fuer Bedienelemente.
+   var(--grey-deep) liegt bei 3.6 zu 1 und ist derselbe Rahmen wie im Kontaktformular
+   und im Newsletterfeld. */
 .field input, .field select{
-  border:1.5px solid #e3dccf; border-radius:4px; padding:12px 13px; font:inherit; font-size:15px;
+  border:1.5px solid var(--grey-deep); border-radius:4px; padding:12px 13px; font:inherit; font-size:15px;
   background:var(--paper); color:var(--charcoal); transition:border-color .12s;
 }
 .field input:focus, .field select:focus{border-color:var(--navy)}
 .field input[aria-invalid="true"]{border-color:var(--coral-deep)}
 .field .err{font-size:12.5px; color:var(--coral-deep); display:none}
-.field .err[role="alert"]{display:none}
 .field input[aria-invalid="true"] ~ .err{display:block}
+/* Ein Feld erklaert sich am besten dort, wo es steht, nicht in einer Fussnote */
+.field .hilfe{font-size:12.5px; line-height:1.5; color:var(--ink-soft)}
+.ko-hinweis{font-size:13px; line-height:1.6; color:var(--ink-soft); margin:2px 0 6px;
+  padding-left:14px; border-left:2px solid var(--lav-tint)}
+.ko-hinweis[hidden]{display:none}
 
-.opt{display:flex; gap:14px; align-items:flex-start; border:1.5px solid #e3dccf; border-radius:4px;
+.opt{display:flex; gap:14px; align-items:flex-start; border:1.5px solid var(--grey-deep); border-radius:4px;
   padding:14px 16px; cursor:pointer; margin-bottom:10px; transition:border-color .12s, background .12s}
-.opt:hover{border-color:var(--warmgrey)}
+/* Coral-Tief beim Ueberfahren wie bei den Filterpillen und den Mengenknoepfen,
+   Navy bleibt der gewaehlten Zeile vorbehalten. */
+.opt:hover{border-color:var(--coral-deep)}
 .opt input{margin-top:3px; accent-color:#0B1D3F}
 .opt.sel{border-color:var(--navy); background:rgba(11,29,63,.03)}
 .opt b{display:block; font-family:var(--sans); font-size:15px; font-weight:600}
@@ -55,6 +94,13 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 
 .ko-sum{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:24px; position:sticky; top:96px}
 .ko-sum h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:16px}
+/* Der Link traegt 44 Pixel Trefferflaeche, darum steht die Zeile auf Mitte statt
+   auf Grundlinie und der Titel gibt seinen eigenen Abstand ab. */
+.ko-sumhead{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:16px}
+.ko-sumhead h2{margin-bottom:0}
+.ko-sumhead a{display:inline-flex; align-items:center; min-height:44px;
+  font-size:13px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.ko-sumhead a:hover{color:var(--coral-deep)}
 .ko-line{display:grid; grid-template-columns:52px 1fr auto; gap:12px; align-items:center; padding:9px 0; font-size:14px}
 .ko-line .pic{background:#fff; border-radius:4px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden}
 .ko-line .pic img{width:80%; mix-blend-mode:multiply}
@@ -64,13 +110,27 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 .ko-sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:8px 0; color:#4a453e; font-variant-numeric:tabular-nums}
 .ko-sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:15px; font-size:20px; font-weight:500; color:var(--charcoal)}
 .ko-sum .sep{border-top:1px solid rgba(11,29,63,.1); margin:12px 0 4px}
-.ko-submit{width:100%; justify-content:center; margin-top:22px}
+.ko-sum .rest{font-size:13px; color:var(--coral-deep); font-weight:600; margin-top:8px}
+.ko-submit{width:100%; justify-content:center; margin-top:20px}
+.ko-danach{margin-top:12px; font-size:13px; line-height:1.55; color:#5a554e}
+.ko-trust{margin-top:18px; padding-top:16px; border-top:1px solid rgba(11,29,63,.1);
+  display:flex; flex-direction:column; gap:8px; font-size:13px; color:#5a554e}
+.ko-trust span{display:flex; gap:9px; align-items:flex-start}
+.ko-trust svg{flex:0 0 auto; margin-top:2px; color:var(--sage-deep)}
 .ko-leer{font-size:14px; line-height:1.6; color:#4a453e; padding:4px 0 2px}
 .ko-leer b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; color:var(--charcoal); margin-bottom:4px}
 .ko-recht{margin-top:22px; font-size:13px; line-height:1.6; color:var(--ink-soft)}
 .ko-recht a{color:var(--coral-deep); font-weight:600}
-.ko-back{display:block; text-align:center; margin-top:26px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.ko-back{display:flex; align-items:center; justify-content:center; min-height:44px; margin-top:18px;
+  font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
 .ko-back:hover{color:var(--coral-deep)}
+
+/* ---------- Wer hier zoegert, soll fragen koennen statt abzubrechen ---------- */
+.ko-hilfe{margin-top:clamp(72px,8vw,110px); background:var(--paper); border:1px solid #efe8dc; border-radius:8px;
+  box-shadow:8px 8px 0 var(--sage-tint); padding:26px 24px; max-width:62ch}
+.ko-hilfe h2{font-family:var(--serif); font-weight:300; font-size:clamp(24px,2.6vw,30px); margin-bottom:8px; letter-spacing:0; text-transform:none; color:var(--charcoal)}
+.ko-hilfe p{font-size:15px; line-height:1.65; color:#5a554e}
+.ko-hilfe .btn{margin-top:18px}
 </style>
 </head>
 <body class="page-light">
@@ -80,7 +140,11 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 <main id="inhalt" class="ko-wrap">
   <div class="crumbs"><a href="index.html">{{t:kauf.brotkrume.start}}</a><span class="sep">/</span><a href="warenkorb.html">{{t:kauf.brotkrume.warenkorb}}</a><span class="sep">/</span><span>{{t:kauf.brotkrume.kasse}}</span></div>
   <h1>{{t:kauf.kasse.titel}}</h1>
-  <div class="ko-steps"><span>{{t:kauf.kasse.schritte.warenkorb}}</span><span>→</span><b>{{t:kauf.kasse.schritte.adresse}}</b><span>→</span><span>{{t:kauf.kasse.schritte.bestaetigung}}</span></div>
+  <ol class="ko-steps">
+    <li class="done"><i aria-hidden="true">1</i><a href="warenkorb.html">{{t:kauf.kasse.schritte.warenkorb}}</a></li>
+    <li class="now" aria-current="step"><i aria-hidden="true">2</i><span>{{t:kauf.kasse.schritte.adresse}}</span></li>
+    <li><i aria-hidden="true">3</i><span>{{t:kauf.kasse.schritte.bestaetigung}}</span></li>
+  </ol>
 
   <div class="ko-note">
     {{t:kauf.kasse.hinweis_prototyp}}
@@ -88,12 +152,23 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 
   <div class="ko-grid">
     <form id="koForm" novalidate>
+      <!-- Nirgends role="alert", auch nicht an den Feldern: angesagt wird der Fehler dort,
+           wo der Fokus landet, und einmal ueber den Toast. Sechs Meldungen, die beim
+           Absenden gleichzeitig rufen, sind Laerm, keine Hilfe. Jede Fehlerzeile haengt
+           per aria-describedby an ihrem Feld und wird dort gelesen. -->
+      <div class="ko-fehler" id="koFehler" hidden>
+        <b id="koFehlerZahl"></b>
+        <ul id="koFehlerListe"></ul>
+        <span class="hint">{{t:kaufweg.kasse.fehler.liste_hilfe}}</span>
+      </div>
+
       <fieldset>
         <legend>{{t:kauf.kasse.kontakt.legende}}</legend>
         <div class="field">
           <label for="fMail">{{t:kauf.kasse.feld.mail}}</label>
-          <input type="email" id="fMail" aria-describedby="errMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
-          <span class="err" id="errMail" role="alert">{{t:kauf.kasse.fehler.mail}}</span>
+          <input type="email" id="fMail" aria-describedby="errMail hilfeMail" name="mail" autocomplete="email" placeholder="deine@mail.ch" required>
+          <span class="err" id="errMail">{{t:kaufweg.kasse.fehler.mail_leer}}</span>
+          <span class="hilfe" id="hilfeMail">{{t:kaufweg.kasse.mail.hilfe}}</span>
         </div>
       </fieldset>
 
@@ -101,61 +176,71 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
         <legend>{{t:kauf.adresse.lieferadresse}}</legend>
         <div class="frow">
           <div class="field">
+            <label for="fLand">{{t:kauf.kasse.feld.land}}</label>
+            <select id="fLand" name="land" autocomplete="country-name" aria-describedby="hilfeLand">
+              <option>{{t:kauf.land.schweiz}}</option><option>{{t:kauf.land.deutschland}}</option><option>{{t:kauf.land.oesterreich}}</option>
+              <option>{{t:kauf.land.liechtenstein}}</option><option>{{t:kauf.land.frankreich}}</option><option>{{t:kauf.land.italien}}</option>
+              <!-- Katalog, Produktseite und FAQ sagen, dass die uebrigen Laender aus
+                   Japan beliefert werden. Wer von dort kommt, fand hier eine Liste mit
+                   sechs Eintraegen und einen Satz, der wie eine Absage klang. Er nennt
+                   jetzt den Grund und das Lager. -->
+              <option disabled>{{t:kasse.land.weitere}}</option>
+            </select>
+            <span class="hilfe" id="hilfeLand">{{t:kaufweg.kasse.land.hilfe}}</span>
+          </div>
+        </div>
+        <p class="ko-hinweis" id="koLand" hidden></p>
+        <div class="frow">
+          <div class="field">
             <label for="fVor">{{t:kauf.kasse.feld.vorname}}</label>
             <input type="text" id="fVor" aria-describedby="errVor" name="vorname" autocomplete="given-name" required>
-            <span class="err" id="errVor" role="alert">{{t:kauf.kasse.fehler.vorname}}</span>
+            <span class="err" id="errVor">{{t:kaufweg.kasse.fehler.vorname}}</span>
           </div>
           <div class="field">
             <label for="fNach">{{t:kauf.kasse.feld.nachname}}</label>
             <input type="text" id="fNach" aria-describedby="errNach" name="nachname" autocomplete="family-name" required>
-            <span class="err" id="errNach" role="alert">{{t:kauf.kasse.fehler.nachname}}</span>
+            <span class="err" id="errNach">{{t:kaufweg.kasse.fehler.nachname}}</span>
           </div>
         </div>
         <div class="frow one">
           <div class="field">
             <label for="fStr">{{t:kauf.kasse.feld.strasse}}</label>
             <input type="text" id="fStr" aria-describedby="errStr" name="strasse" autocomplete="street-address" required>
-            <span class="err" id="errStr" role="alert">{{t:kauf.kasse.fehler.strasse}}</span>
+            <span class="err" id="errStr">{{t:kaufweg.kasse.fehler.strasse}}</span>
           </div>
         </div>
         <div class="frow plz">
           <div class="field">
             <label for="fPlz">{{t:kauf.kasse.feld.plz}}</label>
             <input type="text" id="fPlz" name="plz" autocomplete="postal-code" inputmode="numeric" aria-describedby="errPlz" required>
-            <span class="err" id="errPlz">{{t:kauf.kasse.fehler.plz}}</span>
+            <span class="err" id="errPlz">{{t:kaufweg.kasse.fehler.plz_leer}}</span>
           </div>
           <div class="field">
             <label for="fOrt">{{t:kauf.kasse.feld.ort}}</label>
             <input type="text" id="fOrt" aria-describedby="errOrt" name="ort" autocomplete="address-level2" required>
-            <span class="err" id="errOrt" role="alert">{{t:kauf.kasse.fehler.ort}}</span>
+            <span class="err" id="errOrt">{{t:kaufweg.kasse.fehler.ort}}</span>
           </div>
         </div>
-        <div class="frow">
-          <div class="field">
-            <label for="fLand">{{t:kauf.kasse.feld.land}}</label>
-            <select id="fLand" name="land" autocomplete="country-name">
-              <option>{{t:kauf.land.schweiz}}</option><option>{{t:kauf.land.deutschland}}</option><option>{{t:kauf.land.oesterreich}}</option>
-              <option>{{t:kauf.land.liechtenstein}}</option><option>{{t:kauf.land.frankreich}}</option><option>{{t:kauf.land.italien}}</option>
-              <option disabled>{{t:kauf.land.weitere_folgen}}</option>
-            </select>
-          </div>
+        <div class="frow one">
           <div class="field">
             <label for="fTel">{{t:kauf.kasse.feld.telefon}}</label>
-            <input type="tel" id="fTel" name="telefon" autocomplete="tel">
+            <input type="tel" id="fTel" name="telefon" autocomplete="tel" aria-describedby="hilfeTel">
+            <span class="hilfe" id="hilfeTel">{{t:kaufweg.kasse.telefon.hilfe}}</span>
           </div>
         </div>
+        <p class="ko-hinweis">{{t:kaufweg.kasse.rechnung.hinweis}}</p>
       </fieldset>
 
       <fieldset>
         <legend>{{t:kauf.kasse.versand.legende}}</legend>
         <label class="opt sel" data-opt="versand">
           <input type="radio" name="versand" value="standard" data-preis="0" checked>
-          <span><b>{{t:kauf.versand.standard.name}}</b><span>{{t:kauf.versand.standard.beschreibung}}</span></span>
+          <span><b>{{t:kauf.versand.standard.name}}</b><span>{{t:kauf.versand.standard.beschreibung}} · {{t:kaufweg.kasse.versand.standard_zusatz}}</span></span>
           <span class="pr" id="prStandard">{{t:kauf.versand.gratis}}</span>
         </label>
         <label class="opt" data-opt="versand">
           <input type="radio" name="versand" value="express" data-preis="14">
-          <span><b>{{t:kauf.versand.express.name}}</b><span>{{t:kauf.versand.express.beschreibung}}</span></span>
+          <span><b>{{t:kauf.versand.express.name}}</b><span>{{t:kauf.versand.express.beschreibung}} · {{t:kaufweg.kasse.versand.express_zusatz}}</span></span>
           <span class="pr">CHF 14</span>
         </label>
       </fieldset>
@@ -187,6 +272,12 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 
     <aside class="ko-sum" id="koSum"></aside>
   </div>
+
+  <section class="ko-hilfe">
+    <h2>{{t:kaufweg.kasse.hilfe.titel}}</h2>
+    <p>{{t:kaufweg.kasse.hilfe.text}}</p>
+    <a class="btn btn-ghost" href="kontakt.html">{{t:kaufweg.kasse.hilfe.knopf}}</a>
+  </section>
 </main>
 
 {{FOOTER}}
@@ -198,9 +289,28 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 // ---------- Kasse ----------
 const koSum = document.getElementById('koForm') ? document.getElementById('koSum') : null;
 const form = document.getElementById('koForm');
+const fehlerBox = document.getElementById('koFehler');
+const haken = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 // Steht auf true, sobald der Kauf abgeschickt ist. Danach ist der geleerte Warenkorb
 // kein Fehler mehr, sondern der Weg zur Bestaetigung.
 let laeuft = false;
+
+// Jedes Pflichtfeld sagt selbst, was mit ihm los ist. Zwei Faelle sind nicht derselbe:
+// «fehlt noch» ist keine Ruege, «sieht nicht vollstaendig aus» ist ein Hinweis auf einen Tippfehler.
+const PFLICHT = [
+  { id: 'fMail', leer: 'kaufweg.kasse.fehler.mail_leer', falsch: 'kaufweg.kasse.fehler.mail_falsch',
+    gut: w => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(w) },
+  { id: 'fVor', leer: 'kaufweg.kasse.fehler.vorname', falsch: 'kaufweg.kasse.fehler.vorname',
+    gut: w => /[A-Za-zÀ-ÿ]{2}/.test(w) },
+  { id: 'fNach', leer: 'kaufweg.kasse.fehler.nachname', falsch: 'kaufweg.kasse.fehler.nachname',
+    gut: w => /[A-Za-zÀ-ÿ]{2}/.test(w) },
+  { id: 'fStr', leer: 'kaufweg.kasse.fehler.strasse', falsch: 'kaufweg.kasse.fehler.strasse',
+    gut: w => w.length > 1 },
+  { id: 'fPlz', leer: 'kaufweg.kasse.fehler.plz_leer', falsch: 'kaufweg.kasse.fehler.plz_falsch',
+    gut: w => /^[0-9]{4,6}$/.test(w) },
+  { id: 'fOrt', leer: 'kaufweg.kasse.fehler.ort', falsch: 'kaufweg.kasse.fehler.ort',
+    gut: w => w.length > 1 },
+];
 
 function versandPreis(){
   const gewaehlt = form.querySelector('input[name="versand"]:checked');
@@ -225,9 +335,10 @@ function renderSum(){
   if (!cart.length){ renderLeer(); return; }
   const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const vs = versandPreis();
+  const express = form.querySelector('input[name="versand"]:checked').value === 'express';
   document.getElementById('prStandard').textContent = sub >= FREE_SHIP ? txt('kauf.versand.gratis') : 'CHF 7';
   koSum.innerHTML = `
-    <h2>${txt('kauf.kasse.summe.titel')}</h2>
+    <div class="ko-sumhead"><h2>${txt('kauf.kasse.summe.titel')}</h2><a href="warenkorb.html">${txt('kaufweg.kasse.summe.aendern')}</a></div>
     ${cart.map(i => `
       <div class="ko-line">
         <span class="pic"><img src="${bildVon(i)}" alt=""></span>
@@ -238,8 +349,41 @@ function renderSum(){
     <div class="row"><span>${txt('kauf.summe.zwischensumme')}</span><span>${fmtCHF(sub)}</span></div>
     <div class="row"><span>${txt('kauf.summe.versand')}</span><span>${vs === 0 ? txt('kauf.versand.gratis') : fmtCHF(vs)}</span></div>
     <div class="row total"><span>${txt('kauf.summe.total')}</span><span>${fmtCHF(sub + vs)}</span></div>
-    <button class="btn btn-coral ko-submit" type="submit" form="koForm">${txt('kauf.kasse.knopf_kaufen', {betrag: fmtCHF(sub + vs)})}</button>`;
+    ${sub < FREE_SHIP && !express ? `<p class="rest">${txt('kaufweg.kasse.summe.rest_gratis', {betrag: fmtCHF(FREE_SHIP - sub)})}</p>` : ''}
+    <button class="btn btn-coral ko-submit" type="submit" form="koForm">${txt('kauf.kasse.knopf_kaufen', {betrag: fmtCHF(sub + vs)})}</button>
+    <p class="ko-danach">${txt('kaufweg.kasse.nach_kauf')}</p>
+    <div class="ko-trust">
+      <span>${haken}${txt('kaufweg.kasse.vertrauen.rueckgabe')}</span>
+      <span>${haken}${txt('kaufweg.kasse.vertrauen.zahlung')}</span>
+      <span>${haken}${txt('kaufweg.kasse.vertrauen.konto')}</span>
+    </div>`;
 }
+
+// Zoll und Laufzeit haengen am Lieferland. Wer Deutschland waehlt, soll das hier lesen
+// und nicht erst in der Bestaetigungsmail.
+function landHinweis(){
+  const feld = document.getElementById('fLand');
+  const box = document.getElementById('koLand');
+  const inland = feld.selectedIndex === 0;
+  box.hidden = inland;
+  if (!inland) box.textContent = txt('kaufweg.kasse.land.ausland', {land: feld.value});
+}
+
+// Sammelmeldung oben im Formular: eine Zeile je fehlende Angabe, jede springt zum Feld.
+function zeigeFehler(liste){
+  const ul = document.getElementById('koFehlerListe');
+  if (!liste.length){ fehlerBox.hidden = true; ul.innerHTML = ''; return; }
+  document.getElementById('koFehlerZahl').textContent = txtN('kaufweg.kasse.fehler.liste', liste.length);
+  ul.innerHTML = liste.map(f => `<li><button type="button" data-zu="${f.id}">${f.text}</button></li>`).join('');
+  fehlerBox.hidden = false;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-zu]');
+  if (!b) return;
+  const ziel = document.getElementById(b.dataset.zu);
+  ziel?.focus();
+  ziel?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+});
 
 if (!cart.length){
   // Kein Wegspringen, auch nicht beim Einstieg: location.replace loescht den Verlaufseintrag,
@@ -254,7 +398,10 @@ if (!cart.length){
     renderSum();
   };
   renderSum();
+  landHinweis();
   track('begin_checkout', { currency: 'CHF', value: cart.reduce((t, i) => t + i.price * i.qty, 0) });
+
+  document.getElementById('fLand').addEventListener('change', landHinweis);
 
   // Auswahlfelder optisch und fachlich führen
   document.querySelectorAll('.opt input').forEach(inp => {
@@ -271,9 +418,20 @@ if (!cart.length){
     });
   });
 
-  // Fehler beim Tippen wieder aufheben
+  // Fehler beim Tippen wieder aufheben. Auch in der Liste oben: eine Meldung, die
+  // stehen bleibt, nachdem das Feld stimmt, laesst die Kasse kaputt aussehen.
   form.addEventListener('input', e => {
-    if (e.target.matches('input')) e.target.removeAttribute('aria-invalid');
+    if (!e.target.matches('input')) return;
+    e.target.removeAttribute('aria-invalid');
+    const zeile = document.querySelector('#koFehlerListe [data-zu="' + e.target.id + '"]');
+    if (!zeile) return;
+    const f = PFLICHT.find(x => x.id === e.target.id);
+    const wert = e.target.value.trim();
+    if (!f || !wert || !f.gut(wert)) return;
+    zeile.closest('li').remove();
+    const rest = document.querySelectorAll('#koFehlerListe li').length;
+    if (!rest) fehlerBox.hidden = true;
+    else document.getElementById('koFehlerZahl').textContent = txtN('kaufweg.kasse.fehler.liste', rest);
   });
 
   form.addEventListener('submit', e => {
@@ -287,25 +445,26 @@ if (!cart.length){
       toast(`<span class="tick">i</span><span><b>${txt('kauf.korb.leer.titel')}</b> ${txt('kauf.korb.leer.text')}</span>`);
       return;
     }
-    const pflicht = [...form.querySelectorAll('input[required]')];
-    let ersterFehler = null;
-    pflicht.forEach(inp => {
+    const offen = [];
+    PFLICHT.forEach(f => {
+      const inp = document.getElementById(f.id);
       const wert = inp.value.trim();
-      const leer = !wert;
-      const mailFalsch = inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(wert);
-      // Postleitzahl und Namen wenigstens auf Plausibilitaet pruefen, statt alles zu schlucken
-      const plzFalsch = inp.id === 'fPlz' && !/^[0-9]{4,6}$/.test(wert);
-      const nameFalsch = (inp.id === 'fVor' || inp.id === 'fNach') && !/[A-Za-zÀ-ÿ]{2}/.test(wert);
-      if (leer || mailFalsch || plzFalsch || nameFalsch){
+      const schluessel = !wert ? f.leer : (f.gut(wert) ? null : f.falsch);
+      const err = document.getElementById('err' + f.id.slice(1));
+      if (schluessel){
+        // Die Meldung am Feld sagt denselben Satz wie die Liste oben, nie einen anderen.
+        if (err) err.textContent = txt(schluessel);
         inp.setAttribute('aria-invalid', 'true');
-        if (!ersterFehler) ersterFehler = inp;
+        offen.push({ id: f.id, text: txt(schluessel) });
       } else {
         inp.removeAttribute('aria-invalid');
       }
     });
-    if (ersterFehler){
-      ersterFehler.focus();
-      ersterFehler.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    zeigeFehler(offen);
+    if (offen.length){
+      const erster = document.getElementById(offen[0].id);
+      erster.focus();
+      erster.scrollIntoView({ block: 'center', behavior: 'smooth' });
       toast(`<span class="tick">i</span><span><b>${txt('kauf.kasse.fehler.toast_titel')}</b> ${txt('kauf.kasse.fehler.toast_text')}</span>`);
       return;
     }
@@ -326,7 +485,7 @@ if (!cart.length){
       zahlung: form.querySelector('input[name="zahlung"]:checked').value,
       // einzel muss mit, sonst muesste die Bestaetigung aus dem Variantentext raten,
       // ob ein Ohr oder ein Paar bestellt wurde. Der Text ist uebersetzt, der Wahrheitswert nicht.
-      artikel: cart.map(i => ({ name: i.name, variant: i.variant, qty: i.qty, price: i.price, einzel: istEinzel(i) })),
+      artikel: cart.map(i => ({ id: i.id, name: i.name, variant: i.variant, qty: i.qty, price: i.price, einzel: istEinzel(i) })),
       zwischensumme: sub, versand: vs, total: sub + vs
     };
     try { localStorage.setItem('baqless_bestellung', JSON.stringify(bestellung)); } catch(err) {}

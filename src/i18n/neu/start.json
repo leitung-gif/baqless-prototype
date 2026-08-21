@@ -1,0 +1,332 @@
+{
+ "start.hero.kicker": {
+  "de": "Ohrringe mit Click-Lock · Sterling Silber 925",
+  "en": "Earrings with Click-Lock · Sterling silver 925",
+  "fr": "Boucles d'oreilles avec Click-Lock · argent sterling 925"
+ },
+ "start.hero.fakten_label": {
+  "de": "Was für jede Bestellung gilt",
+  "en": "What applies to every order",
+  "fr": "Ce qui vaut pour chaque commande"
+ },
+ "start.hero.fakt_rueckgabe": {
+  "de": "30 Tage Rückgaberecht",
+  "en": "30-day returns",
+  "fr": "Retour sous 30 jours"
+ },
+ "start.hero.fakt_versand": {
+  "de": "Gratisversand ab CHF 99",
+  "en": "Free shipping from CHF 99",
+  "fr": "Livraison offerte dès CHF 99"
+ },
+ "start.punktnav.mechanik": {
+  "de": "Mechanik",
+  "en": "Mechanism",
+  "fr": "Mécanisme"
+ },
+ "start.punktnav.fragen": {
+  "de": "Fragen",
+  "en": "Questions",
+  "fr": "Questions"
+ },
+ "start.punktnav.versand": {
+  "de": "Versand",
+  "en": "Shipping",
+  "fr": "Livraison"
+ },
+ "start.mechanik.augenbraue": {
+  "de": "Die Mechanik",
+  "en": "The mechanism",
+  "fr": "Le mécanisme"
+ },
+ "start.mechanik.titel": {
+  "de": "Ein Ohrstecker hat zwei Teile.<br>Wir haben eins weggelassen.",
+  "en": "A stud earring has two parts.<br>We left one of them out.",
+  "fr": "Une boucle d'oreille compte deux pièces.<br>Nous en avons supprimé une."
+ },
+ "start.mechanik.text": {
+  "de": "Der Unterschied sitzt hinten am Ohr, dort, wo ihn niemand fotografiert. Zwei Zeichnungen zeigen ihn: der Stecker, den du kennst, und unserer.",
+  "en": "The difference sits behind the ear, where nobody photographs it. Two drawings show it: the stud you know, and ours.",
+  "fr": "La différence se trouve derrière l'oreille, là où personne ne la photographie. Deux dessins la montrent : le clou que vous connaissez, et le nôtre."
+ },
+ "start.mechanik.vorher_kind": {
+  "de": "Bisher",
+  "en": "Until now",
+  "fr": "Jusqu'ici"
+ },
+ "start.mechanik.vorher_titel": {
+  "de": "Stift, Rückteil, Reibung.",
+  "en": "Post, back, friction.",
+  "fr": "Tige, poussoir, frottement."
+ },
+ "start.mechanik.vorher_text": {
+  "de": "Das Rückteil hält allein durch Klemmung. Es geht auf, wenn du dich umziehst, es bleibt am Schal hängen, es fällt in den Abfluss. Und es ist genau das Teil, das man immer wieder nachkauft.",
+  "en": "The back holds by clamping force alone. It comes off when you change clothes, it catches on your scarf, it drops down the plughole. And it is exactly the part people keep buying again.",
+  "fr": "Le poussoir ne tient que par serrage. Il s'ouvre quand vous vous changez, il s'accroche à votre écharpe, il tombe dans le siphon. Et c'est justement la pièce que l'on rachète sans cesse."
+ },
+ "start.mechanik.vorher_marke": {
+  "de": "Ein Teil zu viel",
+  "en": "One part too many",
+  "fr": "Une pièce de trop"
+ },
+ "start.mechanik.vorher_bild": {
+  "de": "Zeichnung: Stift durch das Ohrläppchen, dahinter ein loses Rückteil, das nach unten fällt",
+  "en": "Drawing: post through the earlobe, behind it a loose back falling away",
+  "fr": "Dessin : tige à travers le lobe, derrière elle un poussoir libre qui tombe"
+ },
+ "start.mechanik.nachher_kind": {
+  "de": "Click-Lock",
+  "en": "Click-Lock",
+  "fr": "Click-Lock"
+ },
+ "start.mechanik.nachher_titel": {
+  "de": "Stift, Vierteldrehung, klick.",
+  "en": "Post, quarter turn, click.",
+  "fr": "Tige, quart de tour, clic."
+ },
+ "start.mechanik.nachher_text": {
+  "de": "Am Ende des Stifts sitzt ein Anker in T-Form. Längs geht er durchs Ohrloch wie ein gewöhnlicher Stecker. Eine Vierteldrehung, und er legt sich quer dahinter. Kein Rückteil. Nichts zum Verlieren.",
+  "en": "At the end of the post sits a T-shaped anchor. Lengthwise it goes through the piercing like an ordinary stud. A quarter turn, and it lies crosswise behind it. No back. Nothing to lose.",
+  "fr": "Au bout de la tige se trouve une ancre en T. Dans le sens de la longueur, elle passe par le trou comme un clou ordinaire. Un quart de tour, et elle se met en travers derrière. Pas de poussoir. Rien à perdre."
+ },
+ "start.mechanik.nachher_marke": {
+  "de": "Ein Teil, das bleibt",
+  "en": "One part, and it stays",
+  "fr": "Une seule pièce, et elle reste"
+ },
+ "start.mechanik.nachher_bild": {
+  "de": "Zeichnung: Stift durch das Ohrläppchen, dahinter der T-Anker, der sich quer legt und einrastet",
+  "en": "Drawing: post through the earlobe, behind it the T-anchor turning crosswise and locking",
+  "fr": "Dessin : tige à travers le lobe, derrière elle l'ancre en T qui se met en travers et se verrouille"
+ },
+ "start.mechanik.dreiklang": {
+  "de": "Einstecken, drehen, klick.",
+  "en": "Push in, turn, click.",
+  "fr": "Insérez, tournez, clic."
+ },
+ "start.mechanik.knopf": {
+  "de": "Verschluss ausprobieren",
+  "en": "Try the fastening",
+  "fr": "Essayer le fermoir"
+ },
+ "start.mechanik.fakt1_titel": {
+  "de": "Sterling Silber 925",
+  "en": "Sterling silver 925",
+  "fr": "Argent sterling 925"
+ },
+ "start.mechanik.fakt1_text": {
+  "de": "Der Schmuck ist echtes Silber, je nach Modell rhodiniert, mit 18 Karat vergoldet oder mit Emaille gefasst. Nur der Stift, der durchs Ohrloch geht, ist chirurgischer Edelstahl. Die vollständige Materialangabe steht auf jeder Produktseite.",
+  "en": "The jewellery is real silver, depending on the model rhodium-plated, plated with 18 carat gold or set with enamel. Only the post that goes through the piercing is surgical stainless steel. The full material list is on every product page.",
+  "fr": "Le bijou est en argent véritable, selon le modèle rhodié, plaqué or 18 carats ou serti d'émail. Seule la tige qui traverse le lobe est en acier chirurgical. La composition complète figure sur chaque fiche produit."
+ },
+ "start.mechanik.fakt2_titel": {
+  "de": "Bleibt drin beim Duschen und Schwimmen",
+  "en": "Stays in in the shower and in the sea",
+  "fr": "Reste en place sous la douche et dans l'eau"
+ },
+ "start.mechanik.fakt2_text": {
+  "de": "Wasserfest, jeden Tag. Du musst sie zum Sport nicht herausnehmen und zum Schlafen auch nicht. Eine Ausnahme nennen wir selbst: Modelle mit echter Perle nimmst du zum Duschen und Schwimmen besser heraus, das steht auch auf ihrer Produktseite.",
+  "en": "Water-resistant, every day. You do not need to take them out for sport, and not for sleeping either. One exception, and we name it ourselves: models with a real pearl are better taken out for showering and swimming, and that is on their product page too.",
+  "fr": "Résistant à l'eau, tous les jours. Vous n'avez pas à les retirer pour le sport, ni pour dormir. Une exception, que nous signalons nous-mêmes : les modèles avec une véritable perle, retirez-les de préférence pour la douche et la baignade, c'est indiqué sur leur fiche produit."
+ },
+ "start.mechanik.fakt3_titel": {
+  "de": "Die Klemmkraft stellst du selbst ein",
+  "en": "You set the grip yourself",
+  "fr": "Vous réglez le serrage vous-même"
+ },
+ "start.mechanik.fakt3_text": {
+  "de": "Sitzt der Verschluss zu locker oder zu fest, verschiebst du das gedrehte Stiftteil ein Stück. Das geht mit einer Hand, ohne Spiegel, ohne Werkzeug. Ein Rückteil kann das nicht.",
+  "en": "If the fastening sits too loosely or too tightly, you move the turned part of the post along a little. That works with one hand, without a mirror, without tools. A back cannot do that.",
+  "fr": "Si le fermoir est trop lâche ou trop serré, déplacez légèrement la partie tournée de la tige. Cela se fait d'une seule main, sans miroir, sans outil. Un poussoir ne le permet pas."
+ },
+ "start.produkte.text2": {
+  "de": "Fünfzehn Modelle, ein Verschluss. Jedes gibt es als Paar und als Einzelohr, fürs zweite Loch oder zum Kombinieren. Der Einzelpreis steht an jeder Karte, damit du den Paarpreis einordnen kannst.",
+  "en": "Fifteen models, one fastening. Every one comes as a pair and as a single earring, for the second piercing or for mixing. The single price is on every card, so you can place the pair price.",
+  "fr": "Quinze modèles, un seul fermoir. Chacun existe à la paire et à l'unité, pour le deuxième trou ou pour combiner. Le prix à l'unité figure sur chaque carte, pour situer le prix de la paire."
+ },
+ "start.produkte.sticker2": {
+  "de": "Rückteile gibt es keine.",
+  "en": "There are no backs.",
+  "fr": "Il n'y a pas de poussoir."
+ },
+ "start.js.preis_paar": {
+  "de": "das Paar",
+  "en": "per pair",
+  "fr": "la paire"
+ },
+ "start.js.preis_einzeln": {
+  "de": "einzeln CHF {preis}",
+  "en": "single CHF {preis}",
+  "fr": "à l'unité CHF {preis}"
+ },
+ "start.stimmen.text2": {
+  "de": "Drei Porträts von der japanischen Baqless-Seite, für hier übersetzt. Unter jeder Stimme steht ihre Quelle, und wörtlich zitiert ist nur, was als Zitat gekennzeichnet ist. Sterne und Durchschnittsnoten findest du keine: erfundene Bewertungen kommen uns nicht auf die Seite.",
+  "en": "Three portraits from the Japanese Baqless site, translated for this page. The source sits under every voice, and only what is marked as a quotation is quoted word for word. You will find no stars and no average scores: invented reviews do not go on our site.",
+  "fr": "Trois portraits repris du site japonais de Baqless, traduits pour cette page. La source figure sous chaque témoignage, et seul ce qui est signalé comme citation est rapporté mot pour mot. Vous ne trouverez ni étoiles ni note moyenne : les avis inventés n'ont pas leur place ici."
+ },
+ "start.kollektionen.text2": {
+  "de": "Vier Kollektionen, vier Handschriften. Honesty ist die klare Linie, Amity setzt auf Stein und Perle, Embrace auf Farbe und Form, WA auf japanische Muster in nummerierter Auflage. Wie viele Paare in einer Welt stecken, steht auf ihrer Kachel.",
+  "en": "Four collections, four signatures. Honesty is the clean line, Amity goes for stone and pearl, Embrace for colour and shape, WA for Japanese patterns in a numbered edition. How many pairs a world holds is written on its tile.",
+  "fr": "Quatre collections, quatre écritures. Honesty, c'est la ligne nette ; Amity mise sur la pierre et la perle ; Embrace sur la couleur et la forme ; WA sur des motifs japonais en édition numérotée. Le nombre de paires d'un univers figure sur sa vignette."
+ },
+ "start.kollektionen.wa_hinweis": {
+  "de": "Die vierte Welt steht weiter unten: WA, unsere limitierte Serie mit japanischen Mustern.",
+  "en": "The fourth world is further down: WA, our limited series with Japanese patterns.",
+  "fr": "Le quatrième univers se trouve plus bas : WA, notre série limitée aux motifs japonais."
+ },
+ "start.kollektionen.wa_link": {
+  "de": "Zur WA Serie",
+  "en": "To the WA series",
+  "fr": "Voir la série WA"
+ },
+ "start.clicklock.demo_hinweis": {
+  "de": "Die Zeichnung ist vergrössert und zeigt das Ohr von der Seite. Drück auf den Klickknopf, dann siehst du, was hinter dem Ohrläppchen passiert.",
+  "en": "The drawing is enlarged and shows the ear from the side. Press the click button and you see what happens behind the earlobe.",
+  "fr": "Le dessin est agrandi et montre l'oreille de profil. Appuyez sur le bouton clic pour voir ce qui se passe derrière le lobe."
+ },
+ "start.fragen.augenbraue": {
+  "de": "Bevor du kaufst",
+  "en": "Before you buy",
+  "fr": "Avant d'acheter"
+ },
+ "start.fragen.titel": {
+  "de": "Drei Fragen, die wir lieber vorher beantworten.",
+  "en": "Three questions we would rather answer beforehand.",
+  "fr": "Trois questions auxquelles nous préférons répondre avant."
+ },
+ "start.fragen.text": {
+  "de": "Vor dem ersten Paar stehen fast immer dieselben drei Bedenken. Hier steht die Antwort dazu, auch da, wo sie gegen uns spricht.",
+  "en": "Before the first pair, it is nearly always the same three doubts. Here is the answer to each, including where it speaks against us.",
+  "fr": "Avant la première paire, ce sont presque toujours les mêmes trois doutes. Voici la réponse à chacun, y compris là où elle ne joue pas en notre faveur."
+ },
+ "start.fragen.eins_frage": {
+  "de": "Hält das wirklich?",
+  "en": "Does it really hold?",
+  "fr": "Est-ce que ça tient vraiment ?"
+ },
+ "start.fragen.eins_antwort": {
+  "de": "Ja. Der Verschluss öffnet sich nur, wenn du ihn bewusst zurückdrehst. Duschen, Sport, Schlafen: er bleibt, wo er ist. Glaub uns das nicht einfach, probier die Demo aus und zieh dran.",
+  "en": "Yes. The fastening only opens when you deliberately turn it back. Showering, sport, sleeping: it stays where it is. Do not simply take our word for it, try the demo and give it a tug.",
+  "fr": "Oui. Le fermoir ne s'ouvre que si vous le retournez volontairement. Douche, sport, sommeil : il reste en place. Ne nous croyez pas sur parole, essayez la démo et tirez dessus."
+ },
+ "start.fragen.eins_link": {
+  "de": "Zur Demo",
+  "en": "To the demo",
+  "fr": "Voir la démo"
+ },
+ "start.fragen.zwei_frage": {
+  "de": "Passt das bei mir?",
+  "en": "Will it fit me?",
+  "fr": "Est-ce que cela me conviendra ?"
+ },
+ "start.fragen.zwei_antwort": {
+  "de": "Fast immer, aber nicht immer. Der Anker braucht hinter dem Ohrläppchen Platz für die Vierteldrehung. Bei sehr dicken Ohrläppchen kann er nicht rotieren. Das sagen wir lieber vorher als nachher.",
+  "en": "Nearly always, but not always. Behind the earlobe, the anchor needs room for the quarter turn. On very thick earlobes it cannot rotate. We would rather say so before than after.",
+  "fr": "Presque toujours, mais pas toujours. Derrière le lobe, l'ancre a besoin de place pour le quart de tour. Sur des lobes très épais, elle ne peut pas pivoter. Nous préférons le dire avant plutôt qu'après."
+ },
+ "start.fragen.zwei_link": {
+  "de": "Miss nach und frag uns",
+  "en": "Measure and ask us",
+  "fr": "Mesurez et écrivez-nous"
+ },
+ "start.fragen.drei_frage": {
+  "de": "Was, wenn nicht?",
+  "en": "And if not?",
+  "fr": "Et si ce n'est pas le cas ?"
+ },
+ "start.fragen.drei_antwort": {
+  "de": "30 Tage Rückgaberecht ab Erhalt, ungetragen und in der Originalverpackung. Auf Produktionsfehler gilt ein Jahr ab Kauf: mit Kaufnachweis reparieren oder tauschen wir, kostenlos.",
+  "en": "30-day returns from receipt, unworn and in the original packaging. On production faults, one year from purchase: with proof of purchase we repair or replace, free of charge.",
+  "fr": "Retour sous 30 jours à compter de la réception, non porté et dans son emballage d'origine. Sur les défauts de fabrication, un an à compter de l'achat : avec la preuve d'achat, nous réparons ou échangeons, sans frais."
+ },
+ "start.fragen.drei_link": {
+  "de": "Versand &amp; Retouren",
+  "en": "Shipping &amp; returns",
+  "fr": "Livraison &amp; retours"
+ },
+ "start.film.text2": {
+  "de": "Ein getragenes Bild und zwei Loops: einer in Bewegung, einer ganz nah am Verschluss. Klick auf ein Video, dann pausiert es.",
+  "en": "One worn shot and two loops: one in motion, one right up close to the fastening. Click a video and it pauses.",
+  "fr": "Une image portée et deux boucles : l'une en mouvement, l'autre au plus près du fermoir. Cliquez sur une vidéo pour la mettre en pause."
+ },
+ "start.wa.bedeutung_sumiiri": {
+  "de": "Tuscheeintrag",
+  "en": "ink mark",
+  "fr": "trait d'encre"
+ },
+ "start.wa.bedeutung_hamon": {
+  "de": "Wellenmuster",
+  "en": "wave pattern",
+  "fr": "motif de vagues"
+ },
+ "start.wa.bedeutung_kumo": {
+  "de": "Wolke",
+  "en": "cloud",
+  "fr": "nuage"
+ },
+ "start.nachkauf.augenbraue": {
+  "de": "Nach dem Klick",
+  "en": "After the click",
+  "fr": "Après le clic"
+ },
+ "start.nachkauf.titel": {
+  "de": "Was passiert, wenn du bestellst.",
+  "en": "What happens when you order.",
+  "fr": "Ce qui se passe quand vous commandez."
+ },
+ "start.nachkauf.text": {
+  "de": "Kein Konto, keine Überraschung. Der ganze Weg steht hier, von der Bestellung bis zur Rückgabe.",
+  "en": "No account, no surprises. The whole route is set out here, from ordering to returning.",
+  "fr": "Pas de compte, pas de surprise. Tout le parcours est décrit ici, de la commande au retour."
+ },
+ "start.nachkauf.eins_titel": {
+  "de": "Bestellen",
+  "en": "Ordering",
+  "fr": "Commander"
+ },
+ "start.nachkauf.eins_text": {
+  "de": "Zwei Schritte, ohne Konto. Danach kommen drei Mails: der Eingang, die Annahme nach der Lagerprüfung und die Versandmeldung mit Sendungsnummer. Bezahlt wird mit TWINT, Karte, PayPal, Apple Pay oder Google Pay.",
+  "en": "Two steps, no account. Then three emails follow: the receipt, the acceptance after the stock check, and the dispatch notice with a tracking number. You pay with TWINT, card, PayPal, Apple Pay or Google Pay.",
+  "fr": "Deux étapes, sans compte. Puis trois e-mails : la réception, l'acceptation après vérification du stock et l'avis d'expédition avec numéro de suivi. Vous payez par TWINT, carte, PayPal, Apple Pay ou Google Pay."
+ },
+ "start.nachkauf.zwei_titel": {
+  "de": "Ankommen",
+  "en": "Arriving",
+  "fr": "Réception"
+ },
+ "start.nachkauf.zwei_text": {
+  "de": "Wir liefern aus zwei Lagern. In die Schweiz, nach Deutschland, Österreich, Liechtenstein, Frankreich und Italien geht es aus der Schweiz, in alle übrigen Länder aus Japan. Ab CHF 99 Bestellwert gratis, darunter gilt eine Pauschale, die du im Warenkorb siehst. Jede Bestellung kommt in der Baqless Verpackung.",
+  "en": "We ship from two warehouses. Switzerland, Germany, Austria, Liechtenstein, France and Italy are served from Switzerland, all other countries from Japan. Free from an order value of CHF 99, below that a flat rate applies, which you see in your cart. Every order arrives in the Baqless packaging.",
+  "fr": "Nous expédions depuis deux entrepôts. La Suisse, l'Allemagne, l'Autriche, le Liechtenstein, la France et l'Italie sont livrés depuis la Suisse, tous les autres pays depuis le Japon. Livraison offerte dès CHF 99 de commande, en dessous un forfait s'applique, visible dans le panier. Chaque commande arrive dans l'emballage Baqless."
+ },
+ "start.nachkauf.zwei_hinweis": {
+  "de": "[Konkrete Tarife, Laufzeiten und die Zollregelung je Land werden vor dem Livegang ergänzt.]",
+  "en": "[Exact rates, delivery times and the customs arrangement per country will be added before going live.]",
+  "fr": "[Les tarifs exacts, les délais et le régime douanier par pays seront ajoutés avant la mise en ligne.]"
+ },
+ "start.nachkauf.drei_titel": {
+  "de": "Zurückschicken",
+  "en": "Sending back",
+  "fr": "Retour"
+ },
+ "start.nachkauf.drei_text": {
+  "de": "30 Tage ab Erhalt, ungetragen und in der Originalverpackung. Den Ablauf, das Formular und die Adresse findest du unter Versand &amp; Retouren. Passt es nicht, sagst du uns kurz warum, das hilft uns mehr als eine stille Rücksendung.",
+  "en": "30 days from receipt, unworn and in the original packaging. The procedure, the form and the address are under Shipping &amp; returns. If it does not suit you, tell us briefly why. That helps us more than a silent return.",
+  "fr": "30 jours à compter de la réception, non porté et dans son emballage d'origine. La marche à suivre, le formulaire et l'adresse figurent sous Livraison &amp; retours. Si cela ne convient pas, dites-nous brièvement pourquoi : cela nous aide plus qu'un retour silencieux."
+ },
+ "start.nachkauf.knopf": {
+  "de": "Versand &amp; Retouren",
+  "en": "Shipping &amp; returns",
+  "fr": "Livraison &amp; retours"
+ },
+ "start.nachkauf.frage": {
+  "de": "Noch eine Frage offen? Sie steht wahrscheinlich unter",
+  "en": "Still a question left? It is probably under",
+  "fr": "Une question en suspens ? Elle figure probablement sous"
+ },
+ "start.nachkauf.frage_link": {
+  "de": "Gut zu wissen",
+  "en": "Good to know",
+  "fr": "Bon à savoir"
+ }
+}

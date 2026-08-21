@@ -15,36 +15,119 @@
 <style>
 {{CSS}}
 
-.dank{max-width:860px; margin:0 auto; padding:clamp(120px,13vw,170px) var(--pad) clamp(60px,7vw,96px)}
+.dank{max-width:880px; margin:0 auto; padding:clamp(120px,13vw,170px) var(--pad) clamp(60px,7vw,96px)}
 .dank .ring{width:64px; height:64px; border-radius:50%; border:2px solid var(--sage);
-  display:flex; align-items:center; justify-content:center; color:var(--sage); margin-bottom:24px}
+  display:flex; align-items:center; justify-content:center; color:var(--sage-deep); margin-bottom:24px}
 .dank h1{font-size:clamp(34px,4.6vw,56px); margin-bottom:12px}
-.dank .lead{font-size:17px; line-height:1.68; color:#5c564e; max-width:52ch}
-.dank .nr{margin-top:26px; display:inline-flex; align-items:baseline; gap:12px; background:var(--paper);
+.dank .lead{font-size:17px; line-height:1.68; color:#5a554e; max-width:52ch}
+
+/* ---------- Nummer, kopieren, drucken ---------- */
+.nrbar{margin-top:26px; display:flex; flex-wrap:wrap; align-items:center; gap:14px}
+.dank .nr{display:inline-flex; align-items:baseline; gap:12px; background:var(--paper);
   border:1px solid #efe8dc; border-radius:8px; padding:14px 20px}
 .dank .nr span{font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
 .dank .nr b{font-family:var(--sans); font-size:19px; font-weight:600; font-variant-numeric:tabular-nums}
+.mini{background:none; border:1px solid rgba(34,34,34,.28); border-radius:4px; cursor:pointer; font:inherit;
+  font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--charcoal);
+  padding:0 16px; min-height:44px; transition:border-color .12s, color .12s}
+.mini:hover{border-color:var(--charcoal); color:var(--coral-deep)}
+.mini.ok{border-color:var(--sage); color:var(--sage-deep)}
+.nr-hint{margin-top:12px; font-size:13.5px; line-height:1.6; color:var(--ink-soft); max-width:52ch}
+
+/* ---------- Wann es bei dir ist ---------- */
+.liefer{margin-top:clamp(34px,4vw,46px); background:var(--coral-tint); border-radius:8px; padding:26px 28px}
+.liefer .lab{font-family:var(--sans); font-size:11.5px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:#8a3a2c}
+.liefer .datum{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.6vw,38px);
+  line-height:1.12; margin:8px 0 12px; color:var(--charcoal)}
+.liefer p{font-size:14px; line-height:1.6; color:#6b4a42; max-width:56ch}
+.liefer .ph{display:block; margin-top:8px; font-size:12.5px; color:#7a544b}
 
 .bsec{margin-top:clamp(40px,5vw,60px)}
-.bsec h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:16px}
+.bsec h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:6px}
+.bsec .wann{font-size:13px; color:var(--ink-soft); margin-bottom:12px}
 .bline{display:grid; grid-template-columns:1fr auto; gap:16px; padding:11px 0; border-top:1px solid rgba(11,29,63,.1); font-size:15px}
 .bline span.q{color:var(--ink-soft); font-size:13.5px; display:block}
 .bline .pr{font-variant-numeric:tabular-nums; white-space:nowrap}
 .bline.total{border-top:1.5px solid rgba(11,29,63,.2); margin-top:6px; padding-top:15px; font-size:19px; font-weight:500}
+.bsec .mwst{margin-top:8px; font-size:12.5px; color:var(--ink-soft)}
 .bgrid2{display:grid; grid-template-columns:1fr 1fr; gap:26px}
 @media(max-width:640px){.bgrid2{grid-template-columns:1fr}}
 .bbox{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:20px 22px; font-size:15px; line-height:1.65; color:#4a453e}
 .bbox b{display:block; font-family:var(--sans); font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px}
 
-.schritte{margin-top:clamp(40px,5vw,60px)}
-.schritt{display:grid; grid-template-columns:auto 1fr; gap:16px; padding:16px 0; border-top:1px solid rgba(11,29,63,.1)}
-.schritt i{font-family:var(--serif); font-style:normal; font-size:26px; line-height:1; color:var(--coral-tint)}
-.schritt b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; margin-bottom:3px}
-.schritt span{font-size:14.5px; line-height:1.6; color:#5c564e}
+/* ---------- Zeitleiste statt vier loser Zeilen ---------- */
+/* Die alten Ziffern standen in Coral-Tint auf hellem Grund und waren kaum zu lesen.
+   Jetzt traegt die Ziffer einen Ring, und der erste Schritt ist sichtbar erledigt. */
+.tl{margin-top:14px}
+.tl-item{display:grid; grid-template-columns:auto 1fr; gap:18px; padding-bottom:24px; position:relative}
+.tl-item::before{content:''; position:absolute; left:11px; top:28px; bottom:0; width:1px; background:rgba(11,29,63,.15)}
+.tl-item:last-child{padding-bottom:0}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:23px; height:23px; border-radius:50%; border:1.5px solid rgba(11,29,63,.22); background:var(--ground);
+  display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--ink-soft);
+  font-variant-numeric:tabular-nums; position:relative; z-index:1}
+/* Sage-Deep auf Sage-Tint bleibt knapp unter dem Kontrastmass, darum eine Stufe dunkler */
+.tl-item.done .tl-dot{background:var(--sage-tint); border-color:var(--sage); color:#1E6B3E}
+.tl-item b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; margin-bottom:3px}
+.tl-item p{font-size:14.5px; line-height:1.62; color:#5a554e}
+.tl-tag{display:inline-block; margin-left:9px; padding:2px 8px; border-radius:3px; background:var(--sage-tint);
+  color:#1E6B3E; font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; vertical-align:2px}
+
+/* ---------- Anlegen: die drei Handgriffe, bevor das Paket da ist ---------- */
+.anlegen{margin-top:clamp(72px,8vw,110px); display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr);
+  gap:clamp(24px,3.5vw,44px); align-items:center}
+@media(max-width:720px){.anlegen{grid-template-columns:1fr}}
+.anlegen img{width:100%; height:100%; max-height:380px; object-fit:cover; border-radius:12px; display:block}
+.anlegen h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.2vw,36px); margin-bottom:8px}
+.anlegen .lead2{font-size:15px; color:#5a554e; margin-bottom:18px}
+.hand{display:grid; grid-template-columns:auto 1fr; gap:14px; padding:12px 0; border-top:1px solid rgba(11,29,63,.1)}
+.hand i{font-family:var(--serif); font-style:normal; font-size:22px; line-height:1.1; color:var(--coral-deep); min-width:26px}
+.hand b{display:block; font-family:var(--sans); font-size:14.5px; font-weight:600; margin-bottom:2px}
+.hand span{font-size:14px; line-height:1.6; color:#5a554e}
+.klemm{margin-top:16px; font-size:14px; line-height:1.62; color:#5a554e; padding-left:14px; border-left:2px solid var(--coral-tint)}
+
+/* ---------- Pflege und Rueckgabe ---------- */
+.pflege{margin-top:clamp(72px,8vw,110px)}
+/* Gleiche Ebene wie «Anlegen», also gleiche Groesse. Vorher standen auf einer
+   Seite zwei Groessen fuer denselben Abschnittstitel. */
+.pflege h2, .retour h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.2vw,36px);
+  letter-spacing:0; text-transform:none; color:var(--charcoal); margin-bottom:14px}
+.pflege ul{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:12px 26px}
+@media(max-width:640px){.pflege ul{grid-template-columns:1fr}}
+.pflege li{display:grid; grid-template-columns:auto 1fr; gap:11px; font-size:14.5px; line-height:1.6; color:#5a554e}
+.pflege li svg{margin-top:4px; color:var(--sage-deep); flex:0 0 auto}
+.retour{margin-top:clamp(72px,8vw,110px); background:var(--paper); border:1px solid #efe8dc; border-radius:8px;
+  box-shadow:10px 10px 0 var(--lav-tint); padding:28px 26px}
+.retour p{font-size:15px; line-height:1.68; color:#5a554e; max-width:64ch}
+.retour p + p{margin-top:12px}
+.retour .btn{margin-top:20px}
+.kboxen{margin-top:clamp(34px,4vw,48px); display:grid; grid-template-columns:1fr 1fr; gap:20px}
+@media(max-width:640px){.kboxen{grid-template-columns:1fr}}
+.kbox{border:1px solid rgba(11,29,63,.12); border-radius:8px; padding:20px 22px}
+.kbox b{display:block; font-family:var(--sans); font-size:15px; font-weight:600; margin-bottom:6px}
+.kbox p{font-size:14px; line-height:1.62; color:#5a554e}
+.kbox a{display:inline-flex; align-items:center; min-height:44px; margin-top:4px; font-size:13px; font-weight:600;
+  color:var(--coral-deep); box-shadow:inset 0 -1px 0 rgba(201,59,39,.35)}
+.kbox a:hover{box-shadow:inset 0 -1px 0 var(--coral-deep)}
 
 .dank-note{margin-top:34px; border:1px dashed rgba(125,111,214,.55); background:rgba(125,111,214,.05);
-  border-radius:8px; padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5c564e}
-.dank-cta{margin-top:34px; display:flex; gap:12px; flex-wrap:wrap}
+  border-radius:8px; padding:16px 18px; font-size:13.5px; line-height:1.6; color:#5a554e}
+.dank-cta{margin-top:34px; display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.dank-cta .schluss{width:100%; font-family:var(--serif); font-weight:300; font-size:clamp(22px,2.6vw,30px);
+  margin-bottom:6px; color:var(--charcoal)}
+
+/* ---------- Gedruckt ist die Seite ein Beleg, kein Auftritt ---------- */
+@media print{
+  #nav, .mnav, #footer, #drawer, #overlay, #toast, #searchOverlay, .skip-link,
+  .nr-actions, .dank-cta, .anlegen img{display:none !important}
+  body{background:#fff; color:#000}
+  .dank{padding:0; max-width:none}
+  .liefer, .retour, .bbox, .kbox{background:#fff; box-shadow:none; border:1px solid #ccc}
+  .anlegen{grid-template-columns:1fr}
+  .bsec, .pflege, .retour, .anlegen, .kboxen{break-inside:avoid}
+}
+@media(prefers-reduced-motion:reduce){.mini{transition:none}}
 </style>
 </head>
 <body class="page-light">
@@ -68,6 +151,29 @@ if (best && best.datum && (Date.now() - new Date(best.datum).getTime()) > 864000
   best = null;
 }
 const box = document.getElementById('inhalt');
+const hakenS = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
+
+// Werktage zaehlen, Samstag und Sonntag zaehlen nicht mit.
+function werktageSpaeter(start, n){
+  const d = new Date(start);
+  let rest = n;
+  while (rest > 0){
+    d.setDate(d.getDate() + 1);
+    const tag = d.getDay();
+    if (tag !== 0 && tag !== 6) rest--;
+  }
+  return d;
+}
+// Tag und Monat. Intl.formatRange waere der kurze Weg, setzt aber einen Gedankenstrich
+// zwischen die Daten, und der ist im Haus gesperrt. Also von Hand.
+const tagMonat = d => d.toLocaleDateString(I18N.locale, { day: '2-digit', month: 'long' });
+// Liegen beide Daten im selben Monat, faellt der Monat vorne weg: «24. und 25. August»
+// statt «24. August und 25. August». Das trifft alle drei Fassungen gleich.
+function tagOhneMonat(a, b){
+  const voll = tagMonat(a);
+  if (a.getMonth() !== b.getMonth() || a.getFullYear() !== b.getFullYear()) return voll;
+  return voll.replace(a.toLocaleDateString(I18N.locale, { month: 'long' }), '').trim();
+}
 
 if (!best){
   box.innerHTML = `
@@ -78,8 +184,13 @@ if (!best){
   const d = new Date(best.datum);
   // Das Datumsformat folgt der Fassung, nicht der Ausgangssprache
   const datum = d.toLocaleDateString(I18N.locale, { day: '2-digit', month: 'long', year: 'numeric' });
-  const versandName = txt(best.versandart === 'express' ? 'kauf.versand.express.name' : 'kauf.versand.standard.name');
-  const versandDauer = txt(best.versandart === 'express' ? 'kauf.versand.express.dauer' : 'kauf.versand.standard.dauer');
+  const express = best.versandart === 'express';
+  const versandName = txt(express ? 'kauf.versand.express.name' : 'kauf.versand.standard.name');
+  const versandDauer = txt(express ? 'kauf.versand.express.dauer' : 'kauf.versand.standard.dauer');
+  const vonD = werktageSpaeter(d, express ? 1 : 2);
+  const bisD = werktageSpaeter(d, express ? 2 : 4);
+  const von = tagOhneMonat(vonD, bisD);
+  const bis = tagMonat(bisD);
   // TWINT, PayPal und Apple Pay sind Namen und bleiben stehen. Nur die Karte hat einen Begriff.
   const zahlungName = best.zahlung === 'Kreditkarte' ? txt('kauf.zahlung.karte.name') : best.zahlung;
   box.innerHTML = `
@@ -88,10 +199,25 @@ if (!best){
     </div>
     <h1>${txt('kauf.bestellung.dank.titel', {name: best.name.split(' ')[0]})}</h1>
     <p class="lead">${txt('kauf.bestellung.dank.text', {mail: best.mail})}</p>
-    <div class="nr"><span>${txt('kauf.bestellung.nummer_label')}</span><b>${best.nr}</b></div>
+
+    <div class="nrbar">
+      <div class="nr"><span>${txt('kauf.bestellung.nummer_label')}</span><b id="nrWert">${best.nr}</b></div>
+      <div class="nr-actions" style="display:flex; gap:10px; flex-wrap:wrap">
+        <button class="mini" type="button" id="copyBtn">${txt('kaufweg.best.nummer.kopieren')}</button>
+        <button class="mini" type="button" id="printBtn">${txt('kaufweg.best.drucken')}</button>
+      </div>
+    </div>
+    <p class="nr-hint">${txt('kaufweg.best.nummer.hinweis')}</p>
+
+    <section class="liefer">
+      <div class="lab">${txt('kaufweg.best.liefer.titel')}</div>
+      <div class="datum">${txt('kaufweg.best.liefer.fenster', {von, bis})}</div>
+      <p>${txt('kaufweg.best.liefer.hinweis', {art: versandName})}<span class="ph">${txt('kaufweg.best.liefer.platzhalter')}</span></p>
+    </section>
 
     <section class="bsec">
-      <h2>${txt('kauf.bestellung.bestellt_am', {datum})}</h2>
+      <h2>${txt('kauf.kasse.summe.titel')}</h2>
+      <p class="wann">${txt('kauf.bestellung.bestellt_am', {datum})}</p>
       ${best.artikel.map(a => `
         <div class="bline">
           <div>${a.name}<span class="q">${a.variant} · ${stueckVon(a, a.qty)}</span></div>
@@ -99,6 +225,7 @@ if (!best){
         </div>`).join('')}
       <div class="bline"><div>${txt('kauf.summe.versand')} (${versandName})</div><div class="pr">${best.versand === 0 ? txt('kauf.versand.gratis') : fmtCHF(best.versand)}</div></div>
       <div class="bline total"><div>${txt('kauf.summe.total')}</div><div class="pr">${fmtCHF(best.total)}</div></div>
+      <p class="mwst">${txt('kaufweg.korb.summe.mwst')}</p>
     </section>
 
     <section class="bsec">
@@ -109,20 +236,112 @@ if (!best){
       </div>
     </section>
 
-    <section class="bsec schritte">
+    <section class="bsec">
       <h2>${txt('kauf.bestellung.schritte.titel')}</h2>
-      <div class="schritt"><i>01</i><div><b>${txt('kauf.bestellung.schritt1.titel')}</b><span>${txt('kauf.bestellung.schritt1.text')}</span></div></div>
-      <div class="schritt"><i>02</i><div><b>${txt('kauf.bestellung.schritt2.titel')}</b><span>${txt('kauf.bestellung.schritt2.text')}</span></div></div>
-      <div class="schritt"><i>03</i><div><b>${txt('kauf.bestellung.schritt3.titel')}</b><span>${txt('kauf.bestellung.schritt3.text', {dauer: versandDauer})}</span></div></div>
-      <div class="schritt"><i>04</i><div><b>${txt('kauf.bestellung.schritt4.titel')}</b><span>${txt('kauf.bestellung.schritt4.text')}</span></div></div>
+      <div class="tl">
+        <div class="tl-item done">
+          <span class="tl-dot" aria-hidden="true">${hakenS}</span>
+          <div><b>${txt('kauf.bestellung.schritt1.titel')}<span class="tl-tag">${txt('kaufweg.best.zeitleiste.erledigt')}</span></b><p>${txt('kauf.bestellung.schritt1.text')}</p></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true">2</span>
+          <div><b>${txt('kauf.bestellung.schritt2.titel')}</b><p>${txt('kauf.bestellung.schritt2.text')}</p></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true">3</span>
+          <div><b>${txt('kauf.bestellung.schritt3.titel')}</b><p>${txt('kauf.bestellung.schritt3.text', {dauer: versandDauer})}</p></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true">4</span>
+          <!-- Der alte Text nannte hier noch einmal die 30 Tage. Die stehen zwei Abschnitte
+               weiter unten vollstaendig, hier zeigt der Schritt auf die Anleitung. -->
+          <div><b>${txt('kaufweg.best.schritt4.titel')}</b><p>${txt('kaufweg.best.schritt4.text')}</p></div>
+        </div>
+      </div>
     </section>
+
+    <section class="anlegen">
+      <img src="{{story_hands}}" alt="${txt('kaufweg.best.bild_alt')}" loading="lazy">
+      <div>
+        <h2>${txt('kaufweg.best.anlegen.titel')}</h2>
+        <p class="lead2">${txt('kaufweg.best.anlegen.lead')}</p>
+        <div class="hand"><i>01</i><div><b>${txt('kaufweg.best.anlegen.s1.titel')}</b><span>${txt('kaufweg.best.anlegen.s1.text')}</span></div></div>
+        <div class="hand"><i>02</i><div><b>${txt('kaufweg.best.anlegen.s2.titel')}</b><span>${txt('kaufweg.best.anlegen.s2.text')}</span></div></div>
+        <div class="hand"><i>03</i><div><b>${txt('kaufweg.best.anlegen.s3.titel')}</b><span>${txt('kaufweg.best.anlegen.s3.text')}</span></div></div>
+        <!-- Die Anleitung fuehrte nur hinein. Die erste Frage nach dem ersten Tragen ist
+             aber, wie man sie wieder herausbekommt, und die Antwort stand nur im FAQ.
+             Auf dieser Seite steht die Kaeuferin mit der Schachtel in der Hand. -->
+        <div class="hand"><i>04</i><div><b>${txt('best.anlegen.s4.titel')}</b><span>${txt('best.anlegen.s4.text')}</span></div></div>
+        <p class="klemm">${txt('kaufweg.best.anlegen.klemm')}</p>
+      </div>
+    </section>
+
+    <section class="pflege">
+      <h2>${txt('kaufweg.best.pflege.titel')}</h2>
+      <ul>
+        <li>${hakenS}<span>${txt('kaufweg.best.pflege.p1')}</span></li>
+        <li>${hakenS}<span>${txt('kaufweg.best.pflege.p2')}</span></li>
+        <li>${hakenS}<span>${txt('kaufweg.best.pflege.p3')}</span></li>
+        <li>${hakenS}<span>${txt('kaufweg.best.pflege.p4')}</span></li>
+      </ul>
+    </section>
+
+    <section class="retour">
+      <h2>${txt('kaufweg.best.passt.titel')}</h2>
+      <p>${txt('kaufweg.best.passt.text')}</p>
+      <p>${txt('kaufweg.best.passt.dreht_nicht')}</p>
+      <a class="btn btn-ghost" href="widerruf.html#widerruf">${txt('kaufweg.best.passt.knopf')}</a>
+    </section>
+
+    <div class="kboxen">
+      <div class="kbox">
+        <b>${txt('kaufweg.best.mail.titel')}</b>
+        <p>${txt('kaufweg.best.mail.text')}</p>
+        <a href="kontakt.html">${txt('kaufweg.best.kontakt.knopf')}</a>
+      </div>
+      <div class="kbox">
+        <b>${txt('kaufweg.best.aendern.titel')}</b>
+        <p>${txt('kaufweg.best.aendern.text')}</p>
+        <a href="kontakt.html">${txt('kaufweg.best.kontakt.knopf')}</a>
+      </div>
+    </div>
 
     <div class="dank-note">${txt('kauf.bestellung.hinweis_prototyp')}</div>
 
     <div class="dank-cta">
+      <span class="schluss">${txt('kaufweg.best.weiter.titel')}</span>
       <a class="btn btn-coral" href="kollektion.html">${txt('kauf.aktion.weiter_shoppen')}</a>
       <a class="btn btn-ghost" href="journal.html">${txt('kauf.bestellung.knopf_journal')}</a>
     </div>`;
+
+  // Drucken ist der einzige Beleg, den ein Prototyp ohne Server ausgeben kann.
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+  // Kopieren: erst der moderne Weg, dann der alte. Schlaegt beides fehl, bleibt der
+  // Knopf, wie er war, statt einen Erfolg zu behaupten.
+  document.getElementById('copyBtn').addEventListener('click', async (e) => {
+    const knopf = e.currentTarget;
+    const wert = best.nr;
+    let ok = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(wert); ok = true; }
+    } catch(err) { ok = false; }
+    if (!ok){
+      try {
+        const feld = document.createElement('textarea');
+        feld.value = wert; feld.setAttribute('readonly', '');
+        feld.style.position = 'fixed'; feld.style.opacity = '0';
+        document.body.appendChild(feld); feld.select();
+        ok = document.execCommand('copy');
+        feld.remove();
+      } catch(err) { ok = false; }
+    }
+    if (!ok) return;
+    const zurueck = knopf.textContent;
+    knopf.textContent = txt('kaufweg.best.nummer.kopiert');
+    knopf.classList.add('ok');
+    setTimeout(() => { knopf.textContent = zurueck; knopf.classList.remove('ok'); }, 1800);
+  });
 }
 </script>
 </body>

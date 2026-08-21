@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{{t:seite.kontakt.beschreibung}}">
+<meta name="description" content="{{t:kontakt.meta.beschreibung}}">
 <link rel="canonical" href="{{CANONICAL}}">
 {{HREFLANG}}
 <link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
@@ -13,43 +13,284 @@
 <title>{{t:seite.kontakt.titel}}</title>
 <style>
 {{CSS}}
+
+/* ============ Kontakt ============ */
+/* Wer hier landet, hat eine offene Frage und eine kleine Hemmung. Beides nimmt
+   die Seite in dieser Reihenfolge weg: erst was wir zusagen, dann die vier Wege
+   mit der Antwort, die schon geschrieben ist, dann das Formular mit allem, was
+   danach passiert. Kein blindes Absenden. */
+
+.legal.kontaktp{max-width:1180px;
+  padding:clamp(112px,12vw,132px) var(--pad) clamp(78px,8vw,110px)}
+.legal.kontaktp h1{margin-bottom:14px; font-size:clamp(38px,5.4vw,62px)}
+
+/* --- Kopf --- */
+.k-kopf{max-width:62ch}
+.k-kopf .eyebrow{display:block; margin-bottom:16px}
+.legal.kontaktp .k-kopf .lead{margin-bottom:0; font-size:17px; max-width:60ch}
+
+.k-zusagen{list-style:none; padding:0; margin:clamp(30px,3.6vw,42px) 0 0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
+@media(max-width:860px){.k-zusagen{grid-template-columns:1fr}}
+.k-zusagen li{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:18px 20px; display:grid; grid-template-columns:10px minmax(0,1fr); gap:0 13px}
+.k-zusagen li::before{content:''; width:9px; height:9px; border-radius:2px; margin-top:7px}
+.k-zusagen li:nth-child(1)::before{background:var(--coral)}
+.k-zusagen li:nth-child(2)::before{background:var(--sage)}
+.k-zusagen li:nth-child(3)::before{background:var(--lavender)}
+.legal.kontaktp .k-zusagen b{display:block; font-size:14.5px; font-weight:600; color:var(--charcoal)}
+.legal.kontaktp .k-zusagen span{display:block; margin-top:3px; font-size:13.5px; line-height:1.6; color:var(--ink-soft)}
+
+/* --- Zwei Spalten --- */
+.k-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(26px,3.4vw,56px); margin-top:clamp(44px,5.6vw,78px); align-items:start}
+@media(max-width:900px){
+  .k-grid{grid-template-columns:1fr; gap:34px}
+  .k-form-spalte{order:-1}
+}
+.legal.kontaktp .k-titel{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px}
+.legal.kontaktp .k-untertitel{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 20px; max-width:46ch}
+
+/* --- Die vier Wege --- */
+.k-weg{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:22px 24px; margin-bottom:14px; display:grid; grid-template-columns:34px minmax(0,1fr); gap:0 14px}
+.k-weg .marke{width:34px; height:34px; border-radius:50%; display:grid; place-items:center; margin-top:2px}
+.k-weg:nth-of-type(1) .marke{background:var(--coral-tint)}
+.k-weg:nth-of-type(2) .marke{background:var(--sage-tint)}
+.k-weg:nth-of-type(3) .marke{background:var(--lav-tint)}
+.k-weg:nth-of-type(4) .marke{background:#F0E4D3}
+.k-weg .marke svg{width:17px; height:17px; stroke:var(--charcoal); fill:none; stroke-width:1.6;
+  stroke-linecap:round; stroke-linejoin:round}
+.legal.kontaktp .k-weg h3{font-family:var(--serif); font-weight:400; font-size:20px; line-height:1.2;
+  color:var(--charcoal); margin:0 0 6px}
+.legal.kontaktp .k-weg p{font-size:14.5px; line-height:1.68; color:#4a453e}
+
+/* --- Direkte Wege --- */
+.k-direkt{margin-top:clamp(26px,3vw,36px); background:var(--paper); border:1px solid #eee5d8;
+  border-radius:8px; padding:24px; box-shadow:10px 10px 0 var(--sage-tint)}
+.k-direkt dl{margin:0}
+.k-direkt dt{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); margin-top:20px}
+.k-direkt dt:first-of-type{margin-top:0}
+.legal.kontaktp .k-direkt dd{margin:6px 0 0; font-size:14.5px; line-height:1.68; color:#4a453e}
+/* Die Mailadresse ist der wichtigste Griff der Seite. Als Zeile im Fliesstext war
+   sie 24 px hoch, also unter der Trefferflaeche. Jetzt traegt sie ihre eigenen 44. */
+.k-direkt .mail{display:inline-flex; align-items:center; min-height:44px; padding:2px 0;
+  font-family:var(--serif); font-style:italic; font-size:21px; color:var(--coral-deep)}
+.legal.kontaktp .k-direkt .klein{font-size:13px; color:var(--ink-soft); margin-top:4px}
+
+/* --- Formular --- */
+.legal.kontaktp .cform{border-radius:8px; padding:clamp(24px,2.8vw,32px);
+  box-shadow:10px 10px 0 var(--lav-tint)}
+.legal.kontaktp .cform h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.2vw,34px);
+  line-height:1.1; color:var(--charcoal); margin:0 0 8px}
+.legal.kontaktp .cf-lead{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 6px; max-width:46ch}
+.cf-zwei{display:grid; grid-template-columns:1fr 1fr; gap:0 16px}
+@media(max-width:520px){.cf-zwei{grid-template-columns:1fr}}
+.legal.kontaktp .cform select{width:100%; border:1.5px solid var(--grey-deep); border-radius:4px;
+  padding:12px 14px; font:inherit; font-size:14.5px; background:var(--ground); color:var(--charcoal);
+  min-height:46px; appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--charcoal) 50%),linear-gradient(135deg,var(--charcoal) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 21px, calc(100% - 13px) 21px;
+  background-size:6px 6px, 6px 6px; background-repeat:no-repeat}
+.legal.kontaktp .cform input, .legal.kontaktp .cform textarea{border-radius:4px; min-height:46px}
+.legal.kontaktp .cform select:focus{border-color:var(--navy)}
+.cf-opt{text-transform:none; letter-spacing:0; font-weight:400; color:var(--warmgrey); font-size:11.5px}
+.legal.kontaktp .cf-hinweis{font-size:12.5px; line-height:1.55; color:var(--ink-soft); margin:6px 0 0}
+.legal.kontaktp .cf-fehler{font-size:12.5px; line-height:1.55; color:var(--coral-deep); font-weight:500; margin:6px 0 0}
+.cf-fehler[hidden]{display:none}
+.cform [aria-invalid="true"]{border-color:var(--coral-deep)}
+
+.cf-datenschutz, .cf-proto{margin-top:14px}
+.legal.kontaktp .cf-datenschutz{font-size:12.5px; line-height:1.6; color:var(--ink-soft)}
+.legal.kontaktp .cf-proto{font-size:12.5px; line-height:1.6}
+
+/* Was danach passiert: die Angst vor dem Absenden ist eine Angst vor dem Nichts */
+.cf-danach{margin-top:22px; padding-top:20px; border-top:1px solid #f0e9dd}
+.legal.kontaktp .cf-danach .k-titel{margin-bottom:12px}
+.cf-danach ol{list-style:none; padding:0; margin:0; counter-reset:schritt}
+.legal.kontaktp .cf-danach li{counter-increment:schritt; display:grid;
+  grid-template-columns:24px minmax(0,1fr); gap:0 12px; padding:8px 0;
+  font-size:13.5px; line-height:1.6; color:#4a453e}
+.cf-danach li::before{content:counter(schritt); width:24px; height:24px; border-radius:50%;
+  background:var(--ground); border:1px solid #e5dccd; display:grid; place-items:center;
+  font-size:11px; font-weight:600; color:var(--ink-soft)}
+
+/* Bestätigung ersetzt die Felder, damit sichtbar ist, dass etwas passiert ist */
+.cf-dank[hidden]{display:none}
+.cf-dank .haken{width:44px; height:44px; border-radius:50%; background:var(--sage-tint);
+  display:grid; place-items:center; margin-bottom:16px}
+.cf-dank .haken svg{width:20px; height:20px; stroke:var(--sage-deep); fill:none; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round}
+.legal.kontaktp .cf-dank > b{display:block; font-family:var(--serif); font-weight:400; font-style:italic;
+  font-size:clamp(24px,3vw,30px); color:var(--charcoal); line-height:1.15}
+.legal.kontaktp #cfDankText{font-size:14.5px; line-height:1.7; color:#4a453e; margin-top:10px; max-width:44ch}
+.legal.kontaktp #cfDankText b{font-weight:600; color:var(--charcoal)}
+.cf-dank .weiter{margin-top:20px; padding-top:18px; border-top:1px solid #f0e9dd;
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px}
+.legal.kontaktp .cf-dank .weiter span{font-size:12.5px; color:var(--ink-soft)}
+.legal.kontaktp .cf-dank .weiter a{display:inline-flex; align-items:center; min-height:44px;
+  font-size:13.5px; font-weight:500; color:var(--coral-deep)}
+
+/* --- Bestellnummer, nur wenn es um eine Bestellung geht --- */
+/* Das Feld hilft bei zwei von fuenf Themen und steht bei den anderen drei im Weg.
+   Es haengt an der Themenwahl, nicht am uebersetzten Text: die Werte im select
+   sind Kuerzel und in allen drei Fassungen dieselben. Versteckt wird per Skript,
+   damit ohne Skript alle Felder da sind statt keins. */
+.cf-nr[hidden]{display:none}
+.legal.kontaktp .cf-nr label:first-child{margin-top:16px}
 </style>
 </head>
 <body class="page-light">
 
 {{HEADER}}
 
-<main id="inhalt" class="legal">
+<main id="inhalt" class="legal kontaktp">
   <div class="crumbs"><a href="index.html">{{t:kontakt.brotkrume.start}}</a><span class="sep">/</span><span>{{t:kontakt.brotkrume.aktuell}}</span></div>
-  <h1>{{t:kontakt.hero.titel}}</h1>
-  <p class="lead">{{t:kontakt.hero.lead}}</p>
 
-  <h2 class="visually-hidden">{{t:kontakt.brotkrume.aktuell}}</h2>
-  <div class="contact-grid">
-    <div>
-      <div class="contact-card">
-        <h3>{{t:kontakt.mail.titel}}</h3>
-        <p><a href="mailto:hello@baqless.com">hello@baqless.com</a><br>{{t:kontakt.mail.antwortzeit}}</p>
+  <header class="k-kopf">
+    <span class="eyebrow">{{t:kontakt.hero.eyebrow}}</span>
+    <h1>{{t:kontakt.hero.titel}}</h1>
+    <p class="lead">{{t:kontakt.hero.intro}}</p>
+  </header>
+
+  <ul class="k-zusagen">
+    <li><b>{{t:kontakt.zusage.zeit.titel}}</b><span>{{t:kontakt.zusage.zeit.text}}</span></li>
+    <li><b>{{t:kontakt.zusage.mensch.titel}}</b><span>{{t:kontakt.zusage.mensch.text}}</span></li>
+    <li><b>{{t:kontakt.zusage.daten.titel}}</b><span>{{t:kontakt.zusage.daten.text}}</span></li>
+  </ul>
+
+  <div class="k-grid">
+
+    <section class="k-wege-spalte">
+      <h2 class="k-titel">{{t:kontakt.wege.titel}}</h2>
+      <p class="k-untertitel">{{t:kontakt.wege.text}}</p>
+
+      <div class="k-weg">
+        <span class="marke" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg></span>
+        <div>
+          <h3>{{t:kontakt.weg.kauf.titel}}</h3>
+          <p>{{t:kontakt.weg.kauf.text}} <a href="faq.html#halt">{{t:kontakt.weg.kauf.link}}</a>.</p>
+        </div>
       </div>
-      <div class="contact-card">
-        <h3>{{t:kontakt.bestellungen.titel}}</h3>
-        <p>{{t:kontakt.bestellungen.text}} <a href="widerruf.html">{{t:kontakt.bestellungen.link_retouren}}</a>.</p>
+
+      <div class="k-weg">
+        <span class="marke" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span>
+        <div>
+          <h3>{{t:kontakt.weg.bestellung.titel}}</h3>
+          <p>{{t:kontakt.weg.bestellung.text}}</p>
+        </div>
       </div>
-      <div class="contact-card">
-        <h3>{{t:kontakt.hilfe.titel}}</h3>
-        <p>{{t:kontakt.hilfe.text_vor}} <a href="index.html#clicklock">{{t:kontakt.hilfe.link_anleitung}}</a>. {{t:kontakt.hilfe.text_nach}}</p>
+
+      <div class="k-weg">
+        <span class="marke" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3.2 2"/></svg></span>
+        <div>
+          <h3>{{t:kontakt.hilfe.titel}}</h3>
+          <p>{{t:kontakt.weg.clicklock.text}} <a href="index.html#clicklock">{{t:kontakt.hilfe.link_anleitung}}</a>. {{t:kontakt.weg.clicklock.nach}}</p>
+        </div>
       </div>
-    </div>
-    <form class="cform" id="contactForm">
-      <label for="cfName">{{t:kontakt.formular.name}}</label>
-      <input id="cfName" name="name" type="text" autocomplete="name" required>
-      <label for="cfMail">{{t:kontakt.formular.mail}}</label>
-      <input id="cfMail" name="email" type="email" autocomplete="email" required>
-      <label for="cfMsg">{{t:kontakt.formular.nachricht}}</label>
-      <textarea id="cfMsg" name="message" rows="7" required></textarea>
-      <button class="btn btn-coral" type="submit">{{t:kontakt.formular.knopf_abschicken}}</button>
-    </form>
+
+      <div class="k-weg">
+        <span class="marke" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 14a9 9 0 1 0 2.1-9.6L3 7"/><path d="M3 2.5v5h5"/></svg></span>
+        <div>
+          <h3>{{t:kontakt.weg.retoure.titel}}</h3>
+          <p>{{t:kontakt.weg.retoure.text}} <a href="widerruf.html">{{t:kontakt.bestellungen.link_retouren}}</a>.</p>
+        </div>
+      </div>
+
+      <div class="k-direkt">
+        <h2 class="k-titel">{{t:kontakt.direkt.titel}}</h2>
+        <dl>
+          <dt>{{t:kontakt.mail.titel}}</dt>
+          <dd><a class="mail" href="mailto:hello@baqless.com">hello@baqless.com</a></dd>
+          <dd class="klein">{{t:kontakt.direkt.mail_hinweis}}</dd>
+
+          <dt>{{t:kontakt.direkt.telefon.titel}}</dt>
+          <dd>{{t:kontakt.direkt.telefon.text}}</dd>
+
+          <dt>{{t:kontakt.direkt.social.titel}}</dt>
+          <dd>{{t:kontakt.direkt.social.text}}</dd>
+
+          <dt>{{t:kontakt.adresse.titel}}</dt>
+          <dd>Baqless AG<br>
+            <span class="ph">{{t:recht.platzhalter.strasse}}</span><br>
+            <span class="ph">{{t:recht.platzhalter.plz_ort}}</span>, {{t:recht.impressum.betreiberin.land}}</dd>
+          <dd class="klein">{{t:kontakt.adresse.hinweis}}</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="k-form-spalte">
+      <form class="cform" id="contactForm" novalidate>
+        <div id="cfFelder">
+          <h2>{{t:kontakt.formular.titel}}</h2>
+          <p class="cf-lead">{{t:kontakt.formular.lead}}</p>
+
+          <label for="cfThema">{{t:kontakt.formular.thema}}</label>
+          <select id="cfThema" name="thema">
+            <option value="kauf">{{t:kontakt.formular.thema_kauf}}</option>
+            <option value="bestellung">{{t:kontakt.formular.thema_bestellung}}</option>
+            <option value="clicklock">Click-Lock</option>
+            <option value="retoure">{{t:kontakt.formular.thema_retoure}}</option>
+            <option value="anderes">{{t:kontakt.formular.thema_anderes}}</option>
+          </select>
+
+          <div class="cf-zwei">
+            <div>
+              <label for="cfName">{{t:kontakt.formular.name}}</label>
+              <input id="cfName" name="name" type="text" autocomplete="name" aria-describedby="cfNameFehler">
+              <p class="cf-fehler" id="cfNameFehler" hidden></p>
+            </div>
+            <div>
+              <label for="cfMail">{{t:kontakt.formular.mail}}</label>
+              <input id="cfMail" name="email" type="email" autocomplete="email" aria-describedby="cfMailHinweis cfMailFehler">
+              <p class="cf-hinweis" id="cfMailHinweis">{{t:kontakt.formular.mail_hinweis}}</p>
+              <p class="cf-fehler" id="cfMailFehler" hidden></p>
+            </div>
+          </div>
+
+          <div class="cf-nr" id="cfNrBlock">
+            <label for="cfNr">{{t:kontakt.formular.bestellnummer}} <span class="cf-opt">{{t:kontakt.formular.optional}}</span></label>
+            <input id="cfNr" name="bestellnummer" type="text" placeholder="BQ-000000" aria-describedby="cfNrHinweis">
+            <p class="cf-hinweis" id="cfNrHinweis">{{t:kontakt.formular.bestellnummer_hinweis}}</p>
+          </div>
+
+          <label for="cfMsg">{{t:kontakt.formular.nachricht}}</label>
+          <textarea id="cfMsg" name="message" rows="6" aria-describedby="cfMsgHinweis cfMsgFehler"></textarea>
+          <p class="cf-hinweis" id="cfMsgHinweis">{{t:kontakt.formular.nachricht_hinweis}}</p>
+          <p class="cf-fehler" id="cfMsgFehler" hidden></p>
+
+          <button class="btn btn-coral" type="submit">{{t:kontakt.formular.knopf_abschicken}}</button>
+
+          <p class="cf-datenschutz">{{t:kontakt.formular.datenschutz_vor}} <a href="datenschutz.html">{{t:kontakt.formular.datenschutz_link}}</a>.</p>
+          <p class="cf-proto"><span class="ph">{{t:kontakt.formular.prototyp}}</span></p>
+
+          <div class="cf-danach">
+            <p class="k-titel">{{t:kontakt.danach.titel}}</p>
+            <ol>
+              <li><span>{{t:kontakt.danach.s1}}</span></li>
+              <li><span>{{t:kontakt.danach.s2}}</span></li>
+              <li><span>{{t:kontakt.danach.s3}}</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="cf-dank" id="cfDank" hidden tabindex="-1">
+          <span class="haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span>
+          <b id="cfDankTitel"></b>
+          <p id="cfDankText"></p>
+          <p class="cf-proto"><span class="ph">{{t:kontakt.formular.prototyp}}</span></p>
+          <div class="weiter">
+            <span>{{t:kontakt.dank.weiter}}</span>
+            <a href="faq.html">{{t:kontakt.dank.link_faq}}</a>
+            <a href="kollektion.html">{{t:nav.panel.alle_paare}}</a>
+          </div>
+        </div>
+      </form>
+    </section>
   </div>
+
 </main>
 
 {{FOOTER}}
@@ -58,11 +299,82 @@
 <script>
 {{SHARED_JS}}
 
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  toast(`<span class="tick">✓</span><span><b>${txt('kontakt.toast.titel')}</b> ${txt('kontakt.toast.text')}</span>`);
-  e.target.reset();
-});
+// Das Formular prueft selbst, damit die Meldung benennt, was fehlt, statt zu
+// bewerten. Der Browser haelt sich mit novalidate raus. Nach dem Absenden
+// treten die Felder ab und die Bestaetigung tritt an ihre Stelle: sichtbar,
+// bleibend, mit der Adresse, an die die Antwort geht.
+(function kontaktFormular(){
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const felder = document.getElementById('cfFelder');
+  const dank = document.getElementById('cfDank');
+  const name = document.getElementById('cfName');
+  const mail = document.getElementById('cfMail');
+  const msg = document.getElementById('cfMsg');
+
+  // Die Bestellnummer hilft bei zwei Themen und steht bei den drei anderen im Weg.
+  // Geprueft wird gegen die Kuerzel im value, nie gegen den sichtbaren Text: der
+  // heisst in en und fr anders, das Kuerzel nicht.
+  const thema = document.getElementById('cfThema');
+  const nrBlock = document.getElementById('cfNrBlock');
+  const MIT_NUMMER = ['bestellung', 'retoure'];
+  function nummerfeld(){
+    const zeigen = MIT_NUMMER.indexOf(thema.value) !== -1;
+    if (!zeigen) document.getElementById('cfNr').value = '';
+    nrBlock.hidden = !zeigen;
+  }
+  thema.addEventListener('change', nummerfeld);
+  nummerfeld();
+
+  const escapen = s => String(s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  function melden(feld, kasten, text){
+    const box = document.getElementById(kasten);
+    if (text){
+      box.textContent = text;
+      box.hidden = false;
+      feld.setAttribute('aria-invalid', 'true');
+    } else {
+      box.textContent = '';
+      box.hidden = true;
+      feld.removeAttribute('aria-invalid');
+    }
+    return !text;
+  }
+
+  function pruefen(){
+    const wertName = name.value.trim();
+    const wertMail = mail.value.trim();
+    const wertMsg = msg.value.trim();
+    const mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(wertMail);
+    const ergebnis = [
+      melden(name, 'cfNameFehler', wertName ? '' : txt('kontakt.fehler.name')),
+      melden(mail, 'cfMailFehler', !wertMail ? txt('kontakt.fehler.mail_fehlt') : (mailOk ? '' : txt('kontakt.fehler.mail_falsch'))),
+      melden(msg, 'cfMsgFehler', wertMsg ? '' : txt('kontakt.fehler.nachricht')),
+    ];
+    return ergebnis.every(Boolean);
+  }
+
+  [name, mail, msg].forEach(feld => feld.addEventListener('input', () => {
+    if (feld.getAttribute('aria-invalid') === 'true') pruefen();
+  }));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!pruefen()){
+      const erstes = form.querySelector('[aria-invalid="true"]');
+      if (erstes) erstes.focus();
+      return;
+    }
+    document.getElementById('cfDankTitel').textContent = txt('kontakt.dank.titel', { name: name.value.trim() });
+    document.getElementById('cfDankText').innerHTML = txt('kontakt.dank.text', { mail: '<b>' + escapen(mail.value.trim()) + '</b>' });
+    felder.hidden = true;
+    dank.hidden = false;
+    dank.focus();
+    toast(`<span class="tick">✓</span><span><b>${txt('kontakt.toast.titel')}</b> ${txt('kontakt.toast.text')}</span>`);
+  });
+})();
 </script>
 </body>
 </html>

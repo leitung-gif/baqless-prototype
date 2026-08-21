@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{{t:seite.faq.beschreibung}}">
+<meta name="description" content="{{t:faq.meta.beschreibung}}">
 <link rel="canonical" href="{{CANONICAL}}">
 {{HREFLANG}}
 <link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
@@ -13,70 +13,301 @@
 <title>{{t:seite.faq.titel}}</title>
 <style>
 {{CSS}}
+
+/* ============ Gut zu wissen ============ */
+/* Eine FAQ ist keine Ablage, sondern der Ort, an dem der Kauf entschieden wird.
+   Darum die Reihenfolge: zuerst Halt und Passform, zuletzt Pflege. Vier Gruppen
+   statt achtzehn gleichrangiger Ueberschriften, links eine mitlaufende Spur,
+   damit niemand scrollt, um zu suchen. Die Fragen bleiben h2, die Gruppentitel
+   tragen ihre Ebene ueber ARIA, damit die Gliederung stimmt. */
+
+.legal.faqp{max-width:1180px; padding:clamp(112px,12vw,132px) var(--pad) 0}
+.legal.faqp h1{margin-bottom:14px; font-size:clamp(38px,5.4vw,62px)}
+
+/* --- Kopf --- */
+.faq-kopf{max-width:64ch}
+.faq-kopf .eyebrow{display:block; margin-bottom:16px}
+.legal.faqp .faq-kopf .lead{margin-bottom:0; font-size:17px; max-width:62ch}
+
+.faq-zusagen{list-style:none; padding:0; margin:clamp(30px,3.6vw,42px) 0 0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; max-width:1180px}
+@media(max-width:860px){.faq-zusagen{grid-template-columns:1fr}}
+.faq-zusagen li{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:18px 20px; display:grid; grid-template-columns:10px minmax(0,1fr); gap:0 13px}
+.faq-zusagen li::before{content:''; width:9px; height:9px; border-radius:2px; margin-top:7px}
+.faq-zusagen li:nth-child(1)::before{background:var(--coral)}
+.faq-zusagen li:nth-child(2)::before{background:var(--sage)}
+.faq-zusagen li:nth-child(3)::before{background:var(--lavender)}
+.legal.faqp .faq-zusagen b{display:block; font-size:14.5px; font-weight:600; color:var(--charcoal)}
+.legal.faqp .faq-zusagen span{display:block; margin-top:3px; font-size:13.5px; line-height:1.6; color:var(--ink-soft)}
+
+/* --- Zwei Spalten: Spur und Inhalt --- */
+.faq-layout{display:grid; grid-template-columns:238px minmax(0,1fr);
+  gap:clamp(26px,3.6vw,62px); margin-top:clamp(44px,5.6vw,78px); align-items:start}
+@media(max-width:960px){.faq-layout{grid-template-columns:1fr; gap:28px}}
+
+.faq-nav{position:sticky; top:104px}
+@media(max-width:960px){.faq-nav{position:static; top:auto}}
+.fn-titel{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px}
+.fn-liste{list-style:none; padding:0; margin:0; border-top:1px solid #e9e0d2}
+.fn-liste a{display:grid; grid-template-columns:26px minmax(0,1fr); gap:0 8px; align-items:start;
+  padding:13px 2px; border-bottom:1px solid #e9e0d2; font-size:14.5px; line-height:1.4;
+  color:var(--charcoal); min-height:44px; transition:color .12s}
+.fn-liste a i{font-style:normal; font-size:11px; font-weight:600; letter-spacing:.1em;
+  color:var(--warmgrey); padding-top:3px; transition:color .12s}
+.fn-liste a:hover{color:var(--coral-deep)}
+.fn-liste a[aria-current="true"]{color:var(--coral-deep); font-weight:500}
+.fn-liste a[aria-current="true"] i{color:var(--coral-deep)}
+@media(max-width:960px){
+  .fn-liste{display:flex; flex-wrap:wrap; gap:8px; border:0}
+  .fn-liste a{border:1px solid #e2d8c8; border-radius:4px; padding:11px 14px; display:flex;
+    align-items:center; background:var(--paper)}
+  .fn-liste a i{display:none}
+}
+.fn-hilfe{margin-top:24px; background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:20px; box-shadow:8px 8px 0 var(--lav-tint)}
+.legal.faqp .fn-hilfe b{display:block; font-family:var(--serif); font-weight:400; font-size:19px;
+  color:var(--charcoal); line-height:1.2}
+.legal.faqp .fn-hilfe p{font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:7px 0 15px}
+.fn-hilfe .btn{width:100%; justify-content:center; padding:13px 18px; font-size:12px}
+@media(max-width:960px){.fn-hilfe{display:none}}
+
+/* --- Gruppen --- */
+.fgroup{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:clamp(22px,2.8vw,34px); margin-bottom:clamp(26px,3.4vw,44px); scroll-margin-top:104px}
+.fgroup.g1{box-shadow:10px 10px 0 var(--coral-tint)}
+.fgroup.g2{box-shadow:10px 10px 0 var(--sage-tint)}
+.fgroup.g3{box-shadow:10px 10px 0 var(--lav-tint)}
+.fgroup.g4{box-shadow:10px 10px 0 #F0E4D3}
+.fg-kopf{display:grid; grid-template-columns:46px minmax(0,1fr); gap:0 16px; align-items:start;
+  padding-bottom:22px; border-bottom:1px solid #efe7db}
+.fg-nr{width:46px; height:46px; border-radius:50%; display:grid; place-items:center;
+  font-family:var(--serif); font-size:19px; font-style:normal; color:var(--charcoal)}
+.g1 .fg-nr{background:var(--coral-tint)}
+.g2 .fg-nr{background:var(--sage-tint)}
+.g3 .fg-nr{background:var(--lav-tint)}
+.g4 .fg-nr{background:#F0E4D3}
+.fg-titel{font-family:var(--serif); font-weight:300; font-size:clamp(25px,3vw,32px);
+  line-height:1.1; color:var(--charcoal)}
+.legal.faqp .fg-text{margin-top:8px; font-size:14.5px; line-height:1.65; color:var(--ink-soft); max-width:52ch}
+
+/* --- Frage und Antwort --- */
+.fq{padding:22px 0; border-top:1px solid #f2ebde; scroll-margin-top:104px}
+.fq:first-of-type{border-top:0}
+.legal.faqp .fq h2{font-family:var(--serif); font-weight:400; font-size:21px; line-height:1.25;
+  color:var(--charcoal); margin:0 0 9px}
+.legal.faqp .fq p{font-size:15px; line-height:1.75; color:#4a453e; max-width:68ch}
+.legal.faqp .fq .ph{display:inline-block; margin-top:2px}
+
+/* --- Schluss --- */
+/* Navy-Flaeche mit zwei Knoepfen. Ohne die helle Fassung des Fokusrahmens liegt
+   Navy auf Navy und der Fokus ist unsichtbar. Gleiche Zeile wie bei .nachkauf
+   (Start), .sd-partner (Story) und .rl-satz (Datenschutz). */
+.faq-schluss{--focus-ring:#FAF7F2;
+  margin:clamp(20px,3vw,34px) 0 clamp(74px,8vw,110px);
+  background:var(--navy); color:var(--ground); border-radius:8px;
+  padding:clamp(30px,4vw,52px); display:grid; grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(20px,3vw,40px); align-items:center; position:relative; overflow:hidden}
+@media(max-width:760px){.faq-schluss{grid-template-columns:1fr}}
+.faq-schluss::after{content:''; position:absolute; width:280px; height:280px; border-radius:50%;
+  border:1px solid rgba(255,122,106,.35); right:-90px; bottom:-140px; pointer-events:none}
+.fs-titel{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,38px);
+  line-height:1.1; color:var(--ground)}
+.legal.faqp .faq-schluss p{margin-top:12px; font-size:15px; line-height:1.7;
+  color:rgba(250,247,242,.82); max-width:54ch}
+.fs-knoepfe{display:flex; flex-wrap:wrap; gap:12px; position:relative; z-index:2}
 </style>
 </head>
 <body class="page-light">
 
 {{HEADER}}
 
-<main id="inhalt" class="legal">
+<main id="inhalt" class="legal faqp">
   <div class="crumbs"><a href="index.html">{{t:faq.krumen.start}}</a><span class="sep">/</span><span>{{t:faq.krumen.aktuell}}</span></div>
-  <h1>{{t:faq.kopf.titel}}</h1>
-  <p class="lead">{{t:faq.kopf.lead}} <a href="kontakt.html">{{t:faq.kopf.lead_link}}</a></p>
 
-  <h2>{{t:faq.clicklock.frage}}</h2>
-  <p>{{t:faq.clicklock.antwort}} <a href="index.html#clicklock">{{t:faq.clicklock.antwort_link}}</a>.</p>
+  <header class="faq-kopf">
+    <span class="eyebrow">{{t:faq.kopf.eyebrow}}</span>
+    <h1>{{t:faq.kopf.titel}}</h1>
+    <p class="lead">{{t:faq.kopf.intro}}</p>
+  </header>
 
-  <h2>{{t:faq.sitzt.frage}}</h2>
-  <p>{{t:faq.sitzt.antwort}}</p>
+  <ul class="faq-zusagen">
+    <li><b>{{t:faq.zusage.antwort.titel}}</b><span>{{t:faq.zusage.antwort.text}}</span></li>
+    <li><b>{{t:faq.zusage.rueckgabe.titel}}</b><span>{{t:faq.zusage.rueckgabe.text}}</span></li>
+    <li><b>{{t:faq.zusage.grenze.titel}}</b><span>{{t:faq.zusage.grenze.text}}</span></li>
+  </ul>
 
-  <h2>{{t:faq.wasserfest.frage}}</h2>
-  <p>{{t:faq.wasserfest.antwort}}</p>
+  <div class="faq-layout">
+    <aside class="faq-nav">
+      <p class="fn-titel" id="fnTitel">{{t:faq.nav.titel}}</p>
+      <nav aria-labelledby="fnTitel">
+        <ul class="fn-liste" id="fnListe">
+          <li><a href="#halt"><i>01</i><span>{{t:faq.gruppe.halt.titel}}</span></a></li>
+          <li><a href="#auswahl"><i>02</i><span>{{t:faq.gruppe.auswahl.titel}}</span></a></li>
+          <li><a href="#bestellen"><i>03</i><span>{{t:faq.gruppe.bestellen.titel}}</span></a></li>
+          <li><a href="#danach"><i>04</i><span>{{t:faq.gruppe.danach.titel}}</span></a></li>
+        </ul>
+      </nav>
+      <div class="fn-hilfe">
+        <b>{{t:faq.nav.hilfe.titel}}</b>
+        <p>{{t:faq.nav.hilfe.text}}</p>
+        <a class="btn btn-ghost" href="kontakt.html">{{t:faq.nav.hilfe.knopf}}</a>
+      </div>
+    </aside>
 
-  <h2>{{t:faq.empfindlich.frage}}</h2>
-  <p>{{t:faq.empfindlich.antwort}} <span class="ph">{{t:faq.empfindlich.hinweis}}</span></p>
+    <div class="faq-body">
 
-  <h2 id="groessen">{{t:faq.groessen.frage}}</h2>
-  <p>{{t:faq.groessen.antwort}} <span class="ph">{{t:faq.groessen.hinweis}}</span></p>
+      <section class="fgroup g1" id="halt">
+        <div class="fg-kopf">
+          <i class="fg-nr">01</i>
+          <div>
+            <div class="fg-titel" role="heading" aria-level="2">{{t:faq.gruppe.halt.titel}}</div>
+            <p class="fg-text">{{t:faq.gruppe.halt.text}}</p>
+          </div>
+        </div>
 
-  <h2 id="passform">{{t:faq.passform.frage}}</h2>
-  <p>{{t:faq.passform.antwort}} <a href="kontakt.html">{{t:faq.passform.antwort_link}}</a>{{t:faq.passform.antwort_schluss}}</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.sitzt.frage}}</h2>
+          <p>{{t:faq.a2.sitzt}}</p>
+        </article>
 
-  <h2>{{t:faq.anlegen.frage}}</h2>
-  <p>{{t:faq.anlegen.antwort}}</p>
+        <article class="fq" id="passform">
+          <h2 aria-level="3">{{t:faq.passform.frage}}</h2>
+          <p>{{t:faq.a.passform}} <a href="kontakt.html">{{t:faq.passform.antwort_link}}</a>{{t:faq.a.passform_schluss}}</p>
+        </article>
 
-  <h2>{{t:faq.einzeln.frage}}</h2>
-  <p>{{t:faq.einzeln.antwort}}</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.clicklock.frage}}</h2>
+          <p>{{t:faq.clicklock.antwort}} <a href="index.html#clicklock">{{t:faq.clicklock.antwort_link}}</a>.</p>
+        </article>
 
-  <h2>{{t:faq.pflege.frage}}</h2>
-  <p>{{t:faq.pflege.antwort}}</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.anlegen.frage}}</h2>
+          <p>{{t:faq.anlegen.antwort}}</p>
+        </article>
 
-  <h2>{{t:faq.lieferland.frage}}</h2>
-  <p>{{t:faq.lieferland.antwort}} <a href="widerruf.html">{{t:faq.link.versand_retouren}}</a>.</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.wasserfest.frage}}</h2>
+          <p>{{t:faq.a.wasserfest}}</p>
+        </article>
 
-  <h2>{{t:faq.retoure.frage}}</h2>
-  <p>{{t:faq.retoure.antwort}} <a href="widerruf.html">{{t:faq.link.versand_retouren}}</a>.</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.f.material}}</h2>
+          <p>{{t:faq.a.material}} <span class="ph">{{t:faq.empfindlich.hinweis}}</span></p>
+        </article>
 
-  <h2>{{t:faq.bestellablauf.frage}}</h2>
-  <p>{{t:faq.bestellablauf.antwort}}</p>
+        <article class="fq" id="groessen">
+          <h2 aria-level="3">{{t:faq.groessen.frage}}</h2>
+          <p>{{t:faq.a.groessen}} <span class="ph">{{t:faq.groessen.hinweis}}</span></p>
+        </article>
+      </section>
 
-  <h2>{{t:faq.bezahlung.frage}}</h2>
-  <p>{{t:faq.bezahlung.antwort}} <span class="ph">{{t:faq.bezahlung.hinweis}}</span></p>
+      <section class="fgroup g2" id="auswahl">
+        <div class="fg-kopf">
+          <i class="fg-nr">02</i>
+          <div>
+            <div class="fg-titel" role="heading" aria-level="2">{{t:faq.gruppe.auswahl.titel}}</div>
+            <p class="fg-text">{{t:faq.gruppe.auswahl.text}}</p>
+          </div>
+        </div>
 
-  <h2>{{t:faq.versandkosten.frage}}</h2>
-  <p>{{t:faq.versandkosten.antwort}} <span class="ph">{{t:faq.versandkosten.hinweis}}</span></p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.einzeln.frage}}</h2>
+          <p>{{t:faq.a.einzeln}}</p>
+        </article>
 
-  <h2>{{t:faq.garantie.frage}}</h2>
-  <p>{{t:faq.garantie.antwort}} <span class="ph">{{t:faq.garantie.hinweis}}</span></p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.wa.frage}}</h2>
+          <p>{{t:faq.wa.antwort}} <a href="index.html#wa">{{t:faq.wa.antwort_link}}</a></p>
+        </article>
 
-  <h2>{{t:faq.ausverkauft.frage}}</h2>
-  <p>{{t:faq.ausverkauft.antwort}}</p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.ausverkauft.frage}}</h2>
+          <p>{{t:faq.ausverkauft.antwort}}</p>
+        </article>
 
-  <h2>{{t:faq.geschenk.frage}}</h2>
-  <p>{{t:faq.geschenk.antwort}} <span class="ph">{{t:faq.geschenk.hinweis}}</span></p>
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.geschenk.frage}}</h2>
+          <p>{{t:faq.geschenk.antwort}} <span class="ph">{{t:faq.geschenk.hinweis}}</span></p>
+        </article>
+      </section>
 
-  <h2>{{t:faq.wa.frage}}</h2>
-  <p>{{t:faq.wa.antwort}} <a href="index.html#wa">{{t:faq.wa.antwort_link}}</a></p>
+      <section class="fgroup g3" id="bestellen">
+        <div class="fg-kopf">
+          <i class="fg-nr">03</i>
+          <div>
+            <div class="fg-titel" role="heading" aria-level="2">{{t:faq.gruppe.bestellen.titel}}</div>
+            <p class="fg-text">{{t:faq.gruppe.bestellen.text}}</p>
+          </div>
+        </div>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.bestellablauf.frage}}</h2>
+          <p>{{t:faq.bestellablauf.antwort}}</p>
+        </article>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.bezahlung.frage}}</h2>
+          <p>{{t:faq.bezahlung.antwort}} <span class="ph">{{t:faq.bezahlung.hinweis}}</span></p>
+        </article>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.versandkosten.frage}}</h2>
+          <!-- Die Antwort sagte «vom Zoll kommt keine Nachforderung» und der Platzhalter
+               direkt daneben sagte, dass die Zollregelung je Land erst noch festgelegt
+               wird. Die Kasse sagt dasselbe, sobald ein Land ausserhalb der Schweiz
+               gewaehlt ist. Eine unbedingte Zusage darf nicht neben ihrem eigenen
+               Vorbehalt stehen, das ist genau die Stelle, an der eine Kundin spaeter
+               eine Rechnung an der Tuer bekommt. Die Zusage bleibt als Absicht stehen,
+               ohne das Wort «keine». -->
+          <p>{{t:faq.versandkosten.antwort}} <span class="ph">{{t:faq.hinweis.versand2}}</span></p>
+        </article>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.lieferland.frage}}</h2>
+          <p>{{t:faq.a.lieferland}} <a href="widerruf.html">{{t:faq.link.versand_retouren}}</a>.</p>
+        </article>
+      </section>
+
+      <section class="fgroup g4" id="danach">
+        <div class="fg-kopf">
+          <i class="fg-nr">04</i>
+          <div>
+            <div class="fg-titel" role="heading" aria-level="2">{{t:faq.gruppe.danach.titel}}</div>
+            <p class="fg-text">{{t:faq.gruppe.danach.text}}</p>
+          </div>
+        </div>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.retoure.frage}}</h2>
+          <p>{{t:faq.a.retoure}} <a href="widerruf.html">{{t:faq.link.versand_retouren}}</a>.</p>
+        </article>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.garantie.frage}}</h2>
+          <p>{{t:faq.a.garantie}} <span class="ph">{{t:faq.garantie.hinweis}}</span></p>
+        </article>
+
+        <article class="fq">
+          <h2 aria-level="3">{{t:faq.pflege.frage}}</h2>
+          <p>{{t:faq.pflege.antwort}}</p>
+        </article>
+      </section>
+
+    </div>
+  </div>
+
+  <section class="faq-schluss">
+    <div>
+      <div class="fs-titel">{{t:faq.schluss.titel}}</div>
+      <p>{{t:faq.schluss.text}}</p>
+    </div>
+    <div class="fs-knoepfe">
+      <a class="btn btn-coral" href="kontakt.html">{{t:faq.schluss.knopf}}</a>
+      <a class="btn btn-light" href="kollektion.html">{{t:nav.panel.alle_paare}}</a>
+    </div>
+  </section>
 </main>
 
 {{FOOTER}}
@@ -84,6 +315,34 @@
 
 <script>
 {{SHARED_JS}}
+
+// Die Spur links markiert die Gruppe, in der man gerade liest. Rein visuell,
+// darum reicht aria-current auf dem Link und kein Sprung im Fokus.
+// Die Kanten werden einmal gemessen und nur bei Groessenaenderung neu, damit
+// das Scrollen kein Layout erzwingt.
+(function faqSpur(){
+  const links = Array.from(document.querySelectorAll('#fnListe a'));
+  const ziele = links.map(a => document.getElementById(a.getAttribute('href').slice(1)));
+  if (!links.length || ziele.some(z => !z)) return;
+  let kanten = [], aktiv = -1;
+  function pruefen(){
+    const linie = window.scrollY + 170;
+    let i = 0;
+    for (let n = 0; n < kanten.length; n++) if (kanten[n] <= linie) i = n;
+    if (i === aktiv) return;
+    aktiv = i;
+    links.forEach((a, n) => n === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  }
+  function messen(){
+    kanten = ziele.map(z => z.getBoundingClientRect().top + window.scrollY);
+    aktiv = -1;
+    pruefen();
+  }
+  addEventListener('scroll', pruefen, { passive: true });
+  addEventListener('resize', messen);
+  addEventListener('load', messen);
+  messen();
+})();
 </script>
 </body>
 </html>

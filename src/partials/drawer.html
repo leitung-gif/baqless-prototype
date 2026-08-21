@@ -1,3 +1,33 @@
+<style>
+/* ============================================================
+   Huelle, Warenkorbschublade und Suche.
+   Seiteneigene Regeln, styles.css bleibt unberuehrt.
+   Wer die Schublade oeffnet, hat sich entschieden. Was hier fehlte,
+   war die Antwort auf die letzte Frage vor dem Klick: was kostet
+   der Versand, und was passiert, wenn es doch nicht passt.
+   ============================================================ */
+
+.drawer-close{display:flex; align-items:center; justify-content:center;
+  min-width:44px; min-height:44px; padding:0}
+#drawer .line-remove{display:flex; align-items:center; justify-content:center;
+  min-width:44px; min-height:44px; padding:0; top:2px; right:-10px}
+
+.drawer-foot{gap:11px; padding:18px 26px calc(18px + env(safe-area-inset-bottom))}
+.drawer-hinweis{margin-top:-3px; font-size:12px; line-height:1.5; color:var(--ink-soft)}
+.drawer-cart-link{margin-top:0; padding:11px 0; min-height:44px}
+.drawer-sicher{list-style:none; display:grid; gap:8px; margin-top:2px; padding-top:13px;
+  border-top:1px solid var(--softgray); font-size:12px; line-height:1.45; color:var(--ink-soft)}
+.drawer-sicher li{display:flex; align-items:flex-start; gap:9px}
+.drawer-sicher svg{flex:none; margin-top:1px; color:var(--sage-deep)}
+
+.so-close{display:flex; align-items:center; justify-content:center;
+  min-width:44px; min-height:44px; padding:0; font-size:24px}
+.so-hint button{min-height:44px; padding:0 14px}
+.so-fuss{padding:12px 20px 16px; border-top:1px solid #f0ebe2;
+  font-size:12px; color:var(--ink-soft)}
+@media (max-width:720px){.so-fuss{display:none}}
+</style>
+
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
 <aside id="drawer" aria-label="{{t:drawer.aria.warenkorb}}" aria-modal="false">
@@ -12,8 +42,19 @@
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-foot">
     <div class="drawer-total"><span>{{t:drawer.fuss.zwischensumme}}</span><span id="drawerTotal">CHF 0</span></div>
+    <p class="drawer-hinweis">{{t:huelle.drawer.hinweis_versand}}</p>
     <button class="btn btn-coral" id="checkoutBtn" style="width:100%; justify-content:center">{{t:drawer.fuss.knopf_kasse}}</button>
     <a class="drawer-cart-link" href="warenkorb.html">{{t:drawer.fuss.link_warenkorb}}</a>
+    <ul class="drawer-sicher">
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 15a9 9 0 1 0 2.1-9.6L3 8"/><path d="M3 3v5h5"/></svg>
+        <span>{{t:huelle.drawer.rueckgabe}}</span>
+      </li>
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+        <span>{{t:huelle.drawer.zahlung}}</span>
+      </li>
+    </ul>
   </div>
 </aside>
 
@@ -28,5 +69,6 @@
     </div>
     <div class="so-hint" id="soHint">{{t:suche.hinweis.beliebt}} <button data-q="Polaris">Polaris</button><button data-q="{{t:suche.hinweis.chip_gold}}">{{t:suche.hinweis.chip_gold}}</button><button data-q="Honesty">Honesty</button><button data-q="{{t:suche.hinweis.chip_limitiert}}">{{t:suche.hinweis.chip_limitiert}}</button></div>
     <div class="so-results" id="soResults"></div>
+    <p class="so-fuss">{{t:huelle.suche.tastatur}}</p>
   </div>
 </div>

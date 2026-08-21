@@ -1,0 +1,237 @@
+{
+ "journal.index.kick": {
+  "de": "Auf dieser Seite",
+  "en": "On this page",
+  "fr": "Sur cette page"
+ },
+ "journal.index.aufmacher": {
+  "de": "Der Aufmacher",
+  "en": "The lead story",
+  "fr": "L'ouverture"
+ },
+ "journal.index.befunde": {
+  "de": "Sechs Befunde",
+  "en": "Six findings",
+  "fr": "Six constats"
+ },
+ "journal.index.portraets": {
+  "de": "Fünf Porträts",
+  "en": "Five portraits",
+  "fr": "Cinq portraits"
+ },
+ "journal.index.stationen": {
+  "de": "Stationen",
+  "en": "Stops",
+  "fr": "Étapes"
+ },
+ "journal.index.offenlegung": {
+  "de": "Offenlegung",
+  "en": "Disclosure",
+  "fr": "Transparence"
+ },
+ "journal.zahlen.portraets.label": {
+  "de": "Porträts",
+  "en": "portraits",
+  "fr": "portraits"
+ },
+ "journal.zahlen.portraets.text": {
+  "de": "Sechs Frauen aus sechs Berufen, die diese Ohrringe seit Jahren tragen. Jedes Porträt einzeln geführt.",
+  "en": "Six women in six different jobs who have worn these earrings for years. Each portrait recorded separately.",
+  "fr": "Six femmes exerçant six métiers différents, qui portent ces boucles depuis des années. Chaque portrait a été réalisé séparément."
+ },
+ "journal.zahlen.jahre.label": {
+  "de": "Jahrgänge",
+  "en": "years",
+  "fr": "années"
+ },
+ "journal.zahlen.jahre.text": {
+  "de": "Das erste Porträt stammt von 2022, das letzte von 2025. Keine zwei fallen in denselben Monat.",
+  "en": "The first portrait dates from 2022, the last from 2025. No two of them fall in the same month.",
+  "fr": "Le premier portrait date de 2022, le dernier de 2025. Aucun ne tombe dans le même mois qu'un autre."
+ },
+ "journal.zahlen.zitat.label": {
+  "de": "wörtliches Zitat",
+  "en": "literal quotation",
+  "fr": "citation mot pour mot"
+ },
+ "journal.zahlen.zitat.text": {
+  "de": "Nur der hervorgehobene Satz von Taeko Wako steht im Originalton. Alles andere ist zusammengefasst und übersetzt.",
+  "en": "Only the highlighted line from Taeko Wako is in her own words. Everything else is summarised and translated.",
+  "fr": "Seule la phrase mise en évidence de Taeko Wako est rapportée telle quelle. Tout le reste est résumé et traduit."
+ },
+ "journal.zahlen.sterne.label": {
+  "de": "Sterne, Punkte, Noten",
+  "en": "stars, points, grades",
+  "fr": "étoiles, points, notes"
+ },
+ "journal.zahlen.sterne.text": {
+  "de": "Wir rechnen hier nichts hoch. Unter jedem Porträt steht dafür, wann es erschienen ist und woher es stammt.",
+  "en": "We do not scale anything up here. Instead, under every portrait you will find when it appeared and where it comes from.",
+  "fr": "Nous n'extrapolons rien ici. Sous chaque portrait figurent en revanche sa date de parution et sa provenance."
+ },
+ "journal.zahlen.fotos.label": {
+  "de": "Warum hier keine Gesichter stehen",
+  "en": "Why there are no faces here",
+  "fr": "Pourquoi il n'y a pas de visages ici"
+ },
+ "journal.zahlen.fotos.text": {
+  "de": "Die Porträtfotos sind noch nicht freigegeben. Statt fremde Bilder einzusetzen, lassen wir die Sätze stehen: auf jeder Farbfläche steht der Satz, der von dieser Person hängen geblieben ist. Die Fotos kommen nach, sobald wir sie zeigen dürfen.",
+  "en": "The portrait photographs are not yet approved. Rather than drop in someone else's pictures, we let the sentences stand: on every colour panel is the line that stayed with us from that person. The photographs follow as soon as we are allowed to show them.",
+  "fr": "Les photos des portraits ne sont pas encore validées. Plutôt que d'insérer des images qui ne sont pas les leurs, nous laissons parler les phrases : sur chaque aplat de couleur figure celle que cette personne nous a laissée. Les photos suivront dès que nous aurons le droit de les montrer."
+ },
+ "journal.warum": {
+  "de": "Warum sie hier steht",
+  "en": "Why she is here",
+  "fr": "Pourquoi elle figure ici"
+ },
+ "journal.wako.einordnung": {
+  "de": "Von den sechs ist sie die Einzige, die Schmuck von Berufs wegen beurteilt. Sie hat Baqless in ihre eigene Kuratierung aufgenommen.",
+  "en": "Of the six, she is the only one who assesses jewellery for a living. She took Baqless into her own selection.",
+  "fr": "Des six, elle est la seule à évaluer des bijoux à titre professionnel. Elle a fait entrer Baqless dans sa propre sélection."
+ },
+ "journal.nakajima.einordnung": {
+  "de": "Ihr Test ist der härteste: 100 Meilen am Stück, ohne einmal ans Ohr zu fassen.",
+  "en": "Her test is the hardest: 100 miles in one go, without reaching up to her ear once.",
+  "fr": "Son test est le plus dur : 100 miles d'affilée, sans porter une seule fois la main à l'oreille."
+ },
+ "journal.halim.einordnung": {
+  "de": "Sie beantwortet die Frage, was passiert, wenn man Ohrringe gar nie mehr abnimmt.",
+  "en": "She answers the question of what happens when you never take earrings off at all.",
+  "fr": "Elle répond à la question de ce qui se passe quand on n'enlève plus jamais ses boucles."
+ },
+ "journal.sena.einordnung": {
+  "de": "Ihr ganzes Gepäck passt in einen Rucksack. Was mitkommt, muss sich lohnen.",
+  "en": "All her luggage fits in a rucksack. Whatever comes along has to earn its place.",
+  "fr": "Tout son bagage tient dans un sac à dos. Ce qui part avec elle doit le mériter."
+ },
+ "journal.igawa.einordnung": {
+  "de": "Sie beurteilt die Bauweise als Brand Director ihrer eigenen Marke, nicht nur als Trägerin.",
+  "en": "She judges the construction as the brand director of her own label, not only as someone who wears them.",
+  "fr": "Elle juge la construction en tant que brand director de sa propre marque, pas seulement parce qu'elle les porte."
+ },
+ "journal.kobori.einordnung": {
+  "de": "Sie nennt die Grenze selbst: im Teeraum trägt sie nichts. Genau das macht ihr Urteil brauchbar.",
+  "en": "She names the limit herself: in the tea room she wears nothing. That is what makes her verdict useful.",
+  "fr": "Elle nomme elle-même la limite : dans la salle de thé, elle ne porte rien. C'est précisément ce qui rend son avis utile."
+ },
+ "journal.befunde.fuss": {
+  "de": "Die Punkte zeigen dasselbe wie die Zahl daneben. Nichts davon ist gewichtet, hochgerechnet oder auf Prozent gebracht.",
+  "en": "The dots show the same thing as the number beside them. Nothing here is weighted, extrapolated or turned into a percentage.",
+  "fr": "Les points indiquent la même chose que le chiffre à côté. Rien n'est pondéré, extrapolé ni converti en pourcentage."
+ },
+ "journal.befunde.schluss.titel": {
+  "de": "Sechs Leben, derselbe Satz.",
+  "en": "Six lives, the same sentence.",
+  "fr": "Six vies, la même phrase."
+ },
+ "journal.befunde.schluss.text": {
+  "de": "Vier von sechs kommen von selbst darauf, dass sie die Ohrringe vergessen. Vier von sechs erzählen, dass nichts mehr verloren geht. Beides hängt an derselben Sache. Es gibt kein Rückteil, das sich lösen könnte.",
+  "en": "Four of the six come to it by themselves: they forget the earrings are there. Four of the six say nothing goes missing any more. Both hang on the same thing. There is no back that could come loose.",
+  "fr": "Quatre sur six y viennent d'elles-mêmes : elles oublient qu'elles les portent. Quatre sur six racontent que plus rien ne se perd. Les deux tiennent à la même chose. Il n'y a pas de poussoir qui puisse se détacher."
+ },
+ "journal.portraets.sub": {
+  "de": "Fünf Porträts, fünf Berufe, fünf Daten. Unter jedem steht, warum diese Person in dieser Auswahl steht.",
+  "en": "Five portraits, five occupations, five dates. Under each one is why this person is in the selection.",
+  "fr": "Cinq portraits, cinq métiers, cinq dates. Sous chacun, la raison pour laquelle cette personne figure dans la sélection."
+ },
+ "journal.brueck.kick": {
+  "de": "Vom Text zum Ohr",
+  "en": "From the page to the ear",
+  "fr": "Du texte à l'oreille"
+ },
+ "journal.brueck.titel": {
+  "de": "Das ist der Verschluss, um den es hier geht.",
+  "en": "This is the fastening the portraits are about.",
+  "fr": "Voici le fermoir dont il est question ici."
+ },
+ "journal.brueck.lead": {
+  "de": "Alle sechs tragen denselben Verschluss. Die Formen unterscheiden sich, die Bauweise nicht. Vier Kollektionen, jede mit eigenem Charakter.",
+  "en": "All six wear the same fastening. The shapes differ, the construction does not. Four collections, each with its own character.",
+  "fr": "Toutes les six portent le même fermoir. Les formes diffèrent, pas la construction. Quatre collections, chacune avec son caractère."
+ },
+ "journal.brueck.label": {
+  "de": "Kollektion",
+  "en": "Collection",
+  "fr": "Collection"
+ },
+ "journal.brueck.wa.label": {
+  "de": "Limitierte Serie",
+  "en": "Limited series",
+  "fr": "Série limitée"
+ },
+ "journal.brueck.knopf": {
+  "de": "Kollektion ansehen",
+  "en": "See the collection",
+  "fr": "Voir la collection"
+ },
+ "journal.brueck.honesty.text": {
+  "de": "Die stillen Formen. Linie, Rundung, Blatt, Tropfen.",
+  "en": "The quiet shapes. Line, curve, leaf, drop.",
+  "fr": "Les formes discrètes. Ligne, courbe, feuille, goutte."
+ },
+ "journal.brueck.amity.text": {
+  "de": "Der Stern, die Perle, das Paar zum Weitergeben.",
+  "en": "The star, the pearl, the pair you can pass on.",
+  "fr": "L'étoile, la perle, la paire que l'on partage."
+ },
+ "journal.brueck.embrace.text": {
+  "de": "Reif, Neon, Zirkonia. Für Tage, die auffallen dürfen.",
+  "en": "Band, neon, cubic zirconia. For days that are allowed to stand out.",
+  "fr": "Anneau, néon, zircone. Pour les jours qui ont le droit de se voir."
+ },
+ "journal.brueck.wa.text": {
+  "de": "Japanische Muster in Silber. Nummeriert. Nachproduziert wird nicht.",
+  "en": "Japanese patterns in silver. Numbered. Never made again.",
+  "fr": "Motifs japonais en argent. Numérotés. Jamais reproduits."
+ },
+ "journal.brueck.fakt.verschluss": {
+  "de": "Kein Rückteil. Nichts zum Verlieren.",
+  "en": "No back. Nothing to lose.",
+  "fr": "Pas de poussoir. Rien à perdre."
+ },
+ "journal.brueck.fakt.material": {
+  "de": "Sterling Silber 925. Nur der Stift hinter dem Ohr ist chirurgischer Edelstahl.",
+  "en": "Sterling silver 925. Only the post behind the ear is surgical stainless steel.",
+  "fr": "Argent sterling 925. Seule la tige derrière l'oreille est en acier chirurgical."
+ },
+ "journal.brueck.fakt.wasser": {
+  "de": "Bleibt drin beim Duschen und Schwimmen",
+  "en": "Stays in in the shower and in the sea",
+  "fr": "Reste en place sous la douche et dans l'eau"
+ },
+ "journal.brueck.fakt.herkunft": {
+  "de": "Entwickelt in der Schweiz, von Hand gefertigt",
+  "en": "Developed in Switzerland, handcrafted",
+  "fr": "Conçu en Suisse, fabriqué à la main"
+ },
+ "journal.brueck.passform.titel": {
+  "de": "Passt das an jedes Ohrläppchen?",
+  "en": "Will it fit every earlobe?",
+  "fr": "Est-ce que cela tient à tous les lobes ?"
+ },
+ "journal.brueck.passform.text": {
+  "de": "Fast immer, aber nicht immer. Der Anker braucht hinter dem Ohrläppchen Platz für die Vierteldrehung. Bei sehr dicken Ohrläppchen findet er diesen Platz nicht. Das sagen wir dir lieber vorher als nachher.",
+  "en": "Almost always, but not always. The anchor needs room behind the earlobe for its quarter turn. On very thick earlobes it does not find that room. We would rather tell you before than after.",
+  "fr": "Presque toujours, mais pas toujours. L'ancre a besoin de place derrière le lobe pour son quart de tour. Sur un lobe très épais, elle ne trouve pas cette place. Nous préférons vous le dire avant plutôt qu'après."
+ },
+ "journal.brueck.passform.link": {
+  "de": "Ganze Antwort lesen",
+  "en": "Read the full answer",
+  "fr": "Lire la réponse complète"
+ },
+ "journal.kolophon.kick": {
+  "de": "Offenlegung",
+  "en": "Disclosure",
+  "fr": "Transparence"
+ },
+ "journal.kolophon.titel": {
+  "de": "Damit klar ist, woher diese Seite kommt.",
+  "en": "So it is clear where this page comes from.",
+  "fr": "Pour que l'origine de cette page soit claire."
+ },
+ "journal.cta.sub": {
+  "de": "Du hast jetzt sechs Urteile gelesen. Das siebte ist deins.",
+  "en": "You have read six verdicts. The seventh is yours.",
+  "fr": "Vous avez lu six avis. Le septième est le vôtre."
+ }
+}

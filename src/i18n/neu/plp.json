@@ -1,0 +1,352 @@
+{
+ "plp.meta.kollektion.beschreibung": {
+  "de": "Alle Baqless Kollektionen: Honesty, Amity, Embrace und die nummerierte WA Serie. Jedes Paar mit Click-Lock, Sterling Silber 925, jedes Modell auch einzeln.",
+  "en": "All Baqless collections: Honesty, Amity, Embrace and the numbered WA series. Every pair with Click-Lock, Sterling silver 925, every model also as a single earring.",
+  "fr": "Toutes les collections Baqless : Honesty, Amity, Embrace et la série WA numérotée. Chaque paire avec Click-Lock, argent sterling 925, chaque modèle aussi à l'unité."
+ },
+ "plp.kollektion.hero.text2": {
+  "de": "Vier Kollektionen, ein Verschluss. Diese Seite sagt dir, wofür jede steht, für wen sie gemacht ist und wonach du hier entscheidest.",
+  "en": "Four collections, one fastening. This page tells you what each one stands for, who it is for and what you actually decide here.",
+  "fr": "Quatre collections, un seul fermoir. Cette page vous dit ce que chacune représente, à qui elle s'adresse et ce que vous choisissez ici."
+ },
+ "plp.fix.kicker": {
+  "de": "Bei jedem Paar gleich",
+  "en": "The same on every pair",
+  "fr": "Identique sur chaque paire"
+ },
+ "plp.fix.a.titel": {
+  "de": "Einstecken, drehen, klick.",
+  "en": "Push in, turn, click.",
+  "fr": "Insérez, tournez, clic."
+ },
+ "plp.fix.a.text": {
+  "de": "Drei Handgriffe, den letzten hörst du. Es gibt kein Rückteil, das sich lösen und im Bett verschwinden kann.",
+  "en": "Three moves, and you hear the last one. There is no back that can work loose and vanish in the bed.",
+  "fr": "Trois gestes, et vous entendez le dernier. Il n'y a pas de poussoir qui puisse se desserrer et disparaître dans le lit."
+ },
+ "plp.fix.b.titel": {
+  "de": "Sterling Silber 925",
+  "en": "Sterling silver 925",
+  "fr": "Argent sterling 925"
+ },
+ "plp.fix.b.text": {
+  "de": "Unter jeder Oberfläche liegt dasselbe Metall. Nur der Stift hinter dem Ohr ist chirurgischer Edelstahl.",
+  "en": "The same metal sits under every finish. Only the post behind the ear is surgical stainless steel.",
+  "fr": "Le même métal se trouve sous chaque finition. Seule la tige derrière l'oreille est en acier chirurgical."
+ },
+ "plp.fix.c.titel": {
+  "de": "Bleibt drin beim Duschen und Schwimmen",
+  "en": "Stays in in the shower and in the sea",
+  "fr": "Reste en place sous la douche et dans l'eau"
+ },
+ "plp.fix.c.text": {
+  "de": "Die eine Ausnahme nennen wir selbst: die Süsswasserperle von Amity Luna nimmst du vorher heraus.",
+  "en": "We name the one exception ourselves: take the freshwater pearl of Amity Luna out first.",
+  "fr": "Nous nommons nous-mêmes la seule exception : retirez d'abord la perle d'eau douce d'Amity Luna."
+ },
+ "plp.wahl.titel": {
+  "de": "Wonach du hier entscheidest",
+  "en": "What you actually decide here",
+  "fr": "Ce que vous choisissez ici"
+ },
+ "plp.wahl.lead": {
+  "de": "Der Verschluss ist bei allen Paaren derselbe. Unterschiedlich sind nur Grösse, Oberfläche und wie laut ein Paar spricht. Drei Fragen führen dich schnell ans Ziel.",
+  "en": "The fastening is the same on every pair. What differs is size, finish and how loudly a pair speaks. Three questions get you there.",
+  "fr": "Le fermoir est identique sur toutes les paires. Seuls changent la taille, la finition et le ton d'une paire. Trois questions vous mènent au but."
+ },
+ "plp.wahl.a.titel": {
+  "de": "Wie gross darf es sein?",
+  "en": "How big should it be?",
+  "fr": "Quelle taille ?"
+ },
+ "plp.wahl.a.text": {
+  "de": "{n} von {alle} Paaren führen ihre Masse schon, in Millimetern, an einem Massstab auf der Produktseite. Die Spanne reicht dort von 3.40 auf 3.40 Millimeter bis 15.36 Millimeter Länge, dazu ein Reif von 12 auf 13 Millimetern Aussendurchmesser. Die übrigen tragen wir nach.",
+  "en": "{n} of {alle} pairs already carry their measurements, in millimetres, against a scale on the product page. There the range runs from 3.40 by 3.40 millimetres to 15.36 millimetres long, plus a hoop measuring 12 by 13 millimetres across. The rest are still to come.",
+  "fr": "{n} paires sur {alle} indiquent déjà leurs mesures, en millimètres, sur une règle de la fiche produit. L'écart y va de 3.40 sur 3.40 millimètres à 15.36 millimètres de longueur, plus un anneau de 12 sur 13 millimètres de diamètre extérieur. Les autres suivront."
+ },
+ "plp.wahl.a.link": {
+  "de": "Grössenguide",
+  "en": "Size guide",
+  "fr": "Guide des tailles"
+ },
+ "plp.wahl.b.titel": {
+  "de": "Gold, Silber oder Farbe?",
+  "en": "Gold, silver or colour?",
+  "fr": "Or, argent ou couleur ?"
+ },
+ "plp.wahl.b.text": {
+  "de": "Über dem Sterling Silber 925 liegt eine Vergoldung mit 18 Karat, eine Rhodinierung, eine schwarze Beschichtung oder Emaille. Diese Wahl ist eine Frage der Optik. Drei Paare tragen einen Zirkonia, eines eine Süsswasserperle.",
+  "en": "Over the Sterling silver 925 sits 18 carat gold plating, rhodium plating, a black coating or enamel. That choice is about looks. Three pairs carry a cubic zirconia, one carries a freshwater pearl.",
+  "fr": "Sur l'argent sterling 925 vient un placage or 18 carats, un rhodiage, un revêtement noir ou de l'émail. Ce choix est une question d'allure. Trois paires portent une zircone, une autre une perle d'eau douce."
+ },
+ "plp.wahl.b.link": {
+  "de": "Gut zu wissen",
+  "en": "Good to know",
+  "fr": "Bon à savoir"
+ },
+ "plp.wahl.c.titel": {
+  "de": "Paar oder ein Ohr?",
+  "en": "A pair or a single earring?",
+  "fr": "La paire ou une seule ?"
+ },
+ "plp.wahl.c.text": {
+  "de": "Jedes Modell gibt es auch einzeln. Ein Ohr kostet rund sechzig Prozent vom Paarpreis, im Moment ab {ab}. So kombinierst du zwei Modelle, oder du fängst mit einem einzigen an.",
+  "en": "Every model is also sold as a single earring. One earring costs around sixty per cent of the pair price, currently from {ab}. That way you can mix two models, or start with just one.",
+  "fr": "Chaque modèle existe aussi à l'unité. Une boucle seule coûte environ soixante pour cent du prix de la paire, actuellement à partir de {ab}. Vous pouvez ainsi associer deux modèles, ou commencer par une seule."
+ },
+ "plp.wahl.c.link": {
+  "de": "Einzeln bestellen",
+  "en": "Buying a single earring",
+  "fr": "Commander à l'unité"
+ },
+ "plp.filter.gruppe": {
+  "de": "Kollektion",
+  "en": "Collection",
+  "fr": "Collection"
+ },
+ "plp.kol.alle.kick": {
+  "de": "Vier Kollektionen",
+  "en": "Four collections",
+  "fr": "Quatre collections"
+ },
+ "plp.kol.alle.titel": {
+  "de": "Vier Handschriften, ein Verschluss.",
+  "en": "Four signatures, one fastening.",
+  "fr": "Quatre écritures, un seul fermoir."
+ },
+ "plp.kol.alle.text": {
+  "de": "Honesty ist der ruhige Anfang. Amity bringt Stein und Perle dazu. Embrace wird sichtbar. WA ist die nummerierte Auflage aus Japan. Tipp oben auf einen Namen, dann steht hier, wofür die Kollektion steht und für wen sie gemacht ist.",
+  "en": "Honesty is the quiet start. Amity adds a stone and a pearl. Embrace gets seen. WA is the numbered edition from Japan. Tap a name above and this box tells you what that collection stands for and who it is for.",
+  "fr": "Honesty, c'est le début tranquille. Amity y ajoute une pierre et une perle. Embrace se remarque. WA est l'édition numérotée du Japon. Touchez un nom ci-dessus et cet encadré vous dit ce que représente la collection et à qui elle s'adresse."
+ },
+ "plp.kol.alle.material": {
+  "de": "Sterling Silber 925, Stift aus chirurgischem Edelstahl",
+  "en": "Sterling silver 925, post in surgical stainless steel",
+  "fr": "Argent sterling 925, tige en acier chirurgical"
+ },
+ "plp.kol.honesty.titel": {
+  "de": "Klein, klar, für jeden Tag.",
+  "en": "Small, clear, for every day.",
+  "fr": "Petit, net, pour tous les jours."
+ },
+ "plp.kol.honesty.text": {
+  "de": "Honesty ist der Anfang. Reduzierte Formen, wenig Fläche, nichts, was am Schal hängen bleibt. Ein Blatt, ein Tropfen, eine gerade Linie. Für alle, die morgens einmal einklicken und den ganzen Tag nicht mehr daran denken. Dew ist der günstigste Einstieg.",
+  "en": "Honesty is where it starts. Pared-back shapes, little surface, nothing that catches on a scarf. A leaf, a drop, a straight line. For everyone who clicks in once in the morning and never thinks about it again. Dew is the least expensive way in.",
+  "fr": "Honesty, c'est le point de départ. Des formes réduites, peu de surface, rien qui accroche une écharpe. Une feuille, une goutte, une ligne droite. Pour celles qui clipsent une fois le matin et n'y pensent plus de la journée. Dew est l'entrée la moins chère."
+ },
+ "plp.kol.honesty.material": {
+  "de": "Sterling Silber 925, mit 18 Karat Vergoldung, Emaille oder schwarzer Beschichtung",
+  "en": "Sterling silver 925, with 18 carat gold plating, enamel or a black coating",
+  "fr": "Argent sterling 925, plaqué or 18 carats, émail ou revêtement noir"
+ },
+ "plp.kol.amity.titel": {
+  "de": "Ein Stein, eine Perle, ein Paar zum Teilen.",
+  "en": "A stone, a pearl, a pair to share.",
+  "fr": "Une pierre, une perle, une paire à partager."
+ },
+ "plp.kol.amity.text": {
+  "de": "Amity ist die Kollektion, die funkelt. Polaris trägt einen Zirkonia, in Gold oder in Silber. Luna trägt eine Süsswasserperle. Friendship ist ein Duo: trag beide, oder gib eines weiter. Ehrlich dazu: die Perle ist das einzige Stück im Shop, das du vor dem Duschen herausnimmst. Sie mag keine Chemie.",
+  "en": "Amity is the collection that sparkles. Polaris carries a cubic zirconia, in gold or in silver. Luna carries a freshwater pearl. Friendship is a duo: wear both, or pass one on. To be straight with you: the pearl is the one piece in the shop you take out before a shower. It does not like chemicals.",
+  "fr": "Amity, c'est la collection qui scintille. Polaris porte une zircone, en or ou en argent. Luna porte une perle d'eau douce. Friendship est un duo : portez les deux, ou offrez-en une. Soyons clairs : la perle est la seule pièce de la boutique que vous retirez avant la douche. Elle n'aime pas les produits chimiques."
+ },
+ "plp.kol.amity.material": {
+  "de": "Sterling Silber 925, mit 18 Karat Vergoldung oder rhodiniert, teils mit Zirkonia oder Süsswasserperle",
+  "en": "Sterling silver 925, with 18 carat gold plating or rhodium-plated, some with cubic zirconia or a freshwater pearl",
+  "fr": "Argent sterling 925, plaqué or 18 carats ou rhodié, certaines avec zircone ou perle d'eau douce"
+ },
+ "plp.kol.embrace.titel": {
+  "de": "Wenn es gesehen werden soll.",
+  "en": "For when it should be seen.",
+  "fr": "Quand cela doit se voir."
+ },
+ "plp.kol.embrace.text": {
+  "de": "Embrace legt sich um das Ohrläppchen, statt nur hindurchzugehen. Band ist ein schmaler Reif in Gold. Zirkonia setzt Steine darauf. Sage kommt in Neon-Pink, als limitierte Serie. Sichtbarer wird es bei uns nicht. Der Verschluss dahinter ist derselbe wie bei allen anderen.",
+  "en": "Embrace wraps around the earlobe instead of just passing through it. Band is a slim hoop in gold. Zirkonia sets stones on top. Sage comes in neon pink, as a limited run. It does not get more visible than this. The fastening behind them is the same as on everything else.",
+  "fr": "Embrace entoure le lobe au lieu de simplement le traverser. Band est un anneau fin en or. Zirkonia y pose des pierres. Sage arrive en rose fluo, en série limitée. Chez nous, on ne fait pas plus visible. Le fermoir derrière reste le même que sur toutes les autres."
+ },
+ "plp.kol.embrace.material": {
+  "de": "Sterling Silber 925, mit 18 Karat Vergoldung oder Neon-Emaille, teils mit Zirkonia",
+  "en": "Sterling silver 925, with 18 carat gold plating or neon enamel, some with cubic zirconia",
+  "fr": "Argent sterling 925, plaqué or 18 carats ou émail fluo, certaines avec zircone"
+ },
+ "plp.kol.wa.titel": {
+  "de": "Nummeriert. Wird nicht nachproduziert.",
+  "en": "Numbered. Never made again.",
+  "fr": "Numérotée. Jamais rééditée."
+ },
+ "plp.kol.wa.text": {
+  "de": "WA ist die Serie aus Japan. Drei Muster in rhodiniertem Sterling Silber: Sumiiri, der Tuscheeintrag, Hamon, das Wellenmuster auf der Klinge japanischer Schwerter, und Kumo, die Wolke. Jede Auflage ist nummeriert, die römische Ziffer im Namen zählt sie mit. Was hier ausgeht, kommt nicht in derselben Form zurück.",
+  "en": "WA is the series from Japan. Three motifs in rhodium-plated Sterling silver: Sumiiri, the ink mark, Hamon, the wave pattern on the blade of Japanese swords, and Kumo, the cloud. Every edition is numbered, and the Roman numeral in the name keeps the count. What runs out here does not come back in the same form.",
+  "fr": "WA est la série venue du Japon. Trois motifs en argent sterling rhodié : Sumiiri, le trait d'encre, Hamon, le motif de vagues sur la lame des sabres japonais, et Kumo, le nuage. Chaque édition est numérotée, et le chiffre romain du nom en tient le compte. Ce qui s'épuise ici ne revient pas sous la même forme."
+ },
+ "plp.kol.wa.material": {
+  "de": "Sterling Silber 925, rhodiniert",
+  "en": "Sterling silver 925, rhodium-plated",
+  "fr": "Argent sterling 925, rhodié"
+ },
+ "plp.kol.fakt.umfang": {
+  "de": "Umfang",
+  "en": "Range",
+  "fr": "Étendue"
+ },
+ "plp.kol.fakt.preis": {
+  "de": "Paarpreis",
+  "en": "Price per pair",
+  "fr": "Prix la paire"
+ },
+ "plp.kol.fakt.einzel": {
+  "de": "Einzelohr",
+  "en": "Single earring",
+  "fr": "Boucle seule"
+ },
+ "plp.kol.fakt.material": {
+  "de": "Material",
+  "en": "Material",
+  "fr": "Matière"
+ },
+ "plp.kol.fakt.spanne": {
+  "de": "{von} bis {bis}",
+  "en": "{von} to {bis}",
+  "fr": "{von} à {bis}"
+ },
+ "plp.kol.fakt.ab": {
+  "de": "ab {p}",
+  "en": "from {p}",
+  "fr": "à partir de {p}"
+ },
+ "plp.marke.neu": {
+  "de": "Neu",
+  "en": "New",
+  "fr": "Nouveau"
+ },
+ "plp.marke.limitiert": {
+  "de": "Limitiert",
+  "en": "Limited",
+  "fr": "Édition limitée"
+ },
+ "plp.neuheiten.hero.text2": {
+  "de": "Die zuletzt dazugekommenen Paare zuerst, die limitierten Auflagen gleich dahinter, danach das feste Sortiment. Alles mit Click-Lock.",
+  "en": "The most recently added pairs first, the limited editions right behind them, then the permanent range. All with Click-Lock.",
+  "fr": "Les paires arrivées le plus récemment d'abord, les éditions limitées juste derrière, puis la gamme permanente. Le tout avec Click-Lock."
+ },
+ "plp.neuheiten.legende.titel": {
+  "de": "Was die zwei Marken auf den Bildern bedeuten",
+  "en": "What the two labels on the images mean",
+  "fr": "Ce que signifient les deux marques sur les images"
+ },
+ "plp.neuheiten.legende.neu": {
+  "de": "Zuletzt ins Sortiment gekommen. Diese Paare gehören zum festen Sortiment, sie sind nicht befristet.",
+  "en": "Most recently added to the range. These pairs belong to the permanent range, they are not time-limited.",
+  "fr": "Arrivées le plus récemment dans la gamme. Ces paires font partie de la gamme permanente, elles ne sont pas limitées dans le temps."
+ },
+ "plp.neuheiten.legende.limitiert": {
+  "de": "Eine limitierte Auflage. Ist sie weg, wird sie nicht neu aufgelegt. Die WA Serie ist zusätzlich nummeriert.",
+  "en": "A limited edition. Once it is gone, it is not issued again. The WA series is numbered on top of that.",
+  "fr": "Une édition limitée. Une fois épuisée, elle n'est pas rééditée. La série WA est en plus numérotée."
+ },
+ "plp.gruppe.neu.titel": {
+  "de": "Zuletzt dazugekommen",
+  "en": "Most recently added",
+  "fr": "Arrivées récemment"
+ },
+ "plp.gruppe.neu.text": {
+  "de": "Aus drei Kollektionen zugleich: Honesty, Amity und Embrace. Sie stehen vorne, weil sie neu sind, nicht weil sie bald weg wären.",
+  "en": "From three collections at once: Honesty, Amity and Embrace. They sit at the front because they are new, not because they are about to go.",
+  "fr": "Issues de trois collections à la fois : Honesty, Amity et Embrace. Elles sont en tête parce qu'elles sont nouvelles, pas parce qu'elles vont disparaître."
+ },
+ "plp.gruppe.limitiert.titel": {
+  "de": "Limitierte Auflagen",
+  "en": "Limited editions",
+  "fr": "Éditions limitées"
+ },
+ "plp.gruppe.limitiert.text": {
+  "de": "Embrace Sage in Neon-Pink, dazu die drei WA Muster aus Japan: Sumiiri, Hamon und Kumo.",
+  "en": "Embrace Sage in neon pink, plus the three WA motifs from Japan: Sumiiri, Hamon and Kumo.",
+  "fr": "Embrace Sage en rose fluo, plus les trois motifs WA du Japon : Sumiiri, Hamon et Kumo."
+ },
+ "plp.gruppe.rest.titel": {
+  "de": "Das feste Sortiment",
+  "en": "The permanent range",
+  "fr": "La gamme permanente"
+ },
+ "plp.gruppe.rest.text": {
+  "de": "Weder befristet noch nummeriert. Wenn du Baqless zum ersten Mal probierst, fängst du am besten hier an.",
+  "en": "Neither time-limited nor numbered. If you are trying Baqless for the first time, this is the place to start.",
+  "fr": "Ni limitées dans le temps, ni numérotées. Si vous essayez Baqless pour la première fois, commencez ici."
+ },
+ "plp.schluss.kick": {
+  "de": "Bevor du klickst",
+  "en": "Before you click",
+  "fr": "Avant de cliquer"
+ },
+ "plp.schluss.titel": {
+  "de": "Drei Dinge, die wir lieber vorher sagen.",
+  "en": "Three things we would rather say up front.",
+  "fr": "Trois choses que nous préférons dire avant."
+ },
+ "plp.schluss.a.titel": {
+  "de": "Passt der Verschluss an mein Ohr?",
+  "en": "Will the fastening fit my ear?",
+  "fr": "Le fermoir ira-t-il à mon oreille ?"
+ },
+ "plp.schluss.a.text": {
+  "de": "Der Verschluss braucht Platz für eine Vierteldrehung. Bei sehr dicken Ohrläppchen dreht er nicht. Das ist die Grenze, und wir nennen sie lieber jetzt als nach dem Auspacken. Miss im Zweifel die Dicke deines Ohrläppchens und frag uns kurz.",
+  "en": "The fastening needs room for a quarter turn. On very thick earlobes it will not turn. That is the limit, and we would rather name it now than after you unwrap the box. If you are unsure, measure the thickness of your earlobe and ask us.",
+  "fr": "Le fermoir a besoin de place pour un quart de tour. Sur des lobes très épais, il ne tourne pas. C'est la limite, et nous préférons la nommer maintenant plutôt qu'après l'ouverture du colis. En cas de doute, mesurez l'épaisseur de votre lobe et écrivez-nous."
+ },
+ "plp.schluss.a.link": {
+  "de": "Grössen und Passform",
+  "en": "Size and fit",
+  "fr": "Taille et maintien"
+ },
+ "plp.schluss.b.titel": {
+  "de": "Und wenn es doch nicht passt?",
+  "en": "And if it does not fit after all?",
+  "fr": "Et si cela ne convient pas ?"
+ },
+ "plp.schluss.b.text": {
+  "de": "30 Tage Rückgaberecht. Ungetragen, die Originalverpackung genügt. Versand aus der Schweiz für CH, DE, AT, FR, IT und FL, aus Japan für den Rest der Welt. Gratisversand ab CHF 99.",
+  "en": "30-day returns. Unworn, the original packaging is enough. We ship from Switzerland to CH, DE, AT, FR, IT and FL, and from Japan to the rest of the world. Free shipping from CHF 99.",
+  "fr": "Retour sous 30 jours. Non portées, l'emballage d'origine suffit. Expédition depuis la Suisse vers CH, DE, AT, FR, IT et FL, depuis le Japon pour le reste du monde. Livraison offerte dès CHF 99."
+ },
+ "plp.schluss.b.link": {
+  "de": "Versand und Retouren",
+  "en": "Shipping and returns",
+  "fr": "Livraison et retours"
+ },
+ "plp.schluss.c.titel": {
+  "de": "Was hinter dem Klick steckt",
+  "en": "What sits behind the click",
+  "fr": "Ce qu'il y a derrière le clic"
+ },
+ "plp.schluss.c.text": {
+  "de": "Acht Jahre für einen Klick. Der Verschluss ist eine eigene Entwicklung und patentgeschützt. Entwickelt in der Schweiz, von Hand gefertigt. Wie er entstanden ist, steht in der Story.",
+  "en": "Eight years for one click. The fastening is our own development and is protected by patent. Developed in Switzerland, handcrafted. How it came about is in the Story.",
+  "fr": "Huit ans pour un clic. Le fermoir est un développement maison, protégé par brevet. Conçu en Suisse, fabriqué à la main. Son histoire se trouve dans Notre histoire."
+ },
+ "plp.schluss.c.link": {
+  "de": "Die Story lesen",
+  "en": "Read the Story",
+  "fr": "Lire notre histoire"
+ },
+ "plp.schluss.weiter_neu": {
+  "de": "Die zuletzt dazugekommenen Paare stehen auf einer eigenen Seite.",
+  "en": "The pairs that arrived most recently have a page of their own.",
+  "fr": "Les paires arrivées le plus récemment ont leur propre page."
+ },
+ "plp.schluss.weiter_neu_link": {
+  "de": "Neuheiten ansehen",
+  "en": "Go to New in",
+  "fr": "Voir les nouveautés"
+ },
+ "plp.schluss.weiter_kol": {
+  "de": "Alle Paare stehen im Katalog, nach Kollektion geordnet, mit einem Text zu jeder Kollektion.",
+  "en": "Every pair is in the catalogue, grouped by collection, with a text on each collection.",
+  "fr": "Toutes les paires figurent au catalogue, classées par collection, avec un texte sur chaque collection."
+ },
+ "plp.schluss.weiter_kol_link": {
+  "de": "Alle Kollektionen ansehen",
+  "en": "See all collections",
+  "fr": "Voir toutes les collections"
+ }
+}

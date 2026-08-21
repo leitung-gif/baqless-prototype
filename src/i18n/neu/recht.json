@@ -1,0 +1,272 @@
+{
+ "recht.eyebrow": {
+  "de": "Rechtliches",
+  "en": "Legal",
+  "fr": "Informations légales"
+ },
+ "recht.stand.label": {
+  "de": "Stand dieser Fassung:",
+  "en": "Version dated:",
+  "fr": "Version du :"
+ },
+ "recht.platzhalter.datum": {
+  "de": "[Datum]",
+  "en": "[Date]",
+  "fr": "[Date]"
+ },
+ "recht.platzhalter.uid": {
+  "de": "[CHE-XXX.XXX.XXX]",
+  "en": "[CHE-XXX.XXX.XXX]",
+  "fr": "[CHE-XXX.XXX.XXX]"
+ },
+ "recht.status.titel": {
+  "de": "Entwurf",
+  "en": "Draft",
+  "fr": "Version de travail"
+ },
+ "recht.status.legende": {
+  "de": "Alles, was lavendel hinterlegt und in eckigen Klammern steht, fehlt noch. Wir verstecken es nicht, wir markieren es.",
+  "en": "Everything on a lavender background and in square brackets is still missing. We do not hide it, we mark it.",
+  "fr": "Tout ce qui figure sur fond lavande et entre crochets manque encore. Nous ne le cachons pas, nous le signalons."
+ },
+ "recht.toc.titel": {
+  "de": "Inhalt",
+  "en": "Contents",
+  "fr": "Sommaire"
+ },
+ "recht.toc.aria": {
+  "de": "Abschnitte auf dieser Seite",
+  "en": "Sections on this page",
+  "fr": "Sections de cette page"
+ },
+ "recht.kern.titel": {
+  "de": "Auf einen Blick",
+  "en": "At a glance",
+  "fr": "En bref"
+ },
+ "recht.kern.aria": {
+  "de": "Die wichtigsten Punkte",
+  "en": "The key points",
+  "fr": "Les points essentiels"
+ },
+ "recht.kern.fussnote": {
+  "de": "Das ist die Kurzfassung. Verbindlich ist der volle Wortlaut im jeweiligen Abschnitt.",
+  "en": "That is the short version. The full wording in each section is what binds.",
+  "fr": "Ceci est le résumé. Seul le texte complet de chaque section fait foi."
+ },
+ "recht.hilfe.titel": {
+  "de": "Etwas unklar?",
+  "en": "Something unclear?",
+  "fr": "Une question ?"
+ },
+ "recht.hilfe.text": {
+  "de": "Schreib uns. Wir antworten in ganzen Sätzen, nicht in Paragrafen.",
+  "en": "Write to us. We answer in plain sentences, not in clauses.",
+  "fr": "Écrivez-nous. Nous répondons en phrases claires, pas en articles de loi."
+ },
+ "recht.hilfe.knopf_faq": {
+  "de": "Gut zu wissen",
+  "en": "Good to know",
+  "fr": "Bon à savoir"
+ },
+ "recht.weiter.titel": {
+  "de": "Weiter im Rechtlichen",
+  "en": "More legal pages",
+  "fr": "Autres pages légales"
+ },
+ "recht.weiter.aria": {
+  "de": "Weitere Rechtsseiten",
+  "en": "More legal pages",
+  "fr": "Autres pages légales"
+ },
+ "recht.markt.badge": {
+  "de": "Marktabhängig",
+  "en": "Depends on your market",
+  "fr": "Selon votre marché"
+ },
+ "recht.nachoben": {
+  "de": "Zurück zum Inhalt",
+  "en": "Back to contents",
+  "fr": "Retour au sommaire"
+ },
+ "recht.agb.kern.rueckgabe.titel": {
+  "de": "Rückgabe",
+  "en": "Returns",
+  "fr": "Retours"
+ },
+ "recht.agb.kern.rueckgabe.text": {
+  "de": "30 Tage ab Erhalt, ungetragen und in der Originalverpackung.",
+  "en": "30 days from receipt, unworn and in the original packaging.",
+  "fr": "30 jours à compter de la réception, non portées et dans l'emballage d'origine."
+ },
+ "recht.agb.kern.preise.titel": {
+  "de": "Preise und Versand",
+  "en": "Prices and shipping",
+  "fr": "Prix et livraison"
+ },
+ "recht.agb.kern.preise.text": {
+  "de": "Alle Preise in CHF, inklusive Mehrwertsteuer. Ab CHF 99 Bestellwert versandkostenfrei.",
+  "en": "All prices in CHF, statutory VAT included. Free shipping from an order value of CHF 99.",
+  "fr": "Tous les prix en CHF, TVA légale comprise. Livraison offerte dès CHF 99 de commande."
+ },
+ "recht.agb.kern.vertrag.titel": {
+  "de": "Wann der Kauf gilt",
+  "en": "When the purchase is binding",
+  "fr": "Quand l'achat est ferme"
+ },
+ "recht.agb.kern.vertrag.text": {
+  "de": "Sobald wir deine Bestellung per E-Mail bestätigen.",
+  "en": "As soon as we confirm your order by email.",
+  "fr": "Dès que nous confirmons votre commande par e-mail."
+ },
+ "recht.agb.kern.recht.titel": {
+  "de": "Recht und Gerichtsstand",
+  "en": "Law and jurisdiction",
+  "fr": "Droit et for juridique"
+ },
+ "recht.agb.kern.recht.text": {
+  "de": "Schweizer Recht, Gerichtsstand am Sitz der Baqless AG.",
+  "en": "Swiss law, place of jurisdiction at the registered office of Baqless AG.",
+  "fr": "Droit suisse, for juridique au siège de Baqless AG."
+ },
+ "recht.agb.garantie.text_nach_neu": {
+  "de": "Wir bringen das in Ordnung.",
+  "en": "We will put it right.",
+  "fr": "Nous réglons cela."
+ },
+ "recht.agb.ruecknahme.markt_vor": {
+  "de": "Das gesetzliche Widerrufsrecht ist von Markt zu Markt verschieden. Was wo gilt, steht unter",
+  "en": "The statutory right of withdrawal differs from market to market. What applies where is set out under",
+  "fr": "Le droit de rétractation légal varie d'un marché à l'autre. Ce qui s'applique où figure sous"
+ },
+ "recht.agb.recht.markt_platzhalter": {
+  "de": "[Ob und wie zwingende Verbraucherbestimmungen im Wohnsitzland der Käuferin vorgehen, klärt Baqless je Markt vor dem Livegang.]",
+  "en": "[Whether and how mandatory consumer provisions in the buyer's country of residence take precedence is being clarified by Baqless for each market before the site goes live.]",
+  "fr": "[La question de savoir si et comment les dispositions impératives de protection des consommateurs du pays de résidence de l'acheteuse priment sera clarifiée par Baqless pour chaque marché avant la mise en ligne.]"
+ },
+ "recht.datenschutz.kern.daten.titel": {
+  "de": "Was wir brauchen",
+  "en": "What we need",
+  "fr": "Ce dont nous avons besoin"
+ },
+ "recht.datenschutz.kern.daten.text": {
+  "de": "Name, Adresse, E-Mail und Zahlungsdaten. Für die Bestellung, den Versand und die gesetzliche Aufbewahrung.",
+  "en": "Name, address, email address and payment details. For the order, the shipping and the statutory retention rules.",
+  "fr": "Nom, adresse, e-mail et données de paiement. Pour la commande, la livraison et la conservation légale."
+ },
+ "recht.datenschutz.kern.weitergabe.titel": {
+  "de": "Wer sie sonst sieht",
+  "en": "Who else sees it",
+  "fr": "Qui d'autre les voit"
+ },
+ "recht.datenschutz.kern.weitergabe.text": {
+  "de": "Der Zahlungsanbieter und der Versanddienstleister. Sonst niemand. Wir verkaufen keine Daten.",
+  "en": "The payment provider and the shipping service provider. Nobody else. We do not sell data.",
+  "fr": "Le prestataire de paiement et le prestataire de livraison. Personne d'autre. Nous ne vendons aucune donnée."
+ },
+ "recht.datenschutz.kern.newsletter.titel": {
+  "de": "Newsletter",
+  "en": "Newsletter",
+  "fr": "Newsletter"
+ },
+ "recht.datenschutz.kern.newsletter.text": {
+  "de": "Höchstens zwei Mails im Monat. Abmelden mit einem Klick, in jeder Mail.",
+  "en": "Two emails a month at most. One click to unsubscribe, in every email.",
+  "fr": "Deux messages par mois au maximum. Désinscription en un clic, dans chaque message."
+ },
+ "recht.datenschutz.kern.rechte.titel": {
+  "de": "Deine Rechte",
+  "en": "Your rights",
+  "fr": "Vos droits"
+ },
+ "recht.datenschutz.kern.rechte.text": {
+  "de": "Auskunft, Berichtigung, Löschung. Eine kurze Mail genügt.",
+  "en": "Information, correction, deletion. A short email is enough.",
+  "fr": "Renseignement, rectification, suppression. Un court message suffit."
+ },
+ "recht.datenschutz.satz": {
+  "de": "Wir verkaufen keine Daten. An niemanden.",
+  "en": "We do not sell data. To anyone.",
+  "fr": "Nous ne vendons aucune donnée. À personne."
+ },
+ "recht.datenschutz.rechte.markt_platzhalter": {
+  "de": "[Welche Fassung für Bestellungen aus der EU gilt, klärt Baqless je Markt vor dem Livegang.]",
+  "en": "[Which version applies to orders from the EU is being clarified by Baqless for each market before the site goes live.]",
+  "fr": "[La version applicable aux commandes passées depuis l'UE sera clarifiée par Baqless pour chaque marché avant la mise en ligne.]"
+ },
+ "recht.widerruf.kern.frist.titel": {
+  "de": "30 Tage",
+  "en": "30 days",
+  "fr": "30 jours"
+ },
+ "recht.widerruf.kern.frist.text": {
+  "de": "Ab Erhalt. Ungetragen und in der Originalverpackung.",
+  "en": "From receipt. Unworn and in the original packaging.",
+  "fr": "À compter de la réception. Non portées et dans l'emballage d'origine."
+ },
+ "recht.widerruf.kern.label.titel": {
+  "de": "Retourenlabel",
+  "en": "Returns label",
+  "fr": "Étiquette de retour"
+ },
+ "recht.widerruf.kern.label.text": {
+  "de": "Kommt von uns, sobald du dich meldest.",
+  "en": "It comes from us as soon as you get in touch.",
+  "fr": "Nous vous l'envoyons dès que vous nous écrivez."
+ },
+ "recht.widerruf.kern.geld.titel": {
+  "de": "Geld zurück",
+  "en": "Money back",
+  "fr": "Remboursement"
+ },
+ "recht.widerruf.kern.geld.text": {
+  "de": "Auf dein ursprüngliches Zahlungsmittel, in der Regel innert 5 Arbeitstagen.",
+  "en": "To your original payment method, usually within 5 working days.",
+  "fr": "Sur votre moyen de paiement d'origine, en règle générale sous 5 jours ouvrables."
+ },
+ "recht.widerruf.kern.kosten.titel": {
+  "de": "Was du zahlst",
+  "en": "What you pay",
+  "fr": "Ce que vous payez"
+ },
+ "recht.widerruf.kern.kosten.text": {
+  "de": "Die Lieferung zu dir ist ab CHF 99 Bestellwert gratis. Wie die Einfuhrabgaben verrechnet werden, steht im Abschnitt Zoll.",
+  "en": "Delivery to you is free from an order value of CHF 99. How import duties are charged is set out in the customs section.",
+  "fr": "La livraison est offerte dès CHF 99 de commande. Le traitement des taxes à l'importation figure dans la section sur la douane."
+ },
+ "recht.widerruf.kern.kosten.platzhalter": {
+  "de": "[Wer das Retourenporto trägt, legt Baqless vor dem Livegang fest.]",
+  "en": "[Who bears the return postage will be set by Baqless before the site goes live.]",
+  "fr": "[Qui prend en charge les frais de retour sera défini par Baqless avant la mise en ligne.]"
+ },
+ "recht.widerruf.kern.gesetz.titel": {
+  "de": "Gesetzliche Frist",
+  "en": "Statutory period",
+  "fr": "Délai légal"
+ },
+ "recht.widerruf.kern.gesetz.text": {
+  "de": "In der EU vierzehn Tage, in der Schweiz keine. Unsere 30 Tage gelten in beiden Fällen.",
+  "en": "Fourteen days in the EU, none in Switzerland. Our 30 days apply in both cases.",
+  "fr": "Quatorze jours dans l'UE, aucun en Suisse. Nos 30 jours valent dans les deux cas."
+ },
+ "recht.widerruf.markt.titel": {
+  "de": "Gesetzliches Widerrufsrecht",
+  "en": "Statutory right of withdrawal",
+  "fr": "Droit de rétractation légal"
+ },
+ "recht.widerruf.markt.zusage": {
+  "de": "Die 30 Tage oben sind unsere eigene Zusage. Sie gelten für jede Bestellung, unabhängig vom Land.",
+  "en": "The 30 days above are our own promise. They apply to every order, whatever the country.",
+  "fr": "Les 30 jours ci-dessus sont notre propre engagement. Ils valent pour toute commande, quel que soit le pays."
+ },
+ "recht.widerruf.markt.gesetz": {
+  "de": "Daneben steht das gesetzliche Widerrufsrecht, und das ist nicht überall gleich. In der EU, also auch in Frankreich, gilt eine gesetzliche Widerrufsfrist von vierzehn Tagen ab Erhalt der Ware. Die Schweiz kennt im Fernabsatz kein gesetzliches Widerrufsrecht.",
+  "en": "Alongside that sits the statutory right of withdrawal, and it is not the same everywhere. In the EU, and therefore in France, a statutory withdrawal period of fourteen days from receipt of the goods applies. Switzerland has no statutory right of withdrawal for distance selling.",
+  "fr": "À côté de cela se trouve le droit de rétractation légal, et il n'est pas identique partout. Dans l'UE, et donc en France, un délai légal de rétractation de quatorze jours à compter de la réception de la marchandise s'applique. La Suisse ne connaît pas de droit de rétractation légal dans la vente à distance."
+ },
+ "recht.widerruf.markt.platzhalter": {
+  "de": "[Die verbindliche Widerrufsbelehrung je Markt, samt Musterformular, liefert Baqless vor dem Livegang.]",
+  "en": "[The binding withdrawal notice for each market, including the model form, will be supplied by Baqless before the site goes live.]",
+  "fr": "[L'information contraignante sur la rétractation pour chaque marché, formulaire type compris, sera fournie par Baqless avant la mise en ligne.]"
+ }
+}

@@ -16,9 +16,26 @@
 
 .shop-wrap{max-width:1180px; margin:0 auto; padding:clamp(112px,12vw,150px) var(--pad) clamp(60px,7vw,96px)}
 .shop-wrap h1{font-size:clamp(34px,4.6vw,56px); margin-bottom:6px}
-.shop-lead{font-size:15px; color:var(--ink-soft); margin-bottom:34px}
+.shop-lead{font-size:15px; color:var(--ink-soft); margin-bottom:26px}
 .cart-grid{display:grid; grid-template-columns:minmax(0,7fr) minmax(0,4fr); gap:clamp(28px,4vw,56px); align-items:start}
 @media(max-width:880px){.cart-grid{grid-template-columns:1fr}}
+
+/* ---------- Fortschritt zum Gratisversand, auf der Seite selbst ---------- */
+/* Im Drawer steht derselbe Balken. Wer vom Kopf direkt hierher kommt, hat ihn nie
+   gesehen, darum steht er auch hier, gross genug zum Lesen. */
+.fs{margin-bottom:34px; max-width:560px}
+.fs[hidden]{display:none}
+.fs-text{font-size:14px; color:#5a554e; margin-bottom:9px}
+.fs-text b{color:var(--charcoal); font-weight:600; font-variant-numeric:tabular-nums}
+.fs-text.done{color:var(--sage-deep); font-weight:500}
+.fs-track{height:8px; border-radius:4px; background:#efe9df; overflow:hidden}
+/* Derselbe Balken steht in der Schublade. Dort traegt er die tiefen Toene, weil
+   Coral und Sage auf der hellen Spur zu wenig Kontrast haben. Hier gilt dasselbe,
+   sonst sieht dieselbe Sache an zwei Orten verschieden aus. */
+.fs-fill{height:100%; width:0; border-radius:4px; background:var(--coral-deep);
+  transition:width .5s cubic-bezier(.19,1,.22,1), background .3s}
+.fs-fill.done{background:var(--sage-deep)}
+@media(prefers-reduced-motion:reduce){.fs-fill{transition:none}}
 
 .cline{display:grid; grid-template-columns:104px 1fr auto; gap:20px; padding:22px 0; border-top:1px solid rgba(11,29,63,.12); align-items:start}
 .cline:last-of-type{border-bottom:1px solid rgba(11,29,63,.12)}
@@ -28,13 +45,13 @@
 .cline h3 a:hover{color:var(--coral-deep)}
 .cline .vr{font-size:13px; color:var(--ink-soft); margin-top:3px}
 .cline .unit{font-size:13px; color:var(--ink-soft); margin-top:8px; font-variant-numeric:tabular-nums}
-.cline .right{text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:12px}
-.cline .lp{font-size:17px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap}
+.cline .right{text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:2px}
+.cline .lp{font-size:17px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap; margin-bottom:6px}
 .cl-out{margin-top:6px; font-size:13px; font-weight:600; color:var(--coral-deep)}
-.cline .drop{background:none; border:none; cursor:pointer; font:inherit; font-size:12.5px; color:var(--ink-soft); padding:2px 0; text-decoration:underline; text-underline-offset:3px}
+.cline .drop{background:none; border:none; cursor:pointer; font:inherit; font-size:12.5px; color:var(--ink-soft); padding:11px 0; min-height:44px; text-decoration:underline; text-underline-offset:3px}
 .cline .drop:hover{color:var(--coral-deep)}
 .cq{display:flex; align-items:center; border:1.5px solid var(--warmgrey); border-radius:4px; overflow:hidden; width:fit-content; margin-top:12px}
-.cq button{width:38px; height:40px; border:none; background:none; font-size:17px; cursor:pointer; color:var(--charcoal)}
+.cq button{width:44px; height:44px; border:none; background:none; font-size:17px; cursor:pointer; color:var(--charcoal)}
 .cq button:hover{color:var(--coral-deep)}
 .cq span{min-width:36px; text-align:center; font-size:14px; font-variant-numeric:tabular-nums}
 
@@ -43,30 +60,97 @@
 .sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:9px 0; color:#4a453e; font-variant-numeric:tabular-nums}
 .sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:16px; font-size:20px; font-weight:500; color:var(--charcoal)}
 .sum .row .mut{color:var(--ink-soft); font-size:13.5px}
-.sum .btn{width:100%; justify-content:center; margin-top:20px}
-.sum .weiter{display:block; text-align:center; margin-top:14px; font-size:13.5px; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
-.sum .weiter:hover{color:var(--coral-deep)}
-.sum .trust{margin-top:20px; padding-top:18px; border-top:1px solid rgba(11,29,63,.1); display:flex; flex-direction:column; gap:9px; font-size:13px; color:#5c564e}
+.sum .mwst{font-size:12.5px; color:var(--ink-soft); margin-top:2px}
+.sum .btn{width:100%; justify-content:center; margin-top:18px}
+.sum .btn[disabled]{opacity:.5; cursor:not-allowed; pointer-events:none}
+.sum .naechster{margin-top:12px; font-size:13px; line-height:1.55; color:#5a554e}
+.sum .trust{margin-top:20px; padding-top:18px; border-top:1px solid rgba(11,29,63,.1); display:flex; flex-direction:column; gap:9px; font-size:13px; color:#5a554e}
 .sum .trust span{display:flex; gap:9px; align-items:flex-start}
-.sum .trust svg{flex:0 0 auto; margin-top:2px; color:var(--sage)}
+.sum .trust svg{flex:0 0 auto; margin-top:2px; color:var(--sage-deep)}
+.paylab{margin-top:18px; padding-top:16px; border-top:1px solid rgba(11,29,63,.1);
+  font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+.paypills{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+/* Radius 6 wie die Zahlartkuerzel im Fuss und auf der Produktseite */
+.paypills span{border:1px solid rgba(11,29,63,.16); border-radius:6px; padding:5px 9px;
+  font-size:11px; letter-spacing:.05em; font-weight:500; color:#5a554e}
 
-.weiter-link{display:inline-block; margin-top:22px; padding:11px 0; font-size:13.5px;
+.weiter-link{display:inline-flex; align-items:center; min-height:44px; margin-top:18px; font-size:13.5px;
   color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
 .weiter-link:hover{color:var(--coral-deep)}
 /* Eigene Regeln mit display schlagen die Browserregel [hidden]{display:none}.
    Jeder Baustein, der hier versteckt wird, braucht darum seine eigene Zeile. */
 .cart-grid[hidden], .sum[hidden]{display:none}
-.cline .drop{padding:11px 0; min-height:44px}
-.cq button{width:44px; height:44px}
 .leer{padding:60px 0 30px; max-width:46ch}
 .leer h2{font-family:var(--serif); font-weight:300; font-size:32px; margin-bottom:10px}
-.leer p{font-size:16px; color:#5c564e; margin-bottom:24px}
+.leer p{font-size:16px; color:#5a554e; margin-bottom:24px}
 
-.xrail{margin-top:clamp(56px,7vw,90px)}
+/* ---------- Bevor du bestellst: die vier Fragen, die den Abbruch ausloesen ---------- */
+.vor{margin-top:clamp(72px,8vw,110px)}
+.vor[hidden]{display:none}
+.vor h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3vw,36px); margin-bottom:24px}
+.vor-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
+@media(max-width:980px){.vor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.vor-grid{grid-template-columns:1fr}}
+.vor-card{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:22px 20px 24px}
+.vor-card:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
+.vor-card:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
+.vor-card:nth-child(3){box-shadow:8px 8px 0 var(--lav-tint)}
+.vor-card:nth-child(4){box-shadow:8px 8px 0 #F0E4D3}
+.vor-card h3{font-family:var(--serif); font-weight:400; font-size:21px; line-height:1.2; margin-bottom:9px}
+.vor-card p{font-size:14px; line-height:1.62; color:#5a554e}
+.vor-card .ph{display:block; margin-top:10px; font-size:12.5px; color:var(--ink-soft)}
+/* Eigenstaendiger Link, also 44 Pixel hoch wie jede andere Trefferflaeche */
+.vor-card a{display:inline-flex; align-items:center; min-height:44px; margin-top:6px; font-size:13px; font-weight:600;
+  color:var(--coral-deep); box-shadow:inset 0 -1px 0 rgba(201,59,39,.35)}
+.vor-card a:hover{box-shadow:inset 0 -1px 0 var(--coral-deep)}
+
+/* ---------- Gemerkt: was der Warenkorb sonst verschluckt ---------- */
+.merk{margin-top:clamp(72px,8vw,110px)}
+.merk[hidden]{display:none}
+.merk h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3vw,36px); margin-bottom:6px}
+.merk .sub{font-size:14px; color:var(--ink-soft); margin-bottom:22px}
+.merk .rail{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px}
+@media(max-width:880px){.merk .rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.unmerk{background:none; border:none; cursor:pointer; font:inherit; font-size:12px; color:var(--ink-soft);
+  padding:10px 0; min-height:44px; text-decoration:underline; text-underline-offset:3px}
+.unmerk:hover{color:var(--coral-deep)}
+
+.xrail{margin-top:clamp(72px,8vw,110px)}
 .xrail h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3vw,36px); margin-bottom:22px}
 .xrail .rail{display:grid; grid-auto-flow:row; grid-template-columns:repeat(4,minmax(0,1fr));
   gap:22px; overflow-x:visible; scroll-snap-type:none; padding:0}
 @media(max-width:880px){.xrail .rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- Auf dem Telefon steht die Summe ganz unten, der Knopf mitgeht ---------- */
+.mbar{display:none}
+.mbar[hidden]{display:none}
+@media(max-width:880px){
+  .mbar{position:fixed; left:0; right:0; bottom:0; z-index:210; display:flex; gap:14px; align-items:center;
+    background:rgba(255,255,255,.96); backdrop-filter:blur(12px); border-top:1px solid #efe8dc;
+    padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));
+    box-shadow:0 -10px 30px -18px rgba(11,29,63,.4)}
+  .mbar[hidden]{display:none}
+  .mbar .mb-txt{font-size:12.5px; color:var(--ink-soft); line-height:1.35}
+  .mbar .mb-txt b{display:block; font-size:17px; font-weight:500; color:var(--charcoal); font-variant-numeric:tabular-nums}
+  /* Blockiert der Bestand die Kasse, sagt die Leiste warum. Ein Knopf, der nicht
+     reagiert und nicht sagt warum, ist auch hier der teuerste Abbruch. */
+  .mbar .mb-stop{font-size:13px; font-weight:600; color:var(--coral-deep); line-height:1.35; max-width:20ch}
+  .mbar .btn{margin-left:auto; padding:14px 22px}
+  .mbar .btn[disabled]{opacity:.5; cursor:not-allowed; pointer-events:none}
+  .shop-wrap{padding-bottom:130px}
+  /* Einspaltig klebt die Zusammenfassung an nichts mehr, die Leiste unten uebernimmt */
+  .sum{position:static; top:auto}
+  /* Der Toast sitzt sonst hinter der Leiste */
+  #toast{bottom:104px}
+}
+
+/* ---------- Die drei Einwaende, einmal statt zweimal ----------
+   Der Abschnitt «Bevor du bestellst» beantwortet Dauer, Passform, Rueckgabe und
+   Sicherheit auf vier Karten. Der Fussblock stellt Passform, Klick und Retoure
+   danach ein zweites Mal als Frage, ohne sie zu beantworten. Genau hier, einen
+   Klick vor der Kasse, ist eine wiederholte Frage keine Beruhigung, sondern ein
+   neuer Zweifel. Die Huelle bleibt unangetastet. */
+.foot-halt{display:none}
 </style>
 </head>
 <body class="page-light">
@@ -78,6 +162,13 @@
   <h1>{{t:kauf.korb.titel}}</h1>
   <p class="shop-lead" id="cartLead"></p>
 
+  <div class="fs" id="fsBox" hidden>
+    <div class="fs-text" id="fsText"></div>
+    <div class="fs-track" id="fsTrack" role="progressbar" aria-label="{{t:kaufweg.korb.balken.aria}}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="fs-fill" id="fsFill"></div>
+    </div>
+  </div>
+
   <div class="cart-grid" id="cartGrid">
     <div>
       <div id="cartLines"></div>
@@ -86,11 +177,44 @@
     <aside class="sum" id="cartSum"></aside>
   </div>
 
+  <section class="vor" id="vorSec" hidden>
+    <h2>{{t:kaufweg.korb.fragen.titel}}</h2>
+    <div class="vor-grid">
+      <article class="vor-card">
+        <h3>{{t:kaufweg.korb.fragen.dauer.titel}}</h3>
+        <p>{{t:kaufweg.korb.fragen.dauer.text}}<span class="ph">{{t:kaufweg.korb.fragen.dauer.platzhalter}}</span></p>
+      </article>
+      <article class="vor-card">
+        <h3>{{t:kaufweg.korb.fragen.passform.titel}}</h3>
+        <p>{{t:kaufweg.korb.fragen.passform.text}}</p>
+        <a href="kontakt.html">{{t:kaufweg.korb.fragen.passform.link}}</a>
+      </article>
+      <article class="vor-card">
+        <h3>{{t:kaufweg.korb.fragen.rueckgabe.titel}}</h3>
+        <p>{{t:kaufweg.korb.fragen.rueckgabe.text}}</p>
+        <a href="widerruf.html#widerruf">{{t:kaufweg.korb.fragen.rueckgabe.link}}</a>
+      </article>
+      <article class="vor-card">
+        <h3>{{t:kaufweg.korb.fragen.sicher.titel}}</h3>
+        <p>{{t:kaufweg.korb.fragen.sicher.text}}</p>
+        <a href="datenschutz.html">{{t:kauf.kasse.recht.datenschutz}}</a>
+      </article>
+    </div>
+  </section>
+
   <section class="xrail" id="xrail" hidden>
     <h2>{{t:kauf.korb.xsell.titel}}</h2>
     <div class="rail" id="xrailRail"></div>
   </section>
+
+  <section class="merk" id="merkSec" hidden>
+    <h2>{{t:kaufweg.korb.gemerkt.titel}}</h2>
+    <p class="sub">{{t:kaufweg.korb.gemerkt.text}}</p>
+    <div class="rail" id="merkRail"></div>
+  </section>
 </main>
+
+<aside class="mbar" id="mbar" aria-label="{{t:kaufweg.korb.leiste.aria}}" hidden></aside>
 
 {{FOOTER}}
 {{DRAWER}}
@@ -103,78 +227,14 @@ const linesBox = document.getElementById('cartLines');
 const sumBox = document.getElementById('cartSum');
 const leadEl = document.getElementById('cartLead');
 const gridEl = document.getElementById('cartGrid');
+const fsBox = document.getElementById('fsBox');
+const mbar = document.getElementById('mbar');
 const prodById = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const haken = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 
-function renderSeite(){
-  const stueck = cart.reduce((s, i) => s + i.qty, 0);
-  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
-
-  if (!cart.length){
-    gridEl.hidden = true;
-    leadEl.textContent = '';
-    if (!document.getElementById('leerBox')){
-      const box = document.createElement('div');
-      box.className = 'leer'; box.id = 'leerBox';
-      box.innerHTML = `<h2>${txt('kauf.korb.leer.titel')}</h2>
-        <p>${txt('kauf.korb.leer.text')}</p>
-        <a class="btn btn-coral" href="kollektion.html">${txt('kauf.korb.leer.knopf')}</a>`;
-      gridEl.parentNode.insertBefore(box, gridEl);
-    }
-    document.getElementById('xrail').hidden = true;
-    sumBox.hidden = true;
-    return;
-  }
-  document.getElementById('leerBox')?.remove();
-  gridEl.hidden = false;
-  sumBox.hidden = false;
-  leadEl.textContent = txtN('kauf.korb.lead', stueck);
-
-  linesBox.innerHTML = cart.map(i => {
-    const key = i.key || i.id;
-    return `
-    <div class="cline" data-cline="${key}">
-      <a class="pic" href="produkt.html?p=${i.id}"><img src="${bildVon(i)}" alt="${i.name} ${i.variant}"></a>
-      <div>
-        <h3><a href="produkt.html?p=${i.id}">${i.name}</a></h3>
-        <div class="vr">${i.variant} · Click-Lock</div>
-        ${prodById[i.id]?.lager === 'ausverkauft' ? `<div class="cl-out">${txt('kauf.korb.zeile.ausverkauft')}</div>` : ''}
-        <div class="unit">${fmtCHF(i.price)} ${einheitVon(i)}</div>
-        <div class="cq">
-          <button data-qminus="${key}" aria-label="${txt('kauf.korb.zeile.menge_weniger')}">−</button>
-          <span>${i.qty}</span>
-          <button data-qplus="${key}" aria-label="${txt('kauf.korb.zeile.menge_mehr')}">+</button>
-        </div>
-      </div>
-      <div class="right">
-        <span class="lp">${fmtCHF(i.price * i.qty)}</span>
-        <button class="drop" data-remove="${key}">${txt('kauf.korb.zeile.entfernen')}</button>
-      </div>
-    </div>`;
-  }).join('');
-
-  const versand = sub >= FREE_SHIP ? 0 : 7;
-  sumBox.innerHTML = `
-    <h2>${txt('kauf.korb.summe.titel')}</h2>
-    <div class="row"><span>${txt('kauf.summe.zwischensumme')}</span><span>${fmtCHF(sub)}</span></div>
-    <div class="row"><span>${txt('kauf.summe.versand')}${versand === 0 ? '' : ' <span class="mut">(' + txt('kauf.versand.standard.name') + ')</span>'}</span><span>${versand === 0 ? txt('kauf.versand.gratis') : fmtCHF(versand)}</span></div>
-    ${versand > 0 ? `<div class="row"><span class="mut">${txt('kauf.korb.summe.bis_gratisversand', {betrag: fmtCHF(FREE_SHIP - sub)})}</span><span></span></div>` : ''}
-    <div class="row total"><span>${txt('kauf.summe.total')}</span><span>${fmtCHF(sub + versand)}</span></div>
-    ${cart.some(i => prodById[i.id]?.lager === 'ausverkauft')
-      ? `<span class="btn btn-ghost" style="width:100%;justify-content:center;opacity:.55;cursor:not-allowed">${txt('kauf.aktion.zur_kasse')}</span>`
-      : `<a class="btn btn-coral" href="kasse.html" id="toKasse">${txt('kauf.aktion.zur_kasse')}</a>`}
-    <a class="weiter" href="kollektion.html">${txt('kauf.aktion.weiter_shoppen')}</a>
-    <div class="trust">
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>${txt('kauf.korb.vertrauen.rueckgabe')}</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>${txt('kauf.korb.vertrauen.zoll')}</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>${txt('kauf.korb.vertrauen.schweiz')}</span>
-    </div>`;
-
-  // Passt dazu: was noch nicht im Warenkorb liegt
-  const drin = new Set(cart.map(i => i.id));
-  const rest = PRODUCTS.filter(p => !drin.has(p.id) && p.lager !== 'ausverkauft').slice(0, 4);
-  const xr = document.getElementById('xrail');
-  xr.hidden = rest.length === 0;
-  document.getElementById('xrailRail').innerHTML = rest.map(p => `
+// Eine Karte, wie sie im Cross-Sell und unter «Gemerkt» steht.
+function karte(p, extra){
+  return `
     <article class="card" data-id="${p.id}">
       <div class="card-img" data-flip>
         ${p.tag ? `<span class="tag ${p.tagCls}">${p.tag}</span>` : ''}
@@ -186,8 +246,158 @@ function renderSeite(){
         <span class="price">CHF ${p.price}</span>
       </div>
       <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('kauf.korb.xsell.in_warenkorb')}</button>
-    </article>`).join('');
+      ${extra || ''}
+    </article>`;
 }
+
+// Gemerktes gehoert dorthin, wo man es wieder braucht. Was schon im Warenkorb liegt,
+// steht nicht doppelt da.
+function renderMerk(){
+  const drin = new Set(cart.map(i => i.id));
+  const liste = merkliste.map(id => prodById[id]).filter(p => p && !drin.has(p.id));
+  const sec = document.getElementById('merkSec');
+  sec.hidden = liste.length === 0;
+  document.getElementById('merkRail').innerHTML = liste.map(p =>
+    karte(p, `<button class="unmerk" data-unmerk="${p.id}">${txt('kaufweg.korb.gemerkt.entfernen')}</button>`)).join('');
+}
+
+function renderSeite(){
+  const stueck = cart.reduce((s, i) => s + i.qty, 0);
+  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+  if (!cart.length){
+    gridEl.hidden = true;
+    // Die alten Zeilen bleiben sonst als versteckter Rest im Dokument stehen
+    linesBox.innerHTML = '';
+    leadEl.textContent = '';
+    if (!document.getElementById('leerBox')){
+      const box = document.createElement('div');
+      box.className = 'leer'; box.id = 'leerBox';
+      box.innerHTML = `<h2>${txt('kauf.korb.leer.titel')}</h2>
+        <p>${txt('kauf.korb.leer.text')}</p>
+        <a class="btn btn-coral" href="kollektion.html">${txt('kauf.korb.leer.knopf')}</a>`;
+      gridEl.parentNode.insertBefore(box, gridEl);
+    }
+    document.getElementById('xrail').hidden = true;
+    document.getElementById('vorSec').hidden = true;
+    fsBox.hidden = true;
+    mbar.hidden = true;
+    sumBox.hidden = true;
+    // Gemerktes bleibt sichtbar. Genau jetzt ist es am meisten wert.
+    renderMerk();
+    return;
+  }
+  document.getElementById('leerBox')?.remove();
+  gridEl.hidden = false;
+  sumBox.hidden = false;
+  document.getElementById('vorSec').hidden = false;
+  leadEl.textContent = txtN('kauf.korb.lead', stueck);
+
+  // Fortschritt zum Gratisversand
+  fsBox.hidden = false;
+  const anteil = Math.min(sub / FREE_SHIP * 100, 100);
+  const fill = document.getElementById('fsFill');
+  const fsText = document.getElementById('fsText');
+  fill.style.width = anteil + '%';
+  fill.classList.toggle('done', sub >= FREE_SHIP);
+  fsText.classList.toggle('done', sub >= FREE_SHIP);
+  fsText.innerHTML = sub >= FREE_SHIP
+    ? txt('kaufweg.korb.balken.erreicht')
+    : txt('kaufweg.korb.balken.rest', {betrag: fmtCHF(FREE_SHIP - sub)});
+  document.getElementById('fsTrack').setAttribute('aria-valuenow', Math.round(anteil));
+
+  linesBox.innerHTML = cart.map(i => {
+    const key = i.key || i.id;
+    return `
+    <div class="cline" data-cline="${key}">
+      <a class="pic" href="produkt.html?p=${i.id}"><img src="${bildVon(i)}" alt="${i.name} ${i.variant}"></a>
+      <div>
+        <h3><a href="produkt.html?p=${i.id}">${i.name}</a></h3>
+        <div class="vr">${i.variant} · Click-Lock</div>
+        ${istAus(i) ? `<div class="cl-out">${txt('kauf.korb.zeile.ausverkauft')}</div>` : ''}
+        <div class="unit">${fmtCHF(i.price)} ${einheitVon(i)}</div>
+        <div class="cq">
+          <button data-qminus="${key}" aria-label="${txt('kauf.korb.zeile.menge_weniger')}">−</button>
+          <span>${i.qty}</span>
+          <button data-qplus="${key}" aria-label="${txt('kauf.korb.zeile.menge_mehr')}">+</button>
+        </div>
+      </div>
+      <div class="right">
+        <span class="lp">${fmtCHF(i.price * i.qty)}</span>
+        <button class="drop" data-merk="${key}">${txt('kaufweg.korb.zeile.merken')}</button>
+        <button class="drop" data-remove="${key}">${txt('kauf.korb.zeile.entfernen')}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const versand = sub >= FREE_SHIP ? 0 : 7;
+  const gesperrt = cart.some(istAus);
+  sumBox.innerHTML = `
+    <h2>${txt('kauf.korb.summe.titel')}</h2>
+    <div class="row"><span>${txt('kauf.summe.zwischensumme')}</span><span>${fmtCHF(sub)}</span></div>
+    <div class="row"><span>${txt('kauf.summe.versand')}${versand === 0 ? '' : ' <span class="mut">(' + txt('kaufweg.korb.summe.versand_ab', {betrag: fmtCHF(FREE_SHIP)}) + ')</span>'}</span><span>${versand === 0 ? txt('kauf.versand.gratis') : fmtCHF(versand)}</span></div>
+    <!-- Der Rest bis zum Gratisversand steht schon im Balken oben. Zweimal derselbe
+         Satz auf einem Bildschirm liest sich wie ein Fehler, darum hier nicht noch einmal. -->
+    <div class="row total"><span>${txt('kauf.summe.total')}</span><span>${fmtCHF(sub + versand)}</span></div>
+    <p class="mwst">${txt('kaufweg.korb.summe.mwst')}</p>
+    ${gesperrt
+      ? `<button class="btn btn-ghost" type="button" disabled>${txt('kauf.aktion.zur_kasse')}</button>
+         <div class="ausverkauft-hinweis" role="status">${txt('kaufweg.korb.summe.aus_hinweis')}</div>`
+      : `<a class="btn btn-coral" href="kasse.html" id="toKasse">${txt('kauf.aktion.zur_kasse')}</a>
+         <p class="naechster">${txt('kaufweg.korb.summe.naechster')}</p>`}
+    <!-- Die Lieferzeit stand hier wortgleich noch einmal. Sie gehoert in die Karte
+         «Wie lange dauert es?», dort steht sie vollstaendig. -->
+    <div class="trust">
+      <span>${haken}${txt('kauf.korb.vertrauen.rueckgabe')}</span>
+      <span>${haken}${txt('kaufweg.korb.vertrauen.zahlung')}</span>
+      <span>${haken}${txt('kauf.korb.vertrauen.zoll')}</span>
+      <span>${haken}${txt('kauf.korb.vertrauen.schweiz')}</span>
+    </div>
+    <div class="paylab">${txt('kaufweg.korb.zahlarten.label')}</div>
+    <div class="paypills"><span>TWINT</span><span>VISA</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Apple Pay</span><span>Google Pay</span></div>`;
+
+  // Die mitlaufende Leiste auf dem Telefon: Betrag und der naechste Schritt, immer sichtbar.
+  // Ist die Kasse gesperrt, steht dort der Grund statt des Betrags, sonst waere der
+  // tote Knopf auf dem Telefon wieder ein Knopf ohne Erklaerung.
+  mbar.hidden = false;
+  mbar.innerHTML = gesperrt
+    ? `<span class="mb-stop">${txt('kauf.korb.zeile.ausverkauft')}</span>
+       <button class="btn btn-ghost" type="button" disabled>${txt('kauf.aktion.zur_kasse')}</button>`
+    : `<span class="mb-txt">${txt('kauf.summe.total')}<b>${fmtCHF(sub + versand)}</b></span>
+       <a class="btn btn-coral" href="kasse.html">${txt('kauf.aktion.zur_kasse')}</a>`;
+
+  // Passt dazu: was noch nicht im Warenkorb liegt und auch nicht schon unter «Gemerkt»
+  // steht. Dieselbe Karte zweimal auf einer Seite sieht nach Versehen aus.
+  const drin = new Set(cart.map(i => i.id));
+  const rest = PRODUCTS.filter(p => !drin.has(p.id) && !merkliste.includes(p.id)
+    && p.lager !== 'ausverkauft').slice(0, 4);
+  const xr = document.getElementById('xrail');
+  xr.hidden = rest.length === 0;
+  document.getElementById('xrailRail').innerHTML = rest.map(p => karte(p)).join('');
+
+  renderMerk();
+}
+
+// Merken statt wegwerfen: eine Zeile verlaesst den Warenkorb, ohne verloren zu gehen.
+// Ohne diesen Weg ist «Entfernen» die einzige Antwort auf «nicht jetzt».
+document.addEventListener('click', e => {
+  const m = e.target.closest('[data-merk]');
+  if (m){
+    const zeile = cart.find(x => (x.key || x.id) === m.dataset.merk);
+    if (!zeile) return;
+    if (!merkliste.includes(zeile.id)) merkeUm(zeile.id);
+    track('remove_from_cart', { currency: 'CHF', value: zeile.price * zeile.qty,
+      items: [{ item_id: zeile.id, quantity: zeile.qty }] });
+    cart = cart.filter(x => (x.key || x.id) !== m.dataset.merk);
+    renderCart();
+    toast(`<span class="tick">✓</span><span><b>${txt('kaufweg.korb.zeile.merken_titel')}</b> ${txt('kaufweg.korb.zeile.merken_text', {name: zeile.name})}</span>`);
+    return;
+  }
+  // Nicht nur die Merkliste neu bauen: der Artikel darf danach wieder unter «Passt dazu»
+  // auftauchen, sonst verschwindet er beim Zuruecklegen von der ganzen Seite.
+  const u = e.target.closest('[data-unmerk]');
+  if (u){ merkeUm(u.dataset.unmerk); renderSeite(); }
+});
 
 // Der geteilte Warenkorb rendert den Drawer; die Seite hängt sich dran
 const drawerRender = renderCart;

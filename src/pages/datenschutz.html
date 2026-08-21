@@ -13,36 +13,219 @@
 <title>{{t:seite.datenschutz.titel}}</title>
 <style>
 {{CSS}}
+
+/* ============ Rechtsseiten ============ */
+/* Gleiches Geruest wie AGB, Widerruf und Impressum: Kopf, Entwurfsband,
+   Kernpunkte, Inhalt, dann der Text. Wer eine der vier Seiten kennt, kennt alle. */
+
+/* styles.css setzt jedes nav auf position:fixed, das ist der Kopfbereich.
+   Innerhalb der Rechtsseiten wird das zurueckgenommen, sonst klebt das
+   Inhaltsverzeichnis oben links am Fenster. */
+.legal.rl nav{position:static; inset:auto; z-index:auto; display:block;
+  padding:0; color:inherit; transition:none}
+
+.legal.rl{max-width:1060px}
+.legal.rl h1{margin-bottom:12px}
+.rl-kopf{max-width:60ch}
+.rl-kopf .eyebrow{display:block; margin-bottom:16px}
+.legal.rl .rl-kopf .lead{margin-bottom:0}
+.legal.rl .rl-stand{margin-top:20px; font-size:11.5px; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-soft)}
+.legal.rl .rl-stand .ph{text-transform:none; letter-spacing:0; font-weight:400}
+
+.rl-status{margin-top:clamp(28px,3.4vw,40px); background:var(--paper); border:1px solid #efe6d8;
+  border-radius:8px; padding:clamp(20px,2.4vw,26px); box-shadow:8px 8px 0 var(--coral-tint)}
+.rl-status .kopf{display:flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11px;
+  font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--coral-deep)}
+.rl-status .kopf i{width:9px; height:9px; border-radius:50%; background:var(--coral); flex:none}
+.legal.rl .rl-status p{font-size:14.5px; line-height:1.7; margin-top:11px; max-width:70ch}
+.legal.rl .rl-status p + p{margin-top:8px; font-size:13.5px; color:var(--ink-soft)}
+
+.rl-oben{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:clamp(20px,2.6vw,38px); margin:clamp(34px,4.2vw,52px) 0 clamp(38px,4.6vw,58px); align-items:start}
+@media(max-width:860px){.rl-oben{grid-template-columns:1fr}}
+
+.legal.rl .rl-titel{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:18px}
+
+.rl-kern{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+  padding:clamp(22px,2.6vw,30px); box-shadow:10px 10px 0 var(--sage-tint)}
+.rl-kern ul{list-style:none; padding:0; margin:0}
+.legal.rl .rl-kern li{display:grid; grid-template-columns:15px minmax(0,1fr); gap:0 13px;
+  padding:15px 0; border-top:1px solid #f2ebde; font-size:14.5px; line-height:1.6}
+.legal.rl .rl-kern li:first-child{border-top:0; padding-top:0}
+.rl-kern li::before{content:''; width:8px; height:8px; border-radius:2px;
+  background:var(--sage); margin-top:8px}
+.rl-kern b{font-weight:600; color:var(--charcoal); display:block}
+.rl-kern li span{color:#4a453e; display:block; margin-top:2px}
+.legal.rl .rl-kern .fuss{margin-top:19px; padding-top:16px; border-top:1px solid #f2ebde;
+  font-size:12.5px; line-height:1.6; color:var(--ink-soft)}
+
+.rl-toc ol{list-style:none; padding:0; margin:0}
+.rl-toc a{display:flex; align-items:center; gap:12px; min-height:44px; padding:8px 12px;
+  border-radius:4px; color:var(--charcoal); font-weight:400; font-size:14.5px; line-height:1.4;
+  border-bottom:1px solid #ece4d6; transition:background .12s cubic-bezier(.19,1,.22,1),
+  color .12s cubic-bezier(.19,1,.22,1), transform .12s cubic-bezier(.19,1,.22,1)}
+/* Die Marke bleibt neutral, damit der eine Coral-Blickfang das Entwurfsband oben ist
+   und nicht neun Punkte im Verzeichnis. Coral kommt, wenn die Zeile angefasst wird. */
+.rl-toc a::before{content:''; width:7px; height:7px; border-radius:2px; background:#d8cfbf; flex:none;
+  transition:background .12s cubic-bezier(.19,1,.22,1)}
+.rl-toc a:hover, .rl-toc a:focus-visible{background:var(--coral-tint); color:var(--coral-deep); transform:translateX(3px)}
+.rl-toc a:hover::before, .rl-toc a:focus-visible::before{background:var(--coral-deep)}
+
+.rl-text{max-width:70ch}
+.legal.rl .rl-text h2{margin:clamp(38px,4.2vw,54px) 0 12px; padding-top:24px;
+  border-top:1px solid #ece4d6; font-size:clamp(21px,2.3vw,26px)}
+.legal.rl .rl-text > h2:first-child{margin-top:0; padding-top:0; border-top:0}
+
+/* Der eine Satz, der auf dieser Seite alles traegt, steht gross */
+.rl-satz{margin:clamp(30px,3.4vw,42px) 0; padding:clamp(24px,2.8vw,32px);
+  background:var(--navy); border-radius:8px; color:var(--ground)}
+.legal.rl .rl-satz p{font-family:var(--serif); font-weight:300; font-size:clamp(24px,3vw,34px);
+  line-height:1.2; color:var(--ground); max-width:22ch}
+.legal.rl .rl-satz .quelle{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(250,247,242,.62); margin-top:6px}
+/* Der Satz behauptet etwas, also fuehrt die Quellenangabe zum Abschnitt, wo er steht.
+   Auf Navy braucht der Fokusrahmen die helle Fassung, sonst sieht man ihn nicht. */
+.legal.rl .rl-satz{--focus-ring:#FAF7F2}
+.legal.rl .rl-satz .quelle a{display:inline-flex; align-items:center; gap:9px; min-height:44px;
+  color:inherit; font-weight:600; transition:color .12s cubic-bezier(.19,1,.22,1)}
+.rl-satz .quelle a::after{content:''; width:6px; height:6px; flex:none; transform:rotate(45deg);
+  border-right:1.5px solid currentColor; border-top:1.5px solid currentColor}
+.legal.rl .rl-satz .quelle a:hover{color:var(--ground)}
+
+.legal.rl .ph{background:var(--lav-tint); color:#3b3470; border-radius:4px; padding:2px 9px;
+  font-size:13.5px; box-shadow:inset 0 -1.5px 0 rgba(125,111,214,.4)}
+.legal.rl .ph::before{content:''; display:inline-block; width:7px; height:7px; border-radius:2px;
+  background:var(--lavender); margin-right:8px; position:relative; top:-1px}
+.rl-probe{display:inline-block; width:8px; height:8px; border-radius:2px;
+  background:var(--lavender); margin-right:9px}
+
+.rl-badge{display:inline-flex; align-items:center; gap:8px; margin:4px 0 12px;
+  background:var(--lav-tint); color:#3b3470; border-radius:4px; padding:6px 12px;
+  font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase}
+.rl-badge::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--lavender)}
+
+.rl-fuss{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:clamp(20px,2.6vw,38px); margin-top:clamp(56px,7vw,90px); padding-top:clamp(34px,4vw,48px);
+  border-top:1px solid #e6dccb; align-items:start}
+@media(max-width:860px){.rl-fuss{grid-template-columns:1fr}}
+.legal.rl .rl-hilfe .titel{font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.4vw,27px);
+  line-height:1.15; color:var(--charcoal); margin-bottom:10px}
+.legal.rl .rl-hilfe p{max-width:44ch}
+.rl-knoepfe{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+.legal.rl .rl-knoepfe .btn{font-size:12.5px; padding:14px 26px; min-height:44px}
+.legal.rl .rl-knoepfe .btn-coral{color:var(--navy)}
+.legal.rl .rl-knoepfe .btn-ghost{color:var(--charcoal)}
+.rl-weiter ul{list-style:none; padding:0; margin:0}
+.rl-weiter a{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  min-height:44px; padding:11px 0; border-bottom:1px solid #ece4d6; font-size:15px; font-weight:400;
+  color:var(--charcoal); transition:color .12s cubic-bezier(.19,1,.22,1), padding-left .12s cubic-bezier(.19,1,.22,1)}
+.rl-weiter a:hover{color:var(--coral-deep); padding-left:6px}
+.rl-weiter a::after{content:''; width:7px; height:7px; flex:none; transform:rotate(45deg);
+  border-right:1.5px solid var(--coral-deep); border-top:1.5px solid var(--coral-deep)}
+.rl-hoch{display:inline-flex; align-items:center; min-height:44px; margin-top:16px;
+  font-size:13px; font-weight:500; color:var(--coral-deep)}
+
+@media(prefers-reduced-motion:reduce){
+  .rl-toc a, .rl-toc a::before, .rl-weiter a, .rl-satz .quelle a{transition:none}
+  .rl-toc a:hover, .rl-toc a:focus-visible{transform:none}
+  .rl-weiter a:hover{padding-left:0}
+}
 </style>
 </head>
 <body class="page-light">
 
 {{HEADER}}
 
-<main id="inhalt" class="legal">
+<main id="inhalt" class="legal rl">
   <div class="crumbs"><a href="index.html">{{t:recht.krumen.start}}</a><span class="sep">/</span><span>{{t:recht.datenschutz.krumen.aktuell}}</span></div>
-  <h1>{{t:recht.datenschutz.h1}}</h1>
-  <p class="lead">{{t:recht.datenschutz.lead}}</p>
 
-  <h2>{{t:recht.datenschutz.verantwortlich.titel}}</h2>
-  <p>Baqless AG, <span class="ph">{{t:recht.platzhalter.strasse}}</span>, <span class="ph">{{t:recht.platzhalter.plz_ort}}</span>, {{t:recht.datenschutz.verantwortlich.text_nach}} <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</p>
+  <header class="rl-kopf">
+    <span class="eyebrow">{{t:recht.eyebrow}}</span>
+    <h1>{{t:recht.datenschutz.h1}}</h1>
+    <p class="lead">{{t:recht.datenschutz.lead}}</p>
+    <p class="rl-stand">{{t:recht.stand.label}} <span class="ph">{{t:recht.platzhalter.datum}}</span></p>
+  </header>
 
-  <h2>{{t:recht.datenschutz.erhebung.titel}}</h2>
-  <p>{{t:recht.datenschutz.erhebung.text}}</p>
+  <div class="rl-status">
+    <div class="kopf"><i></i>{{t:recht.status.titel}}</div>
+    <p>{{t:recht.datenschutz.hinweis}}</p>
+    <p><span class="rl-probe"></span>{{t:recht.status.legende}}</p>
+  </div>
 
-  <h2>{{t:recht.datenschutz.newsletter.titel}}</h2>
-  <p>{{t:recht.datenschutz.newsletter.text}}</p>
+  <div class="rl-oben">
+    <aside class="rl-kern" aria-label="{{t:recht.kern.aria}}">
+      <p class="rl-titel">{{t:recht.kern.titel}}</p>
+      <ul>
+        <li><div><b>{{t:recht.datenschutz.kern.daten.titel}}</b><span>{{t:recht.datenschutz.kern.daten.text}}</span></div></li>
+        <li><div><b>{{t:recht.datenschutz.kern.weitergabe.titel}}</b><span>{{t:recht.datenschutz.kern.weitergabe.text}}</span></div></li>
+        <li><div><b>{{t:recht.datenschutz.kern.newsletter.titel}}</b><span>{{t:recht.datenschutz.kern.newsletter.text}}</span></div></li>
+        <li><div><b>{{t:recht.datenschutz.kern.rechte.titel}}</b><span>{{t:recht.datenschutz.kern.rechte.text}}</span></div></li>
+      </ul>
+      <p class="fuss">{{t:recht.kern.fussnote}}</p>
+    </aside>
 
-  <h2>{{t:recht.datenschutz.cookies.titel}}</h2>
-  <p>{{t:recht.datenschutz.cookies.text}} <span class="ph">{{t:recht.datenschutz.cookies.platzhalter_tools}}</span></p>
+    <nav class="rl-toc" aria-label="{{t:recht.toc.aria}}">
+      <p class="rl-titel">{{t:recht.toc.titel}}</p>
+      <ol>
+        <li><a href="#ds-1">{{t:recht.datenschutz.verantwortlich.titel}}</a></li>
+        <li><a href="#ds-2">{{t:recht.datenschutz.erhebung.titel}}</a></li>
+        <li><a href="#ds-3">{{t:recht.datenschutz.newsletter.titel}}</a></li>
+        <li><a href="#ds-4">{{t:recht.datenschutz.cookies.titel}}</a></li>
+        <li><a href="#ds-5">{{t:recht.datenschutz.weitergabe.titel}}</a></li>
+        <li><a href="#ds-6">{{t:recht.datenschutz.rechte.titel}}</a></li>
+      </ol>
+    </nav>
+  </div>
 
-  <h2>{{t:recht.datenschutz.weitergabe.titel}}</h2>
-  <p>{{t:recht.datenschutz.weitergabe.text}}</p>
+  <div class="rl-satz">
+    <p>{{t:recht.datenschutz.satz}}</p>
+    <p class="quelle"><a href="#ds-5">{{t:recht.datenschutz.weitergabe.titel}}</a></p>
+  </div>
 
-  <h2>{{t:recht.datenschutz.rechte.titel}}</h2>
-  <p>{{t:recht.datenschutz.rechte.text}}</p>
+  <div class="rl-text">
+    <h2 id="ds-1">{{t:recht.datenschutz.verantwortlich.titel}}</h2>
+    <p>Baqless AG, <span class="ph">{{t:recht.platzhalter.strasse}}</span>, <span class="ph">{{t:recht.platzhalter.plz_ort}}</span>, {{t:recht.datenschutz.verantwortlich.text_nach}} <a href="mailto:hello@baqless.com">hello@baqless.com</a>.</p>
 
-  <p class="legal-note">{{t:recht.datenschutz.hinweis}}</p>
+    <h2 id="ds-2">{{t:recht.datenschutz.erhebung.titel}}</h2>
+    <p>{{t:recht.datenschutz.erhebung.text}}</p>
+
+    <h2 id="ds-3">{{t:recht.datenschutz.newsletter.titel}}</h2>
+    <p>{{t:recht.datenschutz.newsletter.text}}</p>
+
+    <h2 id="ds-4">{{t:recht.datenschutz.cookies.titel}}</h2>
+    <p>{{t:recht.datenschutz.cookies.text}}</p>
+    <p><span class="ph">{{t:recht.datenschutz.cookies.platzhalter_tools}}</span></p>
+
+    <h2 id="ds-5">{{t:recht.datenschutz.weitergabe.titel}}</h2>
+    <p>{{t:recht.datenschutz.weitergabe.text}}</p>
+
+    <h2 id="ds-6">{{t:recht.datenschutz.rechte.titel}}</h2>
+    <div class="rl-badge">{{t:recht.markt.badge}}</div>
+    <p>{{t:recht.datenschutz.rechte.text}}</p>
+    <p><span class="ph">{{t:recht.datenschutz.rechte.markt_platzhalter}}</span></p>
+  </div>
+
+  <div class="rl-fuss">
+    <div class="rl-hilfe">
+      <p class="titel">{{t:recht.hilfe.titel}}</p>
+      <p>{{t:recht.hilfe.text}}</p>
+      <div class="rl-knoepfe">
+        <a class="btn btn-coral" href="kontakt.html">{{t:foot.support.kontakt}}</a>
+        <a class="btn btn-ghost" href="faq.html">{{t:recht.hilfe.knopf_faq}}</a>
+      </div>
+    </div>
+    <nav class="rl-weiter" aria-label="{{t:recht.weiter.aria}}">
+      <p class="rl-titel">{{t:recht.weiter.titel}}</p>
+      <ul>
+        <li><a href="agb.html">{{t:foot.recht.agb}}</a></li>
+        <li><a href="widerruf.html">{{t:foot.support.versand}}</a></li>
+        <li><a href="impressum.html">{{t:foot.recht.impressum}}</a></li>
+      </ul>
+      <a class="rl-hoch" href="#inhalt">{{t:recht.nachoben}}</a>
+    </nav>
+  </div>
 </main>
 
 {{FOOTER}}

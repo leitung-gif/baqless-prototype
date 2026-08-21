@@ -15,92 +15,290 @@
 {{CSS}}
 
 /* ============ Journal ============ */
+/* Diese Seite hat kein einziges Bild. Die Portraetfotos fehlen, und fremde Bilder
+   kommen nicht in Frage. Also traegt die Typografie: grosse Serifenzeilen, harte
+   Linien, Zahlen als Flaeche, Monogramme dort, wo sonst ein Gesicht stuende.
+   Gesetzt wie eine Zeitung, die ein Interview ohne Foto bringt. */
 
-/* Kopf: ruhiges Magazin statt lautem Hero */
-.jhead{padding:clamp(118px,13vw,178px) var(--pad) clamp(40px,5vw,62px); position:relative; overflow:hidden}
+/* ---------- Kopf ---------- */
+/* styles.css setzt fuer .jhead den hellen Fokusrahmen, weil hier frueher nichts
+   anklickbar war. Das Inhaltsverzeichnis unten ist es, also zurueck auf dunkel. */
+.jhead{padding:clamp(122px,13vw,182px) var(--pad) clamp(34px,4.4vw,56px); position:relative; overflow:hidden;
+  --focus-ring:#0B1D3F}
 .jhead .in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
-.jhead .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--coral-deep)}
-.jhead h1{font-size:clamp(40px,7vw,88px); line-height:.99; margin:16px 0 0; max-width:16ch}
+.jdate{display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px;
+  font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase}
+.jdate .kick{color:var(--coral-deep)}
+.jdate .rule{width:34px; height:1px; background:rgba(11,29,63,.3)}
+.jdate .jahr{color:var(--ink-soft)}
+.jhead h1{font-size:clamp(42px,7.4vw,92px); line-height:.97; margin:18px 0 0; max-width:15ch; letter-spacing:-.01em}
 .jhead h1 em{font-style:italic; color:var(--coral-deep)}
-.jhead .lead{margin-top:24px; max-width:56ch; font-size:17.5px; line-height:1.68; color:#5c564e}
-.jhead .meta{margin-top:30px; padding-top:14px; border-top:1px solid rgba(11,29,63,.14);
-  display:flex; flex-wrap:wrap; gap:8px 26px; font-size:12px; font-weight:600; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink-soft)}
+.jhead .lead{margin-top:26px; max-width:56ch; font-size:18px; line-height:1.66; color:#4a453e}
+/* Initiale wie im Blatt. Sie ersetzt das Aufmacherbild, das wir nicht haben. */
+.jhead .lead::first-letter{
+  font-family:var(--serif); font-weight:300; font-size:74px; line-height:.78;
+  float:left; padding:8px 12px 0 0; color:var(--navy);
+}
 .jhead .ring{position:absolute; right:-90px; top:60px; width:340px; height:340px; border-radius:50%;
   border:1px solid rgba(255,122,106,.4); pointer-events:none}
 @media(max-width:700px){.jhead .ring{width:210px; height:210px; right:-80px; top:96px}}
 
-/* Aufmacher */
-.feature{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(56px,7vw,90px);
-  display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(26px,4vw,60px); align-items:start}
-.fquote{background:var(--coral-tint); border-radius:8px; padding:clamp(28px,3.4vw,44px); position:relative; overflow:hidden}
+/* Inhaltsverzeichnis, wie die Kopfzeile einer Ausgabe */
+.jindex{margin-top:34px; padding-top:6px; border-top:2px solid var(--navy);
+  display:flex; flex-wrap:wrap; gap:0 clamp(18px,2.6vw,34px)}
+.jindex .lb{display:flex; align-items:center; min-height:44px; font-size:11px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft)}
+.jindex a{display:inline-flex; align-items:center; min-height:44px; padding:0 2px;
+  font-size:12.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--charcoal); transition:color .12s cubic-bezier(.19,1,.22,1)}
+/* Die Ziffern stehen bewusst in Navy: fuenf Coral-Ziffern in einer Reihe waeren ein
+   zweiter Blickfang neben der Coral-Zeile in der Ueberschrift. */
+.jindex a::before{content:attr(data-n); font-family:var(--serif); font-size:16px; font-weight:400;
+  margin-right:9px; color:var(--navy); font-variant-numeric:tabular-nums}
+.jindex a:hover{color:var(--coral-deep)}
+@media(max-width:620px){.jindex{gap:0 22px}.jindex .lb{width:100%; min-height:34px}}
+
+/* ---------- Zahlenband: was diese Seite ist, in vier Zahlen ---------- */
+.jzahlen{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(58px,7vw,92px)}
+.jz-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:2px solid var(--navy)}
+.jz{padding:26px clamp(14px,1.9vw,26px) 4px; border-right:1px solid rgba(11,29,63,.14)}
+.jz:first-child{padding-left:0}
+.jz:last-child{padding-right:0; border-right:0}
+.jz .n{display:block; font-family:var(--serif); font-weight:300; font-size:clamp(50px,5.8vw,76px);
+  line-height:.86; color:var(--navy); font-variant-numeric:tabular-nums}
+.jz .lb{display:block; margin-top:12px; font-size:11px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-soft)}
+.jz p{margin-top:11px; font-size:14.5px; line-height:1.6; color:#5a554e}
+/* Die Null ist der Blickfang dieser Bildschirmhoehe */
+.jz:last-child .n{color:var(--coral-deep)}
+.jz-fuss{margin-top:30px; max-width:74ch; background:var(--paper); border-radius:8px;
+  padding:22px 24px; box-shadow:10px 10px 0 var(--lav-tint);
+  font-size:14.5px; line-height:1.66; color:#4a453e}
+.jz-fuss b{display:block; font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--navy); margin-bottom:8px}
+@media(min-width:521px) and (max-width:860px){
+  .jz-grid{grid-template-columns:1fr 1fr}
+  .jz{padding-left:clamp(14px,1.9vw,26px)}
+  .jz:first-child, .jz:nth-child(3){padding-left:0}
+  .jz:nth-child(2){padding-right:0; border-right:0}
+  .jz:nth-child(3), .jz:nth-child(4){border-top:1px solid rgba(11,29,63,.14); margin-top:22px; padding-top:24px}
+}
+@media(max-width:520px){
+  .jz-grid{grid-template-columns:1fr}
+  .jz, .jz:nth-child(3), .jz:nth-child(4){padding:22px 0 4px; border-right:0; margin-top:0}
+  .jz + .jz{border-top:1px solid rgba(11,29,63,.14); margin-top:18px}
+}
+
+/* ---------- Rubrikleiste ---------- */
+.jrubrik{max-width:1180px; margin:0 auto; padding:0 var(--pad) 22px; display:flex; align-items:center; gap:18px}
+.jrubrik span{font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--coral-deep); white-space:nowrap}
+.jrubrik i{flex:1; height:2px; background:var(--navy)}
+
+/* ---------- Aufmacher ---------- */
+.feature{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(66px,8vw,108px);
+  display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(30px,4vw,62px); align-items:start}
+.fquote{background:var(--coral-tint); border-radius:8px; padding:clamp(30px,3.6vw,46px);
+  position:relative; overflow:hidden; box-shadow:14px 14px 0 #F0E4D3}
 .fquote::after{content:''; position:absolute; width:230px; height:230px; border-radius:50%;
   border:1px solid rgba(201,59,39,.18); right:-96px; bottom:-116px}
 .fquote .mark{font-family:var(--serif); font-size:76px; line-height:.5; color:rgba(201,59,39,.3); display:block; height:34px}
 .fquote blockquote{font-family:var(--serif); font-style:italic; font-weight:300;
-  font-size:clamp(26px,2.9vw,38px); line-height:1.24; color:var(--navy); position:relative}
-.fquote .attr{margin-top:22px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral-deep); position:relative}
+  font-size:clamp(27px,3vw,39px); line-height:1.22; color:var(--navy); position:relative}
+.fquote .attr{margin-top:24px; padding-top:16px; border-top:1px solid rgba(201,59,39,.25);
+  font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--coral-deep); position:relative}
 .fbody .jtag{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
 .fbody h2{font-size:clamp(29px,3.5vw,43px); margin:10px 0 8px}
 .fbody .role{font-size:14px; line-height:1.6; color:var(--ink-soft); max-width:52ch}
 .fbody p:not(.role):not(.jsrc){margin-top:16px; font-size:16.5px; line-height:1.68; color:#4a453e; max-width:56ch}
 @media(max-width:860px){.feature{grid-template-columns:1fr}}
 
-/* Befunde */
-.befunde{background:var(--navy); color:var(--ground); padding:clamp(58px,7.5vw,100px) var(--pad); position:relative; overflow:hidden}
+/* Einordnung: warum diese Person hier steht. Gilt fuer Aufmacher und Karten. */
+.einord{margin-top:22px; padding-top:16px; border-top:1px solid rgba(11,29,63,.16); max-width:54ch}
+.einord b{display:block; font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--coral-deep); margin-bottom:8px}
+.einord span{display:block; font-family:var(--serif); font-style:italic; font-weight:300;
+  font-size:19.5px; line-height:1.4; color:var(--navy)}
+
+.jsrc{margin-top:auto; padding-top:14px; font-size:12px; color:var(--ink-soft)}
+
+/* ---------- Befunde ---------- */
+.befunde{background:var(--navy); color:var(--ground); padding:clamp(76px,9vw,128px) var(--pad); position:relative; overflow:hidden}
 .befunde-in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
-.befunde .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+.befunde .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gold)}
 .befunde h2{font-size:clamp(28px,3.7vw,46px); color:var(--ground); margin:12px 0 10px; max-width:20ch}
 .befunde .sub{font-size:15.5px; line-height:1.65; color:rgba(250,247,242,.7); max-width:62ch}
-.blist{margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(30px,5vw,80px)}
-.bfind{display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:baseline;
-  padding:21px 0; border-top:1px solid rgba(217,193,160,.22)}
-.bfind .n{font-family:var(--serif); font-weight:300; font-size:38px; line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; white-space:nowrap}
+.blist{margin-top:42px; display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(30px,5vw,80px)}
+.bfind{display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start;
+  padding:22px 0; border-top:1px solid rgba(217,193,160,.22)}
+.bfind .n{display:block; font-family:var(--serif); font-weight:300; font-size:38px; line-height:1;
+  color:var(--gold); font-variant-numeric:tabular-nums; white-space:nowrap}
 .bfind .n i{font-family:var(--sans); font-style:normal; font-size:12.5px; color:rgba(217,193,160,.55)}
+/* Sechs Punkte, gefuellt so oft wie die Zahl daneben. Nichts anderes. */
+.bfind .dots{display:flex; gap:5px; margin-top:11px}
+.bfind .dots i{width:8px; height:8px; border-radius:50%; border:1px solid rgba(217,193,160,.45)}
+.bfind .dots i.on{background:var(--gold); border-color:var(--gold)}
 .bfind h3{font-family:var(--sans); font-size:16px; font-weight:600; color:#fff; line-height:1.35; margin-bottom:5px}
 .bfind p{font-size:14px; line-height:1.55; color:rgba(250,247,242,.62)}
-@media(max-width:800px){.blist{grid-template-columns:1fr}}
+.bfuss{margin-top:24px; font-size:13px; line-height:1.62; color:rgba(250,247,242,.5); max-width:72ch}
+.bschluss{margin-top:46px; padding-top:30px; border-top:1px solid rgba(217,193,160,.32);
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:clamp(18px,4vw,60px); align-items:start}
+.bschluss h3{font-family:var(--serif); font-weight:300; font-size:clamp(25px,3vw,36px);
+  line-height:1.1; color:var(--gold)}
+.bschluss p{font-size:16px; line-height:1.68; color:rgba(250,247,242,.74)}
+@media(max-width:800px){.blist{grid-template-columns:1fr}.bschluss{grid-template-columns:1fr}}
 
-/* Weitere Porträts */
-.jsec{max-width:1180px; margin:0 auto; padding:clamp(56px,7vw,92px) var(--pad) clamp(18px,3vw,32px)}
-.jsec .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--coral-deep)}
+/* ---------- Weitere Portraets ---------- */
+.jsec{max-width:1180px; margin:0 auto; padding:clamp(72px,8.5vw,120px) var(--pad) clamp(22px,3vw,34px)}
+.jsec .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--coral-deep)}
 .jsec h2{font-size:clamp(27px,3.3vw,41px); margin:12px 0 0}
-.jgrid{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(46px,6vw,80px);
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(22px,2.6vw,34px)}
-.jgrid .jcard{display:flex; flex-direction:column}
-.jcard .cover{border-radius:8px; padding:26px 24px 28px; min-height:184px;
+.jsec .sh{margin-top:14px; font-size:16px; line-height:1.66; color:#5a554e; max-width:58ch}
+
+.jgrid{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(56px,7vw,96px);
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(24px,2.8vw,38px)}
+.jgrid .jcard{display:flex; flex-direction:column; background:var(--paper); border-radius:8px;
+  transition:transform .3s cubic-bezier(.19,1,.22,1), box-shadow .3s cubic-bezier(.19,1,.22,1)}
+.jgrid .jcard:hover{transform:translateY(-4px)}
+.jgrid .jcard:nth-child(4n+1){box-shadow:10px 10px 0 var(--sage-tint)}
+.jgrid .jcard:nth-child(4n+2){box-shadow:10px 10px 0 var(--lav-tint)}
+.jgrid .jcard:nth-child(4n+3){box-shadow:10px 10px 0 #F0E4D3}
+.jgrid .jcard:nth-child(4n+4){box-shadow:10px 10px 0 var(--coral-tint)}
+.jgrid .jcard:nth-child(4n+1):hover{box-shadow:14px 14px 0 var(--sage)}
+.jgrid .jcard:nth-child(4n+2):hover{box-shadow:14px 14px 0 var(--lavender)}
+.jgrid .jcard:nth-child(4n+3):hover{box-shadow:14px 14px 0 var(--gold)}
+.jgrid .jcard:nth-child(4n+4):hover{box-shadow:14px 14px 0 var(--coral)}
+
+/* Die Farbflaeche steht dort, wo sonst das Portraetfoto steht. Sie traegt den Satz,
+   der von der Person haengen geblieben ist, dazu Nummer und Monogramm. */
+.jgrid .cover{border-radius:8px 8px 0 0; padding:26px 24px 28px; min-height:200px;
   display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden}
-.jcard .cover::after{content:''; position:absolute; width:150px; height:150px; border-radius:50%;
+.jgrid .cover::after{content:''; position:absolute; width:150px; height:150px; border-radius:50%;
   border:1px solid rgba(11,29,63,.14); right:-58px; top:-64px}
-.jcard .cover .cl{font-family:var(--serif); font-weight:300; font-size:23.5px; line-height:1.22; color:var(--navy); position:relative}
+.jgrid .cover .mono{position:absolute; right:12px; bottom:-34px; font-family:var(--serif); font-weight:300;
+  font-size:132px; line-height:1; letter-spacing:-.03em; color:rgba(11,29,63,.075); pointer-events:none}
+.jgrid .cover .jnum{position:absolute; left:24px; top:22px; font-family:var(--serif); font-weight:300;
+  font-size:19px; line-height:1; color:rgba(11,29,63,.42); font-variant-numeric:tabular-nums}
+.jgrid .cover .cl{font-family:var(--serif); font-weight:300; font-size:23.5px; line-height:1.22;
+  color:var(--navy); position:relative}
 .jgrid .jcard:nth-child(4n+1) .cover{background:var(--sage-tint)}
 .jgrid .jcard:nth-child(4n+2) .cover{background:var(--lav-tint)}
 .jgrid .jcard:nth-child(4n+3) .cover{background:#F3E7D6}
 .jgrid .jcard:nth-child(4n+4) .cover{background:var(--coral-tint)}
-.jcard .jtag{margin-top:18px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
-.jcard h3{font-family:var(--serif); font-weight:400; font-size:25px; line-height:1.12; margin:7px 0 6px}
-.jcard .role{font-size:13.5px; line-height:1.55; color:var(--ink-soft)}
-.jcard p:not(.role):not(.jsrc){margin-top:13px; font-size:15px; line-height:1.62; color:#5c564e}
-.jsrc{margin-top:auto; padding-top:14px; font-size:12px; color:var(--ink-soft)}
+.jbody{display:flex; flex-direction:column; flex:1; padding:22px 24px 24px}
+.jgrid .jtag{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+.jgrid .jcard h3{font-family:var(--serif); font-weight:400; font-size:26px; line-height:1.1; margin:8px 0 6px}
+.jgrid .role{font-size:13.5px; line-height:1.55; color:var(--ink-soft)}
+.jgrid p:not(.role):not(.jsrc){margin-top:13px; font-size:15px; line-height:1.62; color:#5a554e}
+.jgrid .einord{margin-top:18px; padding-top:14px; max-width:none}
+.jgrid .einord span{font-size:17px; line-height:1.38}
 .jgrid .jsrc{margin-top:16px; padding-top:12px; border-top:1px solid rgba(11,29,63,.1)}
 @media(max-width:900px){.jgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.jgrid{grid-template-columns:1fr}}
 
-/* Zeitleiste */
-.zeit{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(50px,6vw,84px)}
-.zeit .intro{font-size:16px; line-height:1.68; color:#5c564e; max-width:60ch; margin:14px 0 26px}
-.zeile{display:grid; grid-template-columns:130px 1fr; gap:clamp(16px,3vw,40px); padding:20px 0; border-top:1px solid rgba(11,29,63,.12)}
-.zeile time{font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--coral-deep); font-variant-numeric:tabular-nums; padding-top:3px}
-.zeile b{display:block; font-family:var(--sans); font-size:16px; font-weight:600; margin-bottom:5px}
-.zeile span{font-size:15px; line-height:1.6; color:#5c564e}
-@media(max-width:600px){.zeile{grid-template-columns:1fr; gap:6px}}
+/* ---------- Uebergang zum Produkt ---------- */
+.brueck{background:var(--paper); padding:clamp(76px,9vw,128px) var(--pad); position:relative; overflow:hidden}
+.brueck-in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
+.brueck .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--coral-deep)}
+.brueck h2{font-size:clamp(28px,3.6vw,44px); margin:12px 0 0; max-width:19ch}
+.brueck .lead{margin-top:14px; font-size:16.5px; line-height:1.66; color:#5a554e; max-width:58ch}
+.kollrow{margin-top:40px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(18px,2.4vw,28px)}
+.kollcard{display:flex; flex-direction:column; gap:12px; min-height:200px; border-radius:8px;
+  padding:24px; background:var(--ground);
+  transition:transform .3s cubic-bezier(.19,1,.22,1), box-shadow .3s cubic-bezier(.19,1,.22,1)}
+.kollcard:hover{transform:translateY(-3px)}
+/* Dieselbe Toenungsfolge und derselbe Schattenwechsel wie bei den Portraetkarten. */
+.kollcard:nth-child(4n+1){box-shadow:8px 8px 0 var(--sage-tint)}
+.kollcard:nth-child(4n+2){box-shadow:8px 8px 0 var(--lav-tint)}
+.kollcard:nth-child(4n+3){box-shadow:8px 8px 0 #F0E4D3}
+.kollcard:nth-child(4n+4){box-shadow:8px 8px 0 var(--coral-tint)}
+.kollcard:nth-child(4n+1):hover{box-shadow:12px 12px 0 var(--sage)}
+.kollcard:nth-child(4n+2):hover{box-shadow:12px 12px 0 var(--lavender)}
+.kollcard:nth-child(4n+3):hover{box-shadow:12px 12px 0 var(--gold)}
+.kollcard:nth-child(4n+4):hover{box-shadow:12px 12px 0 var(--coral)}
+.kollcard .lb{font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft)}
+.kollcard b{font-family:var(--serif); font-weight:400; font-size:31px; line-height:1; color:var(--navy)}
+.kollcard p{font-size:14.5px; line-height:1.6; color:#5a554e}
+.kollcard .go{margin-top:auto; padding-top:14px; font-size:12px; font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--coral-deep)}
+.kollcard .go::after{content:' \2192'}
+@media(max-width:980px){.kollrow{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.kollrow{grid-template-columns:1fr}.kollcard{min-height:0}}
 
-.hinweis{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(60px,7vw,96px)}
-.hinweis div{border:1px dashed rgba(125,111,214,.55); border-radius:8px; padding:20px 22px;
-  font-size:13.5px; line-height:1.65; color:#5c564e; background:rgba(125,111,214,.05); max-width:78ch}
-.jcta{text-align:center; padding:clamp(64px,8vw,112px) var(--pad); background:var(--paper)}
-.jcta h2{font-family:var(--serif); font-weight:300; font-size:clamp(30px,4.2vw,52px); margin:12px 0 28px}
+.fakten{margin-top:40px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:2px solid var(--navy)}
+.fakten div{padding:22px clamp(14px,1.9vw,24px) 0; border-right:1px solid rgba(11,29,63,.12);
+  font-size:15px; line-height:1.55; color:var(--navy)}
+.fakten div:first-child{padding-left:0}
+.fakten div:last-child{padding-right:0; border-right:0}
+@media(min-width:521px) and (max-width:860px){
+  .fakten{grid-template-columns:1fr 1fr}
+  .fakten div{padding-left:clamp(14px,1.9vw,24px)}
+  .fakten div:first-child,.fakten div:nth-child(3){padding-left:0}
+  .fakten div:nth-child(2){padding-right:0; border-right:0}
+  .fakten div:nth-child(3),.fakten div:nth-child(4){margin-top:20px; padding-top:22px; border-top:1px solid rgba(11,29,63,.12)}
+}
+@media(max-width:520px){
+  .fakten{grid-template-columns:1fr}
+  .fakten div, .fakten div:nth-child(3), .fakten div:nth-child(4){padding:20px 0 0; border-right:0; margin-top:0}
+  .fakten div + div{border-top:1px solid rgba(11,29,63,.12)}
+}
+
+.passform{margin-top:40px; background:var(--lav-tint); border-radius:8px; padding:24px 26px;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px clamp(20px,3vw,40px); align-items:center;
+  box-shadow:10px 10px 0 #F0E4D3}
+.passform b{display:block; font-family:var(--serif); font-weight:400; font-size:22px; line-height:1.2; color:var(--navy); margin-bottom:8px}
+.passform p{font-size:15px; line-height:1.62; color:#4a453e; max-width:58ch}
+.passform a{display:inline-flex; align-items:center; min-height:44px; padding:0 20px; border-radius:4px;
+  border:1px solid rgba(11,29,63,.32); font-size:12.5px; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--navy); white-space:nowrap;
+  transition:background .12s cubic-bezier(.19,1,.22,1), border-color .12s cubic-bezier(.19,1,.22,1)}
+.passform a:hover{background:rgba(11,29,63,.07); border-color:var(--navy)}
+@media(max-width:700px){.passform{grid-template-columns:1fr}}
+
+/* ---------- Stationen ---------- */
+.zeit{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(66px,8vw,104px)}
+.zeit .intro{font-size:16px; line-height:1.68; color:#5a554e; max-width:60ch; margin:14px 0 28px}
+.zliste{border-top:2px solid var(--navy)}
+.zeile{display:grid; grid-template-columns:132px minmax(0,1fr) auto; gap:clamp(14px,3vw,40px);
+  padding:22px 0; border-bottom:1px solid rgba(11,29,63,.12); align-items:start}
+.zeile time{font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--coral-deep);
+  font-variant-numeric:tabular-nums; padding-top:3px}
+.zeile b{display:block; font-family:var(--sans); font-size:16px; font-weight:600; margin-bottom:5px}
+.zeile span{font-size:15px; line-height:1.6; color:#5a554e}
+.zeile .ort{justify-self:end; padding-top:4px; font-size:10.5px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-soft); white-space:nowrap}
+@media(max-width:700px){
+  .zeile{grid-template-columns:1fr auto; gap:4px 14px}
+  .zeile time{grid-column:1; grid-row:1}
+  .zeile .ort{grid-column:2; grid-row:1; padding-top:3px}
+  .zeile > div{grid-column:1 / -1; margin-top:8px}
+}
+
+/* ---------- Offenlegung ---------- */
+.kolo{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(76px,9vw,120px)}
+.kolo .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--coral-deep)}
+.kolo h2{font-size:clamp(25px,3vw,37px); margin:12px 0 26px; max-width:22ch}
+.kolo-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,60px);
+  border-top:2px solid var(--navy); padding-top:26px}
+.kolo-blk b{display:block; font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--coral-deep); margin-bottom:10px}
+.kolo-blk p{font-size:14px; line-height:1.7; color:#5a554e}
+@media(max-width:760px){.kolo-grid{grid-template-columns:1fr; gap:28px}}
+
+/* ---------- Schluss ---------- */
+.jcta{text-align:center; padding:clamp(80px,9.5vw,140px) var(--pad); background:var(--paper); position:relative; overflow:hidden}
+.jcta h2{font-family:var(--serif); font-weight:300; font-size:clamp(30px,4.2vw,52px); margin:12px 0 16px}
+.jcta .sub{max-width:44ch; margin:0 auto 30px; font-size:16.5px; line-height:1.62; color:#5a554e}
 .jcta .btn + .btn{margin-left:12px}
+/* Dieselbe Vertrauenszeile steht unter dem Schluss der Story, mit denselben
+   Schluesseln. Sie sah dort anders aus: Sage-Punkt, 12.5 Pixel, anderer Abstand.
+   Zweimal dasselbe an zwei Orten verschieden zu setzen ist der Fehler, den diese
+   Zeile hier behebt. Der Punkt ist derselbe wie in Warenkorb, Kasse und Schublade. */
+.jcta .trust{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px;
+  margin-top:clamp(28px,3.4vw,40px); font-size:12.5px; color:var(--ink-soft)}
+.jcta .trust span{display:inline-flex; align-items:center; gap:9px}
+.jcta .trust span::before{content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--sage-deep); flex:none}
 @media(max-width:560px){.jcta .btn{display:flex; justify-content:center; margin:0 0 12px}.jcta .btn + .btn{margin-left:0}}
 </style>
 </head>
@@ -113,14 +311,57 @@
 <div class="jhead">
   <div class="ring" aria-hidden="true"></div>
   <div class="in">
-    <span class="kick">{{t:journal.kopf.kick}}</span>
+    <div class="jdate">
+      <span class="kick">{{t:journal.kopf.kick}}</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="jahr">{{t:journal.kopf.meta.jahre}}</span>
+    </div>
     <h1>{{t:journal.kopf.titel}}</h1>
     <p class="lead">{{t:journal.kopf.lead}}</p>
-    <div class="meta"><span>{{t:journal.kopf.meta.portraets}}</span><span>{{t:journal.kopf.meta.jahre}}</span><span>{{t:journal.kopf.meta.branchen}}</span></div>
+    <!-- Bewusst kein <nav>: styles.css setzt jedes nav auf position:fixed. -->
+    <div class="jindex" role="navigation" aria-label="{{t:journal.index.kick}}">
+      <span class="lb">{{t:journal.index.kick}}</span>
+      <a href="#wako" data-n="01">{{t:journal.index.aufmacher}}</a>
+      <a href="#befunde" data-n="02">{{t:journal.index.befunde}}</a>
+      <a href="#portraets" data-n="03">{{t:journal.index.portraets}}</a>
+      <a href="#stationen" data-n="04">{{t:journal.index.stationen}}</a>
+      <a href="#offenlegung" data-n="05">{{t:journal.index.offenlegung}}</a>
+    </div>
   </div>
 </div>
 
-  <article class="feature jcard" id="wako">
+  <div class="jzahlen">
+    <div class="jz-grid">
+      <div class="jz reveal">
+        <span class="n">6</span>
+        <span class="lb">{{t:journal.zahlen.portraets.label}}</span>
+        <p>{{t:journal.zahlen.portraets.text}}</p>
+      </div>
+      <div class="jz reveal d1">
+        <span class="n">4</span>
+        <span class="lb">{{t:journal.zahlen.jahre.label}}</span>
+        <p>{{t:journal.zahlen.jahre.text}}</p>
+      </div>
+      <div class="jz reveal d2">
+        <span class="n">1</span>
+        <span class="lb">{{t:journal.zahlen.zitat.label}}</span>
+        <p>{{t:journal.zahlen.zitat.text}}</p>
+      </div>
+      <div class="jz reveal d3">
+        <span class="n">0</span>
+        <span class="lb">{{t:journal.zahlen.sterne.label}}</span>
+        <p>{{t:journal.zahlen.sterne.text}}</p>
+      </div>
+    </div>
+    <div class="jz-fuss">
+      <b>{{t:journal.zahlen.fotos.label}}</b>
+      {{t:journal.zahlen.fotos.text}}
+    </div>
+  </div>
+
+  <div class="jrubrik" id="wako"><span>{{t:journal.index.aufmacher}}</span><i aria-hidden="true"></i></div>
+
+  <article class="feature jcard">
     <div class="fquote">
       <span class="mark" aria-hidden="true">&ldquo;</span>
       <blockquote>{{t:journal.wako.zitat}}</blockquote>
@@ -132,11 +373,15 @@
       <p class="role">{{t:journal.wako.rolle}}</p>
       <p>{{t:journal.wako.text1}}</p>
       <p>{{t:journal.wako.text2}}</p>
+      <div class="einord">
+        <b>{{t:journal.warum}}</b>
+        <span>{{t:journal.wako.einordnung}}</span>
+      </div>
       <p class="jsrc">{{t:journal.wako.quelle}}</p>
     </div>
   </article>
 
-  <section class="befunde">
+  <section class="befunde" id="befunde">
     <div class="bg-bubble" style="width:320px;height:320px;background:var(--coral);top:-130px;right:5%"></div>
     <div class="bg-bubble" style="width:160px;height:160px;border:2px solid var(--gold);bottom:-56px;left:7%"></div>
     <div class="befunde-in">
@@ -144,94 +389,220 @@
       <h2>{{t:journal.befunde.titel}}</h2>
       <p class="sub">{{t:journal.befunde.sub}}</p>
       <div class="blist">
-        <div class="bfind"><span class="n">4<i>/6</i></span><div><h3>{{t:journal.befunde.vergessen.titel}}</h3><p>{{t:journal.befunde.vergessen.text}}</p></div></div>
-        <div class="bfind"><span class="n">4<i>/6</i></span><div><h3>{{t:journal.befunde.verlust.titel}}</h3><p>{{t:journal.befunde.verlust.text}}</p></div></div>
-        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>{{t:journal.befunde.durchgehend.titel}}</h3><p>{{t:journal.befunde.durchgehend.text}}</p></div></div>
-        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>{{t:journal.befunde.extrem.titel}}</h3><p>{{t:journal.befunde.extrem.text}}</p></div></div>
-        <div class="bfind"><span class="n">2<i>/6</i></span><div><h3>{{t:journal.befunde.vielseitig.titel}}</h3><p>{{t:journal.befunde.vielseitig.text}}</p></div></div>
-        <div class="bfind"><span class="n">1<i>/6</i></span><div><h3>{{t:journal.befunde.robust.titel}}</h3><p>{{t:journal.befunde.robust.text}}</p></div></div>
+        <div class="bfind">
+          <div><span class="n">4<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.vergessen.titel}}</h3><p>{{t:journal.befunde.vergessen.text}}</p></div>
+        </div>
+        <div class="bfind">
+          <div><span class="n">4<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.verlust.titel}}</h3><p>{{t:journal.befunde.verlust.text}}</p></div>
+        </div>
+        <div class="bfind">
+          <div><span class="n">2<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.durchgehend.titel}}</h3><p>{{t:journal.befunde.durchgehend.text}}</p></div>
+        </div>
+        <div class="bfind">
+          <div><span class="n">2<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.extrem.titel}}</h3><p>{{t:journal.befunde.extrem.text}}</p></div>
+        </div>
+        <div class="bfind">
+          <div><span class="n">2<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.vielseitig.titel}}</h3><p>{{t:journal.befunde.vielseitig.text}}</p></div>
+        </div>
+        <div class="bfind">
+          <div><span class="n">1<i>/6</i></span><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div><h3>{{t:journal.befunde.robust.titel}}</h3><p>{{t:journal.befunde.robust.text}}</p></div>
+        </div>
+      </div>
+      <p class="bfuss">{{t:journal.befunde.fuss}}</p>
+      <div class="bschluss">
+        <h3>{{t:journal.befunde.schluss.titel}}</h3>
+        <p>{{t:journal.befunde.schluss.text}}</p>
       </div>
     </div>
   </section>
 
-  <div class="jsec">
+  <div class="jsec" id="portraets">
     <span class="kick">{{t:journal.portraets.kick}}</span>
     <h2>{{t:journal.portraets.titel}}</h2>
+    <p class="sh">{{t:journal.portraets.sub}}</p>
   </div>
   <div class="jgrid">
     <article class="jcard" id="nakajima">
-      <div class="cover"><span class="cl">{{t:journal.nakajima.cover}}</span></div>
-      <span class="jtag">{{t:journal.nakajima.tag}}</span>
-      <h3>Yuri Nakajima</h3>
-      <p class="role">{{t:journal.nakajima.rolle}}</p>
-      <p>{{t:journal.nakajima.text}}</p>
-      <p class="jsrc">{{t:journal.nakajima.quelle}}</p>
+      <div class="cover">
+        <span class="jnum" aria-hidden="true">02</span>
+        <span class="mono" aria-hidden="true">YN</span>
+        <span class="cl">{{t:journal.nakajima.cover}}</span>
+      </div>
+      <div class="jbody">
+        <span class="jtag">{{t:journal.nakajima.tag}}</span>
+        <h3>Yuri Nakajima</h3>
+        <p class="role">{{t:journal.nakajima.rolle}}</p>
+        <p>{{t:journal.nakajima.text}}</p>
+        <div class="einord"><b>{{t:journal.warum}}</b><span>{{t:journal.nakajima.einordnung}}</span></div>
+        <p class="jsrc">{{t:journal.nakajima.quelle}}</p>
+      </div>
     </article>
 
     <article class="jcard" id="halim">
-      <div class="cover"><span class="cl">{{t:journal.halim.cover}}</span></div>
-      <span class="jtag">{{t:journal.halim.tag}}</span>
-      <h3>Lisa Halim</h3>
-      <p class="role">{{t:journal.halim.rolle}}</p>
-      <p>{{t:journal.halim.text}}</p>
-      <p class="jsrc">{{t:journal.halim.quelle}}</p>
+      <div class="cover">
+        <span class="jnum" aria-hidden="true">03</span>
+        <span class="mono" aria-hidden="true">LH</span>
+        <span class="cl">{{t:journal.halim.cover}}</span>
+      </div>
+      <div class="jbody">
+        <span class="jtag">{{t:journal.halim.tag}}</span>
+        <h3>Lisa Halim</h3>
+        <p class="role">{{t:journal.halim.rolle}}</p>
+        <p>{{t:journal.halim.text}}</p>
+        <div class="einord"><b>{{t:journal.warum}}</b><span>{{t:journal.halim.einordnung}}</span></div>
+        <p class="jsrc">{{t:journal.halim.quelle}}</p>
+      </div>
     </article>
 
     <article class="jcard" id="sena">
-      <div class="cover"><span class="cl">{{t:journal.sena.cover}}</span></div>
-      <span class="jtag">{{t:journal.sena.tag}}</span>
-      <h3>Sena</h3>
-      <p class="role">{{t:journal.sena.rolle}}</p>
-      <p>{{t:journal.sena.text}}</p>
-      <p class="jsrc">{{t:journal.sena.quelle}}</p>
+      <div class="cover">
+        <span class="jnum" aria-hidden="true">04</span>
+        <span class="mono" aria-hidden="true">S</span>
+        <span class="cl">{{t:journal.sena.cover}}</span>
+      </div>
+      <div class="jbody">
+        <span class="jtag">{{t:journal.sena.tag}}</span>
+        <h3>Sena</h3>
+        <p class="role">{{t:journal.sena.rolle}}</p>
+        <p>{{t:journal.sena.text}}</p>
+        <div class="einord"><b>{{t:journal.warum}}</b><span>{{t:journal.sena.einordnung}}</span></div>
+        <p class="jsrc">{{t:journal.sena.quelle}}</p>
+      </div>
     </article>
 
     <article class="jcard" id="igawa">
-      <div class="cover"><span class="cl">{{t:journal.igawa.cover}}</span></div>
-      <span class="jtag">{{t:journal.igawa.tag}}</span>
-      <h3>Sayaka Igawa</h3>
-      <p class="role">{{t:journal.igawa.rolle}}</p>
-      <p>{{t:journal.igawa.text}}</p>
-      <p class="jsrc">{{t:journal.igawa.quelle}}</p>
+      <div class="cover">
+        <span class="jnum" aria-hidden="true">05</span>
+        <span class="mono" aria-hidden="true">SI</span>
+        <span class="cl">{{t:journal.igawa.cover}}</span>
+      </div>
+      <div class="jbody">
+        <span class="jtag">{{t:journal.igawa.tag}}</span>
+        <h3>Sayaka Igawa</h3>
+        <p class="role">{{t:journal.igawa.rolle}}</p>
+        <p>{{t:journal.igawa.text}}</p>
+        <div class="einord"><b>{{t:journal.warum}}</b><span>{{t:journal.igawa.einordnung}}</span></div>
+        <p class="jsrc">{{t:journal.igawa.quelle}}</p>
+      </div>
     </article>
 
     <article class="jcard" id="kobori">
-      <div class="cover"><span class="cl">{{t:journal.kobori.cover}}</span></div>
-      <span class="jtag">{{t:journal.kobori.tag}}</span>
-      <h3>Sosho Kobori</h3>
-      <p class="role">{{t:journal.kobori.rolle}}</p>
-      <p>{{t:journal.kobori.text}}</p>
-      <p class="jsrc">{{t:journal.kobori.quelle}}</p>
+      <div class="cover">
+        <span class="jnum" aria-hidden="true">06</span>
+        <span class="mono" aria-hidden="true">SK</span>
+        <span class="cl">{{t:journal.kobori.cover}}</span>
+      </div>
+      <div class="jbody">
+        <span class="jtag">{{t:journal.kobori.tag}}</span>
+        <h3>Sosho Kobori</h3>
+        <p class="role">{{t:journal.kobori.rolle}}</p>
+        <p>{{t:journal.kobori.text}}</p>
+        <div class="einord"><b>{{t:journal.warum}}</b><span>{{t:journal.kobori.einordnung}}</span></div>
+        <p class="jsrc">{{t:journal.kobori.quelle}}</p>
+      </div>
     </article>
   </div>
 
-  <div class="jsec" style="padding-bottom:6px">
+  <section class="brueck">
+    <div class="bg-bubble" style="width:260px;height:260px;border:2px solid var(--coral);top:-110px;left:4%"></div>
+    <div class="brueck-in">
+      <span class="kick">{{t:journal.brueck.kick}}</span>
+      <h2>{{t:journal.brueck.titel}}</h2>
+      <p class="lead">{{t:journal.brueck.lead}}</p>
+
+      <!-- Was hier steht, steht so in products.json. Welche Kollektion eine einzelne
+           Traegerin traegt, ist nirgends belegt und wird darum auch nicht behauptet. -->
+      <div class="kollrow">
+        <a class="kollcard" href="kollektion.html?c=Honesty">
+          <span class="lb">{{t:journal.brueck.label}}</span>
+          <b>Honesty</b>
+          <p>{{t:journal.brueck.honesty.text}}</p>
+          <span class="go">{{t:journal.brueck.knopf}}</span>
+        </a>
+        <a class="kollcard" href="kollektion.html?c=Amity">
+          <span class="lb">{{t:journal.brueck.label}}</span>
+          <b>Amity</b>
+          <p>{{t:journal.brueck.amity.text}}</p>
+          <span class="go">{{t:journal.brueck.knopf}}</span>
+        </a>
+        <a class="kollcard" href="kollektion.html?c=Embrace">
+          <span class="lb">{{t:journal.brueck.label}}</span>
+          <b>Embrace</b>
+          <p>{{t:journal.brueck.embrace.text}}</p>
+          <span class="go">{{t:journal.brueck.knopf}}</span>
+        </a>
+        <a class="kollcard" href="kollektion.html?c=WA">
+          <span class="lb">{{t:journal.brueck.wa.label}}</span>
+          <b>WA</b>
+          <p>{{t:journal.brueck.wa.text}}</p>
+          <span class="go">{{t:journal.brueck.knopf}}</span>
+        </a>
+      </div>
+
+      <div class="fakten">
+        <div>{{t:journal.brueck.fakt.verschluss}}</div>
+        <div>{{t:journal.brueck.fakt.material}}</div>
+        <div>{{t:journal.brueck.fakt.wasser}}</div>
+        <div>{{t:journal.brueck.fakt.herkunft}}</div>
+      </div>
+
+      <div class="passform">
+        <div>
+          <b>{{t:journal.brueck.passform.titel}}</b>
+          <p>{{t:journal.brueck.passform.text}}</p>
+        </div>
+        <a href="faq.html#passform">{{t:journal.brueck.passform.link}}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="jsec" id="stationen" style="padding-bottom:6px">
     <span class="kick">{{t:journal.stationen.kick}}</span>
     <h2>{{t:journal.stationen.titel}}</h2>
   </div>
   <div class="zeit">
     <p class="intro">{{t:journal.stationen.intro}}</p>
-    <div class="zeile"><time>{{t:journal.stationen.popup.zeit}}</time><div><b>{{t:journal.stationen.popup.titel}}</b><span>{{t:journal.stationen.popup.text}}</span></div></div>
-    <div class="zeile"><time>{{t:journal.stationen.billabong.zeit}}</time><div><b>Billabong Tahara Pro</b><span>{{t:journal.stationen.billabong.text}}</span></div></div>
-    <div class="zeile"><time>{{t:journal.stationen.hulle_hiroshima.zeit}}</time><div><b>HULLE Aeon Mall Hiroshima Fuchu</b><span>{{t:journal.stationen.hulle_hiroshima.text}}</span></div></div>
-    <div class="zeile"><time>{{t:journal.stationen.hulle_fukuoka.zeit}}</time><div><b>HULLE Aeon Mall Fukuoka</b><span>{{t:journal.stationen.hulle_fukuoka.text}}</span></div></div>
-    <div class="zeile"><time>{{t:journal.stationen.tsujido.zeit}}</time><div><b>Tsujido Surf Fest</b><span>{{t:journal.stationen.tsujido.text}}</span></div></div>
-    <div class="zeile"><time>{{t:journal.stationen.pilgrim.zeit}}</time><div><b>{{t:journal.stationen.pilgrim.titel}}</b><span>{{t:journal.stationen.pilgrim.text}}</span></div></div>
+    <div class="zliste">
+      <div class="zeile"><time>{{t:journal.stationen.popup.zeit}}</time><div><b>{{t:journal.stationen.popup.titel}}</b><span>{{t:journal.stationen.popup.text}}</span></div><span class="ort">Japan</span></div>
+      <div class="zeile"><time>{{t:journal.stationen.billabong.zeit}}</time><div><b>Billabong Tahara Pro</b><span>{{t:journal.stationen.billabong.text}}</span></div><span class="ort">Japan</span></div>
+      <div class="zeile"><time>{{t:journal.stationen.hulle_hiroshima.zeit}}</time><div><b>HULLE Aeon Mall Hiroshima Fuchu</b><span>{{t:journal.stationen.hulle_hiroshima.text}}</span></div><span class="ort">Japan</span></div>
+      <div class="zeile"><time>{{t:journal.stationen.hulle_fukuoka.zeit}}</time><div><b>HULLE Aeon Mall Fukuoka</b><span>{{t:journal.stationen.hulle_fukuoka.text}}</span></div><span class="ort">Japan</span></div>
+      <div class="zeile"><time>{{t:journal.stationen.tsujido.zeit}}</time><div><b>Tsujido Surf Fest</b><span>{{t:journal.stationen.tsujido.text}}</span></div><span class="ort">Japan</span></div>
+      <div class="zeile"><time>{{t:journal.stationen.pilgrim.zeit}}</time><div><b>{{t:journal.stationen.pilgrim.titel}}</b><span>{{t:journal.stationen.pilgrim.text}}</span></div><span class="ort">Japan</span></div>
+    </div>
   </div>
 
-  <div class="hinweis">
-    <div>
-      <b>{{t:journal.hinweis.herkunft.titel}}</b> {{t:journal.hinweis.herkunft.text}}
-      <br><br>
-      <b>{{t:journal.hinweis.schweiz.titel}}</b> {{t:journal.hinweis.schweiz.text}}
+  <div class="kolo" id="offenlegung">
+    <span class="kick">{{t:journal.kolophon.kick}}</span>
+    <h2>{{t:journal.kolophon.titel}}</h2>
+    <div class="kolo-grid">
+      <div class="kolo-blk">
+        <b>{{t:journal.hinweis.herkunft.titel}}</b>
+        <p>{{t:journal.hinweis.herkunft.text}}</p>
+      </div>
+      <div class="kolo-blk">
+        <b>{{t:journal.hinweis.schweiz.titel}}</b>
+        <p>{{t:journal.hinweis.schweiz.text}}</p>
+      </div>
     </div>
   </div>
 
   <section class="jcta">
     <span class="eyebrow">{{t:journal.cta.eyebrow}}</span>
     <h2>{{t:journal.cta.titel}}</h2>
+    <p class="sub">{{t:journal.cta.sub}}</p>
     <a class="btn btn-coral" href="kollektion.html">{{t:journal.cta.knopf_kollektion}}</a>
     <a class="btn btn-ghost" href="story.html">{{t:journal.cta.knopf_story}}</a>
+    <div class="trust">
+      <span>{{t:foot.trust.rueckgabe}}</span>
+      <span>{{t:foot.trust.gratisversand}}</span>
+    </div>
   </section>
 </main>
 

@@ -14,34 +14,203 @@
 <style>
 {{CSS}}
 
-/* ---------- Story-Editorial (nur diese Seite) ---------- */
+/* ================================================================
+   Story, seiteneigenes CSS. styles.css bleibt unberuehrt.
+   Radien nach Handbuch: 4 Knopf, 8 Karte, 12 Bild.
+   Karten tragen harte Versatzschatten in den vier Toenungen,
+   weiche Schatten gibt es hier keine.
+   ================================================================ */
+
+/* ---------- Kopf ---------- */
+.plp-hero .eyebrow{color:var(--coral); display:block; margin-bottom:16px}
+
+/* ---------- Vorspann ---------- */
+.story-vorspann{max-width:1180px; margin:0 auto; padding:clamp(56px,7vw,92px) var(--pad) clamp(30px,4vw,52px)}
+.sv-grid{display:grid; grid-template-columns:minmax(0,6fr) minmax(0,5fr); gap:clamp(26px,5vw,72px); align-items:start}
+.sv-lead{font-family:var(--serif); font-weight:300; font-size:clamp(27px,3.6vw,46px);
+  line-height:1.14; color:var(--charcoal); text-wrap:balance}
+.sv-text p{color:#5a554e; max-width:48ch}
+.sv-text p + p{margin-top:14px}
+.sv-text p:last-child{color:var(--charcoal)}
+@media(max-width:860px){.sv-grid{grid-template-columns:1fr; gap:24px}}
+
+/* Zeitspanne: die Linie traegt die Bedeutung, nicht ein Satzzeichen */
+.sv-zeit{display:flex; align-items:center; gap:clamp(14px,3vw,28px); margin-top:clamp(38px,5vw,64px)}
+.sv-zeit b{font-family:var(--serif); font-weight:400; font-size:clamp(30px,4.4vw,54px); line-height:1;
+  color:var(--navy); font-variant-numeric:tabular-nums}
+.sv-zeit .bahn{flex:1; height:2px; border-radius:1px; position:relative;
+  background:linear-gradient(90deg,var(--coral-tint),var(--coral))}
+.sv-zeit .bahn span{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  background:var(--ground); padding:0 14px; white-space:nowrap;
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--coral-deep)}
+@media(max-width:560px){.sv-zeit .bahn span{font-size:10px; letter-spacing:.12em; padding:0 8px}}
+
+/* Kapitelleiste */
+.sv-sprung{display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3.4vw,40px)}
+.sv-sprung a{display:inline-flex; align-items:center; min-height:44px; padding:10px 18px;
+  border:1px solid rgba(11,29,63,.3); border-radius:99px;
+  font-size:12.5px; font-weight:500; letter-spacing:.08em; color:var(--charcoal);
+  transition:border-color .12s, color .12s, background .12s}
+.sv-sprung a:hover{border-color:var(--coral-deep); color:var(--coral-deep)}
+.sv-sprung a.hier{background:var(--navy); border-color:var(--navy); color:var(--ground)}
+
+/* ---------- Kapitel ---------- */
 .story-ed{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,90px); align-items:center;
-  max-width:1180px; margin:0 auto; padding:clamp(46px,6vw,84px) var(--pad); position:relative; overflow-x:clip}
+  max-width:1180px; margin:0 auto; padding:clamp(46px,6vw,84px) var(--pad); position:relative}
 .story-ed .num{font-family:var(--serif); font-size:clamp(58px,7vw,96px); line-height:1; color:var(--coral-tint);
   display:block; margin-bottom:6px}
 .story-ed h2{font-size:clamp(30px,3.6vw,44px); margin:10px 0 16px}
-.story-ed p{color:#5c564e; max-width:46ch}
+.story-ed p{color:#5a554e; max-width:46ch}
 .story-ed p + p{margin-top:14px}
+.story-ed .marke{display:flex; width:fit-content; align-items:center; gap:10px; margin-top:20px;
+  font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft)}
+.story-ed .marke::before{content:''; width:24px; height:1px; background:var(--coral); flex:none}
 .story-ed .btn{margin-top:24px}
 .sed-img{position:relative}
-.sed-img img{width:100%; height:auto; border-radius:18px; box-shadow:0 24px 60px -30px rgba(11,29,63,.35)}
-.sed-img.arch img{border-radius:190px 190px 18px 18px}
-.sed-img .dot{position:absolute; border-radius:50%; z-index:-1}
+.sed-img img{width:100%; height:auto; border-radius:12px}
+.sed-img.t-coral img{box-shadow:14px 14px 0 var(--coral-tint)}
+.sed-img.t-lav img{box-shadow:14px 14px 0 var(--lav-tint)}
+.sed-img.t-sage img{box-shadow:14px 14px 0 var(--sage-tint)}
+.sed-img.arch img{border-radius:190px 190px 12px 12px}
 @media(max-width:860px){
   .story-ed{grid-template-columns:1fr; gap:26px}
   .story-ed.flip .sed-img{order:-1}
+  .sed-img img{box-shadow:8px 8px 0 var(--coral-tint)}
 }
-.story-wide{max-width:1180px; margin:0 auto; padding:clamp(10px,2vw,26px) var(--pad) clamp(46px,6vw,84px)}
-.story-wide img{width:100%; height:auto; border-radius:18px; box-shadow:0 24px 60px -30px rgba(11,29,63,.35)}
-.story-wide figcaption{margin-top:12px; font-size:12.5px; letter-spacing:.05em; color:var(--ink-soft)}
-.story-stats{background:var(--navy); color:var(--ground); padding:clamp(56px,7vw,90px) var(--pad); position:relative; overflow:hidden}
-.story-stats .stats{max-width:1180px; margin:0 auto; display:flex; gap:clamp(40px,8vw,120px); justify-content:center}
-.story-stats .stat b{color:var(--gold)}
+
+/* ---------- Die Durststrecke ---------- */
+/* background-color, nicht die Kurzform: sonst loescht sie die Punkttextur aus .dotted */
+.story-durst{background-color:var(--paper); padding:clamp(72px,9vw,124px) var(--pad); position:relative; overflow:hidden}
+.sd-wrap{max-width:1180px; margin:0 auto; position:relative; z-index:2}
+.sd-head{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(20px,4vw,64px);
+  align-items:end; margin-bottom:clamp(34px,4.5vw,58px)}
+.sd-head h2{font-size:clamp(32px,4.4vw,56px)}
+.sd-head p{color:#5a554e; max-width:48ch}
+.sd-head p + p{margin-top:12px}
+.sd-head p:last-child{color:var(--charcoal); font-weight:400}
+@media(max-width:860px){.sd-head{grid-template-columns:1fr; align-items:start; gap:16px}}
+
+.sd-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(16px,2vw,22px)}
+@media(max-width:980px){.sd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.sd-grid{grid-template-columns:1fr}}
+.sd-card{background:var(--ground); border:1px solid #efe8dc; border-radius:8px;
+  padding:24px 22px 26px; display:flex; flex-direction:column; gap:9px}
+.sd-card:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
+.sd-card:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
+.sd-card:nth-child(3){box-shadow:8px 8px 0 var(--lav-tint)}
+.sd-card:nth-child(4){box-shadow:8px 8px 0 #F0E4D3}
+.sd-card i{font-style:normal; font-family:var(--serif); font-size:27px; line-height:1;
+  color:var(--warmgrey); font-variant-numeric:tabular-nums}
+.sd-card h3{font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--charcoal)}
+.sd-card p{font-size:14.5px; line-height:1.62; color:#5a554e}
+
+.sd-partner{--focus-ring:#FAF7F2;
+  margin-top:clamp(26px,3.4vw,44px); background:var(--navy); color:var(--ground); border-radius:8px;
+  padding:clamp(28px,3.6vw,46px); display:grid; grid-template-columns:minmax(0,4fr) minmax(0,7fr);
+  gap:clamp(16px,3vw,48px); align-items:start; position:relative; overflow:hidden}
+@media(max-width:860px){.sd-partner{grid-template-columns:1fr; gap:14px}}
+.sd-partner h3{font-size:clamp(24px,2.9vw,36px); color:#fff; position:relative; z-index:2}
+.sd-partner p{color:rgba(250,247,242,.78); font-size:15.5px; max-width:58ch; position:relative; z-index:2}
+.sd-ring{position:absolute; right:-70px; bottom:-96px; width:240px; height:240px; border-radius:50%;
+  border:1px solid rgba(217,193,160,.3); pointer-events:none; z-index:1}
+
+/* ---------- Der Moment ---------- */
+.story-moment{background:var(--coral); color:var(--navy);
+  padding:clamp(78px,10vw,140px) var(--pad); position:relative; overflow:hidden}
+.sm-ring{position:absolute; border-radius:50%; border:2px solid rgba(11,29,63,.14); pointer-events:none}
+.sm-wrap{max-width:880px; margin:0 auto; text-align:center; position:relative; z-index:2}
+.sm-wrap .eyebrow{color:var(--navy)}
+.sm-wrap h2{font-size:clamp(34px,5.4vw,68px); color:var(--navy); margin:14px 0 24px}
+.sm-wrap p{color:rgba(11,29,63,.82); font-size:clamp(16px,1.5vw,18px); max-width:52ch; margin:0 auto}
+.sm-wrap p + p{margin-top:14px}
+.sm-klick{font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(23px,2.8vw,34px); line-height:1.2; color:var(--navy); margin-top:30px}
+.story-moment .btn{margin-top:28px}
+
+/* ---------- Breites Bild ---------- */
+.story-wide{max-width:1180px; margin:0 auto; padding:clamp(56px,7vw,96px) var(--pad) clamp(10px,2vw,26px)}
+.story-wide img{width:100%; height:auto; border-radius:12px; box-shadow:14px 14px 0 #F0E4D3}
+.story-wide figcaption{margin-top:26px; font-size:12.5px; letter-spacing:.05em; color:var(--ink-soft)}
+
+/* ---------- Zahlenleiste ---------- */
+.story-stats{background:var(--navy); color:var(--ground);
+  padding:clamp(64px,8vw,110px) var(--pad); position:relative; overflow:hidden}
+.story-stats .stats{max-width:1180px; margin:0 auto; margin-top:0; display:flex; gap:clamp(30px,8vw,120px);
+  justify-content:center; flex-wrap:wrap; position:relative; z-index:2}
+.story-stats .stat{text-align:center}
+.story-stats .stat b{color:var(--gold); font-size:clamp(48px,6.4vw,84px)}
 .story-stats .stat span{color:rgba(250,247,242,.62)}
-.story-cta{text-align:center; padding:clamp(70px,9vw,120px) var(--pad)}
-.story-cta h2{font-size:clamp(32px,4.4vw,54px); margin:12px 0 26px}
-.story-cta .btn + .btn{margin-left:12px}
-@media(max-width:560px){.story-cta .btn{display:flex; justify-content:center; margin:0 0 12px}.story-cta .btn + .btn{margin-left:0}}
+.story-stats .unterzeile{max-width:1180px; margin:clamp(30px,4vw,48px) auto 0; text-align:center;
+  font-family:var(--serif); font-style:italic; font-size:clamp(17px,1.8vw,22px);
+  color:rgba(250,247,242,.72); position:relative; z-index:2}
+
+/* ---------- Was das fuer dich heisst ---------- */
+.story-dich{max-width:1180px; margin:0 auto; padding:clamp(72px,9vw,124px) var(--pad) clamp(40px,5vw,64px)}
+.sdi-head{max-width:58ch; margin-bottom:clamp(30px,4vw,48px)}
+.sdi-head h2{font-size:clamp(32px,4.4vw,56px); margin:12px 0 14px}
+.sdi-head p{color:#5a554e}
+
+.sdi-tab{border-top:1px solid rgba(11,29,63,.16)}
+.sdi-kopf{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,44px); padding:16px 0 12px}
+.sdi-kopf span{font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase}
+.sdi-kopf .k-alt{color:var(--ink-soft)}
+.sdi-kopf .k-neu{color:var(--coral-deep)}
+.sdi-zeile{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,44px);
+  border-top:1px solid rgba(11,29,63,.10); padding:18px 0}
+.sdi-zeile > div{display:flex; gap:13px; align-items:flex-start}
+.sdi-mark{flex:none; width:15px; height:15px; border-radius:50%; margin-top:5px}
+.sdi-alt .sdi-mark{border:1.5px solid rgba(11,29,63,.22)}
+.sdi-neu .sdi-mark{background:var(--coral)}
+.sdi-alt p{color:var(--ink-soft); font-size:15px; line-height:1.6}
+.sdi-neu p{color:var(--charcoal); font-size:15.5px; line-height:1.6}
+.sdi-mini{display:none; font-size:10px; font-weight:600; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:5px}
+.sdi-neu .sdi-mini{color:var(--coral-deep)}
+@media(max-width:640px){
+  .sdi-kopf{display:none}
+  .sdi-zeile{grid-template-columns:1fr; gap:16px}
+  .sdi-mini{display:block}
+}
+
+.sdi-karten{display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,2.4vw,26px);
+  margin-top:clamp(36px,4.4vw,56px)}
+@media(max-width:860px){.sdi-karten{grid-template-columns:1fr}}
+.sdi-karte{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:28px 26px 24px}
+.sdi-karte:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
+.sdi-karte:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
+.sdi-karte h3{font-size:clamp(22px,2.3vw,28px); margin-bottom:10px}
+.sdi-karte p{font-size:15px; line-height:1.65; color:#5a554e; max-width:46ch}
+.sdi-link{display:inline-block; margin-top:6px; padding:14px 0;
+  font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--coral-deep); border-bottom:1px solid rgba(201,59,39,.35); transition:border-color .12s}
+.sdi-link:hover{border-color:var(--coral-deep)}
+
+.sdi-journal{margin-top:clamp(18px,2.4vw,26px); background:var(--lav-tint); border-radius:8px;
+  padding:clamp(24px,3vw,34px); display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:space-between; gap:16px 32px}
+.sdi-journal h3{font-size:clamp(21px,2.2vw,27px); margin-bottom:6px}
+.sdi-journal p{font-size:15px; line-height:1.6; color:#4a453e; max-width:56ch}
+/* Coral-Tief auf Lavendel bleibt unter dem Kontrastwert, darum hier Navy */
+.sdi-journal .sdi-link{margin-top:0; flex:none; color:var(--navy); border-bottom-color:rgba(11,29,63,.4)}
+.sdi-journal .sdi-link:hover{border-bottom-color:var(--navy)}
+
+/* ---------- Uebergabe ---------- */
+.story-cta{text-align:center; padding:clamp(64px,8vw,110px) var(--pad) clamp(80px,10vw,140px);
+  position:relative; overflow:hidden}
+.story-cta h2{font-size:clamp(32px,4.4vw,58px); margin:12px 0 14px}
+.story-cta .satz{color:#5a554e; max-width:44ch; margin:0 auto 30px}
+.story-cta .knoepfe{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.story-cta .vertrauen{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px;
+  margin-top:clamp(28px,3.4vw,40px); font-size:12.5px; color:var(--ink-soft)}
+.story-cta .vertrauen span{display:inline-flex; align-items:center; gap:9px}
+.story-cta .vertrauen span::before{content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--sage-deep); flex:none}
+@media(max-width:560px){.story-cta .knoepfe .btn{width:100%; justify-content:center}}
+
+@media (prefers-reduced-motion: reduce){
+  .sd-ring, .sm-ring{display:none}
+}
 </style>
 </head>
 <body class="page-light hero-dark">
@@ -54,36 +223,111 @@
   <div class="blob" style="width:380px;height:380px;background:var(--coral);top:-120px;right:-80px"></div>
   <div class="blob" style="width:260px;height:260px;background:var(--lavender);bottom:-100px;left:-60px"></div>
   <div class="blob" style="width:120px;height:120px;background:var(--sage);top:40px;left:34%"></div>
+  <span class="eyebrow">{{t:story.hero.eyebrow}}</span>
   <h1>{{t:story.hero.titel}}</h1>
   <p>{{t:story.hero.text}} {{t:story.herkunft.formel}}.</p>
 </div>
 
-  <section class="story-ed reveal">
+  <!-- Vorspann: der Konflikt, bevor irgendeine Antwort kommt -->
+  <section class="story-vorspann reveal">
+    <div class="sv-grid">
+      <p class="sv-lead">{{t:story.vorspann.lead}}</p>
+      <div class="sv-text">
+        <p>{{t:story.vorspann.text1}}</p>
+        <p>{{t:story.vorspann.text2}}</p>
+      </div>
+    </div>
+
+    <div class="sv-zeit">
+      <b>{{t:story.zeit.start}}</b>
+      <span class="bahn"><span>{{t:story.zeit.spanne}}</span></span>
+      <b>{{t:story.zeit.ende}}</b>
+    </div>
+
+    <nav class="sv-sprung" id="kapitelleiste" aria-label="{{t:story.sprung.label}}">
+      <a href="#kapitel-idee">{{t:story.idee.eyebrow}}</a>
+      <a href="#kapitel-entwicklung">{{t:story.entwicklung.eyebrow}}</a>
+      <a href="#durststrecke">{{t:story.durst.eyebrow}}</a>
+      <a href="#kapitel-manufaktur">{{t:story.manufaktur.eyebrow}}</a>
+      <a href="#fuer-dich">{{t:story.dich.eyebrow}}</a>
+    </nav>
+  </section>
+
+  <!-- 01 Die Idee: das Problem, bevor die Antwort kommt -->
+  <section class="story-ed reveal" id="kapitel-idee">
     <div>
       <span class="num">01</span>
       <span class="eyebrow">{{t:story.idee.eyebrow}}</span>
       <h2>{{t:story.idee.titel}}</h2>
-      <p>{{t:story.idee.text1}}</p>
-      <p>{{t:story.idee.text2}}</p>
+      <p>{{t:story.kap1.text1}}</p>
+      <p>{{t:story.kap1.text2}}</p>
+      <p>{{t:story.kap1.text3}}</p>
+      <span class="marke">{{t:story.kap1.marke}}</span>
     </div>
-    <div class="sed-img">
-      <span class="dot" style="width:120px;height:120px;background:var(--coral-tint);top:-30px;right:-26px"></span>
+    <div class="sed-img t-coral">
       <img src="{{story_sketch}}" alt="{{t:story.idee.bild_alt}}" loading="lazy">
     </div>
   </section>
 
-  <section class="story-ed flip reveal">
-    <div class="sed-img arch">
-      <span class="dot" style="width:150px;height:150px;background:var(--lav-tint);bottom:-34px;left:-30px"></span>
+  <!-- 02 Die Entwicklung: der Widerspruch und der T-Anker -->
+  <section class="story-ed flip reveal" id="kapitel-entwicklung">
+    <div class="sed-img arch t-lav">
       <img src="{{story_polish}}" alt="{{t:story.entwicklung.bild_alt}}" loading="lazy">
     </div>
     <div>
       <span class="num">02</span>
       <span class="eyebrow">{{t:story.entwicklung.eyebrow}}</span>
       <h2>{{t:story.entwicklung.titel}}</h2>
-      <p>{{t:story.entwicklung.text1}}</p>
-      <p>{{t:story.entwicklung.text2}}</p>
+      <p>{{t:story.kap2.text1}}</p>
+      <p>{{t:story.kap2.text2}}</p>
+      <p>{{t:story.kap2.text3}}</p>
+      <span class="marke">{{t:story.kap2.marke}}</span>
       <a class="btn btn-ghost" href="index.html#clicklock">{{t:story.entwicklung.knopf_clicklock}}</a>
+    </div>
+  </section>
+
+  <!-- Die Durststrecke: acht Jahre als Sache, nicht als Zahl -->
+  <section class="story-durst dotted" id="durststrecke">
+    <div class="sd-wrap">
+      <div class="sd-head reveal">
+        <div>
+          <span class="eyebrow">{{t:story.durst.eyebrow}}</span>
+          <h2>{{t:story.durst.titel}}</h2>
+        </div>
+        <div>
+          <p>{{t:story.durst.text1}}</p>
+          <p>{{t:story.durst.text2}}</p>
+        </div>
+      </div>
+
+      <div class="sd-grid reveal d1">
+        <article class="sd-card"><i>01</i><h3>{{t:story.durst.a1.titel}}</h3><p>{{t:story.durst.a1.text}}</p></article>
+        <article class="sd-card"><i>02</i><h3>{{t:story.durst.a2.titel}}</h3><p>{{t:story.durst.a2.text}}</p></article>
+        <article class="sd-card"><i>03</i><h3>{{t:story.durst.a3.titel}}</h3><p>{{t:story.durst.a3.text}}</p></article>
+        <article class="sd-card"><i>04</i><h3>{{t:story.durst.a4.titel}}</h3><p>{{t:story.durst.a4.text}}</p></article>
+      </div>
+
+      <div class="sd-partner reveal d2">
+        <span class="sd-ring" aria-hidden="true"></span>
+        <h3>{{t:story.durst.warum.titel}}</h3>
+        <div>
+          <p>{{t:story.durst.warum.text}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Der Moment, in dem es funktioniert hat -->
+  <section class="story-moment">
+    <span class="sm-ring" style="width:420px;height:420px;top:-150px;left:-120px" aria-hidden="true"></span>
+    <span class="sm-ring" style="width:260px;height:260px;bottom:-110px;right:-60px" aria-hidden="true"></span>
+    <div class="sm-wrap reveal">
+      <span class="eyebrow">{{t:story.moment.eyebrow}}</span>
+      <h2>{{t:story.moment.titel}}</h2>
+      <p>{{t:story.moment.text1}}</p>
+      <p>{{t:story.moment.text2}}</p>
+      <p class="sm-klick">{{t:pdp.band.titel_kursiv}}</p>
+      <a class="btn btn-navy" href="index.html#clicklock">{{t:story.moment.knopf}}</a>
     </div>
   </section>
 
@@ -92,16 +336,18 @@
     <figcaption>{{t:story.atelier.bildunterschrift}}</figcaption>
   </figure>
 
-  <section class="story-ed reveal">
+  <!-- 03 Die Manufaktur -->
+  <section class="story-ed reveal" id="kapitel-manufaktur">
     <div>
       <span class="num">03</span>
       <span class="eyebrow">{{t:story.manufaktur.eyebrow}}</span>
       <h2>{{t:story.manufaktur.titel}}</h2>
       <p>{{t:story.herkunft.formel}}: {{t:story.manufaktur.text1}}</p>
       <p>{{t:story.manufaktur.text2}}</p>
+      <p>{{t:story.kap3.text3}}</p>
+      <a class="btn btn-ghost" href="faq.html">{{t:story.kap3.knopf_pflege}}</a>
     </div>
-    <div class="sed-img">
-      <span class="dot" style="width:130px;height:130px;background:var(--sage-tint);top:-28px;left:-28px"></span>
+    <div class="sed-img t-sage">
       <img src="{{story_hands}}" alt="{{t:story.manufaktur.bild_alt}}" loading="lazy">
     </div>
   </section>
@@ -114,13 +360,90 @@
       <div class="stat"><b data-count="1">0</b><span>{{t:story.zahlen.klick}}</span></div>
       <div class="stat"><b data-count="0">0</b><span>{{t:story.zahlen.rueckteile}}</span></div>
     </div>
+    <p class="unterzeile">{{t:story.zahlen.unterzeile}}</p>
+  </section>
+
+  <!-- Was das fuer die Traegerin heisst -->
+  <section class="story-dich" id="fuer-dich">
+    <div class="sdi-head reveal">
+      <span class="eyebrow">{{t:story.dich.eyebrow}}</span>
+      <h2>{{t:story.dich.titel}}</h2>
+      <p>{{t:story.dich.lead}}</p>
+    </div>
+
+    <div class="sdi-tab reveal d1">
+      <div class="sdi-kopf">
+        <span class="k-alt">{{t:story.dich.spalte_vorher}}</span>
+        <span class="k-neu">{{t:story.dich.spalte_nachher}}</span>
+      </div>
+
+      <div class="sdi-zeile">
+        <div class="sdi-alt"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_vorher}}</span><p>{{t:story.dich.z1.vorher}}</p></div></div>
+        <div class="sdi-neu"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_nachher}}</span><p>{{t:story.dich.z1.nachher}}</p></div></div>
+      </div>
+      <div class="sdi-zeile">
+        <div class="sdi-alt"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_vorher}}</span><p>{{t:story.dich.z2.vorher}}</p></div></div>
+        <div class="sdi-neu"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_nachher}}</span><p>{{t:story.dich.z2.nachher}}</p></div></div>
+      </div>
+      <div class="sdi-zeile">
+        <div class="sdi-alt"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_vorher}}</span><p>{{t:story.dich.z3.vorher}}</p></div></div>
+        <div class="sdi-neu"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_nachher}}</span><p>{{t:story.dich.z3.nachher}}</p></div></div>
+      </div>
+      <div class="sdi-zeile">
+        <div class="sdi-alt"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_vorher}}</span><p>{{t:story.dich.z4.vorher}}</p></div></div>
+        <div class="sdi-neu"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_nachher}}</span><p>{{t:story.dich.z4.nachher}}</p></div></div>
+      </div>
+      <div class="sdi-zeile">
+        <div class="sdi-alt"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_vorher}}</span><p>{{t:story.dich.z5.vorher}}</p></div></div>
+        <div class="sdi-neu"><span class="sdi-mark" aria-hidden="true"></span>
+          <div><span class="sdi-mini">{{t:story.dich.spalte_nachher}}</span><p>{{t:story.dich.z5.nachher}}</p></div></div>
+      </div>
+    </div>
+
+    <div class="sdi-karten reveal d1">
+      <article class="sdi-karte">
+        <h3>{{t:story.dich.grenze.titel}}</h3>
+        <p>{{t:story.dich.grenze.text}}</p>
+        <a class="sdi-link" href="faq.html#passform">{{t:story.dich.grenze.link}}</a>
+      </article>
+      <article class="sdi-karte">
+        <h3>{{t:story.dich.risiko.titel}}</h3>
+        <p>{{t:story.dich.risiko.text}}</p>
+        <a class="sdi-link" href="widerruf.html">{{t:faq.link.versand_retouren}}</a>
+      </article>
+    </div>
+
+    <div class="sdi-journal reveal d2">
+      <div>
+        <h3>{{t:story.dich.stimmen.titel}}</h3>
+        <p>{{t:story.dich.stimmen.text}}</p>
+      </div>
+      <a class="sdi-link" href="journal.html">{{t:story.dich.stimmen.link}}</a>
+    </div>
   </section>
 
   <section class="story-cta">
     <span class="eyebrow">{{t:story.cta.eyebrow}}</span>
     <h2>{{t:story.cta.titel}}</h2>
-    <a class="btn btn-coral" href="kollektion.html">{{t:story.cta.knopf_kollektion}}</a>
-    <a class="btn btn-ghost" href="neuheiten.html">{{t:story.cta.knopf_neuheiten}}</a>
+    <p class="satz">{{t:story.cta.text}}</p>
+    <div class="knoepfe">
+      <a class="btn btn-coral" href="kollektion.html">{{t:story.cta.knopf_kollektion}}</a>
+      <a class="btn btn-ghost" href="neuheiten.html">{{t:story.cta.knopf_neuheiten}}</a>
+    </div>
+    <div class="vertrauen">
+      <span>{{t:foot.trust.rueckgabe}}</span>
+      <span>{{t:foot.trust.gratisversand}}</span>
+      <span>{{t:story.herkunft.formel}}</span>
+    </div>
   </section>
 </main>
 
@@ -130,9 +453,13 @@
 <script>
 {{SHARED_JS}}
 
-// ---------- Zähler animieren (wie Home) ----------
+const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- Zaehler animieren (wie Home) ----------
 const statEls = document.querySelectorAll('.stat b');
-if ('IntersectionObserver' in window && statEls.length){
+if (ruhig){
+  statEls.forEach(el => { el.textContent = el.dataset.count; });
+} else if ('IntersectionObserver' in window && statEls.length){
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target, ziel = +el.dataset.count;
@@ -146,6 +473,8 @@ if ('IntersectionObserver' in window && statEls.length){
     io.unobserve(el);
   }), { threshold: .6 });
   statEls.forEach(el => io.observe(el));
+} else {
+  statEls.forEach(el => { el.textContent = el.dataset.count; });
 }
 
 // ---------- Reveal (wie Home) ----------
@@ -153,6 +482,23 @@ const revIo = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting){ e.target.classList.add('in'); revIo.unobserve(e.target); }
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => revIo.observe(el));
+
+// ---------- Kapitelleiste mitlaufen lassen ----------
+// Reine Orientierung. Faellt der Beobachter aus, bleiben es normale Sprungmarken.
+(function kapitelMitlauf(){
+  const leiste = document.getElementById('kapitelleiste');
+  if (!leiste || !('IntersectionObserver' in window)) return;
+  const links = [...leiste.querySelectorAll('a')];
+  const ziele = links
+    .map(a => ({ a, el: document.getElementById(a.getAttribute('href').slice(1)) }))
+    .filter(z => z.el);
+  if (!ziele.length) return;
+  const setzen = aktiv => links.forEach(a => a.classList.toggle('hier', a === aktiv));
+  const kio = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) setzen(ziele.find(z => z.el === e.target).a); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ziele.forEach(z => kio.observe(z.el));
+})();
 </script>
 </body>
 </html>
