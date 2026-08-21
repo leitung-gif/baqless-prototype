@@ -629,14 +629,17 @@ async function run() {
   // weiterhin geschützt ist die Sache: die Quelle wird genannt, und es steht dabei, dass
   // nur eine Zeile wörtlich zitiert ist. Ein Wächter, der einen Wortlaut festnagelt statt
   // einer Aussage, verhindert jede Überarbeitung.
-  log('Journal: Herkunft der Texte offengelegt', (() => {
-    const t = d.body.innerText;
-    const quelle = /Baqless-Journal|Baqless journal|journal Baqless/i.test(t)
-      && /Soichi Toyama/.test(t) && /Akane Watanabe/.test(t);
-    const gekennzeichnet = /zusammengefasst|summarised|résumé/i.test(t)
-      && /Taeko Wako/.test(t);
-    return quelle && gekennzeichnet;
-  })());
+  // Das japanische Journal ist keine fremde Quelle, es ist unser eigenes: baqless.jp
+  // gehört zur selben Marke. Die lange Offenlegung am Seitenfuss behandelte es wie
+  // Fremdmaterial und ist raus. Was bleibt und geprüft wird: jedes Porträt nennt am
+  // Stück, woher es stammt und wann es erschienen ist. Ein Porträt ohne Datum ist eine
+  // Behauptung, eines mit Datum ist ein Beleg.
+  log('Journal: jedes Porträt nennt Quelle und Datum', (() => {
+    const q = [...d.querySelectorAll('.jsrc')].map(x => x.textContent.trim());
+    return q.length === 6
+      && q.every(t => /Baqless[\s-]?Journal/i.test(t))
+      && q.every(t => /\b(19|20)\d{2}\b/.test(t));
+  })(), [...d.querySelectorAll('.jsrc')].length + ' Quellenzeilen');
   log('Journal: Japan-Beweise als Japan gekennzeichnet', (() => {
     const t = d.body.innerText;
     // Die Zeitleiste trägt je Zeile eine Ortsangabe, und die Quellenzeile sagt es nochmals
