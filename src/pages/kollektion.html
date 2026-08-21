@@ -24,7 +24,7 @@
 .plp-hero .ph-kick{font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
   color:var(--coral); margin-top:clamp(30px,4vw,46px); max-width:none;
   padding-top:22px; border-top:1px solid rgba(250,247,242,.2)}
-.ph-fix li b{display:block; font-size:15.5px; font-weight:600; line-height:1.3; color:#fff; margin-bottom:7px}
+.ph-fix li b{display:block; font-size:15.5px; font-weight:600; line-height:1.3; color:var(--paper); margin-bottom:7px}
 .ph-fix li span{display:block; font-size:13.5px; line-height:1.6; color:rgba(250,247,242,.7)}
 @media(max-width:780px){.ph-fix{grid-template-columns:1fr; gap:18px}}
 
@@ -36,7 +36,7 @@
 .plp-guide .kopf{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:10px 40px; align-items:end}
 .plp-guide h2{font-family:var(--serif); font-weight:300; font-size:clamp(28px,3.4vw,40px);
   line-height:1.1; color:var(--charcoal)}
-.plp-guide .lead{margin:0; max-width:58ch; font-size:16px; line-height:1.7; color:#5a554e}
+.plp-guide .lead{margin:0; max-width:58ch; font-size:16px; line-height:1.7; color:var(--ink)}
 @media(max-width:980px){.plp-guide .kopf{grid-template-columns:1fr; gap:14px}}
 .g-grid{margin-top:clamp(26px,3.2vw,38px); display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
 .g-card{background:var(--paper); border-radius:8px; padding:26px 24px 20px;
@@ -48,9 +48,9 @@
 /* Jede Nummer traegt die Toenung ihrer eigenen Karte. So bleibt in diesem Abschnitt
    ein einziger Coral-Blickfang statt drei. */
 .g-card:nth-child(2) .num{color:var(--sage-deep)}
-.g-card:nth-child(3) .num{color:#6355C4}
+.g-card:nth-child(3) .num{color:var(--lav-deep)}
 .g-card h3{font-size:19px; font-weight:500; line-height:1.28; color:var(--charcoal)}
-.g-card p{margin:0; font-size:14.5px; line-height:1.66; color:#5a554e}
+.g-card p{margin:0; font-size:14.5px; line-height:1.66; color:var(--ink)}
 .g-card a{margin-top:auto; align-self:flex-start; display:inline-block; padding:18px 0 7px;
   font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
   color:var(--charcoal); border-bottom:1px solid var(--charcoal); transition:color .12s, border-color .12s}
@@ -86,7 +86,7 @@
   text-transform:uppercase; color:var(--ki-ink,var(--coral-deep)); margin-bottom:2px}
 .kol-intro h2{font-family:var(--serif); font-weight:300; font-size:clamp(25px,2.9vw,35px);
   line-height:1.12; color:var(--charcoal)}
-.kol-intro .text{margin:0; font-size:15px; line-height:1.72; color:#5a554e}
+.kol-intro .text{margin:0; font-size:15px; line-height:1.72; color:var(--ink)}
 .kol-intro .fakten{grid-column:1/-1; margin:14px 0 0; padding-top:16px;
   border-top:1px solid rgba(11,29,63,.12); display:flex; flex-wrap:wrap; gap:14px 36px}
 .kol-intro .fakten div{display:flex; flex-direction:column; gap:3px}
@@ -107,12 +107,12 @@
 .s-card{background:var(--paper); border-radius:8px; padding:26px 24px 20px;
   box-shadow:8px 8px 0 rgba(11,29,63,.16); display:flex; flex-direction:column; gap:10px}
 .s-card h3{font-size:18.5px; font-weight:500; line-height:1.3; color:var(--charcoal)}
-.s-card p{margin:0; font-size:14.5px; line-height:1.66; color:#5a554e}
+.s-card p{margin:0; font-size:14.5px; line-height:1.66; color:var(--ink)}
 .s-card a{margin-top:auto; align-self:flex-start; display:inline-block; padding:18px 0 7px;
   font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
   color:var(--charcoal); border-bottom:1px solid var(--charcoal); transition:color .12s, border-color .12s}
 .s-card a:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
-.s-weiter{margin-top:clamp(28px,3.4vw,38px); font-size:15.5px; line-height:1.7; color:#4a453e; max-width:64ch}
+.s-weiter{margin-top:clamp(28px,3.4vw,38px); font-size:15.5px; line-height:1.7; color:var(--ink-strong); max-width:64ch}
 .s-weiter a{display:block; width:fit-content; margin-top:6px; padding:14px 0 4px; color:var(--navy); font-weight:600;
   border-bottom:1px solid rgba(11,29,63,.4); transition:border-color .12s}
 .s-weiter a:hover{border-color:var(--navy)}
@@ -283,9 +283,9 @@ const KOL_SCHLUESSEL = {alle: 'alle', Honesty: 'honesty', Amity: 'amity', Embrac
 const KOL_TON = {
   alle:    ['var(--coral-tint)', 'var(--coral-deep)'],
   Honesty: ['var(--sage-tint)',  'var(--sage-deep)'],
-  Amity:   ['#F0E4D3',           '#8A6A3C'],
+  Amity:   ['var(--gold-tint)',           '#8A6A3C'],
   Embrace: ['var(--coral-tint)', 'var(--coral-deep)'],
-  WA:      ['var(--lav-tint)',   '#6355C4'],
+  WA:      ['var(--lav-tint)',   'var(--lav-deep)'],
 };
 const colIntro = document.getElementById('colIntro');
 function renderKolIntro(liste){

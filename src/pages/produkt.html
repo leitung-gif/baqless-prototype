@@ -25,7 +25,7 @@
 @media(max-width:920px){.gal{position:static}}
 /* Radius nach Handbuch: 12 fuer Bild. Hier standen 26, das war der weichste
    Radius im ganzen Shop und stand neben Karten mit 8 und Knoepfen mit 4. */
-.gal-main{position:relative; border-radius:12px; overflow:hidden; background:#fff; isolation:isolate;
+.gal-main{position:relative; border-radius:12px; overflow:hidden; background:var(--paper); isolation:isolate;
   box-shadow:12px 12px 0 var(--coral-tint); aspect-ratio:1/1}
 .gal-main img{width:100%; height:100%; object-fit:cover; display:block; transition:opacity .3s}
 /* Kein Blend-Modus auf dem Packshot: er faerbte das Metall in die Kollektionsfarbe */
@@ -40,7 +40,7 @@
 /* display aus der eigenen Regel schlaegt [hidden], darum hier ausdruecklich */
 .gal-thumbs[hidden]{display:none}
 .gal-thumbs button{width:76px; height:76px; border-radius:8px; overflow:hidden; border:2px solid transparent;
-  padding:0; cursor:pointer; background:#fff; transition:border-color .12s, transform .12s}
+  padding:0; cursor:pointer; background:var(--paper); transition:border-color .12s, transform .12s}
 .gal-thumbs button img{width:100%; height:100%; object-fit:cover; display:block}
 .gal-thumbs button.active{border-color:var(--coral)}
 .gal-thumbs button:hover{transform:translateY(-2px)}
@@ -48,7 +48,7 @@
    die Schnittzeichnung: eine zweite Ansicht, die etwas erklaert, das kein Foto zeigt. */
 .gal-main.isschema{cursor:default; display:grid; place-items:center; padding:6%}
 .gal-main.isschema svg{width:100%; height:auto}
-.gal-thumbs .tsch{display:grid; place-items:center; width:100%; height:100%; background:#fff; padding:9%}
+.gal-thumbs .tsch{display:grid; place-items:center; width:100%; height:100%; background:var(--paper); padding:9%}
 .gal-thumbs .tsch svg{width:100%; height:auto}
 .gal-legende{font-size:12.5px; line-height:1.55; color:var(--ink-soft); margin-top:12px; max-width:44ch}
 .gal-legende[hidden]{display:none}
@@ -57,7 +57,7 @@
 .buy h1{font-family:var(--serif); font-weight:300; font-size:clamp(34px,4.6vw,52px); line-height:1.05; color:var(--charcoal)}
 /* Der erste Satz unter dem Namen beantwortet die erste Frage: wofuer ist das da.
    Variante und SKU sind Verwaltung, sie ruecken darunter und werden kleiner. */
-.buy .zweck{font-size:17px; line-height:1.55; color:#4a453e; margin-top:12px; max-width:46ch}
+.buy .zweck{font-size:17px; line-height:1.55; color:var(--ink-strong); margin-top:12px; max-width:46ch}
 .buy .variant-line{font-size:13px; color:var(--ink-soft); margin-top:12px; letter-spacing:.04em}
 /* Platzhalter sollen als Platzhalter lesbar sein, nicht als fehlender Text */
 .pdp .ph{background:var(--lav-tint); border-radius:4px; padding:1px 6px; font-size:13px}
@@ -89,12 +89,12 @@
 .sorge:last-child{margin-bottom:0}
 .sorge b{display:block; font-family:var(--sans); font-size:15px; font-weight:600;
   color:var(--charcoal); margin-bottom:3px; line-height:1.4}
-.sorge span{display:block; font-size:14.5px; line-height:1.6; color:#5a554e}
+.sorge span{display:block; font-size:14.5px; line-height:1.6; color:var(--ink)}
 
 .pay-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
-.pay-row .pp{border:1px solid #e3ddd2; border-radius:6px; padding:4px 10px; font-size:11px;
-  letter-spacing:.05em; font-weight:500; color:var(--ink-soft); background:#fff}
-.liefer-row{font-size:13px; line-height:1.6; color:#5a554e; margin-top:12px}
+.pay-row .pp{border:1px solid var(--line); border-radius:6px; padding:4px 10px; font-size:11px;
+  letter-spacing:.05em; font-weight:500; color:var(--ink-soft); background:var(--paper)}
+.liefer-row{font-size:13px; line-height:1.6; color:var(--ink); margin-top:12px}
 .trust-row{font-size:12px; color:var(--ink-soft); margin-top:10px; letter-spacing:.02em}
 
 /* Paar oder Einzelohr: im echten japanischen Shop Standard, hier als Variantenachse */
@@ -106,36 +106,36 @@
 }
 .halb button + button{border-left:1.5px solid var(--warmgrey)}
 .halb button span{font-size:12px; font-weight:400; letter-spacing:0}
-.halb button.active{background:var(--navy); color:#fff}
+.halb button.active{background:var(--navy); color:var(--paper)}
 .halb button .unit{font-size:11px; font-weight:400; letter-spacing:.06em; text-transform:uppercase; opacity:.7}
 /* Der Einzelohrpreis ist der Anker: zwei einzelne Ohren neben dem Paarpreis
    machen den Paarpreis lesbar, ohne dass wir etwas behaupten muessen. */
-.halb-note{font-size:13.5px; line-height:1.55; color:#5a554e; margin-top:8px; max-width:46ch}
+.halb-note{font-size:13.5px; line-height:1.55; color:var(--ink); margin-top:8px; max-width:46ch}
 .halb-anker{display:block; margin-top:5px; color:var(--charcoal); font-weight:500}
 
 /* Verschluss-Erklaermodul: erklaert die Mechanik, die auf keiner echten Produktseite steht */
-.mech{margin:22px 0 4px; padding:18px 20px; background:var(--paper); border:1px solid #efe8dc; border-radius:8px}
+.mech{margin:22px 0 4px; padding:18px 20px; background:var(--paper); border:1px solid var(--line); border-radius:8px}
 .mech h3{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); margin-bottom:14px}
 .mech-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
 .mech-step{display:flex; flex-direction:column; gap:8px}
 .mech-step svg{display:block; width:100%; max-width:120px; height:auto}
 .mech-step b{font-family:var(--sans); font-size:13px; font-weight:600; color:var(--charcoal)}
-.mech-step span{font-size:13px; line-height:1.45; color:#5a554e}
+.mech-step span{font-size:13px; line-height:1.45; color:var(--ink)}
 /* Die drei Schritte erklaeren die Mechanik. Sie sagen nicht, was daraus folgt.
    Der Nutzen gehoert daneben, sonst bleibt es Technik. */
-.mech-folge{margin-top:16px; padding-top:14px; border-top:1px solid #efe8dc}
+.mech-folge{margin-top:16px; padding-top:14px; border-top:1px solid var(--line)}
 .mech-folge b{display:block; font-family:var(--sans); font-size:13px; font-weight:600;
   color:var(--charcoal); margin-bottom:4px}
-.mech-folge p{font-size:14px; line-height:1.6; color:#5a554e}
-.mech-note{margin-top:14px; font-size:13px; color:#5a554e}
+.mech-folge p{font-size:14px; line-height:1.6; color:var(--ink)}
+.mech-note{margin-top:14px; font-size:13px; color:var(--ink)}
 .mech-note a{color:var(--coral-deep); font-weight:600}
 @media(max-width:560px){.mech-steps{grid-template-columns:1fr; gap:16px}}
 
 /* Spec-Tabelle: die echten Shops liefern Masse auf 0.01mm, aber nie den Verschluss */
 table.spec{width:100%; border-collapse:collapse; margin:2px 0 14px; font-size:14px}
-table.spec th, table.spec td{text-align:left; padding:8px 0; border-bottom:1px solid #efe8dc; vertical-align:top}
+table.spec th, table.spec td{text-align:left; padding:8px 0; border-bottom:1px solid var(--line); vertical-align:top}
 table.spec th{font-weight:500; color:var(--ink-soft); width:42%; font-size:13px}
-table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
+table.spec td{color:var(--ink-strong); font-variant-numeric:tabular-nums}
 
 .notify-form{margin-top:14px; display:flex; flex-direction:column; gap:7px}
 .notify-form[hidden]{display:none}
@@ -143,7 +143,7 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 .notify-row{display:flex; flex-wrap:wrap; gap:8px}
 .notify-row .btn{flex:1 1 auto; justify-content:center}
 /* Gleicher Feldrahmen wie an der Kasse und im Kontaktformular */
-.notify-row input{flex:1; min-width:0; border:1.5px solid var(--grey-deep); border-radius:4px; padding:11px 12px; font:inherit; font-size:15px; background:#fff}
+.notify-row input{flex:1; min-width:0; border:1.5px solid var(--grey-deep); border-radius:4px; padding:11px 12px; font:inherit; font-size:15px; background:var(--paper)}
 .notify-row input:focus{border-color:var(--navy)}
 .notify-note{font-size:12.5px; color:var(--ink-soft)}
 
@@ -151,8 +151,8 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 .sizeviz{margin:4px 0 12px}
 .sizeviz svg{max-width:100%; height:auto}
 .sizeviz figcaption{font-size:12.5px; color:var(--ink-soft); margin-top:8px}
-.acc{margin-top:30px; border-top:1px solid #e8e2d8}
-.acc-item{border-bottom:1px solid #e8e2d8}
+.acc{margin-top:30px; border-top:1px solid var(--line)}
+.acc-item{border-bottom:1px solid var(--line)}
 /* Ein geschlossenes Akkordeon ist unsichtbarer Inhalt. Jede Zeile sagt darum
    im geschlossenen Zustand, was dahinter steht. */
 .acc-item button{width:100%; display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
@@ -164,36 +164,38 @@ table.spec td{color:#4a453e; font-variant-numeric:tabular-nums}
 .acc-item button .plus{font-size:20px; color:var(--coral-deep); transition:transform .3s; line-height:1.2}
 .acc-item.open button .plus{transform:rotate(45deg)}
 .acc-body{max-height:0; overflow:hidden; transition:max-height .3s cubic-bezier(.19,1,.22,1)}
-.acc-body p{font-size:15px; line-height:1.7; color:#5a554e; padding:0 2px 18px}
-.acc-body ol{padding:0 2px 18px 20px; font-size:15px; line-height:1.85; color:#5a554e}
+.acc-body p{font-size:15px; line-height:1.7; color:var(--ink); padding:0 2px 18px}
+.acc-body ol{padding:0 2px 18px 20px; font-size:15px; line-height:1.85; color:var(--ink)}
 
 /* Was nach dem Kauf passiert, stand bisher erst auf der Bestaetigungsseite.
    Da ist es zu spaet: es nimmt genau vor dem Kauf die Unsicherheit weg. */
 .nachkauf{max-width:1180px; margin:0 auto; padding:72px var(--pad) 0}
 .nk-kopf{max-width:54ch; margin-bottom:30px}
 .nk-kopf h2{font-family:var(--serif); font-weight:300; font-size:clamp(26px,3.4vw,40px); color:var(--charcoal)}
-.nk-kopf p{font-size:16px; color:#5a554e; margin-top:8px}
+.nk-kopf p{font-size:16px; color:var(--ink); margin-top:8px}
 .nk-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
 @media(max-width:900px){.nk-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.nk-grid{grid-template-columns:1fr}}
-.nk-schritt{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:22px 20px}
+.nk-schritt{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:22px 20px}
 .nk-schritt:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
 .nk-schritt:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
 .nk-schritt:nth-child(3){box-shadow:8px 8px 0 var(--lav-tint)}
-.nk-schritt:nth-child(4){box-shadow:8px 8px 0 #F0E4D3}
+.nk-schritt:nth-child(4){box-shadow:8px 8px 0 var(--gold-tint)}
 /* Nummer in Warmgrau, wie die Schrittkarten der Story. Vier Coral-Ziffern nebeneinander
    waeren vier Blickfaenge auf einer Bildschirmhoehe, die Toenung der Schatten reicht. */
+/* Die Ziffer traegt die Reihenfolge, sie ist nicht bloss Schmuck. Bei 28px gilt
+   die Schwelle fuer grosse Schrift, 3.0 zu 1. --warmgrey lag bei 1.96. */
 .nk-schritt em{display:block; font-style:normal; font-family:var(--serif); font-size:28px;
-  color:var(--warmgrey); line-height:1; margin-bottom:12px; font-variant-numeric:tabular-nums}
+  color:var(--grey-deep); line-height:1; margin-bottom:12px; font-variant-numeric:tabular-nums}
 .nk-schritt b{display:block; font-family:var(--sans); font-size:14px; font-weight:600;
   color:var(--charcoal); margin-bottom:6px; line-height:1.35}
-.nk-schritt p{font-size:14px; line-height:1.6; color:#5a554e}
+.nk-schritt p{font-size:14px; line-height:1.6; color:var(--ink)}
 .nk-schritt .ph{background:var(--lav-tint); border-radius:4px; padding:1px 6px}
 
 /* Das Band trug drei Spalten mit den drei Handgriffen. Die stehen jetzt nur noch
    einmal, oben in der Kaufspalte. Uebrig bleibt die dunkle Flaeche mit dem
    Anspruch und dem Weg zur Demo, in einer Zeile. */
-.cl-band{background:var(--navy); color:#fff; margin-top:70px; --focus-ring:#FAF7F2}
+.cl-band{background:var(--navy); color:var(--paper); margin-top:70px; --focus-ring:var(--ground)}
 .cl-band .wrap{padding:48px var(--pad)}
 @media(max-width:820px){.cl-band .wrap{padding:36px var(--pad)}}
 .cl-band .clb-head{display:flex; align-items:baseline; justify-content:space-between; gap:14px 20px; flex-wrap:wrap}
@@ -282,7 +284,7 @@ if (!P){
   document.querySelector('.pdp').innerHTML = `
     <div class="crumbs"><a href="index.html">${txt('pdp.krume.start')}</a><span class="sep">/</span><span>${txt('pdp.fehler.krume')}</span></div>
     <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);margin:14px 0 12px">${txt('pdp.fehler.titel')}</h1>
-    <p style="font-size:17px;line-height:1.65;color:#5a554e;max-width:48ch">${txt('pdp.fehler.text')}</p>
+    <p style="font-size:17px;line-height:1.65;color:var(--ink);max-width:48ch">${txt('pdp.fehler.text')}</p>
     <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
       <a class="btn btn-coral" href="kollektion.html">${txt('pdp.fehler.knopf_kollektion')}</a>
       <a class="btn btn-ghost" href="index.html">${txt('pdp.fehler.knopf_start')}</a>
@@ -324,7 +326,7 @@ views.push(zweiteAnsicht
 function schemaSvg(gross){
   const t = s => txt('pdp.schema.' + s);
   const schraffur = gross
-    ? '<g clip-path="url(#bqSchnitt)" stroke="#EBDFD4" stroke-width="1">' +
+    ? '<g clip-path="url(#bqSchnitt)" stroke="var(--line)" stroke-width="1">' +
       Array.from({length: 12}, (_, i) => `<line x1="${100 + i * 17}" y1="344" x2="${146 + i * 17}" y2="84"/>`).join('') +
       '</g>'
     : '';
@@ -334,11 +336,11 @@ function schemaSvg(gross){
         <line x1="292" y1="144" x2="292" y2="154"/>
         <line x1="96" y1="262" x2="96" y2="282"/>
       </g>
-      <g font-family="Inter, -apple-system, sans-serif" font-size="16" fill="#6b655c">
+      <g font-family="Inter, -apple-system, sans-serif" font-size="16" fill="var(--ink-soft)">
         <text x="209" y="76" text-anchor="middle">${t('teil_lappen')}</text>
         <text x="292" y="138" text-anchor="middle">${t('teil_anker')}</text>
         <text x="96" y="298" text-anchor="middle">${t('teil_ohrring')}</text>
-        <text x="64" y="128" text-anchor="middle" fill="#C93B27">${t('teil_drehung')}</text>
+        <text x="64" y="128" text-anchor="middle" fill="var(--coral-deep)">${t('teil_drehung')}</text>
       </g>` : '';
   return `<svg viewBox="0 0 400 400" ${gross ? `role="img" aria-label="${t('aria')}"` : 'aria-hidden="true" focusable="false"'}>
       <defs><clipPath id="bqSchnitt"><rect x="150" y="96" width="118" height="236" rx="59"/></clipPath></defs>
@@ -367,8 +369,8 @@ function setView(i){
   galMain.classList.toggle('packshot', i === 0);
   galMain.classList.toggle('isschema', v.typ === 'schema');
   galMain.classList.remove('zoom');
-  galMain.style.background = v.typ === 'schema' ? '#fff'
-    : (i === 0 ? (COLLECTION_BG[P.collection] || '#fff') : '#fff');
+  galMain.style.background = v.typ === 'schema' ? 'var(--paper)'
+    : (i === 0 ? (COLLECTION_BG[P.collection] || 'var(--paper)') : 'var(--paper)');
   [...galThumbs.children].forEach((b, k) => b.classList.toggle('active', k === i));
   // Die Legende gehoert nur zur Zeichnung, sonst behauptet sie etwas ueber ein Foto
   if (galLeg) galLeg.hidden = v.typ !== 'schema';
@@ -386,7 +388,9 @@ setView(0);
 const siblings = PRODUCTS.filter(x => x.group === P.group);
 // Farbpunkt am Variantennamen, und der ist in allen drei Fassungen derselbe englische Begriff.
 // Frueher stand hier «Silber», das griff in en und fr nicht und fiel auf Warmgrau zurueck.
-const pillDots = {Gold:'#D9B14C', Silver:'#C9CDD4', Sea:'#4C8FD9', Black:'#222', White:'#F1EEE8', Pearl:'#EDE6DA', Duo:'#D9B14C', 'Neon Pink':'#FF3F8E'};
+// Diese Werte sind Produktfarben, nicht Markenfarben. Sie zeigen, wie das Stueck
+// aussieht, und gehoeren darum bewusst nicht ins Token-System.
+const pillDots = {Gold:'#D9B14C', Silver:'#C9CDD4', Sea:'#4C8FD9', Black:'#222222', White:'#F1EEE8', Pearl:'#EDE6DA', Duo:'#D9B14C', 'Neon Pink':'#FF3F8E'};
 // Ein Satz sagt, wofuer dieses eine Stueck da ist. Er haengt am Modell, nicht an der
 // Variante, denn Gold und Silber sind fuer dieselbe Gelegenheit gedacht. Kommt ein
 // Modell dazu, bevor jemand den Satz geschrieben hat, greift der allgemeine.
@@ -571,8 +575,8 @@ if (halbToggle){
   const ticks = Array.from({length: skala + 1}, (_, i) => {
     const lang = i % 5 === 0;
     const x = padL + i;
-    return `<line x1="${x}" y1="${achse}" x2="${x}" y2="${achse - (lang ? 2.4 : 1.2)}" stroke="#BFB8B0" stroke-width=".25"/>` +
-      (lang ? `<text x="${x}" y="${achse + 4}" font-size="2.6" fill="#6b655c" text-anchor="middle">${i}</text>` : '');
+    return `<line x1="${x}" y1="${achse}" x2="${x}" y2="${achse - (lang ? 2.4 : 1.2)}" stroke="var(--warmgrey)" stroke-width=".25"/>` +
+      (lang ? `<text x="${x}" y="${achse + 4}" font-size="2.6" fill="var(--ink-soft)" text-anchor="middle">${i}</text>` : '');
   }).join('');
   box.innerHTML = `
     <figure class="sizeviz">

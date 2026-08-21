@@ -727,6 +727,83 @@ async function run() {
   log('Jede Seite: höchstens eine Anmeldung sichtbar', vieleNl.length === 0, vieleNl.join(' | '));
   log('Jede Seite: kein Abschnitt ohne Text', leereAbschnitte.length === 0, leereAbschnitte.join(' | '));
 
+  // ===== Kontrast, gemessen am gerenderten Text =====
+  // Das Handbuch macht in Kapitel 03.5 aus 207 nachgerechneten Kombinationen sein
+  // Kernstück, der Shop hat bis hierhin keine einzige davon geprüft. Diese Prüfung
+  // misst nicht die Absicht im Stylesheet, sondern was am Ende auf dem Schirm steht,
+  // Inline-Stile eingeschlossen. Schwelle nach WCGA AA: 4.5 zu 1, und 3.0 zu 1 für
+  // grosse Schrift, also ab 24px oder ab 18.66px fett.
+  const zuRgb = s => {
+    const m = s.match(/rgba?\(([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\s/]+([\d.]+))?/);
+    return m ? [+m[1], +m[2], +m[3], m[4] === undefined ? 1 : +m[4]] : null;
+  };
+  const kanal = c => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const leucht = ([r, g, b]) => 0.2126 * kanal(r) + 0.7152 * kanal(g) + 0.0722 * kanal(b);
+  const verhaeltnis = (a, b) => {
+    const l1 = leucht(a), l2 = leucht(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  };
+
+  const schwach = [], ungemessen = [];
+  for (const seite of ALLE) {
+    f.src = '/' + seite; await loadOnce(); await sleep(320);
+    const dd = f.contentDocument, dw = f.contentWindow;
+
+    for (const el of dd.querySelectorAll('p, li, td, th, h1, h2, h3, h4, span, a, button, label, strong, b, em, small')) {
+      // Nur Elemente, die selbst Text tragen, nicht bloss Kinder enthalten
+      const eigen = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length > 1);
+      if (!eigen) continue;
+      const st = dw.getComputedStyle(el);
+      if (st.display === 'none' || st.visibility === 'hidden' || +st.opacity === 0) continue;
+      if (!el.offsetParent && st.position !== 'fixed') continue;
+
+      const vg = zuRgb(st.color);
+      if (!vg || vg[3] < 0.95) continue;          // halbdurchsichtige Schrift lässt sich nicht messen
+
+      // Hintergrund über den Elternbaum. Zwei Fälle lassen sich so nicht messen und
+      // werden darum gezählt statt geraten: Text, der über etwas schwebt (die Leiste
+      // über dem Hero), und Text in einem verschobenen oder laufenden Band. Bei beiden
+      // liegt der sichtbare Grund nicht bei den Vorfahren. Punktmessung war die
+      // schlechtere Antwort: bei laufender Bewegung trifft der Punkt daneben.
+      // Halbdurchsichtige Lagen werden gerechnet, nicht übersprungen. Der Ausverkauft-
+      // Balken liegt auf 90 Prozent Navy: wer diese Lage überspringt, misst helle
+      // Schrift gegen hellen Grund und meldet 1.07 zu 1, wo in Wahrheit alles stimmt.
+      const ueber = (vorn, hinten) => vorn.slice(0, 3)
+        .map((v, i) => Math.round(v * vorn[3] + hinten[i] * (1 - vorn[3])));
+      let hg = null, ahn = el, bild = false, schwebend = false;
+      const lagen = [];
+      for (let i = 0; i < 14 && ahn && ahn.nodeType === 1; i++) {
+        const as = dw.getComputedStyle(ahn);
+        if (as.position === 'fixed' || as.position === 'sticky'
+            || (as.transform && as.transform !== 'none')
+            || (as.animationName && as.animationName !== 'none')) { schwebend = true; break; }
+        if (as.backgroundImage && as.backgroundImage !== 'none') { bild = true; break; }
+        const c = zuRgb(as.backgroundColor);
+        if (c && c[3] > 0.004) {
+          if (c[3] >= 0.995) { hg = c; break; }
+          lagen.push(c);                            // teildeckend, weiter nach unten
+        }
+        ahn = ahn.parentElement;
+      }
+      if (schwebend || bild) { ungemessen.push(`${seite}:${el.tagName}`); continue; }
+      if (!hg) continue;
+      for (let i = lagen.length - 1; i >= 0; i--) hg = [...ueber(lagen[i], hg), 1];
+
+      const px = parseFloat(st.fontSize);
+      const fett = +st.fontWeight >= 700;
+      const gross = px >= 24 || (px >= 18.66 && fett);
+      const soll = gross ? 3.0 : 4.5;
+      const ist = verhaeltnis(vg, hg);
+      if (ist + 0.005 < soll) {
+        schwach.push(`${seite}: ${ist.toFixed(2)}:1 statt ${soll} — ${el.tagName.toLowerCase()}`
+          + `.${(el.className || '').toString().split(' ')[0]} «${el.textContent.trim().slice(0, 26)}»`);
+      }
+    }
+  }
+  const wenige = [...new Set(schwach)].slice(0, 20);
+  log('Jede Seite: jeder Text erreicht seinen Kontrastwert', schwach.length === 0,
+    schwach.length ? `${schwach.length} Stellen, u.a. ${wenige.join(' | ')}` : 'nichts darunter');
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });

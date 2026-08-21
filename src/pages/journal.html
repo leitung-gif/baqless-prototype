@@ -24,7 +24,7 @@
 /* styles.css setzt fuer .jhead den hellen Fokusrahmen, weil hier frueher nichts
    anklickbar war. Das Inhaltsverzeichnis unten ist es, also zurueck auf dunkel. */
 .jhead{padding:clamp(122px,13vw,182px) var(--pad) clamp(34px,4.4vw,56px); position:relative; overflow:hidden;
-  --focus-ring:#0B1D3F}
+  --focus-ring:var(--navy)}
 .jhead .in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
 .jdate{display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px;
   font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase}
@@ -33,7 +33,7 @@
 .jdate .jahr{color:var(--ink-soft)}
 .jhead h1{font-size:clamp(42px,7.4vw,92px); line-height:.97; margin:18px 0 0; max-width:15ch; letter-spacing:-.01em}
 .jhead h1 em{font-style:italic; color:var(--coral-deep)}
-.jhead .lead{margin-top:26px; max-width:56ch; font-size:18px; line-height:1.66; color:#4a453e}
+.jhead .lead{margin-top:26px; max-width:56ch; font-size:18px; line-height:1.66; color:var(--ink-strong)}
 /* Initiale wie im Blatt. Sie ersetzt das Aufmacherbild, das wir nicht haben. */
 .jhead .lead::first-letter{
   font-family:var(--serif); font-weight:300; font-size:74px; line-height:.78;
@@ -68,12 +68,12 @@
   line-height:.86; color:var(--navy); font-variant-numeric:tabular-nums}
 .jz .lb{display:block; margin-top:12px; font-size:11px; font-weight:600; letter-spacing:.16em;
   text-transform:uppercase; color:var(--ink-soft)}
-.jz p{margin-top:11px; font-size:14.5px; line-height:1.6; color:#5a554e}
+.jz p{margin-top:11px; font-size:14.5px; line-height:1.6; color:var(--ink)}
 /* Die Null ist der Blickfang dieser Bildschirmhoehe */
 .jz:last-child .n{color:var(--coral-deep)}
 .jz-fuss{margin-top:30px; max-width:74ch; background:var(--paper); border-radius:8px;
   padding:22px 24px; box-shadow:10px 10px 0 var(--lav-tint);
-  font-size:14.5px; line-height:1.66; color:#4a453e}
+  font-size:14.5px; line-height:1.66; color:var(--ink-strong)}
 .jz-fuss b{display:block; font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.18em;
   text-transform:uppercase; color:var(--navy); margin-bottom:8px}
 @media(min-width:521px) and (max-width:860px){
@@ -99,7 +99,7 @@
 .feature{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(66px,8vw,108px);
   display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(30px,4vw,62px); align-items:start}
 .fquote{background:var(--coral-tint); border-radius:8px; padding:clamp(30px,3.6vw,46px);
-  position:relative; overflow:hidden; box-shadow:14px 14px 0 #F0E4D3}
+  position:relative; overflow:hidden; box-shadow:14px 14px 0 var(--gold-tint)}
 .fquote::after{content:''; position:absolute; width:230px; height:230px; border-radius:50%;
   border:1px solid rgba(201,59,39,.18); right:-96px; bottom:-116px}
 .fquote .mark{font-family:var(--serif); font-size:76px; line-height:.5; color:rgba(201,59,39,.3); display:block; height:34px}
@@ -111,7 +111,7 @@
 .fbody .jtag{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
 .fbody h2{font-size:clamp(29px,3.5vw,43px); margin:10px 0 8px}
 .fbody .role{font-size:14px; line-height:1.6; color:var(--ink-soft); max-width:52ch}
-.fbody p:not(.role):not(.jsrc){margin-top:16px; font-size:16.5px; line-height:1.68; color:#4a453e; max-width:56ch}
+.fbody p:not(.role):not(.jsrc){margin-top:16px; font-size:16.5px; line-height:1.68; color:var(--ink-strong); max-width:56ch}
 @media(max-width:860px){.feature{grid-template-columns:1fr}}
 
 /* Einordnung: warum diese Person hier steht. Gilt fuer Aufmacher und Karten. */
@@ -139,7 +139,7 @@
 .bfind .dots{display:flex; gap:5px; margin-top:11px}
 .bfind .dots i{width:8px; height:8px; border-radius:50%; border:1px solid rgba(217,193,160,.45)}
 .bfind .dots i.on{background:var(--gold); border-color:var(--gold)}
-.bfind h3{font-family:var(--sans); font-size:16px; font-weight:600; color:#fff; line-height:1.35; margin-bottom:5px}
+.bfind h3{font-family:var(--sans); font-size:16px; font-weight:600; color:var(--paper); line-height:1.35; margin-bottom:5px}
 .bfind p{font-size:14px; line-height:1.55; color:rgba(250,247,242,.62)}
 .bfuss{margin-top:24px; font-size:13px; line-height:1.62; color:rgba(250,247,242,.5); max-width:72ch}
 .bschluss{margin-top:46px; padding-top:30px; border-top:1px solid rgba(217,193,160,.32);
@@ -153,7 +153,7 @@
 .jsec{max-width:1180px; margin:0 auto; padding:clamp(72px,8.5vw,120px) var(--pad) clamp(22px,3vw,34px)}
 .jsec .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--coral-deep)}
 .jsec h2{font-size:clamp(27px,3.3vw,41px); margin:12px 0 0}
-.jsec .sh{margin-top:14px; font-size:16px; line-height:1.66; color:#5a554e; max-width:58ch}
+.jsec .sh{margin-top:14px; font-size:16px; line-height:1.66; color:var(--ink); max-width:58ch}
 
 .jgrid{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(56px,7vw,96px);
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(24px,2.8vw,38px)}
@@ -162,7 +162,7 @@
 .jgrid .jcard:hover{transform:translateY(-4px)}
 .jgrid .jcard:nth-child(4n+1){box-shadow:10px 10px 0 var(--sage-tint)}
 .jgrid .jcard:nth-child(4n+2){box-shadow:10px 10px 0 var(--lav-tint)}
-.jgrid .jcard:nth-child(4n+3){box-shadow:10px 10px 0 #F0E4D3}
+.jgrid .jcard:nth-child(4n+3){box-shadow:10px 10px 0 var(--gold-tint)}
 .jgrid .jcard:nth-child(4n+4){box-shadow:10px 10px 0 var(--coral-tint)}
 .jgrid .jcard:nth-child(4n+1):hover{box-shadow:14px 14px 0 var(--sage)}
 .jgrid .jcard:nth-child(4n+2):hover{box-shadow:14px 14px 0 var(--lavender)}
@@ -189,7 +189,7 @@
 .jgrid .jtag{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
 .jgrid .jcard h3{font-family:var(--serif); font-weight:400; font-size:26px; line-height:1.1; margin:8px 0 6px}
 .jgrid .role{font-size:13.5px; line-height:1.55; color:var(--ink-soft)}
-.jgrid p:not(.role):not(.jsrc){margin-top:13px; font-size:15px; line-height:1.62; color:#5a554e}
+.jgrid p:not(.role):not(.jsrc){margin-top:13px; font-size:15px; line-height:1.62; color:var(--ink)}
 .jgrid .einord{margin-top:18px; padding-top:14px; max-width:none}
 .jgrid .einord span{font-size:17px; line-height:1.38}
 .jgrid .jsrc{margin-top:16px; padding-top:12px; border-top:1px solid rgba(11,29,63,.1)}
@@ -201,7 +201,7 @@
 .brueck-in{max-width:1180px; margin:0 auto; position:relative; z-index:2}
 .brueck .kick{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--coral-deep)}
 .brueck h2{font-size:clamp(28px,3.6vw,44px); margin:12px 0 0; max-width:19ch}
-.brueck .lead{margin-top:14px; font-size:16.5px; line-height:1.66; color:#5a554e; max-width:58ch}
+.brueck .lead{margin-top:14px; font-size:16.5px; line-height:1.66; color:var(--ink); max-width:58ch}
 .kollrow{margin-top:40px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(18px,2.4vw,28px)}
 .kollcard{display:flex; flex-direction:column; gap:12px; min-height:200px; border-radius:8px;
   padding:24px; background:var(--ground);
@@ -210,7 +210,7 @@
 /* Dieselbe Toenungsfolge und derselbe Schattenwechsel wie bei den Portraetkarten. */
 .kollcard:nth-child(4n+1){box-shadow:8px 8px 0 var(--sage-tint)}
 .kollcard:nth-child(4n+2){box-shadow:8px 8px 0 var(--lav-tint)}
-.kollcard:nth-child(4n+3){box-shadow:8px 8px 0 #F0E4D3}
+.kollcard:nth-child(4n+3){box-shadow:8px 8px 0 var(--gold-tint)}
 .kollcard:nth-child(4n+4){box-shadow:8px 8px 0 var(--coral-tint)}
 .kollcard:nth-child(4n+1):hover{box-shadow:12px 12px 0 var(--sage)}
 .kollcard:nth-child(4n+2):hover{box-shadow:12px 12px 0 var(--lavender)}
@@ -218,7 +218,7 @@
 .kollcard:nth-child(4n+4):hover{box-shadow:12px 12px 0 var(--coral)}
 .kollcard .lb{font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft)}
 .kollcard b{font-family:var(--serif); font-weight:400; font-size:31px; line-height:1; color:var(--navy)}
-.kollcard p{font-size:14.5px; line-height:1.6; color:#5a554e}
+.kollcard p{font-size:14.5px; line-height:1.6; color:var(--ink)}
 .kollcard .go{margin-top:auto; padding-top:14px; font-size:12px; font-weight:600; letter-spacing:.12em;
   text-transform:uppercase; color:var(--coral-deep)}
 .kollcard .go::after{content:' \2192'}
@@ -245,9 +245,9 @@
 
 .passform{margin-top:40px; background:var(--lav-tint); border-radius:8px; padding:24px 26px;
   display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px clamp(20px,3vw,40px); align-items:center;
-  box-shadow:10px 10px 0 #F0E4D3}
+  box-shadow:10px 10px 0 var(--gold-tint)}
 .passform b{display:block; font-family:var(--serif); font-weight:400; font-size:22px; line-height:1.2; color:var(--navy); margin-bottom:8px}
-.passform p{font-size:15px; line-height:1.62; color:#4a453e; max-width:58ch}
+.passform p{font-size:15px; line-height:1.62; color:var(--ink-strong); max-width:58ch}
 .passform a{display:inline-flex; align-items:center; min-height:44px; padding:0 20px; border-radius:4px;
   border:1px solid rgba(11,29,63,.32); font-size:12.5px; font-weight:600; letter-spacing:.1em;
   text-transform:uppercase; color:var(--navy); white-space:nowrap;
@@ -257,14 +257,14 @@
 
 /* ---------- Stationen ---------- */
 .zeit{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(66px,8vw,104px)}
-.zeit .intro{font-size:16px; line-height:1.68; color:#5a554e; max-width:60ch; margin:14px 0 28px}
+.zeit .intro{font-size:16px; line-height:1.68; color:var(--ink); max-width:60ch; margin:14px 0 28px}
 .zliste{border-top:2px solid var(--navy)}
 .zeile{display:grid; grid-template-columns:132px minmax(0,1fr) auto; gap:clamp(14px,3vw,40px);
   padding:22px 0; border-bottom:1px solid rgba(11,29,63,.12); align-items:start}
 .zeile time{font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--coral-deep);
   font-variant-numeric:tabular-nums; padding-top:3px}
 .zeile b{display:block; font-family:var(--sans); font-size:16px; font-weight:600; margin-bottom:5px}
-.zeile span{font-size:15px; line-height:1.6; color:#5a554e}
+.zeile span{font-size:15px; line-height:1.6; color:var(--ink)}
 .zeile .ort{justify-self:end; padding-top:4px; font-size:10.5px; font-weight:600; letter-spacing:.18em;
   text-transform:uppercase; color:var(--ink-soft); white-space:nowrap}
 @media(max-width:700px){
@@ -282,13 +282,13 @@
   border-top:2px solid var(--navy); padding-top:26px}
 .kolo-blk b{display:block; font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.18em;
   text-transform:uppercase; color:var(--coral-deep); margin-bottom:10px}
-.kolo-blk p{font-size:14px; line-height:1.7; color:#5a554e}
+.kolo-blk p{font-size:14px; line-height:1.7; color:var(--ink)}
 @media(max-width:760px){.kolo-grid{grid-template-columns:1fr; gap:28px}}
 
 /* ---------- Schluss ---------- */
 .jcta{text-align:center; padding:clamp(80px,9.5vw,140px) var(--pad); background:var(--paper); position:relative; overflow:hidden}
 .jcta h2{font-family:var(--serif); font-weight:300; font-size:clamp(30px,4.2vw,52px); margin:12px 0 16px}
-.jcta .sub{max-width:44ch; margin:0 auto 30px; font-size:16.5px; line-height:1.62; color:#5a554e}
+.jcta .sub{max-width:44ch; margin:0 auto 30px; font-size:16.5px; line-height:1.62; color:var(--ink)}
 .jcta .btn + .btn{margin-left:12px}
 /* Dieselbe Vertrauenszeile steht unter dem Schluss der Story, mit denselben
    Schluesseln. Sie sah dort anders aus: Sage-Punkt, 12.5 Pixel, anderer Abstand.

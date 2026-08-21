@@ -32,7 +32,7 @@
 .faq-zusagen{list-style:none; padding:0; margin:clamp(30px,3.6vw,42px) 0 0;
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; max-width:1180px}
 @media(max-width:860px){.faq-zusagen{grid-template-columns:1fr}}
-.faq-zusagen li{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+.faq-zusagen li{background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:18px 20px; display:grid; grid-template-columns:10px minmax(0,1fr); gap:0 13px}
 .faq-zusagen li::before{content:''; width:9px; height:9px; border-radius:2px; margin-top:7px}
 .faq-zusagen li:nth-child(1)::before{background:var(--coral)}
@@ -50,9 +50,9 @@
 @media(max-width:960px){.faq-nav{position:static; top:auto}}
 .fn-titel{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.2em;
   text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px}
-.fn-liste{list-style:none; padding:0; margin:0; border-top:1px solid #e9e0d2}
+.fn-liste{list-style:none; padding:0; margin:0; border-top:1px solid var(--line)}
 .fn-liste a{display:grid; grid-template-columns:26px minmax(0,1fr); gap:0 8px; align-items:start;
-  padding:13px 2px; border-bottom:1px solid #e9e0d2; font-size:14.5px; line-height:1.4;
+  padding:13px 2px; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.4;
   color:var(--charcoal); min-height:44px; transition:color .12s}
 .fn-liste a i{font-style:normal; font-size:11px; font-weight:600; letter-spacing:.1em;
   color:var(--warmgrey); padding-top:3px; transition:color .12s}
@@ -61,11 +61,11 @@
 .fn-liste a[aria-current="true"] i{color:var(--coral-deep)}
 @media(max-width:960px){
   .fn-liste{display:flex; flex-wrap:wrap; gap:8px; border:0}
-  .fn-liste a{border:1px solid #e2d8c8; border-radius:4px; padding:11px 14px; display:flex;
+  .fn-liste a{border:1px solid var(--line); border-radius:4px; padding:11px 14px; display:flex;
     align-items:center; background:var(--paper)}
   .fn-liste a i{display:none}
 }
-.fn-hilfe{margin-top:24px; background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+.fn-hilfe{margin-top:24px; background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:20px; box-shadow:8px 8px 0 var(--lav-tint)}
 .legal.faqp .fn-hilfe b{display:block; font-family:var(--serif); font-weight:400; font-size:19px;
   color:var(--charcoal); line-height:1.2}
@@ -74,37 +74,37 @@
 @media(max-width:960px){.fn-hilfe{display:none}}
 
 /* --- Gruppen --- */
-.fgroup{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+.fgroup{background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:clamp(22px,2.8vw,34px); margin-bottom:clamp(26px,3.4vw,44px); scroll-margin-top:104px}
 .fgroup.g1{box-shadow:10px 10px 0 var(--coral-tint)}
 .fgroup.g2{box-shadow:10px 10px 0 var(--sage-tint)}
 .fgroup.g3{box-shadow:10px 10px 0 var(--lav-tint)}
-.fgroup.g4{box-shadow:10px 10px 0 #F0E4D3}
+.fgroup.g4{box-shadow:10px 10px 0 var(--gold-tint)}
 .fg-kopf{display:grid; grid-template-columns:46px minmax(0,1fr); gap:0 16px; align-items:start;
-  padding-bottom:22px; border-bottom:1px solid #efe7db}
+  padding-bottom:22px; border-bottom:1px solid var(--line)}
 .fg-nr{width:46px; height:46px; border-radius:50%; display:grid; place-items:center;
   font-family:var(--serif); font-size:19px; font-style:normal; color:var(--charcoal)}
 .g1 .fg-nr{background:var(--coral-tint)}
 .g2 .fg-nr{background:var(--sage-tint)}
 .g3 .fg-nr{background:var(--lav-tint)}
-.g4 .fg-nr{background:#F0E4D3}
+.g4 .fg-nr{background:var(--gold-tint)}
 .fg-titel{font-family:var(--serif); font-weight:300; font-size:clamp(25px,3vw,32px);
   line-height:1.1; color:var(--charcoal)}
 .legal.faqp .fg-text{margin-top:8px; font-size:14.5px; line-height:1.65; color:var(--ink-soft); max-width:52ch}
 
 /* --- Frage und Antwort --- */
-.fq{padding:22px 0; border-top:1px solid #f2ebde; scroll-margin-top:104px}
+.fq{padding:22px 0; border-top:1px solid var(--line); scroll-margin-top:104px}
 .fq:first-of-type{border-top:0}
 .legal.faqp .fq h2{font-family:var(--serif); font-weight:400; font-size:21px; line-height:1.25;
   color:var(--charcoal); margin:0 0 9px}
-.legal.faqp .fq p{font-size:15px; line-height:1.75; color:#4a453e; max-width:68ch}
+.legal.faqp .fq p{font-size:15px; line-height:1.75; color:var(--ink-strong); max-width:68ch}
 .legal.faqp .fq .ph{display:inline-block; margin-top:2px}
 
 /* --- Schluss --- */
 /* Navy-Flaeche mit zwei Knoepfen. Ohne die helle Fassung des Fokusrahmens liegt
    Navy auf Navy und der Fokus ist unsichtbar. Gleiche Zeile wie bei .nachkauf
    (Start), .sd-partner (Story) und .rl-satz (Datenschutz). */
-.faq-schluss{--focus-ring:#FAF7F2;
+.faq-schluss{--focus-ring:var(--ground);
   margin:clamp(20px,3vw,34px) 0 clamp(74px,8vw,110px);
   background:var(--navy); color:var(--ground); border-radius:8px;
   padding:clamp(30px,4vw,52px); display:grid; grid-template-columns:minmax(0,1fr) auto;

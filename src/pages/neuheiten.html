@@ -23,7 +23,7 @@
   color:var(--coral); margin-top:clamp(30px,4vw,46px); max-width:none;
   padding-top:22px; border-top:1px solid rgba(250,247,242,.2)}
 .ph-fix{list-style:none; margin:14px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:22px 36px}
-.ph-fix li b{display:block; font-size:15.5px; font-weight:600; line-height:1.3; color:#fff; margin-bottom:7px}
+.ph-fix li b{display:block; font-size:15.5px; font-weight:600; line-height:1.3; color:var(--paper); margin-bottom:7px}
 .ph-fix li span{display:block; font-size:13.5px; line-height:1.6; color:rgba(250,247,242,.7)}
 @media(max-width:780px){.ph-fix{grid-template-columns:1fr; gap:18px}}
 
@@ -41,8 +41,8 @@
 .nl-item:nth-child(2){box-shadow:8px 8px 0 var(--lav-tint)}
 .nl-item .marke{flex:0 1 auto; font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   padding:6px 11px; border-radius:2px; background:var(--coral); color:var(--navy)}
-.nl-item .marke.lav{background:#6355C4; color:#fff}
-.nl-item p{margin:0; font-size:14.5px; line-height:1.66; color:#5a554e}
+.nl-item .marke.lav{background:var(--lav-deep); color:var(--paper)}
+.nl-item p{margin:0; font-size:14.5px; line-height:1.66; color:var(--ink)}
 @media(max-width:780px){.nl-grid{grid-template-columns:1fr}}
 
 /* Gruppentrenner im Raster. Sie sind keine Karten, darum bleibt die Kartenzahl
@@ -57,7 +57,7 @@
    Coral die Marke «Neu» und soll dort der einzige Blickfang bleiben. */
 .grp-sep .n{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   color:var(--navy); background:rgba(11,29,63,.08); border-radius:99px; padding:6px 13px}
-.grp-sep p{flex:1 1 340px; margin:0; font-size:14.5px; line-height:1.62; color:#5a554e; max-width:62ch}
+.grp-sep p{flex:1 1 340px; margin:0; font-size:14.5px; line-height:1.62; color:var(--ink); max-width:62ch}
 
 /* Der Schluss fuehrt weiter, statt die Seite auslaufen zu lassen. */
 .plp-schluss{background:var(--coral-tint); padding:clamp(72px,9vw,120px) var(--pad); position:relative; overflow:hidden}
@@ -71,12 +71,12 @@
 .s-card{background:var(--paper); border-radius:8px; padding:26px 24px 20px;
   box-shadow:8px 8px 0 rgba(11,29,63,.16); display:flex; flex-direction:column; gap:10px}
 .s-card h3{font-size:18.5px; font-weight:500; line-height:1.3; color:var(--charcoal)}
-.s-card p{margin:0; font-size:14.5px; line-height:1.66; color:#5a554e}
+.s-card p{margin:0; font-size:14.5px; line-height:1.66; color:var(--ink)}
 .s-card a{margin-top:auto; align-self:flex-start; display:inline-block; padding:18px 0 7px;
   font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
   color:var(--charcoal); border-bottom:1px solid var(--charcoal); transition:color .12s, border-color .12s}
 .s-card a:hover{color:var(--coral-deep); border-color:var(--coral-deep)}
-.s-weiter{margin-top:clamp(28px,3.4vw,38px); font-size:15.5px; line-height:1.7; color:#4a453e; max-width:64ch}
+.s-weiter{margin-top:clamp(28px,3.4vw,38px); font-size:15.5px; line-height:1.7; color:var(--ink-strong); max-width:64ch}
 .s-weiter a{display:block; width:fit-content; margin-top:6px; padding:14px 0 4px; color:var(--navy); font-weight:600;
   border-bottom:1px solid rgba(11,29,63,.4); transition:border-color .12s}
 .s-weiter a:hover{border-color:var(--navy)}

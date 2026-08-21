@@ -32,7 +32,7 @@
 .k-zusagen{list-style:none; padding:0; margin:clamp(30px,3.6vw,42px) 0 0;
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
 @media(max-width:860px){.k-zusagen{grid-template-columns:1fr}}
-.k-zusagen li{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+.k-zusagen li{background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:18px 20px; display:grid; grid-template-columns:10px minmax(0,1fr); gap:0 13px}
 .k-zusagen li::before{content:''; width:9px; height:9px; border-radius:2px; margin-top:7px}
 .k-zusagen li:nth-child(1)::before{background:var(--coral)}
@@ -53,27 +53,27 @@
 .legal.kontaktp .k-untertitel{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 20px; max-width:46ch}
 
 /* --- Die vier Wege --- */
-.k-weg{background:var(--paper); border:1px solid #eee5d8; border-radius:8px;
+.k-weg{background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:22px 24px; margin-bottom:14px; display:grid; grid-template-columns:34px minmax(0,1fr); gap:0 14px}
 .k-weg .marke{width:34px; height:34px; border-radius:50%; display:grid; place-items:center; margin-top:2px}
 .k-weg:nth-of-type(1) .marke{background:var(--coral-tint)}
 .k-weg:nth-of-type(2) .marke{background:var(--sage-tint)}
 .k-weg:nth-of-type(3) .marke{background:var(--lav-tint)}
-.k-weg:nth-of-type(4) .marke{background:#F0E4D3}
+.k-weg:nth-of-type(4) .marke{background:var(--gold-tint)}
 .k-weg .marke svg{width:17px; height:17px; stroke:var(--charcoal); fill:none; stroke-width:1.6;
   stroke-linecap:round; stroke-linejoin:round}
 .legal.kontaktp .k-weg h3{font-family:var(--serif); font-weight:400; font-size:20px; line-height:1.2;
   color:var(--charcoal); margin:0 0 6px}
-.legal.kontaktp .k-weg p{font-size:14.5px; line-height:1.68; color:#4a453e}
+.legal.kontaktp .k-weg p{font-size:14.5px; line-height:1.68; color:var(--ink-strong)}
 
 /* --- Direkte Wege --- */
-.k-direkt{margin-top:clamp(26px,3vw,36px); background:var(--paper); border:1px solid #eee5d8;
+.k-direkt{margin-top:clamp(26px,3vw,36px); background:var(--paper); border:1px solid var(--line);
   border-radius:8px; padding:24px; box-shadow:10px 10px 0 var(--sage-tint)}
 .k-direkt dl{margin:0}
 .k-direkt dt{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-soft); margin-top:20px}
 .k-direkt dt:first-of-type{margin-top:0}
-.legal.kontaktp .k-direkt dd{margin:6px 0 0; font-size:14.5px; line-height:1.68; color:#4a453e}
+.legal.kontaktp .k-direkt dd{margin:6px 0 0; font-size:14.5px; line-height:1.68; color:var(--ink-strong)}
 /* Die Mailadresse ist der wichtigste Griff der Seite. Als Zeile im Fliesstext war
    sie 24 px hoch, also unter der Trefferflaeche. Jetzt traegt sie ihre eigenen 44. */
 .k-direkt .mail{display:inline-flex; align-items:center; min-height:44px; padding:2px 0;
@@ -107,14 +107,14 @@
 .legal.kontaktp .cf-proto{font-size:12.5px; line-height:1.6}
 
 /* Was danach passiert: die Angst vor dem Absenden ist eine Angst vor dem Nichts */
-.cf-danach{margin-top:22px; padding-top:20px; border-top:1px solid #f0e9dd}
+.cf-danach{margin-top:22px; padding-top:20px; border-top:1px solid var(--line)}
 .legal.kontaktp .cf-danach .k-titel{margin-bottom:12px}
 .cf-danach ol{list-style:none; padding:0; margin:0; counter-reset:schritt}
 .legal.kontaktp .cf-danach li{counter-increment:schritt; display:grid;
   grid-template-columns:24px minmax(0,1fr); gap:0 12px; padding:8px 0;
-  font-size:13.5px; line-height:1.6; color:#4a453e}
+  font-size:13.5px; line-height:1.6; color:var(--ink-strong)}
 .cf-danach li::before{content:counter(schritt); width:24px; height:24px; border-radius:50%;
-  background:var(--ground); border:1px solid #e5dccd; display:grid; place-items:center;
+  background:var(--ground); border:1px solid var(--line); display:grid; place-items:center;
   font-size:11px; font-weight:600; color:var(--ink-soft)}
 
 /* Bestätigung ersetzt die Felder, damit sichtbar ist, dass etwas passiert ist */
@@ -125,9 +125,9 @@
   stroke-linecap:round; stroke-linejoin:round}
 .legal.kontaktp .cf-dank > b{display:block; font-family:var(--serif); font-weight:400; font-style:italic;
   font-size:clamp(24px,3vw,30px); color:var(--charcoal); line-height:1.15}
-.legal.kontaktp #cfDankText{font-size:14.5px; line-height:1.7; color:#4a453e; margin-top:10px; max-width:44ch}
+.legal.kontaktp #cfDankText{font-size:14.5px; line-height:1.7; color:var(--ink-strong); margin-top:10px; max-width:44ch}
 .legal.kontaktp #cfDankText b{font-weight:600; color:var(--charcoal)}
-.cf-dank .weiter{margin-top:20px; padding-top:18px; border-top:1px solid #f0e9dd;
+.cf-dank .weiter{margin-top:20px; padding-top:18px; border-top:1px solid var(--line);
   display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px}
 .legal.kontaktp .cf-dank .weiter span{font-size:12.5px; color:var(--ink-soft)}
 .legal.kontaktp .cf-dank .weiter a{display:inline-flex; align-items:center; min-height:44px;

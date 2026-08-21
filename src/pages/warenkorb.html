@@ -25,10 +25,10 @@
    gesehen, darum steht er auch hier, gross genug zum Lesen. */
 .fs{margin-bottom:34px; max-width:560px}
 .fs[hidden]{display:none}
-.fs-text{font-size:14px; color:#5a554e; margin-bottom:9px}
+.fs-text{font-size:14px; color:var(--ink); margin-bottom:9px}
 .fs-text b{color:var(--charcoal); font-weight:600; font-variant-numeric:tabular-nums}
 .fs-text.done{color:var(--sage-deep); font-weight:500}
-.fs-track{height:8px; border-radius:4px; background:#efe9df; overflow:hidden}
+.fs-track{height:8px; border-radius:4px; background:var(--line); overflow:hidden}
 /* Derselbe Balken steht in der Schublade. Dort traegt er die tiefen Toene, weil
    Coral und Sage auf der hellen Spur zu wenig Kontrast haben. Hier gilt dasselbe,
    sonst sieht dieselbe Sache an zwei Orten verschieden aus. */
@@ -55,16 +55,16 @@
 .cq button:hover{color:var(--coral-deep)}
 .cq span{min-width:36px; text-align:center; font-size:14px; font-variant-numeric:tabular-nums}
 
-.sum{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:26px; position:sticky; top:96px}
+.sum{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:26px; position:sticky; top:96px}
 .sum h2{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:18px}
-.sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:9px 0; color:#4a453e; font-variant-numeric:tabular-nums}
+.sum .row{display:flex; justify-content:space-between; gap:16px; font-size:15px; padding:9px 0; color:var(--ink-strong); font-variant-numeric:tabular-nums}
 .sum .row.total{border-top:1px solid rgba(11,29,63,.12); margin-top:8px; padding-top:16px; font-size:20px; font-weight:500; color:var(--charcoal)}
 .sum .row .mut{color:var(--ink-soft); font-size:13.5px}
 .sum .mwst{font-size:12.5px; color:var(--ink-soft); margin-top:2px}
 .sum .btn{width:100%; justify-content:center; margin-top:18px}
 .sum .btn[disabled]{opacity:.5; cursor:not-allowed; pointer-events:none}
-.sum .naechster{margin-top:12px; font-size:13px; line-height:1.55; color:#5a554e}
-.sum .trust{margin-top:20px; padding-top:18px; border-top:1px solid rgba(11,29,63,.1); display:flex; flex-direction:column; gap:9px; font-size:13px; color:#5a554e}
+.sum .naechster{margin-top:12px; font-size:13px; line-height:1.55; color:var(--ink)}
+.sum .trust{margin-top:20px; padding-top:18px; border-top:1px solid rgba(11,29,63,.1); display:flex; flex-direction:column; gap:9px; font-size:13px; color:var(--ink)}
 .sum .trust span{display:flex; gap:9px; align-items:flex-start}
 .sum .trust svg{flex:0 0 auto; margin-top:2px; color:var(--sage-deep)}
 .paylab{margin-top:18px; padding-top:16px; border-top:1px solid rgba(11,29,63,.1);
@@ -72,7 +72,7 @@
 .paypills{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
 /* Radius 6 wie die Zahlartkuerzel im Fuss und auf der Produktseite */
 .paypills span{border:1px solid rgba(11,29,63,.16); border-radius:6px; padding:5px 9px;
-  font-size:11px; letter-spacing:.05em; font-weight:500; color:#5a554e}
+  font-size:11px; letter-spacing:.05em; font-weight:500; color:var(--ink)}
 
 .weiter-link{display:inline-flex; align-items:center; min-height:44px; margin-top:18px; font-size:13.5px;
   color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
@@ -82,7 +82,7 @@
 .cart-grid[hidden], .sum[hidden]{display:none}
 .leer{padding:60px 0 30px; max-width:46ch}
 .leer h2{font-family:var(--serif); font-weight:300; font-size:32px; margin-bottom:10px}
-.leer p{font-size:16px; color:#5a554e; margin-bottom:24px}
+.leer p{font-size:16px; color:var(--ink); margin-bottom:24px}
 
 /* ---------- Bevor du bestellst: die vier Fragen, die den Abbruch ausloesen ---------- */
 .vor{margin-top:clamp(72px,8vw,110px)}
@@ -91,13 +91,13 @@
 .vor-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
 @media(max-width:980px){.vor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.vor-grid{grid-template-columns:1fr}}
-.vor-card{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:22px 20px 24px}
+.vor-card{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:22px 20px 24px}
 .vor-card:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
 .vor-card:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
 .vor-card:nth-child(3){box-shadow:8px 8px 0 var(--lav-tint)}
-.vor-card:nth-child(4){box-shadow:8px 8px 0 #F0E4D3}
+.vor-card:nth-child(4){box-shadow:8px 8px 0 var(--gold-tint)}
 .vor-card h3{font-family:var(--serif); font-weight:400; font-size:21px; line-height:1.2; margin-bottom:9px}
-.vor-card p{font-size:14px; line-height:1.62; color:#5a554e}
+.vor-card p{font-size:14px; line-height:1.62; color:var(--ink)}
 .vor-card .ph{display:block; margin-top:10px; font-size:12.5px; color:var(--ink-soft)}
 /* Eigenstaendiger Link, also 44 Pixel hoch wie jede andere Trefferflaeche */
 .vor-card a{display:inline-flex; align-items:center; min-height:44px; margin-top:6px; font-size:13px; font-weight:600;
@@ -126,7 +126,7 @@
 .mbar[hidden]{display:none}
 @media(max-width:880px){
   .mbar{position:fixed; left:0; right:0; bottom:0; z-index:210; display:flex; gap:14px; align-items:center;
-    background:rgba(255,255,255,.96); backdrop-filter:blur(12px); border-top:1px solid #efe8dc;
+    background:rgba(255,255,255,.96); backdrop-filter:blur(12px); border-top:1px solid var(--line);
     padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));
     box-shadow:0 -10px 30px -18px rgba(11,29,63,.4)}
   .mbar[hidden]{display:none}

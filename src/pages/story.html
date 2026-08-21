@@ -29,7 +29,7 @@
 .sv-grid{display:grid; grid-template-columns:minmax(0,6fr) minmax(0,5fr); gap:clamp(26px,5vw,72px); align-items:start}
 .sv-lead{font-family:var(--serif); font-weight:300; font-size:clamp(27px,3.6vw,46px);
   line-height:1.14; color:var(--charcoal); text-wrap:balance}
-.sv-text p{color:#5a554e; max-width:48ch}
+.sv-text p{color:var(--ink); max-width:48ch}
 .sv-text p + p{margin-top:14px}
 .sv-text p:last-child{color:var(--charcoal)}
 @media(max-width:860px){.sv-grid{grid-template-columns:1fr; gap:24px}}
@@ -60,7 +60,7 @@
 .story-ed .num{font-family:var(--serif); font-size:clamp(58px,7vw,96px); line-height:1; color:var(--coral-tint);
   display:block; margin-bottom:6px}
 .story-ed h2{font-size:clamp(30px,3.6vw,44px); margin:10px 0 16px}
-.story-ed p{color:#5a554e; max-width:46ch}
+.story-ed p{color:var(--ink); max-width:46ch}
 .story-ed p + p{margin-top:14px}
 .story-ed .marke{display:flex; width:fit-content; align-items:center; gap:10px; margin-top:20px;
   font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft)}
@@ -85,7 +85,7 @@
 .sd-head{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(20px,4vw,64px);
   align-items:end; margin-bottom:clamp(34px,4.5vw,58px)}
 .sd-head h2{font-size:clamp(32px,4.4vw,56px)}
-.sd-head p{color:#5a554e; max-width:48ch}
+.sd-head p{color:var(--ink); max-width:48ch}
 .sd-head p + p{margin-top:12px}
 .sd-head p:last-child{color:var(--charcoal); font-weight:400}
 @media(max-width:860px){.sd-head{grid-template-columns:1fr; align-items:start; gap:16px}}
@@ -93,24 +93,24 @@
 .sd-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(16px,2vw,22px)}
 @media(max-width:980px){.sd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.sd-grid{grid-template-columns:1fr}}
-.sd-card{background:var(--ground); border:1px solid #efe8dc; border-radius:8px;
+.sd-card{background:var(--ground); border:1px solid var(--line); border-radius:8px;
   padding:24px 22px 26px; display:flex; flex-direction:column; gap:9px}
 .sd-card:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
 .sd-card:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
 .sd-card:nth-child(3){box-shadow:8px 8px 0 var(--lav-tint)}
-.sd-card:nth-child(4){box-shadow:8px 8px 0 #F0E4D3}
+.sd-card:nth-child(4){box-shadow:8px 8px 0 var(--gold-tint)}
 .sd-card i{font-style:normal; font-family:var(--serif); font-size:27px; line-height:1;
   color:var(--warmgrey); font-variant-numeric:tabular-nums}
 .sd-card h3{font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--charcoal)}
-.sd-card p{font-size:14.5px; line-height:1.62; color:#5a554e}
+.sd-card p{font-size:14.5px; line-height:1.62; color:var(--ink)}
 
-.sd-partner{--focus-ring:#FAF7F2;
+.sd-partner{--focus-ring:var(--ground);
   margin-top:clamp(26px,3.4vw,44px); background:var(--navy); color:var(--ground); border-radius:8px;
   padding:clamp(28px,3.6vw,46px); display:grid; grid-template-columns:minmax(0,4fr) minmax(0,7fr);
   gap:clamp(16px,3vw,48px); align-items:start; position:relative; overflow:hidden}
 @media(max-width:860px){.sd-partner{grid-template-columns:1fr; gap:14px}}
-.sd-partner h3{font-size:clamp(24px,2.9vw,36px); color:#fff; position:relative; z-index:2}
+.sd-partner h3{font-size:clamp(24px,2.9vw,36px); color:var(--paper); position:relative; z-index:2}
 .sd-partner p{color:rgba(250,247,242,.78); font-size:15.5px; max-width:58ch; position:relative; z-index:2}
 .sd-ring{position:absolute; right:-70px; bottom:-96px; width:240px; height:240px; border-radius:50%;
   border:1px solid rgba(217,193,160,.3); pointer-events:none; z-index:1}
@@ -130,7 +130,7 @@
 
 /* ---------- Breites Bild ---------- */
 .story-wide{max-width:1180px; margin:0 auto; padding:clamp(56px,7vw,96px) var(--pad) clamp(10px,2vw,26px)}
-.story-wide img{width:100%; height:auto; border-radius:12px; box-shadow:14px 14px 0 #F0E4D3}
+.story-wide img{width:100%; height:auto; border-radius:12px; box-shadow:14px 14px 0 var(--gold-tint)}
 .story-wide figcaption{margin-top:26px; font-size:12.5px; letter-spacing:.05em; color:var(--ink-soft)}
 
 /* ---------- Zahlenleiste ---------- */
@@ -149,7 +149,7 @@
 .story-dich{max-width:1180px; margin:0 auto; padding:clamp(72px,9vw,124px) var(--pad) clamp(40px,5vw,64px)}
 .sdi-head{max-width:58ch; margin-bottom:clamp(30px,4vw,48px)}
 .sdi-head h2{font-size:clamp(32px,4.4vw,56px); margin:12px 0 14px}
-.sdi-head p{color:#5a554e}
+.sdi-head p{color:var(--ink)}
 
 .sdi-tab{border-top:1px solid rgba(11,29,63,.16)}
 .sdi-kopf{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,44px); padding:16px 0 12px}
@@ -176,11 +176,11 @@
 .sdi-karten{display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,2.4vw,26px);
   margin-top:clamp(36px,4.4vw,56px)}
 @media(max-width:860px){.sdi-karten{grid-template-columns:1fr}}
-.sdi-karte{background:var(--paper); border:1px solid #efe8dc; border-radius:8px; padding:28px 26px 24px}
+.sdi-karte{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:28px 26px 24px}
 .sdi-karte:nth-child(1){box-shadow:8px 8px 0 var(--coral-tint)}
 .sdi-karte:nth-child(2){box-shadow:8px 8px 0 var(--sage-tint)}
 .sdi-karte h3{font-size:clamp(22px,2.3vw,28px); margin-bottom:10px}
-.sdi-karte p{font-size:15px; line-height:1.65; color:#5a554e; max-width:46ch}
+.sdi-karte p{font-size:15px; line-height:1.65; color:var(--ink); max-width:46ch}
 .sdi-link{display:inline-block; margin-top:6px; padding:14px 0;
   font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
   color:var(--coral-deep); border-bottom:1px solid rgba(201,59,39,.35); transition:border-color .12s}
@@ -190,7 +190,7 @@
   padding:clamp(24px,3vw,34px); display:flex; flex-wrap:wrap; align-items:center;
   justify-content:space-between; gap:16px 32px}
 .sdi-journal h3{font-size:clamp(21px,2.2vw,27px); margin-bottom:6px}
-.sdi-journal p{font-size:15px; line-height:1.6; color:#4a453e; max-width:56ch}
+.sdi-journal p{font-size:15px; line-height:1.6; color:var(--ink-strong); max-width:56ch}
 /* Coral-Tief auf Lavendel bleibt unter dem Kontrastwert, darum hier Navy */
 .sdi-journal .sdi-link{margin-top:0; flex:none; color:var(--navy); border-bottom-color:rgba(11,29,63,.4)}
 .sdi-journal .sdi-link:hover{border-bottom-color:var(--navy)}
@@ -199,7 +199,7 @@
 .story-cta{text-align:center; padding:clamp(64px,8vw,110px) var(--pad) clamp(80px,10vw,140px);
   position:relative; overflow:hidden}
 .story-cta h2{font-size:clamp(32px,4.4vw,58px); margin:12px 0 14px}
-.story-cta .satz{color:#5a554e; max-width:44ch; margin:0 auto 30px}
+.story-cta .satz{color:var(--ink); max-width:44ch; margin:0 auto 30px}
 .story-cta .knoepfe{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 .story-cta .vertrauen{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px;
   margin-top:clamp(28px,3.4vw,40px); font-size:12.5px; color:var(--ink-soft)}

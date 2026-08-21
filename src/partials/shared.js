@@ -71,7 +71,7 @@ function pop(freq = 600){
 
 // ---------- Statische Hintergrund-Bubbles (alle Sektionen, 20% Deckkraft) ----------
 (function scatterBubbles(){
-  const palette = ['#FF7A6A','#37B369','#7D6FD6','#D9C1A0'];
+  const palette = ['var(--coral)','var(--sage)','var(--lavender)','var(--gold)'];
   // deterministischer Pseudo-Zufall, damit das Layout bei jedem Laden gleich aussieht
   let seed = 7;
   const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
