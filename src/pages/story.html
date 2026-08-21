@@ -211,6 +211,25 @@
 @media (prefers-reduced-motion: reduce){
   .sd-ring, .sm-ring{display:none}
 }
+
+/* Die vier Bilder dieser Seite sind erzeugt, nicht fotografiert. Das Handbuch
+   verbietet das in Teil 05 und Teil 09. Sie bleiben im Prototyp, weil er eine
+   Richtung zeigen soll, aber sie sagen es selbst, unuebersehbar und auf dem Bild,
+   damit niemand sie fuer eine Aufnahme aus der Manufaktur haelt. Vor dem Livegang
+   werden sie ersetzt oder der Abschnitt entfaellt. */
+.ph-bild{position:relative; margin:0; width:100%; height:100%}
+.ph-bild img{width:100%; height:100%; object-fit:cover; display:block}
+.ph-bild::before{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  border:2px dashed rgba(250,247,242,.72); border-radius:inherit;
+}
+.ph-bild .ph-hinweis{
+  display:block; position:absolute; left:0; right:0; bottom:0; z-index:2;
+  background:rgba(11,29,63,.88); color:var(--ground);
+  font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  line-height:1.45; padding:9px 12px; text-align:center;
+}
+@media(max-width:560px){.ph-bild .ph-hinweis{font-size:10.5px; letter-spacing:.06em}}
 </style>
 </head>
 <body class="page-light hero-dark">
@@ -265,14 +284,20 @@
       <span class="marke">{{t:story.kap1.marke}}</span>
     </div>
     <div class="sed-img t-coral">
-      <img src="{{story_sketch}}" alt="{{t:story.idee.bild_alt}}" loading="lazy">
+      <div class="ph-bild" data-platzhalter="story_sketch">
+        <img src="{{story_sketch}}" alt="{{t:story.idee.bild_alt}}" loading="lazy">
+        <span class="ph-hinweis">{{t:story.platzhalter.bild}}</span>
+      </div>
     </div>
   </section>
 
   <!-- 02 Die Entwicklung: der Widerspruch und der T-Anker -->
   <section class="story-ed flip reveal" id="kapitel-entwicklung">
     <div class="sed-img arch t-lav">
-      <img src="{{story_polish}}" alt="{{t:story.entwicklung.bild_alt}}" loading="lazy">
+      <div class="ph-bild" data-platzhalter="story_polish">
+        <img src="{{story_polish}}" alt="{{t:story.entwicklung.bild_alt}}" loading="lazy">
+        <span class="ph-hinweis">{{t:story.platzhalter.bild}}</span>
+      </div>
     </div>
     <div>
       <span class="num">02</span>
@@ -332,7 +357,10 @@
   </section>
 
   <figure class="story-wide reveal">
-    <img src="{{story_atelier}}" alt="{{t:story.atelier.bild_alt}}" loading="lazy">
+    <div class="ph-bild" data-platzhalter="story_atelier">
+        <img src="{{story_atelier}}" alt="{{t:story.atelier.bild_alt}}" loading="lazy">
+        <span class="ph-hinweis">{{t:story.platzhalter.bild}}</span>
+      </div>
     <figcaption>{{t:story.atelier.bildunterschrift}}</figcaption>
   </figure>
 
@@ -348,7 +376,10 @@
       <a class="btn btn-ghost" href="faq.html">{{t:story.kap3.knopf_pflege}}</a>
     </div>
     <div class="sed-img t-sage">
-      <img src="{{story_hands}}" alt="{{t:story.manufaktur.bild_alt}}" loading="lazy">
+      <div class="ph-bild" data-platzhalter="story_hands">
+        <img src="{{story_hands}}" alt="{{t:story.manufaktur.bild_alt}}" loading="lazy">
+        <span class="ph-hinweis">{{t:story.platzhalter.bild}}</span>
+      </div>
     </div>
   </section>
 

@@ -865,3 +865,35 @@ footer ul a:hover{color:var(--coral)}
 .line-remove{padding:10px}
 .add-btn{padding:12px 0}
 .col-label .arrow{width:44px; height:44px}
+
+
+/* ---------- Prototyp-Band ----------
+   Der Auftritt wird begutachtet, bevor er gebaut wird. Das Band sagt das auf jeder
+   Seite, damit niemand einen Platzhalterpreis fuer einen Preis haelt. Es traegt die
+   Hoehe --proto-h; Navigation und Inhalt ruecken um genau diesen Betrag nach unten.
+   Vor dem Livegang faellt dieser ganze Block weg, dazu das Band in header.html. */
+:root{--proto-h:34px}
+@media(max-width:640px){:root{--proto-h:52px}}
+
+.proto-band{
+  position:fixed; inset:0 0 auto 0; z-index:120; height:var(--proto-h);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  padding:0 14px; background:var(--navy); color:var(--ground);
+  font-size:12.5px; line-height:1.35; text-align:center;
+  border-bottom:1px solid rgba(217,193,160,.35);
+}
+.proto-band b{
+  flex:none; color:var(--navy); background:var(--gold);
+  font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  padding:3px 9px; border-radius:2px;
+}
+.proto-band span{opacity:.88}
+@media(max-width:640px){
+  .proto-band{flex-direction:column; gap:3px; justify-content:center; padding:5px 12px; font-size:11.5px}
+}
+@media print{.proto-band{display:none}}
+
+nav{top:var(--proto-h)}
+body{padding-top:var(--proto-h)}
+.skip-link{top:calc(var(--proto-h) + 8px)}
+html{scroll-padding-top:calc(92px + var(--proto-h))}

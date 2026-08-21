@@ -649,8 +649,21 @@ async function run() {
     const r = md.querySelector(sel)?.getBoundingClientRect();
     return sel + ':' + (r ? Math.round(Math.min(r.width, r.height)) : '?');
   }).join(' '));
-  log('Mobil: Sprungmarken bleiben unter der Kopfzeile sichtbar',
-    mw.getComputedStyle(md.documentElement).scrollPaddingTop === '92px');
+  // Prüft die Sache, nicht die Zahl: der Abstand muss mindestens so gross sein wie
+  // alles, was oben fest liegt. Vorher stand hier '92px' als feste Zahl, und das
+  // Prototyp-Band, das die Navigation nach unten schiebt, liess die Prüfung fallen,
+  // obwohl die Sprungmarken korrekt sassen.
+  log('Mobil: Sprungmarken bleiben unter der Kopfzeile sichtbar', (() => {
+    const unten = el => { const e = md.querySelector(el); return e && mw.getComputedStyle(e).position === 'fixed'
+      ? e.getBoundingClientRect().bottom : 0; };
+    const kopfEnde = Math.max(unten('nav'), unten('.proto-band'));
+    const abstand = parseFloat(mw.getComputedStyle(md.documentElement).scrollPaddingTop) || 0;
+    return abstand >= kopfEnde - 0.5;
+  })(), (() => {
+    const e = md.querySelector('nav');
+    return 'Abstand=' + mw.getComputedStyle(md.documentElement).scrollPaddingTop
+      + ' Kopfende=' + (e ? Math.round(e.getBoundingClientRect().bottom) : '?');
+  })());
   log('Mobil: Menü lässt sich nicht seitwärts schieben',
     mw.getComputedStyle(md.getElementById('mnav')).overflowX === 'hidden');
   const burger = md.getElementById('burgerBtn');
