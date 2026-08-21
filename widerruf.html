@@ -77,24 +77,44 @@
 
 
 :root{
-  --coral:#FF7A6A; --coral-deep:#C93B27; --coral-hover:#EB7062; --coral-tint:#FFE3DE;
-  --navy:#0B1D3F; --navy-2:#122b57;
-  --sage:#37B369; --sage-deep:#27804C; --sage-tint:#DFF3E7;
-  --lavender:#7D6FD6; --lav-tint:#EAE6FA;
-  --charcoal:#222222; --warmgrey:#BFB8B0; --grey-deep:#8A8378; --softgray:#EAEAEA; --ink-soft:#6b655c;
-  --gold:#D9C1A0; --black:#0A0A0A;
-  --ink-strong:#4A453E;   /* Betonter Fliesstext. 8.88 zu 1 auf Ground. */
-  --ink:#5A554E;   /* Fliesstext und Vorspann. 6.91 zu 1 auf Ground. */
-  --line:#EFE8DC;   /* Jede Trennlinie und jeder Rahmen an Karten und Feldern. */
-  --gold-tint:#F0E4D3;   /* Getönte Fläche in Gold. */
-  --lav-deep:#6355C4;   /* Lavendel als Schrift auf hellem Grund. */
-  --lav-ink:#3B3470;   /* Schrift auf lavendelgetönter Fläche. 10.28 zu 1. */
-  --sage-ink:#1E6B3E;   /* Schrift auf salbeigetönter Fläche. 6.09 zu 1. */
-  --sand:#D8CFBF;   /* Gedeckte Fläche, wärmer als Line. */
-  --ground:#FAF7F2; --paper:#FFFFFF;
-  --serif:'Cormorant Garamond', Georgia, serif;
-  --sans:'Inter', -apple-system, 'Segoe UI', sans-serif;
-  --pad:clamp(20px, 5vw, 72px);
+  /* Die Markenfarbe */
+  --coral:#FF7A6A;                            /* Fläche, nie Schrift auf hellem Grund */
+  --coral-deep:#C93B27;                       /* Coral als Schrift. 4.75 zu 1 auf Ground */
+  --coral-hover:#EB7062;                      /* nur die Fläche des Coral-Knopfs unter dem Zeiger */
+  --coral-tint:#FFE3DE;                       /* getönte Fläche */
+  /* Die zweite Hauptfarbe */
+  --navy:#0B1D3F;                             /* dunkle Flächen, Schrift auf Coral, Fokusring */
+  --navy-2:#122B57;                           /* Eingabefeld im dunklen Fuss, Navy-Knopf unter dem Zeiger */
+  /* Bestätigung */
+  --sage:#37B369;                             /* Fläche und Zeichen */
+  --sage-deep:#27804C;                        /* Schrift auf hellem Grund. 4.59 zu 1 */
+  --sage-ink:#1E6B3E;                         /* Schrift auf salbeigetönter Fläche. 5.61 zu 1 */
+  --sage-tint:#DFF3E7;                        /* getönte Fläche */
+  /* Hinweis */
+  --lavender:#7D6FD6;                         /* Fläche und Zeichen */
+  --lav-deep:#6355C4;                         /* Schrift auf hellem Grund. 5.42 zu 1 */
+  --lav-ink:#3B3470;                          /* Schrift auf lavendelgetönter Fläche. 9.00 zu 1 */
+  --lav-tint:#EAE6FA;                         /* getönte Fläche */
+  /* Gold */
+  --gold:#D9C1A0;                             /* nur auf Navy und Schwarz */
+  --gold-tint:#F0E4D3;                        /* getönte Fläche */
+  /* Die Textleiter, von dunkel nach hell */
+  --charcoal:#222222;                         /* Überschriften und starker Text. 14.89 zu 1 */
+  --ink-strong:#4A453E;                       /* betonter Fliesstext. 8.88 zu 1 */
+  --ink:#5A554E;                              /* Fliesstext und Vorspann. 6.91 zu 1 */
+  --ink-soft:#6B655C;                         /* Beschriftungen, Hinweise, Masse. Der hellste erlaubte Textton. 5.40 zu 1 */
+  /* Flächen und Linien */
+  --ground:#FAF7F2;                           /* der Grundton aller Seiten */
+  --paper:#FFFFFF;                            /* Karten und Eingabefelder */
+  --line:#EFE8DC;                             /* jede Trennlinie und jeder Rahmen an Karten und Feldern */
+  --sand:#D8CFBF;                             /* gedeckte Fläche, wärmer als Line */
+  --warmgrey:#BFB8B0;                         /* Rahmen an Bedienelementen, gestrichelte Linien, Punkte im Ruhezustand */
+  --grey-deep:#8A8378;                        /* Rahmen mit mehr Halt, und grosse Ziffern ab 24px. 3.73 zu 1 */
+  --black:#0A0A0A;                            /* Filmflächen und die schwarze Fassung der Wortmarke */
+  /* Schrift und Mass */
+  --serif:'Cormorant Garamond', Georgia, serif;/* Überschriften und Zahlen */
+  --sans:'Inter', -apple-system, 'Segoe UI', sans-serif;/* alles Übrige */
+  --pad:clamp(20px, 5vw, 72px);               /* seitlicher Rand, wächst mit dem Fenster */
 }
 *{margin:0;padding:0;box-sizing:border-box}
 button,input,select,textarea{font-family:inherit}
@@ -380,7 +400,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 .cl-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(36px,5vw,80px); align-items:center}
 @media(max-width:920px){.cl-grid{grid-template-columns:1fr}}
 .cl-stage{
-  position:relative; background:var(--paper); border:1px solid var(--softgray); border-radius:6px;
+  position:relative; background:var(--paper); border:1px solid var(--line); border-radius:6px;
   box-shadow:12px 12px 0 var(--lav-tint);
   padding:clamp(24px,3vw,44px); display:flex; flex-direction:column; align-items:center; gap:18px;
 }
@@ -410,7 +430,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
   padding:20px 0; border-bottom:1px solid rgba(34,34,34,.14); transition:padding-left .3s;
 }
 .cl-step:hover{padding-left:8px}
-.cl-step b{font-family:var(--serif); font-weight:400; font-size:30px; color:#8A8378}
+.cl-step b{font-family:var(--serif); font-weight:400; font-size:30px; color:var(--grey-deep)}
 .cl-step.active b{color:var(--coral-deep)}
 .cl-step h3{font-family:var(--sans); font-weight:500; font-size:14px; letter-spacing:.04em; margin-bottom:3px}
 .cl-step p{font-size:15px; color:var(--ink-soft)}
@@ -431,7 +451,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 @media(max-width:920px){.film-grid{grid-template-columns:1fr}.film-card.portrait video, .film-card.portrait img{aspect-ratio:9/16; max-height:80vh; object-fit:cover; width:100%}}
 .film-card{
   position:relative; border-radius:6px; overflow:hidden; cursor:pointer;
-  border:1px solid rgba(250,247,242,.14); background:#000;
+  border:1px solid rgba(250,247,242,.14); background:var(--black);
 }
 .film-card video{width:100%; height:100%; object-fit:cover; aspect-ratio:16/10}
 .film-card .film-ui{
@@ -581,7 +601,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 /* ---------- WA ---------- */
 .wa{background:var(--black); color:var(--gold)}
 .wa .eyebrow{color:var(--gold); opacity:.75}
-.wa .sec-head h2{color:#f4ead9}
+.wa .sec-head h2{color:var(--gold-tint)}
 .wa .sec-head p{color:rgba(217,193,160,.75)}
 .wa-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:44px}
 @media(max-width:920px){.wa-grid{grid-template-columns:1fr}}
@@ -591,7 +611,7 @@ footer .wordmark img, .mnav .wordmark img{height:33px}
 .wa-card figcaption{
   display:flex; justify-content:space-between; align-items:baseline;
   padding:16px 18px; border-top:1px solid rgba(217,193,160,.18);
-  font-family:var(--serif); font-size:19px; color:#f4ead9; letter-spacing:.05em;
+  font-family:var(--serif); font-size:19px; color:var(--gold-tint); letter-spacing:.05em;
 }
 .wa-card .price{color:var(--gold)}
 .wa-line{width:64px; height:1px; background:var(--gold); opacity:.5; margin-bottom:26px}
@@ -740,17 +760,17 @@ footer ul a:hover{color:var(--coral)}
   display:flex; flex-direction:column;
 }
 #drawer.open{transform:none; visibility:visible; transition:transform .24s cubic-bezier(.19,1,.22,1), visibility 0s}
-.drawer-head{display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--softgray)}
+.drawer-head{display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--line)}
 .drawer-head h3{font-size:26px}
 .drawer-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--charcoal);line-height:1;padding:4px 8px}
 .drawer-body{flex:1; overflow-y:auto; padding:10px 26px}
-.drawer-item{display:grid; grid-template-columns:64px 1fr auto; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--softgray)}
+.drawer-item{display:grid; grid-template-columns:64px 1fr auto; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line)}
 .drawer-item img{width:64px; height:64px; object-fit:cover; border-radius:3px}
 .drawer-item h4{font-family:var(--serif); font-weight:500; font-size:17px}
 .drawer-item span{font-size:12px; color:var(--ink-soft)}
 .drawer-empty{padding:48px 0; text-align:center; color:var(--ink-soft); font-size:14px}
 .drawer-empty em{font-family:var(--serif); font-size:22px; display:block; margin-bottom:8px; color:var(--charcoal)}
-.drawer-foot{padding:22px 26px; border-top:1px solid var(--softgray); display:flex; flex-direction:column; gap:14px}
+.drawer-foot{padding:22px 26px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:14px}
 .drawer-total{display:flex; justify-content:space-between; font-weight:500; font-size:15px}
 #overlay{position:fixed; inset:0; background:rgba(11,29,63,.4); z-index:250; opacity:0; pointer-events:none; transition:opacity .4s}
 #overlay.on{opacity:1; pointer-events:auto}
@@ -811,7 +831,7 @@ footer ul a:hover{color:var(--coral)}
 
 /* ===== V3: Gratisversand-Fortschritt ===== */
 .ship-progress{padding:14px 22px 4px}
-.ship-progress-text{font-size:12px; color:#6d675e; margin-bottom:7px}
+.ship-progress-text{font-size:12px; color:var(--ink-soft); margin-bottom:7px}
 .ship-progress-text b{color:var(--charcoal)}
 .ship-progress-text.done{color:var(--sage-deep); font-weight:500}
 .ship-progress-track{height:6px; border-radius:3px; background:var(--line); overflow:hidden}
@@ -1584,7 +1604,7 @@ footer ul a{display:flex; align-items:center; min-height:44px; padding:0}
 .drawer-hinweis{margin-top:-3px; font-size:12px; line-height:1.5; color:var(--ink-soft)}
 .drawer-cart-link{margin-top:0; padding:11px 0; min-height:44px}
 .drawer-sicher{list-style:none; display:grid; gap:8px; margin-top:2px; padding-top:13px;
-  border-top:1px solid var(--softgray); font-size:12px; line-height:1.45; color:var(--ink-soft)}
+  border-top:1px solid var(--line); font-size:12px; line-height:1.45; color:var(--ink-soft)}
 .drawer-sicher li{display:flex; align-items:flex-start; gap:9px}
 .drawer-sicher svg{flex:none; margin-top:1px; color:var(--sage-deep)}
 
