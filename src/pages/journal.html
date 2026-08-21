@@ -300,6 +300,12 @@
 .jcta .trust span::before{content:''; width:6px; height:6px; border-radius:50%;
   background:var(--sage-deep); flex:none}
 @media(max-width:560px){.jcta .btn{display:flex; justify-content:center; margin:0 0 12px}.jcta .btn + .btn{margin-left:0}}
+
+/* Die Quellenangabe steht als Zeile am Fuss, nicht als Abschnitt mit Ueberschrift.
+   Woher ein Text stammt, gehoert auf die Seite. Wie er entstanden ist, nicht. */
+.jquelle{max-width:1180px; margin:0 auto;
+  padding:0 var(--pad) clamp(48px,6vw,76px);
+  font-size:13px; line-height:1.7; color:var(--ink-soft); max-width:78ch}
 </style>
 </head>
 <body class="page-light">
@@ -325,7 +331,6 @@
       <a href="#befunde" data-n="02">{{t:journal.index.befunde}}</a>
       <a href="#portraets" data-n="03">{{t:journal.index.portraets}}</a>
       <a href="#stationen" data-n="04">{{t:journal.index.stationen}}</a>
-      <a href="#offenlegung" data-n="05">{{t:journal.index.offenlegung}}</a>
     </div>
   </div>
 </div>
@@ -578,20 +583,7 @@
     </div>
   </div>
 
-  <div class="kolo" id="offenlegung">
-    <span class="kick">{{t:journal.kolophon.kick}}</span>
-    <h2>{{t:journal.kolophon.titel}}</h2>
-    <div class="kolo-grid">
-      <div class="kolo-blk">
-        <b>{{t:journal.hinweis.herkunft.titel}}</b>
-        <p>{{t:journal.hinweis.herkunft.text}}</p>
-      </div>
-      <div class="kolo-blk">
-        <b>{{t:journal.hinweis.schweiz.titel}}</b>
-        <p>{{t:journal.hinweis.schweiz.text}}</p>
-      </div>
-    </div>
-  </div>
+  <p class="jquelle" id="offenlegung">{{t:journal.quelle.zeile}}</p>
 
   <section class="jcta">
     <span class="eyebrow">{{t:journal.cta.eyebrow}}</span>

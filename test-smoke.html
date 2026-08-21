@@ -623,10 +623,29 @@ async function run() {
   log('Journal: Leitsätze auf den Karten', d.querySelectorAll('.jgrid .cover .cl').length === 5);
   log('Journal: Zeitleiste mit Daten', d.querySelectorAll('.zeit .zeile time').length === 6);
   log('Journal: Wortlaut-Zitat nur bei Wako', (d.body.innerText.match(/«/g) || []).length === 1);
-  log('Journal: Herkunft der Texte offengelegt', d.body.innerText.includes('Übersetzung ins Deutsche')
-    && d.body.innerText.includes('Freigabe der Personen'));
-  log('Journal: Japan-Beweise als Japan gekennzeichnet', d.body.innerText.includes('fanden in Japan statt')
-    && d.body.innerText.includes('nicht als hiesige Referenzen'));
+  // Beide Wächter prüften bis hierhin den Wortlaut eines Abschnitts, der Arbeitsabläufe
+  // erklärte statt Herkunft: wer übersetzt hat, dass Freigaben ausstehen, was in der
+  // Ablage liegt. Das ist aus dem Auftritt raus und steht in der Übergabe. Geblieben und
+  // weiterhin geschützt ist die Sache: die Quelle wird genannt, und es steht dabei, dass
+  // nur eine Zeile wörtlich zitiert ist. Ein Wächter, der einen Wortlaut festnagelt statt
+  // einer Aussage, verhindert jede Überarbeitung.
+  log('Journal: Herkunft der Texte offengelegt', (() => {
+    const t = d.body.innerText;
+    const quelle = /Baqless-Journal|Baqless journal|journal Baqless/i.test(t)
+      && /Soichi Toyama/.test(t) && /Akane Watanabe/.test(t);
+    const gekennzeichnet = /zusammengefasst|summarised|résumé/i.test(t)
+      && /Taeko Wako/.test(t);
+    return quelle && gekennzeichnet;
+  })());
+  log('Journal: Japan-Beweise als Japan gekennzeichnet', (() => {
+    const t = d.body.innerText;
+    // Die Zeitleiste trägt je Zeile eine Ortsangabe, und die Quellenzeile sagt es nochmals
+    const orte = [...d.querySelectorAll('.zeit .zeile .ort')].map(x => x.textContent.trim());
+    return orte.length === 6 && orte.every(o => /Japan/i.test(o)) && /Japan/.test(t);
+  })(), (() => {
+    const orte = [...d.querySelectorAll('.zeit .zeile .ort')].map(x => x.textContent.trim());
+    return orte.length + ' Ortsangaben: ' + [...new Set(orte)].join(', ');
+  })());
   log('Journal: keine Gedankenstriche', !d.body.innerText.includes('—'));
   log('Journal: keine Patent- und Allergie-Zusagen', !/patent|hypoallergen/i.test(d.body.innerText));
 
