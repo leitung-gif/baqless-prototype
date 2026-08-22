@@ -1,13 +1,6 @@
+# PROTOTYP. Dieser Auftritt liegt zur Begutachtung auf GitHub Pages und gehoert
+# nicht in den Suchindex: seine kanonischen Adressen zeigen auf baqless.com, wo es
+# diese Seiten noch nicht gibt. Beim Livegang wird diese Datei ersetzt, dann gilt
+# wieder Allow mit den Ausnahmen fuer Kasse, Bestellung und die Pruefdateien.
 User-agent: *
-Allow: /
-Disallow: /kasse.html
-Disallow: /bestellung.html
-Disallow: /en/kasse.html
-Disallow: /en/bestellung.html
-Disallow: /fr/kasse.html
-Disallow: /fr/bestellung.html
-Disallow: /test-smoke.html
-Disallow: /test-i18n.html
-Disallow: /test-geld.html
-
-Sitemap: https://baqless.com/sitemap.xml
+Disallow: /

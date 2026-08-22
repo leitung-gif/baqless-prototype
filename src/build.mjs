@@ -14,6 +14,37 @@ const SPRACHEN = [
 ];
 const HOST = 'https://baqless.com';
 
+// ---------- Link-Vorschau und Indexierung ----------
+// PROTOTYP: Solange der Auftritt auf GitHub Pages liegt, zeigt die Vorschau auf diese
+// Adresse und die Seite traegt noindex. Beim Livegang faellt PROTO_HOST weg, dann
+// greifen Kanonik und Vorschau auf der echten Domain. Ohne dieses Paar erscheint der
+// Link als graue Flaeche und der Prototyp steht im Suchindex.
+const PROTO_HOST = 'https://leitung-gif.github.io/baqless-prototype';
+
+function vorschau(s, page, wb) {
+  const ist_start = page === 'index.html';
+  const titel = (wb['seite.' + page.replace('.html', '') + '.titel'] || wb['seite.index.titel'] || 'Baqless');
+  const text = (wb['seite.' + page.replace('.html', '') + '.beschreibung'] || wb['seite.index.beschreibung'] || '');
+  const adresse = `${PROTO_HOST}/${s.ordner ? s.ordner + '/' : ''}${page}`;
+  const bild = `${PROTO_HOST}/vorschau-${s.code}.png`;
+  return [
+    '<meta name="robots" content="noindex,nofollow">',
+    `<meta property="og:type" content="${ist_start ? 'website' : 'article'}">`,
+    '<meta property="og:site_name" content="Baqless">',
+    `<meta property="og:locale" content="${s.locale.replace('-', '_')}">`,
+    `<meta property="og:title" content="${titel.replace(/"/g, '&quot;')}">`,
+    `<meta property="og:description" content="${text.replace(/"/g, '&quot;')}">`,
+    `<meta property="og:url" content="${adresse}">`,
+    `<meta property="og:image" content="${bild}">`,
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    '<meta name="twitter:card" content="summary_large_image">',
+    `<meta name="twitter:title" content="${titel.replace(/"/g, '&quot;')}">`,
+    `<meta name="twitter:description" content="${text.replace(/"/g, '&quot;')}">`,
+    `<meta name="twitter:image" content="${bild}">`,
+  ].join('\n');
+}
+
 // --- Fonts: lokal inline (rekonstruiert), sonst Google-Fetch aus fonts.css ---
 const inlinePath = join(root, 'fonts', 'fonts-inline.css');
 let fontCss = '';
@@ -146,6 +177,7 @@ for (const s of SPRACHEN) {
       .replace(/\{\{BASE\}\}/g, s.basis)
       .replace(/\{\{CANONICAL\}\}/g, `${HOST}/${s.ordner ? s.ordner + '/' : ''}${page}`)
       .replace(/\{\{HREFLANG\}\}/g, hreflang)
+      .replace(/\{\{VORSCHAU\}\}/g, vorschau(s, page, wb))
       .replace(/\{\{I18N_JSON\}\}/g, JSON.stringify({
         lang: s.code, locale: s.locale, basis: s.basis,
         sprachen: SPRACHEN.map(x => ({ code: x.code, name: x.name, ordner: x.ordner })),

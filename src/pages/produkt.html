@@ -6,6 +6,7 @@
 <meta name="description" content="{{t:seite.produkt.beschreibung}}">
 <link rel="canonical" href="{{CANONICAL}}">
 {{HREFLANG}}
+{{VORSCHAU}}
 <link rel="icon" href="{{BASE}}favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="{{BASE}}icon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="{{BASE}}icon-512.png">
@@ -732,7 +733,7 @@ ld.textContent = JSON.stringify({
   name: `${P.name} ${P.variant}`, sku: P.sku, brand: {'@type': 'Brand', name: 'Baqless'},
   description: P.desc, category: txt('pdp.ld.kategorie', {kollektion: P.collection}),
   offers: {'@type': 'Offer', price: P.price, priceCurrency: 'CHF', availability: P.lager === 'ausverkauft' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-    shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 99, currency: 'CHF'}}}
+    shippingDetails: {'@type': 'OfferShippingDetails', freeShippingThreshold: {'@type': 'MonetaryAmount', value: 120, currency: 'CHF'}}}
 });
 document.head.appendChild(ld);
 const ldBc = document.createElement('script');

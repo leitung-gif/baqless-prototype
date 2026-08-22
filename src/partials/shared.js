@@ -96,7 +96,7 @@ function pop(freq = 600){
 })();
 
 // ---------- Warenkorb (v3: Persistenz, Stepper, Gratisversand) ----------
-const FREE_SHIP = 99;
+const FREE_SHIP = 120;
 let cart = [];
 try {
   cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]');

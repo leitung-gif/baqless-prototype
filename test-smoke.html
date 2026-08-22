@@ -145,9 +145,19 @@ async function run() {
   log('Gratisversand erreicht', d.getElementById('shipText')?.textContent.includes('gesichert'));
   click(d, '[data-qminus="polarisyg"]'); await sleep(200);
   log('Stepper minus → CHF 69', d.getElementById('drawerTotal')?.textContent.includes('69'));
-  log('Gratisversand-Restbetrag', d.getElementById('shipText')?.textContent.includes('30'));
+  // Restbetrag und Balken werden aus der Schwelle gerechnet, nicht gegen eine feste
+  // Zahl geprüft. Vorher stand hier 30 und «~70%», beides aus einer Schwelle von 99
+  // abgeleitet. Als die Schwelle auf den Wert aus dem Angebot ging, fielen beide
+  // Prüfungen, obwohl der Shop richtig rechnete.
+  const schwelle = f.contentWindow.eval('FREE_SHIP');
+  const warenkorb = 69;                       // ein Paar Amity Polaris, siehe oben
+  const offen = Math.max(0, schwelle - warenkorb);
+  log('Gratisversand-Restbetrag', d.getElementById('shipText')?.textContent.includes(String(offen)),
+    `Schwelle ${schwelle}, offen ${offen}`);
   const fillW = parseFloat(d.getElementById('shipFill')?.style.width);
-  log('Fortschrittsbalken ~70%', fillW > 64 && fillW < 76, fillW + '%');
+  const soll = warenkorb / schwelle * 100;
+  log('Fortschrittsbalken entspricht dem Verhältnis', Math.abs(fillW - soll) < 1.5,
+    `${fillW}% gegen ${soll.toFixed(1)}%`);
   click(d, '[data-remove="polarisyg"]'); await sleep(200);
   log('Entfernen leert Warenkorb', d.getElementById('cartCount')?.textContent === '0');
   click(d, '#drawerClose'); await sleep(150);
