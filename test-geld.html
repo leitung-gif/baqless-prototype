@@ -91,7 +91,10 @@ async function run() {
       summe < SCHWELLE || versandSoll === 0, `Summe ${summe}`);
 
     // Preise stehen ueberall in CHF, nie in einer anderen Waehrung
-    // Im Marktwähler steht EUR zu Recht, dort wählt man den Markt. Geprüft wird der Inhalt.
+    // Der Marktwaehler zeigt neu ebenfalls CHF: das Kuerzel in der Kopfzeile blieb nach
+    // dem Schliessen des Menues als «DE · EUR» stehen, direkt neben Preisen in CHF.
+    // Abgerechnet wird in Franken, auch in den EUR-Maerkten; die Anzeige in
+    // Landeswaehrung kommt laut eigener Notiz erst mit dem Livegang.
     const inhalt = (d.getElementById('inhalt') || d.body).textContent;
     log(`${P} keine fremde Währung im Inhalt`,
       !/[€$£]|\bEUR\b|\bUSD\b/.test(inhalt),

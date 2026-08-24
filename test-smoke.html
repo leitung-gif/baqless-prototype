@@ -197,8 +197,8 @@ async function run() {
   log('Sprachwechsel zielt auf fr/', w.sprachUrl('fr').includes('/fr/produkt.html'), w.sprachUrl('fr'));
   log('Deutsch bleibt ohne Ordner', !/\/(en|fr)\//.test(w.sprachUrl('de')), w.sprachUrl('de'));
   click(d, '#marketBtn'); await sleep(120);
-  click(d, '#marketDd .v2-menu button[data-market="DE · EUR"]'); await sleep(120);
-  log('Marktlabel DE·EUR', d.getElementById('marketLabel')?.textContent.includes('DE'));
+  click(d, '#marketDd .v2-menu button[data-market="DE · CHF"]'); await sleep(120);
+  log('Marktlabel DE·CHF', d.getElementById('marketLabel')?.textContent.includes('DE'));
 
   // ===== Cross-Sell + Variante =====
   log('Cross-Sell 4 Karten', d.querySelectorAll('#xsellRail .card').length === 4);
