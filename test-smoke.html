@@ -884,9 +884,24 @@ async function run() {
       const breite = m2.contentDocument.documentElement.scrollWidth;
       if (breite > 391) zuBreit.push(`${seite} ${breite}px`);
     }
-    m2.remove();
     log('Handy 390 px: keine Seite scrollt seitwärts', zuBreit.length === 0,
       zuBreit.length ? zuBreit.join(' | ') : `${ALLE.length} Seiten geprüft`);
+
+    // Der Kaufknopf trug flex:2 1 240px. In der Zeile ist das die Breite, in der
+    // Spalte die HOEHE: gemessen 203x240 px, ein fast quadratischer Klotz als
+    // wichtigster Knopf der Seite. Gemessen wird das Verhaeltnis zur Spalte und
+    // zur Zeilenhoehe, nicht ein Pixelwert.
+    await new Promise(r => { m2.addEventListener('load', r, { once: true }); m2.src = '/produkt.html?p=polarisyg'; });
+    await sleep(500);
+    const md = m2.contentDocument;
+    const haupt = md.getElementById('mainAdd');
+    const spalte = haupt && haupt.parentElement.getBoundingClientRect().width;
+    const hr = haupt && haupt.getBoundingClientRect();
+    const zh = haupt && parseFloat(getComputedStyle(haupt).lineHeight) || 20;
+    log('Handy 390 px: der Kaufknopf füllt die Spalte und bleibt flach',
+      !!haupt && hr.width >= spalte * 0.9 && hr.height <= zh * 3,
+      haupt ? `${Math.round(hr.width)}x${Math.round(hr.height)} bei ${Math.round(spalte)} Spaltenbreite` : 'nicht gefunden');
+    m2.remove();
   }
 
   const ohneZiel = [], ohneMain = [], ohneTitel = [];
@@ -1017,6 +1032,48 @@ async function run() {
   const wenige = [...new Set(schwach)].slice(0, 20);
   log('Jede Seite: jeder Text erreicht seinen Kontrastwert', schwach.length === 0,
     schwach.length ? `${schwach.length} Stellen, u.a. ${wenige.join(' | ')}` : 'nichts darunter');
+
+
+  // ===== Produktdaten: Material und Pflege dürfen sich nicht widersprechen =====
+  // Amity Luna sagte im Materialfeld «Wasserfest.» und im Pflegefeld derselben
+  // Seite «zum Duschen und Schwimmen herausnehmen», in allen drei Sprachen. Von
+  // zwei Angaben auf einer Kaufseite war die kaufentscheidende die falsche.
+  {
+    const roh = await (await fetch('/src/data/products.json')).json();
+    const liste = Array.isArray(roh) ? roh : (roh.products || roh.produkte);
+    const WF = { de: /[Ww]asserfest/, en: /[Ww]ater.?resistant|[Ww]aterproof/, fr: /[Rr]ésistant[e]? à l.eau/ };
+    const RAUS = { de: /nimmst du sie|heraus/, en: /take (them|this pair) out|remove/i, fr: /retirez|enlevez/i };
+    const streit = [];
+    for (const x of liste) for (const sp of ['de', 'en', 'fr']) {
+      if (WF[sp].test(x.materials?.[sp] || '') && RAUS[sp].test(x.care?.[sp] || ''))
+        streit.push(`${x.slug || x.id} [${sp}]`);
+    }
+    log('Produktdaten: kein Modell sagt zugleich wasserfest und herausnehmen',
+      streit.length === 0, streit.length ? streit.join(', ') : `${liste.length} Modelle × 3 Sprachen`);
+  }
+
+  // ===== Der Link «Widerruf» führt zum gesetzlichen Abschnitt =====
+  // Er zeigte auf #widerruf, und das ist «Widerruf vor dem Versand», also die
+  // freiwillige Stornierung. Am gesetzlichen Abschnitt #markt lief er vorbei.
+  // Geprüft wird die Überschrift hinter dem Anker, nicht der Ankername.
+  {
+    const dok = new DOMParser().parseFromString(
+      await (await fetch('/widerruf.html')).text(), 'text/html');
+    const ueberschrift = (id) => {
+      const el = dok.getElementById(id);
+      if (!el) return '';
+      const h = el.matches('h1,h2,h3') ? el : el.querySelector('h1,h2,h3');
+      return (h ? h.textContent : el.textContent).trim().slice(0, 60);
+    };
+    const fuss = new DOMParser().parseFromString(
+      await (await fetch('/index.html')).text(), 'text/html');
+    const link = [...fuss.querySelectorAll('footer a[href*="widerruf.html#"]')]
+      .find(a => /^Widerruf$/i.test(a.textContent.trim()));
+    const ziel = link ? link.getAttribute('href').split('#')[1] : '';
+    log('Recht: der Link «Widerruf» führt zum gesetzlichen Abschnitt',
+      !!link && /[Gg]esetzlich/.test(ueberschrift(ziel)),
+      link ? `#${ziel} = «${ueberschrift(ziel)}»` : 'Link nicht gefunden');
+  }
 
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }

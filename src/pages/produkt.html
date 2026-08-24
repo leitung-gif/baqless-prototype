@@ -78,7 +78,17 @@
 .buy-ctas .btn{justify-content:center; font-size:15px; padding:16px 20px; letter-spacing:.04em}
 #mainAdd{flex:2 1 240px}
 #saveBtn{flex:1 0 100%}
-@media(max-width:520px){.buy-ctas{flex-direction:column}}
+@media(max-width:520px){
+  /* flex-basis wirkt in der Spalte auf die HOEHE, nicht auf die Breite. Der Knopf
+     traegt flex:2 1 240px, also wurden aus 240px Breite 240px Hoehe, und
+     align-items:center liess ihn auf Textbreite schrumpfen: gemessen 203x240 px
+     bei 390px Fenster, ein fast quadratischer Klotz als wichtigster Knopf der
+     Seite. In der Spalte zaehlt nur noch die volle Breite. */
+  .buy-ctas{flex-direction:column; align-items:stretch}
+  /* #mainAdd traegt die flex-Angabe als ID (1,0,0) und schlaegt jede Klassenregel.
+     Darum hier ebenfalls mit ID, sonst bleibt die Hoehe bei 240px stehen. */
+  .buy-ctas #mainAdd, .buy-ctas .btn{flex:0 0 auto; width:100%}
+}
 /* Frueher stand hier eine Hakenliste. Eine Aufzaehlung nimmt keine Sorge weg,
    eine Antwort schon. Darum jetzt Frage und Antwort, mit der Passgrenze mittendrin.
    Die Frage nach dem Halt steht bewusst NICHT hier: das Erklaermodul direkt darueber
