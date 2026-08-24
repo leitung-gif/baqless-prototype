@@ -320,6 +320,83 @@ async function run() {
   log('Home: Rail-CTA → Neuheiten', d.querySelector('.products a.btn[href="neuheiten.html"]') !== null);
   log('Home: Suche vorhanden', !!d.getElementById('searchOverlay'));
   log('Home: Cart persistiert', d.getElementById('cartCount')?.textContent === '2');
+
+  // ===== Mechanik-Zeichnung =====
+  // Die Zeichnung ist aus einem Vergleich mehrerer Entwuerfe hervorgegangen, bei
+  // dem drei Fehler belegt wurden. Jede Pruefung hier haelt einen davon fest, und
+  // zwar AN DER SACHE, nicht am Wortlaut: ein Vergleich gegen eine Zeichenkette
+  // waere schon beim naechsten Umbau wieder gruen und trotzdem falsch.
+  {
+    const figs = [...d.querySelectorAll('.mech-fig svg')];
+    log('Mechanik: zwei Schnittzeichnungen', figs.length === 2
+      && figs.every(s => s.getAttribute('viewBox') === '0 0 324 158'),
+      figs.map(s => s.getAttribute('viewBox')).join(' | '));
+
+    const roh = figs.map(s => s.outerHTML).join('');
+    const hart = roh.match(/#[0-9A-Fa-f]{3,8}\b|rgba?\([^)]*\)/g) || [];
+    log('Mechanik: keine harte Farbe, nur Tokens', hart.length === 0, hart.slice(0, 5).join(' '));
+
+    // 1 DER DREHPFEIL. Ein Entwurf zeichnete einen Bogen von rund 245 Grad und
+    // schrieb «Vierteldrehung» darunter; ein anderer eine exakte Halbellipse mit
+    // der Beschriftung «90 Grad». Hier wird der Winkel aus drei Punkten der
+    // gezeichneten Kurve gerechnet, unabhaengig davon, wie der Pfad notiert ist.
+    const bogen = figs[1].querySelector('.mech-turn path');
+    let grad = -1;
+    if (bogen) {
+      const L = bogen.getTotalLength();
+      const A = bogen.getPointAtLength(0), B = bogen.getPointAtLength(L / 2), C = bogen.getPointAtLength(L);
+      const n = 2 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y));
+      const q = p => p.x * p.x + p.y * p.y;
+      const mx = (q(A) * (B.y - C.y) + q(B) * (C.y - A.y) + q(C) * (A.y - B.y)) / n;
+      const my = (q(A) * (C.x - B.x) + q(B) * (A.x - C.x) + q(C) * (B.x - A.x)) / n;
+      let w = Math.abs((Math.atan2(C.y - my, C.x - mx) - Math.atan2(A.y - my, A.x - mx)) * 180 / Math.PI);
+      grad = w > 180 ? 360 - w : w;
+    }
+    log('Mechanik: der Drehpfeil ist wirklich ein Viertelkreis', Math.abs(grad - 90) < 1,
+      `gemessen ${grad.toFixed(2)} Grad`);
+
+    // 2 DER ANKER BEHAELT SEINE LAENGE. Ein Stab, der sich dreht, wird kuerzer
+    // gesehen, aber nicht kuerzer. Anfang und Ende muessen gleich lang sein, die
+    // Mitte kuerzer.
+    const stab = [...figs[1].querySelectorAll('rect')]
+      .map(r => [+r.getAttribute('width'), +r.getAttribute('height')])
+      .filter(([w, h]) => Math.abs(Math.min(w, h) - 5.6) < 0.1)
+      .map(([w, h]) => Math.max(w, h)).sort((a, b) => b - a);
+    log('Mechanik: der Anker behaelt seine Laenge', stab.length === 3
+      && stab[0] === stab[1] && stab[2] < stab[0], `Laengen ${stab.join(', ')}`);
+
+    // 3 DER ANKER LIEGT AM LAEPPCHEN AN. Ein Entwurf liess 3 mm blanken Stift
+    // dazwischen: gezeichnet war ein Ohrring, der nicht sitzt.
+    const au = figs[1].querySelector('use[href="#ranker"]');
+    const ar = au && au.getBoundingClientRect();
+    const nah = ar && [...figs[1].querySelectorAll('use[href="#rlobe"]')]
+      .map(u => u.getBoundingClientRect())
+      .filter(r => r.right <= ar.right)
+      .sort((a, b) => (ar.left - a.right) - (ar.left - b.right))[0];
+    const mm = nah ? ((ar.left - nah.right) / (nah.width / 32)) * 0.125 : 99;
+    log('Mechanik: der Anker liegt am Laeppchen an', mm < 0.4, `${mm.toFixed(2)} mm Luft`);
+
+    // 4 DIE BESCHRIFTUNG BLEIBT KLEIN. «.mech-card p» hat (0,1,1) und hat die
+    // Bildunterschrift schon einmal auf 15.5px aufgeblasen. Gemessen wird das
+    // Verhaeltnis, nicht ein Pixelwert: so faellt jede kuenftige Regel auf.
+    const unter = d.querySelector('.mech-fig .mech-schnitt');
+    const flies = d.querySelector('.mech-card > p');
+    const up = unter ? parseFloat(getComputedStyle(unter).fontSize) : 0;
+    const fp = flies ? parseFloat(getComputedStyle(flies).fontSize) : 0;
+    log('Mechanik: Bildunterschrift bleibt kleiner als der Fliesstext', up > 0 && up < fp - 2,
+      `${up}px gegen ${fp}px`);
+
+    // 5 DIE SCHRITTE. Drei je Karte, uebersetzt, und in drei Spalten, damit jede
+    // Zeile unter ihrem eigenen Bild steht.
+    const listen = [...d.querySelectorAll('.mech-schritte')];
+    log('Mechanik: je drei Schritte, alle uebersetzt', listen.length === 2
+      && listen.every(o => o.children.length === 3)
+      && !/\{\{/.test(listen.map(o => o.textContent).join('')));
+    log('Mechanik: Schritte stehen in drei Spalten', listen.length === 2
+      && listen.every(o => getComputedStyle(o).gridTemplateColumns.split(/\s+/).length === 3),
+      listen.map(o => getComputedStyle(o).gridTemplateColumns).join(' | '));
+  }
+
   log('Home: Newsletter-Form', !!d.getElementById('nlForm'));
 
   // ===== Hero-Video + Film-Sektion =====

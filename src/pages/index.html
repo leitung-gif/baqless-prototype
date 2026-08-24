@@ -76,7 +76,40 @@
 .mech-fig{background:var(--paper); border-radius:12px; padding:8px 4px}
 /* Die Zeichnung soll erklaeren, nicht die Karte beherrschen: sie bekommt eine
    Obergrenze und steht mittig, damit der Text daneben sein Gewicht behaelt. */
-.mech-fig svg{display:block; width:100%; max-width:400px; height:auto; margin:0 auto}
+.mech-buehne{max-width:400px; margin:0 auto}
+.mech-fig svg{display:block; width:100%; height:auto}
+/* Drei Spalten wie die drei Felder der Zeichnung: die Beschriftung steht unter
+   ihrem Bild. Als HTML umbricht sie in jeder Sprache selbst, SVG-Text nicht. */
+.mech-schritte{
+  list-style:none; margin:3px 0 0; padding:0; display:grid;
+  grid-template-columns:repeat(3,1fr); text-align:center;
+  font-size:11.5px; line-height:1.35; color:var(--ink-soft);
+}
+.mech-schritte li{padding:0 5px}
+/* Geschuetztes Leerzeichen statt Rand: sonst bricht die Zeile bei schmaler
+   Breite zwischen Ziffer und Wort um, gesehen bei «2 / Vierteldrehung». */
+.mech-schritte b{color:var(--ink)}
+.mech-card.vorher .mech-schritte .letzt, .mech-card.vorher .mech-schritte .letzt b{color:var(--coral-deep)}
+.mech-card.nachher .mech-schritte .letzt, .mech-card.nachher .mech-schritte .letzt b{color:var(--sage-deep)}
+/* Warmgrey ergaebe hier 1.94:1 auf Weiss. Ink-soft ergibt 5.5:1.
+   Zwei Klassen, weil .mech-card p mit (0,1,1) sonst durchschlaegt und die
+   Zeile auf 15.5px aufblaest. Das ist genau so passiert. */
+.mech-fig .mech-schnitt{margin:7px 0 0; text-align:center; font-size:10.5px; color:var(--ink-soft); line-height:1.4}
+@media(prefers-reduced-motion:no-preference){
+  .mech-nudge{animation:mechNudge 3s ease-in-out infinite}
+  @keyframes mechNudge{0%,62%,100%{transform:translateX(0)}30%{transform:translateX(5px)}}
+  .mech-nudge-l{animation:mechNudgeL 3s ease-in-out infinite}
+  @keyframes mechNudgeL{0%,62%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}}
+  /* Ruhezustand ist der Endzustand: ohne Bewegung fehlt keine Aussage. */
+  .mech-fall{animation:mechFall 4s ease-in infinite}
+  @keyframes mechFall{0%,32%{transform:translate(0,0);opacity:1}
+    44%,52%{transform:translate(-12px,-30px);opacity:0}
+    72%,100%{transform:translate(0,0);opacity:1}}
+  .mech-klick{animation:mechKlick 4s ease-out infinite}
+  @keyframes mechKlick{0%,100%{opacity:1}30%{opacity:.15}44%{opacity:1}}
+  .mech-turn{animation:mechTurn 3s ease-in-out infinite}
+  @keyframes mechTurn{0%,72%,100%{opacity:.5}34%{opacity:1}}
+}
 .mech-tag{
   width:fit-content; margin-top:auto;
   font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
@@ -291,25 +324,74 @@
         <span class="mech-kind">{{t:start.mechanik.vorher_kind}}</span>
         <h3>{{t:start.mechanik.vorher_titel}}</h3>
         <div class="mech-fig">
-          <svg viewBox="40 22 194 132" role="img" aria-label="{{t:start.mechanik.vorher_bild}}">
-            <ellipse cx="140" cy="140" rx="66" ry="6" fill="rgba(34,34,34,.06)"/>
-            <ellipse cx="140" cy="75" rx="34" ry="46" fill="#F5E6D4" stroke="#E2C6AA" stroke-width="2.5"/>
-            <path d="M124 40c14-13 34-11 44 4" fill="none" stroke="#E9D5C0" stroke-width="2.5" stroke-linecap="round"/>
-            <rect x="106" y="69" width="68" height="12" rx="6" fill="#E0C09B" opacity=".5"/>
-            <rect x="70" y="71" width="128" height="8" rx="4" fill="#C6CBD4" stroke="#A8AFBA" stroke-width="1"/>
-            <circle cx="66" cy="75" r="20" fill="#D9C1A0" stroke="#BE9E70" stroke-width="1.5"/>
-            <circle cx="59" cy="68" r="6" fill="#FBF6EC" opacity=".8"/>
-            <!-- Rueckteil, lose hinter dem Ohr -->
-            <rect x="186" y="62" width="18" height="26" rx="6" fill="#D6DAE1" stroke="#A8AFBA" stroke-width="1.5"/>
-            <rect x="192" y="70" width="6" height="10" rx="3" fill="#A8AFBA" opacity=".55"/>
-            <!-- und derselbe Teil, unten am Boden -->
-            <path d="M214 92c10 10 8 22-6 30" fill="none" stroke="#8A8378" stroke-width="2"
-                  stroke-dasharray="4 5" stroke-linecap="round"/>
-            <path d="M203 118l6 8 3-9z" fill="#8A8378"/>
-            <rect x="188" y="124" width="18" height="12" rx="5" fill="none" stroke="#8A8378"
-                  stroke-width="2" stroke-dasharray="3 4" opacity=".7"/>
-          </svg>
+        <div class="mech-buehne">
+<svg viewBox="0 0 324 158" role="img" aria-label="{{t:start.mechanik.vorher_bild}}">
+          <defs>
+            <marker id="lah" viewBox="0 0 8 8" refX="6.6" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+              <path d="M0.6 0.7 L7 4 L0.6 7.3 Z" fill="var(--coral-deep)"/>
+            </marker>
+            <path id="llobe"
+                  d="M32 0 C30 40,30 70,31 96 C31.5 112,38 126,48 126 C58 126,65 112,65 96 C66 70,66 40,64 0 Z"
+                  fill="var(--line)" stroke="var(--grey-deep)" stroke-width="1.3" stroke-linejoin="round"/>
+            <path id="lgem" d="M5 -9 A9 9 0 1 0 5 9 Z"
+                  fill="var(--coral)" stroke="var(--coral-deep)" stroke-width=".9" stroke-linejoin="round"/>
+            <!-- Schmetterling nach dem Vorbild des Schnitt-Entwurfs: Huelse und zwei
+                 Fluegel, die zum Ohr hin auslegen. Massstab aus der 4-mm-Angabe
+                 gerechnet, Fluegelspanne 5.00 mm. -->
+            <g id="lclutch" fill="var(--navy)">
+              <path d="M-0.56 -6.11 C-6.67 -10.00,-8.89 -16.67,-5.56 -20.00 C-2.22 -23.33,2.78 -21.67,3.89 -16.67 C4.44 -12.22,2.78 -7.78,1.67 -5.56 Z"/>
+              <path d="M-0.56 6.11 C-6.67 10.00,-8.89 16.67,-5.56 20.00 C-2.22 23.33,2.78 21.67,3.89 16.67 C4.44 12.22,2.78 7.78,1.67 5.56 Z"/>
+              <rect x="-6.11" y="-6.67" width="12.22" height="13.33" rx="3.33"/>
+            </g>
+            <g id="lohr">
+              <path d="M12.5 31 C9 31,8 28,7.5 25.5 C6.8 21.5,2.5 19.5,2.5 13.5 C2.5 6.5,7 1.5,13 1.5 C18.5 1.5,22 6,22 12 C22 17,19 19.5,17.5 22.5 C16 25.5,16 31,12.5 31 Z" fill="var(--line)" stroke="var(--grey-deep)" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M9 20 C7.5 15,9 8,13.5 8 C17 8,18 12,16 15 C14.5 17.2,13 18.5,12.6 21" fill="none" stroke="var(--grey-deep)" stroke-width="1.2" stroke-linecap="round"/>
+            </g>
+          </defs>
+
+          <!-- 1 durchstecken -->
+          <g>
+            <g transform="translate(1,2) scale(1.15)"><use href="#lohr"/><circle cx="11" cy="27" r="2.4" fill="var(--coral)"/></g>
+            <path d="M15 41 C20 50,26 52,31 48" fill="none" stroke="var(--warmgrey)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+            <use href="#llobe"/>
+            <rect x="12" y="96.25" width="67" height="7.5" fill="var(--navy)"/>
+            <use href="#lgem" transform="translate(12,100)"/>
+            <g class="mech-nudge"><line x1="2" y1="76" x2="24" y2="76" stroke="var(--coral-deep)" stroke-width="1.8" marker-end="url(#lah)"/></g>
+            <path d="M32 134 v6 M64 134 v6 M32 137 H64" fill="none" stroke="var(--grey-deep)" stroke-width=".9"/>
+            <text x="48" y="150" font-size="8.5" fill="var(--ink-soft)" text-anchor="middle">{{t:start.mechanik.mm}}</text>
+            </g>
+
+          <!-- 2 Rueckteil aufstecken -->
+          <g transform="translate(108,0)">
+            <use href="#llobe"/>
+            <rect x="26" y="96.25" width="67" height="7.5" fill="var(--navy)"/>
+            <use href="#lgem" transform="translate(26,100)"/>
+            <use href="#lclutch" transform="translate(76,100)"/>
+            <g class="mech-nudge-l"><line x1="102" y1="76" x2="80" y2="76" stroke="var(--coral-deep)" stroke-width="1.8" marker-end="url(#lah)"/></g>
+            </g>
+
+          <!-- 3 es loest sich -->
+          <g transform="translate(216,0)">
+            <rect x="-4" y="-4" width="112" height="162" rx="9" fill="var(--coral)" opacity=".08"/>
+            <use href="#llobe"/>
+            <rect x="26" y="96.25" width="67" height="7.5" fill="var(--navy)"/>
+            <use href="#lgem" transform="translate(26,100)"/>
+            <rect x="66.4" y="78.5" width="14.6" height="43" rx="6" fill="none" stroke="var(--coral-deep)"
+                  stroke-width="1.2" stroke-dasharray="3 3" opacity=".55"/>
+            <path d="M83 116 q-2 11 -9 19" fill="none" stroke="var(--coral-deep)" stroke-width="1.7" marker-end="url(#lah)"/>
+            <g class="mech-fall"><use href="#lclutch" transform="translate(72,146) rotate(90) scale(1.15)"/></g>
+            </g>
+
+          <path d="M101 22 l5 5 l-5 5 M209 22 l5 5 l-5 5" fill="none" stroke="var(--warmgrey)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+          <ol class="mech-schritte">
+            <li><b>1</b>&nbsp;{{t:start.mechanik.s1}}</li>
+            <li><b>2</b>&nbsp;{{t:start.mechanik.vorher_s2}}</li>
+            <li class="letzt"><b>3</b>&nbsp;{{t:start.mechanik.vorher_s3}}</li>
+          </ol>
         </div>
+        <p class="mech-schnitt">{{t:start.mechanik.schnitt}}</p>
+      </div>
         <p>{{t:start.mechanik.vorher_text}}</p>
         <span class="mech-tag">{{t:start.mechanik.vorher_marke}}</span>
       </article>
@@ -318,23 +400,73 @@
         <span class="mech-kind">{{t:start.mechanik.nachher_kind}}</span>
         <h3>{{t:start.mechanik.nachher_titel}}</h3>
         <div class="mech-fig">
-          <svg viewBox="40 22 194 132" role="img" aria-label="{{t:start.mechanik.nachher_bild}}">
-            <ellipse cx="140" cy="140" rx="66" ry="6" fill="rgba(34,34,34,.06)"/>
-            <ellipse cx="140" cy="75" rx="34" ry="46" fill="#F5E6D4" stroke="#E2C6AA" stroke-width="2.5"/>
-            <path d="M124 40c14-13 34-11 44 4" fill="none" stroke="#E9D5C0" stroke-width="2.5" stroke-linecap="round"/>
-            <rect x="106" y="69" width="68" height="12" rx="6" fill="#E0C09B" opacity=".5"/>
-            <rect x="70" y="71" width="128" height="8" rx="4" fill="#C6CBD4" stroke="#A8AFBA" stroke-width="1"/>
-            <circle cx="66" cy="75" r="20" fill="#D9C1A0" stroke="#BE9E70" stroke-width="1.5"/>
-            <circle cx="59" cy="68" r="6" fill="#FBF6EC" opacity=".8"/>
-            <!-- T-Anker, quer hinter dem Ohrlaeppchen -->
-            <rect x="190" y="50" width="10" height="50" rx="5" fill="#C6CBD4" stroke="#A8AFBA" stroke-width="1.2"/>
-            <!-- die Vierteldrehung -->
-            <path d="M214 56a24 24 0 0 1 0 38" fill="none" stroke="#37B369" stroke-width="2.5"
-                  stroke-dasharray="4 5" stroke-linecap="round"/>
-            <path d="M209 88l5 9 5-7z" fill="#37B369"/>
-            <circle cx="195" cy="75" r="3" fill="#37B369"/>
-          </svg>
+        <div class="mech-buehne">
+<svg viewBox="0 0 324 158" role="img" aria-label="{{t:start.mechanik.nachher_bild}}">
+          <defs>
+            <marker id="rah" viewBox="0 0 8 8" refX="6.6" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+              <path d="M0.6 0.7 L7 4 L0.6 7.3 Z" fill="var(--coral-deep)"/>
+            </marker>
+            <path id="rlobe"
+                  d="M32 0 C30 40,30 70,31 96 C31.5 112,38 126,48 126 C58 126,65 112,65 96 C66 70,66 40,64 0 Z"
+                  fill="var(--line)" stroke="var(--grey-deep)" stroke-width="1.3" stroke-linejoin="round"/>
+            <path id="rgem" d="M5 -9 A9 9 0 1 0 5 9 Z"
+                  fill="var(--coral)" stroke="var(--coral-deep)" stroke-width=".9" stroke-linejoin="round"/>
+            <rect id="ranker" x="-2.8" y="-14" width="5.6" height="28" rx="2.4"
+                  fill="var(--navy)" stroke="var(--paper)" stroke-width="1.2"/>
+            <g id="rohr">
+              <path d="M12.5 31 C9 31,8 28,7.5 25.5 C6.8 21.5,2.5 19.5,2.5 13.5 C2.5 6.5,7 1.5,13 1.5 C18.5 1.5,22 6,22 12 C22 17,19 19.5,17.5 22.5 C16 25.5,16 31,12.5 31 Z" fill="var(--line)" stroke="var(--grey-deep)" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M9 20 C7.5 15,9 8,13.5 8 C17 8,18 12,16 15 C14.5 17.2,13 18.5,12.6 21" fill="none" stroke="var(--grey-deep)" stroke-width="1.2" stroke-linecap="round"/>
+            </g>
+          </defs>
+
+          <!-- 1 durchstecken -->
+          <g>
+            <g transform="translate(1,2) scale(1.15)"><use href="#rohr"/><circle cx="11" cy="27" r="2.4" fill="var(--coral)"/></g>
+            <path d="M15 41 C20 50,26 52,31 48" fill="none" stroke="var(--warmgrey)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+            <use href="#rlobe"/>
+            <rect x="12" y="96.25" width="49" height="7.5" fill="var(--navy)"/>
+            <!-- laengs auf dem Stift: so passt der Anker durchs Loch. Dieselbe Laenge
+                 wie in Schritt 3, nur anders herum. -->
+            <rect x="33" y="97.2" width="28" height="5.6" rx="2.4" fill="var(--navy)" stroke="var(--paper)" stroke-width="1.2"/>
+            <use href="#rgem" transform="translate(12,100)"/>
+            <g class="mech-nudge"><line x1="2" y1="76" x2="24" y2="76" stroke="var(--coral-deep)" stroke-width="1.8" marker-end="url(#rah)"/></g>
+            <path d="M32 134 v6 M64 134 v6 M32 137 H64" fill="none" stroke="var(--grey-deep)" stroke-width=".9"/>
+            <text x="48" y="150" font-size="8.5" fill="var(--ink-soft)" text-anchor="middle">{{t:start.mechanik.mm}}</text>
+            </g>
+
+          <!-- 2 Vierteldrehung -->
+          <g transform="translate(108,0)">
+            <use href="#rlobe"/>
+            <rect x="26" y="96.25" width="49" height="7.5" fill="var(--navy)"/>
+            <use href="#rgem" transform="translate(26,100)"/>
+            <rect x="65.7" y="91.5" width="5.6" height="17" rx="2.4" fill="var(--navy)" stroke="var(--paper)" stroke-width="1.2"/>
+            <g class="mech-turn">
+              <path d="M9.03 116.97 A24 24 0 0 1 9.03 83.03" fill="none" stroke="var(--coral-deep)" stroke-width="1.8" marker-end="url(#rah)"/>
+            </g>
+            </g>
+
+          <!-- 3 klick, es sitzt -->
+          <g transform="translate(216,0)">
+            <rect x="-4" y="-4" width="112" height="162" rx="9" fill="var(--sage)" opacity=".1"/>
+            <use href="#rlobe"/>
+            <rect x="26" y="96.25" width="49" height="7.5" fill="var(--navy)"/>
+            <use href="#rgem" transform="translate(26,100)"/>
+            <g transform="translate(68.5,100)"><use href="#ranker"/></g>
+            <g class="mech-klick" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round">
+              <path d="M79 81 l7 -5 M81 100 h8 M79 119 l7 5"/>
+            </g>
+            </g>
+
+          <path d="M101 22 l5 5 l-5 5 M209 22 l5 5 l-5 5" fill="none" stroke="var(--warmgrey)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+          <ol class="mech-schritte">
+            <li><b>1</b>&nbsp;{{t:start.mechanik.s1}}</li>
+            <li><b>2</b>&nbsp;{{t:start.mechanik.nachher_s2}}</li>
+            <li class="letzt"><b>3</b>&nbsp;{{t:start.mechanik.nachher_s3}}</li>
+          </ol>
         </div>
+        <p class="mech-schnitt">{{t:start.mechanik.schnitt}}</p>
+      </div>
         <p>{{t:start.mechanik.nachher_text}}</p>
         <span class="mech-tag">{{t:start.mechanik.nachher_marke}}</span>
       </article>
