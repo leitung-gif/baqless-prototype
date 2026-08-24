@@ -633,6 +633,32 @@ async function run() {
   })());
   log('Bestätigung: Warenkorb ist geleert', d.getElementById('cartCount')?.textContent === '0');
   log('Bestätigung: als Simulation gekennzeichnet', d.querySelector('.dank-note')?.textContent.includes('Simulation'));
+  // Das Lieferfenster wurde ab BESTELLdatum gerechnet und mit «ab Versand»
+  // beschriftet, waehrend Schritt 2 «Bestand pruefen und packen» noch offen stand.
+  // Geprueft wird beides zusammen und nachgerechnet, nicht nach Wortlaut: die
+  // angezeigten Tage muessen aus dem gespeicherten Bestelldatum folgen, und die
+  // Beschriftung muss dieselbe Grundlage nennen wie die Rechnung.
+  log('Bestätigung: Lieferfenster und Beschriftung nennen dieselbe Grundlage', (() => {
+    const b = JSON.parse(f.contentWindow.localStorage.getItem('baqless_bestellung'));
+    const werktage = (start, n) => {
+      const x = new Date(start); let r = n;
+      while (r > 0) { x.setDate(x.getDate() + 1); const t = x.getDay(); if (t !== 0 && t !== 6) r--; }
+      return x;
+    };
+    const eil = b.versandart === 'express';
+    // Die Tageszahlen kommen aus der Lieferzeile selbst, nicht aus dem ganzen Text:
+    // sonst trifft der Vergleich auf irgendeine andere Zahl der Seite.
+    const zeile = d.querySelector('.liefer .datum')?.textContent || '';
+    const gezeigt = (zeile.match(/\d{1,2}/g) || []).map(Number);
+    const soll = [werktage(b.datum, eil ? 1 : 2).getDate(), werktage(b.datum, eil ? 2 : 4).getDate()];
+    const t = d.body.innerText;
+    const zeigt = soll.every(n => gezeigt.includes(n));
+    const behauptetVersand = /ab Versand|from dispatch|dès l.expédition/i.test(t);
+    return zeigt && !behauptetVersand;
+  })(), (() => {
+    const t = d.body.innerText;
+    return /ab Versand|from dispatch/i.test(t) ? 'sagt «ab Versand», rechnet ab Bestellung' : 'stimmig';
+  })());
   f.contentWindow.localStorage.removeItem('baqless_bestellung');
 
   // ===== Kontakt + Rechtsseiten =====
@@ -662,8 +688,50 @@ async function run() {
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
   log('Retouren: 30 Tage', d.body.innerText.includes('30 Tage'));
-  log('Retouren: Zoll-Aussage deckt sich mit dem Kaufweg', d.body.innerText.includes('in der Versandgebühr enthalten')
-    && !d.body.innerText.includes('können je nach Land Einfuhrabgaben anfallen'));
+  // Diese Pruefung nagelte frueher den Wortlaut «in der Versandgebuehr enthalten»
+  // fest. Damit hat sie genau die unbedingte Zusage zementiert, die nicht dastehen
+  // darf: die FAQ war laengst zu «soll ... enthalten» entschaerft, die Rechtsseite
+  // nicht, und der Test haette jede Korrektur dort rot gemeldet.
+  //
+  // Geprueft wird jetzt die Sache statt der Formulierung. Zwei Bedingungen:
+  // solange offen ist, fuer welche Laender die Zollregelung gilt, darf keine Seite
+  // sie unbedingt zusagen; und beide Seiten muessen dieselbe Modalitaet tragen.
+  {
+    const holen = async (p) => {
+      const h = await (await fetch(p)).text();
+      const dok = new DOMParser().parseFromString(h, 'text/html');
+      // textContent nimmt auch den Inhalt von <script>. Dort steckt auf jeder Seite
+      // das ganze Woerterbuch als JSON, also auch die FAQ-Fassung mit «soll». Die
+      // Pruefung las damit ein Kennwort, das auf der Seite gar nicht sichtbar ist,
+      // und blieb im Gegentest gruen, obwohl die harte Zusage wieder dastand.
+      dok.querySelectorAll('script,style,template,noscript').forEach(e => e.remove());
+      return dok.body.textContent.replace(/\s+/g, ' ');
+    };
+    const widT = await holen('/widerruf.html');
+    const faqT = await holen('/faq.html');
+    // Begrenzte Mengenangaben, nicht [^.]*: unbegrenzt greift der Ausdruck ueber die
+    // halbe Seite zurueck, weil dort lange Strecken ohne Punkt stehen, und faengt ein
+    // «soll» von ganz woanders ein. Genau daran ist diese Pruefung im Gegentest
+    // gruen geblieben, obwohl die harte Zusage wieder dastand.
+    const satz = (t) => (t.match(/[^.]{0,140}Einfuhrabgaben[^.]{0,220}\./g) || []).join(' § ');
+    // «soll» ist das Kennwort der entschaerften Fassung, in beiden Quellen dasselbe.
+    const weich = (s) => /\bsoll(en)?\b/.test(s);
+    const wid = satz(widT), faq = satz(faqT);
+    // Ein unerledigter Platzhalter zur Laenderfrage steht in eckigen Klammern.
+    const offen = /\[[^\]]{0,160}(Länder|Land|Livegang)[^\]]{0,160}\]/.test(widT);
+
+    log('Zoll: keine unbedingte Zusage, solange die Länderliste offen ist',
+      wid.length > 0 && (!offen || weich(wid)),
+      offen ? `Vorbehalt steht, Satz ${weich(wid) ? 'bedingt' : 'UNBEDINGT'}` : 'kein Vorbehalt mehr offen');
+
+    log('Zoll: Rechtsseite und FAQ tragen dieselbe Modalität',
+      wid.length > 0 && faq.length > 0 && weich(wid) === weich(faq),
+      `widerruf ${weich(wid) ? 'bedingt' : 'unbedingt'}, faq ${weich(faq) ? 'bedingt' : 'unbedingt'}`);
+
+    log('Zoll: keine Seite sagt zugleich «gedeckt» und «kann anfallen»',
+      !(/Einfuhrabgaben[^.]{0,80}(enthalten|deckt|gedeckt)/.test(widT)
+        && /Einfuhrabgaben[^.]{0,40}(anfallen|hinzukommen)/.test(widT)));
+  }
 
   f.src = '/datenschutz.html';
   await loadOnce(); await sleep(400);
@@ -797,6 +865,30 @@ async function run() {
   const ALLE = ['index.html', 'neuheiten.html', 'kollektion.html', 'produkt.html?p=polarisyg',
     'warenkorb.html', 'kasse.html', 'bestellung.html', 'journal.html', 'story.html',
     'faq.html', 'kontakt.html', 'agb.html', 'datenschutz.html', 'widerruf.html', 'impressum.html'];
+
+  // ===== Keine Seite schiebt sich seitwaerts aus dem Handy =====
+  // Die Kasse war bei 390 px Fensterbreite 532 px breit, weil ein <select> so breit
+  // wird wie seine laengste Option (62 Zeichen) und <fieldset> min-inline-size auf
+  // min-content stellt. body{overflow-x:hidden} hat die rechten 142 px dann nicht
+  // ueberstehen lassen, sondern abgeklemmt: Versandart und Preise waren nicht
+  // erreichbar. Gemessen wird die Dokumentbreite, nicht einzelne Elemente: Laufband,
+  // Kartenschiene und Zierkreise stehen absichtlich ueber ihren Rahmen hinaus.
+  {
+    const m2 = document.createElement('iframe');
+    m2.style.cssText = 'width:390px;height:844px;border:0';
+    document.body.appendChild(m2);
+    const zuBreit = [];
+    for (const seite of ALLE) {
+      await new Promise(r => { m2.addEventListener('load', r, { once: true }); m2.src = '/' + seite; });
+      await sleep(260);
+      const breite = m2.contentDocument.documentElement.scrollWidth;
+      if (breite > 391) zuBreit.push(`${seite} ${breite}px`);
+    }
+    m2.remove();
+    log('Handy 390 px: keine Seite scrollt seitwärts', zuBreit.length === 0,
+      zuBreit.length ? zuBreit.join(' | ') : `${ALLE.length} Seiten geprüft`);
+  }
+
   const ohneZiel = [], ohneMain = [], ohneTitel = [];
   for (const seite of ALLE) {
     f.src = '/' + seite; await loadOnce(); await sleep(250);
