@@ -19,7 +19,12 @@ const loadOnce = (ms = 15000) => new Promise(r => {
 const geh = async (url) => { f.src = url; await loadOnce(); await sleep(400); return [f.contentDocument, f.contentWindow]; };
 const zahl = s => parseFloat(String(s).replace(/[^0-9.]/g, '')) || 0;
 
-const SCHWELLE = 99;   // Gratisversand ab diesem Bestellwert
+// Die Schwelle wird NICHT hier festgeschrieben, sondern aus dem Shop gelesen. Sie
+// stand auf 99, waehrend shared.js laengst mit 120 rechnete, und der Test blieb
+// trotzdem gruen: er baute nur Warenkoerbe von 207 und 248, also ueber beiden
+// Schwellen. Damit war versandSoll immer 0, die Pauschale wurde nie geprueft und
+// die Bedingung «summe < SCHWELLE || versandSoll === 0» war immer erfuellt.
+let SCHWELLE = null;   // wird beim ersten Seitenaufruf aus FREE_SHIP gesetzt
 const PAUSCHALE = 7;   // Versandkosten darunter
 
 async function run() {
@@ -28,6 +33,11 @@ async function run() {
     let [d, w] = await geh(`/${pfad}produkt.html?p=polarisyg`);
     w.localStorage.clear();
     const P0 = w.eval("PRODUCTS.find(x => x.id === 'polarisyg')");
+    if (SCHWELLE === null) {
+      SCHWELLE = w.eval('typeof FREE_SHIP !== "undefined" ? FREE_SHIP : null');
+      log('Schwelle kommt aus dem Shop, nicht aus dem Test', typeof SCHWELLE === 'number' && SCHWELLE > 0,
+        'FREE_SHIP = ' + SCHWELLE);
+    }
 
     // Einzelohrpreis muss zum Paarpreis passen und darf nie mehr sein
     log(`${P} Einzelohr kostet weniger als das Paar`, P0.preisHalb < P0.price,
@@ -89,6 +99,28 @@ async function run() {
       `${zahl(totalZeile)} statt ${summe} plus ${versandSoll}`);
     log(`${P} Gratisversand greift ueber der Schwelle`,
       summe < SCHWELLE || versandSoll === 0, `Summe ${summe}`);
+
+    // ===== Unter der Schwelle: hier wird die Pauschale wirklich geprueft =====
+    // Bisher pruefte dieser Test nur Warenkoerbe von 207 und 248. Beide liegen
+    // ueber jeder denkbaren Schwelle, versandSoll war immer 0, und die Pauschale
+    // kam nie vor. Ein Warenkorb unter der Schwelle deckt das Band ab.
+    w.localStorage.setItem('baqless_cart', JSON.stringify(
+      [{ key: 'polarisyg', id: 'polarisyg', name: P0.name, variant: 'Gold',
+         price: P0.price, qty: 1, einzel: false }]));
+    [d, w] = await geh(`/${pfad}kasse.html`);
+    await sleep(500);
+    const klein = w.eval('cart.reduce((s, x) => s + x.price * x.qty, 0)');
+    const kleinTotal = zahl(d.querySelector('.ko-sum .row.total')?.textContent || '');
+    log(`${P} unter der Schwelle kostet der Versand die Pauschale`,
+      klein < SCHWELLE && kleinTotal === klein + PAUSCHALE,
+      `Summe ${klein}, Total ${kleinTotal}, erwartet ${klein + PAUSCHALE}`);
+    // Und der Balken darf dort nicht voll sein.
+    [d, w] = await geh(`/${pfad}warenkorb.html`);
+    await sleep(400);
+    const kb = d.getElementById('shipFill');
+    const kbBreite = kb ? parseFloat(kb.style.width) || 0 : 0;
+    log(`${P} unter der Schwelle ist der Balken nicht voll`,
+      kbBreite > 0 && kbBreite < 99.9, `${kbBreite}% bei Summe ${klein} von ${SCHWELLE}`);
 
     // Preise stehen ueberall in CHF, nie in einer anderen Waehrung
     // Der Marktwaehler zeigt neu ebenfalls CHF: das Kuerzel in der Kopfzeile blieb nach

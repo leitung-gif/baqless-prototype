@@ -129,7 +129,7 @@ Wirkung, nicht der Wortlaut.
 | Neu | New | Nouveau |
 | Zwischensumme | Subtotal | Sous-total |
 | Versand | Shipping | Livraison |
-| Gratisversand ab CHF 99 | Free shipping from CHF 99 | Livraison offerte dès CHF 99 |
+| Gratisversand ab CHF 120 | Free shipping from CHF 120 | Livraison offerte dès CHF 120 |
 | 30 Tage Rückgaberecht | 30-day returns | Retour sous 30 jours |
 | Versand & Retouren | Shipping & returns | Livraison &amp; retours |
 | Grössenguide | Size guide | Guide des tailles |
