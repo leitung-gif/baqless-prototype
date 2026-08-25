@@ -456,6 +456,18 @@ if (!cart.length){
       toast(`<span class="tick">i</span><span><b>${txt('kauf.korb.leer.titel')}</b> ${txt('kauf.korb.leer.text')}</span>`);
       return;
     }
+    // Dieselbe Sperre wie im Warenkorb und in der Schublade. Beide halten eine
+    // ausverkaufte Zeile auf, nur die Stelle, die den Kauf wirklich ausloest, hielt
+    // sie bisher nicht: istAus kam in dieser Datei kein einziges Mal vor. Wer den
+    // Warenkorb offen liegen liess, waehrend ein Stueck ausverkauft wurde, konnte
+    // hier bestellen, was es nicht mehr gibt.
+    const ausverkauft = cart.filter(istAus);
+    if (ausverkauft.length){
+      koSum.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      const name = (produktVon(ausverkauft[0]) || {}).name || '';
+      toast(`<span class="tick">i</span><span><b>${txt('js.kasse.ausverkauft_titel')}</b> ${txt('js.kasse.ausverkauft_text', { name })}</span>`);
+      return;
+    }
     const offen = [];
     PFLICHT.forEach(f => {
       const inp = document.getElementById(f.id);

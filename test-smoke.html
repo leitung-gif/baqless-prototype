@@ -1075,6 +1075,38 @@ async function run() {
       link ? `#${ziel} = «${ueberschrift(ziel)}»` : 'Link nicht gefunden');
   }
 
+
+  // ===== Die Kasse laesst ein ausverkauftes Stueck nicht durch =====
+  // Warenkorb und Schublade sperren beide, die Stelle die den Kauf ausloest tat es
+  // nicht: istAus kam in kasse.html kein einziges Mal vor. Wer den Warenkorb offen
+  // liegen liess, waehrend ein Stueck ausverkauft wurde, konnte bestellen, was es
+  // nicht mehr gibt. Geprueft wird das Verhalten, nicht der Quelltext.
+  {
+    f.src = '/kasse.html';
+    await loadOnce(); await sleep(500);
+    f.contentWindow.localStorage.setItem('baqless_cart',
+      // Der Warenkorb-Lader wirft Zeilen ohne Preis weg. Eine halbe Zeile wuerde
+      // still zur leeren Bestellung, und der Test pruefte dann die falsche Sperre.
+      JSON.stringify([{ key: 'leafblack', id: 'leafblack', name: 'Honesty Leaf Black',
+                        variant: 'Black', price: 55, qty: 1, einzel: false }]));
+    f.src = '/kasse.html';
+    await loadOnce(); await sleep(700);
+    const kd = f.contentDocument;
+    for (const [id, wert] of [['fVor', 'Test'], ['fNach', 'Fall'], ['fMail', 'test@example.com'],
+                              ['fStr', 'Weg 1'], ['fPlz', '5000'], ['fOrt', 'Aarau']]) {
+      const el = kd.getElementById(id);
+      if (el) { el.value = wert; el.dispatchEvent(new f.contentWindow.Event('input', { bubbles: true })); }
+    }
+    kd.querySelector('button[form="koForm"]')?.click();
+    await sleep(700);
+    const nochKasse = f.contentWindow.location.pathname.includes('kasse.html');
+    const gemeldet = /ausverkauft|sold out/i.test(kd.body.innerText);
+    log('Kasse: ein ausverkauftes Stück kommt nicht durch', nochKasse && gemeldet,
+      nochKasse ? (gemeldet ? 'gestoppt und gemeldet' : 'gestoppt, aber ohne Meldung') : 'DURCHGELASSEN');
+    f.contentWindow.localStorage.removeItem('baqless_cart');
+    f.contentWindow.localStorage.removeItem('baqless_bestellung');
+  }
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });
