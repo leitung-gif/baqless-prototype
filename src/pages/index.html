@@ -618,6 +618,7 @@
       <div class="cl-actions">
         <button class="btn btn-coral" id="lockBtn">{{t:start.clicklock.knopf_klick}}</button>
         <button class="btn btn-ghost" id="tugBtn" disabled style="opacity:.4">{{t:start.clicklock.knopf_ziehen}}</button>
+          <span class="cl-warum">{{t:start.clicklock.knopf_ziehen_warum}}</span>
       </div>
       <p class="cl-hint">{{t:start.clicklock.demo_hinweis}}</p>
       <p class="cl-origin">{{t:start.clicklock.herkunft}}</p>
@@ -781,6 +782,7 @@
     <form class="nl-form" id="nlForm" data-nlform>
       <input type="email" placeholder="deine@mail.ch" required aria-label="{{t:start.newsletter.feld_label}}">
       <button class="btn btn-coral" type="submit">{{t:start.newsletter.knopf}}</button>
+          <p class="nl-datenschutz">{{t:kontakt.formular.datenschutz_vor}} <a href="datenschutz.html">{{t:kontakt.formular.datenschutz_link}}</a>.</p>
     </form>
   </div>
 </section>
@@ -895,7 +897,7 @@ rail.innerHTML = PRODUCTS.slice(0, 8).map(p => `
     <div class="card-meta">
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <div class="card-preis">
-        <span class="price">CHF ${p.price}</span>
+        <span class="price">${fmtCHF(p.price)}</span>
         <span class="card-einzeln">${txt('start.js.preis_paar')}${p.halb ? ' · ' + txt('start.js.preis_einzeln', {preis: p.preisHalb}) : ''}</span>
       </div>
     </div>
@@ -917,7 +919,7 @@ rail.addEventListener('click', e => {
 // sie vom Katalog abweichen, ohne dass es jemand merkt.
 document.querySelectorAll('[data-preis]').forEach(el => {
   const p = PRODUCTS.find(x => x.id === el.dataset.preis);
-  if (p) el.textContent = 'CHF ' + p.price;
+  if (p) el.textContent = fmtCHF(p.price);
   else el.remove();
 });
 

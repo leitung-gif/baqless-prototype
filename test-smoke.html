@@ -52,11 +52,11 @@ async function run() {
   // ===== Paar oder Einzelohr =====
   log('PDP: Einzelohr-Umschalter da', !!d.getElementById('halbToggle')
     && d.querySelectorAll('#halbToggle button').length === 2);
-  log('PDP: Einzelpreis bei 59 Prozent', d.querySelector('#halbToggle button:last-child span')?.textContent === 'CHF 41');
+  log('PDP: Einzelpreis bei 59 Prozent', d.querySelector('#halbToggle button:last-child span')?.textContent === 'CHF 41.00');
   click(d, '#halbToggle button[data-einzelset="1"]'); await sleep(120);
   log('PDP: Umschalter meldet seinen Zustand', d.querySelector('#halbToggle button[data-einzelset="1"]')?.getAttribute('aria-pressed') === 'true'
     && d.querySelector('#halbToggle button[data-einzelset="0"]')?.getAttribute('aria-pressed') === 'false');
-  log('PDP: Umschalten ändert Preis und SKU', d.querySelector('.price-big')?.textContent === 'CHF 41'
+  log('PDP: Umschalten ändert Preis und SKU', d.querySelector('.price-big')?.textContent === 'CHF 41.00'
     && d.querySelector('.variant-line')?.textContent.includes('-H'));
   click(d, '#mainAdd'); await sleep(200);
   log('PDP: Einzelohr als eigene Warenkorbzeile', (() => {
@@ -77,7 +77,7 @@ async function run() {
   log('PDP: Sticky-Leiste folgt dem Umschalter', (() => {
     const sb = d.querySelector('#stickybar [data-add]');
     return sb?.dataset.einzel === '1'
-      && d.querySelector('#stickybar .sb-meta span')?.textContent === 'CHF 41';
+      && d.querySelector('#stickybar .sb-meta span')?.textContent === 'CHF 41.00';
   })());
   log('PDP: Grössengrafik in echten Millimetern', (() => {
     const svg = d.querySelector('#accSize svg');
@@ -88,15 +88,21 @@ async function run() {
   f.src = '/produkt.html?p=polarisyg&r=3';
   await loadOnce(); await sleep(400);
   d = f.contentDocument;
-  log('PDP: zurück auf Paar', d.querySelector('.price-big')?.textContent === 'CHF 69'
+  log('PDP: zurück auf Paar', d.querySelector('.price-big')?.textContent === 'CHF 69.00'
     && d.getElementById('cartCount')?.textContent === '0');
   log('Warenkorb speichert keine Bilddaten', (() => {
     click(d, '#mainAdd');
     const roh = f.contentWindow.localStorage.getItem('baqless_cart') || '';
     return !roh.includes('data:image') && roh.length < 400;
   })(), (f.contentWindow.localStorage.getItem('baqless_cart') || '').length + ' Zeichen');
-  log('Schweizer Zahlenformat', f.contentWindow.eval('fmtCHF(2755)') === 'CHF 2’755',
-    f.contentWindow.eval('fmtCHF(2755)'));
+  // Das Handbuch schreibt in 02.x «Waehrung CHF 81.00» und «Tausender und Dezimal
+  // CHF 1'250.00». Geprueft wird die Regel, nicht eine Zeichenkette: Zeichen vorne,
+  // typografisches Hochkomma als Tausendertrennung, Punkt und zwei Stellen danach.
+  log('Preisformat folgt dem Handbuch', (() => {
+    const gross = f.contentWindow.eval('fmtCHF(2755)');
+    const klein = f.contentWindow.eval('fmtCHF(59)');
+    return /^CHF \d{1,3}(’\d{3})*\.\d{2}$/.test(gross) && /^CHF \d+\.\d{2}$/.test(klein);
+  })(), f.contentWindow.eval('fmtCHF(2755)') + ' · ' + f.contentWindow.eval('fmtCHF(59)'));
   click(d, '[data-remove="polarisyg"]'); await sleep(150);
 
   log('Robust: beschädigter Speicher legt die Seite nicht lahm', (() => {
@@ -617,7 +623,7 @@ async function run() {
   d.getElementById('fStr').value = 'Bahnhofstrasse 1'; d.getElementById('fPlz').value = '5000';
   d.getElementById('fOrt').value = 'Aarau';
   d.querySelector('input[name="versand"][value="express"]').click(); await sleep(200);
-  log('Kasse: Express ändert das Total', d.getElementById('koSum')?.textContent.includes('CHF 14')
+  log('Kasse: Express ändert das Total', d.getElementById('koSum')?.textContent.includes('CHF 14.00')
     && f.contentWindow.dataLayer.some(x => x.event === 'add_shipping_info'));
   d.querySelector('button[form="koForm"]')?.click();
   await loadOnce(); await sleep(500);
@@ -625,7 +631,7 @@ async function run() {
   log('Bestätigung: Seite erreicht', f.contentWindow.location.pathname.includes('bestellung.html'));
   log('Bestätigung: Nummer, Name und Total', (() => {
     const t = d.body.innerText;
-    return /BQ-\d{6}/.test(t) && t.includes('Sinan') && t.includes('CHF 144');
+    return /BQ-\d{6}/.test(t) && t.includes('Sinan') && t.includes('CHF 144.00');
   })());
   log('Bestätigung: purchase getrackt', (() => {
     try { return JSON.parse(f.contentWindow.localStorage.getItem('baqless_bestellung')).total === 144; }

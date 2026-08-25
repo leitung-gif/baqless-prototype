@@ -244,7 +244,7 @@ function karte(p, extra){
       </div>
       <div class="card-meta">
         <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
-        <span class="price">CHF ${p.price}</span>
+        <span class="price">${fmtCHF(p.price)}</span>
       </div>
       <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('kauf.korb.xsell.in_warenkorb')}</button>
       ${extra || ''}

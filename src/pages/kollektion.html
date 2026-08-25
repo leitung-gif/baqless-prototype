@@ -323,7 +323,7 @@ function cardHtml(p, i){
     <div class="card-meta">
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
       <div class="card-preis">
-        <span class="price">CHF ${p.price}</span>
+        <span class="price">${fmtCHF(p.price)}</span>
         <span class="card-einzeln">${txt('start.js.preis_paar')}${p.halb ? ' · ' + txt('start.js.preis_einzeln', {preis: p.preisHalb}) : ''}</span>
       </div>
     </div>

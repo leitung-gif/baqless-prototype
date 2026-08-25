@@ -430,7 +430,7 @@ document.getElementById('buy').innerHTML = `
     </form>
   </div>` : ''}
   <div class="price-row">
-    <span class="price-big">CHF ${P.price}</span>
+    <span class="price-big">${fmtCHF(P.price)}</span>
     <span class="price-note">${txt('pdp.buy.preis_hinweis')}</span>
   </div>
   ${siblings.length > 1 ? `
@@ -440,8 +440,8 @@ document.getElementById('buy').innerHTML = `
   </div>` : ''}
   ${P.halb ? `
   <div class="halb" id="halbToggle" data-einzel="0" role="group" aria-label="${txt('pdp.halb.aria')}">
-    <button type="button" class="active" data-einzelset="0" aria-pressed="true">${txt('pdp.halb.paar')}<span>CHF ${P.price}</span><span class="unit">${txt('einheit.pro_paar')}</span></button>
-    <button type="button" data-einzelset="1" aria-pressed="false">${txt('variante.einzelohr')}<span>CHF ${P.preisHalb}</span><span class="unit">${txt('einheit.pro_ohr')}</span></button>
+    <button type="button" class="active" data-einzelset="0" aria-pressed="true">${txt('pdp.halb.paar')}<span>${fmtCHF(P.price)}</span><span class="unit">${txt('einheit.pro_paar')}</span></button>
+    <button type="button" data-einzelset="1" aria-pressed="false">${txt('variante.einzelohr')}<span>${fmtCHF(P.preisHalb)}</span><span class="unit">${txt('einheit.pro_ohr')}</span></button>
   </div>
   <div class="halb-note">${txt('pdp.halb.wofuer')}
     <span class="halb-anker">${txt('pdp.halb.anker', {zwei: P.preisHalb * 2, paar: P.price})}</span>
@@ -547,7 +547,7 @@ if (halbToggle){
       x.setAttribute('aria-pressed', x === b);
     });
     const preis = einzel ? P.preisHalb : P.price;
-    document.querySelector('.price-big').textContent = 'CHF ' + preis;
+    document.querySelector('.price-big').textContent = fmtCHF(preis);
     // Der Knopf traegt keinen Betrag mehr, nur noch die Variante. Der Preis steht
     // gross darueber und im Umschalter, und dort stimmt er auch bei Menge ueber 1.
     const add = document.getElementById('mainAdd');
@@ -558,7 +558,7 @@ if (halbToggle){
     if (sbAdd) sbAdd.dataset.einzel = einzel ? '1' : '0';
     // In der Leiste steht an dieser Stelle bei ausverkauften Artikeln der Zustand,
     // nicht der Preis. Der Zustand haengt am Datenwert, nicht am Text.
-    if (sbPreis && P.lager !== 'ausverkauft') sbPreis.textContent = 'CHF ' + preis;
+    if (sbPreis && P.lager !== 'ausverkauft') sbPreis.textContent = fmtCHF(preis);
     document.querySelector('.variant-line').textContent =
       `${P.variant}${einzel ? ' · ' + txt('variante.einzelohr') : ''} · Click-Lock · ${P.sku}${einzel ? '-H' : ''}`;
     setzeUrl(einzel);
@@ -660,7 +660,7 @@ document.getElementById('xsellRail').innerHTML = others.map(p => `
     </div>
     <div class="card-meta">
       <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
-      <span class="price">CHF ${p.price}</span>
+      <span class="price">${fmtCHF(p.price)}</span>
     </div>
     <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('pdp.knopf.in_den_warenkorb')}</button>
   </article>`).join('');
@@ -714,7 +714,7 @@ if (notifyForm){
 const sb = document.getElementById('stickybar');
 sb.innerHTML = `
   <img src="${P.thumb}" alt="">
-  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? txt('pdp.leiste.ausverkauft') : 'CHF ' + P.price}</span></div>
+  <div class="sb-meta"><h4>${P.name} · ${P.variant}</h4><span>${P.lager === 'ausverkauft' ? txt('pdp.leiste.ausverkauft') : fmtCHF(P.price)}</span></div>
   ${P.lager === 'ausverkauft'
     ? `<button class="btn btn-navy" data-notify="${P.id}">${txt('pdp.leiste.knopf_benachrichtigen')}</button>`
     : `<button class="btn btn-coral" data-add="${P.id}" data-uses-qty="1" data-einzel="0">${txt('pdp.knopf.in_den_warenkorb')}</button>`}`;
@@ -779,7 +779,7 @@ if (seenPrev.length){
       </div>
       <div class="card-meta">
         <div><h3><a class="card-link" href="produkt.html?p=${p.id}">${p.name}</a></h3><span class="variant">${p.variant} · Click-Lock</span></div>
-        <span class="price">CHF ${p.price}</span>
+        <span class="price">${fmtCHF(p.price)}</span>
       </div>
       <button class="add-btn" data-qty="1" data-add="${p.id}">${txt('pdp.knopf.in_den_warenkorb')}</button>
     </article>`;

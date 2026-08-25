@@ -113,7 +113,11 @@ const overlay = document.getElementById('overlay');
 // Schweizer Zahlenformat mit Hochkomma als Tausendertrennung
 // Schweizer Tausendertrennung mit typografischem Apostroph. Die Locale liefert je
 // nach Browser ein gerades Apostroph oder ein schmales Leerzeichen, darum vereinheitlichen.
-const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH').replace(/['\u00A0\u202F]/g, '\u2019');
+// Das Handbuch schreibt in 02.x «Waehrung CHF 81.00» und «Tausender und Dezimal
+// CHF 1'250.00», in 07.x ausdruecklich «CHF 69.00, pro Paar». Ohne
+// minimumFractionDigits lieferte toLocaleString «CHF 59» und verletzte damit die
+// eigene CI an jeder Preisstelle des Shops.
+const fmtCHF = n => 'CHF ' + Number(n).toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/['  ]/g, '’');
 // Bilder, Name und Variante kommen aus den Produktdaten, nie aus dem Warenkorb-Speicher
 const produktVon = item => PRODUCTS.find(x => x.id === item.id) || {};
 const bildVon = item => produktVon(item).thumb || '';
@@ -552,7 +556,7 @@ function soSearch(q){
     <a class="so-item" href="produkt.html?p=${p.id}">
       <img src="${p.thumb}" alt="">
       <div class="si-meta"><h4>${p.name} · ${p.variant}</h4><span>${txt('js.suche.kollektion_meta', {name: p.collection})} · Click-Lock</span></div>
-      <span class="si-price">CHF ${p.price}</span>
+      <span class="si-price">${fmtCHF(p.price)}</span>
     </a>`).join('')
     : `<div class="so-empty"><b>${txt('js.suche.leer_titel')}</b>${txt('js.suche.leer_text')}</div>`;
 }
