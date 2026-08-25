@@ -1182,6 +1182,41 @@ async function run() {
       risse.length ? risse.join(' | ') : 'sechs Kacheln geprüft');
   }
 
+
+  // ===== Material und Pflege duerfen nicht zwei Oberflaechen nennen =====
+  // Sieben von fuenfzehn Modellen sagten unter «Pflege» eine PVD-Beschichtung an,
+  // waehrend «Material & Masse» derselben Seite Vergoldung, schwarze Beschichtung
+  // oder rhodiniert nannte. Eine Rhodinierung ist keine PVD-Beschichtung.
+  // Geprueft wird die Sache: nennt die Pflege eine Oberflaechentechnik, die das
+  // Materialfeld nicht kennt?
+  {
+    const roh = await (await fetch('/src/data/products.json')).json();
+    const liste = Array.isArray(roh) ? roh : (roh.products || roh.produkte);
+    const TECHNIK = {
+      de: [/PVD/i, /rhodiniert/i, /Vergoldung/i, /Emaille/i],
+      en: [/PVD/i, /rhodium/i, /gold[- ]plat/i, /enamel/i],
+      fr: [/PVD/i, /rhodi/i, /plaqué or|dorure/i, /émail/i],
+    };
+    const streit = [];
+    for (const p of liste) for (const sp of ['de', 'en', 'fr']) {
+      const mat = p.materials?.[sp] || '', care = p.care?.[sp] || '';
+      // Ein allgemeiner Pflegehinweis darf andere Oberflaechen nennen: «Rhodinierte
+      // Stuecke bleiben lange hell» sagt nichts ueber DIESES Stueck. Gemeint ist nur,
+      // was dem Modell selbst zugeschrieben wird, also der bestimmte Artikel im
+      // Singular. Ohne diese Verfeinerung meldete die Pruefung friendship falsch.
+      const allgemein = /Stücke|Stücken|pieces|pièces|Modelle|models|modèles/i;
+      const saetze = care.split(/(?<=\.)\s+/);
+      for (const t of TECHNIK[sp]) {
+        if (!t.test(care) || t.test(mat)) continue;
+        const traegt = saetze.some(z => t.test(z) && !allgemein.test(z));
+        if (traegt) streit.push(`${p.slug || p.id} [${sp}] ${t.source}`);
+      }
+    }
+    log('Produktdaten: Pflege nennt keine Oberfläche, die das Material nicht kennt',
+      streit.length === 0,
+      streit.length ? streit.slice(0, 5).join(' | ') : `${liste.length} Modelle × 3 Sprachen`);
+  }
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });
