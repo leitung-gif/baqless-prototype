@@ -39,6 +39,10 @@
 .faq-zusagen li:nth-child(1)::before{background:var(--coral)}
 .faq-zusagen li:nth-child(2)::before{background:var(--sage)}
 .faq-zusagen li:nth-child(3)::before{background:var(--lavender)}
+/* Das <span> floss automatisch in Zeile 2 Spalte 1 weiter, und die ist 10px breit:
+   gemessen 10px Breite bei 292px Hoehe, also ein Wort je Zeile. Es gehoert unter
+   das <b> in Spalte 2. */
+.faq-zusagen li span{grid-column:2}
 .legal.faqp .faq-zusagen b{display:block; font-size:14.5px; font-weight:600; color:var(--charcoal)}
 .legal.faqp .faq-zusagen span{display:block; margin-top:3px; font-size:13.5px; line-height:1.6; color:var(--ink-soft)}
 

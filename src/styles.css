@@ -76,8 +76,8 @@ h1,h2,h3{font-family:var(--serif); font-weight:300; line-height:1.05; text-wrap:
 
 /* ---------- Helle Unterseiten ---------- */
 body.page-light{background:var(--ground)}
-body.page-light nav{color:var(--charcoal)}
-body.page-light.hero-dark nav:not(.scrolled){color:var(--ground)}
+body.page-light #nav{color:var(--charcoal)}
+body.page-light.hero-dark #nav:not(.scrolled){color:var(--ground)}
 .crumbs{font-size:12.5px; letter-spacing:.05em; color:var(--ink-soft); margin-bottom:26px}
 .crumbs a{color:inherit} .crumbs a:hover{color:var(--coral-deep)}
 .crumbs .sep{margin:0 8px; color:var(--warmgrey)}
@@ -89,13 +89,16 @@ body.page-light.hero-dark nav:not(.scrolled){color:var(--ground)}
 }
 
 /* ---------- Nav ---------- */
-nav{
+/* Nur die Kopfzeile. Ohne die Eingrenzung wurde jedes <nav> im Shop fixiert:
+   die Kapitelliste der FAQ lag ueber Wortmarke und Titel, die Kapitelleiste
+   der Story schwebte mitten im Fliesstext. */
+#nav{
   position:fixed; inset:0 0 auto 0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
   padding:18px var(--pad); color:var(--ground);
   transition:background .35s, box-shadow .35s, padding .35s, color .35s;
 }
-nav.scrolled{
+#nav.scrolled{
   background:rgba(250,247,242,.9); backdrop-filter:blur(14px); color:var(--charcoal);
   box-shadow:0 1px 0 rgba(34,34,34,.07); padding:12px var(--pad);
 }
@@ -104,12 +107,12 @@ nav.scrolled{
 .wordmark .wm-dunkel{display:none}
 /* Auf hellem Grund die dunkle Fassung, auf dunklem die weisse. Fuenf Fassungen sind
    freigegeben, gesetzt wird die Marke nie. */
-nav.scrolled .wordmark .wm-hell{display:none}
-nav.scrolled .wordmark .wm-dunkel{display:block}
-body.page-light nav .wordmark .wm-hell{display:none}
-body.page-light nav .wordmark .wm-dunkel{display:block}
-body.page-light.hero-dark nav:not(.scrolled) .wordmark .wm-hell{display:block}
-body.page-light.hero-dark nav:not(.scrolled) .wordmark .wm-dunkel{display:none}
+#nav.scrolled .wordmark .wm-hell{display:none}
+#nav.scrolled .wordmark .wm-dunkel{display:block}
+body.page-light #nav .wordmark .wm-hell{display:none}
+body.page-light #nav .wordmark .wm-dunkel{display:block}
+body.page-light.hero-dark #nav:not(.scrolled) .wordmark .wm-hell{display:block}
+body.page-light.hero-dark #nav:not(.scrolled) .wordmark .wm-dunkel{display:none}
 footer .wordmark img, .mnav .wordmark img{height:33px}
 .nav-links{display:flex; gap:32px; font-size:13px; font-weight:400; letter-spacing:.06em}
 .nav-links a{position:relative; padding:4px 0}
@@ -738,7 +741,7 @@ footer ul a:hover{color:var(--coral)}
   .market-flag{margin-right:0}
   #marketLabel{display:none}
   .wordmark{font-size:16px; letter-spacing:.22em}
-  nav{padding-left:14px; padding-right:10px}
+  #nav{padding-left:14px; padding-right:10px}
 }
 
 /* ===== Footer: Trust + Zahlarten ===== */
@@ -893,7 +896,7 @@ footer ul a:hover{color:var(--coral)}
 }
 @media print{.proto-band{display:none}}
 
-nav{top:var(--proto-h)}
+#nav{top:var(--proto-h)}
 body{padding-top:var(--proto-h)}
 .skip-link{top:calc(var(--proto-h) + 8px)}
 html{scroll-padding-top:calc(92px + var(--proto-h))}

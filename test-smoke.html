@@ -1107,6 +1107,81 @@ async function run() {
     f.contentWindow.localStorage.removeItem('baqless_bestellung');
   }
 
+
+  // ===== Die Datenschutzseite muss beschreiben, was der Shop wirklich speichert =====
+  // Sie sagte «technisch notwendige Cookies, zum Beispiel fuer deinen Warenkorb».
+  // document.cookie kommt im ganzen Shop null Mal vor, und gespeichert wird mehr als
+  // der Warenkorb: auch eine Merkliste und die zuletzt angesehenen Modelle. Diese
+  // Wache schlaegt an, sobald ein neuer Speicherschluessel dazukommt, den der Text
+  // nicht kennt.
+  {
+    const BEKANNT = ['baqless_cart', 'baqless_merk', 'baqless_seen',
+                     'baqless_lang', 'baqless_markt', 'baqless_bestellung'];
+    const quellen = await Promise.all(
+      ['/src/partials/shared.js', '/src/pages/produkt.html', '/src/pages/kasse.html',
+       '/src/pages/warenkorb.html', '/src/pages/bestellung.html', '/src/pages/kollektion.html',
+       '/src/partials/header.html', '/src/partials/drawer.html']
+        .map(p => fetch(p).then(r => r.ok ? r.text() : '').catch(() => '')));
+    const roh = quellen.join('');
+    const benutzt = [...new Set([...roh.matchAll(/localStorage\.(?:get|set|remove)Item\(\s*'([a-z_]+)'/g)]
+      .map(m => m[1]))].sort();
+    const unbekannt = benutzt.filter(k => !BEKANNT.includes(k));
+    log('Datenschutz: kein Speicherschlüssel ohne Beschreibung', unbekannt.length === 0,
+      unbekannt.length ? `neu und unbeschrieben: ${unbekannt.join(', ')}` : `${benutzt.length} Schlüssel, alle bekannt`);
+
+    log('Datenschutz: keine Cookie-Behauptung ohne Cookies', !/document\.cookie/.test(roh),
+      /document\.cookie/.test(roh) ? 'der Shop setzt doch Cookies, Text prüfen' : 'keine Cookies im Code');
+
+    const dsDok = new DOMParser().parseFromString(
+      await (await fetch('/datenschutz.html')).text(), 'text/html');
+    dsDok.querySelectorAll('script,style').forEach(e => e.remove());
+    const dsTxt = dsDok.body.textContent.replace(/\s+/g, ' ');
+    log('Datenschutz: der Text behauptet keine Cookies mehr',
+      !/nutzt technisch notwendige Cookies|uses technically necessary cookies/i.test(dsTxt),
+      /Cookie/i.test(dsTxt) ? 'Wort Cookie kommt noch vor, Zusammenhang prüfen' : 'kein Cookie-Anspruch');
+  }
+
+
+  // ===== Nur die Kopfzeile darf fixiert sein =====
+  // styles.css setzte `nav{position:fixed}` ohne Einschraenkung. Der Shop hat zehn
+  // nav-Elemente. Die Kapitelliste der FAQ klebte dadurch bei top 34 ueber Wortmarke,
+  // Krume und Titel, die Kapitelleiste der Story schwebte bei top 492 mitten im Text.
+  {
+    const m3 = document.createElement('iframe');
+    m3.style.cssText = 'width:1280px;height:900px;border:0';
+    document.body.appendChild(m3);
+    const schwebend = [];
+    for (const seite of ALLE) {
+      await new Promise(r => { m3.addEventListener('load', r, { once: true }); m3.src = '/' + seite; });
+      await sleep(280);
+      const md = m3.contentDocument;
+      for (const n of md.querySelectorAll('nav')) {
+        if (n.id === 'nav') continue;
+        if (md.defaultView.getComputedStyle(n).position === 'fixed')
+          schwebend.push(`${seite}:${n.className || n.getAttribute('aria-labelledby') || 'nav'}`);
+      }
+    }
+    log('Layout: ausser der Kopfzeile schwebt kein nav', schwebend.length === 0,
+      schwebend.length ? schwebend.join(' | ') : `${ALLE.length} Seiten geprüft`);
+
+    // Der Text der Zusagen-Kacheln floss in die 10px-Spalte des Aufzaehlungspunkts.
+    // Gemessen wird das Verhaeltnis zur Kachel, nicht ein Pixelwert.
+    const risse = [];
+    for (const [seite, sel] of [['faq.html', '.faq-zusagen li'], ['kontakt.html', '.k-zusagen li']]) {
+      await new Promise(r => { m3.addEventListener('load', r, { once: true }); m3.src = '/' + seite; });
+      await sleep(400);
+      for (const li of m3.contentDocument.querySelectorAll(sel)) {
+        const sp = li.querySelector('span');
+        if (!sp) continue;
+        const b = sp.getBoundingClientRect().width, k = li.getBoundingClientRect().width;
+        if (b < k * 0.5) risse.push(`${seite}: ${Math.round(b)}px in ${Math.round(k)}px`);
+      }
+    }
+    m3.remove();
+    log('Layout: der Text der Zusagen-Kacheln füllt seine Spalte', risse.length === 0,
+      risse.length ? risse.join(' | ') : 'sechs Kacheln geprüft');
+  }
+
   document.getElementById('out').textContent = 'DONE\n' + out.join('\n');
 }
 run().catch(e => { document.getElementById('out').textContent = 'ERROR ' + e.message + '\n' + out.join('\n'); });
