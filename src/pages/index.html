@@ -96,10 +96,10 @@
    Zeile auf 15.5px aufblaest. Das ist genau so passiert. */
 .mech-fig .mech-schnitt{margin:7px 0 0; text-align:center; font-size:10.5px; color:var(--ink-soft); line-height:1.4}
 @media(prefers-reduced-motion:no-preference){
-  .mech-nudge{animation:mechNudge 3s ease-in-out infinite}
-  @keyframes mechNudge{0%,62%,100%{transform:translateX(0)}30%{transform:translateX(5px)}}
-  .mech-nudge-l{animation:mechNudgeL 3s ease-in-out infinite}
-  @keyframes mechNudgeL{0%,62%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}}
+  .mech-nudge{animation:mechNudge 4s ease-in-out infinite}
+  @keyframes mechNudge{0%,46%,100%{transform:translateX(0)}22%{transform:translateX(5px)}}
+  .mech-nudge-l{animation:mechNudgeL 4s ease-in-out infinite}
+  @keyframes mechNudgeL{0%,46%,100%{transform:translateX(0)}22%{transform:translateX(-5px)}}
   /* Ruhezustand ist der Endzustand: ohne Bewegung fehlt keine Aussage. */
   .mech-fall{animation:mechFall 4s ease-in infinite}
   @keyframes mechFall{0%,32%{transform:translate(0,0);opacity:1}
@@ -107,8 +107,8 @@
     72%,100%{transform:translate(0,0);opacity:1}}
   .mech-klick{animation:mechKlick 4s ease-out infinite}
   @keyframes mechKlick{0%,100%{opacity:1}30%{opacity:.15}44%{opacity:1}}
-  .mech-turn{animation:mechTurn 3s ease-in-out infinite}
-  @keyframes mechTurn{0%,72%,100%{opacity:.5}34%{opacity:1}}
+  .mech-turn{animation:mechTurn 4s ease-in-out infinite}
+  @keyframes mechTurn{0%,54%,100%{opacity:.5}25%{opacity:1}}
 }
 .mech-tag{
   width:fit-content; margin-top:auto;
