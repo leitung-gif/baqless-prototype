@@ -60,34 +60,22 @@
 @media(max-width:620px){.jindex{gap:0 22px}.jindex .lb{width:100%; min-height:34px}}
 
 /* ---------- Zahlenband: was diese Seite ist, in vier Zahlen ---------- */
-.jzahlen{max-width:1180px; margin:0 auto; padding:0 var(--pad) clamp(58px,7vw,92px)}
-.jz-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:2px solid var(--navy)}
-.jz{padding:26px clamp(14px,1.9vw,26px) 4px; border-right:1px solid rgba(11,29,63,.14)}
 .jz:first-child{padding-left:0}
 .jz:last-child{padding-right:0; border-right:0}
-.jz .n{display:block; font-family:var(--serif); font-weight:300; font-size:clamp(50px,5.8vw,76px);
-  line-height:.86; color:var(--navy); font-variant-numeric:tabular-nums}
-.jz .lb{display:block; margin-top:12px; font-size:11px; font-weight:600; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-soft)}
-.jz p{margin-top:11px; font-size:14.5px; line-height:1.6; color:var(--ink)}
 /* Die Null ist der Blickfang dieser Bildschirmhoehe */
 .jz:last-child .n{color:var(--coral-deep)}
-.jz-fuss{margin-top:30px; max-width:74ch; background:var(--paper); border-radius:8px;
+/* Der Kasten stand im Rahmen .jzahlen, der mit dem Zahlenblock weggefallen ist.
+   Er traegt Breite und Seitenrand jetzt selbst. */
+/* Der Kasten stand im Rahmen .jzahlen, der mit dem Zahlenblock weggefallen ist.
+   Er richtet sich jetzt an .jhead aus, unter dessen Sprungleiste er steht. */
+.jz-fuss{padding:0 var(--pad) clamp(58px,7vw,92px); background:none; box-shadow:none}
+.jz-fuss > span{display:block; max-width:74ch; background:var(--paper); border-radius:8px;
   padding:22px 24px; box-shadow:10px 10px 0 var(--lav-tint);
   font-size:14.5px; line-height:1.66; color:var(--ink-strong)}
 .jz-fuss b{display:block; font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.18em;
   text-transform:uppercase; color:var(--navy); margin-bottom:8px}
-@media(min-width:521px) and (max-width:860px){
-  .jz-grid{grid-template-columns:1fr 1fr}
-  .jz{padding-left:clamp(14px,1.9vw,26px)}
-  .jz:first-child, .jz:nth-child(3){padding-left:0}
-  .jz:nth-child(2){padding-right:0; border-right:0}
-  .jz:nth-child(3), .jz:nth-child(4){border-top:1px solid rgba(11,29,63,.14); margin-top:22px; padding-top:24px}
-}
 @media(max-width:520px){
-  .jz-grid{grid-template-columns:1fr}
   .jz, .jz:nth-child(3), .jz:nth-child(4){padding:22px 0 4px; border-right:0; margin-top:0}
-  .jz + .jz{border-top:1px solid rgba(11,29,63,.14); margin-top:18px}
 }
 
 /* ---------- Rubrikleiste ---------- */
@@ -336,34 +324,12 @@
   </div>
 </div>
 
-  <div class="jzahlen">
-    <div class="jz-grid">
-      <div class="jz reveal">
-        <span class="n">6</span>
-        <span class="lb">{{t:journal.zahlen.portraets.label}}</span>
-        <p>{{t:journal.zahlen.portraets.text}}</p>
-      </div>
-      <div class="jz reveal d1">
-        <span class="n">4</span>
-        <span class="lb">{{t:journal.zahlen.jahre.label}}</span>
-        <p>{{t:journal.zahlen.jahre.text}}</p>
-      </div>
-      <div class="jz reveal d2">
-        <span class="n">1</span>
-        <span class="lb">{{t:journal.zahlen.zitat.label}}</span>
-        <p>{{t:journal.zahlen.zitat.text}}</p>
-      </div>
-      <div class="jz reveal d3">
-        <span class="n">0</span>
-        <span class="lb">{{t:journal.zahlen.sterne.label}}</span>
-        <p>{{t:journal.zahlen.sterne.text}}</p>
-      </div>
-    </div>
     <div class="jz-fuss">
-      <b>{{t:journal.zahlen.fotos.label}}</b>
-      {{t:journal.zahlen.fotos.text}}
+      <span>
+        <b>{{t:journal.zahlen.fotos.label}}</b>
+        {{t:journal.zahlen.fotos.text}}
+      </span>
     </div>
-  </div>
 
   <div class="jrubrik" id="wako"><span>{{t:journal.index.aufmacher}}</span><i aria-hidden="true"></i></div>
 
