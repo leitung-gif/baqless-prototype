@@ -331,7 +331,7 @@ function renderSeite(){
     </div>`;
   }).join('');
 
-  const versand = sub >= FREE_SHIP ? 0 : 7;
+  const versand = sub >= FREE_SHIP ? 0 : VERSAND_PAUSCHALE;
   const gesperrt = cart.some(istAus);
   sumBox.innerHTML = `
     <h2>${txt('kauf.korb.summe.titel')}</h2>

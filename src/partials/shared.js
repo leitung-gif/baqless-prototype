@@ -97,6 +97,10 @@ function pop(freq = 600){
 
 // ---------- Warenkorb (v3: Persistenz, Stepper, Gratisversand) ----------
 const FREE_SHIP = 120;
+// Die zwei Tarife stehen hier, weil sie an drei Stellen gebraucht werden:
+// Warenkorb, Kasse und Bestellbestaetigung. Vorher standen sie dreimal hart im Code.
+const VERSAND_PAUSCHALE = 7;
+const VERSAND_EXPRESS = 14;
 let cart = [];
 try {
   cart = JSON.parse(localStorage.getItem('baqless_cart') || '[]');
@@ -496,6 +500,12 @@ function waehleSprache(b){
   const code = (b.dataset.lang || '').toLowerCase();
   if (!code || code === I18N.lang) return;
   try { localStorage.setItem('baqless_lang', code); } catch(e) {}
+  // Der Sprachwechsel laedt eine andere Datei. Eine Seite mit einem halb
+  // ausgefuellten Formular kann sich hier einhaengen und ihre Eingaben retten,
+  // sonst steht die Kaeuferin nach dem Wechsel vor einem leeren Formular.
+  if (typeof window.vorSprachwechsel === 'function'){
+    try { window.vorSprachwechsel(); } catch(e) {}
+  }
   location.href = sprachUrl(code);
 }
 setupDd('langDd', 'langBtn', waehleSprache);

@@ -189,8 +189,8 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
           <div class="field">
             <label for="fLand">{{t:kauf.kasse.feld.land}}</label>
             <select id="fLand" name="land" autocomplete="country-name" aria-describedby="hilfeLand">
-              <option>{{t:kauf.land.schweiz}}</option><option>{{t:kauf.land.deutschland}}</option><option>{{t:kauf.land.oesterreich}}</option>
-              <option>{{t:kauf.land.liechtenstein}}</option><option>{{t:kauf.land.frankreich}}</option><option>{{t:kauf.land.italien}}</option>
+              <option value="kauf.land.schweiz">{{t:kauf.land.schweiz}}</option><option value="kauf.land.deutschland">{{t:kauf.land.deutschland}}</option><option value="kauf.land.oesterreich">{{t:kauf.land.oesterreich}}</option>
+              <option value="kauf.land.liechtenstein">{{t:kauf.land.liechtenstein}}</option><option value="kauf.land.frankreich">{{t:kauf.land.frankreich}}</option><option value="kauf.land.italien">{{t:kauf.land.italien}}</option>
               <!-- Katalog, Produktseite und FAQ sagen, dass die uebrigen Laender aus
                    Japan beliefert werden. Wer von dort kommt, fand hier eine Liste mit
                    sechs Eintraegen und einen Satz, der wie eine Absage klang. Er nennt
@@ -245,12 +245,12 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
       <fieldset>
         <legend>{{t:kauf.kasse.versand.legende}}</legend>
         <label class="opt sel" data-opt="versand">
-          <input type="radio" name="versand" value="standard" data-preis="0" checked>
+          <input type="radio" name="versand" value="standard" checked>
           <span><b>{{t:kauf.versand.standard.name}}</b><span>{{t:kauf.versand.standard.beschreibung}} · {{t:kaufweg.kasse.versand.standard_zusatz}}</span></span>
           <span class="pr" id="prStandard">{{t:kauf.versand.gratis}}</span>
         </label>
         <label class="opt" data-opt="versand">
-          <input type="radio" name="versand" value="express" data-preis="14">
+          <input type="radio" name="versand" value="express">
           <span><b>{{t:kauf.versand.express.name}}</b><span>{{t:kauf.versand.express.beschreibung}} · {{t:kaufweg.kasse.versand.express_zusatz}}</span></span>
           <span class="pr">CHF 14</span>
         </label>
@@ -300,6 +300,39 @@ legend{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:
 // ---------- Kasse ----------
 const koSum = document.getElementById('koForm') ? document.getElementById('koSum') : null;
 const form = document.getElementById('koForm');
+
+// ---------- Eingaben ueber den Sprachwechsel retten ----------
+// Der Sprachwechsel laedt eine andere Datei. Vorher stand die Kaeuferin danach vor
+// einem leeren Formular mit zurueckgesetzter Versand- und Zahlart. Die Werte liegen
+// nur im Sitzungsspeicher, nur fuer diesen einen Sprung, und werden beim Einlesen
+// sofort wieder geloescht. Nichts davon ueberlebt das Schliessen des Reiters.
+const ENTWURF = 'baqless_kasse_entwurf';
+
+window.vorSprachwechsel = function(){
+  const d = {};
+  form.querySelectorAll('input, select, textarea').forEach(f => {
+    if (!f.name && !f.id) return;
+    const k = f.id || f.name;
+    if (f.type === 'radio' || f.type === 'checkbox'){ if (f.checked) d[f.name] = f.value; }
+    else d[k] = f.value;
+  });
+  try { sessionStorage.setItem(ENTWURF, JSON.stringify(d)); } catch(e) {}
+};
+
+(function entwurfEinlesen(){
+  let d = null;
+  try { d = JSON.parse(sessionStorage.getItem(ENTWURF) || 'null'); } catch(e) {}
+  try { sessionStorage.removeItem(ENTWURF); } catch(e) {}
+  if (!d) return;
+  form.querySelectorAll('input, select, textarea').forEach(f => {
+    if (f.type === 'radio' || f.type === 'checkbox'){
+      if (d[f.name] !== undefined) f.checked = (f.value === d[f.name]);
+    } else {
+      const k = f.id || f.name;
+      if (d[k] !== undefined) f.value = d[k];
+    }
+  });
+})();
 const fehlerBox = document.getElementById('koFehler');
 const haken = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 // Steht auf true, sobald der Kauf abgeschickt ist. Danach ist der geleerte Warenkorb
@@ -326,8 +359,8 @@ const PFLICHT = [
 function versandPreis(){
   const gewaehlt = form.querySelector('input[name="versand"]:checked');
   const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  if (gewaehlt.value === 'express') return 14;
-  return sub >= FREE_SHIP ? 0 : 7;
+  if (gewaehlt.value === 'express') return VERSAND_EXPRESS;
+  return sub >= FREE_SHIP ? 0 : VERSAND_PAUSCHALE;
 }
 
 // Der Warenkorb kann sich waehrend des Ausfuellens leeren, etwa wenn im Drawer die
@@ -377,7 +410,7 @@ function landHinweis(){
   const box = document.getElementById('koLand');
   const inland = feld.selectedIndex === 0;
   box.hidden = inland;
-  if (!inland) box.textContent = txt('kaufweg.kasse.land.ausland', {land: feld.value});
+  if (!inland) box.textContent = txt('kaufweg.kasse.land.ausland', {land: txt(feld.value)});
 }
 
 // Sammelmeldung oben im Formular: eine Zeile je fehlende Angabe, jede springt zum Feld.

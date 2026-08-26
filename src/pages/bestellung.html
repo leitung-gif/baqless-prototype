@@ -151,6 +151,19 @@ if (best && best.datum && (Date.now() - new Date(best.datum).getTime()) > 864000
   try { localStorage.removeItem('baqless_bestellung'); } catch(e) {}
   best = null;
 }
+// Land und Variante standen als uebersetzter Text in der Bestellung. Wer nach dem Kauf
+// die Sprache wechselt, las sie weiter in der Bestellsprache, mitten im neuen Text.
+// Das Land wandert seit heute als Schluessel mit; aeltere Bestellungen tragen Klartext.
+function landText(l){
+  return (l && l.indexOf('kauf.land.') === 0) ? txt(l) : (l || '');
+}
+// Name und Variante holt die Seite aus dem heutigen Katalog, der in der angezeigten
+// Sprache geladen ist. Fehlt der Artikel dort, gilt der Stand der Bestellung.
+function heute(a){
+  const p = (typeof PRODUCTS !== 'undefined' ? PRODUCTS : []).find(x => x.id === a.id);
+  return p ? { name: p.name, variant: p.variant } : { name: a.name, variant: a.variant };
+}
+
 const box = document.getElementById('inhalt');
 const hakenS = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 
@@ -221,9 +234,10 @@ if (!best){
       <p class="wann">${txt('kauf.bestellung.bestellt_am', {datum})}</p>
       ${best.artikel.map(a => `
         <div class="bline">
-          <div>${a.name}<span class="q">${a.variant} · ${stueckVon(a, a.qty)}</span></div>
+          <div>${heute(a).name}<span class="q">${heute(a).variant} · ${stueckVon(a, a.qty)}</span></div>
           <div class="pr">${fmtCHF(a.price * a.qty)}</div>
         </div>`).join('')}
+      <div class="bline"><div>${txt('kauf.summe.zwischensumme')}</div><div class="pr">${fmtCHF(best.zwischensumme != null ? best.zwischensumme : best.total - best.versand)}</div></div>
       <div class="bline"><div>${txt('kauf.summe.versand')} (${versandName})</div><div class="pr">${best.versand === 0 ? txt('kauf.versand.gratis') : fmtCHF(best.versand)}</div></div>
       <div class="bline total"><div>${txt('kauf.summe.total')}</div><div class="pr">${fmtCHF(best.total)}</div></div>
       <p class="mwst">${txt('kaufweg.korb.summe.mwst')}</p>
@@ -232,7 +246,7 @@ if (!best){
     <section class="bsec">
       <h2>${txt('kauf.bestellung.liefer_zahlung.titel')}</h2>
       <div class="bgrid2">
-        <div class="bbox"><b>${txt('kauf.adresse.lieferadresse')}</b>${best.name}<br>${best.adresse}<br>${best.land}</div>
+        <div class="bbox"><b>${txt('kauf.adresse.lieferadresse')}</b>${best.name}<br>${best.adresse}<br>${landText(best.land)}</div>
         <div class="bbox"><b>${txt('kauf.zahlung.titel')}</b>${zahlungName}<br><span style="color:var(--ink-soft); font-size:13.5px">${txt('kauf.bestellung.zahlung.hinweis')}</span></div>
       </div>
     </section>

@@ -1206,16 +1206,15 @@ async function run() {
     const streit = [];
     for (const p of liste) for (const sp of ['de', 'en', 'fr']) {
       const mat = p.materials?.[sp] || '', care = p.care?.[sp] || '';
-      // Ein allgemeiner Pflegehinweis darf andere Oberflaechen nennen: «Rhodinierte
-      // Stuecke bleiben lange hell» sagt nichts ueber DIESES Stueck. Gemeint ist nur,
-      // was dem Modell selbst zugeschrieben wird, also der bestimmte Artikel im
-      // Singular. Ohne diese Verfeinerung meldete die Pruefung friendship falsch.
-      const allgemein = /Stücke|Stücken|pieces|pièces|Modelle|models|modèles/i;
-      const saetze = care.split(/(?<=\.)\s+/);
+      // Frueher liess diese Pruefung allgemeine Saetze durchgehen: «Rhodinierte Stuecke
+      // bleiben lange hell» sei keine Aussage ueber DIESES Stueck. Das war zu milde.
+      // Amity Friendship ist vergoldet und trug einen Pflegetext ueber rhodiniertes und
+      // unbeschichtetes Silber, also ueber zwei Oberflaechen, die es nicht hat, und ueber
+      // seine eigene kein Wort. Die Pruefung blieb gruen. Seit die Ausnahme weg ist,
+      // meldet sie das, und nachgemessen bleibt sie trotzdem still: kein Modell nennt
+      // heute eine Oberflaeche, die sein Materialfeld nicht kennt.
       for (const t of TECHNIK[sp]) {
-        if (!t.test(care) || t.test(mat)) continue;
-        const traegt = saetze.some(z => t.test(z) && !allgemein.test(z));
-        if (traegt) streit.push(`${p.slug || p.id} [${sp}] ${t.source}`);
+        if (t.test(care) && !t.test(mat)) streit.push(`${p.slug || p.id} [${sp}] ${t.source}`);
       }
     }
     log('Produktdaten: Pflege nennt keine Oberfläche, die das Material nicht kennt',
