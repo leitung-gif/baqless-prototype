@@ -1,0 +1,912 @@
+<title>baqless.jp Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Clickable prototype of the new baqless.jp on Shopify, Japanese first, with three colour directions and the five effects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: mobile-first Japanese shop. A thin prototype bar on top switches direction A/B/C, language and effects; below it the shop itself, one column on phones, editorial split on desktop. */
+:root{
+  /* Baqless brand, token names as in baqless-prototype/src/styles.css */
+  --navy:#0B1D3F; --coral:#FF7A6A; --rose:#F5DADF; --gold:#D9C1A0; --ground:#FAF7F2; --paper:#FFFFFF;
+  --charcoal:#222222; --ink:#5A554E; --ink-soft:#6B655C; --black:#0A0A0A; --tin:#4B4F54; --line-ground:#E8E3DA;
+
+  /* Direction A, the default: white and Navy like today */
+  --bg:#FFFFFF; --bg-alt:#FAF7F2; --surface:#FFFFFF; --fg:#222222; --text:#5A554E; --soft:#6B655C; --line:#E8E3DA;
+  --head:#FFFFFF; --head-fg:#0B1D3F; --head-line:#E8E3DA; --wm:#0A0A0A; --under:#0B1D3F;
+  --ann:#0B1D3F; --ann-fg:#FFFFFF;
+  --btn:#0B1D3F; --btn-fg:#FFFFFF; --btn-line:#0B1D3F; --fill:#FAF7F2; --fill-fg:#0B1D3F;
+  --btn2-fg:#0B1D3F; --btn2-line:#0B1D3F; --fill2:#0B1D3F; --fill2-fg:#FFFFFF;
+  --tag:#FF7A6A; --tag-fg:#0B1D3F; --price:#222222; --tile:#FFFFFF; --tile-r:0px; --tile-shadow:none; --tile-shadow-h:none; --tile-pad:14px 2px 6px;
+  --hero-panel:#FAF7F2; --hero-fg:#0B1D3F; --hero-text:#5A554E;
+  --foot:#0B1D3F; --foot-fg:#FFFFFF; --foot-soft:#C9CFDB; --foot-line:#22365E; --foot-accent:#D9C1A0;
+  --chip:#FFFFFF; --chip-on:#0B1D3F; --chip-on-fg:#FFFFFF;
+  --focus:#0B1D3F; --frame:transparent;
+
+  /* Type */
+  --jp:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --jp-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --display:"Cormorant Garamond","Cormorant",Georgia,"Times New Roman",serif;
+  --lat:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+
+  /* Space and motion */
+  --gl:max(16px, env(safe-area-inset-left, 0px)); --gr:max(16px, env(safe-area-inset-right, 0px));
+  --bar:44px; --ease:cubic-bezier(.22,.61,.36,1);
+  --t-img:.4s; --t-zoom:.9s; --t-btn:.25s; --t-line:.3s; --t-in:.6s;
+  color-scheme:light;
+}
+/* Direction B: the brand applied in full */
+html[data-dir="b"]{
+  --bg:#FAF7F2; --bg-alt:#FFFFFF; --surface:#FFFFFF; --line:#E3DDD2;
+  --head:#0B1D3F; --head-fg:#FFFFFF; --head-line:#0B1D3F; --wm:#FFFFFF; --under:#FF7A6A;
+  --ann:#F5DADF; --ann-fg:#0B1D3F;
+  --btn:#FF7A6A; --btn-fg:#0B1D3F; --btn-line:#FF7A6A; --fill:#0B1D3F; --fill-fg:#FFFFFF;
+  --tag:#FFFFFF; --tag-fg:#0B1D3F; --tile-r:8px; --tile-shadow:4px 4px 0 #0B1D3F; --tile-shadow-h:7px 7px 0 #0B1D3F; --tile-pad:14px 14px 16px;
+  --hero-panel:#0B1D3F; --hero-fg:#FFFFFF; --hero-text:#D3D8E2;
+  --chip-on:#0B1D3F;
+}
+/* Direction C, and the BLACK collection in every direction */
+html[data-dir="c"], html[data-scope="black"]{
+  --bg:#0A0A0A; --bg-alt:#141414; --surface:#141414; --fg:#FAF7F2; --text:#CFC9BF; --soft:#A39C91; --line:#33363A;
+  --head:#0A0A0A; --head-fg:#FAF7F2; --head-line:#33363A; --wm:#FFFFFF; --under:#D9C1A0;
+  --ann:#141414; --ann-fg:#D9C1A0;
+  --btn:transparent; --btn-fg:#D9C1A0; --btn-line:#D9C1A0; --fill:#D9C1A0; --fill-fg:#0A0A0A;
+  --btn2-fg:#FAF7F2; --btn2-line:#4B4F54; --fill2:#FAF7F2; --fill2-fg:#0A0A0A;
+  --tag:#0A0A0A; --tag-fg:#D9C1A0; --price:#D9C1A0; --tile:#0A0A0A; --tile-r:0px; --tile-shadow:none; --tile-shadow-h:none; --tile-pad:14px 2px 6px;
+  --hero-panel:#0A0A0A; --hero-fg:#FAF7F2; --hero-text:#CFC9BF;
+  --foot:#0A0A0A; --foot-fg:#FAF7F2; --foot-soft:#A39C91; --foot-line:#33363A; --foot-accent:#D9C1A0;
+  --chip:#0A0A0A; --chip-on:#D9C1A0; --chip-on-fg:#0A0A0A;
+  --focus:#D9C1A0; --frame:#D9C1A0;
+  color-scheme:dark;
+}
+html[data-fx="off"]{--t-img:0s; --t-zoom:0s; --t-btn:0s; --t-line:0s; --t-in:0s}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:400 15px/1.9 var(--jp);letter-spacing:.04em;-webkit-font-smoothing:antialiased;padding-top:calc(var(--bar) + env(safe-area-inset-top, 0px));overflow-x:hidden;transition:background-color .3s var(--ease),color .3s var(--ease)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:90;background:#121212}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;letter-spacing:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lat{font-family:var(--lat);letter-spacing:.14em}
+.num{font-family:var(--lat);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+/* Japanese setting: phrase-aware breaks, strict kinsoku, proportional kana in headings */
+.jh{font-family:var(--jp-serif);font-weight:400;color:var(--fg);line-height:1.6;letter-spacing:.08em;font-feature-settings:"palt";line-break:strict;word-break:auto-phrase;text-wrap:balance;margin:0}
+p{margin:0;line-break:strict;word-break:auto-phrase;text-wrap:pretty}
+.eyebrow{font:500 11px/1.4 var(--lat);letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+
+/* ---------- prototype bar (outside the shop, fixed look) ---------- */
+.pbar{position:fixed;inset:0 0 auto;top:env(safe-area-inset-top, 0px);z-index:80;height:var(--bar);background:#121212;color:#EDE9E2;font:500 12px/1 var(--lat);letter-spacing:.06em;border-bottom:1px solid #2A2A2A}
+.pbar .wrap{height:100%;display:flex;align-items:center;gap:10px}
+.pbar .pname{display:flex;align-items:center;gap:8px;white-space:nowrap;color:#BDB7AD}
+.pbar .pname b{color:#FFFFFF;font-weight:600;letter-spacing:.16em}
+.pbar .dot{width:6px;height:6px;border-radius:50%;background:#FF7A6A}
+.seg{display:inline-flex;border:1px solid #3A3A3A;border-radius:4px;overflow:hidden}
+.seg button{background:transparent;border:0;color:#BDB7AD;padding:0 11px;height:30px;cursor:pointer;font:500 12px/1 var(--lat);letter-spacing:.06em;white-space:nowrap}
+.seg button+button{border-left:1px solid #3A3A3A}
+.seg button[aria-pressed="true"]{background:#EDE9E2;color:#121212}
+.seg button:hover{color:#FFFFFF}
+.seg button[aria-pressed="true"]:hover{color:#121212}
+.pbar .grow{flex:1}
+.pbar .ibtn{background:transparent;border:1px solid #3A3A3A;border-radius:4px;height:30px;padding:0 10px;cursor:pointer;color:#EDE9E2}
+.pbar .long{display:none}
+@media (min-width:900px){.pbar .long{display:inline}}
+@media (max-width:520px){.pbar .pname span{display:none}.seg button{padding:0 9px}.pbar .wrap{gap:6px}}
+
+/* ---------- announcement + header ---------- */
+.ann{background:var(--ann);color:var(--ann-fg);font:500 12px/1.5 var(--jp);letter-spacing:.08em;text-align:center}
+.ann .wrap{padding-block:9px;display:flex;justify-content:center;gap:28px}
+.ann .two{display:none}
+@media (min-width:900px){.ann .two{display:inline}}
+.head{position:sticky;top:calc(var(--bar) + env(safe-area-inset-top, 0px));z-index:60;background:var(--head);color:var(--head-fg);border-bottom:1px solid var(--head-line);transition:background-color .3s var(--ease)}
+.head .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:60px;gap:16px}
+.head .wm{width:112px;height:auto;color:var(--wm);display:block}
+.head .logo{justify-self:center;display:block;padding:6px 0}
+.head .left,.head .right{display:flex;align-items:center;gap:6px}
+.head .right{justify-self:end}
+.icon{width:40px;height:40px;display:inline-grid;place-items:center;background:transparent;border:0;cursor:pointer;color:inherit;position:relative;text-decoration:none}
+.icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.4}
+.count{position:absolute;right:2px;top:3px;min-width:17px;height:17px;border-radius:9px;background:var(--under);color:var(--head);font:600 10px/17px var(--lat);text-align:center;padding:0 4px;letter-spacing:0}
+.nav{display:none}
+.nav a,.ul{position:relative;text-decoration:none;padding-block:8px}
+.nav a::after,.ul::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--under);transform:scaleX(0);transform-origin:left;transition:transform var(--t-line) var(--ease)}
+.nav a:hover::after,.nav a:focus-visible::after,.nav a[aria-current="page"]::after,.ul:hover::after,.ul:focus-visible::after{transform:scaleX(1)}
+@media (min-width:1080px){
+  .head .wrap{grid-template-columns:auto 1fr auto;height:72px}
+  .head .logo{justify-self:start;order:-1}
+  .head .left{display:none}
+  .nav{display:flex;justify-content:center;gap:26px;font:500 11.5px/1 var(--lat);letter-spacing:.16em}
+}
+
+/* ---------- buttons: colour sweeps in from the left (effect 3) ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;overflow:hidden;isolation:isolate;min-height:52px;padding:0 28px;border-radius:4px;border:1px solid var(--btn-line);background:var(--btn);color:var(--btn-fg);font:700 14px/1.3 var(--jp);letter-spacing:.12em;text-decoration:none;cursor:pointer;transition:color var(--t-btn) var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--fill);transform:scaleX(0);transform-origin:left;transition:transform var(--t-btn) var(--ease);z-index:-1}
+.btn:hover,.btn:focus-visible{color:var(--fill-fg)}
+.btn:hover::before,.btn:focus-visible::before{transform:scaleX(1)}
+.btn.ghost{background:transparent;color:var(--btn2-fg);border-color:var(--btn2-line)}
+.btn.ghost::before{background:var(--fill2)}
+.btn.ghost:hover,.btn.ghost:focus-visible{color:var(--fill2-fg)}
+.btn.wide{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* Proposed features carry this mark, so nothing new passes as today's shop */
+.prop{display:inline-flex;align-items:center;gap:6px;font:600 10px/1 var(--lat);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);border:1px dashed currentColor;border-radius:3px;padding:4px 6px;vertical-align:middle;white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);background:var(--hero-panel)}
+.hero .ph{overflow:hidden;aspect-ratio:4/5;max-height:72vh}
+.hero .ph img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-zoom) var(--ease)}
+.hero:hover .ph img{transform:scale(1.03)}
+.hero .copy{padding:36px var(--gr) 44px var(--gl);display:grid;gap:18px;align-content:center;color:var(--hero-text)}
+.hero .eyebrow{color:var(--hero-text)}
+.hero h1{font-size:clamp(26px,6.6vw,40px);color:var(--hero-fg)}
+.hero .sub{font-size:15px;color:var(--hero-text)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+html[data-dir="b"] .hero .btn.ghost{--btn2-fg:#FFFFFF;--btn2-line:#5A6A88;--fill2:#FFFFFF;--fill2-fg:#0B1D3F}
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+  .hero .ph{aspect-ratio:16/10;max-height:none}
+  .hero .copy{padding:56px max(48px,var(--gr)) 56px 56px}
+  .hero.flip .ph{order:2}
+  .hero.flip .copy{padding:56px 56px 56px max(48px,var(--gl))}
+}
+
+/* ---------- sections ---------- */
+.sec{padding-block:56px}
+.sec.alt{background:var(--bg-alt)}
+.sec-h{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.sec-h .ttl{display:grid;gap:6px}
+.sec-h h2{font:300 clamp(30px,5vw,44px)/1 var(--display);color:var(--fg);letter-spacing:.04em;margin:0}
+.sec-h .ja{font-size:13px;color:var(--soft)}
+.more{font:500 13px/1 var(--jp);letter-spacing:.08em;color:var(--fg)}
+@media (min-width:900px){.sec{padding-block:88px}}
+
+/* collection circles, swipe on phones */
+.circles{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.circles::-webkit-scrollbar{display:none}
+.circles a{flex:0 0 auto;width:88px;display:grid;gap:10px;justify-items:center;text-decoration:none;scroll-snap-align:start;color:var(--fg)}
+.circles .c{width:88px;height:88px;border-radius:50%;overflow:hidden;background:#FFFFFF;border:1px solid var(--line)}
+.circles .c img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform var(--t-zoom) var(--ease)}
+.circles a:hover .c img{transform:scale(1.25)}
+.circles span{font:500 10.5px/1.3 var(--lat);letter-spacing:.12em;text-align:center}
+@media (min-width:900px){.circles{justify-content:space-between;overflow:visible}.circles a{width:112px}.circles .c{width:112px;height:112px}}
+
+/* ---------- product tiles: image change (1) and zoom (2) ---------- */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+@media (min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 24px}}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--tile);border-radius:var(--tile-r);box-shadow:var(--tile-shadow);transition:box-shadow var(--t-line) var(--ease),transform var(--t-line) var(--ease);min-width:0}
+.tile .ph{position:relative;aspect-ratio:4/5;overflow:hidden;background:#FFFFFF;border-radius:var(--tile-r) var(--tile-r) 0 0}
+.tile .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity var(--t-img) var(--ease),transform var(--t-zoom) var(--ease)}
+.tile .ph .i2{opacity:0}
+.tile .ph::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--frame);opacity:0;transition:opacity var(--t-img) var(--ease);pointer-events:none}
+@media (hover:hover){
+  .tile:hover .i2,.tile:focus-visible .i2{opacity:1}
+  .tile:hover .ph img,.tile:focus-visible .ph img{transform:scale(1.05)}
+  .tile:hover .ph::after{opacity:1}
+  .tile:hover{box-shadow:var(--tile-shadow-h);transform:translate(calc(var(--tile-r) * -.375),calc(var(--tile-r) * -.375))}
+}
+.tile .cap{display:grid;gap:4px;padding:var(--tile-pad)}
+.tile .nm{font:400 18px/1.25 var(--display);color:var(--fg);letter-spacing:.01em}
+.tile .pr{font:500 13px/1.4 var(--lat);color:var(--price);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.tile .pr small,.price small{font:400 11px/1 var(--jp);letter-spacing:.04em;color:var(--soft);margin-left:3px}
+.tag{position:absolute;left:8px;top:8px;z-index:2;font:600 9.5px/1 var(--lat);letter-spacing:.18em;padding:6px 7px;border-radius:3px;background:var(--tag);color:var(--tag-fg)}
+html[data-dir="b"] .tag{box-shadow:inset 0 0 0 1px #0B1D3F}
+html[data-dir="c"] .tag,html[data-scope="black"] .tag{left:0;top:0;padding:9px 10px;border-radius:0}
+@media (min-width:900px){.tile .nm{font-size:20px}}
+/* ranking numbers, as on today's baqless.jp */
+.rank .tag{display:none}
+.rk{position:absolute;left:0;top:0;z-index:2;width:34px;height:34px;display:grid;place-items:center;background:var(--fg);color:var(--bg);font-size:14px;font-weight:600}
+
+/* ---------- reveal on scroll (5): only what starts below the fold waits ---------- */
+[data-reveal]{transition:opacity var(--t-in) var(--ease),transform var(--t-in) var(--ease);transition-delay:calc(var(--d,0) * 80ms)}
+[data-reveal].wait{opacity:0;transform:translateY(24px)}
+
+/* ---------- bands ---------- */
+.band{position:relative;display:grid;grid-template-columns:minmax(0,1fr);background:#0A0A0A;color:#FAF7F2}
+.band .ph{aspect-ratio:16/10;overflow:hidden}
+.band .ph img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-zoom) var(--ease)}
+.band:hover .ph img{transform:scale(1.03)}
+.band .copy{padding:36px var(--gr) 44px var(--gl);display:grid;gap:16px;align-content:center}
+.band h2{font:300 clamp(36px,6vw,64px)/1 var(--display);letter-spacing:.06em;margin:0;color:#FAF7F2}
+.band p{color:#CFC9BF;max-width:30em}
+.band .eyebrow{color:#D9C1A0}
+.band .btn{--btn:transparent;--btn-fg:#D9C1A0;--btn-line:#D9C1A0;--fill:#D9C1A0;--fill-fg:#0A0A0A;justify-self:start}
+.band.wa{background:#2E2B24}
+.band.wa .eyebrow{color:#D9C1A0}
+@media (min-width:900px){.band{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.band .copy{padding:56px max(48px,var(--gr)) 56px 56px}.band.flip .ph{order:2}.band.flip .copy{padding:56px 56px 56px max(48px,var(--gl))}}
+
+.wa-list{display:grid;gap:14px;margin-top:6px}
+.wa-list a{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;text-decoration:none;color:#FAF7F2}
+.wa-list img{width:64px;height:80px;object-fit:cover;background:#FFFFFF}
+.wa-list b{display:block;font:400 19px/1.2 var(--display);letter-spacing:.04em}
+.wa-list span{font-size:12.5px;color:#CFC9BF;line-height:1.7}
+
+/* how to wear, features */
+.steps{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;counter-reset:s}
+.step{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:start}
+.step .n{font:300 46px/.9 var(--display);color:var(--fg)}
+.step h3{font:700 15px/1.6 var(--jp);color:var(--fg);margin:0;padding-top:12px;letter-spacing:.08em}
+.step p{font-size:14px}
+.feats{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;border-top:1px solid var(--line);padding-top:28px;margin-top:40px}
+.feat h3{font:400 19px/1.5 var(--jp-serif);color:var(--fg);margin:0 0 6px;letter-spacing:.06em;font-feature-settings:"palt"}
+.feat p{font-size:14px}
+.feat .note{font-size:12px;color:var(--soft);margin-top:6px}
+@media (min-width:900px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}.feats{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}}
+
+/* stories */
+.stories{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.stories::-webkit-scrollbar{display:none}
+.story-card{scroll-snap-align:start;text-decoration:none;color:inherit;display:grid;gap:12px;min-width:0;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.story-card .ph{aspect-ratio:3/2;overflow:hidden;background:var(--bg-alt)}
+.story-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-zoom) var(--ease)}
+.story-card:hover .ph img{transform:scale(1.05)}
+.story-card .dt{font:500 11px/1 var(--lat);letter-spacing:.16em;color:var(--soft)}
+.story-card .tt{font:400 15px/1.75 var(--jp-serif);color:var(--fg);letter-spacing:.04em;font-feature-settings:"palt";line-break:strict;word-break:auto-phrase}
+@media (min-width:900px){.stories{grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible}}
+
+/* gift + LINE */
+.duo{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:center}
+.card img{width:96px;height:120px;object-fit:cover;background:#FFFFFF}
+.card h3{font:400 19px/1.5 var(--jp-serif);color:var(--fg);margin:0 0 6px;letter-spacing:.06em}
+.card p{font-size:13.5px}
+.card .act{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.line-badge{display:inline-grid;place-items:center;width:96px;height:96px;border-radius:22px;background:#06C755;color:#FFFFFF;font:700 22px/1 var(--lat);letter-spacing:.02em}
+.btn.line{--btn:#06C755;--btn-line:#06C755;--btn-fg:#FFFFFF;--fill:#04A246;--fill-fg:#FFFFFF;min-height:44px;padding:0 18px;font-size:13px}
+.btn.sm{min-height:44px;padding:0 18px;font-size:13px}
+@media (min-width:900px){.duo{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+
+/* ---------- footer ---------- */
+.foot{background:var(--foot);color:var(--foot-soft);font-size:13px;margin-top:0}
+.foot .wrap{padding-block:56px 28px;display:grid;gap:36px}
+.foot .wm{width:120px;color:#FFFFFF}
+.foot h4{font:600 11px/1 var(--lat);letter-spacing:.2em;color:var(--foot-accent);margin:0 0 14px;text-transform:uppercase}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot a{color:var(--foot-fg);text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:4px}
+.foot .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 20px}
+.foot .addr{line-height:1.9}
+.foot .base{border-top:1px solid var(--foot-line);padding-top:20px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font:400 11.5px/1.6 var(--lat);letter-spacing:.06em}
+@media (min-width:900px){.foot .wrap{grid-template-columns:minmax(0,1fr) minmax(0,2.4fr)}.foot .cols{grid-template-columns:repeat(4,minmax(0,1fr))}.foot .base{grid-column:1/-1}}
+
+.pays{display:flex;flex-wrap:wrap;gap:6px}
+.pay{font:500 11px/1 var(--jp);letter-spacing:.04em;border:1px solid var(--line);border-radius:3px;padding:7px 8px;color:var(--fg);background:var(--surface);white-space:nowrap}
+.pay.new{border-style:dashed}
+.foot .pay{background:transparent;border-color:var(--foot-line);color:var(--foot-fg)}
+
+/* ---------- collection page ---------- */
+.crumb{font:400 12px/1.6 var(--jp);color:var(--soft);padding-block:16px 0;display:flex;flex-wrap:wrap;gap:8px}
+.crumb a{text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.ptitle{padding-block:20px 8px;display:grid;gap:8px}
+.ptitle h1{font:300 clamp(40px,8vw,72px)/1 var(--display);color:var(--fg);letter-spacing:.04em;margin:0}
+.ptitle p{max-width:40em}
+.tools{position:sticky;top:calc(var(--bar) + 60px + env(safe-area-inset-top, 0px));z-index:30;background:var(--bg);border-bottom:1px solid var(--line);margin-bottom:24px}
+.tools .wrap{display:flex;gap:12px;align-items:center;padding-block:10px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;font:500 11px/1 var(--lat);letter-spacing:.12em;border:1px solid var(--line);background:var(--chip);color:var(--fg);border-radius:999px;padding:10px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-fg);border-color:var(--chip-on)}
+.sel{font:500 12px/1 var(--jp);border:1px solid var(--line);background:var(--chip);color:var(--fg);border-radius:4px;height:38px;padding:0 10px;letter-spacing:.04em}
+.cnt{font:500 12px/1 var(--jp);color:var(--soft);white-space:nowrap}
+@media (min-width:1080px){.tools{top:calc(var(--bar) + 72px + env(safe-area-inset-top, 0px))}}
+
+/* ---------- product page ---------- */
+.pdp{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;padding-bottom:40px}
+.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--gl) * -1) calc(var(--gr) * -1)}
+.gal::-webkit-scrollbar{display:none}
+.gal figure{flex:0 0 100%;margin:0;scroll-snap-align:start;aspect-ratio:4/5;overflow:hidden;background:#FFFFFF;position:relative}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-zoom) var(--ease)}
+.gal-n{font:500 11px/1 var(--lat);letter-spacing:.14em;color:var(--soft);text-align:center;margin-top:10px}
+.info{display:grid;gap:18px;align-content:start;min-width:0}
+.info h1{font:400 clamp(30px,6vw,40px)/1.1 var(--display);color:var(--fg);letter-spacing:.02em;margin:0}
+.info .code{font:400 11.5px/1 var(--lat);color:var(--soft);letter-spacing:.08em}
+.price{font:500 22px/1 var(--lat);color:var(--price);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.pts{font-size:12px;color:var(--soft)}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:12px;text-align:left;cursor:pointer;display:grid;gap:4px;color:var(--fg)}
+.opt b{font:500 13px/1.4 var(--jp)}
+.opt span{font:500 12.5px/1 var(--lat);color:var(--soft);font-variant-numeric:tabular-nums}
+.opt[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg)}
+.lbl{font:700 12px/1.4 var(--jp);color:var(--fg);letter-spacing:.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.qty button{width:44px;height:44px;background:transparent;border:0;cursor:pointer;color:var(--fg);font:500 18px/1 var(--lat)}
+.qty output{min-width:32px;text-align:center;font:500 14px/1 var(--lat);color:var(--fg)}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:13.5px;color:var(--fg);cursor:pointer;border:1px solid var(--line);border-radius:4px;padding:12px;background:var(--surface)}
+.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--navy)}
+html[data-dir="c"] .check input,html[data-scope="black"] .check input{accent-color:#D9C1A0}
+.check small{display:block;color:var(--soft);font-size:12px}
+.dd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.dd select{width:100%}
+.rows{display:grid;border-top:1px solid var(--line)}
+.rows div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.rows dt,.rows b{font-weight:700;color:var(--fg)}
+details.acc{border-bottom:1px solid var(--line)}
+details.acc:first-of-type{border-top:1px solid var(--line)}
+details.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font:500 12px/1 var(--lat);letter-spacing:.2em;color:var(--fg)}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font:300 20px/1 var(--lat)}
+details.acc[open] summary::after{content:"−"}
+details.acc .body{padding:0 0 18px;font-size:14px;display:grid;gap:10px}
+details.acc ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bg);border-top:1px solid var(--line);padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gl);display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .3s var(--ease)}
+.buybar.on{transform:none}
+.buybar .price{font-size:17px}
+.buybar .btn{flex:1;min-height:48px}
+@media (min-width:900px){
+  .pdp{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;padding-bottom:72px}
+  .gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;margin:0}
+  .gal figure:first-child{grid-column:1/-1}
+  .gal figure:hover img{transform:scale(1.04)}
+  .gal-n{display:none}
+  .info{position:sticky;top:calc(var(--bar) + 96px);gap:20px}
+  .buybar{display:none}
+}
+
+/* reviews (proposed) */
+.rev{display:grid;gap:14px;border:1px solid var(--line);border-radius:6px;padding:24px;background:var(--surface)}
+.stars{display:flex;gap:3px;color:var(--soft)}
+.stars svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.3}
+.rev .act{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* ---------- story ---------- */
+.art{max-width:760px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.art h1{font-size:clamp(22px,4.6vw,32px);line-height:1.7;margin:12px 0 18px}
+.art .meta{font:500 11px/1 var(--lat);letter-spacing:.16em;color:var(--soft)}
+.art p{font-size:15.5px;line-height:2.05;margin:0 0 1.2em}
+.art h2{font:400 clamp(19px,3.6vw,23px)/1.7 var(--jp-serif);color:var(--fg);letter-spacing:.06em;margin:2.2em 0 1em;font-feature-settings:"palt"}
+.art blockquote{margin:1.6em 0;padding:0 0 0 18px;border-left:1px solid var(--under);font-family:var(--jp-serif);color:var(--fg)}
+.art figure{margin:2em calc(var(--gl) * -1)}
+.art figure img{width:100%;height:auto}
+.art .prof{border-top:1px solid var(--line);padding-top:20px;margin-top:2.4em;font-size:13.5px}
+.story-hero{aspect-ratio:3/2;overflow:hidden;max-height:78vh}
+.story-hero img{width:100%;height:100%;object-fit:cover}
+.mark{border:1px dashed var(--line);border-radius:6px;padding:16px 18px;font-size:13px;color:var(--soft);display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+@media (min-width:900px){.art figure{margin:2.4em -80px}}
+
+/* ---------- guide, legal ---------- */
+.doc{max-width:860px}
+.doc h2{font:400 21px/1.6 var(--jp-serif);color:var(--fg);letter-spacing:.06em;margin:48px 0 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.doc p,.doc li{font-size:14.5px}
+.doc ul{padding-left:1.1em;display:grid;gap:6px}
+.tbl{overflow-x:auto;border-top:1px solid var(--line)}
+.tbl table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:14px 12px 14px 0;border-bottom:1px solid var(--line)}
+.tbl th{width:13em;font-weight:700;color:var(--fg)}
+.note-box{background:var(--bg-alt);border:1px solid var(--line);border-radius:6px;padding:18px 20px;font-size:13.5px;display:grid;gap:8px;margin-top:28px}
+
+/* ---------- drawers, dialog, toast ---------- */
+.scrim{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:95;opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;z-index:100;width:min(440px,100%);background:var(--bg);color:var(--text);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .35s var(--ease);padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px);padding-right:env(safe-area-inset-right, 0px)}
+.drawer.left{right:auto;left:0;transform:translateX(-102%);padding-right:0;padding-left:env(safe-area-inset-left, 0px)}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);color:var(--fg)}
+.dh h2{font:500 12px/1 var(--lat);letter-spacing:.24em;margin:0}
+.db{flex:1;overflow-y:auto;padding:20px;display:grid;gap:18px;align-content:start}
+.df{border-top:1px solid var(--line);padding:18px 20px;display:grid;gap:12px}
+.ship{display:grid;gap:8px;font-size:13px;color:var(--fg)}
+.bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--under);transition:width .4s var(--ease)}
+.line-item{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:start}
+.line-item img{width:72px;height:90px;object-fit:cover;background:#FFFFFF}
+.line-item .nm{font:400 17px/1.25 var(--display);color:var(--fg)}
+.line-item .vr{font-size:12px;color:var(--soft)}
+.line-item .rm{justify-self:start;background:none;border:0;color:var(--soft);font-size:12px;cursor:pointer;text-decoration:underline;padding:6px 0}
+.line-item .qty button{width:34px;height:34px}
+.sum{display:grid;gap:6px;font-size:13.5px}
+.sum div{display:flex;justify-content:space-between;gap:12px}
+.sum .tot{font-weight:700;color:var(--fg);font-size:15px}
+.empty{padding:40px 0;text-align:center;display:grid;gap:16px;justify-items:center}
+.mnav{display:grid;gap:0}
+.mnav a{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);font:500 13px/1 var(--lat);letter-spacing:.16em}
+.mnav a span{font:400 12px/1 var(--jp);letter-spacing:.06em;color:var(--soft)}
+.mnav .sub a{padding-left:16px;font-size:12px}
+.dlg{position:fixed;z-index:110;left:50%;top:50%;transform:translate(-50%,-48%);width:min(640px,calc(100% - 32px));max-height:calc(100% - 96px);overflow:auto;background:#FAF7F2;color:#4A453E;border-radius:10px;padding:28px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);font:400 14px/1.8 var(--lat);letter-spacing:.01em}
+.dlg.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.dlg h2{font:400 30px/1.1 var(--display);color:#0B1D3F;margin:0 0 12px}
+.dlg h3{font:600 11px/1.4 var(--lat);letter-spacing:.2em;text-transform:uppercase;color:#6B655C;margin:22px 0 8px}
+.dlg ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.dlg .x{position:absolute;right:12px;top:12px;color:#0B1D3F}
+.dlg a{color:#C93B27}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom, 0px));transform:translate(-50%,20px);z-index:120;background:#121212;color:#EDE9E2;font:400 13px/1.6 var(--jp);padding:12px 18px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+main{min-height:60vh}
+main:focus{outline:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+  [data-reveal].wait{opacity:1;transform:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="wm" viewBox="0 0 4411.98 1262.4"><path fill="currentColor" d="M25.29 1036.54C28.94 1022.72 38.05 1006.08 38.05 992.13L38.05 78.11C38.05 65.42 28.74 49.2 25 36.54L164.75 36.54C189.65 36.54 216.98 43.73 240.47 52.02C345.04 88.91 395.34 177.63 395.32 285.47C395.31 327.01 387.99 369.27 369.36 406.76C341.01 463.81 292.65 497.13 234.92 519.82C300.2 546.76 343.12 560.28 382.42 625.44C404.85 662.63 414.56 703.77 418.56 746.53C434 911.55 328 1036.54 160.21 1036.54L25.29 1036.54ZM107.3 58.32L107.3 513.2C154.76 512.23 201.34 507.59 240.45 477.76C344.19 398.64 347.51 184.7 250.3 99.43C209.23 63.4 159.5 58.39 107.3 58.32ZM107.32 533.85L107.32 1014.81C168.54 1014.76 227.19 1010.7 274.75 967.16C374.22 876.1 368.44 647.16 257.44 567.3C212.38 534.88 160.48 533.85 107.32 533.85ZM921.51 1036.54C926.98 1019.67 932.62 1001.21 929.27 983.22L904.25 849.18L616.84 849.18L584.76 1036.54L561.18 1036.54L728.61 95.51C732.3 74.81 718.64 55.98 718.28 38.25C718.86 37.82 719.79 36.54 720.63 36.54L787.81 36.54C805.01 36.54 829.41 56.01 832.53 72.88L1003.82 998.59C1006.08 1010.78 1016.11 1025.36 1022.2 1036.54L921.51 1036.54ZM758.45 59.48L621.57 828.34L900.11 828.34L758.45 59.48ZM1771.31 1037.26C1780.35 1044.1 1796.63 1046.48 1807.59 1051.13C1828.46 1059.99 1847.89 1071.22 1866.65 1083.9C1959.68 1146.78 1976.48 1195.96 2101.21 1217.15L2101.47 1237.4C2021.64 1237.43 1946.27 1215.93 1881.64 1167.86C1833.5 1132.06 1779.89 1068.05 1721.96 1052.97C1680.99 1042.3 1637.63 1050.16 1595.92 1044.87C1507.71 1033.67 1425.35 1002.88 1352.93 950.93C1298.69 912.03 1252.65 861.4 1217.85 804.52C1184.63 750.22 1163.23 690.71 1151.58 628.29C1140.87 570.91 1140.48 509.91 1151.68 452.57C1217.01 118.23 1570.17 -63.75 1878.66 86.65C1947 119.97 2006.93 170.45 2053.7 230.1C2106.12 296.95 2138.84 375.89 2153.42 459.22C2170.4 556.22 2155.83 660.09 2115.17 749.53C2071.79 844.96 1999.81 924.72 1909.58 977.94C1879.56 995.64 1847.78 1009.9 1814.84 1021.23C1803.03 1025.3 1778.49 1027.47 1771.31 1037.26ZM1657.37 1025.49C1719.68 1022.47 1779.99 1010.87 1836.15 982.55C2189 804.55 2159.91 173.96 1771.63 64.75C1725.88 51.88 1678.62 45.65 1631.04 47.6C1582.5 49.6 1534.58 58.33 1489.36 76.48C1110.63 228.45 1120.69 870.27 1508.75 1004.17C1556.62 1020.68 1606.87 1027.11 1657.37 1025.49ZM2358.75 1036.54L2358.75 76.14C2358.75 64.52 2349.07 47.48 2344.01 36.54L2428.65 36.54L2428.65 1014.71L2643.83 1014.71C2656.63 1014.71 2675.18 1003.93 2686.62 997.51L2698.01 1014.84C2684.29 1023.72 2665.05 1036.54 2648.53 1036.54L2358.75 1036.54ZM2882.34 1036.54L2882.34 79.11C2882.34 66.49 2873.05 48.45 2867.67 36.54L3201.3 36.54L3201.3 58.39L2952.29 58.39L2952.29 473.83L3200.7 473.83L3200.7 495.68L2952.28 495.68L2952.28 1014.7L3181.04 1014.7C3193.85 1014.7 3212.35 1003.85 3223.82 997.49L3237.02 1015.29C3221.3 1023.36 3202.54 1036.54 3184.52 1036.54L2882.34 1036.54ZM3391.4 831.07L3466.08 831.07C3466.1 865.1 3466.58 897.92 3477.03 930.7C3506.83 1024.24 3629.7 1062.26 3696.04 982.86C3750.67 917.47 3736.23 785.75 3692.16 718.09L3449.05 344.89C3434.7 322.86 3425.94 288.27 3421.28 261.96C3412.45 212 3412.4 157.12 3438.84 112.04C3489.82 25.13 3617.21 0.94 3702.4 50.16C3728.91 65.48 3748.05 86.88 3766.13 111.13C3751.1 118.7 3736.27 127.63 3722.11 136.75C3710.56 115.16 3699.6 94.06 3680.93 77.52C3631.3 33.52 3549.83 37.98 3511.81 94.54C3472.07 153.65 3481.76 236 3508.44 298.27C3511.79 306.11 3515.44 317.31 3519.7 323.82L3761.59 693.81C3780.72 723.09 3793.14 765.72 3798.97 800.37C3810.31 867.69 3802.84 937.42 3753.39 988.84C3665.17 1080.55 3480.22 1061.83 3414.9 951.87C3392.63 914.36 3391.19 873.48 3391.4 831.07ZM3974.78 831.07L4049.47 831.07C4049.48 865.1 4049.97 897.92 4060.42 930.7C4090.22 1024.24 4213.09 1062.26 4279.43 982.86C4334.06 917.47 4319.62 785.75 4275.55 718.09L4032.43 344.89C4018.08 322.86 4009.32 288.27 4004.67 261.96C3995.84 212 3995.79 157.12 4022.23 112.04C4073.21 25.13 4200.59 0.94 4285.79 50.16C4312.3 65.48 4331.44 86.88 4349.51 111.13C4334.48 118.7 4319.66 127.63 4305.5 136.75C4293.95 115.16 4282.98 94.06 4264.32 77.52C4214.69 33.52 4133.22 37.98 4095.19 94.54C4055.46 153.65 4065.15 236 4091.82 298.27C4095.18 306.11 4098.83 317.31 4103.09 323.82L4344.97 693.81C4364.11 723.09 4376.53 765.72 4382.36 800.37C4393.7 867.69 4386.23 937.42 4336.78 988.84C4248.55 1080.55 4063.6 1061.83 3998.29 951.87C3976.01 914.36 3974.58 873.48 3974.78 831.07Z"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+</svg>
+
+<div class="pbar" role="region" aria-label="Prototype controls">
+  <div class="wrap">
+    <span class="pname"><i class="dot"></i><b>BAQLESS.JP</b><span>PROTOTYPE</span></span>
+    <span class="grow"></span>
+    <span class="seg" role="group" aria-label="Direction">
+      <button type="button" data-dir="a" aria-pressed="false">A<span class="long"> Familiar</span></button>
+      <button type="button" data-dir="b" aria-pressed="true">B<span class="long"> Brand</span></button>
+      <button type="button" data-dir="c" aria-pressed="false">C<span class="long"> Black</span></button>
+    </span>
+    <span class="seg" role="group" aria-label="Language">
+      <button type="button" data-lang="ja" aria-pressed="true">JA</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </span>
+    <span class="seg" role="group" aria-label="Effects">
+      <button type="button" data-fx="on" aria-pressed="true">FX</button>
+    </span>
+    <button type="button" class="ibtn" id="about-btn" aria-haspopup="dialog">?</button>
+  </div>
+</div>
+
+<div id="shop">
+  <div class="ann"><div class="wrap" id="ann"></div></div>
+  <header class="head">
+    <div class="wrap">
+      <div class="left"><button type="button" class="icon" id="menu-btn" aria-label="Menu"><svg><use href="#i-menu"/></svg></button></div>
+      <a class="logo" href="#home" aria-label="BAQLESS ホーム"><svg class="wm" viewBox="0 0 4411.98 1262.4" role="img" aria-label="BAQLESS"><use href="#wm"/></svg></a>
+      <nav class="nav" id="nav" aria-label="Main"></nav>
+      <div class="right">
+        <button type="button" class="icon" id="acct-btn" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+        <button type="button" class="icon" id="cart-btn" aria-label="Cart"><svg><use href="#i-bag"/></svg><span class="count num" id="cart-count" hidden>0</span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<div class="buybar" id="buybar" aria-hidden="true"></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="cart" aria-label="Cart" aria-hidden="true"></aside>
+<aside class="drawer left" id="menu" aria-label="Menu" aria-hidden="true"></aside>
+<div class="dlg" id="about" role="dialog" aria-modal="true" aria-labelledby="about-h"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+const P = [{"id":"046","n":"Baqless Original Gift Box","code":"Baqless-Original-Gift-Box","p":440,"h":null,"k":["gift"],"art":"gift","d":["特別な日のギフトのために、ギフトボックスとオリジナルショッピングバッグをご用意いたしました。ピアスと併せてご注文ください。","ボックスにピアス（缶）を入れ、リボンをかけてお送りいたします。","1つのボックスに1つ、ピアス（缶）が入ります。","複数個ピアスをご注文の際は、どのピアスをボックスにお入れするかをご指定ください。"],"s":["サイズ W:83mm D:83mm H:37ｍｍ"]},{"id":"055","n":"Embrace Sublime Gold","code":"HP-SB-YG","p":20900,"h":null,"k":["hoop"],"art":"earring","d":["シンプルなリッチ感","程よいボリュームと綺麗な光沢のミラーフィニッシュが施された定番のシンプルなフープピアス。美しく輝くゴールドのリッチ感は、大人らしく凛とした印象を与えます。いつものファッションにプラスするだけでワンランクも上に見えシーンやスタイルを選ばずに幅広い用途で使えるので、コレクションに加えておくことをオススメします！　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　フープ部分には高級感のある925シルバーを使用し、18金のメッキが施されています。軸部分は金属アレルギー反応が出にくいサージカルステンレスを採用しました。","☆ギフトボックス&ショッピングバッグセットは","こちら"],"s":["フープ部分：925シルバーに18Kイエローゴールドメッキ","ポスト部分：サージカルステンレス","フープ直径：内径10.0mm 外径 15.0mm","重量（片側）：約2.3g"]},{"id":"095","n":"Clarity White 2.5mm","code":"CZ-25-WH","p":6600,"h":null,"k":["zirconia"],"art":"earring","d":["手放せなくなる輝き","ストーン部分にキュービックジルコニアを採用しているので","目立ちすぎることはないサイズですが、耳元でしっかり美しい光を放ちます。","透明度ときめ細かいカットにより高級感のある華やかさを演出してくれるので","さりげなくいつもの装いがランクアップ。","直径2.5mmのサイズは主張が少ないので普段のファッションに取り入れやすく、","シンプルでどんなシーンにも馴染むので手放せなくなりそう。","重ねづけなどのアレンジにもオススメです。"],"s":["石 : キュービックジルコニア","台座 : 真鍮 (ロジウムメッキ)","ポスト部分 : サージカルステンレス","石部分のサイズ：2.5mm","重量（片側）：約0.1g"]},{"id":"335","n":"Embrace Sage Gold","code":"HP-SG-YG","p":15400,"h":null,"k":["hoop"],"art":"earring","d":["ゆるぎない定番","シーンやファッション問わず、どんなときも活躍するミニフープのピアス。","適度な大きさと軽さは一日中快適に着用でき、重ねつけもしやすいです。","ゴールドは優しくエレガントな雰囲気をそっとプラス。","年齢を問わないタイムレスなデザインですので長くご愛用いただけます。","【ピアスチャーム】","を通してお使いいただけます。","自分だけのオリジナルのカスタマイズをお楽しみください。"],"s":["ヘッド素材 : 925 silver/18Kメッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約外径：12ｍｍ×13ｍｍ","重量（片側）：約0.7g"]},{"id":"411","n":"Amity Crown Onyx Gold","code":"AM-CR-ON-YG","p":15400,"h":null,"k":["amity","black"],"art":"earring","d":["守りたい揺るぎない自信","シンプルながらも魅惑の光を放つ、力強い存在感を持つピアス。","オニキスは身を守り自信を高める石として古くから身に付けられており、","深いブラックの輝きでミステリアスな雰囲気は、媚びない個性があります。","ストーンを包み込むようにデザインされたゴールドのクラウン型の台座が、","エレガントな高級感をプラス。","デイリーのあらゆるシーンに活用でき、小ぶりサイズでスポーツシーンにもぴったりです。"],"s":["ヘッド素材 : 925silver/ 18Kプレーティング/オニキス","ポスト部分 : サージカルステンレス","ヘッド部分のサイズ：5.0ｍｍ×5.0ｍｍ"]},{"id":"413","n":"Embrace Eclipse Black","code":"HP-ECP-BK","p":18700,"h":null,"k":["hoop","black"],"art":"earring","d":["引き寄せられる気品と艶","深みのある漆黒の美しい光沢が際立つフープピアス。","大人の魅力を引き出す、ツヤある黒が引き立つシンプルなデザインで","さりげなく見えるシルバーカラーが洗練された雰囲気を添え","顔周りが引きしまる存在感は、スタイル全体もスタイリッシュで気品ある印象に。","個性がありつつカジュアルからフォーマルまで幅広くお楽しみいただけます。","軽量で快適なつけ心地も魅力のひとつ。"],"s":["ヘッド素材 : 925silver/ ロジウムプレーティング/エナメル","ポスト部分 : サージカルステンレス","ヘッド部分のサイズ：10.0ｍｍ×14.0ｍｍ"]},{"id":"443","n":"Charisma Glow","code":"RP-GL-YG","p":16500,"h":null,"k":["pearl"],"art":"earring","d":["上品な3粒のパールが連なるスタッドピアス。","柔らかく控えめな光沢が顔まわりを明るく彩り、自然な華やかさを演出します。","シンプルながら女性らしい丸みを持ったデザインは、","普段使いはもちろん、フォーマルな場面にもよく馴染みます。","長く愛用できるアクセサリーとしておすすめの一品です。"],"s":["ヘッド素材 : シェルパール／シルバー925／18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:10.2mm × H:4.8mm × T:5.0mm"]},{"id":"444","n":"Honesty Aura Gold","code":"CZ-AU-YG","p":13200,"h":null,"k":["zirconia"],"art":"earring","d":["小ぶりで丸みのあるラウンドフォルムに、透明感あふれるキュービックジルコニアをあしらった一粒ピアス。","さりげない輝きが耳元を明るく彩り、上品なゴールドカラーの縁取りが肌になじみながら華やかさを添えます。","シンプルながら洗練されたデザインで、デイリーはもちろんフォーマルな場にも自然にマッチ。","軽やかな着け心地で長時間の使用にも適しており、幅広いシーンで活躍します。"],"s":["ヘッド素材 : キュービックジルコニア／シルバー925／18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:4.9mm × H:4.9mm × T:2.0mm"]},{"id":"521","n":"Amity Bloom Onyx Gold","code":"261AM-BLM-ON-YG","p":15400,"h":null,"k":["amity","black"],"art":"earring","d":["オニキスを四つあしらったフラワーモチーフのピアス。","小ぶりながらも深みのある輝きが耳元を上品に引き締め、さりげない華やかさを添えます。","シンプルなスタイルにもエレガントな装いにも合わせやすいデザインです。"],"s":["ヘッド素材 : オニキス(天然石)/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分：約W:4.80mm × H:4.80mm × T:2.00mm"]},{"id":"559","n":"Honesty Heart Gold","code":"262CZ-HT-YG","p":19800,"h":11660,"k":["new","zirconia"],"art":"earring","d":["繊細なジルコニアが耳元で眩い光を放つ、オープンハートのピアス。","小ぶりながらもしっかりとした輝きがあり、顔まわりをパッと明るく、華やかに彩ります。","流行に左右されず、長く愛用できる永遠の定番モチーフです。"],"s":["ヘッド素材 : キュービックジルコニア/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:7.52mm × H:7.08mm × T:1.45mm"]},{"id":"560","n":"Honesty Swing Gold","code":"262CZ-SW-YG","p":14300,"h":8470,"k":["new","zirconia"],"art":"earring","d":["一粒のジルコニアに揺れるチェーンを添えた、繊細なロングピアス。","ふとした動きに合わせてチェーンがしなやかに揺れ、耳元にニュアンスのある煌めきをプラスします。","縦のラインを強調するシルエットが、横顔をスッキリと優雅に演出してくれる一品です。"],"s":["ヘッド素材 : キュービックジルコニア/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:4.72mm × H:4.72mm × T:3.43mm / チェーン部分：約40.00mm"]},{"id":"568","n":"Amity Amour Gold","code":"262AM-AM-YG","p":15400,"h":9020,"k":["amity","new"],"art":"earring","d":["小ぶりなサイズ感と、肌馴染みの良いマットな風合いが調和したハートデザイン。","主張しすぎない控えめな存在感が、耳元にさりげない女性らしさを添えてくれます。","デイリー使いはもちろん、お手持ちのアクセサリーとの重ね付けにもぴったりの、頼れるアイテムです。"],"s":["ヘッド素材 : シルバー925/18金メッキ/マット仕上げ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:7.18mm × H:6.52mm × T:1.21mm"]},{"id":"570","n":"Amity Bear Gold","code":"262AM-BE-YG","p":17600,"h":10340,"k":["amity","new"],"art":"earring","d":["見るたびに笑顔になれるような、愛嬌たっぷりのベアデザイン。","ゴールドの質感にこだわり、甘くなりすぎないモダンな表情に仕上げました。","大人の遊び心を耳元に忍ばせて、日常にさりげない癒やしと華やぎを添えてくれる一品です。"],"s":["ヘッド素材 : シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:5.17mm × H:8.30mm × T:3.14mm"]},{"id":"572","n":"Embrace Micro Gold","code":"262HP-MC-YG","p":14300,"h":8470,"k":["hoop","new"],"art":"earring","d":["ミニマルを極めたタイトなシルエットが魅力のフープデザイン。","耳たぶにぴたっと寄り添うような小ぶりなサイズ感が、顔まわりにさりげない気品と艶を与えてくれます。","どんなスタイルにも溶け込み、日常をクラスアップさせてくれる究極のベーシックアイテムです。"],"s":["ヘッド素材 : シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:2.15mm × H:10.27mm × T:2.15mm"]},{"id":"577","n":"Embrace Maxi Gold","code":"262HP-MX-YG","p":24200,"h":14190,"k":["hoop","new"],"art":"earring","d":["鏡面仕上げのゴールドが光を美しく反射する、リッチな表情のフープデザイン。","コロンとした丸みのあるシルエットが、耳元にモダンな重厚感をプラスしてくれます。","シンプルながらも確かな存在感を放ち、顔まわりを華やかに引き締めてくれるアイテムです。"],"s":["ヘッド素材 : 真鍮/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:9.85mm × H:16.44mm × T:5.26mm"]},{"id":"579","n":"Charisma Lunelle Silver","code":"262SP-LNE-SV","p":18700,"h":11000,"k":["new","pearl"],"art":"earring","d":["艶やかなシルバーのカーブにパールを合わせた上品なデザイン。","柔らかな丸みと光沢が耳元をエレガントに演出し、シンプルながら印象的なデザイン。","デイリーにもフォーマルにも自然に溶け込み、幅広いスタイルを引き立てます。"],"s":["ヘッド素材 : シェルパール/ロジウムメッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約H:12.82mm × T:3.07mm / パール部分:約7.12mm"]},{"id":"580","n":"Embrace Turquoise Gold","code":"262HP-TQ-YG","p":19800,"h":11660,"k":["hoop","new","black"],"art":"earring","d":["奥深いターコイズブルーが美しい、ハーフエタニティ風のフープピアス。","クリアな発色が、顔まわりにパッと明るい華やぎを添えてくれます。","ゴールドの繊細な台座がブルーの輝きを引き立て、日常に上質なアクセントを取り入れたい方におすすめなアイテムです。"],"s":["ヘッド素材 : ナノストーン/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:2.11mm × H:12.47mm × T:2.41mm"]},{"id":"581","n":"Embrace Turquoise Silver","code":"262HP-TQ-SV","p":19800,"h":11660,"k":["hoop","new","black"],"art":"earring","d":["奥深いターコイズブルーが美しい、ハーフエタニティ風のフープピアス。","クリアな発色が、顔まわりにパッと明るい華やぎを添えてくれます。","シルバーの繊細な台座がブルーの輝きを引き立て、日常に上質なアクセントを取り入れたい方におすすめなアイテムです。"],"s":["ヘッド素材 : ナノストーン/シルバー925/ロジウムメッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:2.11mm × H:12.47mm × T:2.41mm"]},{"id":"582","n":"Embrace Onyx Gold","code":"262HP-ON-YG","p":19800,"h":11660,"k":["hoop","new","black"],"art":"earring","d":["艶やかな漆黒のオニキスを贅沢に並べた、ハーフエタニティ風のフープピアス。","凛とした発色が、顔まわりにパッと明るい華やぎを添えてくれます。","ゴールドの繊細な台座がブラックの輝きを引き立て、上質なモダンアクセサリーを日常に取り入れたい方におすすめのお品です。"],"s":["ヘッド素材 : ナノストーン/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:2.11mm × H:12.47mm × T:2.41mm"]},{"id":"583","n":"Embrace Onyx Silver","code":"262HP-ON-SV","p":19800,"h":11660,"k":["hoop","new","black"],"art":"earring","d":["艶やかな漆黒のオニキスを贅沢に並べた、ハーフエタニティ風のフープピアス。","凛とした発色が、顔まわりにパッと明るい華やぎを添えてくれます。","シルバーの繊細な台座がブラックの輝きを引き立て、上質なモダンアクセサリーを日常に取り入れたい方におすすめのお品です。"],"s":["ヘッド素材 : ナノストーン/シルバー925/ロジウムメッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:2.11mm × H:12.47mm × T:2.41mm"]},{"id":"584","n":"Amity Noir Dot","code":"262AM-ND-BK","p":13200,"h":7810,"k":["amity","new","black"],"art":"earring","d":["着けていることを忘れるほど軽やかで、どんなスタイルにも自然に溶け込むサイズ感。","艶やかなブラックの質感が、顔まわりにさりげない奥行きと艶を与えてくれます。","お手持ちのゴールドやシルバーピアスとの相性も抜群で、毎日のコーディネートに手放せなくなるベーシックアイテムです。"],"s":["ヘッド素材 : シルバー925/ブラックロジウムメッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 直径:約4.00mm"]},{"id":"585","n":"Amity Noir Alina Gold","code":"262AM-NA-YG","p":19800,"h":null,"k":["amity","new","black"],"art":"earring","d":["繊細なジルコニアが輝く、美しいU字の曲線。","ゴールドとダークトーンのストーンが織りなすコントラストが、大人の女性にふさわしい品格を演出します。"],"s":["ヘッド素材 : キュービックジルコニア/シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:6.22mm × H:7.26mm × T:1.94mm"]},{"id":"586","n":"Amity Mesa Dawn","code":"262MS-DA-SV","p":16500,"h":9680,"k":["amity","new","black"],"art":"earring","d":["彫刻のような細やかなディテールが目を引く、扇形のジオメトリックピアス。","シルバー1色で潔く仕上げることで、どんなスタイルにも馴染み、唯一無二の存在感を両立させました。","日常の何気ないシーンも、身に着けるだけでどこか特別に変えてくれるアイテムです。","日々のお手入れを楽しみながら、お客様だけの特別な風合いへと育ててください。"],"s":["ヘッド素材 : シルバー925","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:6.65mm × H:8.75mm × T:1.12mm"]},{"id":"587","n":"Amity Mesa Ray","code":"262MS-RY-SV","p":16500,"h":9680,"k":["amity","new","black"],"art":"earring","d":["中心から広がる細やかなラインが、まるで降り注ぐ太陽の光（サンバースト）を思わせるデザイン。","シルバーの陰影がひし形のシルエットを際立たせ、小ぶりながらもしっかりとした存在感を放ちます。","顔まわりにパッと明るいエネルギーを添えてくれる一品です。","日々のお手入れを楽しみながら、お客様だけの特別な風合いへと育ててください。"],"s":["ヘッド素材 : シルバー925","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:9.38mm × H:5.94mm × T:2.38mm"]},{"id":"588","n":"Amity Noir Star Gold","code":"262AM-NRST-YG","p":15400,"h":9020,"k":["amity","new","black"],"art":"earring","d":["ブラックエナメルを施したスター型のピアス。","艶やかな黒の輝きがシンプルなフォルムを際立たせ、耳元をシックに引き締めます。","遊び心のあるデザインながら洗練された雰囲気です。"],"s":["ヘッド素材 : シルバー925/18金メッキ/エナメルコーティング","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:6.68mm × H:6.68mm × T:1.42mm"]},{"id":"589","n":"SUMIIRI III Gold","code":"262WA-SMIII-YG","p":22000,"h":12870,"k":["new","wa"],"art":"earring","d":["角入り。古くから日本では角は邪気を払う場所という意味合いがあります。","また、四方を囲むことから「守護」や「安定」を意味していました。","SUMIIRIは、大切なものを守り、永い安全をモチーフにデザインしました。"],"s":["ヘッド素材 : シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:14.35mm × H:24.81mm × T:2.06mm"]},{"id":"592","n":"HACHIKADO","code":"262WA-HC","p":19800,"h":11660,"k":["new","wa"],"art":"earring","d":["八角。八角形は風水において「全方位（八方位）から運気を引き寄せる」とされ、邪気を払い繁栄を招く最強の開運モチーフとされています。","日々のお手入れを楽しみながら、お客様だけの特別な風合いへと育ててください。"],"s":["ヘッド素材 : シルバー925","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:6.64mm × H:7.12mm × T:3.00mm"]},{"id":"593","n":"OGI Gold","code":"262WA-OG-YG","p":16500,"h":9680,"k":["new","wa"],"art":"earring","d":["扇。扇はその末に広がる形から、日本では縁起のいいものとして親しまれてきました。","末広という言葉があるように、未来の発展、子孫繁栄、長寿、など栄える意味があります。","ピアスでもそういった縁起物を身につけてみてもいいかもしれません。"],"s":["ヘッド素材 : シルバー925/18金メッキ","ポスト部分 : サージカルステンレス","ヘッド部分： 約W:7.32mm × H:3.49mm × T:1.34mm"]},{"id":"600","n":"Ludique Round Turquoise Silver","code":"262LD-RTQ-SV","p":7480,"h":null,"k":["new","charms"],"art":"charm","d":["ピアスをより個性的に、美しく演出するためのピアス用チャームです。","天然石ならではの深みのあるブルーが美しい、リアルターコイズのチャーム。","耳元にヘルシーな華やぎと、ポジティブなエネルギーを添えてくれます。","装いの鮮やかなアクセントとして、日常使いからリゾートシーンまで映える一品です。"],"s":["ターコイズ（天然石） / シルバー925","サイズ：約W:9.75mm × H:9.75mm × T:4.33mm / Oリング部分:約4.06mm"]},{"id":"603","n":"Ludique Onyx Heart Gold","code":"262LD-ONHT-YG","p":6050,"h":null,"k":["new","charms"],"art":"charm","d":["ピアスをより個性的に、美しく演出するためのピアス用チャームです。","耳元でコロンと揺れる、小ぶりなオニキスハート。","お手持ちのフープに通すだけで、いつものスタイルに奥行きのあるリズム感を生み出します。"],"s":["オニキス（天然石） / シルバー925 / 18金メッキ","サイズ：約W:8.62mm × H:8.37mm × T:4.23mm / Oリング部分:約4.06mm"]}];
+const by = Object.fromEntries(P.map(p => [p.id, p]));
+const S = { dir:"b", lang:"ja", fx:true, cart:[], gift:false };
+try { const s = JSON.parse(localStorage.getItem("bqjp") || "{}"); if (s.dir) S.dir = s.dir; if (s.lang) S.lang = s.lang; if (s.cart) S.cart = s.cart; } catch(e) {}
+function save(){ try { localStorage.setItem("bqjp", JSON.stringify({dir:S.dir, lang:S.lang, cart:S.cart})); } catch(e) {} }
+
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const L = (ja, en) => (S.lang === "en" && en) ? en : ja;
+const yen = n => "¥" + n.toLocaleString("ja-JP");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const img = (id, n) => "img/p" + id + "-" + n + ".webp";
+const dark = () => S.dir === "c" || document.documentElement.dataset.scope === "black";
+const PROP = () => '<span class="prop">' + L("提案","Proposed") + '</span>';
+
+/* Real store facts, baqless.jp ご利用ガイド and 特定商取引法表示, read 20.11.2026 */
+const FREE = 9000, SHIP = 770, GIFT = 440;
+
+const NAV = [
+  ["collection","COLLECTIONS"],["new-arrival","NEW ARRIVAL"],["black","BLACK"],["wa","WA"],
+  ["about","ABOUT"],["shoplist","SHOPLIST"],["lifestyle-lisa","LIFESTYLE"],["guide","SUPPORT"]
+];
+const CATS = [
+  ["all","ALL ITEMS","すべて"],["new","NEW ARRIVAL","新着"],["black","BLACK","ブラック"],["wa","WA","和"],
+  ["zirconia","ZIRCONIA","ジルコニア"],["pearl","PEARL","パール"],["hoop","HOOP","フープ"],["amity","AMITY","アミティ"],["charms","CHARMS","チャーム"]
+];
+const CIRCLES = [["new-arrival","NEW ARRIVAL","582"],["black","BLACK","584"],["wa","WA","593"],["zirconia","ZIRCONIA","559"],["pearl","PEARL","579"],["hoop","HOOP","572"],["amity","AMITY","570"],["charms","CHARMS","600"]];
+const STORIES = [
+  {id:"lisa", t:"「ピアスひとつでママになる前の自分に戻れる」。シンガーソングライター、リサハリムがバックレスを外さない理由", d:"2025.1.7", im:"story-lisa-1"},
+  {id:"charms", t:"【ギフトにおすすめ】新定番のフープピアスに付け替え自由な４種類のチャーム", d:"2024.11.25", im:"story-charm"},
+  {id:"taekowako", t:"目利きのビームススタッフが偏愛するバックレスの魅力を語り尽くす", d:"2024.7.9", im:"story-taeko"},
+  {id:"yurinakajima", t:"100マイルを4度走破した女性ランナーが、キャッチレスピアスにハマった理由", d:"2024.3.7", im:"story-yuri"},
+  {id:"soshokobori", t:"本当は自由で懐が深い “人を生かす茶道”とキャッチレスピアスのポテンシャル", d:"2023.11.30", im:"story-sosho"}
+];
+const STEPS = [
+  ["ピアスホールに挿入","Insert into the piercing"],
+  ["ポストの先端を回転","Turn the tip of the post"],
+  ["ヘッド側に移動（カチカチと９段階の締付調整が可能）","Slide it towards the front (nine click-stops to set the hold)"]
+];
+
+/* ---------- small builders ---------- */
+function tile(p, i, opts){
+  const wornFirst = opts && opts.worn;
+  const a = wornFirst ? 1 : 0, b = wornFirst ? 0 : 1;
+  const isNew = p.k.indexOf("new") > -1;
+  return '<a class="tile" href="#item-' + p.id + '" data-reveal style="--d:' + (i % 4) + '">' +
+    '<div class="ph">' + (isNew ? '<span class="tag">NEW</span>' : '') +
+    '<img class="i1" src="' + img(p.id, a) + '" alt="' + esc(p.n) + '" width="720" height="900" loading="lazy">' +
+    '<img class="i2" src="' + img(p.id, b) + '" alt="" width="720" height="900" loading="lazy">' +
+    '</div><div class="cap"><span class="nm">' + esc(p.n) + '</span><span class="pr">' + yen(p.p) + '<small>(税込)</small></span></div></a>';
+}
+function grid(list, opts){ return '<div class="grid">' + list.map((p, i) => tile(p, i, opts)).join("") + '</div>'; }
+function pays(){
+  const now = [["クレジットカード","Credit card"],["Amazon Pay","Amazon Pay"],["代金引換","Cash on delivery"],["Apple Pay","Apple Pay"],["PayPay","PayPay"],["楽天ペイ","Rakuten Pay"],["コンビニ払い","Konbini"]];
+  return '<div class="pays">' + now.map(x => '<span class="pay">' + L(x[0], x[1]) + '</span>').join("") + '</div>';
+}
+function head(title, ja, crumbs){
+  return '<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="#home">' + L("ホーム","Home") + '</a>' +
+    (crumbs || []).map(c => '<span aria-hidden="true">/</span>' + (c[0] ? '<a href="#' + c[0] + '">' + esc(c[1]) + '</a>' : '<span>' + esc(c[1]) + '</span>')).join("") +
+    '</nav><div class="ptitle"><h1>' + title + '</h1>' + (ja ? '<p>' + ja + '</p>' : '') + '</div></div>';
+}
+
+/* ---------- views ---------- */
+function vHome(){
+  const heroImg = S.dir === "c" ? "hero-black" : "hero-new";
+  const news = ["582","580","572","577","559","568","570","579"].map(i => by[i]);
+  const wa = ["593","592","589"].map(i => by[i]);
+  return '' +
+  '<section class="hero" aria-labelledby="h1">' +
+    '<div class="ph"><picture><source media="(min-width:900px)" srcset="img/' + heroImg + '.webp"><img src="img/' + heroImg + '-sm.webp" alt="' + L("FALL WINTER 2026 コレクションを着用したモデル","Model wearing the Fall Winter 2026 collection") + '" width="1920" height="1080" style="object-position:50% 40%"></picture></div>' +
+    '<div class="copy"><span class="eyebrow">' + L("キャッチレスピアス","Catchless earrings") + '</span>' +
+    '<h1 class="jh" id="h1">' + L("コンセプトは<br>“ストレスフリーのピアス”","The stress-free<br>earring") + '</h1>' +
+    '<p class="sub">' + L("勝手に外れない。快適な着用感。キャッチのない、まったく新しいピアス。","Stays in, comfortable all day. An earring without a back.") + '</p>' +
+    '<div class="ctas"><a class="btn" href="#new-arrival">' + L("NEW ARRIVALを見る","Shop New Arrival") + '</a><a class="btn ghost" href="#black">BLACK COLLECTION</a></div></div>' +
+  '</section>' +
+  '<section class="sec" aria-label="Collections"><div class="wrap"><div class="circles">' +
+    CIRCLES.map(c => '<a href="#' + c[0] + '"><span class="c"><img src="' + img(c[2], 0) + '" alt="" width="720" height="900" loading="lazy"></span><span>' + c[1] + '</span></a>').join("") +
+  '</div></div></section>' +
+  '<section class="sec" aria-labelledby="na-h" style="padding-top:8px"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="na-h">NEW ARRIVAL</h2><span class="ja">' + L("新着アイテム","Just in") + '</span></div><a class="more ul" href="#new-arrival">' + L("一覧を見る","View all") + '</a></div>' + grid(news, {worn: dark()}) + '</div></section>' +
+  '<section class="band" aria-labelledby="bk-h"><div class="ph"><img src="img/hero-black.webp" alt="' + L("BLACK COLLECTION のピアスを着用したモデル","Model wearing a piece from the BLACK collection") + '" width="1920" height="1080" loading="lazy" style="object-position:30% 50%"></div>' +
+    '<div class="copy" data-reveal><span class="eyebrow">Fall Winter 2026</span><h2 id="bk-h">BLACK</h2><p>' + L("漆黒のオニキス、ブラックエナメル、ブラックロジウム。BLACKのページは、ピアスが映える黒で。","Onyx, black enamel, black rhodium. The BLACK pages turn dark so the pieces stand out.") + '</p><a class="btn" href="#black">' + L("BLACK COLLECTIONを見る","Shop BLACK") + '</a></div></section>' +
+  '<section class="sec" aria-labelledby="how-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="how-h">HOW TO WEAR</h2><span class="ja">' + L("キャッチのないピアスのつけ方","How to put it on") + '</span></div></div>' +
+    '<div class="steps">' + STEPS.map((s, i) => '<div class="step" data-reveal style="--d:' + i + '"><span class="n">0' + (i + 1) + '</span><div><h3>' + L(s[0], s[1]) + '</h3></div></div>').join("") + '</div>' +
+    '<div class="feats">' +
+      '<div class="feat" data-reveal style="--d:0"><h3>' + L("勝手に外れない。快適な着用感。","Stays in. Comfortable.") + '</h3><p>' + L("キャッチ一体化構造により、外れない安心感と快適な着用感を実現しました。","The catch is part of the post, so the earring stays in place and sits comfortably.") + '</p></div>' +
+      '<div class="feat" data-reveal style="--d:1"><h3>' + L("金属アレルギー対応","Made for sensitive ears") + '</h3><p>' + L("ポストには医療器具などに使用されるサージカルステンレス、ヘッドには金属アレルギーに対応したコーティング（18K／ロジウム）を使用。","Surgical stainless steel post, head coated in 18K gold or rhodium.") + '</p><p class="note">' + L("※アレルギーには個人差があります。異常を感じられた場合はすぐに着用をおやめください。","Reactions differ from person to person.") + '</p></div>' +
+      '<div class="feat" data-reveal style="--d:2"><h3>' + L("錆びない","Does not rust") + '</h3><p>' + L("複数のレイヤーによるコーティング加工により、限りなく錆びや変色が出にくい加工を施しています。","Several layers of coating keep rust and tarnish away.") + '</p><p class="note">' + L("※海水やプール等も問題なくご着用いただけますが、真水でしっかりと洗い流してください。","Fine in the sea and pool, rinse with fresh water afterwards.") + '</p></div>' +
+    '</div></div></section>' +
+  '<section class="sec alt" aria-labelledby="rk-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="rk-h">RANKING</h2><span class="ja">' + L("人気ランキング","Best sellers") + '</span></div><a class="more ul" href="#collection">' + L("すべて見る","View all") + '</a></div>' +
+    '<div class="grid rank">' + ["095","444","335","521"].map((id, i) => tile(by[id], i, {worn: dark()}).replace('<div class="ph">', '<div class="ph"><span class="rk num">' + (i + 1) + '</span>')).join("") + '</div></div></section>' +
+  '<section class="band wa flip" aria-labelledby="wa-h"><div class="ph"><img src="img/hero-wa.webp" alt="' + L("WA COLLECTION のビジュアル","WA collection visual") + '" width="1920" height="1080" loading="lazy"></div>' +
+    '<div class="copy" data-reveal><span class="eyebrow">Fall Winter 2026</span><h2 id="wa-h">WA</h2><div class="wa-list">' +
+    wa.map(p => '<a href="#item-' + p.id + '"><img src="' + img(p.id, 0) + '" alt="" width="720" height="900" loading="lazy"><span><b>' + esc(p.n) + '</b><span>' + esc(p.d[0]) + '</span></span></a>').join("") +
+    '</div><a class="btn" href="#wa">' + L("WAを見る","Shop WA") + '</a></div></section>' +
+  '<section class="sec alt" aria-labelledby="ls-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="ls-h">LIFESTYLE</h2><span class="ja">' + L("バックレスと暮らす人たち","People who wear Baqless") + '</span></div><a class="more ul" href="#lifestyle-lisa">' + L("一覧を見る","View all") + '</a></div>' +
+    '<div class="stories">' + STORIES.slice(0, 4).map((s, i) => storyCard(s, i)).join("") + '</div></div></section>' +
+  '<section class="sec" aria-label="Gift and LINE"><div class="wrap duo">' +
+    '<div class="card" data-reveal><img src="' + img("046", 0) + '" alt="' + L("オリジナルギフトボックスとショッピングバッグ","Gift box and shopping bag") + '" width="720" height="900" loading="lazy"><div><h3>' + L("ギフトラッピング","Gift wrapping") + '</h3><p>' + L("ボックスにピアス（缶）を入れ、リボンをかけてお送りします。オリジナルショッピングバッグ付き。","We put the earrings in the box, tie a ribbon and add our shopping bag.") + '</p><div class="act"><span class="price" style="font-size:16px">' + yen(GIFT) + '<small>(税込)</small></span><a class="btn ghost sm" href="#item-046">' + L("詳しく見る","Details") + '</a></div></div></div>' +
+    '<div class="card" data-reveal style="--d:1"><span class="line-badge">LINE</span><div><h3>' + L("LINEお友だち登録","Add us on LINE") + '</h3><p>' + L("新作やショールームのご予約は公式LINEから。返品・交換のご相談もLINEで承ります。","New arrivals, showroom bookings and help with returns, all on our LINE account.") + '</p><div class="act"><a class="btn line" href="https://lin.ee/ByfAr8V" target="_blank" rel="noopener">' + L("友だち追加","Add friend") + '</a><span class="prop">' + L("LINEログイン 提案","LINE login proposed") + '</span></div></div></div>' +
+  '</div></section>';
+}
+function storyCard(s, i){
+  return '<a class="story-card" href="#lifestyle-' + s.id + '" data-reveal style="--d:' + i + '"><span class="ph"><img src="img/' + s.im + '.webp" alt="" width="1400" height="933" loading="lazy"></span><span class="dt">' + s.d + '</span><span class="tt">' + esc(s.t) + '</span></a>';
+}
+
+let filt = "all", sort = "rec";
+function vCollection(f){
+  filt = f || filt;
+  const title = f === "new" ? "NEW ARRIVAL" : f === "wa" ? "WA" : "ALL ITEMS";
+  const ja = f === "new" ? L("新着アイテム","Just in") : f === "wa" ? L("日本の縁起や文様をかたちにしたコレクション。","Pieces drawn from Japanese good-luck shapes.") : L("キャッチのない、ストレスフリーのピアス。","Earrings without a back.");
+  return head(title, ja, [["collection","COLLECTIONS"],[null,title]]) +
+  '<div class="tools"><div class="wrap"><div class="chips" role="group" aria-label="Filter">' +
+    CATS.map(c => '<button type="button" class="chip" data-f="' + c[0] + '" aria-pressed="' + (filt === c[0]) + '">' + c[1] + '</button>').join("") +
+  '</div><label class="sr" for="sort">' + L("並び替え","Sort") + '</label><select class="sel" id="sort">' +
+    [["rec","おすすめ順","Featured"],["new","新着順","Newest"],["low","価格の安い順","Price, low to high"],["high","価格の高い順","Price, high to low"]].map(o => '<option value="' + o[0] + '"' + (sort === o[0] ? " selected" : "") + '>' + L(o[1], o[2]) + '</option>').join("") +
+  '</select></div></div><div class="wrap" style="padding-bottom:72px"><p class="cnt" id="cnt" style="margin-bottom:16px"></p><div id="cgrid"></div></div>';
+}
+function fillCollection(){
+  let list = P.filter(p => p.art !== "gift" && (filt === "all" || p.k.indexOf(filt) > -1));
+  if (sort === "low") list = list.slice().sort((a, b) => a.p - b.p);
+  if (sort === "high") list = list.slice().sort((a, b) => b.p - a.p);
+  if (sort === "new") list = list.slice().sort((a, b) => (b.k.indexOf("new") > -1) - (a.k.indexOf("new") > -1));
+  $("#cgrid").innerHTML = grid(list, {worn: dark()});
+  $("#cnt").textContent = L("全" + list.length + "件", list.length + " items");
+  $$(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.f === filt));
+  reveal();
+}
+
+function vBlack(){
+  const list = P.filter(p => p.k.indexOf("black") > -1 && p.art !== "gift");
+  return head("BLACK", "", [["collection","COLLECTIONS"],[null,"BLACK"]]).replace('<div class="ptitle">', '<div class="ptitle" style="display:none">') +
+  '<section class="hero flip" aria-labelledby="bh"><div class="ph"><picture><source media="(min-width:900px)" srcset="img/hero-black.webp"><img src="img/hero-black-sm.webp" alt="' + L("BLACK COLLECTION のピアスを着用したモデル","Model wearing a piece from the BLACK collection") + '" width="1920" height="1080" style="object-position:50% 40%"></picture></div>' +
+  '<div class="copy"><span class="eyebrow">Collections / Fall Winter 2026</span><h1 id="bh" style="font:300 clamp(56px,11vw,104px)/.9 var(--display);letter-spacing:.06em;margin:0;color:var(--hero-fg)">BLACK</h1><p class="sub">' + L("漆黒のオニキス、ブラックエナメル、ブラックロジウム。","Onyx, black enamel, black rhodium.") + '</p><p class="cnt">' + L("全" + list.length + "件", list.length + " items") + '</p></div></section>' +
+  '<section class="sec"><div class="wrap">' + grid(list, {worn:true}) + '</div></section>';
+}
+
+let cur = null, opt = "pair", qty = 1;
+function vProduct(id){
+  const p = by[id]; if (!p) return vHome();
+  cur = p; opt = "pair"; qty = 1;
+  const isBlack = p.k.indexOf("black") > -1;
+  const imgs = [0, 1, 2].map(n => '<figure><img src="' + img(p.id, n) + '" alt="' + esc(p.n) + (n ? (L(" 画像", " image ") + (n + 1)) : "") + '" width="720" height="900"' + (n ? ' loading="lazy"' : '') + '></figure>').join("");
+  const related = P.filter(q => q.id !== p.id && q.art === "earring" && q.k.some(k => p.k.indexOf(k) > -1 && k !== "new")).slice(0, 4);
+  const charms = p.n.indexOf("Embrace Sage") === 0 ? P.filter(q => q.art === "charm") : [];
+  const fromCat = isBlack ? ["black","BLACK"] : p.k.indexOf("wa") > -1 ? ["wa","WA"] : p.k.indexOf("new") > -1 ? ["new-arrival","NEW ARRIVAL"] : ["collection","ALL ITEMS"];
+  const dates = deliveryDates();
+  return '<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="#home">' + L("ホーム","Home") + '</a><span aria-hidden="true">/</span><a href="#' + fromCat[0] + '">' + fromCat[1] + '</a><span aria-hidden="true">/</span><span>' + esc(p.n) + '</span></nav></div>' +
+  '<div class="wrap" style="padding-top:16px"><div class="pdp">' +
+    '<div><div class="gal" id="gal">' + imgs + '</div><p class="gal-n num" id="gal-n">1 / 3</p></div>' +
+    '<div class="info">' +
+      '<div style="display:grid;gap:10px">' + (p.k.indexOf("new") > -1 ? '<span class="eyebrow">New Arrival</span>' : '') + '<h1>' + esc(p.n) + '</h1><span class="code">' + L("商品コード","Item code") + '：' + esc(p.code) + '</span></div>' +
+      '<div style="display:grid;gap:6px"><span class="price" id="pp">' + yen(p.p) + '<small>(税込)</small></span>' + (p.art === "gift" ? '' : '<span class="pts" id="ppts">' + Math.floor(p.p * .01) + L("ポイント還元（1ポイント＝1円）", " points (1 point = ¥1)") + '</span>') + '</div>' +
+      (p.h ? '<div style="display:grid;gap:10px"><span class="lbl">' + L("両耳用か片耳用かを選ぶ","Pair or single") + '</span><div class="opts" role="group" aria-label="Pair or half"><button type="button" class="opt" data-o="pair" aria-pressed="true"><b>' + L("ペア（両耳用）","Pair") + '</b><span>' + yen(p.p) + '</span></button><button type="button" class="opt" data-o="half" aria-pressed="false"><b>' + L("ハーフ（片耳用）","Single") + '</b><span>' + yen(p.h) + '</span></button></div></div>' : '') +
+      (p.art === "charm" ? '<p class="pts">' + L("ピアスチャームは1点（片耳用）売りです。両耳に着用したい場合は2点ご購入ください。","Charms are sold singly. Order two for both ears.") + '</p>' : '') +
+      '<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><span class="lbl">' + L("購入数","Quantity") + '</span><span class="qty"><button type="button" data-q="-1" aria-label="-">−</button><output id="qv">1</output><button type="button" data-q="1" aria-label="+">+</button></span></div>' +
+      (p.art !== "gift" ? '<label class="check"><input type="checkbox" id="gift-pdp"' + (S.gift ? " checked" : "") + '><span>' + L("ギフトボックスを追加","Add a gift box") + ' <span class="num">+' + yen(GIFT) + '</span><small>' + L("オリジナルショッピングバッグ付き。ボックスにピアスを入れ、リボンをかけてお送りします。","With our shopping bag. Boxed and tied with a ribbon.") + '</small></span></label>' : '') +
+      '<div style="display:grid;gap:10px"><span class="lbl">' + L("お届け日時","Delivery date and time") + PROP() + '</span><div class="dd"><label class="sr" for="dd-d">date</label><select class="sel" id="dd-d"><option>' + L("指定なし","No preference") + '</option>' + dates.map(d => '<option>' + d + '</option>').join("") + '</select><label class="sr" for="dd-t">time</label><select class="sel" id="dd-t"><option>' + L("指定なし","No preference") + '</option><option>' + L("午前中","Morning") + '</option><option>14:00〜16:00</option><option>16:00〜18:00</option><option>18:00〜20:00</option><option>19:00〜21:00</option></select></div></div>' +
+      '<div style="display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:8px"><button type="button" class="btn wide" id="add">' + L("カートに入れる","Add to cart") + '</button><button type="button" class="btn ghost" id="fav" aria-label="' + L("お気に入りに追加","Add to wishlist") + '" style="padding:0"><svg width="20" height="20" style="stroke:currentColor;fill:none;stroke-width:1.4"><use href="#i-heart"/></svg></button></div>' +
+      '<dl class="rows" style="margin:0">' +
+        '<div><dt>' + L("送料","Shipping") + '</dt><dd style="margin:0">' + L("全国一律770円（税込）。9,000円（税込）以上で無料。","¥770 anywhere in Japan, free from ¥9,000.") + '</dd></div>' +
+        '<div><dt>' + L("発送","Dispatch") + '</dt><dd style="margin:0">' + L("在庫確認後2〜3営業日で発送。ヤマト運輸でお届けします。","Ships in 2 to 3 business days with Yamato.") + '</dd></div>' +
+        '<div><dt>' + L("返品","Returns") + '</dt><dd style="margin:0">' + L("初期不良・装着できなかった場合、商品到着日より5日以内。","Within 5 days of delivery if faulty or it does not fit.") + '</dd></div>' +
+        '<div><dt>' + L("保証","Warranty") + '</dt><dd style="margin:0">' + L("ご購入から1年間。","One year from purchase.") + '</dd></div>' +
+      '</dl>' +
+      '<div style="display:grid;gap:10px"><span class="lbl">' + L("お支払い方法","Payment") + '</span>' + pays() + '</div>' +
+      '<div>' +
+        '<details class="acc" open><summary>DESCRIPTION</summary><div class="body">' + p.d.map(x => '<p>' + esc(x) + '</p>').join("") + '</div></details>' +
+        '<details class="acc"><summary>SPECS</summary><div class="body"><ul>' + p.s.map(x => '<li>' + esc(x) + '</li>').join("") + '<li>' + L("商品コード","Item code") + '：' + esc(p.code) + '</li></ul></div></details>' +
+        (p.art === "earring" ? '<details class="acc"><summary>HOW TO WEAR</summary><div class="body"><ul style="list-style:decimal">' + STEPS.map(s => '<li>' + L(s[0], s[1]) + '</li>').join("") + '</ul></div></details>' : '') +
+        (p.art === "charm" ? '<details class="acc" open><summary>' + L("対応ピアス","WORKS WITH") + '</summary><div class="body"><p>' + L("Embrace Sage（Gold／Silver／Neon Pink／Neon Green／Pink／Yellow）、Embrace Sabrina、Embrace Bubbleに通してお使いいただけます。","Fits Embrace Sage, Embrace Sabrina and Embrace Bubble hoops.") + '</p></div></details>' : '') +
+      '</div>' +
+    '</div>' +
+  '</div></div>' +
+  (charms.length ? '<section class="sec alt" aria-labelledby="ch-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="ch-h">CHARMS</h2><span class="ja">' + L("このフープに付けられるチャーム","Charms for this hoop") + '</span></div></div>' + grid(charms, {worn: dark()}) + '</div></section>' : '') +
+  (p.art !== "gift" ? '<section class="sec" aria-labelledby="rv-h" style="padding-top:24px"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="rv-h">REVIEWS</h2><span class="ja">' + L("カスタマーレビュー","Customer reviews") + '</span></div>' + PROP() + '</div>' +
+    '<div class="rev"><div class="stars" aria-hidden="true">' + '<svg><use href="#i-star"/></svg>'.repeat(5) + '</div><p style="color:var(--fg)">' + L("この商品のレビューはまだありません。","No reviews for this piece yet.") + '</p><p style="font-size:13px">' + L("ご購入いただいたお客様に、発送後にレビューのご案内をメールとLINEでお送りします。","After delivery we ask buyers for a review by e-mail and LINE.") + '</p><div class="act"><button type="button" class="btn ghost sm" id="rv-btn">' + L("レビューを書く","Write a review") + '</button></div></div></div></section>' : '') +
+  (related.length ? '<section class="sec alt" aria-labelledby="rl-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="rl-h">RECOMMEND</h2><span class="ja">' + L("こちらもおすすめ","You may also like") + '</span></div></div>' + grid(related, {worn: dark()}) + '</div></section>' : '');
+}
+function deliveryDates(){
+  const w = "日月火水木金土", out = [], d = new Date();
+  d.setDate(d.getDate() + 3);
+  for (let i = 0; i < 8; i++){ out.push((d.getMonth() + 1) + "月" + d.getDate() + "日(" + w[d.getDay()] + ")"); d.setDate(d.getDate() + 1); }
+  return out;
+}
+
+function vStory(id){
+  if (id !== "lisa"){
+    const s = STORIES.find(x => x.id === id) || STORIES[0];
+    return '<div class="story-hero"><img src="img/' + s.im + '.webp" alt="" width="1400" height="933"></div><article class="art" style="padding-block:40px 72px"><span class="meta">LIFESTYLE · ' + s.d + '</span><h1 class="jh">' + esc(s.t) + '</h1><div class="mark"><span class="prop">' + L("移行","Migration") + '</span><span>' + L("この記事は移行時に現行のbaqless.jpから全文・全画像をそのまま移します。プロトタイプではリサハリムさんの記事を見本として組んでいます。","This story moves over word for word from today's baqless.jp. The prototype sets Lisa Halim's story as the sample.") + '</span></div><p style="margin-top:24px"><a class="ul" href="#lifestyle-lisa">' + L("見本の記事を読む","Read the sample story") + '</a></p></article>';
+  }
+  return '<div class="story-hero"><img src="img/story-lisa-1.webp" alt="' + L("リサハリムさん","Lisa Halim") + '" width="1400" height="933"></div>' +
+  '<article class="art" style="padding-block:40px 24px"><nav class="crumb" aria-label="Breadcrumb" style="padding:0 0 18px"><a href="#home">' + L("ホーム","Home") + '</a><span aria-hidden="true">/</span><span>LIFESTYLE</span></nav>' +
+  '<span class="meta">LIFESTYLE · 2025.1.7</span>' +
+  '<h1 class="jh">「ピアスひとつでママになる前の自分に戻れる」。シンガーソングライター、リサハリムがバックレスを外さない理由</h1>' +
+  '<p>今回は、シンガーソングライターのリサハリムさんのライフスタイルに迫ります。実は彼女、このインタビューの４カ月前に元気な女の子を出産。現在は子育てに絶賛奮闘中なんです。</p>' +
+  '<p>すべてが子供中心に回っていく日々の様子にくわえて、母の目線から見たバックレスの魅力についても聞いてみました。</p>' +
+  '<h2>子育てはハードだけど、プラスの方が大きい</h2>' +
+  '<p>「曲を作る時間も、ピアノを弾く時間も、ギターを弾く時間もない」</p>' +
+  '<p>シンガーソングライターであるリサにとって当たり前だった日常は、出産を経て「180度変わった」といいます。</p>' +
+  '<figure><img src="img/story-lisa-2.webp" alt="" width="1400" height="933" loading="lazy"></figure>' +
+  '<h2>ママになってもおしゃれをあきらめたくない</h2>' +
+  '<p>そんなリサさんにとって、子育てから離れられる束の間に、リラックスできるのはどんなときなのでしょう？</p>' +
+  '<blockquote><p>やっぱり、ママになる前の自分に戻れるときかな。ほんの少しの時間でも友達と会えるだけホッとできますね。</p></blockquote>' +
+  '<p>もちろん、アクセサリーをつけるのも楽しみのひとつ。</p>' +
+  '<p>「でも、ネックレスとかは本当につけられなくなりました。娘が最近、いろいろなものをつかむようになってきて、何でも引っ張るんです。しかも、その力がけっこう強くて（笑）」</p>' +
+  '<p>そこでリサさんが愛用しているのが、バックレスのピアスです。</p>' +
+  '<blockquote><p>こういうピアスだったら子供に取られないし、キャッチレスだから落としたときに口に入れてしまう心配もないから便利ですよね。お風呂に入っているときもずっとつけていますよ。</p></blockquote>' +
+  '<figure><img src="img/story-lisa-3.webp" alt="" width="1400" height="933" loading="lazy"></figure>' +
+  '<p>日々、子育てに忙しいリサさんにとって、アクセサリーを付け替える暇さえ惜しいもの。その点、つけっぱなしにできて外れにくいバックレスのピアスなら、気負わずおしゃれを楽しむのにうってつけなのです。</p>' +
+  '<div class="mark"><span class="prop">' + L("移行","Migration") + '</span><span>' + L("本文の続き（「ママになったからこそできる作品をカタチにしたい」ほか）と残りの写真は、移行時に現行ページからそのまま移します。","The rest of the article and its photos move over word for word at migration.") + '</span></div>' +
+  '<div class="prof"><p style="margin:0 0 .6em"><b style="color:var(--fg)">LISA HALIM リサハリム</b></p><p style="font-size:13.5px;line-height:1.9">1985年生まれ。シンガーソングライター。インドネシア人の父と日本人の母を持つ。2007年にメジャーデビュー。趣味はサーフィン。</p><p style="font-size:12px;color:var(--soft)">text by Soichi Toyama · photo by Akane Watanabe</p></div>' +
+  '</article>' +
+  '<section class="sec alt" aria-labelledby="more-h"><div class="wrap"><div class="sec-h"><div class="ttl"><h2 id="more-h">LIFESTYLE</h2><span class="ja">' + L("ほかのストーリー","More stories") + '</span></div></div><div class="stories">' + STORIES.slice(1).map((s, i) => storyCard(s, i)).join("") + '</div></div></section>';
+}
+
+function vGuide(){
+  return head("SUPPORT", L("ご利用ガイド","Shopping guide"), [[null,"SUPPORT"]]) +
+  '<div class="wrap" style="padding-bottom:80px"><div class="doc">' +
+  '<h2>' + L("お支払いについて","Payment") + '</h2>' +
+  '<p>' + L("現行：クレジットカード（VISA・Master・JCB・AMEX・Diners、一括払いのみ）、代金引換（ヤマト運輸コレクトサービス）、Amazon Pay。","Today: credit card, cash on delivery (Yamato), Amazon Pay.") + '</p>' +
+  '<div class="pays" style="margin-top:14px">' +
+    [["クレジットカード",0],["Amazon Pay",0],["代金引換",0],["Apple Pay",1],["Google Pay",1],["PayPay",1],["楽天ペイ",1],["コンビニ払い",1],["あと払い（ペイディ）",1]].map(x => '<span class="pay' + (x[1] ? " new" : "") + '">' + x[0] + '</span>').join("") + '</div>' +
+  '<p style="font-size:13px;color:var(--soft);margin-top:10px">' + L("点線は新しく追加する提案です。Apple Pay・Google PayはShopify Payments、PayPay・楽天ペイ・コンビニ払い・ペイディはKOMOJUまたはSBペイメントサービス経由。代金引換は手動の決済方法として設定します。","Dashed badges are proposed additions, via Shopify Payments, KOMOJU or SB Payment Service.") + '</p>' +
+  '<p style="font-size:13px;color:var(--soft)">' + L("代引手数料：10,000円未満 330円／30,000円未満 440円／100,000円未満 660円／300,000円未満 1,100円（税込）","COD fee from ¥330 to ¥1,100.") + '</p>' +
+  '<h2>' + L("配送について","Delivery") + '</h2>' +
+  '<p>' + L("ヤマト運輸にてお届けいたします。配送料は全国一律770円（税込）。お買い上げ商品の合計金額が9,000円（税込）以上の場合は配送料が無料となります。","Yamato, ¥770 anywhere in Japan, free from ¥9,000.") + '</p>' +
+  '<p style="margin-top:10px">' + L("現行ではお届け日を指定いただけません。新しいショップではカートでお届け日と時間帯（午前中、14〜16時、16〜18時、18〜20時、19〜21時）を選べるようにします。","Today no delivery date can be chosen. The new shop adds a date and Yamato time slot in the cart.") + ' ' + PROP() + '</p>' +
+  '<h2>' + L("返品・交換・修理について","Returns and exchanges") + '</h2>' +
+  '<ul><li>' + L("お客様都合でのキャンセルはご対応致しかねます。","No cancellations for change of mind.") + '</li><li>' + L("初期不良だった場合、装着ができなかった場合のみ、商品到着日より5日以内であれば返品・交換を承っております。","Returns within 5 days of delivery if faulty or it cannot be worn.") + '</li><li>' + L("初期不良の場合の返品にかかる送料は弊社が負担致します。","We pay return shipping for faulty items.") + '</li><li>' + L("返金は、返送された商品の到着を確認後、7営業日以内に支払い方法に応じて行います。","Refunds within 7 business days of receiving the return.") + '</li></ul>' +
+  '<p style="margin-top:12px">' + L("お問い合わせはLINEまたはE-mail（info@baqless.jp）にて商品写真と一緒にご連絡くださいませ。","Contact us on LINE or at info@baqless.jp with a photo of the item.") + '</p>' +
+  '<h2>' + L("保証規定について","Warranty") + '</h2>' +
+  '<p>' + L("Baqlessの商品はご購入から1年間、保証サービスが付属致します。ご購入から1年以内に初期不良が確認できた場合は商品を無償修理、または新品交換をさせていただきます。","One year warranty. Faults within a year are repaired or replaced free of charge.") + '</p>' +
+  '<h2>' + L("ポイント・会員ランク","Points and member tiers") + '</h2>' +
+  '<p>' + L("1ポイント＝1円。ポイントはご注文商品の発送時に付与され、有効期限は最終ご購入日から1年。会員ランクはBronze、Silver（1倍）、Gold（3倍）、Platinum（5倍）。","1 point = ¥1, granted on dispatch, valid one year. Tiers Bronze to Platinum, up to 5x points.") + '</p>' +
+  '</div></div>';
+}
+function vLegal(){
+  const rows = [
+    ["販売業者の名称","株式会社木村商店"],["販売責任者名","木村圭輝"],["販売業者の住所","東京都渋谷区恵比寿西一丁目29番8号"],
+    ["販売業者の連絡先","電話番号：03-6416-0760<br>メールアドレス：info@baqless.jp"],
+    ["商品代金以外の必要料金","消費税、送料、代引き決済で購入の際の手数料"],
+    ["申し込み有効期限","原則、受注確認（受注確認の為の自動送信メール発信）後、5日間といたします。"],
+    ["引き渡し時期","通常は在庫確認後2～3営業日でご注文商品を弊社より発送いたします。諸事情により4営業日以上お時間をいただく場合にはメール、もしくはお電話でお知らせいたします。"],
+    ["お支払い方法","クレジットカード、ヤマト運輸 代金引換便、あと払いペイディ"],
+    ["お支払い期限","代引き決済の場合、商品お受け取り時にお支払い頂きます。"],
+    ["返品期限","商品の性質上、初期不良の場合以外での商品の返品・交換はいたしかねます。"],
+    ["返品送料","初期不良や、発送商品間違いの場合には、当店着払いにてご対応いたします。"],
+    ["営業時間","平日10:00～18:00（土日祝日休み）"]
+  ];
+  return head(L("特定商取引法に基づく表記","Legal notice (Tokushoho)"), "", [[null, L("特定商取引法に基づく表記","Legal notice")]]).replace('<h1>', '<h1 class="jh" style="font-size:clamp(22px,4.4vw,32px)">') +
+  '<div class="wrap" style="padding-bottom:80px"><div class="doc"><div class="tbl"><table><tbody>' + rows.map(r => '<tr><th scope="row">' + r[0] + '</th><td>' + r[1] + '</td></tr>').join("") + '</tbody></table></div>' +
+  '<div class="note-box"><span class="prop" style="justify-self:start">' + L("移行時に確認","Check at migration") + '</span><p>' + L("現行の2ページで記載が異なります。お支払い方法（特商法表記：ペイディ／ご利用ガイド：Amazon Pay）、初期不良の期間（特商法表記：7日間／ご利用ガイド：5日以内）。新しいショップでは1つに揃え、Shopifyの「ポリシー」に登録してチェックアウトのフッターにも表示します。メールアドレスは現行の特商法ページで空欄のため、ご利用ガイドの info@baqless.jp を記載しています。","Today's two pages disagree on payment methods and the fault period. The new shop sets one version in Shopify's policy settings, which also links it in the checkout footer.") + '</p></div>' +
+  '</div></div>';
+}
+function vAbout(){
+  return head("ABOUT", "", [[null,"ABOUT"]]) +
+  '<div class="wrap" style="padding-bottom:80px"><div class="doc">' +
+  '<h2 style="margin-top:12px">' + L("コンセプトは”ストレスフリーのピアス”","The stress-free earring") + '</h2>' +
+  '<p>' + L("世の女性たちが悩まされている「キャッチによる締め付けの不快感」「ピアスの紛失」という問題を解決しようと思い立ち、『バックキャッチのないピアス』の開発を始めます。","Made to end two everyday problems: the pinch of the back and losing earrings.") + '</p>' +
+  '<div class="mark" style="margin-top:24px"><span class="prop">' + L("移行","Migration") + '</span><span>' + L("ABOUTの全文は移行時に現行ページから移します。ブランドの由来の書き方は、スイスと日本で揃えるため移行前に確認します。","The full ABOUT text moves over at migration. The brand origin wording gets aligned between Switzerland and Japan first.") + '</span></div>' +
+  '<h2 id="shoplist">SHOPLIST</h2>' +
+  '<p><b style="color:var(--fg)">Baqless Tokyo Showroom</b><br>〒150-0021 東京都渋谷区恵比寿西１丁目２９－８ 恵比寿ウエスト 2-A<br>' + L("営業時間 10:00～18:00（土日祝を除く）※予約制となります","10:00 to 18:00, weekdays, by appointment") + '</p>' +
+  '<p style="margin-top:14px">' + L("取扱店舗：HULLE 草津店（11/13 OPEN）、HULLE 所沢店（10/23 OPEN）ほか。一覧は移行時に現行のSHOPLISTから移します。","Stockists include HULLE Kusatsu and HULLE Tokorozawa. The full list moves over at migration.") + '</p>' +
+  '<p style="margin-top:18px"><a class="btn line" href="https://lin.ee/ByfAr8V" target="_blank" rel="noopener">' + L("LINEでショールームを予約","Book the showroom on LINE") + '</a></p>' +
+  '</div></div>';
+}
+
+/* ---------- chrome ---------- */
+function renderChrome(){
+  const route = (location.hash || "#home").slice(1);
+  $("#ann").innerHTML = '<span>' + L("9,000円（税込）以上のご購入で送料無料","Free shipping on orders of ¥9,000 or more") + '</span><span class="two">' + L("ヤマト運輸でお届け・全国一律770円","Delivered by Yamato, ¥770 flat") + '</span>';
+  $("#nav").innerHTML = NAV.map(n => '<a href="#' + n[0] + '"' + (route === n[0] || (n[0] === "collection" && route === "collection") ? ' aria-current="page"' : '') + '>' + n[1] + '</a>').join("");
+  $("#foot").innerHTML = '<div class="wrap"><div style="display:grid;gap:18px;align-content:start"><svg class="wm" viewBox="0 0 4411.98 1262.4" role="img" aria-label="BAQLESS"><use href="#wm"/></svg><p class="addr">Baqless Tokyo Showroom<br>〒150-0021 東京都渋谷区恵比寿西１丁目２９－８ 恵比寿ウエスト 2-A<br>' + L("10:00～18:00（土日祝を除く）予約制","Weekdays 10:00 to 18:00, by appointment") + '</p><a class="btn line" style="justify-self:start" href="https://lin.ee/ByfAr8V" target="_blank" rel="noopener">' + L("LINE お友だち登録","Add us on LINE") + '</a></div>' +
+  '<div class="cols">' +
+    '<div><h4>Collections</h4><ul>' + [["new-arrival","NEW ARRIVAL"],["black","BLACK"],["wa","WA"],["collection","ALL ITEMS"]].map(x => '<li><a href="#' + x[0] + '">' + x[1] + '</a></li>').join("") + '</ul></div>' +
+    '<div><h4>Support</h4><ul><li><a href="#guide">' + L("ご利用ガイド","Shopping guide") + '</a></li><li><a href="#guide">' + L("返品・交換・修理について","Returns") + '</a></li><li><a href="#guide">' + L("保証規定について","Warranty") + '</a></li><li><a href="#guide">' + L("よくあるご質問","FAQ") + '</a></li></ul></div>' +
+    '<div><h4>Legal</h4><ul><li><a href="#legal">' + L("特定商取引法に基づく表記","Legal notice (Tokushoho)") + '</a></li><li><a href="#legal">' + L("プライバシーポリシー","Privacy policy") + '</a></li></ul></div>' +
+    '<div><h4>Follow</h4><ul><li><a href="https://www.instagram.com/baqless_jp/" target="_blank" rel="noopener">Instagram ＠baqless_jp</a></li><li><a href="https://lin.ee/ByfAr8V" target="_blank" rel="noopener">LINE</a></li></ul></div>' +
+  '</div><div class="base"><div class="pays">' + ["クレジットカード","Amazon Pay","代金引換","PayPay","楽天ペイ","コンビニ払い"].map(x => '<span class="pay">' + x + '</span>').join("") + '</div><span>© 株式会社木村商店</span></div></div>';
+  $("#menu").innerHTML = '<div class="dh"><h2>MENU</h2><button type="button" class="icon" data-close aria-label="' + L("閉じる","Close") + '"><svg><use href="#i-x"/></svg></button></div><div class="db"><nav class="mnav">' +
+    NAV.map(n => '<a href="#' + n[0] + '">' + n[1] + '<span>' + ({collection:"コレクション","new-arrival":"新着",black:"ブラック",wa:"和",about:"ブランドについて",shoplist:"取扱店舗","lifestyle-lisa":"ライフスタイル",guide:"ご利用ガイド"})[n[0]] + '</span></a>').join("") +
+    '<a href="#legal">LEGAL<span>特定商取引法に基づく表記</span></a></nav><a class="btn line" href="https://lin.ee/ByfAr8V" target="_blank" rel="noopener">' + L("LINE お友だち登録","Add us on LINE") + '</a></div>';
+  $("#about").innerHTML = aboutHTML();
+  renderCart();
+}
+function aboutHTML(){
+  if (S.lang === "en") return '<button type="button" class="icon x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button><h2>About this prototype</h2>' +
+    '<p>The new baqless.jp on Shopify, built from the same pieces as baqless.com. Products, prices, photos and texts are taken from today\'s baqless.jp on 20.11.2026. Prices are the regular prices, without the Black Friday discount.</p>' +
+    '<h3>Directions</h3><ul><li><b>A Familiar</b>: white and Navy, close to today.</li><li><b>B Brand</b>: warm ground, Navy header, Coral button. Our recommendation.</li><li><b>C Black</b>: the whole shop in black and gold. In A and B the BLACK collection and its products turn dark on their own.</li></ul>' +
+    '<h3>Effects</h3><ul><li>Second photo on hover, 0.4 s</li><li>Zoom to 105 %, 0.9 s</li><li>Button fill from the left, 0.25 s</li><li>Menu underline, 0.3 s</li><li>Fade in on scroll, 0.6 s</li></ul><p style="margin-top:8px">FX switches them off for comparison. Phones have no hover, so the first photo stays.</p>' +
+    '<h3>Marked as proposed</h3><p>Anything with a dashed label is new and not in today\'s shop: delivery date and time, PayPay, Rakuten Pay, konbini, Apple Pay, reviews, LINE login. Checkout does not run in the prototype.</p>';
+  return '<button type="button" class="icon x" data-close aria-label="閉じる"><svg><use href="#i-x"/></svg></button><h2>このプロトタイプについて</h2>' +
+    '<p>Shopifyで構築する新しいbaqless.jpの試作です。baqless.comと同じ部品で作っています。商品・価格・写真・文章は2026年11月20日時点のbaqless.jpから。価格はブラックフライデー前の通常価格です。</p>' +
+    '<h3>デザインの方向性</h3><ul><li><b>A Familiar</b>：白とネイビー。現在のショップに近い印象。</li><li><b>B Brand</b>：ブランドカラーを全体に。推奨。</li><li><b>C Black</b>：ショップ全体を黒とゴールドで。AとBでもBLACKコレクションと商品ページは自動で黒になります。</li></ul>' +
+    '<h3>エフェクト</h3><ul><li>ホバーで2枚目の写真へ切り替え 0.4秒</li><li>ズーム 105％ 0.9秒</li><li>ボタンの色が左から満ちる 0.25秒</li><li>メニューの下線 0.3秒</li><li>スクロールでふわっと表示 0.6秒</li></ul><p style="margin-top:8px">FXで比較のためにオフにできます。スマートフォンにはホバーがないため、1枚目の写真のままです。</p>' +
+    '<h3>「提案」の表示</h3><p>点線のラベルは現在のショップにない新機能です：お届け日時指定、PayPay・楽天ペイ・コンビニ払い・Apple Pay、レビュー、LINEログイン。決済画面には進みません。</p>';
+}
+
+/* ---------- cart ---------- */
+function cartTotal(){ return S.cart.reduce((s, l) => s + (l.half ? by[l.id].h : by[l.id].p) * l.q, 0) + (S.gift ? GIFT : 0); }
+function renderCart(){
+  const n = S.cart.reduce((s, l) => s + l.q, 0);
+  const cc = $("#cart-count"); cc.textContent = n; cc.hidden = !n;
+  const sub = cartTotal(), rest = Math.max(0, FREE - sub), ship = sub >= FREE || !sub ? 0 : SHIP;
+  let h = '<div class="dh"><h2>CART</h2><button type="button" class="icon" data-close aria-label="' + L("閉じる","Close") + '"><svg><use href="#i-x"/></svg></button></div>';
+  if (!S.cart.length){
+    h += '<div class="db"><div class="empty"><p style="color:var(--fg)">' + L("カートに商品がありません。","Your cart is empty.") + '</p><a class="btn" href="#new-arrival">' + L("NEW ARRIVALを見る","Shop New Arrival") + '</a></div></div>';
+  } else {
+    h += '<div class="db"><div class="ship"><span>' + (rest ? L("あと<b class=\"num\">" + yen(rest) + "</b>で送料無料", "<b class=\"num\">" + yen(rest) + "</b> to free shipping") : L("送料無料でお届けします","Free shipping")) + '</span><div class="bar"><i style="width:' + Math.min(100, sub / FREE * 100) + '%"></i></div></div>' +
+      S.cart.map((l, i) => { const p = by[l.id]; return '<div class="line-item"><img src="' + img(p.id, 0) + '" alt="" width="72" height="90"><div style="display:grid;gap:4px;min-width:0"><span class="nm">' + esc(p.n) + '</span><span class="vr">' + (p.h ? (l.half ? L("ハーフ（片耳用）","Single") : L("ペア（両耳用）","Pair")) : "") + '</span><span class="qty" style="justify-self:start"><button type="button" data-cq="' + i + '" data-d="-1" aria-label="-">−</button><output class="num">' + l.q + '</output><button type="button" data-cq="' + i + '" data-d="1" aria-label="+">+</button></span><button type="button" class="rm" data-rm="' + i + '">' + L("削除","Remove") + '</button></div><span class="num" style="color:var(--fg);font-size:13px">' + yen((l.half ? p.h : p.p) * l.q) + '</span></div>'; }).join("") +
+      '<label class="check"><input type="checkbox" id="gift-cart"' + (S.gift ? " checked" : "") + '><span>' + L("ギフトボックスを追加","Add a gift box") + ' <span class="num">+' + yen(GIFT) + '</span><small>' + L("オリジナルショッピングバッグ付き","With our shopping bag") + '</small></span></label>' +
+      '<div style="display:grid;gap:10px"><span class="lbl">' + L("お届け日時","Delivery date and time") + PROP() + '</span><div class="dd"><select class="sel" aria-label="date"><option>' + L("指定なし","No preference") + '</option>' + deliveryDates().map(d => '<option>' + d + '</option>').join("") + '</select><select class="sel" aria-label="time"><option>' + L("指定なし","No preference") + '</option><option>' + L("午前中","Morning") + '</option><option>14:00〜16:00</option><option>16:00〜18:00</option><option>18:00〜20:00</option><option>19:00〜21:00</option></select></div></div>' +
+      '</div><div class="df"><div class="sum"><div><span>' + L("小計","Subtotal") + '</span><span class="num">' + yen(sub) + '</span></div><div><span>' + L("送料","Shipping") + '</span><span class="num">' + (ship ? yen(ship) : L("無料","Free")) + '</span></div><div class="tot"><span>' + L("合計（税込）","Total incl. tax") + '</span><span class="num">' + yen(sub + ship) + '</span></div></div>' +
+      '<button type="button" class="btn wide" id="checkout">' + L("ご購入手続きへ","Check out") + '</button>' + pays() + '</div>';
+  }
+  $("#cart").innerHTML = h;
+}
+function addToCart(id, half, q){
+  const l = S.cart.find(x => x.id === id && !!x.half === !!half);
+  if (l) l.q += q; else S.cart.push({id:id, half:!!half, q:q});
+  save(); renderCart(); openPanel("cart");
+}
+
+/* ---------- panels ---------- */
+let lastFocus = null;
+function openPanel(id){
+  lastFocus = document.activeElement;
+  ["cart","menu","about"].forEach(x => { const el = $("#" + x); const on = x === id; el.classList.toggle("on", on); el.setAttribute("aria-hidden", !on); });
+  $("#scrim").classList.add("on");
+  const f = $("#" + id + " [data-close]"); if (f) f.focus();
+}
+function closePanels(){
+  ["cart","menu","about"].forEach(x => { $("#" + x).classList.remove("on"); $("#" + x).setAttribute("aria-hidden", "true"); });
+  $("#scrim").classList.remove("on");
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+let tt = null;
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600); }
+
+/* ---------- reveal (effect 5) ---------- */
+let io = null;
+function reveal(){
+  if (io) io.disconnect();
+  const els = $$("[data-reveal]");
+  if (!S.fx || !("IntersectionObserver" in window)) { els.forEach(e => e.classList.remove("wait")); return; }
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove("wait"); io.unobserve(e.target); } }), {rootMargin:"0px 0px -6% 0px"});
+  els.forEach(e => { if (e.getBoundingClientRect().top > innerHeight * .95){ e.classList.add("wait"); io.observe(e); } });
+}
+
+/* ---------- router ---------- */
+function route(){
+  const r = (location.hash || "#home").slice(1);
+  const root = document.documentElement;
+  let html, scope = "";
+  if (r.indexOf("item-") === 0){ const p = by[r.slice(5)]; if (p && p.k.indexOf("black") > -1) scope = "black"; }
+  if (r === "black") scope = "black";
+  root.dataset.scope = scope;
+  if (r === "collection") html = vCollection("all");
+  else if (r === "new-arrival") html = vCollection("new");
+  else if (r === "wa") html = vCollection("wa");
+  else if (["zirconia","pearl","hoop","amity","charms"].indexOf(r) > -1) html = vCollection(r);
+  else if (r === "black") html = vBlack();
+  else if (r.indexOf("item-") === 0) html = vProduct(r.slice(5));
+  else if (r.indexOf("lifestyle-") === 0) html = vStory(r.slice(10));
+  else if (r === "guide") html = vGuide();
+  else if (r === "legal") html = vLegal();
+  else if (r === "about" || r === "shoplist") html = vAbout();
+  else html = vHome();
+  const m = $("#main"); m.innerHTML = html;
+  if ($("#cgrid")) fillCollection();
+  renderChrome();
+  bindView();
+  if (r === "shoplist"){ const s = $("#shoplist"); if (s) s.scrollIntoView(); } else window.scrollTo(0, 0);
+  reveal();
+  document.title = "baqless.jp Prototype";
+}
+
+function bindView(){
+  const bb = $("#buybar");
+  if (cur && $("#add")){
+    const p = cur;
+    const price = () => opt === "half" ? p.h : p.p;
+    const upd = () => { $("#pp").innerHTML = yen(price()) + '<small>(税込)</small>'; const pt = $("#ppts"); if (pt) pt.textContent = Math.floor(price() * .01) + L("ポイント還元（1ポイント＝1円）"," points (1 point = ¥1)"); bb.innerHTML = '<span class="price">' + yen(price()) + '<small>(税込)</small></span><button type="button" class="btn" id="add2">' + L("カートに入れる","Add to cart") + '</button>'; };
+    upd();
+    $$(".opt").forEach(b => b.addEventListener("click", () => { opt = b.dataset.o; $$(".opt").forEach(x => x.setAttribute("aria-pressed", x === b)); upd(); }));
+    $$("[data-q]").forEach(b => b.addEventListener("click", () => { qty = Math.max(1, Math.min(9, qty + +b.dataset.q)); $("#qv").textContent = qty; }));
+    const g = $("#gift-pdp"); if (g) g.addEventListener("change", () => { S.gift = g.checked; renderCart(); });
+    const add = () => addToCart(p.id, opt === "half", qty);
+    $("#add").addEventListener("click", add);
+    bb.onclick = e => { if (e.target.closest("#add2")) add(); };
+    $("#fav").addEventListener("click", () => toast(L("お気に入りに追加しました（会員登録で保存）","Added to wishlist")));
+    const rv = $("#rv-btn"); if (rv) rv.addEventListener("click", () => toast(L("レビュー機能は移行時に導入する提案です","Reviews are a proposed feature")));
+    const gal = $("#gal");
+    gal.addEventListener("scroll", () => { const i = Math.round(gal.scrollLeft / gal.clientWidth) + 1; $("#gal-n").textContent = i + " / 3"; }, {passive:true});
+    const watch = new IntersectionObserver(es => es.forEach(e => { const on = !e.isIntersecting && e.boundingClientRect.top < 0; bb.classList.toggle("on", on); bb.setAttribute("aria-hidden", !on); }));
+    watch.observe($("#add"));
+    bb.hidden = false;
+  } else { bb.classList.remove("on"); bb.hidden = true; cur = null; }
+  $$(".chip").forEach(c => c.addEventListener("click", () => { filt = c.dataset.f; fillCollection(); }));
+  const so = $("#sort"); if (so) so.addEventListener("change", () => { sort = so.value; fillCollection(); });
+}
+
+/* ---------- global events ---------- */
+function applyDir(){ document.documentElement.dataset.dir = S.dir; $$("[data-dir]").forEach(b => b.getAttribute("aria-pressed") !== null && b.setAttribute("aria-pressed", b.dataset.dir === S.dir)); }
+function applyLang(){ document.documentElement.lang = S.lang; $$("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === S.lang)); }
+$$(".pbar [data-dir]").forEach(b => b.addEventListener("click", () => { S.dir = b.dataset.dir; save(); applyDir(); route(); toast({a:"A Familiar", b:"B Brand", c:"C Black"}[S.dir]); }));
+$$(".pbar [data-lang]").forEach(b => b.addEventListener("click", () => { S.lang = b.dataset.lang; save(); applyLang(); route(); }));
+$(".pbar [data-fx]").addEventListener("click", e => { S.fx = !S.fx; document.documentElement.dataset.fx = S.fx ? "on" : "off"; e.currentTarget.setAttribute("aria-pressed", S.fx); reveal(); toast(S.fx ? L("エフェクト オン","Effects on") : L("エフェクト オフ","Effects off")); });
+$("#about-btn").addEventListener("click", () => openPanel("about"));
+$("#cart-btn").addEventListener("click", () => openPanel("cart"));
+$("#menu-btn").addEventListener("click", () => openPanel("menu"));
+$("#acct-btn").addEventListener("click", () => toast(L("ログイン・新規会員登録（現行の会員とポイントは移行します）","Log in or register. Members and points move over.")));
+$("#scrim").addEventListener("click", closePanels);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closePanels(); });
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-close]")) { closePanels(); return; }
+  const a = e.target.closest("a[href^='#']");
+  if (a && a.closest(".drawer")) closePanels();
+  const rm = e.target.closest("[data-rm]"); if (rm){ S.cart.splice(+rm.dataset.rm, 1); save(); renderCart(); return; }
+  const cq = e.target.closest("[data-cq]"); if (cq){ const l = S.cart[+cq.dataset.cq]; l.q = Math.max(1, Math.min(9, l.q + +cq.dataset.d)); save(); renderCart(); return; }
+  if (e.target.closest("#checkout")) toast(L("プロトタイプのため、ここで決済画面には進みません","Checkout does not run in the prototype"));
+});
+document.addEventListener("change", e => { if (e.target.id === "gift-cart"){ S.gift = e.target.checked; renderCart(); const g = $("#gift-pdp"); if (g) g.checked = S.gift; } });
+window.addEventListener("hashchange", route);
+
+applyDir(); applyLang(); document.documentElement.dataset.fx = "on";
+route();
+})();
+</script>
